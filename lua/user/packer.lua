@@ -18,6 +18,14 @@ return require('packer').startup(function(use)
         }
     }
 
+    use {
+        'nvim-lualine/lualine.nvim',
+        requires = {
+            { 'kyazdani42/nvim-web-devicons' },
+            { 'RRethy/nvim-base16', opt = false },
+        }
+    }
+    use { 'akinsho/bufferline.nvim', tag = "v3.*", requires = 'nvim-tree/nvim-web-devicons' }
     use({ 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' })
     use('nvim-treesitter/playground')
     use('theprimeagen/harpoon')

@@ -1,1 +1,2 @@
-vim.cmd.colorscheme('lunaperche')
+vim.cmd.colorscheme('base16-default-dark')
+
