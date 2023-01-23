@@ -1,4 +1,6 @@
 local lsp = require("lsp-zero")
+local telescope = require('telescope.builtin')
+local utils = require("utils")
 
 lsp.preset("recommended")
 
@@ -49,20 +51,21 @@ lsp.set_preferences({
 })
 
 lsp.on_attach(function(client, bufnr)
-    local opts = { buffer = bufnr, remap = false }
-
-    vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-    vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-    vim.keymap.set("n", "<leader>vws", vim.lsp.buf.workspace_symbol, opts)
-    vim.keymap.set("n", "<leader>vd", vim.diagnostic.open_float, opts)
-    vim.keymap.set("n", "[d", vim.diagnostic.goto_next, opts)
-    vim.keymap.set("n", "]d", vim.diagnostic.goto_prev, opts)
-    vim.keymap.set("n", "<leader>vca", vim.lsp.buf.code_action, opts)
-    vim.keymap.set("n", "<leader>vrr", vim.lsp.buf.references, opts)
-    vim.keymap.set("n", "<leader>vrn", vim.lsp.buf.rename, opts)
-    vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, opts)
 end)
+    local opts = { buffer = bufnr }
 
+        utils.nmap("<leader>ca", vim.lsp.buf.code_action, opts)
+        utils.nmap("gd", telescope.lsp_definitions(), opts)
+        utils.nmap("K", vim.lsp.buf.hover, opts)
+        utils.nmap("gi", telescope.lsp_implementations(), opts)
+        utils.nmap("<leader>d", vim.diagnostic.open_float, opts)
+        utils.nmap("[d", vim.diagnostic.goto_next, opts)
+        utils.nmap("]d", vim.diagnostic.goto_prev, opts)
+        utils.nmap("gr", telescope.lsp_references(), opts)
+        utils.nmap("<leader>rn", vim.lsp.buf.rename, opts)
+        utils.imap("<C-s>", vim.lsp.buf.signature_help, opts)
+
+    utils.nmap("<leader>ws", vim.lsp.buf.workspace_symbol, opts)
 lsp.setup()
 
 vim.diagnostic.config({
