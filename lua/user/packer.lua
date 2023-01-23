@@ -26,11 +26,26 @@ return require('packer').startup(function(use)
         }
     }
     use { 'akinsho/bufferline.nvim', tag = "v3.*", requires = 'nvim-tree/nvim-web-devicons' }
+
     use({ 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' })
     use('nvim-treesitter/playground')
     use('theprimeagen/harpoon')
     use('mbbill/undotree')
+
     use('tpope/vim-fugitive')
+    use("tpope/vim-rhubarb")
+    use {
+        'lewis6991/gitsigns.nvim',
+        tag = 'v0.6'
+    }
+    use {
+        'pwntester/octo.nvim',
+        requires = {
+            'nvim-lua/plenary.nvim',
+            'nvim-telescope/telescope.nvim',
+            'kyazdani42/nvim-web-devicons',
+        },
+    }
 
     use {
         'VonHeikemen/lsp-zero.nvim',
