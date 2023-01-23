@@ -1,31 +1,46 @@
-vim.opt.guicursor = ""
+local opt = require("utils").opt
 
-vim.opt.nu = true
-vim.opt.relativenumber = true
-
-vim.opt.tabstop = 4
-vim.opt.softtabstop = 4
-vim.opt.shiftwidth = 4
-vim.opt.expandtab = true
-
-vim.opt.smartindent = true
-
-vim.opt.wrap = false
-
-vim.opt.swapfile = false
-vim.opt.backup = false
-vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
-vim.opt.undofile = true
-
-vim.opt.hlsearch = false
-vim.opt.incsearch = true
-
-vim.opt.termguicolors = true
-
-vim.opt.scrolloff = 8
-vim.opt.signcolumn = "yes"
-vim.opt.isfname:append("@-@")
-
-vim.opt.updatetime = 50
-
-vim.opt.colorcolumn = "80"
+opt.autoindent = true
+opt.autowrite = true
+opt.backup = false
+opt.clipboard = "unnamedplus,unnamed"
+opt.cmdheight = 2
+opt.colorcolumn = "100"
+opt.complete = ".,w,b,u,U"
+opt.confirm = true
+opt.expandtab = true
+opt.fileformats = "unix,mac"
+opt.formatoptions = "crql"
+opt.gdefault = true
+opt.hlsearch = false
+opt.ignorecase = true
+opt.incsearch = true
+opt.isfname:append("@-@")
+opt.laststatus = 2
+opt.mouse = "a"
+opt.number = true
+opt.relativenumber = true
+opt.scrolloff = 8
+opt.shiftround = true
+opt.shiftwidth = 4
+opt.showmatch = true
+opt.signcolumn = 'auto'
+opt.smartcase = true
+opt.smartindent = true
+opt.smarttab = true
+opt.softtabstop = 4
+opt.splitbelow = true
+opt.splitright = true
+opt.swapfile = false
+opt.switchbuf = "useopen"
+opt.tabstop = 4
+opt.termguicolors = true
+opt.timeoutlen = 400
+opt.title = true
+opt.ttimeoutlen = 100
+opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
+opt.undofile = true
+opt.updatetime = 50
+opt.wildmode = "longest,full"
+opt.wrap = false
+opt.writebackup = false

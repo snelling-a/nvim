@@ -1,5 +1,5 @@
 local get_map_options = function(custom_options)
-    local options = { silent = true }
+    local options = { silent = true, noremap = true }
     if custom_options then
         options = vim.tbl_extend("force", options, custom_options)
     end
@@ -30,5 +30,7 @@ function utils.reload_modules()
     vim.cmd [[source $MYVIMRC]]
     vim.notify "Reloaded all config modules"
 end
+
+utils.opt = vim.opt
 
 return utils
