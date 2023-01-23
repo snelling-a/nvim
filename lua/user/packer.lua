@@ -8,8 +8,7 @@ return require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
 
     use {
-        'nvim-telescope/telescope.nvim', tag = '0.1.0',
-        -- or                            , branch = '0.1.x',
+        'nvim-telescope/telescope.nvim',
         requires = {
             'nvim-lua/plenary.nvim',
             "nvim-telescope/telescope-node-modules.nvim",
@@ -27,11 +26,21 @@ return require('packer').startup(function(use)
     }
     use { 'akinsho/bufferline.nvim', tag = "v3.*", requires = 'nvim-tree/nvim-web-devicons' }
 
-    use({ 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' })
+    use("JoosepAlviste/nvim-ts-context-commentstring")
+    use("gpanders/editorconfig.nvim")
+    use("nvim-treesitter/nvim-treesitter-textobjects")
     use('nvim-treesitter/playground')
+    use({ 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' })
+
     use('theprimeagen/harpoon')
     use('mbbill/undotree')
 
+    use("numToStr/Comment.nvim")
+    use("kylechui/nvim-surround")
+    use {
+        "windwp/nvim-autopairs",
+        config = function() require("nvim-autopairs").setup {} end
+    }
     use('tpope/vim-fugitive')
     use("tpope/vim-rhubarb")
     use {
