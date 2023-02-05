@@ -1,14 +1,17 @@
-require("zen-mode").setup {
-    window = {
-        width = 90,
-        options = {
-            number = true,
-            relativenumber = true,
-        }
-    },
-}
+local utils = require("utils")
+local zen_mode = require("zen-mode")
 
-vim.keymap.set("n", "<leader>zz", function()
-    require("zen-mode").toggle()
-    vim.wo.wrap = false
+zen_mode.setup({
+	window = {
+		width = 100,
+		options = {
+			number = true,
+			relativenumber = true,
+		},
+	},
+})
+
+utils.nmap("<leader>zz", function()
+	zen_mode.toggle()
+	vim.wo.wrap = false
 end)
