@@ -1,3 +1,4 @@
+local utils = require("utils")
 
 local ensure_packer = function()
 	local fn = vim.fn
@@ -16,6 +17,12 @@ if not status_ok then
 	return
 end
 
+local PackerGroup = utils.augroup("PackerGroup", {})
+utils.autocmd("BufWritePost", {
+	pattern = "packer.lua",
+	command = "source <afile> | PackerCompile",
+	group = PackerGroup,
+})
 
 
 return packer.startup(function(use)
