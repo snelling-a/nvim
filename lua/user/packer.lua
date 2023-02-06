@@ -29,6 +29,14 @@ return packer.startup(function(use)
 	use({ "wbthomason/packer.nvim" })
 
 	use({
+		"folke/noice.nvim",
+		requires = {
+			"MunifTanjim/nui.nvim",
+			"rcarriga/nvim-notify",
+		},
+	})
+
+	use({
 		"nvim-telescope/telescope.nvim",
 		requires = {
 			"nvim-telescope/telescope-node-modules.nvim",
