@@ -83,6 +83,7 @@ return packer.startup(function(use)
 		},
 	})
 	use({ "folke/zen-mode.nvim" })
+	use({ "Exafunction/codeium.vim" })
 
 	use({ "norcalli/nvim-colorizer.lua" })
 
