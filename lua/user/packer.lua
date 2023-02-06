@@ -29,6 +29,12 @@ return packer.startup(function(use)
 	use({ "wbthomason/packer.nvim" })
 
 	use({
+		"glepnir/dashboard-nvim",
+		-- event = "VimEnter",
+		requires = { "nvim-tree/nvim-web-devicons" },
+	})
+
+	use({
 		"folke/noice.nvim",
 		requires = {
 			"MunifTanjim/nui.nvim",
