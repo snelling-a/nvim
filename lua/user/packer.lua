@@ -64,6 +64,8 @@ return packer.startup(function(use)
 		},
 	})
 
+	use({ "akinsho/toggleterm.nvim" })
+
 	use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
 
 	use({ "theprimeagen/harpoon" })
