@@ -1,9 +1,11 @@
 local api = vim.api
 
+local tbl_extend_force = function(...) return vim.tbl_extend("force", ...) end
+
 local get_map_options = function(custom_options)
 	local options = { silent = true, noremap = true }
 	if custom_options then
-		options = vim.tbl_extend("force", options, custom_options)
+		options = tbl_extend_force(custom_options, options)
 	end
 	return options
 end
@@ -38,8 +40,5 @@ function utils.command(bufnr, name, fn, opts) api.nvim_buf_create_user_command(b
 utils.augroup = api.nvim_create_augroup
 utils.autocmd = api.nvim_create_autocmd
 
-utils.tbl_extend_force = function(...) -- move to utils, this is useful
-	return vim.tbl_extend("force", ...)
-end
-
+utils.tbl_extend_force = tbl_extend_force
 return utils

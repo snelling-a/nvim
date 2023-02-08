@@ -2,13 +2,13 @@ local utils = require("utils")
 
 vim.g.mapleader = ","
 
+utils.map({ "n", "v" }, ":", ";", { desc = "Command is remapped to `;`" })
+vim.keymap.set({ "n", "v" }, ";", ":", { desc = "Command is remapped to `;`" })
+
 utils.nmap("<down>", function() vim.notify("'NO! USE J!'", vim.log.levels.WARN) end, { desc = "DON'T USE [DOWN]" })
 utils.nmap("<left>", function() vim.notify("'NO! USE H!'", vim.log.levels.WARN) end, { desc = "DON'T USE [LEFT]" })
 utils.nmap("<right>", function() vim.notify("'NO! USE L!'", vim.log.levels.WARN) end, { desc = "DON'T USE [RIGHT]" })
 utils.nmap("<up>", function() vim.notify("'NO! USE K!'", vim.log.levels.WARN) end, { desc = "DON'T USE [Up]" })
-
-utils.map({ "n", "v" }, "<leader>d", [["_d]])
-utils.map({ "n", "v" }, "<leader>y", [["+y]])
 
 utils.map("", "<C-H>", function() vim.cmd.wincmd("h") end, { desc = "Move to Left Window" })
 utils.map("", "<C-J>", function() vim.cmd.wincmd("j") end, { desc = "Move to Bottom Window" })
@@ -33,8 +33,6 @@ utils.nmap(
 	[[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
 	{ desc = "[S]earch and replace word under the cursor" }
 )
-utils.nmap(":", ";", { desc = "`:` is remapped to `;`" })
-utils.nmap(";", ":", { desc = "Don't press shift to enter command mode" })
 utils.nmap("<C-d>", "<C-d>zz", { desc = "Scroll [d]own and center" })
 utils.nmap("<C-u>", "<C-u>zz", { desc = "Scroll [u]p and center" })
 utils.nmap("<S-TAB>", function() vim.cmd.bprevious() end, { desc = "Go to the previous buffer" })
@@ -65,7 +63,5 @@ utils.cmap("jk", "<C-c>")
 
 utils.imap("jk", "<Esc>:w<CR>")
 
-utils.vmap(":", ";", { desc = "`:` is remapped to `:`" })
-utils.vmap(";", ":", { desc = "Don't press shift to enter command mode" })
 utils.vmap("J", ":m '>+1<CR>gv=gv", { desc = "Move lines down" })
 utils.vmap("K", ":m '<-2<CR>gv=gv", { desc = "Move lines up" })
