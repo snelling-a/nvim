@@ -1,26 +1,29 @@
 local action_layout = require("telescope.actions.layout")
-local builtin = require('telescope.builtin')
+local actions = require("telescope.actions")
+local builtin = require("telescope.builtin")
+local previewers = require("telescope.previewers")
+local telescope = require("telescope")
+local themes = require("telescope.themes")
 local utils = require("utils")
 
 local project_files = function()
-    local opts = {} -- define here if you want to define something
-    vim.fn.system('git rev-parse --is-inside-work-tree')
-    if vim.v.shell_error == 0 then
-        builtin.git_files(opts)
-    else
-        builtin.find_files(opts)
-    end
+	local opts = {}
+	vim.fn.system("git rev-parse --is-inside-work-tree")
+	if vim.v.shell_error == 0 then
+		builtin.git_files(opts)
+	else
+		builtin.find_files(opts)
+	end
 end
 
-utils.nmap('<C-b>', builtin.buffers)
-utils.nmap('<C-p>', project_files)
-utils.nmap('<C-r>', builtin.live_grep)
-utils.nmap('<leader><space>', builtin.builtin)
-utils.nmap('<leader><tab>', builtin.keymaps)
-utils.nmap('<leader>fb', builtin.buffers)
-utils.nmap('<leader>ff', builtin.find_files)
-utils.nmap('<leader>fh', builtin.help_tags)
-utils.nmap('<leader>qf', builtin.quickfix)
+utils.nmap("<C-p>", project_files, { desc = "Open [p]roject files" })
+utils.nmap("<C-r>", builtin.live_grep, { desc = "[R]un live grep" })
+utils.nmap("<leader><space>", builtin.builtin, { desc = "Open builtins" })
+utils.nmap("<leader><tab>", builtin.keymaps, { desc = "Show keymaps" })
+utils.nmap("<leader>b", builtin.buffers, { desc = "Show [b]uffers" })
+utils.nmap("<leader>ff", builtin.find_files, { desc = "[F]ind [f]iles" })
+utils.nmap("<leader>fh", builtin.help_tags, { desc = "[H]elp" })
+utils.nmap("<leader>qf", builtin.quickfix, { desc = "[Q]uick[f]ix" })
 
 require("telescope").setup {
     defaults = {
@@ -61,18 +64,29 @@ require("telescope").setup {
             initial_mode = "normal",
         },
     },
-    extensions = {
-        fzf = {
-            fuzzy = true, -- false will only do exact matching
-            override_generic_sorter = true, -- override the generic sorter
-            override_file_sorter = true, -- override the file sorter
-            case_mode = "smart_case", -- or "ignore_case" or "respect_case"
-            -- the default case_mode is "smart_case"
-        }
-    }
 }
 
-require('telescope').load_extension('fzf')
--- require('telescope').load_extension('octo')
-require('telescope').load_extension('node_modules')
+	extensions = {
+		fzf = {
+			case_mode = "smart_case",
+			fuzzy = true,
+			override_file_sorter = true,
+			override_generic_sorter = true,
+		},
+		["ui-select"] = {
+			themes.get_cursor(),
+		},
+	},
+})
 
+vim.api.nvim_create_user_command(
+	"NodeModules",
+	function() vim.cmd.Telescope("node_modules", "list") end,
+	{ desc = "Explore node_modules" }
+)
+
+telescope.load_extension("fzf")
+telescope.load_extension("node_modules")
+telescope.load_extension("noice")
+telescope.load_extension("octo")
+telescope.load_extension("ui-select")

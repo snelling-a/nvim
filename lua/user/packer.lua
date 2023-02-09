@@ -28,25 +28,27 @@ utils.autocmd("BufWritePost", {
 return packer.startup(function(use)
 	use({ "wbthomason/packer.nvim" })
 
+	-- [[ UI]]
 	use({
-		"glepnir/dashboard-nvim",
-		-- event = "VimEnter",
-		requires = { "nvim-tree/nvim-web-devicons" },
+		"eandrju/cellular-automaton.nvim",
+		"folke/zen-mode.nvim",
+		"lukas-reineke/indent-blankline.nvim",
+		"norcalli/nvim-colorizer.lua",
+		"RRethy/nvim-base16",
+		{ "nvim-tree/nvim-tree.lua", requires = { "nvim-tree/nvim-web-devicons" } },
+		{ "folke/noice.nvim", requires = { "MunifTanjim/nui.nvim", "rcarriga/nvim-notify" } },
+		{ "glepnir/dashboard-nvim", requires = { "nvim-tree/nvim-web-devicons" } },
+		{ "nvim-lualine/lualine.nvim", requires = { "kyazdani42/nvim-web-devicons", "arkav/lualine-lsp-progress" } },
 	})
 
-	use({
-		"folke/noice.nvim",
-		requires = {
-			"MunifTanjim/nui.nvim",
-			"rcarriga/nvim-notify",
-		},
-	})
-
+	-- [[[ TELESCOPE ]]]
 	use({
 		"nvim-telescope/telescope.nvim",
 		requires = {
-			"nvim-telescope/telescope-node-modules.nvim",
+			-- "gbrlsnchs/telescope-lsp-handlers.nvim",
 			"nvim-lua/plenary.nvim",
+			"nvim-telescope/telescope-node-modules.nvim",
+			"nvim-telescope/telescope-ui-select.nvim",
 			{
 				"nvim-telescope/telescope-fzf-native.nvim",
 				run = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release"
@@ -56,46 +58,78 @@ return packer.startup(function(use)
 		},
 	})
 
+	--[[ TREESITTER ]]
 	use({
-		"nvim-lualine/lualine.nvim",
-		requires = {
-			{ "kyazdani42/nvim-web-devicons" },
-			{ "RRethy/nvim-base16", opt = false },
+		"JoosepAlviste/nvim-ts-context-commentstring",
+		"lvimuser/lsp-inlayhints.nvim",
+		"mrjones2014/nvim-ts-rainbow",
+		"nvim-treesitter/nvim-treesitter-textobjects",
+		"nvim-treesitter/playground",
+		{ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" },
+	})
+
+	-- [[ LSP ]]
+	use({
+		"neovim/nvim-lspconfig",
+		"jay-babu/mason-null-ls.nvim",
+		"jose-elias-alvarez/null-ls.nvim",
+		"williamboman/mason-lspconfig.nvim",
+		"williamboman/mason.nvim",
+
+		"b0o/schemastore.nvim",
+		"fladson/vim-kitty",
+		"folke/neodev.nvim",
+		"jose-elias-alvarez/typescript.nvim",
+		"jparise/vim-graphql",
+		{ "preservim/vim-markdown", ft = "markdown", dependencies = { "godlygeek/tabular" } },
+
+		"simrat39/symbols-outline.nvim",
+		{ "folke/trouble.nvim", requires = "nvim-tree/nvim-web-devicons" },
+	})
+
+	-- [[ TOOLS ]]
+	use({
+		"akinsho/toggleterm.nvim",
+		"mbbill/undotree",
+		"theprimeagen/harpoon",
+		{
+			"ThePrimeagen/refactoring.nvim",
+			requires = { { "nvim-lua/plenary.nvim" }, { "nvim-treesitter/nvim-treesitter" } },
 		},
 	})
 
-	use({ "akinsho/toggleterm.nvim" })
-
-	use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
-	use({ "lukas-reineke/indent-blankline.nvim" })
-
-	use({ "theprimeagen/harpoon" })
-
-	use({ "numToStr/Comment.nvim" })
-	use({ "kylechui/nvim-surround" })
-	use({ "windwp/nvim-autopairs" })
-	use({ "tpope/vim-fugitive" })
-	use({ "tpope/vim-rhubarb" })
-	use({ "lewis6991/gitsigns.nvim" })
 	use({
-		"pwntester/octo.nvim",
-		requires = {
-			"nvim-lua/plenary.nvim",
-			"nvim-telescope/telescope.nvim",
-			"kyazdani42/nvim-web-devicons",
-		},
+		"kylechui/nvim-surround",
+		"numToStr/Comment.nvim",
+		"windwp/nvim-autopairs",
 	})
-	use({ "folke/zen-mode.nvim" })
+
+	-- [[ GIT ]]
+	use({
+		"lewis6991/gitsigns.nvim",
+		"tpope/vim-fugitive",
+		"tpope/vim-rhubarb",
+		{
+			"pwntester/octo.nvim",
+			requires = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim", "kyazdani42/nvim-web-devicons" },
+		},
+		{ "sindrets/diffview.nvim", requires = "nvim-lua/plenary.nvim" },
+	})
+
+	-- [[ COMPLETION ]]
+	use({
+		"hrsh7th/cmp-buffer",
+		"hrsh7th/cmp-cmdline",
+		"hrsh7th/cmp-nvim-lsp",
+		"hrsh7th/cmp-path",
+		"hrsh7th/nvim-cmp",
+		"L3MON4D3/LuaSnip",
+		"onsails/lspkind.nvim",
+		"saadparwaiz1/cmp_luasnip",
+		"saadparwaiz1/cmp_luasnip",
+	})
+
 	use({ "Exafunction/codeium.vim" })
-
-	use({ "norcalli/nvim-colorizer.lua" })
-
-	use({
-		"nvim-tree/nvim-tree.lua",
-		requires = {
-			"nvim-tree/nvim-web-devicons",
-		},
-	})
 
 	if packer_bootstrap then
 		require("packer").sync()

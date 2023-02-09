@@ -7,19 +7,6 @@ local base09 = "#dc9656"
 
 local modified = "柳"
 
-local lsp_progress = {
-	"lsp_progress",
-	spinner_symbols = {
-		"▰▱▱▱▱▱▱",
-		"▰▰▱▱▱▱▱",
-		"▰▰▰▱▱▱▱",
-		"▰▰▰▰▱▱▱",
-		"▰▰▰▰▰▱▱",
-		"▰▰▰▰▰▰▱",
-		"▰▰▰▰▰▰▰",
-	},
-}
-
 local noice_command = {
 	require("noice").api.status.command.get,
 	cond = require("noice").api.status.command.has,
@@ -71,7 +58,6 @@ lualine.setup({
 			{ "diff", symbols = { added = "  ", modified = modified, removed = " " } },
 			{ "diagnostics" },
 		},
-		lualine_c = { lsp_progress },
 		lualine_x = {
 			noice_searchcount,
 			noice_command,
@@ -84,6 +70,7 @@ lualine.setup({
 			"progress",
 			"location",
 		},
+		lualine_c = {},
 		lualine_z = { "branch" },
 	},
 	inactive_sections = {

@@ -1,4 +1,5 @@
 local api = vim.api
+local builtin = vim.fn
 
 local tbl_extend_force = function(...) return vim.tbl_extend("force", ...) end
 
@@ -37,8 +38,9 @@ utils.opt = vim.opt
 
 function utils.command(bufnr, name, fn, opts) api.nvim_buf_create_user_command(bufnr, name, fn, opts) end
 
+utils.api = api
 utils.augroup = api.nvim_create_augroup
 utils.autocmd = api.nvim_create_autocmd
-
+utils.builtin = builtin
 utils.tbl_extend_force = tbl_extend_force
 return utils
