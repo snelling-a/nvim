@@ -131,6 +131,8 @@ return packer.startup(function(use)
 
 	use({ "Exafunction/codeium.vim" })
 
+	use({ "glacambre/firenvim", cond = vim.g.started_by_firenvim, run = function() vim.fn["firenvim#install"](0) end })
+
 	if packer_bootstrap then
 		require("packer").sync()
 	end
