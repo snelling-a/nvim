@@ -1,0 +1,15 @@
+return {
+	"",
+	"DiffviewFileHistory",
+	"checkhealth",
+	"dashboard",
+	"fugitive",
+	"git",
+	"help",
+	"lspinfo",
+	"noice",
+	"notify",
+	"packer",
+	"qf",
+	"tsplayground",
+}
