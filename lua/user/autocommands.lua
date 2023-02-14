@@ -1,17 +1,10 @@
 local utils = require("utils")
+local no_format = require("utils.no_format")
 
 local EasyQuitGroup = utils.augroup("EasyQuit", {})
 utils.autocmd({ "FileType" }, {
 	group = EasyQuitGroup,
-	pattern = {
-		"fugitive",
-		"git",
-		"help",
-		"checkhealth",
-		"lspinfo",
-		"tsplayground",
-		"qf",
-	},
+	pattern = no_format,
 	callback = function()
 		vim.cmd([[
              nnoremap <silent> <buffer> q :close<CR>
@@ -51,4 +44,26 @@ utils.autocmd({ "BufWritePre" }, {
 	pattern = "!markdown",
 	command = [[%s/\s\+$//e]],
 	desc = "Strip whitespace from the end of the line",
+})
+
+local ToggleWindowOptionsGroup = utils.augroup("ToggleWindowOptions", {})
+utils.autocmd("WinLeave", {
+	group = ToggleWindowOptionsGroup,
+	pattern = "*",
+	desc = "Toggle cursorline and relative number off",
+	callback = function()
+		vim.opt.cursorline = false
+		vim.opt.relativenumber = false
+	end,
+})
+
+utils.autocmd({ "WinEnter" }, {
+	group = ToggleWindowOptionsGroup,
+	desc = "Toggle cursorline and relative number on",
+	callback = function()
+		if not vim.tbl_contains(no_format, vim.bo.filetype) then
+			vim.opt.cursorline = true
+			vim.opt.relativenumber = true
+		end
+	end,
 })
