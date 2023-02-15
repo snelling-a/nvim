@@ -1,10 +1,6 @@
 local utils = require("utils")
 
-require("trouble").setup({
-	mode = "workspace_diagnostics",
-	auto_close = true,
-	use_diagnostic_signs = true,
-})
+require("trouble").setup({ mode = "workspace_diagnostics", auto_close = true, use_diagnostic_signs = true })
 
 utils.nmap("<leader>xx", "<cmd>TroubleToggle<cr>")
 utils.nmap("<leader>xw", "<cmd>TroubleToggle workspace_diagnostics<cr>")

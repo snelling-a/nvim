@@ -4,7 +4,6 @@ require("base16-colorscheme").with_config({
 	notify = true,
 	ts_rainbow = true,
 	cmp = true,
-	illuminate = true,
 })
 
 vim.cmd.colorscheme("base16-default-dark")

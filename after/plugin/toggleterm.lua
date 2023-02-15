@@ -1,9 +1,6 @@
 local autocmd = require("utils").autocmd
 
-require("toggleterm").setup({
-	open_mapping = "<c-\\>",
-	shell = vim.o.shell, -- change the default shell
-})
+require("toggleterm").setup({ open_mapping = "<c-\\>", shell = vim.o.shell })
 
 local function set_terminal_keymaps()
 	local opts = { buffer = 0 }
@@ -15,7 +12,4 @@ local function set_terminal_keymaps()
 	vim.keymap.set("t", "<C-l>", function() vim.cmd.wincmd("l") end, opts)
 end
 
-autocmd("TermOpen", {
-	pattern = "term://*toggleterm#*",
-	callback = function() set_terminal_keymaps() end,
-})
+autocmd("TermOpen", { pattern = "term://*toggleterm#*", callback = function() set_terminal_keymaps() end })

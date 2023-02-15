@@ -20,8 +20,8 @@ for _, mode in ipairs({ "n", "o", "i", "x", "t", "c", "v" }) do
 end
 
 function utils.reload_modules()
-	local config_path = vim.fn.stdpath("config")
-	local lua_files = vim.fn.glob(config_path .. "/**/*.lua", false, true)
+	local config_path = builtin.stdpath("config")
+	local lua_files = builtin.glob(config_path .. "/**/*.lua", false, true)
 
 	for _, file in ipairs(lua_files) do
 		local module_name = string.gsub(file, ".*/(.*)/(.*).lua", "%1.%2")

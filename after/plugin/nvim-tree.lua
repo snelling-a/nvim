@@ -20,10 +20,7 @@ require("nvim-tree").setup({
 		highlight_git = true,
 		highlight_opened_files = "all",
 		highlight_modified = "icon",
-		icons = {
-			git_placement = "signcolumn",
-			modified_placement = "signcolumn",
-		},
+		icons = { git_placement = "signcolumn", modified_placement = "signcolumn" },
 		special_files = {
 			"Cargo.toml",
 			"Makefile",
@@ -32,21 +29,9 @@ require("nvim-tree").setup({
 			"readme.md",
 		},
 	},
-	diagnostics = {
-		enable = true,
-	},
-	git = {
-		ignore = false,
-	},
-	filters = {
-		custom = { "^\\.git$" },
-	},
-	actions = {
-		open_file = {
-			quit_on_open = true,
-		},
-	},
-	trash = {
-		cmd = "trash",
-	},
+	diagnostics = { enable = true },
+	git = { ignore = false },
+	filters = { custom = { "^\\.git$" } },
+	actions = { open_file = { quit_on_open = true } },
+	trash = { cmd = "trash" },
 })

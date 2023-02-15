@@ -7,6 +7,7 @@ local mini_notifications = {
 	filter = {
 		any = {
 			{ event = "msg_show", find = "filetype=" },
+			{ event = "msg_show", find = "/Users/" },
 			{ event = "msg_show", find = "Hunk %d of %d" },
 			{ event = "msg_show", find = "null-ls.*timeout" },
 			{ event = "msg_show", find = "nvim-treesitter" },
@@ -14,11 +15,12 @@ local mini_notifications = {
 			{ event = "msg_show", kind = "lua_error", find = "key must be a positive Integer" },
 			{ event = "msg_show", kind = "lua_error", find = "vim.lsp.buf.hover" },
 			{ event = "notify", kind = "info", find = "Highlighting cleared" },
+			{ event = "notify", kind = "info", find = "nvim-treesitter" },
 			{ event = "notify", kind = "info", find = "lsp" },
 			{ event = "notify", kind = "info", find = "No information available" },
 			{ event = "notify", kind = "info", find = "was automatically installed" },
 			{ event = "notify", kind = "warn", find = "NO! USE .!" },
-			{ find = "was properly created" },
+			{ kind = "info", find = "was properly" },
 			{ event = "msg_show", find = "No signature help available" },
 		},
 	},
@@ -38,7 +40,7 @@ local split_notifications = {
 local hidden_notifications = {
 	filter = {
 		any = {
-			{ event = "msg_show", find = "%d+ .* line.*" },
+			{ event = "msg_show", find = "%d+.* line.*" },
 			{ event = "msg_show", find = "%d+ change" },
 			{ event = "msg_show", find = "search hit .*, continuing at .*" },
 			{ event = "msg_show", find = "written" },

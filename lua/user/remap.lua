@@ -35,6 +35,7 @@ utils.nmap(
 )
 utils.nmap("<C-d>", "<C-d>zz", { desc = "Scroll [d]own and center" })
 utils.nmap("<C-u>", "<C-u>zz", { desc = "Scroll [u]p and center" })
+utils.nmap("<C-z>", "<nop>", { desc = "I'm sure there is a use for this, but for now it's just annoying" })
 utils.nmap("<S-TAB>", function() vim.cmd.bprevious() end, { desc = "Go to the previous buffer" })
 utils.nmap("<Tab>", function() vim.cmd.bnext() end, { desc = "Go to the next buffer" })
 utils.nmap("<leader>,", "``", { desc = "Press `,,` to jump back to the last cursor position." })

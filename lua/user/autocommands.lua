@@ -64,6 +64,8 @@ utils.autocmd({ "WinEnter" }, {
 		if not vim.tbl_contains(no_format, vim.bo.filetype) then
 			vim.opt.cursorline = true
 			vim.opt.relativenumber = true
+		else
+			vim.opt.colorcolumn = ""
 		end
 	end,
 })

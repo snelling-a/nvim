@@ -7,6 +7,7 @@ return {
 	"git",
 	"help",
 	"lspinfo",
+	"mason",
 	"noice",
 	"notify",
 	"packer",

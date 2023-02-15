@@ -12,26 +12,19 @@ if vim.g.started_by_firenvim then
 end
 
 vim.g.firenvim_config = {
-	globalSettings = { alt = "all" },
+	-- globalSettings = { alt = "all" },
 	localSettings = {
+		[".*"] = { takeover = "never", cmdline = "neovim", filename = "/tmp/{hostname}_{pathname%10}.{extension}" },
+		["https?://github.com/"] = { priority = 1, takeover = "always" },
 		["https?://www.reddit.com/"] = {
 			priority = 1,
 			takeover = "always",
 			selector = 'textarea:not([placeholder*="Title"])',
 		},
-		["https?://github.com/"] = {
-			priority = 1,
-			takeover = "always",
-		},
-		[".*"] = {
-			takeover = "never",
-			cmdline = "neovim",
-			filename = "/tmp/{hostname}_{pathname%10}.{extension}",
-		},
 	},
 }
 
-utils.autocmd("BufEnter", {
-	pattern = { "*github.com_*", "*reddit.com_*" },
-	callback = function() vim.cmd("set filetype=markdown") end,
-})
+utils.autocmd(
+	"BufEnter",
+	{ pattern = { "*github.com_*", "*reddit.com_*" }, callback = function() vim.cmd("set filetype=markdown") end }
+)

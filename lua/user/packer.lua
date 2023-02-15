@@ -24,6 +24,16 @@ utils.autocmd("BufWritePost", {
 	group = PackerGroup,
 })
 
+packer.init({
+	display = {
+		working_sym = "",
+		error_sym = "",
+		done_sym = "",
+		removed_sym = "ﮁ",
+		moved_sym = "",
+		header_sym = "—",
+	},
+})
 
 return packer.startup(function(use)
 	use({ "wbthomason/packer.nvim" })
@@ -99,6 +109,7 @@ return packer.startup(function(use)
 	})
 
 	use({
+		"junegunn/vim-easy-align",
 		"kylechui/nvim-surround",
 		"numToStr/Comment.nvim",
 		"windwp/nvim-autopairs",
@@ -125,7 +136,6 @@ return packer.startup(function(use)
 		"hrsh7th/nvim-cmp",
 		"L3MON4D3/LuaSnip",
 		"onsails/lspkind.nvim",
-		"saadparwaiz1/cmp_luasnip",
 		"saadparwaiz1/cmp_luasnip",
 	})
 

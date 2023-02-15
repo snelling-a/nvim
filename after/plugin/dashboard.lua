@@ -20,30 +20,10 @@ dashboard.setup({
 		header = custom_header,
 		footer = {},
 		shortcut = {
-			{
-				desc = "  New file ",
-				action = "enew",
-				group = "@string",
-				key = "n",
-			},
-			{
-				desc = "   Update ",
-				action = "PackerSync",
-				group = "@string",
-				key = "u",
-			},
-			{
-				desc = "   File/path ",
-				action = "Telescope find_files find_command=rg,--hidden,--files",
-				group = "@string",
-				key = "f",
-			},
-			{
-				desc = "   Quit ",
-				action = "q!",
-				group = "@macro",
-				key = "q",
-			},
+			{ desc = "  New file ", action = "enew", group = "@string", key = "n" },
+			{ desc = "   Update ", action = "PackerSync", group = "@string", key = "u" },
+			{ desc = "   File/path ", action = "Telescope find_files", group = "@string", key = "f" },
+			{ desc = "   Quit ", action = "q!", group = "@macro", key = "q" },
 		},
 	},
 })
