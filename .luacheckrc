@@ -1,4 +1,3 @@
----@diagnostic disable: lowercase-global
 -- vim:ft=lua
 
 exclude_files = {
