@@ -12,6 +12,7 @@ local ensure_packer = function()
 end
 
 local packer_bootstrap = ensure_packer()
+
 local status_ok, packer = pcall(require, "packer")
 if not status_ok then
 	return
@@ -46,9 +47,11 @@ return packer.startup(function(use)
 		"norcalli/nvim-colorizer.lua",
 		"RRethy/nvim-base16",
 		{ "nvim-tree/nvim-tree.lua", requires = { "nvim-tree/nvim-web-devicons" } },
-		{ "folke/noice.nvim", requires = { "MunifTanjim/nui.nvim", "rcarriga/nvim-notify" } },
-		{ "glepnir/dashboard-nvim", requires = { "nvim-tree/nvim-web-devicons" } },
-		{ "nvim-lualine/lualine.nvim", requires = { "kyazdani42/nvim-web-devicons", "arkav/lualine-lsp-progress" } },
+		{
+			{ "folke/noice.nvim", requires = { "MunifTanjim/nui.nvim", "rcarriga/nvim-notify" }, cond = utils.is_vim },
+			{ "glepnir/dashboard-nvim", requires = { "nvim-tree/nvim-web-devicons" }, cond = utils.is_vim },
+			{ "nvim-lualine/lualine.nvim", requires = { "kyazdani42/nvim-web-devicons" }, cond = utils.is_vim },
+		},
 	})
 
 	-- [[[ TELESCOPE ]]]
@@ -141,7 +144,7 @@ return packer.startup(function(use)
 
 	use({ "Exafunction/codeium.vim" })
 
-	use({ "glacambre/firenvim", cond = vim.g.started_by_firenvim, run = function() vim.fn["firenvim#install"](0) end })
+	use({ "glacambre/firenvim", run = function() vim.fn["firenvim#install"](0) end })
 
 	if packer_bootstrap then
 		require("packer").sync()

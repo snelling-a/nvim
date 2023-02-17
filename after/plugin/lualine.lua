@@ -1,6 +1,5 @@
-local ok, lualine = pcall(require, "lualine")
-if not ok or vim.g.started_by_firenvim then
-	return nil
+if not require("utils").is_vim then
+	return
 end
 
 local no_format = require("utils.no_format")
@@ -31,7 +30,7 @@ local macro_recording = {
 	color = { fg = "orange" },
 }
 
-lualine.setup({
+require("lualine").setup({
 	options = {
 		disabled_filetypes = { statusline = no_format, winbar = {} },
 		ignore_focus = {},

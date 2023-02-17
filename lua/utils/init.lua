@@ -38,6 +38,14 @@ utils.opt = vim.opt
 
 function utils.command(bufnr, name, fn, opts) api.nvim_buf_create_user_command(bufnr, name, fn, opts) end
 
+function utils.is_vim()
+	if vim.g.started_by_firenvim or vim.g.vscode then
+		return false
+	else
+		return true
+	end
+end
+
 utils.api = api
 utils.augroup = api.nvim_create_augroup
 utils.autocmd = api.nvim_create_autocmd

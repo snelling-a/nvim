@@ -1,5 +1,4 @@
-local status_ok, noice = pcall(require, "noice")
-if not status_ok or vim.g.started_by_firenvim then
+if not require("utils").is_vim then
 	return
 end
 
@@ -16,7 +15,7 @@ local mini_notifications = {
 			{ event = "msg_show", kind = "lua_error", find = "vim.lsp.buf.hover" },
 			{ event = "notify", kind = "info", find = "Highlighting cleared" },
 			{ event = "notify", kind = "info", find = "nvim-treesitter" },
-			{ event = "notify", kind = "info", find = "lsp" },
+			{ event = "notify", kind = "info", find = "LSP" },
 			{ event = "notify", kind = "info", find = "No information available" },
 			{ event = "notify", kind = "info", find = "was automatically installed" },
 			{ event = "notify", kind = "warn", find = "NO! USE .!" },
@@ -55,7 +54,7 @@ local hidden_notifications = {
 	opts = { skip = true },
 }
 
-noice.setup({
+require("noice").setup({
 	lsp = {
 		progress = {
 			format = {

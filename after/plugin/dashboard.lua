@@ -1,5 +1,4 @@
-local status_ok, dashboard = pcall(require, "dashboard")
-if not status_ok or vim.g.started_by_firenvim then
+if not require("utils").is_vim then
 	return
 end
 
@@ -13,7 +12,7 @@ local custom_header = {
 	"",
 }
 
-dashboard.setup({
+require("dashboard").setup({
 	theme = "hyper",
 	packages = { enable = true },
 	config = {
