@@ -32,6 +32,7 @@ opt.mouse = "a"
 opt.number = true
 opt.relativenumber = true
 opt.scrolloff = 8
+opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize" }
 opt.shiftround = true
 opt.shiftwidth = 4
 opt.signcolumn = "yes"

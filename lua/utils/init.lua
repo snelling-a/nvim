@@ -1,5 +1,6 @@
 local api = vim.api
 local builtin = vim.fn
+local logger = require("utils.logger")
 
 local tbl_extend_force = function(...) return vim.tbl_extend("force", ...) end
 
@@ -31,7 +32,7 @@ function utils.reload_modules()
 
 	vim.cmd.source("$MYVIMRC")
 
-	vim.notify("Reloaded all config modules\nReloaded lua modules", vim.log.levels.INFO, { title = "Happy hacking!" })
+	logger.info({ msg = "Reloaded all config modules\nReloaded lua modules", title = "Happy hacking!" })
 end
 
 utils.opt = vim.opt
