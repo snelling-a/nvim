@@ -77,7 +77,6 @@ return packer.startup(function(use)
 		"lvimuser/lsp-inlayhints.nvim",
 		"mrjones2014/nvim-ts-rainbow",
 		"nvim-treesitter/nvim-treesitter-textobjects",
-		"nvim-treesitter/playground",
 		{ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" },
 	})
 
