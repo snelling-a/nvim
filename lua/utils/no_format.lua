@@ -12,5 +12,5 @@ return {
 	"notify",
 	"packer",
 	"qf",
-	"tsplayground",
+	"query",
 }
