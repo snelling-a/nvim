@@ -18,7 +18,10 @@ require("gitsigns").setup({
 			if vim.wo.diff then
 				return "]c"
 			end
-			vim.schedule(function() gs.next_hunk() end)
+			vim.schedule(function()
+				gs.next_hunk()
+				utils.scroll_center()
+			end)
 			return "<Ignore>"
 		end, opts)
 
@@ -26,7 +29,10 @@ require("gitsigns").setup({
 			if vim.wo.diff then
 				return "[c"
 			end
-			vim.schedule(function() gs.prev_hunk() end)
+			vim.schedule(function()
+				gs.prev_hunk()
+				utils.scroll_center()
+			end)
 			return "<Ignore>"
 		end, opts)
 
