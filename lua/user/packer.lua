@@ -82,11 +82,12 @@ return packer.startup(function(use)
 
 	-- [[ LSP ]]
 	use({
-		"neovim/nvim-lspconfig",
+		{
+			"neovim/nvim-lspconfig",
+			requires = { "hrsh7th/cmp-nvim-lsp", "williamboman/mason.nvim", "williamboman/mason-lspconfig.nvim" },
+		},
 		"jay-babu/mason-null-ls.nvim",
 		"jose-elias-alvarez/null-ls.nvim",
-		"williamboman/mason-lspconfig.nvim",
-		"williamboman/mason.nvim",
 
 		"b0o/schemastore.nvim",
 		"fladson/vim-kitty",
@@ -131,14 +132,14 @@ return packer.startup(function(use)
 
 	-- [[ COMPLETION ]]
 	use({
+		"L3MON4D3/LuaSnip",
 		"hrsh7th/cmp-buffer",
 		"hrsh7th/cmp-cmdline",
-		"hrsh7th/cmp-nvim-lsp",
 		"hrsh7th/cmp-path",
 		"hrsh7th/nvim-cmp",
-		"L3MON4D3/LuaSnip",
 		"onsails/lspkind.nvim",
 		"saadparwaiz1/cmp_luasnip",
+		{ "petertriho/cmp-git", requires = "nvim-lua/plenary.nvim" },
 	})
 
 	use({ "Exafunction/codeium.vim" })

@@ -18,6 +18,13 @@ local options = {
 
 local servers = lsp_config.servers
 
+require("mason").setup({
+	ui = {
+		border = "rounded",
+		icons = { package_installed = "✓", package_pending = "⟳", package_uninstalled = "-" },
+	},
+})
+
 require("mason-lspconfig").setup({ automatic_installation = true, ensure_installed = vim.tbl_keys(servers) })
 
 for server, config in pairs(servers) do
