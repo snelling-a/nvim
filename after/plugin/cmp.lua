@@ -1,8 +1,6 @@
-vim.opt.completeopt = { "menu", "menuone", "noselect" }
-
 local cmp = require("cmp")
-local luasnip = require("luasnip")
 local lspkind = require("lspkind")
+local luasnip = require("luasnip")
 
 local enabled = function()
 	-- disable completion in comments
@@ -69,13 +67,14 @@ cmp.setup({
 		end, { "i", "s" }),
 	}),
 	sources = {
-		{ name = "nvim_lsp" },
-		{ name = "nvim_lua" },
-		{ name = "luasnip" },
 		{ name = "buffer" },
-		{ name = "path", option = { trailing_slash = true } },
 		{ name = "emoji" },
+		{ name = "git" },
+		{ name = "luasnip" },
+		{ name = "nvim_lsp" },
 		{ name = "nvim_lsp_signature_help" },
+		{ name = "nvim_lua" },
+		{ name = "path", option = { trailing_slash = true } },
 	},
 	experimental = {
 		ghost_text = true,
@@ -94,3 +93,5 @@ cmp.setup.cmdline(":", {
 		{ { name = "cmdline", option = { ignore_cmds = { "Man", "!" } } } }
 	),
 })
+
+require("cmp_git").setup()

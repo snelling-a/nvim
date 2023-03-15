@@ -14,6 +14,7 @@ opt.clipboard = { "unnamed", "unnamedplus" }
 opt.cmdheight = 2
 opt.colorcolumn = "100"
 opt.complete = ".,w,b,u,U"
+opt.completeopt = { "menu", "menuone", "noselect" }
 opt.confirm = true
 opt.expandtab = true
 opt.fileformats = { "unix", "mac" }
@@ -26,7 +27,6 @@ opt.incsearch = true
 opt.isfname:append("@-@")
 opt.laststatus = 2
 opt.list = true
-opt.listchars:append("eol:󰌑")
 opt.listchars:append("tab:  ")
 opt.mouse = "a"
 opt.number = true
@@ -52,6 +52,7 @@ opt.ttimeoutlen = 100
 opt.undodir = { os.getenv("HOME") .. "/.vim/undodir" }
 opt.undofile = true
 opt.updatetime = 50
+opt.whichwrap:append({ ["h"] = true, ["l"] = true })
 opt.wildmode = "longest,full"
 opt.wrap = false
 opt.writebackup = false
