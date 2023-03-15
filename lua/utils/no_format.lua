@@ -1,11 +1,15 @@
 return {
 	"",
 	"DiffviewFileHistory",
+	"NvimTree",
 	"checkhealth",
 	"dashboard",
+	"diffview",
 	"fugitive",
+	"fugitiveblame",
 	"git",
 	"help",
+	"log",
 	"lspinfo",
 	"mason",
 	"noice",
@@ -13,4 +17,6 @@ return {
 	"packer",
 	"qf",
 	"query",
+	"toggleterm",
+	"undotree",
 }
