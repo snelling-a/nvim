@@ -56,25 +56,3 @@ opt.whichwrap:append({ ["h"] = true, ["l"] = true })
 opt.wildmode = "longest,full"
 opt.wrap = false
 opt.writebackup = false
-
-opt.formatoptions = opt.formatoptions
-	+ "1" -- Don't break a line after a one-letter word. It's broken before it instead (if possible).
-	+ "l" -- Long lines are not broken in insert mode
-	+ "n" -- When formatting text, recognize numbered lists.
-	- "o" -- Auto insert the current comment leader after hitting 'o' or 'O' in Normal mode.
--- 	+ "c" -- (default) Auto-wrap comments using 'textwidth', inserting the current comment leader automatically.
--- 	+ "j" -- (default) Where it makes sense, remove a comment leader when joining lines.
--- 	+ "q" -- (default) Allow formatting of comments with "gq".
--- 	- "/" -- When 'o' is included: do not insert the comment leader for a // comment after a statement
--- 	- "2" -- When formatting text, use the indent of the second line of a paragraph for the rest of the paragraph
--- 	- "B" -- When joining lines, don't insert a space between two multibyte characters.
--- 	- "M" -- When joining lines, don't insert a space before or after a multibyte character.
--- 	- "]" -- Respect 'textwidth' rigorously.
--- 	- "a" -- Automatic formatting of paragraphs.
--- 	- "b" -- Like 'v', but only auto-wrap if you enter a blank at or before the wrap margin.
--- 	- "m" -- Also break at a multibyte character above 255.
--- 	- "p" -- Don't break lines at single spaces that follow periods.
--- 	- "r" -- Automatically insert the current comment leader after hitting <Enter> in Insert mode.
--- 	- "t" -- Auto-wrap text using 'textwidth'
--- 	- "v" -- Vi-compatible auto-wrapping in insert mode
--- 	- "w" -- Trailing white space indicates a paragraph continues in the next line.
