@@ -1,5 +1,5 @@
-local utils = require("utils")
 local actions = require("diffview.actions")
+local utils = require("utils")
 
 local win_config = { position = "left", width = 35, win_opts = {} }
 

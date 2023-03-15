@@ -12,7 +12,7 @@ if is_okay then
 		handlers["textDocument/signatureHelp"] = lsp.with(handlers.signature_help, { border = "rounded" })
 		handlers["textdocument/definition"] = telescope.lsp_definitions
 		handlers["textdocument/implementation"] = telescope.lsp_implementations
-        handlers['textDocument/documentSymbol'] = telescope.lsp_document_symbols
-        handlers['workspace/symbol'] = telescope.lsp_workspace_symbols
+		handlers["textDocument/documentSymbol"] = telescope.lsp_document_symbols
+		handlers["workspace/symbol"] = telescope.lsp_workspace_symbols
 	end
 end

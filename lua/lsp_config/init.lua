@@ -2,11 +2,11 @@ local lsp_config = {}
 
 lsp_config.servers = require("lsp_config.servers")
 
-local mappings = require("lsp_config.mappings")
-local formatting = require("lsp_config.formatting")
-local document_highlighting = require("lsp_config.document_highlight")
 local diagnostics = require("lsp_config.diagnostics")
+local document_highlighting = require("lsp_config.document_highlight")
+local formatting = require("lsp_config.formatting")
 local handlers = require("lsp_config.handlers")
+local mappings = require("lsp_config.mappings")
 
 lsp_config.setup = function()
 	vim.diagnostic.config({

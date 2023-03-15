@@ -1,6 +1,6 @@
-local utils = require("utils")
-local lspconfig = require("lspconfig")
 local lsp_config = require("lsp_config")
+local lspconfig = require("lspconfig")
+local utils = require("utils")
 
 require("neodev").setup({})
 
