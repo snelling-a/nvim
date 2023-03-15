@@ -113,7 +113,7 @@ return packer.startup(function(use)
 
 	use({
 		"junegunn/vim-easy-align",
-		"kylechui/nvim-surround",
+		{ "kylechui/nvim-surround", tag = "*" },
 		"numToStr/Comment.nvim",
 		"windwp/nvim-autopairs",
 	})
