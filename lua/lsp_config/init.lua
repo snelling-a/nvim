@@ -7,7 +7,6 @@ local formatting = require("lsp_config.formatting")
 local document_highlighting = require("lsp_config.document_highlight")
 local diagnostics = require("lsp_config.diagnostics")
 local handlers = require("lsp_config.handlers")
-local inlay_hints = require("lsp_config.inlay_hints")
 
 lsp_config.setup = function()
 	vim.diagnostic.config({
@@ -31,7 +30,6 @@ lsp_config.on_attach = function(client, bufnr)
 	formatting(client, bufnr)
 	document_highlighting(client, bufnr)
 	diagnostics(bufnr)
-	inlay_hints(client, bufnr)
 end
 
 return lsp_config

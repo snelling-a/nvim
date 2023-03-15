@@ -1,17 +1,6 @@
-local config_util = require("lspconfig.util")
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
+local config_util = require("lspconfig.util")
 local on_attach = require("lsp_config").on_attach
-
-local inlay_hints = {
-	includeInlayEnumMemberValueHints = true,
-	includeInlayFunctionLikeReturnTypeHints = true,
-	includeInlayFunctionParameterTypeHints = true,
-	includeInlayParameterNameHints = "all",
-	includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-	includeInlayPropertyDeclarationTypeHints = true,
-	includeInlayVariableTypeHints = true,
-	includeInlayVariableTypeHintsWhenTypeMatchesName = true,
-}
 
 require("typescript").setup({
 	root_dir = config_util.root_pattern("tsconfig.json", "package.json"),
@@ -47,5 +36,4 @@ require("typescript").setup({
 			on_attach(client, bufnr)
 		end,
 	},
-	settings = { typescript = { inlayHints = inlay_hints }, javascript = { inlayHints = inlay_hints } },
 })

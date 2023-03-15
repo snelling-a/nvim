@@ -74,7 +74,6 @@ return packer.startup(function(use)
 	--[[ TREESITTER ]]
 	use({
 		"JoosepAlviste/nvim-ts-context-commentstring",
-		"lvimuser/lsp-inlayhints.nvim",
 		"mrjones2014/nvim-ts-rainbow",
 		"nvim-treesitter/nvim-treesitter-context",
 		"nvim-treesitter/nvim-treesitter-textobjects",
