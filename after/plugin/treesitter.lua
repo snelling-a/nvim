@@ -24,6 +24,12 @@ require("nvim-treesitter.configs").setup({
 		select = {
 			enable = true,
 			lookahead = true,
+			lsp_interop = {
+				enable = true,
+				border = "none",
+				floating_preview_opts = {},
+				peek_definition_code = { ["<leader>df"] = "@function.outer", ["<leader>dF"] = "@class.outer" },
+			},
 			keymaps = {
 				["af"] = "@function.outer",
 				["if"] = "@function.inner",
@@ -39,3 +45,5 @@ require("nvim-treesitter.configs").setup({
 	context_commentstring = { enable = true, enable_autocmd = false },
 	rainbow = { enable = true, extended_mode = true, max_file_lines = nil },
 })
+
+require("treesitter-context").setup({ mode = "topline" })
