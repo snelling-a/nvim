@@ -52,4 +52,7 @@ utils.augroup = api.nvim_create_augroup
 utils.autocmd = api.nvim_create_autocmd
 utils.builtin = builtin
 utils.tbl_extend_force = tbl_extend_force
+
+utils.scroll_center = function() vim.api.nvim_feedkeys("zz", "n", false) end
+
 return utils

@@ -1,5 +1,6 @@
 local session_string = "sessions"
 local session_file_name = "Session.vim"
+local is_vim = require("utils").is_vim
 local logger = require("utils.logger")
 
 local SessionGroup = vim.api.nvim_create_augroup(session_string, { clear = true })
