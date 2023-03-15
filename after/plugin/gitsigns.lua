@@ -37,8 +37,14 @@ require("gitsigns").setup({
 		end, opts)
 
 		-- Actions
-		utils.map({ "n", "v" }, "<leader>hs", vim.cmd.Gitsigns("stage_hunk"), { desc = "[S]tage [H]unk" })
-		utils.map({ "n", "v" }, "<leader>hr", vim.cmd.Gitsigns("reset_hunk"), { desc = "[R]eset [H]unk" })
+		utils.map( { "n", "v" }, "<leader>hs", function() vim.cmd.Gitsigns("stage_hunk") end, { desc = "[S]tage [H]unk", noremap = false }
+		)
+		utils.map(
+			{ "n", "v" },
+			"<leader>hr",
+			function() vim.cmd.Gitsigns("reset_hunk") end,
+			{ desc = "[R]eset [H]unk", noremap = false }
+		)
 		utils.nmap("<leader>hS", gs.stage_buffer, { desc = "[S]tage Buffer" })
 		utils.nmap("<leader>hu", gs.undo_stage_hunk, { desc = "[U]ndo Stage [H]unk" })
 		utils.nmap("<leader>hR", gs.reset_buffer, { desc = "[R]eset Buffer" })
