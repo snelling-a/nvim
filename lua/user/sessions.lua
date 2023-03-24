@@ -18,7 +18,7 @@ utils.autocmd("VimEnter", {
 		if vim.fn.filereadable(session_file_name) == 1 then
 			vim.cmd.source({ args = { session_file_name }, mods = { silent = false, emsg_silent = true } })
 
-			-- vim.defer_fn(function() logger.info({ msg = "Loaded session!", title = session_string }) end, 500)
+			vim.defer_fn(function() logger.info({ msg = "Loaded session!", title = session_string }) end, 500)
 		else
 			vim.cmd.mksession({ mods = { emsg_silent = true } })
 			if vim.fn.filereadable(session_file_name) == 1 then
