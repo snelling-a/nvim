@@ -1,22 +1,30 @@
 local utils = require("utils")
 
 if vim.g.started_by_firenvim then
-	vim.opt.colorcolumn = ""
-	vim.opt.cursorline = false
-	vim.opt.guifont = "Iosevka Nerd Font Mono"
-	vim.opt.laststatus = 0
-	vim.opt.number = false
-	vim.opt.relativenumber = false
-	vim.opt.showtabline = 0
-	vim.opt.spell = true
+	utils.opt.colorcolumn = ""
+	utils.opt.cursorline = false
+	utils.opt.guifont = "Iosevka Nerd Font Mono"
+	utils.opt.laststatus = 0
+	utils.opt.number = false
+	utils.opt.relativenumber = false
+	utils.opt.showtabline = 0
+	utils.opt.spell = true
 end
 
 vim.g.firenvim_config = {
-	-- globalSettings = { alt = "all" },
+	globalSettings = {
+		all = { "<M-t>" },
+		alt = "all",
+	},
 	localSettings = {
-		[".*"] = { takeover = "never", cmdline = "neovim", filename = "/tmp/{hostname}_{pathname%10}.{extension}" },
-		["https?://github.com/"] = { priority = 1, takeover = "always" },
-		["https?://www.reddit.com/"] = {
+		[".*"] = { cmdline = "neovim", filename = "/tmp/{hostname}_{pathname%10}.{extension}" },
+		["https?://.*\\.atlassian\\.net/"] = { takeover = "never" },
+		["https?://.*\\.regexr\\.com/"] = { takeover = "never" },
+		["https?://www.messenger.com"] = { takeover = "never" },
+		["https?://docs\\.google\\.com"] = { takeover = "never" },
+		["https?://github\\.com/"] = { priority = 1, takeover = "always" },
+		["https://mail.proton.me"] = { priority = 1, takeover = "always", selector = 'div[id="rooster-editor"]' },
+		["https?://www\\.reddit\\.com/"] = {
 			priority = 1,
 			takeover = "always",
 			selector = 'textarea:not([placeholder*="Title"])',
