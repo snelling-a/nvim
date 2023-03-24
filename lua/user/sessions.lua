@@ -1,15 +1,17 @@
 local session_string = "sessions"
 local session_file_name = "Session.vim"
-local is_vim = require("utils").is_vim
 local logger = require("utils.logger")
+local utils = require("utils")
 
 local SessionGroup = vim.api.nvim_create_augroup(session_string, { clear = true })
 
-vim.api.nvim_create_autocmd("VimEnter", {
+utils.autocmd("VimEnter", {
 	group = SessionGroup,
 	nested = true,
 	callback = function()
-		if vim.fn.argc() > 0 then
+		local path = vim.fn.expand("%")
+
+		if vim.fn.argc() > 0 or string.match(path, "man://*") or not utils.is_vim() then
 			return
 		end
 
@@ -20,28 +22,27 @@ vim.api.nvim_create_autocmd("VimEnter", {
 		else
 			vim.cmd.mksession({ mods = { emsg_silent = true } })
 			if vim.fn.filereadable(session_file_name) == 1 then
-				vim.defer_fn(function()
-					logger.info({ msg = "Loaded session!", title = session_string })
-				end, 500)
+				vim.defer_fn(function() logger.info({ msg = "Loaded session!", title = session_string }) end, 500)
 			end
 		end
+
 		if #vim.api.nvim_list_bufs() == 1 and vim.api.nvim_buf_get_name(0) == "" then
 			vim.cmd.NvimTreeOpen()
 		end
 	end,
 })
 
-vim.api.nvim_create_autocmd("VimLeavePre", {
+utils.autocmd("VimLeavePre", {
 	group = SessionGroup,
 	callback = function()
-		if vim.fn.filereadable(session_file_name) == 0 then
+		if vim.fn.filereadable(session_file_name) == 0 or vim.fn.argc() > 0 or not utils.is_vim() then
 			return
 		end
 
-		local save = ""
+		local save = "y"
 
 		repeat
-			vim.ui.input({ prompt = "Save session? [y/N] " }, function(input)
+			vim.ui.input({ prompt = "Save session? [y/N] ", default = save }, function(input)
 				if input then
 					save = input
 				else
