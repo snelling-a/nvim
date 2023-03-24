@@ -1,11 +1,11 @@
-local utils = require("utils")
 local telescope = require("telescope.builtin")
-local Fugitive = utils.augroup("Fugitive", {})
+local utils = require("utils")
 
 utils.nmap("<leader>gs", vim.cmd.Git)
 
+local FugitiveGroup = utils.augroup("Fugitive", {})
 utils.autocmd("BufWinEnter", {
-	group = Fugitive,
+	group = FugitiveGroup,
 	pattern = "*",
 	callback = function()
 		if vim.bo.ft ~= "fugitive" then

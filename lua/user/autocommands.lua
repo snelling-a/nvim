@@ -14,7 +14,15 @@ utils.autocmd({ "BufLeave", "FocusLost" }, {
 
 local EasyQuitGroup = utils.augroup("EasyQuit", {})
 utils.autocmd({ "FileType" }, {
-	callback = function() vim.cmd([[ nnoremap <silent> <buffer> q :close<CR> set nobuflisted ]]) end,
+	callback = function()
+		if vim.bo.ft == "toggleterm" then
+			return
+		end
+
+		vim.api.nvim_buf_set_keymap(0, "n", "q", "", {
+			callback = function() vim.api.nvim_buf_delete(0, { force = true }) end,
+		})
+	end,
 	desc = "Use [q] to close the buffer for helper files",
 	group = EasyQuitGroup,
 	pattern = no_format,
@@ -23,6 +31,7 @@ utils.autocmd({ "FileType" }, {
 local FormatOptionsGroup = utils.augroup("FormatOptions", {})
 utils.autocmd({ "BufEnter", "FileType" }, {
 	callback = function()
+		-- luacheck: push no max line length
 		utils.opt.formatoptions:append("c") -- (default) Auto-wrap comments using 'textwidth', inserting the current comment leader automatically.
 		utils.opt.formatoptions:append("j") -- (default) Where it makes sense, remove a comment leader when joining lines.
 		utils.opt.formatoptions:append("l") -- Long lines are not broken in insert mode
@@ -42,6 +51,7 @@ utils.autocmd({ "BufEnter", "FileType" }, {
 		utils.opt.formatoptions:remove("t") -- Auto-wrap text using 'textwidth'
 		utils.opt.formatoptions:remove("v") -- Vi-compatible auto-wrapping in insert mode
 		utils.opt.formatoptions:remove("w") -- Trailing white space indicates a paragraph continues in the next line.
+		-- luacheck: pop
 	end,
 	desc = "don't auto comment new line",
 	group = FormatOptionsGroup,
