@@ -34,6 +34,7 @@ packer.init({
 		moved_sym = "",
 		header_sym = "—",
 	},
+	luarocks = { python_cmd = "python3" }, -- Set the python command to use for running hererocks
 })
 
 return packer.startup(function(use)
@@ -147,6 +148,13 @@ return packer.startup(function(use)
 	use({ "Exafunction/codeium.vim" })
 	use({ "glacambre/firenvim", run = function() vim.fn["firenvim#install"](1) end })
 
+	use({ "epwalsh/obsidian.nvim", requires = "nvim-lua/plenary.nvim" })
+	use({ "jakewvincent/mkdnflow.nvim", rocks = "luautf8" })
+	use({
+		"lukas-reineke/headlines.nvim",
+		after = "nvim-treesitter",
+		config = function() require("headlines").setup() end,
+	})
 
 	if packer_bootstrap then
 		require("packer").sync()
