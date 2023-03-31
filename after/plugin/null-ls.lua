@@ -44,6 +44,7 @@ null_ls.setup({
 		builtins_code_actions_typescript,
 		builtins_diagnostics.actionlint,
 		builtins_diagnostics.eslint_d,
+		builtins_diagnostics.alex,
 		builtins_diagnostics.gitlint,
 		builtins_diagnostics.luacheck,
 		builtins_diagnostics.shellcheck.with({ extra_args = "-x" }),
