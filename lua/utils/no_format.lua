@@ -14,6 +14,7 @@ return {
 	"mason",
 	"noice",
 	"notify",
+	"ObsidianBacklinks",
 	"packer",
 	"qf",
 	"query",
