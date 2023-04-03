@@ -31,12 +31,12 @@ utils.nmap(
 utils.nmap("<C-down>", function() vim.cmd.resize({ args = { "-5" } }) end, { desc = "Decrease current window height" })
 utils.nmap("<C-up>", function() vim.cmd.resize({ args = { "+5" } }) end, { desc = "Increase current window height" })
 
-utils.nmap(
+vim.keymap.set(
+	"n",
 	"<leader>s",
 	[[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
 	{ desc = "[S]earch and replace word under the cursor" }
 )
-utils.nmap("<C-d>", "<C-d>zz", { desc = "Scroll [d]own and center" })
 utils.nmap("<C-u>", "<C-u>zz", { desc = "Scroll [u]p and center" })
 utils.nmap("<C-z>", "<nop>", { desc = "I'm sure there is a use for this, but for now it's just annoying" })
 utils.nmap("<S-TAB>", function() vim.cmd.bprevious() end, { desc = "Go to the previous buffer" })

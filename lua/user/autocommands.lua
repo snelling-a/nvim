@@ -97,14 +97,3 @@ utils.autocmd("WinEnter", {
 	desc = "Toggle cursorline and relative number on",
 	group = ToggleWindowOptionsGroup,
 })
-
--- local JavaScriptFoldingGroup = utils.augroup("JavaScriptFolding", {})
--- utils.autocmd({ "BufEnter" }, {
--- 	group = JavaScriptFoldingGroup,
--- 	pattern = "*.js",
--- 	callback = function()
--- 		utils.opt_local.foldmethod = "syntax"
--- 		utils.opt_local.conceallevel = 1
--- 	end,
--- 	desc = "Enable JavaScript folding",
--- })
