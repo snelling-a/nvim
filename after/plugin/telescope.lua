@@ -1,3 +1,4 @@
+local icons = require("utils.icons").misc
 local action_layout = require("telescope.actions.layout")
 local actions = require("telescope.actions")
 local builtin = require("telescope.builtin")
@@ -76,10 +77,10 @@ local pickers = {
 telescope.setup({
 	defaults = {
 		mappings = mappings,
-		multi_icon = " ",
+		multi_icon = icons.multi,
 		layout_strategy = "flex",
-		prompt_prefix = " ",
-		selection_caret = " ",
+		prompt_prefix = icons.search,
+		selection_caret = icons.selection,
 		sorting_strategy = "ascending",
 		vimgrep_arguments = { "rg", "--vimgrep", "--smart-case", "--trim", "--hidden" },
 		file_previewer = previewers.cat.new,

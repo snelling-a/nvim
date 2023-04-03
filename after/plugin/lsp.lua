@@ -1,3 +1,4 @@
+local icons = require("utils.icons").progress
 local lsp_config = require("lsp_config")
 local lspconfig = require("lspconfig")
 local utils = require("utils")
@@ -21,7 +22,7 @@ local servers = lsp_config.servers
 require("mason").setup({
 	ui = {
 		border = "rounded",
-		icons = { package_installed = "✓", package_pending = "⟳", package_uninstalled = "-" },
+		icons = { package_installed = icons.done, package_pending = icons.pending, package_uninstalled = icons.trash },
 	},
 })
 

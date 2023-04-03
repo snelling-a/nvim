@@ -1,3 +1,4 @@
+local icons = require("utils.icons")
 local utils = require("utils")
 
 local ensure_packer = function()
@@ -27,14 +28,14 @@ utils.autocmd("BufWritePost", {
 
 packer.init({
 	display = {
-		working_sym = "",
-		error_sym = "",
-		done_sym = "",
-		removed_sym = "ﮁ",
-		moved_sym = "",
+		working_sym = icons.progress.pending,
+		error_sym = icons.progress.error,
+		done_sym = icons.progress.done,
+		removed_sym = icons.progress.trash,
+		moved_sym = icons.misc.moved,
 		header_sym = "—",
 	},
-	luarocks = { python_cmd = "python3" }, -- Set the python command to use for running hererocks
+	luarocks = { python_cmd = "python3" },
 })
 
 return packer.startup(function(use)
