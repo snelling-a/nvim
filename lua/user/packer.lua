@@ -47,8 +47,8 @@ return packer.startup(function(use)
 		"eandrju/cellular-automaton.nvim",
 		"folke/zen-mode.nvim",
 		"lukas-reineke/indent-blankline.nvim",
+		{ "~/dev/github.com/snelling-a/nvim-base16" },
 		"norcalli/nvim-colorizer.lua",
-		"RRethy/nvim-base16",
 		{ "nvim-tree/nvim-tree.lua", requires = { "nvim-tree/nvim-web-devicons" } },
 		{
 			{ "folke/noice.nvim", requires = { "MunifTanjim/nui.nvim", "rcarriga/nvim-notify" }, cond = utils.is_vim },

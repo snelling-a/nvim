@@ -1,4 +1,5 @@
 local opt = require("utils").opt
+vim.cmd.colorscheme("base16-default-dark")
 
 -- vim.g.netrw_banner = 0
 -- vim.g.netrw_browse_split = 2 -- vertically splitting the window first
