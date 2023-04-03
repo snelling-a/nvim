@@ -107,7 +107,6 @@ return packer.startup(function(use)
 	use({
 		"akinsho/toggleterm.nvim",
 		"mbbill/undotree",
-		"theprimeagen/harpoon",
 		{
 			"ThePrimeagen/refactoring.nvim",
 			requires = { { "nvim-lua/plenary.nvim" }, { "nvim-treesitter/nvim-treesitter" } },
@@ -122,16 +121,7 @@ return packer.startup(function(use)
 	})
 
 	-- [[ GIT ]]
-	use({
-		"lewis6991/gitsigns.nvim",
-		"tpope/vim-fugitive",
-		"tpope/vim-rhubarb",
-		{
-			"pwntester/octo.nvim",
-			requires = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim", "kyazdani42/nvim-web-devicons" },
-		},
-		{ "sindrets/diffview.nvim", requires = "nvim-lua/plenary.nvim" },
-	})
+	use({ "kdheepak/lazygit.nvim", "lewis6991/gitsigns.nvim", "tpope/vim-fugitive", "tpope/vim-rhubarb" })
 
 	-- [[ COMPLETION ]]
 	use({

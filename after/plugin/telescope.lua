@@ -106,5 +106,4 @@ vim.api.nvim_create_user_command(
 telescope.load_extension("fzf")
 telescope.load_extension("node_modules")
 telescope.load_extension("noice")
-telescope.load_extension("octo")
 telescope.load_extension("ui-select")
