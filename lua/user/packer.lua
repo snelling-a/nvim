@@ -78,7 +78,7 @@ return packer.startup(function(use)
 	--[[ TREESITTER ]]
 	use({
 		"JoosepAlviste/nvim-ts-context-commentstring",
-		"mrjones2014/nvim-ts-rainbow",
+		"HiPhish/nvim-ts-rainbow2",
 		"nvim-treesitter/nvim-treesitter-context",
 		"nvim-treesitter/nvim-treesitter-textobjects",
 		{ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" },
