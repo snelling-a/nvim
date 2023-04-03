@@ -53,8 +53,9 @@ return packer.startup(function(use)
 		{ "nvim-tree/nvim-tree.lua", requires = { "nvim-tree/nvim-web-devicons" } },
 		{
 			{ "folke/noice.nvim", requires = { "MunifTanjim/nui.nvim", "rcarriga/nvim-notify" }, cond = utils.is_vim },
-			{ "nvim-lualine/lualine.nvim", requires = { "kyazdani42/nvim-web-devicons" }, cond = utils.is_vim },
 		},
+		"j-hui/fidget.nvim",
+		"freddiehaddad/feline.nvim",
 	})
 
 	-- [[[ TELESCOPE ]]]
