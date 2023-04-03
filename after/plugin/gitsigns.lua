@@ -37,7 +37,11 @@ require("gitsigns").setup({
 		end, opts)
 
 		-- Actions
-		utils.map( { "n", "v" }, "<leader>hs", function() vim.cmd.Gitsigns("stage_hunk") end, { desc = "[S]tage [H]unk", noremap = false }
+		utils.map(
+			{ "n", "v" },
+			"<leader>hs",
+			function() vim.cmd.Gitsigns("stage_hunk") end,
+			{ desc = "[S]tage [H]unk", noremap = false }
 		)
 		utils.map(
 			{ "n", "v" },

@@ -62,7 +62,6 @@ return packer.startup(function(use)
 	use({
 		"nvim-telescope/telescope.nvim",
 		requires = {
-			-- "gbrlsnchs/telescope-lsp-handlers.nvim",
 			"nvim-lua/plenary.nvim",
 			"nvim-telescope/telescope-node-modules.nvim",
 			"nvim-telescope/telescope-ui-select.nvim",
