@@ -1,16 +1,17 @@
+local Formatting = {}
+
 local lsp_formatting = function(bufnr)
 	vim.lsp.buf.format({
-		filter = function(client)
-			-- apply whatever logic you want (in this example, we'll only use null-ls)
-			return client.name == "null-ls"
-		end,
+		filter = function(client) return client.name == "null-ls" end,
 		bufnr = bufnr,
 	})
 end
 
+Formatting.lsp_formatting = lsp_formatting
+
 local LspFormattingGroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
-return function(client, bufnr)
+Formatting.format_on_save = function(client, bufnr)
 	if not client.supports_method("textDocument/formatting") then
 		return
 	end
@@ -23,3 +24,5 @@ return function(client, bufnr)
 		desc = "LSP format on save",
 	})
 end
+
+return Formatting
