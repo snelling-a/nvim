@@ -7,7 +7,7 @@ local tbl_extend_force = function(...) return vim.tbl_extend("force", ...) end
 local get_map_options = function(custom_options)
 	local options = { silent = true, noremap = true }
 	if custom_options then
-		options = tbl_extend_force(custom_options, options)
+		options = tbl_extend_force(options, custom_options or {})
 	end
 	return options
 end

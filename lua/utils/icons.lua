@@ -1,8 +1,9 @@
 local Icons = {}
 
+local error = " "
 local modified = " "
 
-Icons.diagnostics = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+Icons.diagnostics = { Error = error, Warn = " ", Hint = " ", Info = " " }
 
 Icons.git = { added = " ", branch = "󰘬", modified = modified, removed = " " }
 
@@ -11,9 +12,8 @@ Icons.file = { modified = modified, newfile = " ", readonly = " ", unnamed
 Icons.location = { col = "󰚉 ", line = "󰚈 ", top = " ", bottom = " " }
 
 Icons.misc = {
-	copilot = " ",
+	copilot = " ",
 	gears = " ",
-	lock = " ",
 	percent = "󰏰 ",
 	moved = "",
 	multi = " ",
@@ -25,7 +25,7 @@ Icons.misc = {
 Icons.progress = {
 	done = " ",
 	pending = "󰔟",
-	error = Icons.diagnostics.Error,
+	error = error,
 	trash = "ﮁ ",
 }
 
