@@ -48,7 +48,8 @@ return packer.startup(function(use)
 		"eandrju/cellular-automaton.nvim",
 		"folke/zen-mode.nvim",
 		"lukas-reineke/indent-blankline.nvim",
-		{ "~/dev/github.com/snelling-a/nvim-base16" },
+		"~/dev/github.com/snelling-a/nvim-base16",
+		-- "snelling-a/nvim-base16",
 		"norcalli/nvim-colorizer.lua",
 		{ "nvim-tree/nvim-tree.lua", requires = { "nvim-tree/nvim-web-devicons" } },
 		{ "folke/noice.nvim", requires = { "MunifTanjim/nui.nvim", "rcarriga/nvim-notify" } },
@@ -62,12 +63,7 @@ return packer.startup(function(use)
 			"nvim-lua/plenary.nvim",
 			"nvim-telescope/telescope-node-modules.nvim",
 			"nvim-telescope/telescope-ui-select.nvim",
-			{
-				"nvim-telescope/telescope-fzf-native.nvim",
-				run = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release"
-					.. "&& cmake --build build --config Release"
-					.. "&& cmake --install build --prefix build",
-			},
+			{ "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
 		},
 	})
 
