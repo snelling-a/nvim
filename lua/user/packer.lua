@@ -135,7 +135,6 @@ return packer.startup(function(use)
 		{ "petertriho/cmp-git", requires = "nvim-lua/plenary.nvim" },
 	})
 
-	use({ "Exafunction/codeium.vim" })
 	use({ "glacambre/firenvim", run = function() vim.fn["firenvim#install"](1) end })
 
 	use({ "epwalsh/obsidian.nvim", requires = "nvim-lua/plenary.nvim" })
