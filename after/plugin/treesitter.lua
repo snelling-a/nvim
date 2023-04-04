@@ -2,7 +2,6 @@ require("nvim-treesitter.configs").setup({
 	ensure_installed = {
 		"bash",
 		"css",
-		"help",
 		"javascript",
 		"json",
 		"jsonc",
@@ -15,6 +14,7 @@ require("nvim-treesitter.configs").setup({
 		"tsx",
 		"typescript",
 		"vim",
+		"vimdoc",
 		"yaml",
 	},
 	sync_install = false,
