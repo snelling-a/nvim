@@ -51,7 +51,6 @@ return packer.startup(function(use)
 		{ "~/dev/github.com/snelling-a/nvim-base16" },
 		"norcalli/nvim-colorizer.lua",
 		{ "nvim-tree/nvim-tree.lua", requires = { "nvim-tree/nvim-web-devicons" } },
-		"j-hui/fidget.nvim",
 		{ "folke/noice.nvim", requires = { "MunifTanjim/nui.nvim", "rcarriga/nvim-notify" } },
 		"freddiehaddad/feline.nvim",
 	})
