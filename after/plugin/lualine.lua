@@ -1,79 +1,187 @@
-if not require("utils").is_vim then
-	return
+-- if not require("utils").is_vim then
+-- 	return
+-- end
+--
+-- local icons = require("utils.icons")
+-- local no_format = require("utils.no_format")
+--
+-- local global_theme = vim.g.theme
+-- local colors = {
+-- 	background = global_theme.base01,
+-- 	black = global_theme.base00,
+-- 	command = global_theme.base08,
+-- 	foreground = global_theme.base04,
+-- 	insert = global_theme.base0B,
+-- 	light_background = global_theme.base07,
+-- 	light_foreground = global_theme.base06,
+-- 	normal = global_theme.base0C,
+-- 	replace = global_theme.base0E,
+-- 	visual = global_theme.base02,
+-- 	orange = global_theme.base09,
+-- }
+--
+-- local filename = {
+-- 	"filename",
+-- 	path = 1,
+-- 	symbols = icons.file,
+-- }
+--
+local function get_location()
+	local line, col = vim.fn.line("."), vim.fn.virtcol(".")
+
+	return string.format("%s%d%s%d", icons.location.line, line, icons.location.col, col)
 end
-
-local no_format = require("utils.no_format")
-local noice = require("noice.api.status")
-local base09 = require("base16-colorscheme").colors.base09
-
-local modified = "柳"
-
-local noice_command = { noice.command.get, cond = noice.command.has, color = { fg = base09 } }
-
-local noice_searchcount = { noice.search.get, cond = noice.search.has, color = { fg = base09 } }
-
-local filetype_names = { TelescopePrompt = "Telescope", packer = "Packer" }
-
-local filename =
-	{ "filename", path = 1, symbols = { modified = modified, newfile = "", readonly = "", unnamed = "" } }
-
-local macro_recording = {
-	"macro-recording",
-	fmt = function()
-		local recording_register = vim.fn.reg_recording()
-		if recording_register == "" then
-			return ""
-		else
-			return "recording @" .. recording_register
-		end
-	end,
-	color = { fg = "orange" },
-}
-
-require("lualine").setup({
-	options = {
-		disabled_filetypes = { statusline = no_format, winbar = {} },
-		ignore_focus = {},
-		always_divide_middle = true,
-		refresh = { statusline = 1000, tabline = 1000, winbar = 1000 },
-	},
-	sections = {
-		lualine_a = { "mode" },
-		lualine_b = {
-			filename,
-			{ "diff", symbols = { added = "  ", modified = modified, removed = " " } },
-			{ "diagnostics" },
-		},
-		lualine_c = {},
-		lualine_x = { noice_searchcount, noice_command },
-		lualine_y = { { "filetype", icon_only = true }, "progress", "location" },
-		lualine_z = { "branch" },
-	},
-	inactive_sections = {
-		lualine_a = {},
-		lualine_b = {},
-		lualine_c = { filename },
-		lualine_x = { "location" },
-		lualine_y = {},
-		lualine_z = {},
-	},
-	tabline = {
-		lualine_a = { { "buffers", filetype_names, show_filename_only = false } },
-		lualine_b = { macro_recording },
-		lualine_c = {},
-		lualine_x = {},
-		lualine_y = {},
-		lualine_z = { "tabs" },
-	},
-	winbar = {},
-	inactive_winbar = {},
-	extensions = {
-		"fugitive",
-		"fzf",
-		"man",
-		"nvim-tree",
-		"quickfix",
-		"symbols-outline",
-		"toggleterm",
-	},
-})
+--
+-- local function get_diff()
+-- 	local gitsigns, diff = vim.b.gitsigns_status_dict
+-- 	if gitsigns then
+-- 		local source = {
+-- 			added = gitsigns.added,
+-- 			modified = gitsigns.changed,
+-- 			removed = gitsigns.removed,
+-- 		}
+-- 		diff = { "diff", source = source, symbols = icons.git }
+-- 	end
+-- 	return diff
+-- end
+--
+-- local theme = {
+-- 	command = {
+-- 		a = { fg = colors.black, bg = colors.command, gui = "bold" },
+-- 		b = { fg = colors.foreground, bg = colors.background, gui = "bold" },
+-- 		c = { fg = colors.command, bg = colors.background },
+-- 		x = { fg = colors.command, bg = colors.background },
+-- 		y = { fg = colors.command, bg = colors.background },
+-- 		z = { fg = colors.command, bg = colors.background },
+-- 	},
+-- 	inactive = {
+-- 		a = { fg = colors.light_foreground, bg = colors.background },
+-- 		b = { fg = colors.light_foreground, bg = colors.background, gui = "bold" },
+-- 		c = { fg = colors.light_foreground, bg = colors.background },
+-- 	},
+-- 	insert = {
+-- 		a = { fg = colors.black, bg = colors.insert, gui = "bold" },
+-- 		b = { fg = colors.foreground, bg = colors.background, gui = "bold" },
+-- 		c = { fg = colors.insert, bg = colors.background },
+-- 		x = { fg = colors.insert, bg = colors.background },
+-- 		y = { fg = colors.insert, bg = colors.background },
+-- 		z = { fg = colors.insert, bg = colors.background },
+-- 	},
+-- 	normal = {
+-- 		a = { fg = colors.black, bg = colors.normal, gui = "bold" },
+-- 		b = { fg = colors.foreground, bg = colors.background, gui = "bold" },
+-- 		c = { fg = colors.normal, bg = colors.background },
+-- 		x = { fg = colors.normal, bg = colors.background },
+-- 		y = { fg = colors.normal, bg = colors.background },
+-- 		z = { fg = colors.normal, bg = colors.background },
+-- 	},
+-- 	replace = {
+-- 		a = { fg = colors.black, bg = colors.replace, gui = "bold" },
+-- 		b = { fg = colors.foreground, bg = colors.background, gui = "bold" },
+-- 		c = { fg = colors.replace, bg = colors.background },
+-- 		x = { fg = colors.replace, bg = colors.background },
+-- 		y = { fg = colors.replace, bg = colors.background },
+-- 		z = { fg = colors.replace, bg = colors.background },
+-- 	},
+-- 	visual = {
+-- 		a = { fg = colors.light_foreground, bg = colors.visual, gui = "bold" },
+-- 		b = { fg = colors.foreground, bg = colors.background, gui = "bold" },
+-- 		c = { fg = colors.foreground, bg = colors.background },
+-- 		x = { fg = colors.foreground, bg = colors.background },
+-- 		y = { fg = colors.foreground, bg = colors.background },
+-- 		z = { fg = colors.foreground, bg = colors.background },
+-- 	},
+-- }
+--
+-- local sections = {
+-- 	lualine_a = { { "mode", fmt = function(str) return str:sub(1, 1) end } },
+-- 	lualine_b = { { "filetype", icon_only = true, padding = { left = 1 } }, filename },
+-- 	lualine_c = { get_location, "progress", "diagnostics" },
+-- 	lualine_x = { "searchcount" },
+-- 	lualine_y = { get_diff() },
+-- 	lualine_z = { { "vim.b.gitsigns_status_dict.head", icon = icons.git.branch } },
+-- }
+--
+-- local inactive_sections = {
+-- 	lualine_a = { filename },
+-- 	lualine_b = {},
+-- 	lualine_c = {},
+-- 	lualine_x = {},
+-- 	lualine_y = {},
+-- 	-- TODO: return top/bottom instead of location
+-- 	lualine_z = { "progress" },
+-- }
+--
+-- local extensions = {
+-- 	"fugitive",
+-- 	"fzf",
+-- 	"man",
+-- 	"nvim-tree",
+-- 	"quickfix",
+-- 	"symbols-outline",
+-- 	"toggleterm",
+-- }
+--
+-- local filetype_names = { TelescopePrompt = "Telescope", packer = "Packer" }
+--
+-- local macro_recording = {
+-- 	"macro-recording",
+-- 	fmt = function()
+-- 		local recording_register = vim.fn.reg_recording()
+-- 		if recording_register == "" then
+-- 			return ""
+-- 		else
+-- 			return "recording @" .. recording_register
+-- 		end
+-- 	end,
+-- 	color = { fg = colors.orange },
+-- }
+--
+-- local tabline = {
+-- 	lualine_a = { { "buffers", filetype_names, show_filename_only = false } },
+-- 	lualine_b = { macro_recording },
+-- 	lualine_c = {},
+-- 	lualine_x = {},
+-- 	lualine_y = {},
+-- 	lualine_z = { "tabs" },
+-- }
+--
+-- local config = {
+-- 	options = { component_separators = "", section_separators = "", theme = theme, ignore_focus = no_format },
+-- 	sections = sections,
+-- 	inactive_sections = inactive_sections,
+-- 	extensions = extensions,
+-- 	tabline = tabline,
+-- }
+--
+-- local function ins_left(component) table.insert(config.sections.lualine_c, component) end
+--
+-- ins_left({ function() return "%=" end })
+--
+-- ins_left({
+-- 	function()
+-- 		local msg = "No Active Lsp"
+-- 		local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")
+-- 		local clients = vim.lsp.get_active_clients()
+-- 		if next(clients) == nil then
+-- 			return msg
+-- 		end
+-- 		for _, client in ipairs(clients) do
+-- 			local filetypes = client.config.filetypes
+-- 			if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
+-- 				return string.format(
+-- 					"%s %s",
+-- 					client.name,
+-- 					vim.g.autoloaded_copilot_agent == 1 and icons.misc.copilot or ""
+-- 				)
+-- 			end
+-- 		end
+-- 		return msg
+-- 	end,
+-- 	icon = string.format("%s", icons.misc.gears),
+-- 	color = { fg = colors.light_foreground, gui = "bold" },
+-- })
+--
+-- if not vim.g.started_by_firenvim then
+-- 	require("lualine").setup(config)
+-- end

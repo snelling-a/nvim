@@ -1,3 +1,4 @@
+local icons = require("utils.icons").misc
 local action_layout = require("telescope.actions.layout")
 local actions = require("telescope.actions")
 local builtin = require("telescope.builtin")
@@ -56,8 +57,7 @@ local ivy_normal = themes.get_ivy(mode_normal)
 
 local pickers = {
 	builtin = utils.tbl_extend_force(dropdown_insert, hide_on_startup),
-	find_files = { find_command = { "fd", "--type", "f", "--hidden" } },
-
+	find_files = { find_command = { "fd", "--type", "f", "--hidden", "--no-ignore" } },
 	git_bcommits = mode_normal,
 	git_branches = mode_normal,
 	git_commits = mode_normal,
@@ -76,12 +76,12 @@ local pickers = {
 telescope.setup({
 	defaults = {
 		mappings = mappings,
-		multi_icon = " ",
+		multi_icon = icons.multi,
 		layout_strategy = "flex",
-		prompt_prefix = " ",
-		selection_caret = " ",
+		prompt_prefix = icons.search,
+		selection_caret = icons.selection,
 		sorting_strategy = "ascending",
-		vimgrep_arguments = { "rg", "--vimgrep", "--smart-case", "--trim", "--hidden" },
+		vimgrep_arguments = { "rg", "--vimgrep", "--smart-case", "--trim", "--hidden", "--no-ignore" },
 		file_previewer = previewers.cat.new,
 		grep_previewer = previewers.vimgrep.new,
 		qflist_previewer = previewers.qflist.new,
@@ -106,5 +106,4 @@ vim.api.nvim_create_user_command(
 telescope.load_extension("fzf")
 telescope.load_extension("node_modules")
 telescope.load_extension("noice")
-telescope.load_extension("octo")
 telescope.load_extension("ui-select")

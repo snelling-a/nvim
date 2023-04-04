@@ -1,5 +1,5 @@
-local utils = require("utils")
 local logger = require("utils.logger")
+local utils = require("utils")
 
 vim.g.mapleader = ","
 
@@ -31,12 +31,12 @@ utils.nmap(
 utils.nmap("<C-down>", function() vim.cmd.resize({ args = { "-5" } }) end, { desc = "Decrease current window height" })
 utils.nmap("<C-up>", function() vim.cmd.resize({ args = { "+5" } }) end, { desc = "Increase current window height" })
 
-utils.nmap(
+vim.keymap.set(
+	"n",
 	"<leader>s",
 	[[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
 	{ desc = "[S]earch and replace word under the cursor" }
 )
-utils.nmap("<C-d>", "<C-d>zz", { desc = "Scroll [d]own and center" })
 utils.nmap("<C-u>", "<C-u>zz", { desc = "Scroll [u]p and center" })
 utils.nmap("<C-z>", "<nop>", { desc = "I'm sure there is a use for this, but for now it's just annoying" })
 utils.nmap("<S-TAB>", function() vim.cmd.bprevious() end, { desc = "Go to the previous buffer" })
@@ -63,7 +63,11 @@ utils.nmap("U", function() vim.cmd.redo() end, { desc = "Better redo" })
 utils.nmap("Y", "y$", { desc = "[Y]ank to the end of the line" })
 utils.nmap("n", "nzzzv", { desc = "Go to [n]ext search result and center" })
 
+vim.keymap.set({ "n", "v" }, "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, desc = "Move to next visual line" })
+vim.keymap.set({ "n", "v" }, "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, desc = "Move to previous visual line" })
+
 utils.imap("jk", "<Esc>:w<CR>", { desc = "[W]right and go to normal mode" })
+utils.imap("jj", "<Esc>", { desc = "Go to normal mode" })
 
 utils.vmap("J", ":m '>+1<CR>gv=gv", { desc = "Move lines down" })
 utils.vmap("K", ":m '<-2<CR>gv=gv", { desc = "Move lines up" })

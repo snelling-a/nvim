@@ -1,3 +1,5 @@
+local icons = require("utils.icons").progress
+
 require("mkdnflow").setup({
 	links = { conceal = true, name_is_source = true },
 	mappings = {
@@ -12,5 +14,5 @@ require("mkdnflow").setup({
 		MkdnToggleToDo = { { "n", "v" }, "<C-d>" },
 		MkdnUnfoldSection = false,
 	},
-	to_do = { symbols = { " ", "⧖", "✓" } },
+	to_do = { symbols = { " ", icons.pending, icons.done } },
 })

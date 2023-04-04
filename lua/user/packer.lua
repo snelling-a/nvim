@@ -1,3 +1,4 @@
+local icons = require("utils.icons")
 local utils = require("utils")
 
 local ensure_packer = function()
@@ -27,14 +28,14 @@ utils.autocmd("BufWritePost", {
 
 packer.init({
 	display = {
-		working_sym = "",
-		error_sym = "",
-		done_sym = "",
-		removed_sym = "ﮁ",
-		moved_sym = "",
+		working_sym = icons.progress.pending,
+		error_sym = icons.progress.error,
+		done_sym = icons.progress.done,
+		removed_sym = icons.progress.trash,
+		moved_sym = icons.misc.moved,
 		header_sym = "—",
 	},
-	luarocks = { python_cmd = "python3" }, -- Set the python command to use for running hererocks
+	luarocks = { python_cmd = "python3" },
 })
 
 return packer.startup(function(use)
@@ -47,21 +48,20 @@ return packer.startup(function(use)
 		"eandrju/cellular-automaton.nvim",
 		"folke/zen-mode.nvim",
 		"lukas-reineke/indent-blankline.nvim",
+		{ "~/dev/github.com/snelling-a/nvim-base16" },
 		"norcalli/nvim-colorizer.lua",
-		"RRethy/nvim-base16",
 		{ "nvim-tree/nvim-tree.lua", requires = { "nvim-tree/nvim-web-devicons" } },
 		{
 			{ "folke/noice.nvim", requires = { "MunifTanjim/nui.nvim", "rcarriga/nvim-notify" }, cond = utils.is_vim },
-			{ "glepnir/dashboard-nvim", requires = { "nvim-tree/nvim-web-devicons" }, cond = utils.is_vim },
-			{ "nvim-lualine/lualine.nvim", requires = { "kyazdani42/nvim-web-devicons" }, cond = utils.is_vim },
 		},
+		"j-hui/fidget.nvim",
+		"freddiehaddad/feline.nvim",
 	})
 
 	-- [[[ TELESCOPE ]]]
 	use({
 		"nvim-telescope/telescope.nvim",
 		requires = {
-			-- "gbrlsnchs/telescope-lsp-handlers.nvim",
 			"nvim-lua/plenary.nvim",
 			"nvim-telescope/telescope-node-modules.nvim",
 			"nvim-telescope/telescope-ui-select.nvim",
@@ -77,7 +77,7 @@ return packer.startup(function(use)
 	--[[ TREESITTER ]]
 	use({
 		"JoosepAlviste/nvim-ts-context-commentstring",
-		"mrjones2014/nvim-ts-rainbow",
+		"HiPhish/nvim-ts-rainbow2",
 		"nvim-treesitter/nvim-treesitter-context",
 		"nvim-treesitter/nvim-treesitter-textobjects",
 		{ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" },
@@ -107,7 +107,6 @@ return packer.startup(function(use)
 	use({
 		"akinsho/toggleterm.nvim",
 		"mbbill/undotree",
-		"theprimeagen/harpoon",
 		{
 			"ThePrimeagen/refactoring.nvim",
 			requires = { { "nvim-lua/plenary.nvim" }, { "nvim-treesitter/nvim-treesitter" } },
@@ -122,16 +121,7 @@ return packer.startup(function(use)
 	})
 
 	-- [[ GIT ]]
-	use({
-		"lewis6991/gitsigns.nvim",
-		"tpope/vim-fugitive",
-		"tpope/vim-rhubarb",
-		{
-			"pwntester/octo.nvim",
-			requires = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim", "kyazdani42/nvim-web-devicons" },
-		},
-		{ "sindrets/diffview.nvim", requires = "nvim-lua/plenary.nvim" },
-	})
+	use({ "kdheepak/lazygit.nvim", "lewis6991/gitsigns.nvim", "tpope/vim-fugitive", "tpope/vim-rhubarb" })
 
 	-- [[ COMPLETION ]]
 	use({
