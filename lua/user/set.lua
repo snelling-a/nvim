@@ -1,13 +1,6 @@
 local opt = require("utils").opt
 vim.cmd.colorscheme("base16-default-dark")
 
--- vim.g.netrw_banner = 0
--- vim.g.netrw_browse_split = 2 -- vertically splitting the window first
--- vim.g.netrw_liststyle = 3
--- vim.g.netrw_winsize = 25
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
-
 local options = {
 	synmaxcol = 500,
 	autoindent = true,
@@ -102,3 +95,8 @@ end
 for _, flag in ipairs(shortmess_remove) do
 	opt.shortmess:remove(flag)
 end
+
+-- vim.g.netrw_banner = 0
+-- vim.g.netrw_browse_split = 2 -- vertically splitting the window first
+-- vim.g.netrw_liststyle = 3
+-- vim.g.netrw_winsize = 25
