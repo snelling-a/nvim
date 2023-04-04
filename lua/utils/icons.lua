@@ -19,6 +19,7 @@ Icons.misc = {
 	multi = " ",
 	search = " ",
 	selection = " ",
+	help = "",
 }
 
 Icons.progress = {
@@ -28,13 +29,27 @@ Icons.progress = {
 	trash = "ﮁ ",
 }
 
-Icons.packer = {
-	working_sym = "",
-	error_sym = "",
-	done_sym = "",
-	removed_sym = "ﮁ",
-	moved_sym = "",
-	header_sym = "—",
+Icons.languages = {
+	bash = "",
+	css = "",
+	dockerfile = "",
+	go = "",
+	html = "",
+	javascript = "",
+	json = "",
+	lua = "",
+	markdown = "",
+	python = "",
+	ruby = "",
+	rust = "",
+	scss = "",
+	sql = "",
+	sh = "",
+	toml = "",
+	typescript = "",
+	vim = "",
+	yaml = "",
+	zsh = "",
 }
 
 return Icons

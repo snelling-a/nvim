@@ -25,10 +25,6 @@ utils.autocmd("VimEnter", {
 				vim.defer_fn(function() logger.info({ msg = "Loaded session!", title = session_string }) end, 500)
 			end
 		end
-
-		if #vim.api.nvim_list_bufs() == 1 and vim.api.nvim_buf_get_name(0) == "" then
-			vim.cmd.NvimTreeOpen()
-		end
 	end,
 })
 
@@ -39,21 +35,7 @@ utils.autocmd("VimLeavePre", {
 			return
 		end
 
-		local save = "y"
-
-		repeat
-			vim.ui.input({ prompt = "Save session? [y/N] ", default = save }, function(input)
-				if input then
-					save = input
-				else
-					save = "n"
-				end
-			end)
-		until save:match("^[YyNn]$")
-
-		if save:match("^[Yy]$") then
-			vim.cmd.argdelete({ range = { 0, vim.fn.argc() } })
-			vim.cmd.mksession({ bang = true })
-		end
+		vim.cmd.argdelete({ range = { 0, vim.fn.argc() } })
+		vim.cmd.mksession({ bang = true })
 	end,
 })
