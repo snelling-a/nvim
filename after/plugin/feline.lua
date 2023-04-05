@@ -1,4 +1,3 @@
-local feline = require("feline")
 local icons = require("utils.icons")
 local global_theme = vim.g.theme
 
@@ -43,7 +42,7 @@ local vim_mode = {
 	right_sep = "block",
 }
 
-local git_branch = { hl = { fg = "magenta", style = "bold" }, left_sep = "block", provider = "git_branch" }
+local git_branch = { hl = { fg = "magenta", style = "bold" }, provider = "git_branch" }
 local git_add = { hl = { fg = "green" }, provider = "git_diff_added" }
 local git_delete = { hl = { fg = "red" }, provider = "git_diff_removed" }
 local git_change = { provider = "git_diff_changed" }
@@ -69,9 +68,9 @@ local lsp = {
 			else
 				return string.format(
 					"%s %s%s",
-					"לּ ", -- TODO: replace with constant from utils.icons
+					icons.progress.done,
 					clients[1].name,
-					vim.g.autoloaded_copilot_agent == 1 and " " .. icons.misc.copilot or ""
+					vim.g.autoloaded_copilot_agent == 1 and " " .. icons.kind_icons.Copilot or ""
 				)
 			end
 		end
@@ -123,7 +122,7 @@ local file_info = {
 	provider = {
 		left_sep = "block",
 		name = "file_info",
-		opts = { file_readonly_icon = icons.misc.lock },
+		opts = { file_readonly_icon = icons.file.readonly },
 		right_sep = "block",
 	},
 }
@@ -132,24 +131,45 @@ local file_info_inactive = {
 		hl = { bg = "black" },
 		left_sep = "block",
 		name = "file_info",
-		opts = { type = "relative", file_readonly_icon = icons.misc.lock },
+		opts = { type = "relative", file_readonly_icon = icons.file.readonly },
 	},
 }
 
-local search_count = { provider = { name = "search_count", right_sep = "block" } }
+local search_count = { provider = { name = "search_count" } }
 
-local left = { vim_mode, file_info, diagnostic_errors, diagnostic_warnings, diagnostic_info, diagnostic_hints }
-local middle = { lsp }
-local right = { search_count, git_branch, git_add, git_delete, git_change, progress }
+local macro_recording = {
+	provider = function()
+		local recording_register = vim.fn.reg_recording()
+		if recording_register == "" then
+			return ""
+		else
+			return "recording @" .. recording_register
+		end
+	end,
+	hl = { fg = "orange" },
+}
+
+local gap = { hl = { fg = "bg" }, provider = " " }
+local left = {
+	vim_mode,
+	gap,
+	file_info,
+	gap,
+	diagnostic_errors,
+	diagnostic_warnings,
+	diagnostic_info,
+	diagnostic_hints,
+	gap,
+	lsp,
+}
+local middle = { macro_recording }
+local right = { search_count, gap, git_branch, git_add, git_delete, git_change, progress }
 
 local left_inactive = { file_info_inactive }
 
-local components = {
-	active = { left, middle, right },
-	inactive = { left_inactive, {}, {} },
-}
+local components = { active = { left, middle, right }, inactive = { left_inactive, {}, {} } }
 
-feline.setup({
+require("feline").setup({
 	components = components,
 	theme = theme,
 	vi_mode_colors = vi_mode_colors,
