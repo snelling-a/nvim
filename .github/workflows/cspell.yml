@@ -1,0 +1,11 @@
+---
+on: [push]
+jobs:
+  CSPELL:
+    name: cSpell
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: streetsidesoftware/cspell-action@v2
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
