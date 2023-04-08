@@ -1,5 +1,3 @@
-local opt = require("utils").opt
-
 local options = {
 	completeopt = "menuone,noselect",
 	hidden = true,
@@ -22,7 +20,7 @@ local options = {
 }
 
 for option, value in pairs(options) do
-	opt[option] = value
+	vim.opt[option] = value
 end
 
 vim.g.mapleader = ","

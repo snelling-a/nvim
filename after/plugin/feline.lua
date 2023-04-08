@@ -15,6 +15,7 @@ local theme = {
 	white = global_theme.base05,
 	yellow = global_theme.base0A,
 }
+
 local vi_mode_colors = {
 	NORMAL = "skyblue",
 	OP = "yellow",
@@ -42,10 +43,22 @@ local vim_mode = {
 	right_sep = "block",
 }
 
-local git_branch = { hl = { fg = "magenta", style = "bold" }, provider = "git_branch" }
-local git_add = { hl = { fg = "green" }, provider = "git_diff_added" }
-local git_delete = { hl = { fg = "red" }, provider = "git_diff_removed" }
-local git_change = { provider = "git_diff_changed" }
+local file_info = {
+	provider = {
+		left_sep = "block",
+		name = "file_info",
+		opts = { file_readonly_icon = icons.file.readonly },
+		right_sep = "block",
+	},
+}
+local file_info_inactive = {
+	provider = {
+		hl = { bg = "black" },
+		left_sep = "block",
+		name = "file_info",
+		opts = { type = "relative", file_readonly_icon = icons.file.readonly },
+	},
+}
 
 local diagnostic_errors = { hl = { fg = "red" }, provider = "diagnostic_errors" }
 local diagnostic_warnings = { hl = { fg = "yellow" }, provider = "diagnostic_warnings" }
@@ -82,9 +95,29 @@ local lsp = {
 	end,
 }
 
+local macro_recording = {
+	provider = function()
+		local recording_register = vim.fn.reg_recording()
+		if recording_register == "" then
+			return ""
+		else
+			return "recording @" .. recording_register
+		end
+	end,
+	hl = { fg = "orange" },
+}
+
+local search_count = { provider = { name = "search_count" } }
+
+local git_branch = { hl = { fg = "magenta", style = "bold" }, provider = "git_branch" }
+local git_add = { hl = { fg = "green" }, provider = "git_diff_added" }
+local git_delete = { hl = { fg = "red" }, provider = "git_diff_removed" }
+local git_change = { provider = "git_diff_changed" }
+
 local function get_position()
 	return math.floor(vim.api.nvim_win_get_cursor(0)[1] / vim.api.nvim_buf_line_count(0) * 100)
 end
+
 local progress = {
 	provider = function()
 		local position = get_position()
@@ -118,38 +151,8 @@ local progress = {
 	right_sep = "block",
 }
 
-local file_info = {
-	provider = {
-		left_sep = "block",
-		name = "file_info",
-		opts = { file_readonly_icon = icons.file.readonly },
-		right_sep = "block",
-	},
-}
-local file_info_inactive = {
-	provider = {
-		hl = { bg = "black" },
-		left_sep = "block",
-		name = "file_info",
-		opts = { type = "relative", file_readonly_icon = icons.file.readonly },
-	},
-}
+local gap = { provider = " " }
 
-local search_count = { provider = { name = "search_count" } }
-
-local macro_recording = {
-	provider = function()
-		local recording_register = vim.fn.reg_recording()
-		if recording_register == "" then
-			return ""
-		else
-			return "recording @" .. recording_register
-		end
-	end,
-	hl = { fg = "orange" },
-}
-
-local gap = { hl = { fg = "bg" }, provider = " " }
 local left = {
 	vim_mode,
 	gap,

@@ -1,12 +1,14 @@
 local icons = require("utils.icons")
-local utils = require("utils")
+
+local api = vim.api
+local cmd = vim.cmd
+local fn = vim.fn
 
 local ensure_packer = function()
-	local fn = vim.fn
 	local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 	if fn.empty(fn.glob(install_path)) > 0 then
 		fn.system({ "git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path })
-		vim.cmd([[packadd packer.nvim]])
+		cmd([[packadd packer.nvim]])
 		return true
 	end
 	return false
@@ -19,23 +21,23 @@ if not status_ok then
 	return
 end
 
-local PackerGroup = utils.augroup("PackerGroup", {})
-utils.autocmd("BufWritePost", {
+local PackerGroup = api.nvim_create_augroup("PackerGroup", {})
+api.nvim_create_autocmd("BufWritePost", {
 	pattern = "packer.lua",
 	command = "source <afile> | PackerCompile",
 	group = PackerGroup,
 })
 
 packer.init({
-	display = {
-		working_sym = icons.progress.pending,
-		error_sym = icons.progress.error,
-		done_sym = icons.progress.done,
-		removed_sym = icons.progress.trash,
-		moved_sym = icons.misc.moved,
-		header_sym = "—",
-	},
-	luarocks = { python_cmd = "python3" },
+    display = {
+        done_sym = icons.progress.done,
+        error_sym = icons.progress.error,
+        header_sym = "—",
+        moved_sym = icons.misc.moved,
+        removed_sym = icons.progress.trash,
+        working_sym = icons.progress.pending,
+    },
+    luarocks = { python_cmd = "python3" },
 })
 
 return packer.startup(function(use)
@@ -69,22 +71,22 @@ return packer.startup(function(use)
 
 	--[[ TREESITTER ]]
 	use({
-		"JoosepAlviste/nvim-ts-context-commentstring",
-		"HiPhish/nvim-ts-rainbow2",
-		"nvim-treesitter/nvim-treesitter-context",
-		"nvim-treesitter/nvim-treesitter-textobjects",
-		{ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" },
+		"nvim-treesitter/nvim-treesitter",
+		run = ":TSUpdate",
+		requires = {
+			"JoosepAlviste/nvim-ts-context-commentstring",
+			"nvim-ts-autotag",
+			"HiPhish/nvim-ts-rainbow2",
+			"nvim-treesitter/nvim-treesitter-context",
+			"nvim-treesitter/nvim-treesitter-textobjects",
+		},
 	})
 
 	-- [[ LSP ]]
 	use({
-		{
-			"neovim/nvim-lspconfig",
-			requires = { "hrsh7th/cmp-nvim-lsp", "williamboman/mason.nvim", "williamboman/mason-lspconfig.nvim" },
-		},
+		{ "neovim/nvim-lspconfig", requires = { "williamboman/mason.nvim", "williamboman/mason-lspconfig.nvim" } },
 		"jay-babu/mason-null-ls.nvim",
 		"jose-elias-alvarez/null-ls.nvim",
-
 		"b0o/schemastore.nvim",
 		"fladson/vim-kitty",
 		"folke/neodev.nvim",
@@ -118,17 +120,27 @@ return packer.startup(function(use)
 
 	-- [[ COMPLETION ]]
 	use({
-		"L3MON4D3/LuaSnip",
+		"hrsh7th/cmp-nvim-lsp",
 		"hrsh7th/cmp-buffer",
-		"hrsh7th/cmp-cmdline",
 		"hrsh7th/cmp-path",
+		"hrsh7th/cmp-cmdline",
 		"hrsh7th/nvim-cmp",
-		"onsails/lspkind.nvim",
-		"saadparwaiz1/cmp_luasnip",
+		"ray-x/cmp-treesitter",
+		{
+			"L3MON4D3/LuaSnip",
+			requires = {
+				"rafamadriz/friendly-snippets",
+				"saadparwaiz1/cmp_luasnip",
+			},
+		},
+		"chrisgrieser/cmp-nerdfont",
 		{ "petertriho/cmp-git", requires = "nvim-lua/plenary.nvim" },
 	})
 
-	use({ "glacambre/firenvim", run = function() vim.fn["firenvim#install"](1) end })
+	-- [[ COPILOT ]]
+	use({ "github/copilot.vim", "zbirenbaum/copilot.lua", { "zbirenbaum/copilot-cmp", after = { "copilot.lua" } } })
+
+	use({ "glacambre/firenvim", run = "FirenvimReload" })
 
 	use({ "epwalsh/obsidian.nvim", requires = "nvim-lua/plenary.nvim" })
 	use({ "jakewvincent/mkdnflow.nvim", rocks = "luautf8" })

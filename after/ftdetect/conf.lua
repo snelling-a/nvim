@@ -1,7 +1,7 @@
-local utils = require("utils")
+local api = vim.api
 
-utils.autocmd({ "BufNewFile", "BufRead" }, {
-	group = utils.augroup("ConfFiletype", {}),
+api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
+	group = api.nvim_create_augroup("ConfFiletype", {}),
 	pattern = { "conf", "*.conf", "config", "*.config", "*rc" },
 	callback = function() vim.bo.filetype = "conf" end,
 })

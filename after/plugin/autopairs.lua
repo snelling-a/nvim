@@ -1,6 +1,12 @@
-local cmp = require("cmp")
-local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+local fast_wrap = {
+	chars = { "{", "[", "(", '"', "'" },
+	check_comma = true,
+	end_key = "$",
+	highlight = "Search",
+	highlight_grey = "Comment",
+	keys = "qwertyuiopzxcvbnmasdfghjkl",
+	map = "<M-e>",
+	pattern = [=[[%'%"%>%]%)%}%,]]=],
+}
 
-cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
-
-require("nvim-autopairs").setup({})
+require("nvim-autopairs").setup({ fast_wrap = fast_wrap })

@@ -1,6 +1,6 @@
 require("indent_blankline").setup({
-	space_char_blankline = " ",
+	char = "▏",
 	show_current_context = true,
 	show_current_context_start = true,
-	char = "▏",
+	space_char_blankline = " ",
 })
