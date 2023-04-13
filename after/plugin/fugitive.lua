@@ -4,7 +4,7 @@ local utils = require("utils")
 local api = vim.api
 local git = vim.cmd.Git
 
-utils.nmap("<leader>gs", git, { desc = "Git status" })
+utils.nmap("<leader>gs", git, { desc = "[G]it [s]tatus" })
 
 local FugitiveGroup = api.nvim_create_augroup("Fugitive", {})
 
