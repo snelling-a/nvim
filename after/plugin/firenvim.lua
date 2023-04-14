@@ -1,21 +1,16 @@
 local api = vim.api
 local g = vim.g
-
-local options = {
-	colorcolumn = "",
-	cursorline = false,
-	guifont = "Iosevka Nerd Font Mono",
-	laststatus = 0,
-	number = false,
-	relativenumber = false,
-	showtabline = 0,
-	spell = true,
-}
+local opt = vim.opt
 
 if g.started_by_firenvim then
-	for option, value in pairs(options) do
-		vim.opt[option] = value
-	end
+	opt.colorcolumn = ""
+	opt.cursorline = false
+	opt.guifont = "Iosevka Nerd Font Mono"
+	opt.laststatus = 1
+	opt.number = false
+	opt.relativenumber = false
+	opt.showtabline = 0
+	opt.spell = true
 end
 
 local global_settings = {
@@ -47,10 +42,12 @@ g.firenvim_config = {
 	localSettings = local_settings,
 }
 
-api.nvim_create_autocmd(
-	"BufEnter",
-	{ pattern = { "*github.com_*", "*reddit.com_*" }, callback = function() vim.bo.filetype = "markdown" end }
-)
+api.nvim_create_autocmd("BufEnter", {
+	callback = function() vim.bo.filetype = "markdown" end,
+	desc = "Use markdown formatting for GitHub and reddit",
+	group = api.nvim_create_augroup("Firenvim", {}),
+	pattern = { "*github.com_*", "*reddit.com_*" },
+})
 
 api.nvim_create_user_command(
 	"FirenvimReload",
