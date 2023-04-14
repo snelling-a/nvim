@@ -4,7 +4,7 @@ lsp_config.servers = require("lsp_config.servers")
 
 local diagnostics = require("lsp_config.diagnostics")
 local document_highlighting = require("lsp_config.document_highlight")
-local formatting = require("lsp_config.formatting")
+local format_on_save = require("lsp_config.formatting").format_on_save
 local handlers = require("lsp_config.handlers")
 local mappings = require("lsp_config.mappings")
 
@@ -22,12 +22,12 @@ end
 
 lsp_config.on_attach = function(client, bufnr)
 	if client.name == "tsserver" then
-		client.server_capabilities.documentFormattingProvider = false -- 0.8 and later
+		client.server_capabilities.documentFormattingProvider = false
 	end
 
 	mappings(bufnr)
 	handlers()
-	formatting(client, bufnr)
+	format_on_save(client, bufnr)
 	document_highlighting(client, bufnr)
 	diagnostics(bufnr)
 end

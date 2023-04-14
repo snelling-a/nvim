@@ -1,0 +1,18 @@
+---
+on: [push]
+jobs:
+  LUACHECK:
+    name: Luacheck
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install luacheck
+        run: |
+          echo "Installing luacheck..."
+          sudo apt update
+          sudo apt install luarocks
+          sudo luarocks install luacheck
+      - name: Lint
+        run: |
+          echo "Linting with luacheck"
+          luacheck .

@@ -1,82 +1,70 @@
-if not require("utils").is_vim then
-	return
+if not require("utils").is_vim() then
+	return nil
 end
 
-local mini_notifications = {
-	filter = {
-		any = {
-			{ event = "msg_show", find = "filetype=" },
-			{ event = "msg_show", find = "/Users/" },
-			{ event = "msg_show", find = "Hunk %d of %d" },
-			{ event = "msg_show", find = "null-ls.*timeout" },
-			{ event = "msg_show", find = "nvim-treesitter" },
-			{ event = "msg_show", kind = "emsg", find = "Not an editor command" },
-			{ event = "msg_show", kind = "lua_error", find = "key must be a positive Integer" },
-			{ event = "msg_show", kind = "lua_error", find = "vim.lsp.buf.hover" },
-			{ event = "notify", kind = "info", find = "Highlighting cleared" },
-			{ event = "notify", kind = "info", find = "nvim-treesitter" },
-			{ event = "notify", kind = "info", find = "LSP" },
-			{ event = "notify", kind = "info", find = "No information available" },
-			{ event = "notify", kind = "info", find = "was automatically installed" },
-			{ event = "notify", kind = "warn", find = "NO! USE .!" },
-			{ kind = "info", find = "was properly" },
-			{ event = "msg_show", find = "No signature help available" },
+local icons = require("utils.icons")
+local noice = require("noice")
+
+local function pad_right(icon) return icon .. " " end
+local function get_search(icon) return icons.misc.search .. icon end
+
+local cmdline = {
+	-- view = "cmdline",
+	format = {
+		cmdline = { pattern = "^:", icon = pad_right(icons.languages.vim), lang = "vim" },
+		search_down = { kind = "search", pattern = "^/", icon = get_search(icons.misc.down), lang = "regex" },
+		search_up = { kind = "search", pattern = "^%?", icon = get_search(icons.misc.up), lang = "regex" },
+		filter = { pattern = "^:%s*!", icon = pad_right(icons.languages.bash), lang = "bash" },
+		lua = {
+			pattern = { "^:%s*lua%s+", "^:%s*lua%s*=%s*", "^:%s*=%s*" },
+			icon = pad_right(icons.languages.lua),
+			lang = "lua",
 		},
+		help = { pattern = "^:%s*he?l?p?%s+", icon = pad_right(icons.misc.help) },
+		input = { lang = "vim" },
 	},
-	view = "mini",
 }
 
-local split_notifications = {
-	filter = {
-		any = {
-			{ event = "msg_show", min_height = 10 },
-			{ event = "msg_show", kind = "lua_error", find = "Error executing vim.schedule" },
-		},
-	},
-	view = "split",
+local lsp_progress_format = {
+	{ "[{data.progress.percentage}%] ", hl_group = "NoiceLspProgressTitle" },
+	{ "{spinner} ", hl_group = "NoiceLspProgressSpinner" },
+	{ "[{data.progress.title}] ", hl_group = "NoiceLspProgressTitle" },
 }
 
-local hidden_notifications = {
-	filter = {
-		any = {
-			{ event = "msg_show", find = "%d+.* line.*" },
-			{ event = "msg_show", find = "%d+ change" },
-			{ event = "msg_show", find = "search hit .*, continuing at .*" },
-			{ event = "msg_show", find = "written" },
-			{ event = "msg_show", kind = "emsg", find = "Cannot write" },
-			{ event = "msg_show", kind = "emsg", find = "Pattern not found" },
-			{ event = "msg_show", kind = "emsg", find = "Spell checking is not possible" },
-			{ event = "msg_show", kind = "wmsg", find = "telescope" },
-			{ event = "notify", kind = "warn", find = "telescope.actions.set.edit" },
-			{ event = "NvimTree", kind = "message" },
-		},
+local lsp = {
+	progress = { format = lsp_progress_format },
+	hover = { enabled = false },
+	override = {
+		["vim.lsp.util.convert_input_to_markdown_lines"] = false,
+		["vim.lsp.util.stylize_markdown"] = false,
+		["cmp.entry.get_documentation"] = false,
 	},
-	opts = { skip = true },
+	message = { enabled = false },
+	signature = { enabled = false },
+	-- message = { view = "mini" },
 }
 
-require("noice").setup({
-	lsp = {
-		progress = {
-			format = {
-				{ "[{data.progress.percentage}%] ", hl_group = "NoiceLspProgressTitle" },
-				{ "{spinner} ", hl_group = "NoiceLspProgressSpinner" },
-				{ "[{data.progress.title}] ", hl_group = "NoiceLspProgressTitle" },
+local routes = {
+	{ view = "split", filter = { event = "msg_show", min_height = 20 } },
+	{
+		filter = {
+			any = {
+				{ event = "msg_show", kind = "emsg", find = "E382" }, -- Cannot write, 'buftype' option is set
+				{ event = "msg_show", kind = "lua_error", find = "E5108" }, -- CellularAutomation error if folds in file
 			},
 		},
-		hover = { enabled = false },
-		signature = { enabled = false },
-		-- message = { enabled = false },
-		documentation = { enabled = false },
-		override = {
-			["vim.lsp.util.convert_input_to_markdown_lines"] = false,
-			["vim.lsp.util.stylize_markdown"] = true,
-			["cmp.entry.get_documentation"] = true,
-		},
+		opts = { skip = true },
 	},
-	format = { spinner = { name = "bouncingBar" } },
-	-- popupmenu = { backend = "cmp" },
-	presets = { bottom_search = true, long_message_to_split = true, lsp_doc_border = true },
-	cmdline = { view = "cmdline" },
-	routes = { hidden_notifications, mini_notifications, split_notifications },
-	messages = { view_search = false },
+}
+
+noice.setup({
+	cmdline = cmdline,
+	messages = { view = "mini", view_error = "mini", view_warn = "mini", view_search = false },
+	redirect = { view = "mini" },
+	popupmenu = { enabled = true, backend = "cmp", kind_icons = icons.kind_icons },
+	commands = {},
+	notify = { view = "mini" },
+	lsp = lsp,
+	presets = { long_message_to_split = true },
+	routes = routes,
 })

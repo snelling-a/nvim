@@ -6,4 +6,4 @@ zen_mode.setup({ window = { width = 100, options = { number = true, relativenumb
 utils.nmap("<leader>zz", function()
 	zen_mode.toggle()
 	vim.wo.wrap = false
-end)
+end, { desc = "Toggle [Z]en Mode" })

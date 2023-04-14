@@ -1,7 +1,8 @@
-local utils = require("utils")
+local api = vim.api
 
-utils.autocmd({ "BufNewFile", "BufRead" }, {
-	group = utils.augroup("LogFiletype", {}),
-	pattern = { "*.log", "*.error" },
+api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
 	callback = function() vim.bo.filetype = "log" end,
+	desc = "Set filetype for log files",
+	group = api.nvim_create_augroup("LogFiletype", {}),
+	pattern = { "*.log", "*.error" },
 })

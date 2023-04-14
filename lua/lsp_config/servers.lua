@@ -1,4 +1,6 @@
 local lsp_ok, config_util = pcall(require, "lspconfig.util")
+local api = vim.api
+
 if not lsp_ok then
 	return
 end
@@ -13,6 +15,16 @@ Servers.denols = { root_dir = config_util.root_pattern("deno.json", "deno.jsonc"
 
 Servers.emmet_ls = {}
 
+Servers.eslint = {
+	root_dir = config_util.root_pattern(
+		".eslintrc.cjs",
+		".eslintrc.js",
+		".eslintrc.json",
+		".eslintrc.yaml",
+		".eslintrc.yml"
+	),
+}
+
 Servers.graphql = { root_dir = config_util.root_pattern(".graphqlrc*", ".graphql.config.*", "graphql.config.*") }
 
 Servers.jsonls =
@@ -22,9 +34,13 @@ Servers.lua_ls = {
 	root_dir = config_util.root_pattern(".luarc.json", ".luacheckrc", ".stylua.toml", "stylua.toml", "selene.toml"),
 	settings = {
 		Lua = {
+			completion = { keywordSnippet = "Both" },
 			diagnostics = { globals = { "vim" } },
-			workspace = { library = vim.api.nvim_get_runtime_file("", true), checkThirdParty = false },
+			format = { enable = false },
+			hint = { enabled = true },
 			runtime = { version = "LuaJIT", path = vim.split(package.path, ";") },
+			telemetry = { enable = false },
+			workspace = { library = api.nvim_get_runtime_file("", true), checkThirdParty = false },
 		},
 	},
 }

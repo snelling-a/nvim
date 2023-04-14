@@ -1,74 +1,72 @@
-local opt = require("utils").opt
+local opt = vim.opt
+
 vim.cmd.colorscheme("base16-default-dark")
 
--- vim.g.netrw_banner = 0
--- vim.g.netrw_browse_split = 2 -- vertically splitting the window first
--- vim.g.netrw_liststyle = 3
--- vim.g.netrw_winsize = 25
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
-
-local options = {
-	synmaxcol = 500,
-	autoindent = true,
-	autowrite = true,
-	backup = false,
-	clipboard = { "unnamed", "unnamedplus" },
-	cmdheight = 2,
-	colorcolumn = "100",
-	inccommand = "split",
-	complete = ".,w,b,u,U",
-	completeopt = { "menu", "menuone", "noselect" },
-	confirm = true,
-	expandtab = true,
-	scrollback = 10000,
-	showmode = false,
-	fileformats = { "unix", "mac" },
-	foldexpr = "nvim_treesitter#foldexpr()",
-	foldlevelstart = 0,
-	foldmethod = "expr",
-	gdefault = true,
-	hlsearch = true,
-	ignorecase = true,
-	incsearch = true,
-	laststatus = 2,
-	list = true,
-	mouse = "a",
-	number = true,
-	relativenumber = true,
-	scrolloff = 8,
-	sessionoptions = { "buffers", "curdir", "tabpages", "winsize" },
-	shiftround = true,
-	shiftwidth = 4,
-	signcolumn = "yes",
-	smartcase = true,
-	smartindent = true,
-	smarttab = true,
-	softtabstop = 4,
-	splitbelow = true,
-	splitright = true,
-	swapfile = false,
-	switchbuf = "useopen",
-	tabstop = 4,
-	termguicolors = true,
-	timeoutlen = 400,
-	title = true,
-	ttimeoutlen = 100,
-	undodir = { os.getenv("HOME") .. "/.vim/undodir" },
-	undofile = true,
-	updatetime = 50,
-	wildmode = "longest,full",
-	wrap = true,
-	writebackup = false,
-}
-
-for option, value in pairs(options) do
-	opt[option] = value
-end
-
+opt.autoindent = true
+opt.autowrite = true
+opt.backup = false
+opt.clipboard = { "unnamed", "unnamedplus" }
+opt.cmdheight = 2
+opt.colorcolumn = "100"
+opt.complete = ".,w,b,u,u"
+opt.completeopt = { "menu", "menuone", "noselect" }
+opt.confirm = true
+opt.expandtab = true
+opt.fileformats = { "unix", "mac" }
+opt.foldexpr = "nvim_treesitter#foldexpr()"
+opt.foldlevelstart = 0
+opt.foldmethod = "expr"
+opt.gdefault = true
+opt.grepprg = "rg --vimgrep"
+opt.hlsearch = true
+opt.ignorecase = true
+opt.inccommand = "split"
+opt.incsearch = true
 opt.isfname:append("@-@")
-opt.listchars:append("tab:  ")
+opt.laststatus = 2
+opt.list = true
+opt.mouse = "a"
+opt.number = true
+opt.relativenumber = true
+opt.scrollback = 10000
+opt.scrolloff = 8
+opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize" }
+opt.shiftround = true
+opt.shiftwidth = 4
+opt.showmode = false
+opt.signcolumn = "yes"
+opt.smartcase = true
+opt.smartindent = true
+opt.smarttab = true
+opt.softtabstop = 4
+opt.splitbelow = true
+opt.splitright = true
+opt.swapfile = false
+opt.switchbuf = "useopen"
+opt.synmaxcol = 500
+opt.tabstop = 4
+opt.termguicolors = true
+opt.timeoutlen = 400
+opt.title = true
+opt.ttimeoutlen = 100
+opt.undodir = { os.getenv("HOME") .. "/.vim/undodir" }
+opt.undofile = true
+opt.updatetime = 50
 opt.whichwrap:append({ ["h"] = true, ["l"] = true })
+opt.wildmode = "longest,full"
+opt.wrap = false
+opt.wrap = false
+opt.writebackup = false
+
+opt.listchars = {
+	extends = "…",
+	leadmultispace = " ",
+	multispace = "·",
+	nbsp = "␣",
+	precedes = "…",
+	tab = "  ",
+	trail = "·",
+}
 
 local shortmess_append = {
 	--  f	use "(3 of 5)" instead of "(file 3 of 5)"
@@ -102,3 +100,8 @@ end
 for _, flag in ipairs(shortmess_remove) do
 	opt.shortmess:remove(flag)
 end
+
+-- vim.g.netrw_banner = 0
+-- vim.g.netrw_browse_split = 2 -- vertically splitting the window first
+-- vim.g.netrw_liststyle = 3
+-- vim.g.netrw_winsize = 25

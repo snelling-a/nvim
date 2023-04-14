@@ -55,6 +55,27 @@ local dropdown_normal = themes.get_dropdown(mode_normal)
 local ivy_insert = themes.get_ivy(mode_insert)
 local ivy_normal = themes.get_ivy(mode_normal)
 
+local defaults = {
+	file_previewer = previewers.cat.new,
+	grep_previewer = previewers.vimgrep.new,
+	layout_strategy = "flex",
+	mappings = mappings,
+	multi_icon = icons.multi,
+	prompt_prefix = icons.search,
+	qflist_previewer = previewers.qflist.new,
+	selection_caret = icons.selection,
+	sorting_strategy = "ascending",
+	vimgrep_arguments = { "rg", "--vimgrep", "--smart-case", "--trim", "--hidden", "--no-ignore" },
+}
+
+local extensions = {
+	fzf = { case_mode = "smart_case", fuzzy = true, override_file_sorter = true, override_generic_sorter = true },
+	["ui-select"] = {
+		cursor_insert,
+		specific_opts = { code_actions = dropdown_normal },
+	},
+}
+
 local pickers = {
 	builtin = utils.tbl_extend_force(dropdown_insert, hide_on_startup),
 	find_files = { find_command = { "fd", "--type", "f", "--hidden", "--no-ignore" } },
@@ -74,27 +95,10 @@ local pickers = {
 }
 
 telescope.setup({
-	defaults = {
-		mappings = mappings,
-		multi_icon = icons.multi,
-		layout_strategy = "flex",
-		prompt_prefix = icons.search,
-		selection_caret = icons.selection,
-		sorting_strategy = "ascending",
-		vimgrep_arguments = { "rg", "--vimgrep", "--smart-case", "--trim", "--hidden", "--no-ignore" },
-		file_previewer = previewers.cat.new,
-		grep_previewer = previewers.vimgrep.new,
-		qflist_previewer = previewers.qflist.new,
-	},
+	defaults = defaults,
+	extensions = extensions,
 	file_ignore_patterns = { ".git/$", "*/**/node_modules/*" },
 	pickers = pickers,
-	extensions = {
-		fzf = { case_mode = "smart_case", fuzzy = true, override_file_sorter = true, override_generic_sorter = true },
-		["ui-select"] = {
-			cursor_insert,
-			specific_opts = { code_actions = dropdown_normal },
-		},
-	},
 })
 
 vim.api.nvim_create_user_command(

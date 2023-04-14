@@ -1,60 +1,50 @@
-local logger = require("utils.logger")
 local obsidian = require("obsidian")
 local utils = require("utils")
 
+local api = vim.api
+local cmd = vim.cmd
 local vault_directory = os.getenv("NOTES") or os.getenv("HOME") .. "/notes"
 
+local function note_id_func(input)
+	local title = ""
+	if input ~= nil then
+		title = input:gsub(" ", "-"):gsub("[^A-Za-z0-9-]", ""):lower()
+	end
+
+	return os.date("!%Y-%m-%d") .. "-" .. title
+end
+
 obsidian.setup({
-	dir = vault_directory,
 	completion = { nvim_cmp = true },
 	daily_notes = { folder = "daily-notes" },
+	dir = vault_directory,
+	note_id_func = note_id_func,
 	use_advanced_uri = true,
-	note_id_func = function(input)
-		local title = ""
-		if input ~= nil then
-			title = input:gsub(" ", "-"):gsub("[^A-Za-z0-9-]", ""):lower()
-		end
-
-		return os.date("!%Y-%m-%d") .. "-" .. title
-	end,
 })
 
-local ObsidianGroup = utils.augroup("Obsidian", { clear = false })
-utils.autocmd("FileType", {
-	group = ObsidianGroup,
+local function set_obsidian_links()
+	if vim.fn.getcwd() ~= vault_directory then
+		return
+	end
+
+	utils.nmap("<Leader>dn", cmd.ObsidianToday, { desc = "Open today's [d]aily [n]ote" })
+	utils.nmap("<Leader>ob", cmd.ObsidianBacklinks, { desc = "[O]pen [b]acklinks" })
+	utils.vmap("<Leader>ol", cmd.ObsidianLinkNew, { desc = "[O]pen [l]ink in new buffer" })
+	utils.nmap("<Leader>on", cmd.ObsidianNew, { desc = "[O]pen [n]ew note" })
+	utils.nmap("<Leader>ot", cmd.ObsidianToday, { desc = "[O]pen [t]oday's daily note" })
+	utils.nmap("<Leader>oy", cmd.ObsidianYesterday, { desc = "[O]pen [y]esterday's daily note" })
+	vim.keymap.set("n", "gf", function()
+		if require("obsidian").util.cursor_on_markdown_link() then
+			return "<cmd>ObsidianFollowLink<CR>"
+		else
+			return "gf"
+		end
+	end, { desc = "[F]ollow link", noremap = false, expr = true })
+end
+
+api.nvim_create_autocmd("FileType", {
+	callback = function() set_obsidian_links() end,
+	desc = "Set Obsidian keymaps",
+	group = api.nvim_create_augroup("Obsidian", { clear = false }),
 	pattern = "markdown",
-	callback = function()
-		if vim.fn.getcwd() ~= vault_directory then
-			return
-		end
-
-		utils.nmap("<Leader>dn", function() vim.cmd.ObsidianToday() end)
-		utils.nmap("<Leader>ob", function() vim.cmd.ObsidianBacklinks() end)
-		utils.vmap("<Leader>ol", function() vim.cmd.ObsidianLinkNew() end)
-		utils.nmap("<Leader>on", function() vim.cmd.ObsidianNew() end)
-		utils.nmap("<Leader>os", function() vim.cmd.ObsidianSearch() end)
-		utils.nmap("<Leader>ot", function() vim.cmd.ObsidianToday() end)
-		utils.nmap("<Leader>oy", function() vim.cmd.ObsidianYesterday() end)
-		vim.keymap.set("n", "gf", function()
-			if require("obsidian").util.cursor_on_markdown_link() then
-				return "<cmd>ObsidianFollowLink<CR>"
-			else
-				return "gf"
-			end
-		end, { noremap = false, expr = true })
-	end,
-	desc = "Obsidian keymaps",
-})
-
-utils.autocmd("BufEnter", {
-	group = ObsidianGroup,
-	pattern = vault_directory .. "/**.md",
-	callback = function()
-		vim.defer_fn(function()
-			-- vim.cmd.ObsidianBacklinks()
-			-- vim.cmd.wincmd("p")
-			logger.info({ msg = "ObsidianBacklinks" })
-		end, 100)
-	end,
-	-- command = "ObsidianBacklinks",
 })

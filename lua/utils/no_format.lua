@@ -1,7 +1,5 @@
 return {
 	"",
-	"DiffviewFileHistory",
-	"NvimTree",
 	"checkhealth",
 	"dashboard",
 	"diffview",
@@ -14,10 +12,12 @@ return {
 	"mason",
 	"noice",
 	"notify",
+	"NvimTree",
 	"ObsidianBacklinks",
 	"packer",
 	"qf",
 	"query",
 	"toggleterm",
+	"Trouble",
 	"undotree",
 }

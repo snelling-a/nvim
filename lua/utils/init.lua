@@ -1,28 +1,69 @@
 local api = vim.api
-local builtin = vim.fn
+local fn = vim.fn
+local cmd = vim.cmd
 local logger = require("utils.logger")
+local g = vim.g
 
+---@alias KeyMapMode "c"|"i"|"n"|"o"|"t"|"v"|"x"
+local key_map_modes = { "c", "i", "n", "o", "t", "v", "x" }
+
+---wrapper for nvim_feedkeys that handles <key> syntax
+---@param keys string
+---@param mode? KeyMapMode default: "n"
+---@param escape_ks? boolean default: false
+local function feedkeys(keys, mode, escape_ks)
+	if keys:sub(1, 1) == "<" then
+		keys = vim.api.nvim_replace_termcodes(keys, true, false, true)
+	end
+
+	return api.nvim_feedkeys(keys, mode or "n", escape_ks or false)
+end
+
+---wrapper around vim.tbl_extend that always overwrites existing keys
+---@param ... table two or more map-like tables
+---@return table merged
 local tbl_extend_force = function(...) return vim.tbl_extend("force", ...) end
 
-local get_map_options = function(custom_options)
+---@class MapOptions
+---@field silent? boolean
+---@field noremap? boolean
+---@field desc? string
+---@field callback? function
+---@field replace_keycodes? boolean
+
+local Utils = {}
+
+---comment
+---@param custom_options MapOptions
+---@return MapOptions
+local function get_map_options(custom_options)
 	local options = { silent = true, noremap = true }
 	if custom_options then
-		options = tbl_extend_force(custom_options, options)
+		options = tbl_extend_force(options, custom_options or {})
 	end
 	return options
 end
 
-local utils = {}
+---@class KeyMapArgs
+---@field mode string|table
+---@field target string
+---@field source string|function
+---@field opts? MapOptions
 
-utils.map = function(mode, target, source, opts) vim.keymap.set(mode, target, source, get_map_options(opts)) end
+---create a keymap
+---@param mode string|table
+---@param target string
+---@param source string|function
+---@param opts? MapOptions
+function Utils.map(mode, target, source, opts) vim.keymap.set(mode, target, source, opts and get_map_options(opts)) end
 
-for _, mode in ipairs({ "n", "o", "i", "x", "t", "c", "v" }) do
-	utils[mode .. "map"] = function(...) utils.map(mode, ...) end
+for _, mode in ipairs(key_map_modes) do
+	Utils[mode .. "map"] = function(...) Utils.map(mode, ...) end
 end
 
-function utils.reload_modules()
-	local config_path = builtin.stdpath("config")
-	local lua_files = builtin.glob(config_path .. "/**/*.lua", false, true)
+function Utils.reload_modules()
+	local config_path = fn.stdpath("config")
+	local lua_files = fn.glob(config_path .. "/**/*.lua", false, true)
 
 	for _, file in ipairs(lua_files) do
 		local module_name = string.gsub(file, ".*/(.*)/(.*).lua", "%1.%2")
@@ -30,29 +71,25 @@ function utils.reload_modules()
 		package.loaded[module_name] = nil
 	end
 
-	vim.cmd.source("$MYVIMRC")
+	cmd.source("$MYVIMRC")
 
 	logger.info({ msg = "Reloaded all config modules\nReloaded lua modules", title = "Happy hacking!" })
 end
 
-utils.opt = vim.opt
+Utils.scroll_center = function() feedkeys("zz") end
 
-function utils.command(bufnr, name, fn, opts) api.nvim_buf_create_user_command(bufnr, name, fn, opts) end
+Utils.feedkeys = feedkeys
 
-function utils.is_vim()
-	if vim.g.started_by_firenvim or vim.g.vscode then
+---check if the current editor is terminal vim
+---@return boolean
+function Utils.is_vim()
+	if g.started_by_firenvim or g.vscode then
 		return false
 	else
 		return true
 	end
 end
 
-utils.api = api
-utils.augroup = api.nvim_create_augroup
-utils.autocmd = api.nvim_create_autocmd
-utils.builtin = builtin
-utils.tbl_extend_force = tbl_extend_force
+Utils.tbl_extend_force = tbl_extend_force
 
-utils.scroll_center = function() vim.api.nvim_feedkeys("zz", "n", false) end
-
-return utils
+return Utils
