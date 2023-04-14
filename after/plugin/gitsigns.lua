@@ -57,9 +57,9 @@ local function on_attach(bufnr)
 end
 
 require("gitsigns").setup({
-	numhl = true,
 	current_line_blame = true,
 	current_line_blame_formatter_nc = current_line_blame_formatter_nc,
-	preview_config = { border = "rounded" },
+	numhl = true,
 	on_attach = on_attach,
+	preview_config = { border = "rounded" },
 })

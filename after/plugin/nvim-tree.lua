@@ -19,15 +19,11 @@ local renderer = {
 }
 
 local view = {
-	side = "right",
+	mappings = { list = { { key = "?", action = "toggle_help" } } },
 	number = true,
 	relativenumber = true,
+	side = "right",
 	signcolumn = "number",
-	mappings = {
-		list = {
-			{ key = "?", action = "toggle_help" },
-		},
-	},
 }
 
 require("nvim-tree").setup({

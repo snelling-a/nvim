@@ -14,13 +14,15 @@ Icons.location = { col = "󰚉 ", line = "󰚈 ", top = " ", bottom = " " 
 
 Icons.misc = {
 	code = " ",
+	down = " ",
 	gears = " ",
-	percent = "󰏰 ",
+	help = "",
 	moved = "",
 	multi = " ",
+	percent = "󰏰 ",
 	search = " ",
 	selection = " ",
-	help = "",
+	up = " ",
 }
 
 Icons.progress = {
