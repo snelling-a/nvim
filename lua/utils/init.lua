@@ -31,18 +31,18 @@ local tbl_extend_force = function(...) return vim.tbl_extend("force", ...) end
 ---@field callback? function
 ---@field replace_keycodes? boolean
 
+local Utils = {}
+
 ---comment
----@param custom_options any
+---@param custom_options MapOptions
 ---@return MapOptions
-local get_map_options = function(custom_options)
+local function get_map_options(custom_options)
 	local options = { silent = true, noremap = true }
 	if custom_options then
 		options = tbl_extend_force(options, custom_options or {})
 	end
 	return options
 end
-
-local Utils = {}
 
 ---@class KeyMapArgs
 ---@field mode string|table
@@ -55,7 +55,7 @@ local Utils = {}
 ---@param target string
 ---@param source string|function
 ---@param opts? MapOptions
-Utils.map = function(mode, target, source, opts) vim.keymap.set(mode, target, source, get_map_options(opts)) end
+function Utils.map(mode, target, source, opts) vim.keymap.set(mode, target, source, opts and get_map_options(opts)) end
 
 for _, mode in ipairs(key_map_modes) do
 	Utils[mode .. "map"] = function(...) Utils.map(mode, ...) end
