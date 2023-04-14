@@ -5,15 +5,22 @@ end
 local icons = require("utils.icons")
 local noice = require("noice")
 
+local function pad_right(icon) return icon .. " " end
+local function get_search(icon) return icons.misc.search .. icon end
+
 local cmdline = {
 	-- view = "cmdline",
 	format = {
-		cmdline = { pattern = "^:", icon = icons.languages.vim, lang = "vim" },
-		search_down = { kind = "search", pattern = "^/", icon = icons.misc.search .. "", lang = "regex" },
-		search_up = { kind = "search", pattern = "^%?", icon = icons.misc.search .. "", lang = "regex" },
-		filter = { pattern = "^:%s*!", icon = icons.languages.bash, lang = "bash" },
-		lua = { pattern = { "^:%s*lua%s+", "^:%s*lua%s*=%s*", "^:%s*=%s*" }, icon = "", lang = "lua" },
-		help = { pattern = "^:%s*he?l?p?%s+", icon = icons.misc.help },
+		cmdline = { pattern = "^:", icon = pad_right(icons.languages.vim), lang = "vim" },
+		search_down = { kind = "search", pattern = "^/", icon = get_search(icons.misc.down), lang = "regex" },
+		search_up = { kind = "search", pattern = "^%?", icon = get_search(icons.misc.up), lang = "regex" },
+		filter = { pattern = "^:%s*!", icon = pad_right(icons.languages.bash), lang = "bash" },
+		lua = {
+			pattern = { "^:%s*lua%s+", "^:%s*lua%s*=%s*", "^:%s*=%s*" },
+			icon = pad_right(icons.languages.lua),
+			lang = "lua",
+		},
+		help = { pattern = "^:%s*he?l?p?%s+", icon = pad_right(icons.misc.help) },
 		input = { lang = "vim" },
 	},
 }
@@ -27,14 +34,25 @@ local lsp_progress_format = {
 local lsp = {
 	progress = { format = lsp_progress_format },
 	hover = { enabled = false },
+	override = {
+		["vim.lsp.util.convert_input_to_markdown_lines"] = false,
+		["vim.lsp.util.stylize_markdown"] = false,
+		["cmp.entry.get_documentation"] = false,
+	},
+	message = { enabled = false },
 	signature = { enabled = false },
-	message = { view = "mini" },
+	-- message = { view = "mini" },
 }
 
 local routes = {
 	{ view = "split", filter = { event = "msg_show", min_height = 20 } },
 	{
-		filter = { event = "msg_show", kind = "emsg", find = "E5108" }, -- Cannot write, 'buftype' option is set
+		filter = {
+			any = {
+				{ event = "msg_show", kind = "emsg", find = "E382" }, -- Cannot write, 'buftype' option is set
+				{ event = "msg_show", kind = "lua_error", find = "E5108" }, -- CellularAutomation error if folds in file
+			},
+		},
 		opts = { skip = true },
 	},
 }
