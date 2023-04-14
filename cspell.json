@@ -11,8 +11,12 @@
     "./plugin"
   ],
   "ignoreWords": [
+    "acklinks",
+    "aily",
     "earch",
+    "eclaration",
     "ecutable",
+    "eference",
     "eferences",
     "efinition",
     "eleted",
@@ -23,9 +27,14 @@
     "iagnostic",
     "iles",
     "mplementation",
+    "ntcl",
     "nzzzv",
+    "oclist",
+    "ocument",
+    "oday's",
     "odules",
     "oggle",
+    "ollow",
     "ommits",
     "orkspace",
     "ormat",
@@ -35,12 +44,8 @@
     "uffer",
     "uffers",
     "uick",
-    "uzzy",
-    "eference",
-    "ntcl",
-    "oclist",
-    "ocument",
-    "uickfix"
+    "uickfix",
+    "uzzy"
   ],
   "import": [
     "@cspell/dict-fonts/cspell-ext.json"
@@ -100,6 +105,7 @@
     "fnamemodify",
     "foldexpr",
     "folke",
+    "ftdetect",
     "ftplugin",
     "gbrlsnchs",
     "gdefault",
