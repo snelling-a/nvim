@@ -22,29 +22,29 @@ obsidian.setup({
 	use_advanced_uri = true,
 })
 
-local ObsidianGroup = api.nvim_create_augroup("Obsidian", { clear = false })
-api.nvim_create_autocmd("FileType", {
-	group = ObsidianGroup,
-	pattern = "markdown",
-	callback = function()
-		if vim.fn.getcwd() ~= vault_directory then
-			return
-		end
+local function set_obsidian_links()
+	if vim.fn.getcwd() ~= vault_directory then
+		return
+	end
 
-		utils.nmap("<Leader>dn", function() cmd.ObsidianToday() end)
-		utils.nmap("<Leader>ob", function() cmd.ObsidianBacklinks() end)
-		utils.vmap("<Leader>ol", function() cmd.ObsidianLinkNew() end)
-		utils.nmap("<Leader>on", function() cmd.ObsidianNew() end)
-		utils.nmap("<Leader>os", function() cmd.ObsidianSearch() end)
-		utils.nmap("<Leader>ot", function() cmd.ObsidianToday() end)
-		utils.nmap("<Leader>oy", function() cmd.ObsidianYesterday() end)
-		vim.keymap.set("n", "gf", function()
-			if require("obsidian").util.cursor_on_markdown_link() then
-				return "<cmd>ObsidianFollowLink<CR>"
-			else
-				return "gf"
-			end
-		end, { noremap = false, expr = true })
-	end,
-	desc = "Obsidian keymaps",
+	utils.nmap("<Leader>dn", cmd.ObsidianToday, { desc = "Open today's [d]aily [n]ote" })
+	utils.nmap("<Leader>ob", cmd.ObsidianBacklinks, { desc = "[O]pen [b]acklinks" })
+	utils.vmap("<Leader>ol", cmd.ObsidianLinkNew, { desc = "[O]pen [l]ink in new buffer" })
+	utils.nmap("<Leader>on", cmd.ObsidianNew, { desc = "[O]pen [n]ew note" })
+	utils.nmap("<Leader>ot", cmd.ObsidianToday, { desc = "[O]pen [t]oday's daily note" })
+	utils.nmap("<Leader>oy", cmd.ObsidianYesterday, { desc = "[O]pen [y]esterday's daily note" })
+	vim.keymap.set("n", "gf", function()
+		if require("obsidian").util.cursor_on_markdown_link() then
+			return "<cmd>ObsidianFollowLink<CR>"
+		else
+			return "gf"
+		end
+	end, { desc = "[F]ollow link", noremap = false, expr = true })
+end
+
+api.nvim_create_autocmd("FileType", {
+	callback = function() set_obsidian_links() end,
+	desc = "Set Obsidian keymaps",
+	group = api.nvim_create_augroup("Obsidian", { clear = false }),
+	pattern = "markdown",
 })

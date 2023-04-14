@@ -1,5 +1,7 @@
 local tmap = require("utils").tmap
 
+local api = vim.api
+
 require("toggleterm").setup({ open_mapping = "<c-\\>", shell = vim.o.shell })
 
 local function set_terminal_keymaps()
@@ -12,7 +14,9 @@ local function set_terminal_keymaps()
 	tmap("<C-l>", function() vim.cmd.wincmd("l") end, opts)
 end
 
-vim.api.nvim_create_autocmd(
-	"TermOpen",
-	{ pattern = "term://*toggleterm#*", callback = function() set_terminal_keymaps() end }
-)
+api.nvim_create_autocmd("TermOpen", {
+	callback = function() set_terminal_keymaps() end,
+	desc = "Set terminal keymaps",
+	group = api.nvim_create_augroup("ToggleTerm", {}),
+	pattern = "term://*toggleterm#*",
+})

@@ -8,7 +8,6 @@ local cmd = vim.cmd
 local fn = vim.fn
 local opt = vim.opt
 
-local AutoSaveGroup = augroup("AutoSave", {})
 autocmd({ "BufLeave", "FocusLost" }, {
 	callback = function()
 		if not bo.readonly and fn.expand("%") ~= "" and bo.buftype == "" then
@@ -16,26 +15,21 @@ autocmd({ "BufLeave", "FocusLost" }, {
 		end
 	end,
 	desc = "Auto save when leaving the buffer",
-	group = AutoSaveGroup,
+	group = augroup("AutoSave", {}),
 })
 
-local EasyQuitGroup = augroup("EasyQuit", {})
 autocmd({ "FileType" }, {
 	callback = function()
 		if bo.ft == "toggleterm" then
 			return
 		end
-
-		api.nvim_buf_set_keymap(0, "n", "q", "", {
-			callback = function() api.nvim_buf_delete(0, { force = true }) end,
-		})
+		api.nvim_buf_set_keymap(0, "n", "q", "", { callback = function() api.nvim_buf_delete(0, { force = true }) end })
 	end,
 	desc = "Use [q] to close the buffer for helper files",
-	group = EasyQuitGroup,
+	group = augroup("EasyQuit", {}),
 	pattern = no_format,
 })
 
-local FormatOptionsGroup = augroup("FormatOptions", {})
 autocmd({ "BufEnter", "FileType" }, {
 	callback = function()
 		local formatoptions_append = {
@@ -71,23 +65,21 @@ autocmd({ "BufEnter", "FileType" }, {
 		end
 	end,
 	desc = "don't auto comment new line",
-	group = FormatOptionsGroup,
+	group = augroup("FormatOptions", {}),
 	pattern = "*",
 })
 
-local HighlightYankGroup = augroup("HighlightYank", {})
 autocmd("TextYankPost", {
 	callback = function() vim.highlight.on_yank({ higroup = "IncSearch", timeout = 40 }) end,
 	desc = "Highlight yanked text",
-	group = HighlightYankGroup,
+	group = augroup("HighlightYank", {}),
 	pattern = "*",
 })
 
-local StripWhitespaceGroup = augroup("StripWhitespace", {})
 autocmd({ "BufWritePre" }, {
 	callback = function() cmd.substitute([[/\s\+$/]], [[\=submatch(0)]], [[e]]) end,
 	desc = "Strip whitespace from the end of the line",
-	group = StripWhitespaceGroup,
+	group = augroup("StripWhitespace", {}),
 	pattern = "!markdown",
 })
 

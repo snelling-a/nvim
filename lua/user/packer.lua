@@ -21,23 +21,22 @@ if not status_ok then
 	return
 end
 
-local PackerGroup = api.nvim_create_augroup("PackerGroup", {})
 api.nvim_create_autocmd("BufWritePost", {
 	pattern = "packer.lua",
 	command = "source <afile> | PackerCompile",
-	group = PackerGroup,
+	group = api.nvim_create_augroup("PackerGroup", {}),
 })
 
 packer.init({
-    display = {
-        done_sym = icons.progress.done,
-        error_sym = icons.progress.error,
-        header_sym = "—",
-        moved_sym = icons.misc.moved,
-        removed_sym = icons.progress.trash,
-        working_sym = icons.progress.pending,
-    },
-    luarocks = { python_cmd = "python3" },
+	display = {
+		done_sym = icons.progress.done,
+		error_sym = icons.progress.error,
+		header_sym = "—",
+		moved_sym = icons.misc.moved,
+		removed_sym = icons.progress.trash,
+		working_sym = icons.progress.pending,
+	},
+	luarocks = { python_cmd = "python3" },
 })
 
 return packer.startup(function(use)
@@ -133,7 +132,6 @@ return packer.startup(function(use)
 				"saadparwaiz1/cmp_luasnip",
 			},
 		},
-		"chrisgrieser/cmp-nerdfont",
 		{ "petertriho/cmp-git", requires = "nvim-lua/plenary.nvim" },
 	})
 
