@@ -1,4 +1,4 @@
-local kind_icons = require("utils.icons").kind_icons
+local kind_icons = require("ui.icons").kind_icons
 local logger = require("utils.logger")
 
 local get_node_path = function()

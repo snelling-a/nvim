@@ -2,7 +2,7 @@ if not require("utils").is_vim() then
 	return nil
 end
 
-local icons = require("utils.icons")
+local icons = require("ui.icons")
 local global_theme = vim.g.theme
 
 local theme = {

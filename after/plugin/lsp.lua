@@ -1,7 +1,6 @@
-local icons = require("utils.icons").progress
+local icons = require("ui.icons").progress
 local lsp_config = require("lsp_config")
 local lspconfig = require("lspconfig")
-local utils = require("utils")
 
 require("neodev").setup({})
 
@@ -29,6 +28,6 @@ require("mason").setup({
 require("mason-lspconfig").setup({ automatic_installation = true, ensure_installed = vim.tbl_keys(servers) })
 
 for server, config in pairs(servers) do
-	local opts = utils.tbl_extend_force(options, config or {})
+	local opts = vim.tbl_deep_extend("force", options, config or {})
 	lspconfig[server].setup(opts)
 end

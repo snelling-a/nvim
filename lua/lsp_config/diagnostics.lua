@@ -1,4 +1,4 @@
-local signs = require("utils.icons").diagnostics
+local signs = require("ui.icons").diagnostics
 local vim_diagnostic = vim.diagnostic
 local api = vim.api
 

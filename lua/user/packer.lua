@@ -1,4 +1,4 @@
-local icons = require("utils.icons")
+local icons = require("ui.icons")
 
 local api = vim.api
 local cmd = vim.cmd
