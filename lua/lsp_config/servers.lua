@@ -11,6 +11,11 @@ Servers.awk_ls = {}
 
 Servers.bashls = {}
 
+--Enable (broadcasting) snippet capability for completion
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+Servers.cssls = { capabilities = capabilities }
+
 Servers.denols = { root_dir = config_util.root_pattern("deno.json", "deno.jsonc") }
 
 Servers.emmet_ls = {}
