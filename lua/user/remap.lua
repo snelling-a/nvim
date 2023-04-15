@@ -40,7 +40,7 @@ utils.nmap("<C-up>", function() cmd.resize({ args = { "+5" } }) end, { desc = "I
 map(
 	"n",
 	"<leader>s",
-	[[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
+	[[:%s/\<<C-r><C-w>\>/<C-r><C-w>/I<Left><Left><Left>]],
 	{ desc = "[S]earch and replace word under the cursor" }
 )
 utils.nmap("<C-u>", function()
