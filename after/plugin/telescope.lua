@@ -1,4 +1,4 @@
-local icons = require("utils.icons").misc
+local icons = require("ui.icons").misc
 local action_layout = require("telescope.actions.layout")
 local actions = require("telescope.actions")
 local builtin = require("telescope.builtin")

@@ -1,4 +1,4 @@
-local icons = require("utils.icons").progress
+local icons = require("ui.icons").progress
 
 local mappings = {
 	MkdnFoldSection = false,

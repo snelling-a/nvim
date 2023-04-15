@@ -2,7 +2,7 @@ if not require("utils").is_vim() then
 	return nil
 end
 
-local icons = require("utils.icons")
+local icons = require("ui.icons")
 local noice = require("noice")
 
 local function pad_right(icon) return icon .. " " end
@@ -12,8 +12,8 @@ local cmdline = {
 	-- view = "cmdline",
 	format = {
 		cmdline = { pattern = "^:", icon = pad_right(icons.languages.vim), lang = "vim" },
-		search_down = { kind = "search", pattern = "^/", icon = get_search(icons.misc.down), lang = "regex" },
-		search_up = { kind = "search", pattern = "^%?", icon = get_search(icons.misc.up), lang = "regex" },
+		search_down = { kind = "search", pattern = "^/", icon = get_search(icons.misc.chevron_down), lang = "regex" },
+		search_up = { kind = "search", pattern = "^%?", icon = get_search(icons.misc.chevron_up), lang = "regex" },
 		filter = { pattern = "^:%s*!", icon = pad_right(icons.languages.bash), lang = "bash" },
 		lua = {
 			pattern = { "^:%s*lua%s+", "^:%s*lua%s*=%s*", "^:%s*=%s*" },

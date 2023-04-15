@@ -1,7 +1,7 @@
 local cmp = require("cmp")
 local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 local compare = require("cmp.config.compare")
-local icons = require("utils.icons")
+local icons = require("ui.icons")
 local luasnip = require("luasnip")
 
 local formatting = {
