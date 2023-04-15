@@ -6,12 +6,12 @@ local cmd = vim.cmd
 local vault_directory = os.getenv("NOTES") or os.getenv("HOME") .. "/notes"
 
 local function note_id_func(input)
-	local title = ""
+	local title = "Untitled"
 	if input ~= nil then
 		title = input:gsub(" ", "-"):gsub("[^A-Za-z0-9-]", ""):lower()
 	end
 
-	return os.date("!%Y-%m-%d") .. "-" .. title
+	return os.date("%Y%m%d%H%M") .. "-" .. title
 end
 
 obsidian.setup({
