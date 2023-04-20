@@ -28,6 +28,7 @@ local builtins_formatting_prettierd = builtins.formatting.prettierd.with({
 			".prettierrc.json5",
 			".prettierrc.yaml",
 			".prettierrc.yml",
+			"prettier.config.js",
 		})
 	end,
 })
