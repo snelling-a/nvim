@@ -1,10 +1,11 @@
 local Icons = {}
 
 local copilot = " "
-local down = ""
+local down = ""
 local error = " "
 local modified = " "
-local right = ""
+local right = ""
+local vert = "┃"
 
 Icons.cmp = {
 	Codeium = " ",
@@ -24,7 +25,8 @@ Icons.git = { added = " ", branch = "󰘬", modified = modified, removed = "�
 
 Icons.file = { modified = modified, newfile = " ", readonly = " ", unnamed = " " }
 
-Icons.fillchars = { eob = " ", fold = "=", foldclose = right, foldopen = down }
+Icons.fillchars =
+	{ diff = "∙", eob = " ", fold = "󰇼", foldclose = " ", foldopen = down, foldsep = "│", vert = vert }
 
 Icons.kind_icons = {
 	Class = "ﴯ",
@@ -93,6 +95,7 @@ Icons.location = { bottom = " ", col = "󰚉 ", line = "󰚈 ", top = " " 
 Icons.misc = {
 	chevron_down = " ",
 	chevron_up = " ",
+	l = "ℓ",
 	code = " ",
 	down = down,
 	gears = " ",
