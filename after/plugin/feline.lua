@@ -47,23 +47,6 @@ local vim_mode = {
 	right_sep = "block",
 }
 
-local file_info = {
-	provider = {
-		left_sep = "block",
-		name = "file_info",
-		opts = { file_readonly_icon = icons.file.readonly },
-		right_sep = "block",
-	},
-}
-local file_info_inactive = {
-	provider = {
-		hl = { bg = "black" },
-		left_sep = "block",
-		name = "file_info",
-		opts = { type = "relative", file_readonly_icon = icons.file.readonly },
-	},
-}
-
 local diagnostic_errors = { hl = { fg = "red" }, provider = "diagnostic_errors" }
 local diagnostic_warnings = { hl = { fg = "yellow" }, provider = "diagnostic_warnings" }
 local diagnostic_hints = { hl = { fg = "cyan" }, provider = "diagnostic_hints" }
@@ -160,8 +143,6 @@ local gap = { provider = " " }
 local left = {
 	vim_mode,
 	gap,
-	file_info,
-	gap,
 	diagnostic_errors,
 	diagnostic_warnings,
 	diagnostic_info,
@@ -169,15 +150,11 @@ local left = {
 	gap,
 	lsp,
 }
+
 local middle = { macro_recording }
 local right = { search_count, gap, git_branch, git_add, git_delete, git_change, progress }
 
-local left_inactive = { file_info_inactive }
+-- TODO: add something for inactive buffers
+local components = { active = { left, middle, right }, inactive = { {}, {}, {} } }
 
-local components = { active = { left, middle, right }, inactive = { left_inactive, {}, {} } }
-
-require("feline").setup({
-	components = components,
-	theme = theme,
-	vi_mode_colors = vi_mode_colors,
-})
+require("feline").setup({ components = components, theme = theme, vi_mode_colors = vi_mode_colors })
