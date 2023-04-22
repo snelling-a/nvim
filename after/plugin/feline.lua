@@ -3,11 +3,13 @@ if not require("utils").is_vim() then
 end
 
 local icons = require("ui.icons")
+
 local global_theme = vim.g.theme
 
 local theme = {
 	fg = global_theme.base04,
 	bg = global_theme.base01,
+	black = global_theme.base00,
 	skyblue = global_theme.base0D,
 	cyan = global_theme.base0C,
 	green = global_theme.base0B,
@@ -48,7 +50,7 @@ local vim_mode = {
 }
 
 local diagnostic_errors = { hl = { fg = "red" }, provider = "diagnostic_errors" }
-local diagnostic_warnings = { hl = { fg = "yellow" }, provider = "diagnostic_warnings" }
+local diagnostic_warnings = { hl = { fg = "magenta" }, provider = "diagnostic_warnings" }
 local diagnostic_hints = { hl = { fg = "cyan" }, provider = "diagnostic_hints" }
 local diagnostic_info = { hl = { fg = "skyblue" }, provider = "diagnostic_info" }
 
