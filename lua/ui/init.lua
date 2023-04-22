@@ -13,6 +13,7 @@ opt.foldcolumn = "auto"
 opt.foldexpr = "nvim_treesitter#foldexpr()"
 opt.foldlevelstart = 0
 opt.foldmethod = "expr"
+opt.foldtext = 'v:lua.require("ui.folds").foldtext()'
 opt.hlsearch = true
 opt.inccommand = "split"
 opt.incsearch = true
