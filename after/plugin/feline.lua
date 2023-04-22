@@ -3,11 +3,13 @@ if not require("utils").is_vim() then
 end
 
 local icons = require("ui.icons")
+
 local global_theme = vim.g.theme
 
 local theme = {
 	fg = global_theme.base04,
 	bg = global_theme.base01,
+	black = global_theme.base00,
 	skyblue = global_theme.base0D,
 	cyan = global_theme.base0C,
 	green = global_theme.base0B,
@@ -47,25 +49,8 @@ local vim_mode = {
 	right_sep = "block",
 }
 
-local file_info = {
-	provider = {
-		left_sep = "block",
-		name = "file_info",
-		opts = { file_readonly_icon = icons.file.readonly },
-		right_sep = "block",
-	},
-}
-local file_info_inactive = {
-	provider = {
-		hl = { bg = "black" },
-		left_sep = "block",
-		name = "file_info",
-		opts = { type = "relative", file_readonly_icon = icons.file.readonly },
-	},
-}
-
 local diagnostic_errors = { hl = { fg = "red" }, provider = "diagnostic_errors" }
-local diagnostic_warnings = { hl = { fg = "yellow" }, provider = "diagnostic_warnings" }
+local diagnostic_warnings = { hl = { fg = "magenta" }, provider = "diagnostic_warnings" }
 local diagnostic_hints = { hl = { fg = "cyan" }, provider = "diagnostic_hints" }
 local diagnostic_info = { hl = { fg = "skyblue" }, provider = "diagnostic_info" }
 
@@ -160,8 +145,6 @@ local gap = { provider = " " }
 local left = {
 	vim_mode,
 	gap,
-	file_info,
-	gap,
 	diagnostic_errors,
 	diagnostic_warnings,
 	diagnostic_info,
@@ -169,15 +152,11 @@ local left = {
 	gap,
 	lsp,
 }
+
 local middle = { macro_recording }
 local right = { search_count, gap, git_branch, git_add, git_delete, git_change, progress }
 
-local left_inactive = { file_info_inactive }
+-- TODO: add something for inactive buffers
+local components = { active = { left, middle, right }, inactive = { {}, {}, {} } }
 
-local components = { active = { left, middle, right }, inactive = { left_inactive, {}, {} } }
-
-require("feline").setup({
-	components = components,
-	theme = theme,
-	vi_mode_colors = vi_mode_colors,
-})
+require("feline").setup({ components = components, theme = theme, vi_mode_colors = vi_mode_colors })

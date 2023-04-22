@@ -74,7 +74,7 @@ return packer.startup(function(use)
 		run = ":TSUpdate",
 		requires = {
 			"JoosepAlviste/nvim-ts-context-commentstring",
-			"nvim-ts-autotag",
+			"windwp/nvim-ts-autotag",
 			"HiPhish/nvim-ts-rainbow2",
 			"nvim-treesitter/nvim-treesitter-context",
 			"nvim-treesitter/nvim-treesitter-textobjects",
@@ -83,7 +83,10 @@ return packer.startup(function(use)
 
 	-- [[ LSP ]]
 	use({
-		{ "neovim/nvim-lspconfig", requires = { "williamboman/mason.nvim", "williamboman/mason-lspconfig.nvim" } },
+		{
+			"neovim/nvim-lspconfig",
+			requires = { "SmiteshP/nvim-navic", "williamboman/mason.nvim", "williamboman/mason-lspconfig.nvim" },
+		},
 		"jay-babu/mason-null-ls.nvim",
 		"jose-elias-alvarez/null-ls.nvim",
 		"b0o/schemastore.nvim",

@@ -1,4 +1,5 @@
 require("ui.shortmess")
+require("ui.winbar")
 
 local icons = require("ui.icons")
 
