@@ -83,7 +83,10 @@ return packer.startup(function(use)
 
 	-- [[ LSP ]]
 	use({
-		{ "neovim/nvim-lspconfig", requires = { "williamboman/mason.nvim", "williamboman/mason-lspconfig.nvim" } },
+		{
+			"neovim/nvim-lspconfig",
+			requires = { "SmiteshP/nvim-navic", "williamboman/mason.nvim", "williamboman/mason-lspconfig.nvim" },
+		},
 		"jay-babu/mason-null-ls.nvim",
 		"jose-elias-alvarez/null-ls.nvim",
 		"b0o/schemastore.nvim",
