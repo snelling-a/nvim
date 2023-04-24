@@ -39,6 +39,8 @@ packer.init({
 	luarocks = { python_cmd = "python3" },
 })
 
+local dev_dir = os.getenv("HOME") .. "/dev/github.com/"
+
 return packer.startup(function(use)
 	use({ "wbthomason/packer.nvim" })
 
@@ -49,8 +51,13 @@ return packer.startup(function(use)
 		"eandrju/cellular-automaton.nvim",
 		"folke/zen-mode.nvim",
 		"lukas-reineke/indent-blankline.nvim",
-		"~/dev/github.com/snelling-a/nvim-base16",
+		dev_dir .. "snelling-a/nvim-base16",
 		-- "snelling-a/nvim-base16",
+		{
+			-- dev_dir .. "snelling-a/better-folds.nvim",
+			"snelling-a/better-folds.nvim",
+			config = function() require("better-folds").setup() end,
+		},
 		"norcalli/nvim-colorizer.lua",
 		{ "nvim-tree/nvim-tree.lua", requires = { "nvim-tree/nvim-web-devicons" } },
 		{ "folke/noice.nvim", requires = { "MunifTanjim/nui.nvim", "rcarriga/nvim-notify" } },
