@@ -22,6 +22,7 @@ Servers.emmet_ls = {}
 
 Servers.eslint = {
 	root_dir = config_util.root_pattern(
+		".eslintrc",
 		".eslintrc.cjs",
 		".eslintrc.js",
 		".eslintrc.json",
