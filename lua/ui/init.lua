@@ -8,12 +8,13 @@ local opt = vim.opt
 vim.cmd.colorscheme("base16-default-dark")
 
 opt.colorcolumn = "100"
+opt.cursorline = true
 opt.fillchars = icons.fillchars
 opt.foldcolumn = "auto"
 opt.foldexpr = "nvim_treesitter#foldexpr()"
 opt.foldlevelstart = 0
 opt.foldmethod = "expr"
-opt.foldtext = 'v:lua.require("ui.folds").foldtext()'
+-- opt.foldtext = 'v:lua.require("ui.folds").foldtext()'
 opt.hlsearch = true
 opt.inccommand = "split"
 opt.incsearch = true
