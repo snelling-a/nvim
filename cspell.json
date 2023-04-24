@@ -8,6 +8,7 @@
   "enableGlobDot": true,
   "enabled": true,
   "ignorePaths": [
+    "./.git",
     "./plugin"
   ],
   "ignoreWords": [
@@ -53,6 +54,7 @@
   ],
   "version": "0.2",
   "words": [
+    "Smitesh",
     "afile",
     "akinsho",
     "alviste",

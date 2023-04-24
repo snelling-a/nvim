@@ -9,3 +9,4 @@ jobs:
       - uses: streetsidesoftware/cspell-action@v2
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          incremental_files_only: false
