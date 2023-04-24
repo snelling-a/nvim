@@ -54,7 +54,7 @@ null_ls.setup({
 		builtins_diagnostics.alex,
 		builtins_diagnostics.gitlint,
 		builtins_diagnostics.luacheck,
-		builtins_diagnostics.shellcheck.with({ extra_args = "-x" }),
+		builtins_diagnostics.shellcheck.with({ extra_args = { "-x" } }),
 		builtins_diagnostics.todo_comments,
 		builtins_diagnostics.vint,
 		builtins_diagnostics.yamllint.with({ extra_args = get_yamllint_args }),
