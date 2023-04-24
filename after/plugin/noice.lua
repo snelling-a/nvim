@@ -51,6 +51,7 @@ local routes = {
 			any = {
 				{ event = "msg_show", kind = "emsg", find = "E382" }, -- Cannot write, 'buftype' option is set
 				{ event = "msg_show", kind = "lua_error", find = "E5108" }, -- CellularAutomation error if folds in file
+				{ event = "notify", kind = "warn", find = "Already attached" }, -- navic can only attach to 1 server
 			},
 		},
 		opts = { skip = true },
