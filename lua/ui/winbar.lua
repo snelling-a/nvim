@@ -1,3 +1,7 @@
+if not require("utils").is_vim() then
+	return nil
+end
+
 local navic_ok, navic = pcall(require, "nvim-navic")
 local feline_ok, feline = pcall(require, "feline")
 
@@ -7,7 +11,7 @@ if not navic_ok or not feline_ok then
 	return nil
 end
 
-navic.setup({ lsp = { auto_attach = true }, highlight = true })
+navic.setup({ lsp = { auto_attach = true, preference = { "tsserver", "graphql" } }, highlight = true })
 
 local navic_component = {
 	provider = function() return navic.get_location() end,
