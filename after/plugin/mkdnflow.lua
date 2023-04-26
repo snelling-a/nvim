@@ -16,5 +16,5 @@ local mappings = {
 require("mkdnflow").setup({
 	links = { conceal = true, name_is_source = true },
 	mappings = mappings,
-	to_do = { symbols = { " ", icons.pending, icons.done } },
+	to_do = { symbols = { " ", icons.pending, "x" } },
 })

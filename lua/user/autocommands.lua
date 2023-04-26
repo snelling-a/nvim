@@ -1,4 +1,4 @@
-local no_format = require("utils.no_format")
+local utils = require("utils")
 
 local api = vim.api
 local augroup = api.nvim_create_augroup
@@ -7,6 +7,7 @@ local bo = vim.bo
 local cmd = vim.cmd
 local fn = vim.fn
 local opt = vim.opt
+local opt_local = vim.opt_local
 
 autocmd({ "BufLeave", "FocusLost" }, {
 	callback = function()
@@ -20,14 +21,14 @@ autocmd({ "BufLeave", "FocusLost" }, {
 
 autocmd({ "FileType" }, {
 	callback = function()
-		if bo.ft == "toggleterm" then
+		local filetype = bo.filetype
+		if filetype == "toggleterm" or utils.should_have_formatting(filetype) then
 			return
 		end
 		api.nvim_buf_set_keymap(0, "n", "q", "", { callback = function() api.nvim_buf_delete(0, { force = true }) end })
 	end,
 	desc = "Use [q] to close the buffer for helper files",
 	group = augroup("EasyQuit", {}),
-	pattern = no_format,
 })
 
 autocmd({ "BufEnter", "FileType" }, {
@@ -84,25 +85,33 @@ autocmd({ "BufWritePre" }, {
 })
 
 local ToggleWindowOptionsGroup = augroup("ToggleWindowOptions", {})
-autocmd("WinLeave", {
+autocmd("BufLeave", {
 	callback = function()
-		opt.cursorline = false
-		opt.relativenumber = false
+		opt_local.cursorline = false
+		opt_local.relativenumber = false
+
+		if utils.should_have_formatting(bo.filetype) then
+			opt_local.number = true
+		else
+			opt_local.number = false
+		end
 	end,
 	desc = "Toggle cursorline and relative number off",
 	group = ToggleWindowOptionsGroup,
 	pattern = "*",
 })
 
-autocmd("WinEnter", {
+autocmd("BufEnter", {
 	callback = function()
-		if not vim.tbl_contains(no_format, bo.filetype) then
-			opt.cursorline = true
-			opt.relativenumber = true
+		if utils.should_have_formatting(bo.filetype) then
+			opt_local.cursorline = true
+			opt_local.number = true
+			opt_local.relativenumber = true
 		else
-			opt.colorcolumn = ""
+			opt_local.colorcolumn = ""
 		end
 	end,
 	desc = "Toggle cursorline and relative number on",
 	group = ToggleWindowOptionsGroup,
+	pattern = "*",
 })

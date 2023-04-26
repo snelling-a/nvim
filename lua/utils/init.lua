@@ -1,7 +1,9 @@
+local logger = require("utils.logger")
+local no_format = require("utils.no_format")
+
 local api = vim.api
 local fn = vim.fn
 local cmd = vim.cmd
-local logger = require("utils.logger")
 local g = vim.g
 
 ---@alias KeyMapMode "c"|"i"|"n"|"o"|"t"|"v"|"x"
@@ -91,5 +93,10 @@ function Utils.is_vim()
 end
 
 Utils.tbl_extend_force = tbl_extend_force
+
+---returns `true` if current buffer should be formatted or not
+---@param filetype string result of `vim.bo.filetype`
+---@return should_have_formatting boolean if `filetype` should have formatting
+function Utils.should_have_formatting(filetype) return not vim.tbl_contains(no_format, filetype) end
 
 return Utils
