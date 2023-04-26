@@ -1,7 +1,6 @@
 return {
 	"",
 	"checkhealth",
-	"dashboard",
 	"diffview",
 	"fugitive",
 	"fugitiveblame",
