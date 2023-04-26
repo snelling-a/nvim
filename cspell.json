@@ -54,6 +54,7 @@
   ],
   "version": "0.2",
   "words": [
+    "AARRGGBB",
     "Smitesh",
     "afile",
     "akinsho",
@@ -74,6 +75,7 @@
     "bufnr",
     "bufs",
     "buftype",
+    "buftypes",
     "builtins",
     "bwipe",
     "cbfmt",

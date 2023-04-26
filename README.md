@@ -16,6 +16,7 @@
 |[hrsh7th/cmp-nvim-lsp](https://github.com/hrsh7th/cmp-nvim-lsp)|nvim-cmp source for neovim builtin LSP client|
 |[hrsh7th/cmp-path](https://github.com/hrsh7th/cmp-path)|nvim-cmp source for path|
 |[hrsh7th/nvim-cmp](https://github.com/hrsh7th/nvim-cmp)|A completion plugin for neovim coded in Lua.|
+|[iamcco/markdown-preview.nvim](https://github.com/iamcco/markdown-preview.nvim)|markdown preview plugin for (neo)vim|
 |[jakewvincent/mkdnflow.nvim](https://github.com/jakewvincent/mkdnflow.nvim)|Fluent navigation and management of markdown notebooks|
 |[jay-babu/mason-null-ls.nvim](https://github.com/jay-babu/mason-null-ls.nvim)||
 |[JoosepAlviste/nvim-ts-context-commentstring](https://github.com/JoosepAlviste/nvim-ts-context-commentstring)|Neovim treesitter plugin for setting the commentstring based on the cursor location in a file.|
@@ -30,8 +31,8 @@
 |[lukas-reineke/indent-blankline.nvim](https://github.com/lukas-reineke/indent-blankline.nvim)|Indent guides  for Neovim|
 |[mbbill/undotree](https://github.com/mbbill/undotree)|The undo history visualizer for VIM|
 |[neovim/nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)|Quickstart configs for Nvim LSP|
-|[norcalli/nvim-colorizer.lua](https://github.com/norcalli/nvim-colorizer.lua)|The fastest Neovim colorizer.|
 |[numToStr/Comment.nvim](https://github.com/numToStr/Comment.nvim)|:brain: :muscle: // Smart and powerful comment plugin for neovim. Supports treesitter, dot repeat, left-right/up-down motions, hooks, and more|
+|[NvChad/nvim-colorizer.lua](https://github.com/NvChad/nvim-colorizer.lua)|Maintained fork of the fastest Neovim colorizer|
 |[nvim-lua/plenary.nvim](https://github.com/nvim-lua/plenary.nvim)|plenary: full; complete; entire; absolute; unqualified. All the lua functions I don't want to write twice.|
 |[nvim-telescope/telescope-fzf-native.nvim](https://github.com/nvim-telescope/telescope-fzf-native.nvim)|FZF sorter for telescope written in c|
 |[nvim-telescope/telescope-node-modules.nvim](https://github.com/nvim-telescope/telescope-node-modules.nvim)|An extension that provides its users with node packages under node_modules directory|
