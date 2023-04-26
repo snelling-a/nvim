@@ -58,7 +58,7 @@ return packer.startup(function(use)
 			"snelling-a/better-folds.nvim",
 			config = function() require("better-folds").setup() end,
 		},
-		"norcalli/nvim-colorizer.lua",
+		"NvChad/nvim-colorizer.lua",
 		{ "nvim-tree/nvim-tree.lua", requires = { "nvim-tree/nvim-web-devicons" } },
 		{ "folke/noice.nvim", requires = { "MunifTanjim/nui.nvim", "rcarriga/nvim-notify" } },
 		"freddiehaddad/feline.nvim",
