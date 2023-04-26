@@ -23,10 +23,19 @@ Icons.diagnostics = { Error = error, Hint = " ", Info = " ", Warn = " "
 
 Icons.git = { added = " ", branch = "󰘬", modified = modified, removed = " " }
 
+Icons.gitsigns = {
+	add = { text = vert },
+	change = { text = vert },
+	changedelete = { text = "󰜥" },
+	delete = { text = "_" },
+	topdelete = { text = "▔" },
+	untracked = { text = "┆" },
+}
+
 Icons.file = { modified = modified, newfile = " ", readonly = " ", unnamed = " " }
 
 Icons.fillchars =
-	{ diff = "∙", eob = " ", fold = "󰇼", foldclose = " ", foldopen = down, foldsep = "│", vert = vert }
+	{ diff = "░", eob = " ", fold = "󰇼", foldclose = "", foldopen = down, foldsep = "│", vert = vert }
 
 Icons.kind_icons = {
 	Class = "ﴯ",
@@ -107,6 +116,7 @@ Icons.misc = {
 	right = right,
 	search = " ",
 	selection = " ",
+	wrap = "↵",
 }
 
 Icons.progress = {
