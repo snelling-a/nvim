@@ -1,3 +1,4 @@
+local signs = require("ui.icons").gitsigns
 local utils = require("utils")
 
 local function current_line_blame_formatter_nc(_, blame_info, _)
@@ -10,13 +11,18 @@ local function on_attach(bufnr)
 	local gs = package.loaded.gitsigns
 	local opts = { buffer = bufnr, expr = true }
 
+	local function preview()
+		utils.scroll_center()
+		gs.preview_hunk_inline()
+	end
+
 	utils.nmap("]c", function()
 		if vim.wo.diff then
 			return "]c"
 		end
 		vim.schedule(function()
 			gs.next_hunk()
-			utils.scroll_center()
+			preview()
 		end)
 		return "<Ignore>"
 	end, utils.tbl_extend_force(opts, { desc = "Next [H]unk" }))
@@ -26,7 +32,7 @@ local function on_attach(bufnr)
 		end
 		vim.schedule(function()
 			gs.prev_hunk()
-			utils.scroll_center()
+			preview()
 		end)
 		return "<Ignore>"
 	end, utils.tbl_extend_force(opts, { desc = "Previous [H]unk" }))
@@ -52,8 +58,8 @@ local function on_attach(bufnr)
 	utils.nmap("<leader>hD", function() gs.diffthis("~") end, { desc = "[D]iff this" })
 	utils.nmap("<leader>td", gs.toggle_deleted, { desc = "[T]oggle [D]eleted" })
 
-	utils.map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", { desc = "Select [i]n [h]unk" })
-	utils.map({ "o", "x" }, "ah", ":<C-U>Gitsigns select_hunk<CR>", { desc = "Select [a]round [h]unk" })
+	utils.map({ "o", "x" }, "ih", function() gs.select_hunk() end, { desc = "Select [i]n [h]unk" })
+	utils.map({ "o", "x" }, "ah", function() gs.select_hunk() end, { desc = "Select [a]round [h]unk" })
 end
 
 require("gitsigns").setup({
@@ -62,4 +68,5 @@ require("gitsigns").setup({
 	numhl = true,
 	on_attach = on_attach,
 	preview_config = { border = "rounded" },
+	signs = signs,
 })
