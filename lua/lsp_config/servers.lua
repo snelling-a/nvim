@@ -40,13 +40,13 @@ Servers.lua_ls = {
 	root_dir = config_util.root_pattern(".luarc.json", ".luacheckrc", ".stylua.toml", "stylua.toml", "selene.toml"),
 	settings = {
 		Lua = {
-			completion = { keywordSnippet = "Both" },
-			diagnostics = { globals = { "vim" } },
+			completion = { displayContext = true, keywordSnippet = "Both" },
+			diagnostics = { enable = true, disable = { "spell-check" }, globals = { "vim", "_*" } },
 			format = { enable = false },
 			hint = { enabled = true },
 			runtime = { version = "LuaJIT", path = vim.split(package.path, ";") },
 			telemetry = { enable = false },
-			workspace = { library = api.nvim_get_runtime_file("", true), checkThirdParty = false },
+			workspace = { checkThirdParty = false, library = api.nvim_get_runtime_file("", true) },
 		},
 	},
 }

@@ -94,16 +94,15 @@ return packer.startup(function(use)
 			"neovim/nvim-lspconfig",
 			requires = { "SmiteshP/nvim-navic", "williamboman/mason.nvim", "williamboman/mason-lspconfig.nvim" },
 		},
-		"jay-babu/mason-null-ls.nvim",
-		"jose-elias-alvarez/null-ls.nvim",
 		"b0o/schemastore.nvim",
 		"fladson/vim-kitty",
 		"folke/neodev.nvim",
+		"jay-babu/mason-null-ls.nvim",
+		"jose-elias-alvarez/null-ls.nvim",
 		"jose-elias-alvarez/typescript.nvim",
 		"jparise/vim-graphql",
-		{ "preservim/vim-markdown", ft = "markdown", dependencies = { "godlygeek/tabular" } },
-
 		"simrat39/symbols-outline.nvim",
+		{ "preservim/vim-markdown", ft = "markdown", dependencies = { "godlygeek/tabular" } },
 		{ "folke/trouble.nvim", requires = "nvim-tree/nvim-web-devicons" },
 	})
 
