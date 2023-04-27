@@ -96,7 +96,7 @@ Utils.tbl_extend_force = tbl_extend_force
 
 ---returns `true` if current buffer should be formatted or not
 ---@param filetype string result of `vim.bo.filetype`
----@return should_have_formatting boolean if `filetype` should have formatting
+---@return _ boolean if `filetype` should have formatting
 function Utils.should_have_formatting(filetype) return not vim.tbl_contains(no_format, filetype) end
 
 return Utils
