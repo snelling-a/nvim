@@ -3,6 +3,7 @@ require("user.packer")
 require("user.remap")
 require("user.sessions")
 require("user.set")
+require("user.commands")
 
 local default_plugins = {
 	"2html_plugin",
