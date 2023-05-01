@@ -1,4 +1,4 @@
-local utils = require("utils")
+local util = require("config.util")
 
 local api = vim.api
 local augroup = api.nvim_create_augroup
@@ -22,7 +22,7 @@ autocmd({ "BufLeave", "FocusLost" }, {
 autocmd({ "FileType" }, {
 	callback = function()
 		local filetype = bo.filetype
-		if filetype == "toggleterm" or utils.should_have_formatting(filetype) then
+		if filetype == "toggleterm" or util.should_have_formatting(filetype) then
 			return
 		end
 		api.nvim_buf_set_keymap(0, "n", "q", "", { callback = function() api.nvim_buf_delete(0, { force = true }) end })
@@ -90,7 +90,7 @@ autocmd("BufLeave", {
 		opt_local.cursorline = false
 		opt_local.relativenumber = false
 
-		if utils.should_have_formatting(bo.filetype) then
+		if util.should_have_formatting(bo.filetype) then
 			opt_local.number = true
 		else
 			opt_local.number = false
@@ -103,7 +103,7 @@ autocmd("BufLeave", {
 
 autocmd("BufEnter", {
 	callback = function()
-		if utils.should_have_formatting(bo.filetype) then
+		if util.should_have_formatting(bo.filetype) then
 			opt_local.cursorline = true
 			opt_local.number = true
 			opt_local.relativenumber = true
