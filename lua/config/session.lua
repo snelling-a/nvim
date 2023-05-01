@@ -1,12 +1,13 @@
 local session_string = "sessions"
 local session_file_name = "Session.vim"
-local logger = require("utils.logger")
-local utils = require("utils")
+local logger = require("config.util.logger")
+local util = require("config.util")
 local api = vim.api
 local fn = vim.fn
 local cmd = vim.cmd
 
 local SessionGroup = api.nvim_create_augroup(session_string, { clear = true })
+local is_file_readable = fn.filereadable(session_file_name) == 1 and 1
 
 api.nvim_create_autocmd("VimEnter", {
 	group = SessionGroup,
@@ -14,7 +15,7 @@ api.nvim_create_autocmd("VimEnter", {
 	callback = function()
 		local path = fn.expand("%")
 
-		if fn.argc() > 0 or string.match(path, "man://*") or not utils.is_vim() then
+		if fn.argc() > 0 or string.match(path, "man://*") or not util.is_vim() then
 			return
 		end
 
@@ -34,7 +35,7 @@ api.nvim_create_autocmd("VimEnter", {
 api.nvim_create_autocmd("VimLeavePre", {
 	group = SessionGroup,
 	callback = function()
-		if fn.filereadable(session_file_name) == 0 or fn.argc() > 0 or not utils.is_vim() then
+		if not is_file_readable or fn.argc() > 0 or not util.is_vim() then
 			return
 		end
 

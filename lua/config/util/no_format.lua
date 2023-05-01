@@ -13,6 +13,7 @@ return {
 	"notify",
 	"NvimTree",
 	"ObsidianBacklinks",
+	"Outline",
 	"packer",
 	"qf",
 	"query",

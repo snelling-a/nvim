@@ -1,11 +1,11 @@
-if not require("utils").is_vim() then
+if not require("config.util").is_vim() then
 	return nil
 end
 
 local navic_ok, navic = pcall(require, "nvim-navic")
 local feline_ok, feline = pcall(require, "feline")
 
-local icons = require("ui.icons")
+local icons = require("config.ui.icons")
 
 if not navic_ok or not feline_ok then
 	return nil

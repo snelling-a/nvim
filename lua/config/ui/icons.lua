@@ -1,11 +1,13 @@
-local Icons = {}
-
 local copilot = " "
-local down = ""
+local down = ""
 local error = " "
+local file = " "
+local folder = " "
 local modified = " "
-local right = ""
+local moved = ""
 local vert = "┃"
+
+local Icons = {}
 
 Icons.cmp = {
 	Codeium = " ",
@@ -19,9 +21,21 @@ Icons.cmp = {
 	treesitter = " ",
 }
 
-Icons.diagnostics = { Error = error, Hint = " ", Info = " ", Warn = " " }
+Icons.diagnostics = { Error = error, Hint = " ", Info = " ", Warn = " " }
 
-Icons.git = { added = " ", branch = "󰘬", modified = modified, removed = " " }
+Icons.git = {
+	added = " ",
+	branch = "󰘬",
+	git = " ",
+	git_commit = " ",
+	git_compare = " ",
+	ignored = " ",
+	merge = " ",
+	modified = modified,
+	removed = " ",
+	renamed = moved,
+	staged = "󰱒 ",
+}
 
 Icons.gitsigns = {
 	add = { text = vert },
@@ -32,38 +46,46 @@ Icons.gitsigns = {
 	untracked = { text = "┆" },
 }
 
-Icons.file = { modified = modified, newfile = " ", readonly = " ", unnamed = " " }
+Icons.file = {
+	folder_empty = "󰷍 ",
+	folder_open = " ",
+	modified = modified,
+	newfile = file,
+	readonly = " ",
+	unnamed = " ",
+}
 
 Icons.fillchars =
 	{ diff = "░", eob = " ", fold = "󰇼", foldclose = "", foldopen = down, foldsep = "│", vert = vert }
 
 Icons.kind_icons = {
-	Class = "ﴯ",
-	Color = "",
-	Constant = "",
-	Constructor = "",
 	Copilot = copilot,
-	Enum = "",
-	EnumMember = "",
-	Event = "",
-	Field = "",
-	File = "",
-	Folder = "",
-	Function = "",
-	Interface = "",
-	Keyword = "",
-	Method = "",
-	Module = "",
-	Operator = "",
-	Property = "ﰠ",
-	Reference = "",
-	Snippet = "",
-	Struct = "",
-	Text = "",
-	TypeParameter = "",
-	Unit = "",
-	Value = "",
-	Variable = "",
+	File = file,
+	Class = " ",
+	Color = " ",
+	Constant = " ",
+	Constructor = " ",
+	Enum = " ",
+	EnumMember = " ",
+	Event = " ",
+	Field = " ",
+	Folder = folder,
+	Function = "󰊕 ",
+	Interface = " ",
+	Keyword = "󰌋 ",
+	Method = " ",
+	Module = " ",
+	Operator = " ",
+	Property = " ",
+	Reference = " ",
+	Snippet = " ",
+	Struct = " ",
+	Text = " ",
+	TypeParameter = " ",
+	Unit = " ",
+	Value = "󰎠 ",
+	Null = "󰟢 ",
+	Variable = "󰀫 ",
 }
 
 Icons.languages = {
@@ -104,26 +126,30 @@ Icons.location = { bottom = " ", col = "󰚉 ", line = "󰚈 ", top = " " 
 Icons.misc = {
 	chevron_down = " ",
 	chevron_up = " ",
-	l = "ℓ",
 	code = " ",
 	down = down,
+	exit = "󰩈 ",
+	files = " ",
 	gears = " ",
+	health = " ",
 	help = "",
 	indent = "▏",
-	moved = "",
+	l = "ℓ",
+	lazy = "󰒲 ",
+	moved = moved,
 	multi = " ",
 	percent = "󰏰 ",
-	right = right,
+	restore = "󰁯 ",
+	right = "",
 	search = " ",
+	search_text = "󰱽 ",
 	selection = " ",
+	tools = " ",
 	wrap = "↵",
 }
 
-Icons.progress = {
-	done = " ",
-	error = error,
-	pending = "󰔟",
-	trash = "ﮁ ",
-}
+Icons.progress = { done = " ", error = error, pending = "󰔟", trash = "ﮁ " }
+
+Icons.obsidian = { health = "󱨌 ", new = " ", search = "󱙔 ", today = "󱨰 ", yesterday = "󱓩 " }
 
 return Icons

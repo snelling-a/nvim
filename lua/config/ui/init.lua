@@ -1,12 +1,10 @@
-require("ui.shortmess")
-require("ui.statuscolumn")
-require("ui.winbar")
+require("config.ui.shortmess")
+require("config.ui.statuscolumn")
+require("config.ui.winbar")
 
-local icons = require("ui.icons")
+local icons = require("config.ui.icons")
 
 local opt = vim.opt
-
-vim.cmd.colorscheme("base16-default-dark")
 
 opt.colorcolumn = "100"
 opt.cursorline = true

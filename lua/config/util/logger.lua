@@ -12,18 +12,27 @@ local levels = {
 ---@field msg string?
 ---@field title string?
 ---@param logger_args LoggerArgs
-Logger.info = function(logger_args) --
-	logger(logger_args.msg or "", levels.info, { Title = logger_args.title or "Hey!" })
+function Logger.info(logger_args) --
+	vim.defer_fn(
+		function() logger(logger_args.msg or "", levels.info, { Title = logger_args.title or "Hey!" }) end,
+		500
+	)
 end
 
 ---@param logger_args LoggerArgs
-Logger.warn = function(logger_args)
-	logger(logger_args.msg or "", levels.warn, { Title = logger_args.title or "Listen!" })
+function Logger.warn(logger_args)
+	vim.defer_fn(
+		function() logger(logger_args.msg or "", levels.warn, { Title = logger_args.title or "Listen!" }) end,
+		500
+	)
 end
 
 ---@param logger_args LoggerArgs
-Logger.error = function(logger_args)
-	logger(logger_args.msg or "", levels.error, { Title = logger_args.title or "Error!" })
+function Logger.error(logger_args)
+	vim.defer_fn(
+		function() logger(logger_args.msg or "", levels.error, { Title = logger_args.title or "Error!" }) end,
+		500
+	)
 end
 
 ---@class ConfirmArgs
@@ -33,7 +42,7 @@ end
 ---@field type string?
 ---@param confirm_args ConfirmArgs
 ---@return number confirmation
-Logger.confirm = function(confirm_args)
+function Logger.confirm(confirm_args)
 	local confirmation = vim.fn.confirm(
 		confirm_args.msg or "Confirm",
 		confirm_args.choices or "&Yes\n&No\n&Cancel",

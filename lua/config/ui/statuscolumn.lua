@@ -1,4 +1,4 @@
-local icons = require("ui.icons").misc
+local icons = require("config.ui.icons").misc
 
 local M = {}
 _G.Status = M
