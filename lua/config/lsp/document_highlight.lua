@@ -1,24 +1,26 @@
 local api = vim.api
-local lsp = vim.lsp
+local lsp = vim.lsp.buf
 
-return function(client, bufnr)
-	if not client.supports_method("textDocument/documentHighlight") then
-		return
-	end
+local DocumentHighlight = {}
 
+function DocumentHighlight.on_attach(bufnr)
 	local LspDocumentHighlightGroup = api.nvim_create_augroup("LspDocumentHightlight", { clear = false })
+
+	vim.api.nvim_clear_autocmds({ buffer = bufnr, group = LspDocumentHighlightGroup })
 
 	api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
 		group = LspDocumentHighlightGroup,
 		buffer = bufnr,
-		callback = lsp.buf.document_highlight,
+		callback = lsp.document_highlight,
 		desc = "Highlight all occurrences of the word under the cursor",
 	})
 
 	api.nvim_create_autocmd("CursorMoved", {
 		group = LspDocumentHighlightGroup,
 		buffer = bufnr,
-		callback = lsp.buf.clear_references,
-		desc = "Clear all references on cursor move",
+		callback = lsp.clear_references,
+		desc = "Clear highlighted references on cursor move",
 	})
 end
+
+return DocumentHighlight

@@ -1,13 +1,6 @@
-local signs = require("ui.icons").diagnostics
+local signs = require("config.ui.icons").diagnostics
 local vim_diagnostic = vim.diagnostic
 local api = vim.api
-
-for type, icon in pairs(signs) do
-	local hl = "DiagnosticSign" .. type
-	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-end
-
-local LspDiagnostiCurrenLineGroup = api.nvim_create_augroup("LspDiagnostiCurrenLine", { clear = true })
 
 local function best_diagnostic(diagnostics)
 	if vim.tbl_isempty(diagnostics) then
@@ -83,11 +76,33 @@ vim_diagnostic.handlers.current_line_virt = {
 	end,
 }
 
-return function(bufnr)
-	api.nvim_clear_autocmds({
-		buffer = bufnr,
-		group = LspDiagnostiCurrenLineGroup,
+local Diagnostic = {}
+
+function Diagnostic.on_attach(bufnr)
+	for type, icon in pairs(signs) do
+		local hl = "DiagnosticSign" .. type
+		vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+	end
+
+	vim.diagnostic.config({
+		float = { source = "always", border = "rounded" },
+		severity_sort = true,
+		signs = true,
+		underline = true,
+		update_in_insert = false,
+		virtual_text = {
+			format = function(diagnostic)
+				if diagnostic.severity == vim.diagnostic.severity.ERROR then
+					return string.format("E: %s", diagnostic.message)
+				end
+				return diagnostic.message
+			end,
+		},
 	})
+
+	local LspDiagnostiCurrenLineGroup = api.nvim_create_augroup("LspDiagnostiCurrenLine", { clear = true })
+
+	api.nvim_clear_autocmds({ buffer = bufnr, group = LspDiagnostiCurrenLineGroup })
 
 	api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
 		group = LspDiagnostiCurrenLineGroup,
@@ -101,3 +116,5 @@ return function(bufnr)
 		callback = function() vim_diagnostic.handlers.current_line_virt.hide(nil, nil) end,
 	})
 end
+
+return Diagnostic
