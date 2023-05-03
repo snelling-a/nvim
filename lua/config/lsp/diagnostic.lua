@@ -90,14 +90,7 @@ function Diagnostic.on_attach(bufnr)
 		signs = true,
 		underline = true,
 		update_in_insert = false,
-		virtual_text = {
-			format = function(diagnostic)
-				if diagnostic.severity == vim.diagnostic.severity.ERROR then
-					return string.format("E: %s", diagnostic.message)
-				end
-				return diagnostic.message
-			end,
-		},
+		virtual_text = false,
 	})
 
 	local LspDiagnostiCurrenLineGroup = api.nvim_create_augroup("LspDiagnostiCurrenLine", { clear = true })
