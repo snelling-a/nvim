@@ -1,5 +1,5 @@
-local signs = require("ui.icons").gitsigns
-local utils = require("utils")
+local signs = require("config.ui.icons").gitsigns
+local utils = require("config.util")
 
 local function current_line_blame_formatter_nc(_, blame_info, _)
 	if blame_info.committer == "Not Committed Yet" then
@@ -62,11 +62,17 @@ local function on_attach(bufnr)
 	utils.map({ "o", "x" }, "ah", function() gs.select_hunk() end, { desc = "Select [a]round [h]unk" })
 end
 
-require("gitsigns").setup({
+local M = { "lewis6991/gitsigns.nvim" }
+
+M.opts = {
 	current_line_blame = true,
 	current_line_blame_formatter_nc = current_line_blame_formatter_nc,
 	numhl = true,
 	on_attach = on_attach,
 	preview_config = { border = "rounded" },
 	signs = signs,
-})
+}
+
+M.config = true
+
+return M

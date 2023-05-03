@@ -3,6 +3,14 @@ local icons = require("config.ui.icons")
 local M = { "neovim/nvim-lspconfig" }
 
 M.dependencies = {
+	"b0o/schemastore.nvim",
+	"folke/neodev.nvim",
+	"hrsh7th/cmp-nvim-lsp",
+	"ibhagwan/fzf-lua",
+	"jparise/vim-graphql",
+	"lvimuser/lsp-inlayhints.nvim",
+	"SmiteshP/nvim-navic",
+	"yioneko/nvim-vtsls",
 	{
 		"williamboman/mason.nvim",
 		opts = {
@@ -17,14 +25,6 @@ M.dependencies = {
 		},
 	},
 	{ "williamboman/mason-lspconfig.nvim", opts = { automatic_installation = true } },
-	"b0o/schemastore.nvim",
-	"folke/neodev.nvim",
-	"hrsh7th/cmp-nvim-lsp",
-	"ibhagwan/fzf-lua",
-	"jparise/vim-graphql",
-	"lvimuser/lsp-inlayhints.nvim",
-	"SmiteshP/nvim-navic",
-	"yioneko/nvim-vtsls",
 }
 
 function M.config()

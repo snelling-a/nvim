@@ -1,6 +1,8 @@
-local icon = require("ui.icons").misc.indent
+local icon = require("config.ui.icons").misc.indent
 
-require("indent_blankline").setup({
+local M = { "lukas-reineke/indent-blankline.nvim" }
+
+M.opts = {
 	char = icon,
 	context_highlight_list = {
 		"IndentBlanklineIndent1",
@@ -15,4 +17,8 @@ require("indent_blankline").setup({
 	space_char_blankline = " ",
 	use_treesitter = true,
 	use_treesitter_scope = true,
-})
+}
+
+M.event = "BufReadPre"
+
+return M
