@@ -1,58 +1,55 @@
-if not require("utils").is_vim() then
-	return nil
-end
-
-local icons = require("ui.icons")
+local icons = require("config.ui.icons")
+local Statusbar = {}
 
 local global_theme = vim.g.theme
 
-local theme = {
-	fg = global_theme.base04,
+Statusbar.theme = {
 	bg = global_theme.base01,
 	black = global_theme.base00,
-	skyblue = global_theme.base0D,
 	cyan = global_theme.base0C,
+	fg = global_theme.base04,
 	green = global_theme.base0B,
-	oceanblue = global_theme.base0D,
 	magenta = global_theme.base0E,
+	oceanblue = global_theme.base0D,
 	orange = global_theme.base09,
 	red = global_theme.base08,
+	skyblue = global_theme.base0D,
 	violet = global_theme.base0E,
 	white = global_theme.base05,
 	yellow = global_theme.base0A,
 }
 
-local vi_mode_colors = {
+Statusbar.vi_mode_colors = {
+	BLOCK = "magenta",
+	COMMAND = "red",
+	ENTER = "cyan",
+	INSERT = "green",
+	LINES = "magenta",
+	MORE = "cyan",
+	NONE = "fg",
 	NORMAL = "skyblue",
 	OP = "yellow",
-	INSERT = "green",
-	VISUAL = "magenta",
-	LINES = "magenta",
-	BLOCK = "magenta",
 	REPLACE = "orange",
-	["V-REPLACE"] = "orange",
-	ENTER = "cyan",
-	MORE = "cyan",
 	SELECT = "yellow",
-	COMMAND = "red",
 	SHELL = "red",
 	TERM = "red",
-	NONE = "fg",
+	VISUAL = "magenta",
+	["V-REPLACE"] = "orange",
 }
 
 local function get_vi_mode() return require("feline.providers.vi_mode").get_mode_color() end
 
 local vim_mode = {
-	provider = function() return vim.api.nvim_get_mode().mode:upper() end,
 	hl = function() return { fg = "bg", bg = get_vi_mode(), style = "bold", name = "NeovimModeHLColor" } end,
 	left_sep = "block",
+	provider = function() return vim.api.nvim_get_mode().mode:upper() end,
 	right_sep = "block",
 }
 
 local diagnostic_errors = { hl = { fg = "red" }, provider = "diagnostic_errors" }
-local diagnostic_warnings = { hl = { fg = "magenta" }, provider = "diagnostic_warnings" }
 local diagnostic_hints = { hl = { fg = "cyan" }, provider = "diagnostic_hints" }
 local diagnostic_info = { hl = { fg = "skyblue" }, provider = "diagnostic_info" }
+local diagnostic_warnings = { hl = { fg = "magenta" }, provider = "diagnostic_warnings" }
 
 local lsp = {
 	provider = function()
@@ -98,10 +95,10 @@ local macro_recording = {
 
 local search_count = { provider = { name = "search_count" } }
 
-local git_branch = { hl = { fg = "magenta", style = "bold" }, provider = "git_branch" }
 local git_add = { hl = { fg = "green" }, provider = "git_diff_added" }
-local git_delete = { hl = { fg = "red" }, provider = "git_diff_removed" }
+local git_branch = { hl = { fg = "magenta", style = "bold" }, provider = "git_branch" }
 local git_change = { provider = "git_diff_changed" }
+local git_delete = { hl = { fg = "red" }, provider = "git_diff_removed" }
 
 local function get_position()
 	return math.floor(vim.api.nvim_win_get_cursor(0)[1] / vim.api.nvim_buf_line_count(0) * 100)
@@ -109,17 +106,19 @@ end
 
 local progress = {
 	provider = function()
+		local pos
 		local position = get_position()
 		if position <= 5 then
-			position = icons.location.top .. "TOP"
+			pos = icons.location.top .. "TOP"
 		elseif position >= 95 then
-			position = icons.location.bottom .. "BOT"
+			pos = icons.location.bottom .. "BOT"
 		else
-			position = position .. icons.misc.percent
+			pos = position .. icons.misc.percent
 		end
+
 		local line, col = vim.fn.line("."), vim.fn.virtcol(".")
 
-		return string.format("%s%d%s%d %s", icons.location.line, line, icons.location.col, col, position)
+		return string.format("%s%d%s%d %s", icons.location.line, line, icons.location.col, col, pos)
 	end,
 	hl = function()
 		local position = get_position()
@@ -157,6 +156,6 @@ local middle = { macro_recording }
 local right = { search_count, gap, git_branch, git_add, git_delete, git_change, progress }
 
 -- TODO: add something for inactive buffers
-local components = { active = { left, middle, right }, inactive = { {}, {}, {} } }
+Statusbar.components = { active = { left, middle, right }, inactive = { {}, {}, {} } }
 
-require("feline").setup({ components = components, theme = theme, vi_mode_colors = vi_mode_colors })
+return Statusbar

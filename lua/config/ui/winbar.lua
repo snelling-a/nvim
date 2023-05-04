@@ -1,22 +1,16 @@
-if not require("config.util").is_vim() then
-	return nil
-end
-
-local navic_ok, navic = pcall(require, "nvim-navic")
-local feline_ok, feline = pcall(require, "feline")
-
 local icons = require("config.ui.icons")
+local navic = require("nvim-navic")
 
-if not navic_ok or not feline_ok then
-	return nil
-end
-
-navic.setup({ lsp = { auto_attach = true, preference = { "tsserver", "graphql" } }, highlight = true })
+navic.setup({
+	highlight = true,
+	lsp = { auto_attach = true, preference = { "tsserver", "graphql", "vtsls" } },
+})
 
 local navic_component = {
 	provider = function() return navic.get_location() end,
 	enabled = function() return navic.is_available() end,
 }
+
 local file_info = {
 	provider = {
 		left_sep = "block",
@@ -34,9 +28,12 @@ local file_info_inactive = {
 	},
 }
 
-feline.winbar.setup({
-	components = {
-		active = { { file_info, { provider = " " }, navic_component }, {}, {} },
-		inactive = { { file_info_inactive }, {} },
-	},
-})
+local active = { { file_info, { provider = " " }, navic_component }, {}, {} }
+
+local inactive = { { file_info_inactive }, {} }
+
+local Winbar = {}
+
+Winbar.components = { active = active, inactive = inactive }
+
+return Winbar
