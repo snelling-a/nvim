@@ -10,6 +10,7 @@
 |[folke/trouble.nvim](https://github.com/folke/trouble.nvim)|🚦 A pretty diagnostics, references, telescope results, quickfix and location list to help you solve all the trouble your code is causing.|
 |[freddiehaddad/feline.nvim](https://github.com/freddiehaddad/feline.nvim)|A minimal, stylish and customizable statusline / winbar for Neovim written in Lua|
 |[github/copilot.vim](https://github.com/github/copilot.vim)|Neovim plugin for GitHub Copilot|
+|[goolord/alpha-nvim](https://github.com/goolord/alpha-nvim)|a lua powered greeter like vim-startify / dashboard-nvim|
 |[HiPhish/nvim-ts-rainbow2](https://github.com/HiPhish/nvim-ts-rainbow2)|Rainbow delimiters for Neovim through Tree-sitter|
 |[hrsh7th/cmp-buffer](https://github.com/hrsh7th/cmp-buffer)|nvim-cmp source for buffer words|
 |[hrsh7th/cmp-cmdline](https://github.com/hrsh7th/cmp-cmdline)|nvim-cmp source for vim's cmdline|
