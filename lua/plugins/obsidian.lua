@@ -1,5 +1,5 @@
+local obsidian = require("config.util").obsidian
 local cmd = vim.cmd
-local vault_directory = os.getenv("NOTES") or os.getenv("HOME") .. "/notes"
 
 local function note_id_func(input)
 	local title = "Untitled"
@@ -12,8 +12,6 @@ end
 
 local M = { "epwalsh/obsidian.nvim" }
 
-M.is_vault_dir = vim.fn.getcwd() == vault_directory
-
 M.dependencies = {
 	"nvim-lua/plenary.nvim",
 	"hrsh7th/nvim-cmp",
@@ -21,7 +19,7 @@ M.dependencies = {
 	"nvim-treesitter/nvim-treesitter",
 }
 
-M.event = { "BufReadPre " .. vault_directory .. "/*" }
+M.event = { "BufReadPre " .. obsidian.vault_directory .. "/*" }
 
 M.ft = "markdown"
 
@@ -45,12 +43,12 @@ M.keys = {
 	},
 }
 
-M.lazy = not M.is_vault_dir
+M.lazy = not obsidian.is_vault_directory
 
 M.opts = {
 	completion = { nvim_cmp = true },
 	daily_notes = { folder = "daily-notes" },
-	dir = vault_directory,
+	dir = obsidian.vault_directory,
 	note_id_func = note_id_func,
 	open_app_foreground = true,
 	use_advanced_uri = true,
