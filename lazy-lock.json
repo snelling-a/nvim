@@ -19,7 +19,7 @@
   "copilot.lua": { "branch": "master", "commit": "21d8ef6ce4ac931ebfa3fc3c0afb65bb05db9fc3" },
   "copilot.vim": { "branch": "release", "commit": "1358e8e45ecedc53daf971924a0541ddf6224faf" },
   "feline.nvim": { "branch": "main", "commit": "7d4aa041cc796a736729d2a29046d26af89943cc" },
-  "fzf-lua": { "branch": "main", "commit": "79c7c3480cc363b3d4ecdfcb8b56623d9decd570" },
+  "fzf-lua": { "branch": "main", "commit": "2dbedc91386a78ce08967135969d39392f7f36d7" },
   "gitsigns.nvim": { "branch": "main", "commit": "e5edefd9976039f5352e0c900f35206770b33a2d" },
   "headlines.nvim": { "branch": "master", "commit": "ddef41b2664f0ce25fe76520d708e2dc9dfebd70" },
   "indent-blankline.nvim": { "branch": "master", "commit": "018bd04d80c9a73d399c1061fa0c3b14a7614399" },
