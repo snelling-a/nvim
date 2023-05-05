@@ -97,4 +97,8 @@ end
 ---@return _ boolean if `filetype` should have formatting
 function Util.should_have_formatting(filetype) return not vim.tbl_contains(no_format, filetype) end
 
+local vault_directory = os.getenv("NOTES") or os.getenv("HOME") .. "/notes"
+
+Util.obsidian = { vault_directory = vault_directory, is_vault_directory = vim.fn.getcwd() == vault_directory }
+
 return Util
