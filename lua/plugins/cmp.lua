@@ -23,7 +23,6 @@ local M = { "hrsh7th/nvim-cmp" }
 M.cond = not vim.g.vscode
 
 M.dependencies = {
-	"chrisgrieser/cmp-nerdfont",
 	"davidsierradz/cmp-conventionalcommits",
 	"hrsh7th/cmp-buffer",
 	"hrsh7th/cmp-cmdline",
@@ -61,8 +60,8 @@ function M.config()
 		snippet = { expand = function(args) require("luasnip").lsp_expand(args.body) end },
 		sources = config.sources(
 			{ { name = "copilot" }, { name = "nvim_lsp" }, { name = "nvim_lsp_signature_help" } },
-			{ { name = "luasnip" }, { name = "treesitter", max_item_count = 5 }, { name = "nvim_lua" } },
-			{ { name = "buffer" }, { name = "nerdfont" } },
+			{ { name = "luasnip" }, { name = "treesitter", max_item_count = 5 } },
+			{ { name = "buffer" }, { name = "nvim_lua" } },
 			{ { name = "obsidian" }, { name = "obsidian_new" }, { name = "npm", keyword_length = 4 } }
 		),
 		sorting = {
