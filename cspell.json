@@ -1,12 +1,12 @@
 {
+  "$schema": "https://raw.githubusercontent.com/streetsidesoftware/cspell/main/cspell.schema.json",
+  "allowCompoundWords": true,
   "dictionaries": [
     "softwareTerms",
     "fonts"
   ],
-  "import": [
-    "@cspell/dict-fonts/cspell-ext.json"
-  ],
   "enableGlobDot": true,
+  "enabled": true,
   "ignorePaths": [
     "./.git",
     "./plugin"
@@ -15,6 +15,9 @@
     "acklinks",
     "aily",
     "amed",
+    "blines",
+    "blines",
+    "btags",
     "cretch",
     "earch",
     "eclaration",
@@ -51,10 +54,12 @@
     "uffers",
     "uick",
     "uickfix",
-    "uzzy"
+    "uzzy",
+    "ymbols"
   ],
-  "$schema": "https://raw.githubusercontent.com/streetsidesoftware/cspell/main/cspell.schema.json",
-  "enabled": true,
+  "import": [
+    "@cspell/dict-fonts/cspell-ext.json"
+  ],
   "version": "0.2",
   "words": [
     "AARRGGBB",
@@ -287,6 +292,5 @@
     "yamlls",
     "yioneko",
     "zbirenbaum"
-  ],
-  "allowCompoundWords": true
+  ]
 }
