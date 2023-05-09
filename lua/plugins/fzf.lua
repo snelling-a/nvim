@@ -7,8 +7,6 @@ local preview_pager = "delta --width=$FZF_PREVIEW_COLUMNS"
 local function get_prompt(icon) return string.format("%s %s ", icon, icons.misc.right) end
 
 local M = { "ibhagwan/fzf-lua" }
--- local M = {}
-M.dir = "~/dev/github.com/ibhagwan/fzf-lua"
 
 M.dependencies = { "nvim-tree/nvim-web-devicons" }
 
@@ -18,61 +16,83 @@ M.keys = {
 	{ "<leader><space>", function() require("fzf-lua").builtin() end, desc = "Open builtins" },
 	{ "<leader><tab>", function() require("fzf-lua").keymaps() end, desc = "Show keymaps" },
 	{ "<leader>b", function() require("fzf-lua").buffers() end, desc = "Show [b]uffers" },
+	{ "<leader>ca", function() require("fzf-lua").lsp_code_actions() end, desc = "Show [b]uffers" },
+	{ "<leader>fs", function() require("fzf-lua").lsp_document_symbols() end, desc = "Show [d]ocument [s]ymbols" },
 	{ "<leader>fh", function() require("fzf-lua").help_tags() end, desc = "[H]elp" },
-	{
-		"<leader>gr",
-		function() require("fzf-lua").lsp_references({ ignore_current_line = true }) end,
-		desc = "[G]et [R]eference",
-	},
 	{ "<leader>q", function() require("fzf-lua").quickfix() end },
 	{ "<leader>qf", function() require("fzf-lua").quickfix() end },
+	{ "fr", function() require("fzf-lua").lsp_finder() end, desc = "All lsp locations combined" },
+	{ "?", function() require("fzf-lua").blines() end, desc = "Search current buffer" },
 	{ '""', function() require("fzf-lua").registers() end, desc = "View registers" },
 }
 
----@return table
-local function get_diagnostics_signs()
-	local signs = {}
-	for key, value in pairs(icons.diagnostics) do
-		table.insert(signs, { [key] = { text = value, texthl = "Diagnostic" .. key } })
-	end
-	return unpack(signs)
-end
-
-get_diagnostics_signs()
 M.opts = {
-	diagnostics = {
-		prompt = ":Diagnostics❯ ",
-		signs = get_diagnostics_signs(),
+	blines = { prompt = get_prompt(icons.location.line) },
+	btags = { prompt = get_prompt(icons.misc.tag) },
+	buffers = { prompt = get_prompt(icons.file.buffers), cwd_only = true },
+	colorschemes = {
+		live_preview = true,
+		post_reset_cb = function() require("feline").reset_highlights() end,
+		prompt = get_prompt(icons.misc.color),
 	},
 	files = {
 		fd_opts = "--color=never --type f --hidden --no-ignore --follow --exclude .git --exclude node_modules",
+		fzf_opts = { ["--history"] = vim.fn.stdpath("data") .. "/fzf-lua-files-history" },
 		prompt = get_prompt(icons.misc.files),
 	},
 	git = {
+		bcommits = { prompt = get_prompt(icons.git.commit_2) },
 		branches = { prompt = get_prompt(icons.git.branch) },
-		commit = { preview_pager = preview_pager, prompt = get_prompt(icons.misc.git_commit) },
-		files = { prompt = get_prompt(icons.misc.git) },
+		commits = {
+			cmd = "git lsa --color",
+			preview_pager = preview_pager,
+			prompt = get_prompt(icons.misc.git_commit),
+		},
+		files = { prompt = get_prompt(icons.git.folder) },
 		icons = {
 			["A"] = { icon = icons.git.added, color = "green" },
 			["D"] = { icon = icons.git.removed, color = "red" },
 			["M"] = { icon = icons.git.modified, color = "magenta" },
 		},
-		status = { preview_pager = preview_pager, prompt = get_prompt(icons.misc.git_compare) },
+		stash = { prompt = get_prompt(icons.git.stash) },
+		status = { preview_pager = preview_pager, prompt = get_prompt(icons.git.status) },
 	},
-	grep = { prompt = get_prompt(icons.misc.search) },
+	grep = {
+		fzf_opts = { ["--history"] = vim.fn.stdpath("data") .. "/fzf-lua-grep-history" },
+		prompt = get_prompt(icons.misc.search),
+	},
+	lines = { prompt = get_prompt(icons.location.line) },
+	lsp = {
+		code_actions = { prompt = get_prompt(icons.misc.code_action) },
+		cwd_only = true,
+		diagnostics = {
+			cwd_only = true,
+			file_icons = true,
+			git_icons = true,
+			prompt = get_prompt(icons.misc.tools),
+			severity_limit = "warning",
+		},
+		finder = { git_icons = true, includeDeclaration = true, prompt = get_prompt(icons.cmp.nvim_lsp) },
+		git_icons = true,
+		symbols = { symbol_icons = icons.kind_icons, symbol_fmt = function(s) return "|" .. s .. "|" end },
+	},
+	oldfiles = { prompt = get_prompt(icons.file.oldfiles), cwd_only = true },
 	previewers = {
 		bat = { args = "--style=numbers,changes --color always", config = nil, theme = "base16" },
+		cmd = "man -P cat %s | col -bx", -- OSX
 		git_diff = { pager = preview_pager },
 	},
+	quickfix = { file_icons = true, git_icons = true },
+	quickfix_stack = { marker = icons.misc.right },
+	tabs = { prompt = get_prompt(icons.file.tab) },
+	tags = { prompt = get_prompt(icons.misc.tag) },
 	winopts = { preview = { default = "bat" } },
 }
 
 function M.config(_, opts)
 	local fzf_lua = require("fzf-lua")
 
-	fzf_lua.deregister_ui_select({}, true)
-
-	vim.api.nvim_create_autocmd("VimResized", { pattern = "*", callback = function() require("fzf-lua").redraw() end })
+	vim.api.nvim_create_autocmd("VimResized", { pattern = "*", callback = fzf_lua.redraw })
 
 	fzf_lua.setup(opts)
 end
