@@ -5,6 +5,8 @@ local M = { "mfussenegger/nvim-dap" }
 M.dependencies = {
 	"rcarriga/nvim-dap-ui",
 	"theHamsta/nvim-dap-virtual-text",
+	"williamboman/mason.nvim",
+	{ "jay-babu/mason-nvim-dap.nvim", opts = { automatic_setup = true } },
 }
 
 function M.config()
