@@ -55,7 +55,7 @@ local obsidian_buttons = {
 	},
 	{
 		shortcut = "s",
-		val = icons.obsidian.search .. " Search daily notes",
+		val = icons.obsidian.search .. " Search vault",
 		on_press = [[:lua vim.cmd.ObsidianSearch() <CR>]],
 	},
 	{
