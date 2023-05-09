@@ -19,6 +19,7 @@
   "copilot.lua": { "branch": "master", "commit": "21d8ef6ce4ac931ebfa3fc3c0afb65bb05db9fc3" },
   "copilot.vim": { "branch": "release", "commit": "1358e8e45ecedc53daf971924a0541ddf6224faf" },
   "feline.nvim": { "branch": "main", "commit": "7d4aa041cc796a736729d2a29046d26af89943cc" },
+  "dressing.nvim": { "branch": "master", "commit": "540d6e7115fb32b5035ddaf0c1a26cbffb855dac" },
   "fold-preview.nvim": { "branch": "main", "commit": "b7920cb0aba2b48a6b679bff45f98c3ebc0f0b89" },
   "fzf-lua": { "branch": "main", "commit": "2dbedc91386a78ce08967135969d39392f7f36d7" },
   "gitsigns.nvim": { "branch": "main", "commit": "e5edefd9976039f5352e0c900f35206770b33a2d" },
