@@ -19,6 +19,17 @@ M.dependencies = {
 	},
 	{ "jay-babu/mason-nvim-dap.nvim", opts = { automatic_setup = true } },
 	{
+		"jbyuki/one-small-step-for-vimkind",
+		keys = {
+			{ "<F8>", function() require("dap").toggle_breakpoint() end, desc = "" },
+			{ "<F9>", function() require("dap").continue() end, desc = "" },
+			{ "<F10>", function() require("dap").step_over() end, desc = "" },
+			{ "<S-F10>", function() require("dap").step_into() end, desc = "" },
+			{ "<F12>", function() require("dap.ui.widgets").hover() end, desc = "" },
+			{ "<F5>", function() require("osv").launch({ port = 8086 }) end, desc = "" },
+		},
+	},
+	{
 		"mxsdev/nvim-dap-vscode-js",
 		opts = function()
 			return {
@@ -69,6 +80,18 @@ function M.config()
 				cwd = "${workspaceFolder}",
 			},
 		}
+	end
+
+	dap.configurations.lua = {
+		{
+			type = "nlua",
+			request = "attach",
+			name = "Attach to running Neovim instance",
+		},
+	}
+
+	dap.adapters.nlua = function(callback, config)
+		callback({ type = "server", host = config.host or "127.0.0.1", port = config.port or 8086 })
 	end
 
 	require("dap.ext.vscode").load_launchjs(nil, {

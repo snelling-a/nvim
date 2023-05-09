@@ -60,6 +60,7 @@
   "nvim-web-devicons": { "branch": "master", "commit": "986875b7364095d6535e28bd4aac3a9357e91bbe" },
   "nvim-window-picker": { "branch": "main", "commit": "65bbc52c27b0cd4b29976fe03be73cc943357528" },
   "obsidian.nvim": { "branch": "main", "commit": "0418505ff7d1e06460450a02b9209d03f4c2a50d" },
+  "one-small-step-for-vimkind": { "branch": "main", "commit": "f239ca0dc772f214e7ff0627ccbd45bceae88bf8" },
   "plenary.nvim": { "branch": "master", "commit": "9ac3e9541bbabd9d73663d757e4fe48a675bb054" },
   "pretty-fold.nvim": { "branch": "master", "commit": "a7d8b424abe0eedf50116c460fbe6dfd5783b1d5" },
   "schemastore.nvim": { "branch": "main", "commit": "b8e6c7d966857e8ff14d9b6a23eec9214d99db32" },
