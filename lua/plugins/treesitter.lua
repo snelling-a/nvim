@@ -76,7 +76,7 @@ M.opts = {
 	autotag = { enable = true },
 	context_commentstring = { enable = true, enable_autocmd = true },
 	ensure_installed = ensure_installed,
-	highlight = { enable = true },
+	highlight = { enable = true, additional_vim_regex_highlighting = { "markdown" } },
 	incremental_selection = {
 		enable = true,
 		keymaps = {
