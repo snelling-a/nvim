@@ -9,6 +9,14 @@ local vert = "┃"
 
 local Icons = {}
 
+Icons.dap = {
+	Breakpoint = " ",
+	BreakpointCondition = " ",
+	BreakpointRejected = error,
+	LogPoint = ".>",
+	Stopped = "",
+}
+
 Icons.cmp = {
 	Codeium = " ",
 	Copilot = copilot,
