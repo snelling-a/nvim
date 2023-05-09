@@ -6,6 +6,17 @@ M.dependencies = {
 	"rcarriga/nvim-dap-ui",
 	"theHamsta/nvim-dap-virtual-text",
 	"williamboman/mason.nvim",
+	{
+		"David-Kunz/jester",
+		keys = {
+			{ "<leader>djt", function() require("jester").debug() end, desc = "DAP Jester debug test" },
+			{ "<leader>djf", function() require("jester").debug_file() end, desc = "DAP Jester debug file" },
+			{ "<leader>djr", function() require("jester").debug_last() end, desc = "DAP Jester rerun debug" },
+			{ "<leader>djT", function() require("jester").run() end, desc = "DAP Jester run test" },
+			{ "<leader>djF", function() require("jester").run_file() end, desc = "DAP Jester run file" },
+			{ "<leader>djR", function() require("jester").run_last() end, desc = "DAP Jester rerun test" },
+		},
+	},
 	{ "jay-babu/mason-nvim-dap.nvim", opts = { automatic_setup = true } },
 	{
 		"mxsdev/nvim-dap-vscode-js",
@@ -34,6 +45,30 @@ function M.config()
 
 	for name, sign in pairs(icons) do
 		vim.fn.sign_define("Dap" .. name, { text = sign })
+	end
+
+	for _, language in ipairs({ "typescript", "javascript" }) do
+		dap.configurations[language] = {
+			{
+				name = "Debug Jest Unit Tests (default)",
+				type = "pwa-node",
+				request = "launch",
+				runtimeArgs = {
+					"./node_modules/jest/bin/jest.js",
+					"--runInBand",
+				},
+				cwd = "${workspaceFolder}",
+				console = "integratedTerminal",
+				internalConsoleOptions = "neverOpen",
+			},
+			{
+				name = "Attach to running process (default)",
+				type = "pwa-node",
+				request = "attach",
+				processId = require("dap.utils").pick_process,
+				cwd = "${workspaceFolder}",
+			},
+		}
 	end
 
 	require("dap.ext.vscode").load_launchjs(nil, {
