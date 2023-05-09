@@ -1,5 +1,6 @@
 return {
 	"",
+	"alpha",
 	"checkhealth",
 	"diffview",
 	"fugitive",
