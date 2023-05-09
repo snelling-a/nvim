@@ -6,7 +6,12 @@ local config_files =
 local settings = {
 	Lua = {
 		completion = { displayContext = true, keywordSnippet = "Both" },
-		diagnostics = { enable = true, disable = { "spell-check" }, globals = { "vim", "_*" } },
+		diagnostics = {
+			enable = true,
+			disable = { "spell-check" },
+			globals = { "vim" },
+			unusedLocalExclude = { "_*" },
+		},
 		format = { enable = false },
 		hint = { enabled = true },
 		runtime = { version = "LuaJIT", path = vim.split(package.path, ";") },
