@@ -17,6 +17,15 @@ M.dependencies = {
 			}
 		end,
 	},
+	{
+		"ofirgall/goto-breakpoints.nvim",
+		keys = {
+			{ "]b", function() require("goto-breakpoints").next() end, desc = "Go to next breakpoint" },
+			{ "[b", function() require("goto-breakpoints").prev() end, "Go to previous breakpoint" },
+		},
+	},
+}
+
 }
 
 function M.config()
