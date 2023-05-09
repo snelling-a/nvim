@@ -48,6 +48,42 @@ M.dependencies = {
 	},
 }
 
+M.keys = {
+	{ "<F10>", function() require("dap").step_over() end, desc = "DAP step over" },
+	{ "<F11>", function() require("dap").step_into() end, desc = "DAP step into" },
+	{ "<F12>", function() require("dap").step_out() end, desc = "DAP step out" },
+	{ "<F5>", function() require("dap").continue() end, desc = "DAP continue" },
+	{
+		"<leader>dB",
+		function() require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: ")) end,
+		desc = "DAP Breakpoint Condition",
+	},
+	{ "<Leader>db", function() require("dap").toggle_breakpoint() end, desc = "DAP toggle breakpoint" },
+	{
+		"<Leader>df",
+		function()
+			local widgets = require("dap.ui.widgets")
+			widgets.centered_float(widgets.frames)
+		end,
+		desc = "DAP frames",
+	},
+	{ "<Leader>dh", function() require("dap.ui.widgets").hover() end, desc = "DAP hover" },
+	{ "<Leader>dl", function() require("dap").run_last() end, desc = "DAP run last" },
+	{ "<Leader>dp", function() require("dap.ui.widgets").preview() end, desc = "DAP preview" },
+	{ "<Leader>dr", function() require("dap").repl.open() end, desc = "DAP open" },
+	{
+		"<Leader>ds",
+		function()
+			local widgets = require("dap.ui.widgets")
+			widgets.centered_float(widgets.scopes)
+		end,
+		desc = "DAP scopes",
+	},
+	{
+		"<Leader>lp",
+		function() require("dap").set_breakpoint(nil, nil, vim.fn.input("Log point message: ")) end,
+		desc = "DAP input",
+	},
 }
 
 function M.config()
