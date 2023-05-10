@@ -1,4 +1,4 @@
-local no_format = require("config.util.no_format")
+local no_format = require("config.util.constants").no_format
 
 local function no_color()
 	return vim.tbl_map(function(filetype) return "!" .. filetype end, no_format)

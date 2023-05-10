@@ -1,5 +1,3 @@
-local util = require("config.util")
-
 local ensure_installed = {
 	"awk",
 	"bash",
@@ -66,7 +64,7 @@ M.dependencies = {
 	"JoosepAlviste/nvim-ts-context-commentstring",
 	"nvim-treesitter/nvim-treesitter-textobjects",
 	"windwp/nvim-ts-autotag",
-	{ "nvim-treesitter/nvim-treesitter-context", opts = { mode = "topline" }, config = true },
+	{ "nvim-treesitter/nvim-treesitter-context", opts = { mode = "topline" } },
 }
 
 M.event = { "BufReadPost", "BufNewFile" }
@@ -88,19 +86,11 @@ M.opts = {
 	},
 	indent = { enable = true },
 	textobjects = textobjects,
+	rainbow = { enable = true },
 }
 
 M.version = false
 
-function M.config(_, opts)
-	require("nvim-treesitter.configs").setup(util.tbl_extend_force(opts, {
-		rainbow = {
-			enable = true,
-			extended_mode = true,
-			query = "rainbow-parens",
-			strategy = require("ts-rainbow").strategy.global,
-		},
-	}))
-end
+function M.config(_, opts) require("nvim-treesitter.configs").setup(opts) end
 
 return M

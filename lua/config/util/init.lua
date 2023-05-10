@@ -1,9 +1,4 @@
-local logger = require("config.util.logger")
-local no_format = require("config.util.no_format")
-
 local api = vim.api
-local fn = vim.fn
-local cmd = vim.cmd
 local g = vim.g
 
 ---@alias KeyMapMode "c"|"i"|"n"|"o"|"t"|"v"|"x"
@@ -69,20 +64,6 @@ for _, mode in ipairs(key_map_modes) do
 	Util[mode .. "map"] = function(...) Util.map(mode, ...) end
 end
 
-function Util.reload_modules()
-	local config_path = fn.stdpath("config")
-	local lua_files = fn.glob(config_path .. "/**/*.lua", false, true)
-
-	for _, file in ipairs(lua_files) do
-		local module_name = string.gsub(file, ".*/(.*)/(.*).lua", "%1.%2")
-
-		package.loaded[module_name] = nil
-	end
-
-	cmd.source("$MYVIMRC")
-
-	logger.info({ msg = "Reloaded all config modules\nReloaded lua modules", title = "Happy hacking!" })
-end
 
 function Util.scroll_center() feedkeys("zz") end
 
@@ -100,11 +81,10 @@ end
 
 ---returns `true` if current buffer should be formatted or not
 ---@param filetype string result of `vim.bo.filetype`
----@return _ boolean if `filetype` should have formatting
-function Util.should_have_formatting(filetype) return not vim.tbl_contains(no_format, filetype) end
-
-local vault_directory = os.getenv("NOTES") or os.getenv("HOME") .. "/notes"
-
-Util.obsidian = { vault_directory = vault_directory, is_vault_directory = vim.fn.getcwd() == vault_directory }
+---@return boolean 'if `filetype` should have formatting'
+function Util.should_have_formatting(filetype)
+	local no_format = require("config.util.constants").no_format
+	return not vim.tbl_contains(no_format, filetype)
+end
 
 return Util
