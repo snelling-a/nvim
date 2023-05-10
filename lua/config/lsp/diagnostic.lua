@@ -93,20 +93,22 @@ function Diagnostic.on_attach(bufnr)
 		virtual_text = false,
 	})
 
-	local LspDiagnostiCurrenLineGroup = api.nvim_create_augroup("LspDiagnostiCurrenLine", { clear = true })
+	local LspDiagnostiCurrentLineGroup = require("config.util").augroup("LspDiagnostiCurrentLine")
 
-	api.nvim_clear_autocmds({ buffer = bufnr, group = LspDiagnostiCurrenLineGroup })
+	api.nvim_clear_autocmds({ buffer = bufnr, group = LspDiagnostiCurrentLineGroup })
 
 	api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
-		group = LspDiagnostiCurrenLineGroup,
 		buffer = bufnr,
 		callback = function() vim_diagnostic.handlers.current_line_virt.show(nil, 0, current_line_diagnostics(), nil) end,
+		desc = "Show current line diagnostics",
+		group = LspDiagnostiCurrentLineGroup,
 	})
 
 	api.nvim_create_autocmd("CursorMoved", {
-		group = LspDiagnostiCurrenLineGroup,
 		buffer = bufnr,
 		callback = function() vim_diagnostic.handlers.current_line_virt.hide(nil, nil) end,
+		desc = "Hide current line diagnostics",
+		group = LspDiagnostiCurrentLineGroup,
 	})
 end
 

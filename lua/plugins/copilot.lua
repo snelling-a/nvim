@@ -34,6 +34,8 @@ M.dependencies = {
 						copilot_cmp._on_insert_enter()
 					end
 				end,
+				desc = "Copilot on attach",
+				group = require("config.util").augroup("CopilotOnAttach"),
 			})
 		end,
 	},

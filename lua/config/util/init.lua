@@ -30,6 +30,12 @@ end
 
 local Util = {}
 
+---wrapper around nvim_create_augroup with
+---@param name string augroup name
+---@param clear? boolean clear existing augroup default: true
+---@return number 'augroup id'
+function Util.augroup(name, clear) return api.nvim_create_augroup("User" .. name, { clear = clear or true }) end
+
 ---wrapper around vim.tbl_extend that always overwrites existing keys
 ---@param ... table two or more map-like tables
 ---@return table merged

@@ -39,7 +39,7 @@ function M.config()
 	api.nvim_create_autocmd("BufWinEnter", {
 		callback = function() set_fugitive_keymaps() end,
 		desc = "Set fugitive keymaps",
-		group = api.nvim_create_augroup("Fugitive", {}),
+		group = require("config.util").augroup("Fugitive"),
 		pattern = "*",
 	})
 end
