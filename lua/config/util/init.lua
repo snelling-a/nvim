@@ -1,9 +1,6 @@
-local logger = require("config.util.logger")
 local no_format = require("config.util.no_format")
 
 local api = vim.api
-local fn = vim.fn
-local cmd = vim.cmd
 local g = vim.g
 
 ---@alias KeyMapMode "c"|"i"|"n"|"o"|"t"|"v"|"x"
@@ -69,20 +66,6 @@ for _, mode in ipairs(key_map_modes) do
 	Util[mode .. "map"] = function(...) Util.map(mode, ...) end
 end
 
-function Util.reload_modules()
-	local config_path = fn.stdpath("config")
-	local lua_files = fn.glob(config_path .. "/**/*.lua", false, true)
-
-	for _, file in ipairs(lua_files) do
-		local module_name = string.gsub(file, ".*/(.*)/(.*).lua", "%1.%2")
-
-		package.loaded[module_name] = nil
-	end
-
-	cmd.source("$MYVIMRC")
-
-	logger.info({ msg = "Reloaded all config modules\nReloaded lua modules", title = "Happy hacking!" })
-end
 
 function Util.scroll_center() feedkeys("zz") end
 
