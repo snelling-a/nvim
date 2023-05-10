@@ -3,7 +3,7 @@ local M = { "jose-elias-alvarez/null-ls.nvim" }
 M.dependencies = { "jay-babu/mason-null-ls.nvim", "williamboman/mason.nvim" }
 
 function M.config()
-	local disabled_filetypes = require("config.util.no_format")
+	local disabled_filetypes = require("config.util.constants").no_format
 	local null_ls = require("null-ls")
 
 	local builtins = null_ls.builtins

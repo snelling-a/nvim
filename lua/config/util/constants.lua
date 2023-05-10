@@ -1,15 +1,20 @@
-return {
+local Constants = {}
+
+Constants.no_format = {
 	"",
 	"alpha",
 	"checkhealth",
+	"dapui_*",
 	"diffview",
 	"fugitive",
 	"fugitiveblame",
 	"git",
 	"help",
+	"lazy",
 	"log",
 	"lspinfo",
 	"mason",
+	"neo-tree",
 	"noice",
 	"notify",
 	"NvimTree",
@@ -22,3 +27,4 @@ return {
 	"Trouble",
 	"undotree",
 }
+return Constants

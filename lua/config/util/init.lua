@@ -1,5 +1,3 @@
-local no_format = require("config.util.no_format")
-
 local api = vim.api
 local g = vim.g
 
@@ -83,11 +81,13 @@ end
 
 ---returns `true` if current buffer should be formatted or not
 ---@param filetype string result of `vim.bo.filetype`
----@return _ boolean if `filetype` should have formatting
-function Util.should_have_formatting(filetype) return not vim.tbl_contains(no_format, filetype) end
-
 local vault_directory = os.getenv("NOTES") or os.getenv("HOME") .. "/notes"
 
 Util.obsidian = { vault_directory = vault_directory, is_vault_directory = vim.fn.getcwd() == vault_directory }
+---@return boolean 'if `filetype` should have formatting'
+function Util.should_have_formatting(filetype)
+	local no_format = require("config.util.constants").no_format
+	return not vim.tbl_contains(no_format, filetype)
+end
 
 return Util
