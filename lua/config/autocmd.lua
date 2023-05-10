@@ -1,7 +1,7 @@
 local util = require("config.util")
 
 local api = vim.api
-local augroup = api.nvim_create_augroup
+local augroup = util.augroup
 local autocmd = api.nvim_create_autocmd
 local bo = vim.bo
 local cmd = vim.cmd
@@ -16,7 +16,7 @@ autocmd({ "BufLeave", "FocusLost" }, {
 		end
 	end,
 	desc = "Auto save when leaving the buffer",
-	group = augroup("AutoSave", {}),
+	group = augroup("AutoSave"),
 })
 
 autocmd({ "FileType" }, {
@@ -28,7 +28,7 @@ autocmd({ "FileType" }, {
 		api.nvim_buf_set_keymap(0, "n", "q", "", { callback = function() api.nvim_buf_delete(0, { force = true }) end })
 	end,
 	desc = "Use [q] to close the buffer for helper files",
-	group = augroup("EasyQuit", {}),
+	group = augroup("EasyQuit"),
 })
 
 autocmd({ "BufEnter", "FileType" }, {
@@ -66,25 +66,25 @@ autocmd({ "BufEnter", "FileType" }, {
 		end
 	end,
 	desc = "don't auto comment new line",
-	group = augroup("FormatOptions", {}),
+	group = augroup("FormatOptions"),
 	pattern = "*",
 })
 
 autocmd("TextYankPost", {
 	callback = function() vim.highlight.on_yank({ higroup = "IncSearch", timeout = 40 }) end,
 	desc = "Highlight yanked text",
-	group = augroup("HighlightYank", {}),
+	group = augroup("HighlightOnYank"),
 	pattern = "*",
 })
 
 autocmd({ "BufWritePre" }, {
 	callback = function() cmd.substitute([[/\s\+$/]], [[\=submatch(0)]], [[e]]) end,
 	desc = "Strip whitespace from the end of the line",
-	group = augroup("StripWhitespace", {}),
+	group = augroup("StripWhitespace"),
 	pattern = "!markdown",
 })
 
-local ToggleWindowOptionsGroup = augroup("ToggleWindowOptions", {})
+local ToggleWindowOptionsGroup = augroup("ToggleWindowOptions")
 autocmd("BufLeave", {
 	callback = function()
 		opt_local.cursorline = false

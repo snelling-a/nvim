@@ -71,18 +71,20 @@ local M = { "goolord/alpha-nvim" }
 M.event = "VimEnter"
 
 function M.config(_, dashboard)
+	local augroup = require("config.util").augroup
+
 	if vim.o.filetype == "lazy" then
 		vim.cmd.close()
 		vim.api.nvim_create_autocmd("User", {
-			pattern = "AlphaReady",
 			callback = function() require("lazy").show() end,
+			group = augroup("ShowLazy"),
+			pattern = "AlphaReady",
 		})
 	end
 
 	require("alpha").setup(dashboard.config)
 
 	vim.api.nvim_create_autocmd("User", {
-		pattern = "LazyVimStarted",
 		callback = function()
 			local version = " " .. vim.version().major .. "." .. vim.version().minor .. "." .. vim.version().patch
 			local stats = require("lazy").stats()
@@ -91,6 +93,9 @@ function M.config(_, dashboard)
 			dashboard.section.footer.val = version .. "   " .. total_plugins .. "  󰄉 " .. startup_time .. " ms"
 			pcall(vim.cmd.AlphaRedraw)
 		end,
+		desc = "Render alpha footer",
+		group = augroup("AlphaFooter"),
+		pattern = "LazyVimStarted",
 	})
 end
 

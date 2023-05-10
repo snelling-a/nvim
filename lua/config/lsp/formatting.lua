@@ -33,7 +33,6 @@ end
 
 function Formatting.on_attach(buf)
 	vim.api.nvim_create_autocmd("BufWritePre", {
-		group = vim.api.nvim_create_augroup(lsp_formatting .. "." .. buf, {}),
 		buffer = buf,
 		callback = function()
 			if autoformat then
@@ -41,6 +40,7 @@ function Formatting.on_attach(buf)
 			end
 		end,
 		desc = "Format on save",
+		group = require("config.util").augroup(lsp_formatting .. "." .. buf),
 	})
 
 	vim.api.nvim_create_user_command(

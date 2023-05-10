@@ -92,7 +92,11 @@ M.opts = {
 function M.config(_, opts)
 	local fzf_lua = require("fzf-lua")
 
-	vim.api.nvim_create_autocmd("VimResized", { pattern = "*", callback = fzf_lua.redraw })
+	vim.api.nvim_create_autocmd("VimResized", {
+		callback = fzf_lua.redraw,
+		group = require("config.util").augroup("FzfLuaResize"),
+		pattern = "*",
+	})
 
 	fzf_lua.setup(opts)
 end
