@@ -1,3 +1,5 @@
+local vault_directory = os.getenv("NOTES") or os.getenv("HOME") .. "/notes"
+
 local Constants = {}
 
 Constants.no_format = {
@@ -27,4 +29,7 @@ Constants.no_format = {
 	"Trouble",
 	"undotree",
 }
+
+Constants.obsidian = { vault_directory = vault_directory, is_vault_directory = vim.fn.getcwd() == vault_directory }
+
 return Constants

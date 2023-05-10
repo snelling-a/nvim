@@ -1,4 +1,4 @@
-local obsidian = require("config.util").obsidian
+local obsidian = require("config.util.constants").obsidian
 local cmd = vim.cmd
 
 local function note_id_func(input)

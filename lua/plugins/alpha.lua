@@ -1,6 +1,6 @@
 local icons = require("config.ui.icons")
 
-local is_obsidian = require("config.util").obsidian.is_vault_directory
+local is_obsidian = require("config.util.constants").obsidian.is_vault_directory
 
 ---comment
 ---@param text? string @The text to display in the logo; defaults to "neovim"
