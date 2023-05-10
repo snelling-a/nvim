@@ -94,6 +94,7 @@ function M.config(_, opts)
 
 	vim.api.nvim_create_autocmd("VimResized", {
 		callback = fzf_lua.redraw,
+		desc = "Resize FzfLua when window resizes",
 		group = require("config.util").augroup("FzfLuaResize"),
 		pattern = "*",
 	})

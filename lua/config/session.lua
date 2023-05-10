@@ -43,6 +43,7 @@ api.nvim_create_autocmd("VimEnter", {
 			create_session()
 		end
 	end,
+	desc = "Create a session file",
 	group = SessionGroup,
 	nested = true,
 })
@@ -56,6 +57,7 @@ api.nvim_create_autocmd("VimLeavePre", {
 		cmd.argdelete({ range = { 0, fn.argc() } })
 		cmd.mksession({ bang = true })
 	end,
+	desc = "Save a session file",
 	group = SessionGroup,
 })
 

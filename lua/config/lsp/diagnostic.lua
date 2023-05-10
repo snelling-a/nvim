@@ -100,12 +100,14 @@ function Diagnostic.on_attach(bufnr)
 	api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
 		buffer = bufnr,
 		callback = function() vim_diagnostic.handlers.current_line_virt.show(nil, 0, current_line_diagnostics(), nil) end,
+		desc = "Show current line diagnostics",
 		group = LspDiagnostiCurrentLineGroup,
 	})
 
 	api.nvim_create_autocmd("CursorMoved", {
 		buffer = bufnr,
 		callback = function() vim_diagnostic.handlers.current_line_virt.hide(nil, nil) end,
+		desc = "Hide current line diagnostics",
 		group = LspDiagnostiCurrentLineGroup,
 	})
 end

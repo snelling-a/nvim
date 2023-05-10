@@ -77,6 +77,7 @@ function M.config(_, dashboard)
 		vim.cmd.close()
 		vim.api.nvim_create_autocmd("User", {
 			callback = function() require("lazy").show() end,
+			desc = "Show Lazy",
 			group = augroup("ShowLazy"),
 			pattern = "AlphaReady",
 		})
