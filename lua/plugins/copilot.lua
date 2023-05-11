@@ -38,10 +38,6 @@ M.dependencies = {
 			})
 		end,
 	},
-	{
-		"zbirenbaum/copilot.lua",
-		opts = { copilot_node_path = get_node_path, panel = { enabled = false }, suggestion = { enabled = true } },
-	},
 }
 
 M.opts = { copilot_node_path = get_node_path, panel = { enabled = false }, suggestion = { enabled = true } }
