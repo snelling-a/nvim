@@ -87,4 +87,14 @@ function Util.should_have_formatting(filetype)
 	return not vim.tbl_contains(no_format, filetype)
 end
 
+function Util.is_buf_big(bufnr)
+	local max_filesize = 100 * 1024 -- 100 KB
+	local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(bufnr))
+	if ok and stats and stats.size > max_filesize then
+		return true
+	else
+		return false
+	end
+end
+
 return Util
