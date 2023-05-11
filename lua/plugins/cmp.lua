@@ -36,6 +36,7 @@ M.dependencies = {
 	"petertriho/cmp-git",
 	"ray-x/cmp-treesitter",
 	"saadparwaiz1/cmp_luasnip",
+	"windwp/nvim-autopairs",
 	"zbirenbaum/copilot-cmp",
 	{ "David-Kunz/cmp-npm", dependencies = { "nvim-lua/plenary.nvim" } },
 }
