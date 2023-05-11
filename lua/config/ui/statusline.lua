@@ -1,9 +1,10 @@
 local icons = require("config.ui.icons")
-local Statusbar = {}
+
+local Statusline = {}
 
 local global_theme = vim.g.theme
 
-Statusbar.theme = {
+Statusline.theme = {
 	bg = global_theme.base01,
 	black = global_theme.base00,
 	cyan = global_theme.base0C,
@@ -19,7 +20,7 @@ Statusbar.theme = {
 	yellow = global_theme.base0A,
 }
 
-Statusbar.vi_mode_colors = {
+Statusline.vi_mode_colors = {
 	BLOCK = "magenta",
 	COMMAND = "red",
 	ENTER = "cyan",
@@ -155,7 +156,7 @@ local left = {
 local middle = { macro_recording }
 local right = { search_count, gap, git_branch, git_add, git_diff_removed, git_diff_changed, progress }
 
-Statusbar.components =
+Statusline.components =
 	{ active = { left, middle, right }, inactive = { { git_branch }, { git_diff_changed, git_diff_removed }, {} } }
 
-return Statusbar
+return Statusline
