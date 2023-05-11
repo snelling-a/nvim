@@ -19,15 +19,6 @@ local function enabled()
 	end
 end
 
-local function luasnip_extend()
-	local extend = require("luasnip").filetype_extend
-
-	extend("javascript", { "html" })
-	extend("javascriptreact", { "html", "javascript" })
-	extend("typescript", { "html", "javascript" })
-	extend("typescriptreact", { "html", "javascript" })
-end
-
 local function get_comparators()
 	local compare = require("cmp").config.compare
 
@@ -123,6 +114,15 @@ local function get_window()
 	})
 end
 
+local function luasnip_extend()
+	local extend = require("luasnip").filetype_extend
+
+	extend("javascript", { "html" })
+	extend("javascriptreact", { "html", "javascript" })
+	extend("typescript", { "html", "javascript" })
+	extend("typescriptreact", { "html", "javascript" })
+end
+
 local M = { "hrsh7th/nvim-cmp" }
 
 M.cond = not vim.g.vscode
@@ -157,9 +157,11 @@ M.opts = {
 
 function M.config(_, opts)
 	local cmp = require("cmp")
+
 	local config, mapping, setup = cmp.config, cmp.mapping, cmp.setup
 
 	setup(util.tbl_extend_force(opts, {
+		confirm_opts = { behavior = cmp.ConfirmBehavior.Replace, select = false },
 		mapping = get_mapping(),
 		sorting = {
 			priority_weight = 2,
@@ -170,19 +172,23 @@ function M.config(_, opts)
 	}))
 
 	luasnip_extend()
+	require("luasnip.loaders.from_vscode").lazy_load()
 
 	setup.filetype("gitcommit", {
 		sources = config.sources({ { name = "cmp" }, { name = "conventionalcommits" } }, { { name = "buffer" } }),
+		window = { completion = get_window() },
 	})
 
 	setup.cmdline({ "/", "?" }, {
 		mapping = mapping.preset.cmdline(),
 		sources = cmp.config.sources({ { name = "nvim_lsp_document_symbol" } }, { { name = "buffer" } }),
+		view = { entries = { name = "wildmenu", separator = "|" } },
 	})
 
 	setup.cmdline(":", {
 		mapping = mapping.preset.cmdline(),
 		sources = config.sources({ { name = "path" } }, { { name = "cmdline" } }),
+		view = { entries = { name = "wildmenu", separator = "|" } },
 	})
 end
 
