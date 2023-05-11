@@ -10,7 +10,7 @@ M.dependencies = {
 	"jparise/vim-graphql",
 	"lvimuser/lsp-inlayhints.nvim",
 	"SmiteshP/nvim-navic",
-	"yioneko/nvim-vtsls",
+	{ "yioneko/nvim-vtsls", ft = { "typescript", "typescriptreact", "javascript", "javascriptreact" } },
 	{
 		"williamboman/mason.nvim",
 		opts = {
