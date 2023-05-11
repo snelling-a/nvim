@@ -10,12 +10,12 @@ local formatting = {
 }
 
 local function luasnip_extend()
-	local luasnip = require("luasnip")
+	local extend = require("luasnip").filetype_extend
 
-	luasnip.filetype_extend("javascript", { "html" })
-	luasnip.filetype_extend("javascriptreact", { "html", "javascript" })
-	luasnip.filetype_extend("typescript", { "html", "javascript" })
-	luasnip.filetype_extend("typescriptreact", { "html", "javascript" })
+	extend("javascript", { "html" })
+	extend("javascriptreact", { "html", "javascript" })
+	extend("typescript", { "html", "javascript" })
+	extend("typescriptreact", { "html", "javascript" })
 end
 
 local M = { "hrsh7th/nvim-cmp" }
@@ -45,8 +45,7 @@ M.event = "InsertEnter"
 
 function M.config()
 	local cmp = require("cmp")
-	local mapping = cmp.mapping
-	local config = cmp.config
+	local config, mapping, setup = cmp.config, cmp.mapping, cmp.setup
 
 	cmp.setup({
 		experimental = { ghost_text = { hl_group = "LspCodeLens" } },
@@ -84,16 +83,16 @@ function M.config()
 
 	luasnip_extend()
 
-	cmp.setup.filetype("gitcommit", {
+	setup.filetype("gitcommit", {
 		sources = config.sources({ { name = "cmp" }, { name = "conventionalcommits" } }, { { name = "buffer" } }),
 	})
 
-	cmp.setup.cmdline({ "/", "?" }, {
+	setup.cmdline({ "/", "?" }, {
 		mapping = mapping.preset.cmdline(),
 		sources = cmp.config.sources({ { name = "nvim_lsp_document_symbol" } }, { { name = "buffer" } }),
 	})
 
-	cmp.setup.cmdline(":", {
+	setup.cmdline(":", {
 		mapping = mapping.preset.cmdline(),
 		sources = config.sources({ { name = "path" } }, { { name = "cmdline" } }),
 	})
