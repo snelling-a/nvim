@@ -12,7 +12,7 @@ local function get_node_path()
 	return node
 end
 
-local M = { "github/copilot.vim" }
+local M = { "zbirenbaum/copilot.lua" }
 
 M.build = ":Copilot auth"
 
