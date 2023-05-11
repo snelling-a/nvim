@@ -1,9 +1,10 @@
 local icons = require("config.ui.icons")
-local Statusbar = {}
+
+local Statusline = {}
 
 local global_theme = vim.g.theme
 
-Statusbar.theme = {
+Statusline.theme = {
 	bg = global_theme.base01,
 	black = global_theme.base00,
 	cyan = global_theme.base0C,
@@ -19,7 +20,7 @@ Statusbar.theme = {
 	yellow = global_theme.base0A,
 }
 
-Statusbar.vi_mode_colors = {
+Statusline.vi_mode_colors = {
 	BLOCK = "magenta",
 	COMMAND = "red",
 	ENTER = "cyan",
@@ -97,8 +98,8 @@ local search_count = { provider = { name = "search_count" } }
 
 local git_add = { hl = { fg = "green" }, provider = "git_diff_added" }
 local git_branch = { hl = { fg = "magenta", style = "bold" }, provider = "git_branch" }
-local git_change = { provider = "git_diff_changed" }
-local git_delete = { hl = { fg = "red" }, provider = "git_diff_removed" }
+local git_diff_changed = { provider = "git_diff_changed" }
+local git_diff_removed = { hl = { fg = "red" }, provider = "git_diff_removed" }
 
 local function get_position()
 	return math.floor(vim.api.nvim_win_get_cursor(0)[1] / vim.api.nvim_buf_line_count(0) * 100)
@@ -153,9 +154,9 @@ local left = {
 }
 
 local middle = { macro_recording }
-local right = { search_count, gap, git_branch, git_add, git_delete, git_change, progress }
+local right = { search_count, gap, git_branch, git_add, git_diff_removed, git_diff_changed, progress }
 
--- TODO: add something for inactive buffers
-Statusbar.components = { active = { left, middle, right }, inactive = { {}, {}, {} } }
+Statusline.components =
+	{ active = { left, middle, right }, inactive = { { git_branch }, { git_diff_changed, git_diff_removed }, {} } }
 
-return Statusbar
+return Statusline
