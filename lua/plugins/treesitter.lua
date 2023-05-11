@@ -78,10 +78,10 @@ M.opts = {
 	incremental_selection = {
 		enable = true,
 		keymaps = {
-			init_selection = false,
-			node_incremental = "grn",
-			scope_incremental = "grc",
-			node_decremental = "grm",
+			init_selection = "<space><space>",
+			node_decremental = "<bs>",
+			node_incremental = "<space><space>",
+			scope_incremental = false,
 		},
 	},
 	indent = { enable = true },
