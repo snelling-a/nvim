@@ -21,7 +21,6 @@ M.cond = not vim.g.vscode
 M.dependencies = {
 	{
 		"zbirenbaum/copilot-cmp",
-		opts = {},
 		config = function(_, opts)
 			local copilot_cmp = require("copilot_cmp")
 			copilot_cmp.setup(opts)
@@ -31,7 +30,7 @@ M.dependencies = {
 					local client = vim.lsp.get_client_by_id(args.data.client_id)
 
 					if client.name == "copilot" then
-						copilot_cmp._on_insert_enter()
+						copilot_cmp._on_insert_enter(opts)
 					end
 				end,
 				desc = "Copilot on attach",
