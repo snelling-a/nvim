@@ -155,7 +155,7 @@ local left = {
 local middle = { macro_recording }
 local right = { search_count, gap, git_branch, git_add, git_diff_removed, git_diff_changed, progress }
 
--- TODO: add something for inactive buffers
-Statusbar.components = { active = { left, middle, right }, inactive = { {}, {}, {} } }
+Statusbar.components =
+	{ active = { left, middle, right }, inactive = { { git_branch }, { git_diff_changed, git_diff_removed }, {} } }
 
 return Statusbar
