@@ -97,8 +97,8 @@ local search_count = { provider = { name = "search_count" } }
 
 local git_add = { hl = { fg = "green" }, provider = "git_diff_added" }
 local git_branch = { hl = { fg = "magenta", style = "bold" }, provider = "git_branch" }
-local git_change = { provider = "git_diff_changed" }
-local git_delete = { hl = { fg = "red" }, provider = "git_diff_removed" }
+local git_diff_changed = { provider = "git_diff_changed" }
+local git_diff_removed = { hl = { fg = "red" }, provider = "git_diff_removed" }
 
 local function get_position()
 	return math.floor(vim.api.nvim_win_get_cursor(0)[1] / vim.api.nvim_buf_line_count(0) * 100)
@@ -153,7 +153,7 @@ local left = {
 }
 
 local middle = { macro_recording }
-local right = { search_count, gap, git_branch, git_add, git_delete, git_change, progress }
+local right = { search_count, gap, git_branch, git_add, git_diff_removed, git_diff_changed, progress }
 
 -- TODO: add something for inactive buffers
 Statusbar.components = { active = { left, middle, right }, inactive = { {}, {}, {} } }
