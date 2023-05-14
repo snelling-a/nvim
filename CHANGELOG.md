@@ -1,5 +1,17 @@
 # Changelog
 
+## [3.1.0](https://github.com/snelling-a/nvim/compare/v3.0.0...v3.1.0) (2023-05-14)
+
+
+### Features
+
+* cellular-automation ([#51](https://github.com/snelling-a/nvim/issues/51)) ([d1e6b3b](https://github.com/snelling-a/nvim/commit/d1e6b3bb3fb97ce0cf367abec306975bb263b093))
+
+
+### Bug Fixes
+
+* **ci:** add permissions to workflow ([51016fe](https://github.com/snelling-a/nvim/commit/51016fe626c862140b2d52e911f7555be44715ea))
+
 ## [3.0.0](https://github.com/snelling-a/nvim/compare/v2.13.0...v3.0.0) (2023-05-14)
 
 
