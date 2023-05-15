@@ -71,6 +71,7 @@
   "pretty-fold.nvim": { "branch": "master", "commit": "a7d8b424abe0eedf50116c460fbe6dfd5783b1d5" },
   "schemastore.nvim": { "branch": "main", "commit": "b8e6c7d966857e8ff14d9b6a23eec9214d99db32" },
   "scretch.nvim": { "branch": "main", "commit": "93b05dcb0ddd1eb5a7d94058a4f6177c7dea9e7c" },
+  "smart-splits.nvim": { "branch": "master", "commit": "e9a8f08b9db566ebc2b942b4776567f981b2986c" },
   "symbols-outline.nvim": { "branch": "master", "commit": "512791925d57a61c545bc303356e8a8f7869763c" },
   "trouble.nvim": { "branch": "main", "commit": "d56bfc0c501ced4002a57cb60433362fb2ce9c4d" },
   "undotree": { "branch": "master", "commit": "485f01efde4e22cb1ce547b9e8c9238f36566f21" },
