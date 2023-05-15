@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.1.2](https://github.com/snelling-a/nvim/compare/v3.1.1...v3.1.2) (2023-05-15)
+
+
+### Bug Fixes
+
+* **ci:** secrets ([3f87a59](https://github.com/snelling-a/nvim/commit/3f87a594b0b2c521dbc433cc48e29b0584c9f6fe))
+
 ## [3.1.1](https://github.com/snelling-a/nvim/compare/v3.1.0...v3.1.1) (2023-05-15)
 
 
