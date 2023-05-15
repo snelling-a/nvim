@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.1.1](https://github.com/snelling-a/nvim/compare/v3.1.0...v3.1.1) (2023-05-15)
+
+
+### Bug Fixes
+
+* **ci:** project name ([0678974](https://github.com/snelling-a/nvim/commit/0678974f41d05dde342292fe258bbf139c0c0b78))
+
 ## [3.1.0](https://github.com/snelling-a/nvim/compare/v3.0.0...v3.1.0) (2023-05-14)
 
 
