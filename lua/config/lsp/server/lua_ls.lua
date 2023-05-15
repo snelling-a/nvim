@@ -5,7 +5,8 @@ local config_files =
 
 local settings = {
 	Lua = {
-		completion = { displayContext = true, keywordSnippet = "Both" },
+		codeLens = { enable = true },
+		completion = { keywordSnippet = "Both" },
 		diagnostics = {
 			enable = true,
 			disable = { "spell-check" },
@@ -14,7 +15,7 @@ local settings = {
 		},
 		format = { enable = false },
 		hint = { enabled = true },
-		runtime = { version = "LuaJIT", path = vim.split(package.path, ";") },
+		runtime = { path = vim.split(package.path, ";"), version = "LuaJIT" },
 		telemetry = { enable = false },
 		workspace = { checkThirdParty = false, library = vim.api.nvim_get_runtime_file("", true) },
 	},

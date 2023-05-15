@@ -144,6 +144,7 @@ Icons.misc = {
 	indent = "▏",
 	l = "ℓ",
 	lazy = "󰒲 ",
+	lightbulb_alert = "󱧢 ",
 	moved = moved,
 	multi = " ",
 	percent = "󰏰 ",
