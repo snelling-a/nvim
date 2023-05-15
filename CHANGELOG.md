@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.5.1](https://github.com/snelling-a/nvim/compare/v3.5.0...v3.5.1) (2023-05-15)
+
+
+### Miscellaneous
+
+* **spell:** update cspell.json ([518e28a](https://github.com/snelling-a/nvim/commit/518e28ad05fc3a7df18d1bde4e2fe2b7aeffc321))
+
 ## [3.5.0](https://github.com/snelling-a/nvim/compare/v3.4.0...v3.5.0) (2023-05-15)
 
 
