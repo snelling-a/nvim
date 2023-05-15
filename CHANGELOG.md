@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.5.2](https://github.com/snelling-a/nvim/compare/v3.5.1...v3.5.2) (2023-05-15)
+
+
+### Bug Fixes
+
+* **ci:** bot user email ([5527365](https://github.com/snelling-a/nvim/commit/5527365d8f256c7a5567a5a98619e456ec3dca28))
+
 ## [3.5.1](https://github.com/snelling-a/nvim/compare/v3.5.0...v3.5.1) (2023-05-15)
 
 
