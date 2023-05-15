@@ -1,5 +1,17 @@
 # Changelog
 
+## [3.3.0](https://github.com/snelling-a/nvim/compare/v3.2.0...v3.3.0) (2023-05-15)
+
+
+### Features
+
+* **ci:** tag major/minor releases ([3b3164c](https://github.com/snelling-a/nvim/commit/3b3164cfcb3fde3a38f9bd787f8d1b6ab4bb7ba9))
+
+
+### Bug Fixes
+
+* **ci:** token ([7e797ea](https://github.com/snelling-a/nvim/commit/7e797ea786351770cfcf71cb3e9dd192960d898c))
+
 ## [3.2.0](https://github.com/snelling-a/nvim/compare/v3.1.2...v3.2.0) (2023-05-15)
 
 
