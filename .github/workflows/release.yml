@@ -14,7 +14,7 @@ jobs:
       - uses: google-github-actions/release-please-action@v3
         with:
           default-branch: main
-          package-name: snelling-a/dotfiles
+          package-name: snelling-a/nvim
           pull-request-header: 'New release!'
           release-type: simple
           token: ${{ secrets.GITHUB_TOKEN }}
