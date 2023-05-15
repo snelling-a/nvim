@@ -1,5 +1,18 @@
 # Changelog
 
+## [3.4.0](https://github.com/snelling-a/nvim/compare/v3.3.0...v3.4.0) (2023-05-15)
+
+
+### Features
+
+* **docs:** star plugins used when updating readme ([a6702e9](https://github.com/snelling-a/nvim/commit/a6702e98c7010d34eafc6f0c32b70404c6aabfff))
+* **plugin:** smart-splits ([915ea27](https://github.com/snelling-a/nvim/commit/915ea27fef5890c127e53903d1d1489daf1c4685))
+
+
+### Miscellaneous
+
+* **spell:** update cspell.json ([1aaa3da](https://github.com/snelling-a/nvim/commit/1aaa3da07270a7d2e1630d801a6b929baf89b7e1))
+
 ## [3.3.0](https://github.com/snelling-a/nvim/compare/v3.2.0...v3.3.0) (2023-05-15)
 
 
