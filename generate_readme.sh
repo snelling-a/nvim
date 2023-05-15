@@ -23,6 +23,12 @@ while LF='' read -r line; do
 	description="$(gh repo view "$line" --json description --jq .description)"
 
 	printf "|[%s](https://github.com/%s)|%s|\n" "$line" "$line" "$description" >>"$packages_list"
+
+	gh api \
+		--method PUT \
+		-H "Accept: application/vnd.github+json" \
+		-H "X-GitHub-Api-Version: 2022-11-28" \
+		"/user/starred/$line"
 done <<<"$packages"
 
 sed -i "/$start_text/ r $packages_list" "$output"
