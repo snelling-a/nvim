@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.2.0](https://github.com/snelling-a/nvim/compare/v3.1.2...v3.2.0) (2023-05-15)
+
+
+### Features
+
+* **plugin:** lsp_signature ([ca11c59](https://github.com/snelling-a/nvim/commit/ca11c59bdbc3a24260d1ecd45485f9af0fae3941))
+
 ## [3.1.2](https://github.com/snelling-a/nvim/compare/v3.1.1...v3.1.2) (2023-05-15)
 
 
