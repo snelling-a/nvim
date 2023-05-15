@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.5.0](https://github.com/snelling-a/nvim/compare/v3.4.0...v3.5.0) (2023-05-15)
+
+
+### Features
+
+* **plugin:** lightbulb ([5e610bd](https://github.com/snelling-a/nvim/commit/5e610bd09e081a692e5538c54b9402bf3f92428f))
+
 ## [3.4.0](https://github.com/snelling-a/nvim/compare/v3.3.0...v3.4.0) (2023-05-15)
 
 
