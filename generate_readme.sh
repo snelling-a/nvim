@@ -10,7 +10,9 @@ packages="$(
 		--glob='lua/plugins/*.lua' \
 		--replace='$2' \
 		--no-line-number \
-		--no-filename | sort -uf
+		--no-filename |
+		sort -uf |
+		tr ' ' '\n'
 )"
 
 sed -i "/$start_text/,/$end_text/{//!d;};" "$output"
