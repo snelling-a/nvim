@@ -28,6 +28,8 @@ M.dependencies = {
 }
 
 function M.config()
+	require("lspconfig.ui.windows").default_options.border = "rounded"
+
 	local opts = {
 		capabilities = require("cmp_nvim_lsp").default_capabilities(),
 		flags = { debounce_text_changes = 150 },
