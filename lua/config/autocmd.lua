@@ -20,15 +20,16 @@ autocmd({ "BufLeave", "FocusLost" }, {
 })
 
 autocmd({ "FileType" }, {
-	callback = function()
-		local filetype = bo.filetype
-		if filetype == "toggleterm" or util.should_have_formatting(filetype) then
-			return
-		end
-		api.nvim_buf_set_keymap(0, "n", "q", "", { callback = function() api.nvim_buf_delete(0, { force = true }) end })
+	callback = function(event)
+		local buffer = event.buf
+
+		vim.bo[buffer].buflisted = false
+
+		util.nmap("q", cmd.close, { buffer = buffer })
 	end,
 	desc = "Use [q] to close the buffer for helper files",
 	group = augroup("EasyQuit"),
+	pattern = require("config.util.constants").no_format,
 })
 
 autocmd({ "BufEnter", "FileType" }, {
@@ -85,33 +86,58 @@ autocmd({ "BufWritePre" }, {
 })
 
 local ToggleWindowOptionsGroup = augroup("ToggleWindowOptions")
-autocmd("BufLeave", {
-	callback = function()
-		opt_local.cursorline = false
-		opt_local.relativenumber = false
+-- autocmd({ "BufLeave" }, {
+-- 	callback = function()
+-- 		opt_local.cursorline = false
+-- 		opt_local.relativenumber = false
+--
+-- 		if util.should_have_formatting then
+-- 			opt_local.number = true
+-- 		else
+-- 			opt_local.number = false
+-- 		end
+-- 	end,
+-- 	desc = "Toggle cursorline and relative number off",
+-- 	group = ToggleWindowOptionsGroup,
+-- 	pattern = "*",
+-- })
 
-		if util.should_have_formatting(bo.filetype) then
-			opt_local.number = true
-		else
-			opt_local.number = false
-		end
-	end,
-	desc = "Toggle cursorline and relative number off",
-	group = ToggleWindowOptionsGroup,
-	pattern = "*",
+-- autocmd("BufEnter", {
+-- 	callback = function()
+-- 		if util.should_have_formatting then
+-- 			opt_local.cursorline = true
+-- 			-- opt_local.number = true
+-- 			-- opt_local.relativenumber = true
+-- 		else
+-- 			opt_local.colorcolumn = ""
+-- 		end
+-- 	end,
+-- 	desc = "Toggle cursorline and relative number on",
+-- 	group = ToggleWindowOptionsGroup,
+-- })
+
+autocmd({ "FocusGained", "TermClose", "TermLeave" }, {
+	command = "checktime",
+	desc = "Check if we need to reload the file when it changed",
+	group = augroup("Checktime"),
 })
 
-autocmd("BufEnter", {
-	callback = function()
-		if util.should_have_formatting(bo.filetype) then
-			opt_local.cursorline = true
-			opt_local.number = true
-			opt_local.relativenumber = true
-		else
-			opt_local.colorcolumn = ""
+autocmd({ "VimResized" }, {
+	callback = function() vim.cmd.tabdo("wincmd =") end,
+	desc = "Resize splits if window got resized",
+	group = augroup("ResizeSplits"),
+})
+
+autocmd({ "BufWritePre" }, {
+	callback = function(event)
+		if event.match:match("^%w%w+://") then
+			return
 		end
+
+		local file = vim.loop.fs_realpath(event.match) or event.match
+
+		vim.fn.mkdir(vim.fn.fnamemodify(file, ":p:h"), "p")
 	end,
-	desc = "Toggle cursorline and relative number on",
-	group = ToggleWindowOptionsGroup,
-	pattern = "*",
+	desc = "Auto create dir when saving a file, in case some intermediate directory does not exist",
+	group = augroup("AutoCreateDir"),
 })
