@@ -64,14 +64,9 @@ local lsp = {
 		local clients = vim.lsp.get_active_clients({ bufnr = 0 })
 		if #clients ~= 0 then
 			if progress then
-				return icons.misc.gears
+				return icons.misc.gears .. clients[1].name
 			else
-				return string.format(
-					"%s %s%s",
-					icons.progress.done,
-					clients[1].name,
-					vim.g.autoloaded_copilot_agent == 1 and " " .. icons.kind_icons.Copilot or ""
-				)
+				return icons.progress.done .. clients[1].name
 			end
 		end
 		return ""
@@ -79,6 +74,23 @@ local lsp = {
 	hl = function()
 		local progress = vim.lsp.util.get_progress_messages()[1]
 		return { fg = progress and "yellow" or "fg" }
+	end,
+}
+
+local copilot_component = {
+	provider = icons.kind_icons.Copilot,
+	hl = function()
+		local hl = { fg = "fg" }
+		require("copilot.api").register_status_notification_handler(function(data)
+			if data.status == "Normal" then
+				hl.fg = "green"
+			elseif data.status == "InProgress" then
+				hl.fg = "yellow"
+			else
+				hl.fg = "red"
+			end
+		end)
+		return hl
 	end,
 }
 
@@ -151,6 +163,8 @@ local left = {
 	diagnostic_hints,
 	gap,
 	lsp,
+	gap,
+	copilot_component,
 }
 
 local middle = { macro_recording }
