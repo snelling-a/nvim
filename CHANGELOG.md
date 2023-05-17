@@ -1,5 +1,27 @@
 # Changelog
 
+## [3.7.0](https://github.com/snelling-a/nvim/compare/v3.6.0...v3.7.0) (2023-05-17)
+
+
+### Features
+
+* improve autocmds ([3413151](https://github.com/snelling-a/nvim/commit/34131519d1f8644c0e9fc5f911bdab4fe3001452))
+* **lsp:** improved capabilities ([de86b41](https://github.com/snelling-a/nvim/commit/de86b41f418970d0ed909346aae921666ccc7d08))
+* **plugin:** spectre ([3ba3ee9](https://github.com/snelling-a/nvim/commit/3ba3ee930c3a9b818be57a2aae68025cdc7d97a2))
+* use dressing for imput/ui select ([3adbd43](https://github.com/snelling-a/nvim/commit/3adbd4302d8f20fcf54771dac65e3ff4f5397268))
+
+
+### Bug Fixes
+
+* **cmp:** git completions ([8238fb9](https://github.com/snelling-a/nvim/commit/8238fb9f48251b1e47e65d3f5f7e6cc895e6a65c))
+* turn off indent-blankline in browser ([3416b0b](https://github.com/snelling-a/nvim/commit/3416b0bf4419f65445d4a6a296babcf164c5bfa3))
+
+
+### Miscellaneous
+
+* **plugins:** update plugins ([79309a1](https://github.com/snelling-a/nvim/commit/79309a1f26e9876d384c06e76e16f77847222170))
+* **spell:** update cspell.json ([afa5a2e](https://github.com/snelling-a/nvim/commit/afa5a2e9d88c612691ca7a78d1ff288a6ffe170a))
+
 ## [3.6.0](https://github.com/snelling-a/nvim/compare/v3.5.2...v3.6.0) (2023-05-17)
 
 
