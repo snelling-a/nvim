@@ -2,6 +2,8 @@ local icon = require("config.ui.icons").misc.indent
 
 local M = { "lukas-reineke/indent-blankline.nvim" }
 
+M.cond = require("config.util").is_vim()
+
 M.opts = {
 	char = icon,
 	context_highlight_list = {
