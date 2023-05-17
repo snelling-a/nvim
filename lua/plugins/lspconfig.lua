@@ -31,7 +31,7 @@ function M.config()
 	require("lspconfig.ui.windows").default_options.border = "rounded"
 
 	local opts = {
-		capabilities = require("cmp_nvim_lsp").default_capabilities(),
+		capabilities = require("config.lsp.util").get_capabilities(),
 		flags = { debounce_text_changes = 150 },
 		on_attach = require("config.lsp").on_attach,
 	}
