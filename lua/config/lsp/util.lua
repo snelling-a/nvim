@@ -33,4 +33,15 @@ function M.get_graphql_root_pattern()
 	})
 end
 
+function M.get_capabilities()
+	local capabilities = protocol.make_client_capabilities()
+	capabilities.textDocument.completion.completionItem.snippetSupport = true
+	capabilities.textDocument.completion.completionItem.resolveSupport = {
+		properties = { "documentation", "detail", "additionalTextEdits" },
+	}
+	capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
+
+	return capabilities
+end
+
 return M
