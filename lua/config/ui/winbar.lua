@@ -1,14 +1,11 @@
 local icons = require("config.ui.icons")
 local navic = require("nvim-navic")
 
-navic.setup({
-	highlight = true,
-	lsp = { auto_attach = true, preference = { "tsserver", "graphql", "vtsls" } },
-})
+navic.setup({ highlight = true, lsp = { auto_attach = true, preference = { "tsserver", "graphql", "vtsls" } } })
 
 local navic_component = {
-	provider = function() return navic.get_location() end,
 	enabled = function() return navic.is_available() end,
+	provider = function() return navic.get_location() end,
 }
 
 local file_info = {
@@ -21,7 +18,6 @@ local file_info = {
 }
 local file_info_inactive = {
 	provider = {
-		hl = { bg = "black" },
 		left_sep = "block",
 		name = "file_info",
 		opts = { type = "relative", file_readonly_icon = icons.file.readonly },
