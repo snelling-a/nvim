@@ -1,5 +1,25 @@
 # Changelog
 
+## [3.6.0](https://github.com/snelling-a/nvim/compare/v3.5.2...v3.6.0) (2023-05-17)
+
+
+### Features
+
+* **lsp:** add yaml features ([02487ad](https://github.com/snelling-a/nvim/commit/02487ada9e41c849bbc05d459a4c84f9c2b0631c))
+* **lsp:** improve handlers ([eea1d3e](https://github.com/snelling-a/nvim/commit/eea1d3ee16c9d41d4febc9ffa2756630d7b2de9b))
+* **lsp:** improve server capabilities ([fb86306](https://github.com/snelling-a/nvim/commit/fb86306f1ae79929105f8d39ac78712ddb5a1d4b))
+* **ui:** fix copilot icon on stausline ([cbce1b2](https://github.com/snelling-a/nvim/commit/cbce1b285f6ad76a9af45f9ab08c9e9c1b57f2e8))
+
+
+### Bug Fixes
+
+* remove commented code ([f4184ef](https://github.com/snelling-a/nvim/commit/f4184ef889f1ce08fded5ce6ace22be593e297b4))
+
+
+### Miscellaneous
+
+* **spell:** update cspell.json ([8d48863](https://github.com/snelling-a/nvim/commit/8d48863ba4b10cf6abe219a350a21380051535e1))
+
 ## [3.5.2](https://github.com/snelling-a/nvim/compare/v3.5.1...v3.5.2) (2023-05-15)
 
 
