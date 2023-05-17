@@ -37,8 +37,6 @@ local settings = {
 function Tsserver.setup(opts)
 	opts.root_dir = util.get_root_pattern(config_files)
 
-	-- lspconfig.vtsls.setup(opts)
-
 	opts.settings = settings
 
 	lspconfig.tsserver.setup(opts)
