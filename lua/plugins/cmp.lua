@@ -138,12 +138,12 @@ M.dependencies = {
 	"hrsh7th/cmp-path",
 	"L3MON4D3/LuaSnip",
 	"neovim/nvim-lspconfig",
-	"petertriho/cmp-git",
 	"ray-x/cmp-treesitter",
 	"saadparwaiz1/cmp_luasnip",
 	"windwp/nvim-autopairs",
 	"zbirenbaum/copilot-cmp",
 	{ "David-Kunz/cmp-npm", dependencies = { "nvim-lua/plenary.nvim" } },
+	{ "petertriho/cmp-git", dependencies = { "nvim-lua/plenary.nvim" } },
 }
 
 M.event = "InsertEnter"
@@ -175,7 +175,7 @@ function M.config(_, opts)
 	require("luasnip.loaders.from_vscode").lazy_load()
 
 	setup.filetype("gitcommit", {
-		sources = config.sources({ { name = "cmp" }, { name = "conventionalcommits" } }, { { name = "buffer" } }),
+		sources = config.sources({ { name = "git" }, { name = "conventionalcommits" } }, { { name = "buffer" } }),
 		window = { completion = get_window() },
 	})
 
