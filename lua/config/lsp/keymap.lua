@@ -26,7 +26,7 @@ function M.on_attach(bufnr)
 
 	bind("<C-g>", lsp.signature_help, "Show signature help")
 	bind("<leader>D", lsp.type_definition, "Show type [d]efinition")
-	bind("ca", lsp.code_action, "[C]ode [a]ction")
+	-- bind("ca", lsp.code_action, "[C]ode [a]ction")
 	bind("<leader>f", function() formatting.format() end, "[F]ormat the current buffer")
 	bind("<leader>tf", function() formatting.toggle() end, "[T]oggle Auto[f]ormat")
 	bind("<leader>rn", lsp.rename, "[R]ename variable")
