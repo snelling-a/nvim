@@ -13,12 +13,18 @@ util.map({ "c", "v", "x" }, "jk", escape, { desc = "Escape to normal mode" })
 util.map({ "n", "v" }, ":", ";", { desc = "Command is remapped to `;`" })
 map({ "n", "v" }, ";", ":", { desc = "Command is remapped to `;`" })
 
-local movement_warning = "NO! USE "
-util.nmap("<down>", function() logger.warn({ msg = movement_warning .. "J!" }) end, { desc = "DON'T USE [DOWN]" })
-util.nmap("<left>", function() logger.warn({ msg = movement_warning .. "H!" }) end, { desc = "DON'T USE [LEFT]" })
-util.nmap("<right>", function() logger.warn({ msg = movement_warning .. "L!" }) end, { desc = "DON'T USE [RIGHT]" })
-util.nmap("<up>", function() logger.warn({ msg = movement_warning .. "K!" }) end, { desc = "DON'T USE [Up]" })
+local function move_map(bad, good)
+	return util.nmap(
+		"<" .. bad .. ">",
+		function() logger.warn({ msg = string.format("NO! use %s", good), title = "HARD MODE" }) end,
+		{ desc = string.format("DON'T USE <%s>", string.upper(bad)) }
+	)
+end
 
+move_map("down", "j")
+move_map("left", "h")
+move_map("right", "l")
+move_map("up", "k")
 
 map(
 	"n",
