@@ -8,7 +8,7 @@ local function get_prompt(icon) return string.format("%s %s ", icon, icons.misc.
 
 local M = { "ibhagwan/fzf-lua" }
 
-M.dependencies = { "nvim-tree/nvim-web-devicons" }
+M.dependencies = { "neovim/nvim-lspconfig", "nvim-tree/nvim-web-devicons" }
 
 M.keys = {
 	{ "<C-p>", function() require("fzf-lua").files() end, desc = "Open [p]roject files" },
