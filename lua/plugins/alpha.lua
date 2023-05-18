@@ -31,6 +31,7 @@ local default_buttons = {
 		val = icons.misc.restore .. " Restore Session",
 		on_press = [[:lua require("config.session").load_session() <cr>]],
 	},
+	{ shortcut = "h", val = icons.misc.help .. " Help", on_press = [[:lua require("fzf-lua").help_tags() <CR>]] },
 	{ shortcut = "l", val = icons.misc.lazy .. " Lazy", on_press = [[:lua vim.cmd.Lazy("update") <CR>]] },
 	{ shortcut = "m", val = icons.misc.tools .. " Mason", on_press = [[:lua vim.cmd.Mason() <CR>]] },
 	{ shortcut = "c", val = icons.misc.health .. " Check health", on_press = [[:lua vim.cmd.checkhealth() <CR>]] },
