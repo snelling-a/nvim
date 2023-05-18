@@ -31,6 +31,7 @@ function M.config()
 		condition = function(utils) return utils.root_has_file({ ".yamllint", ".yamllint.yaml", ".yamllint.yml" }) end,
 	})
 
+	local builtins_diagnostics_shellcheck = builtins_diagnostics.shellcheck.with({ extra_args = { "-x" } })
 
 	local builtins_diagnostics_vale =
 		builtins_diagnostics.vale.with({ condition = function(utils) return utils.root_has_file({ ".vale.ini" }) end })
@@ -65,7 +66,7 @@ function M.config()
 			builtins_code_actions.shellcheck,
 			builtins_diagnostics.alex,
 			builtins_diagnostics.gitlint,
-			builtins_diagnostics.shellcheck.with({ extra_args = { "-x" } }),
+			builtins_diagnostics_shellcheck,
 			builtins_diagnostics.todo_comments,
 			builtins_diagnostics.vint,
 			builtins_diagnostics.zsh,
