@@ -87,11 +87,18 @@ function M.config(_, dashboard)
 
 	vim.api.nvim_create_autocmd("User", {
 		callback = function()
-			local version = " " .. vim.version().major .. "." .. vim.version().minor .. "." .. vim.version().patch
 			local stats = require("lazy").stats()
-			local startup_time = (math.floor(stats.startuptime * 100 + 0.5) / 100)
-			local total_plugins = stats.count .. " Plugins"
-			dashboard.section.footer.val = version .. "   " .. total_plugins .. "  󰄉 " .. startup_time .. " ms"
+			local v = vim.version()
+
+			local version = string.format("%s %d.%d.%d", icons.misc.version, v.major, v.minor, v.patch)
+
+			local time = (math.floor(stats.startuptime * 100 + 0.5) / 100)
+			local startup_time = string.format("%s %d ms", icons.progress.pending, time)
+
+			local plugins = string.format("%s %d Plugins", icons.misc.rocket, stats.count)
+
+			dashboard.section.footer.val = string.format("%s %s %s", version, plugins, startup_time)
+
 			pcall(vim.cmd.AlphaRedraw)
 		end,
 		desc = "Render alpha footer",
