@@ -86,35 +86,35 @@ autocmd({ "BufWritePre" }, {
 })
 
 local ToggleWindowOptionsGroup = augroup("ToggleWindowOptions")
--- autocmd({ "BufLeave" }, {
--- 	callback = function()
--- 		opt_local.cursorline = false
--- 		opt_local.relativenumber = false
---
--- 		if util.should_have_formatting then
--- 			opt_local.number = true
--- 		else
--- 			opt_local.number = false
--- 		end
--- 	end,
--- 	desc = "Toggle cursorline and relative number off",
--- 	group = ToggleWindowOptionsGroup,
--- 	pattern = "*",
--- })
+autocmd({ "BufLeave" }, {
+	callback = function()
+		opt_local.cursorline = false
+		opt_local.relativenumber = false
 
--- autocmd("BufEnter", {
--- 	callback = function()
--- 		if util.should_have_formatting then
--- 			opt_local.cursorline = true
--- 			-- opt_local.number = true
--- 			-- opt_local.relativenumber = true
--- 		else
--- 			opt_local.colorcolumn = ""
--- 		end
--- 	end,
--- 	desc = "Toggle cursorline and relative number on",
--- 	group = ToggleWindowOptionsGroup,
--- })
+		if util.should_have_formatting then
+			opt_local.number = true
+		else
+			opt_local.number = false
+		end
+	end,
+	desc = "Toggle cursorline and relative number off",
+	group = ToggleWindowOptionsGroup,
+	pattern = "*",
+})
+
+autocmd("BufEnter", {
+	callback = function()
+		if util.should_have_formatting then
+			opt_local.cursorline = true
+			-- opt_local.number = true
+			-- opt_local.relativenumber = true
+		else
+			opt_local.colorcolumn = ""
+		end
+	end,
+	desc = "Toggle cursorline and relative number on",
+	group = ToggleWindowOptionsGroup,
+})
 
 autocmd({ "FocusGained", "TermClose", "TermLeave" }, {
 	command = "checktime",
