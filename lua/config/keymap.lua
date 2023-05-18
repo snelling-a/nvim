@@ -19,23 +19,6 @@ util.nmap("<left>", function() logger.warn({ msg = movement_warning .. "H!" }) e
 util.nmap("<right>", function() logger.warn({ msg = movement_warning .. "L!" }) end, { desc = "DON'T USE [RIGHT]" })
 util.nmap("<up>", function() logger.warn({ msg = movement_warning .. "K!" }) end, { desc = "DON'T USE [Up]" })
 
-util.map("", "<C-H>", function() cmd.wincmd("h") end, { desc = "Move to Left Window" })
-util.map("", "<C-J>", function() cmd.wincmd("j") end, { desc = "Move to Bottom Window" })
-util.map("", "<C-K>", function() cmd.wincmd("k") end, { desc = "Move to Upper Window" })
-util.map("", "<C-L>", function() cmd.wincmd("l") end, { desc = "Move to Right Window" })
-
-util.nmap(
-	"<C-left>",
-	function() cmd.resize({ args = { "-5" }, mods = { vertical = true } }) end,
-	{ desc = "Decrease current window width" }
-)
-util.nmap(
-	"<C-right>",
-	function() cmd.resize({ args = { "+5" }, mods = { vertical = true } }) end,
-	{ desc = "Increase current window width" }
-)
-util.nmap("<C-down>", function() cmd.resize({ args = { "-5" } }) end, { desc = "Decrease current window height" })
-util.nmap("<C-up>", function() cmd.resize({ args = { "+5" } }) end, { desc = "Increase current window height" })
 
 map(
 	"n",
