@@ -1,7 +1,6 @@
 ## Plugins
 |Plugin|Description|
 |---|---|
-|[antoinemadec/FixCursorHold.nvim](https://github.com/antoinemadec/FixCursorHold.nvim)|Fix CursorHold Performance.|
 |[anuvyklack/fold-preview.nvim](https://github.com/anuvyklack/fold-preview.nvim)|Preview folds in float window |
 |[anuvyklack/keymap-amend.nvim](https://github.com/anuvyklack/keymap-amend.nvim)|Amend the existing keymap in Neovim|
 |[anuvyklack/pretty-fold.nvim](https://github.com/anuvyklack/pretty-fold.nvim)|Foldtext customization in Neovim|
@@ -9,6 +8,7 @@
 |[David-Kunz/jester](https://github.com/David-Kunz/jester)|A Neovim plugin to easily run and debug Jest tests|
 |[davidsierradz/cmp-conventionalcommits](https://github.com/davidsierradz/cmp-conventionalcommits)|(WIP) nvim-cmp source for autocompleting git commits with conventional commits types and lerna packages as scope|
 |[eandrju/cellular-automaton.nvim](https://github.com/eandrju/cellular-automaton.nvim)|A useless plugin that might help you cope with stubbornly broken tests or overall lack of sense in life. It lets you execute aesthetically pleasing, cellular automaton animations based on the content of neovim buffer.|
+|[echasnovski/mini.indentscope](https://github.com/echasnovski/mini.indentscope)|Neovim Lua plugin to visualize and operate on indent scope. Part of 'mini.nvim' library.|
 |[epwalsh/obsidian.nvim](https://github.com/epwalsh/obsidian.nvim)|Neovim plugin for Obsidian, written in Lua|
 |[folke/neodev.nvim](https://github.com/folke/neodev.nvim)|💻  Neovim setup for init.lua and plugin development with full signature help, docs and completion for the nvim lua API.|
 |[folke/noice.nvim](https://github.com/folke/noice.nvim)|💥 Highly experimental plugin that completely replaces the UI for messages, cmdline and the popupmenu.|
@@ -33,9 +33,10 @@
 |[JoosepAlviste/nvim-ts-context-commentstring](https://github.com/JoosepAlviste/nvim-ts-context-commentstring)|Neovim treesitter plugin for setting the commentstring based on the cursor location in a file.|
 |[jose-elias-alvarez/null-ls.nvim](https://github.com/jose-elias-alvarez/null-ls.nvim)|Use Neovim as a language server to inject LSP diagnostics, code actions, and more via Lua.|
 |[jparise/vim-graphql](https://github.com/jparise/vim-graphql)|A Vim plugin that provides GraphQL file detection, syntax highlighting, and indentation.|
-|[kosayoda/nvim-lightbulb](https://github.com/kosayoda/nvim-lightbulb)|VSCode 💡 for neovim's built-in LSP.|
 |[kylechui/nvim-surround](https://github.com/kylechui/nvim-surround)|Add/change/delete surrounding delimiter pairs with ease. Written with :heart: in Lua.|
 |[L3MON4D3/LuaSnip](https://github.com/L3MON4D3/LuaSnip)|Snippet Engine for Neovim written in Lua.|
+|[ldelossa/gh.nvim](https://github.com/ldelossa/gh.nvim)|A fully featured GitHub integration for performing code reviews in Neovim.|
+|[ldelossa/litee.nvim](https://github.com/ldelossa/litee.nvim)|A framework for building Neovim plugins|
 |[lewis6991/gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)|Git integration for buffers|
 |[lukas-reineke/headlines.nvim](https://github.com/lukas-reineke/headlines.nvim)|This plugin adds horizontal highlights for text filetypes, like markdown, orgmode, and neorg.|
 |[lukas-reineke/indent-blankline.nvim](https://github.com/lukas-reineke/indent-blankline.nvim)|Indent guides  for Neovim|
@@ -73,6 +74,7 @@
 |[theHamsta/nvim-dap-virtual-text](https://github.com/theHamsta/nvim-dap-virtual-text)||
 |[tpope/vim-fugitive](https://github.com/tpope/vim-fugitive)|fugitive.vim: A Git wrapper so awesome, it should be illegal|
 |[tpope/vim-repeat](https://github.com/tpope/vim-repeat)|repeat.vim: enable repeating supported plugin maps with "."|
+|[tpope/vim-unimpaired](https://github.com/tpope/vim-unimpaired)|unimpaired.vim: Pairs of handy bracket mappings|
 |[williamboman/mason-lspconfig.nvim](https://github.com/williamboman/mason-lspconfig.nvim)|Extension to mason.nvim that makes it easier to use lspconfig with mason.nvim. Strongly recommended for Windows users.|
 |[williamboman/mason.nvim](https://github.com/williamboman/mason.nvim)|Portable package manager for Neovim that runs everywhere Neovim runs. Easily install and manage LSP servers, DAP servers, linters, and formatters.|
 |[windwp/nvim-autopairs](https://github.com/windwp/nvim-autopairs)|autopairs for neovim written by lua|
