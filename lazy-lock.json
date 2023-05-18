@@ -25,7 +25,7 @@
   "firenvim": { "branch": "master", "commit": "386239e1b1e6e3884db4da8bb7057709bec3dc51" },
   "flit.nvim": { "branch": "main", "commit": "f60e4b3d49bb5a5e97cfffe66f2e671eb422078e" },
   "fold-preview.nvim": { "branch": "main", "commit": "b7920cb0aba2b48a6b679bff45f98c3ebc0f0b89" },
-  "fzf-lua": { "branch": "main", "commit": "c56cd5c9e84e724ed6c707a4a7fc71ccfb0c6c1d" },
+  "fzf-lua": { "branch": "main", "commit": "3978280c4736c7a88552f89692be014d426c34cb" },
   "gitsigns.nvim": { "branch": "main", "commit": "814158f6c4b1724c039fcefe79b0be72c9131c2d" },
   "goto-breakpoints.nvim": { "branch": "master", "commit": "e57cf63d152534db3a9177ae53abbff43fcab6c2" },
   "headlines.nvim": { "branch": "master", "commit": "ddef41b2664f0ce25fe76520d708e2dc9dfebd70" },

@@ -35,6 +35,7 @@ M.opts = {
 		post_reset_cb = function() require("feline").reset_highlights() end,
 		prompt = get_prompt(icons.misc.color),
 	},
+	commands = { sort_lastused = true },
 	files = {
 		fd_opts = "--color=never --type f --hidden --no-ignore --follow --exclude .git --exclude node_modules",
 		fzf_opts = { ["--history"] = vim.fn.stdpath("data") .. "/fzf-lua-files-history" },
