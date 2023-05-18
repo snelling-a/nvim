@@ -1,5 +1,36 @@
 # Changelog
 
+## [3.8.0](https://github.com/snelling-a/nvim/compare/v3.7.0...v3.8.0) (2023-05-18)
+
+
+### Features
+
+* **alpha:** add help option ([75c52fc](https://github.com/snelling-a/nvim/commit/75c52fca3767f497d78538787bd6d2085c917bdf))
+* **fzf:** use last used commands ([4ec709a](https://github.com/snelling-a/nvim/commit/4ec709a305b9b9c5f9bcc13cc43d6d09da4745f0))
+* **git:** gh.nvim ([029b15e](https://github.com/snelling-a/nvim/commit/029b15e7533a166c28120ce4d5265df80b288bea))
+* **git:** gh.nvim ([2839640](https://github.com/snelling-a/nvim/commit/283964029196ec4caaa5127e06dbf5d962ce31f8))
+* **plugin:** vim-unimpaired ([a4d13ae](https://github.com/snelling-a/nvim/commit/a4d13aee6e7d7558662d76b305f940645ae51ea6))
+* **plugin:** vim-unimpaired ([2f118aa](https://github.com/snelling-a/nvim/commit/2f118aac00b6c7854fccabae7f508ec92d62c8c5))
+* **ui:** indentscope ([b52c868](https://github.com/snelling-a/nvim/commit/b52c86841a44e4164432462e07ce5d2eea6427b7))
+* use notify as backup if noice doesn't load ([5fdb5cd](https://github.com/snelling-a/nvim/commit/5fdb5cde91432caeb8f2aa60891c1246ee22312a))
+* vale diagnostics ([bc3cde3](https://github.com/snelling-a/nvim/commit/bc3cde38bac6ed3b9b5510b3d1ec6c087d247675))
+
+
+### Bug Fixes
+
+* **alpha:** don't show dashboard in browser ([d9c96d7](https://github.com/snelling-a/nvim/commit/d9c96d76e053a6a8f2477304a0963bb1484a4476))
+* **fzf:** move diagnostics to root of opts ([757a456](https://github.com/snelling-a/nvim/commit/757a456ff13645176b1dcd38f558c4ae9073ccf8))
+* **keymap:** delete unnecessary keymaps ([42de4b8](https://github.com/snelling-a/nvim/commit/42de4b816245960776852c33ffb08d80a3748ac2))
+* **lsp:** disable noice hadling lsp signature ([9f4cf5b](https://github.com/snelling-a/nvim/commit/9f4cf5b02bf00139f7ad2db251f7af68723f8a53))
+* **lsp:** use fzf-lua code_action ([1bab365](https://github.com/snelling-a/nvim/commit/1bab3655ca32538662d2154c0157e7a64cc5ef04))
+
+
+### Miscellaneous
+
+* **docs:** update README.md ([e52bcdf](https://github.com/snelling-a/nvim/commit/e52bcdf51243238de5f084f9c79b57550cb5aef2))
+* **plugins:** update packages ([815df14](https://github.com/snelling-a/nvim/commit/815df145c1e6e8f53bf46fb37a6a57b5cd2ccd20))
+* **spell:** update cspell.json ([116a7b8](https://github.com/snelling-a/nvim/commit/116a7b88c2f4d32ee60f4a985d0f3d1dc34bdfa4))
+
 ## [3.7.0](https://github.com/snelling-a/nvim/compare/v3.6.0...v3.7.0) (2023-05-17)
 
 
