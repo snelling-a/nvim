@@ -69,6 +69,8 @@ local obsidian_buttons = {
 
 local M = { "goolord/alpha-nvim" }
 
+M.cond = not vim.g.started_by_firenvim
+
 M.event = "VimEnter"
 
 function M.config(_, dashboard)
