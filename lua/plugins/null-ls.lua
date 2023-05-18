@@ -64,7 +64,6 @@ function M.config()
 		sources = {
 			builtins_code_actions.cspell.with({ disabled_filetypes = disabled_filetypes }),
 			builtins_code_actions.shellcheck,
-			builtins_diagnostics.alex,
 			builtins_diagnostics.gitlint,
 			builtins_diagnostics_shellcheck,
 			builtins_diagnostics.todo_comments,
@@ -80,7 +79,6 @@ function M.config()
 			builtins_formatting.stylua,
 			builtins_formatting.taplo,
 			builtins_formatting.yamlfmt,
-			builtins_formatting.yq,
 			builtins_formatting_deno_fmt,
 			builtins_formatting_prettierd,
 		},
