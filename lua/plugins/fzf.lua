@@ -36,6 +36,13 @@ M.opts = {
 		prompt = get_prompt(icons.misc.color),
 	},
 	commands = { sort_lastused = true },
+	diagnostics = {
+		cwd_only = true,
+		file_icons = true,
+		git_icons = true,
+		prompt = get_prompt(icons.misc.tools),
+		severity_limit = "warning",
+	},
 	files = {
 		fd_opts = "--color=never --type f --hidden --no-ignore --follow --exclude .git --exclude node_modules",
 		fzf_opts = { ["--history"] = vim.fn.stdpath("data") .. "/fzf-lua-files-history" },
@@ -64,15 +71,16 @@ M.opts = {
 	},
 	lines = { prompt = get_prompt(icons.location.line) },
 	lsp = {
-		code_actions = { prompt = get_prompt(icons.misc.code_action) },
-		cwd_only = true,
-		diagnostics = {
-			cwd_only = true,
-			file_icons = true,
-			git_icons = true,
-			prompt = get_prompt(icons.misc.tools),
-			severity_limit = "warning",
+		code_actions = {
+			prompt = get_prompt(icons.misc.code_action),
+			async_or_timeout = 5000,
+			winopts = {
+				row = 0.40,
+				height = 0.35,
+				width = 0.60,
+			},
 		},
+		cwd_only = true,
 		finder = { git_icons = true, includeDeclaration = true, prompt = get_prompt(icons.cmp.nvim_lsp) },
 		git_icons = true,
 		symbols = { symbol_icons = icons.kind_icons, symbol_fmt = function(s) return "|" .. s .. "|" end },
