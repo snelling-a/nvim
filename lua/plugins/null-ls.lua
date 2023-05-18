@@ -31,6 +31,10 @@ function M.config()
 		condition = function(utils) return utils.root_has_file({ ".yamllint", ".yamllint.yaml", ".yamllint.yml" }) end,
 	})
 
+
+	local builtins_diagnostics_vale =
+		builtins_diagnostics.vale.with({ condition = function(utils) return utils.root_has_file({ ".vale.ini" }) end })
+
 	local builtins_formatting_deno_fmt = builtins.formatting.deno_fmt.with({
 		condition = function(utils) return utils.root_has_file({ "deno.json*" }) end,
 	})
@@ -67,6 +71,7 @@ function M.config()
 			builtins_diagnostics.zsh,
 			builtins_diagnostics_cspell,
 			builtins_diagnostics_luacheck,
+			builtins_diagnostics_vale,
 			builtins_diagnostics_yamllint,
 			builtins_formatting.cbfmt,
 			builtins_formatting.jq,
