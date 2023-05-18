@@ -79,6 +79,7 @@ M.opts = {
 			["vim.lsp.util.stylize_markdown"] = true,
 		},
 		progress = { format = lsp_progress_format },
+		signature = { enabled = false },
 	},
 	messages = { view = "mini", view_error = "mini", view_warn = "mini", view_search = false },
 	notify = { view = "mini" },
