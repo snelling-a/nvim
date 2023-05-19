@@ -4,11 +4,11 @@ M.cmd = "GH"
 
 M.dependencies = { "ibhagwan/fzf-lua", "ldelossa/litee.nvim" }
 
-M.opts = { icon_set = "nerd", panel = { orientation = "left", panel_size = 30 } }
+M.opts = { icon_set = "codicons", panel = { orientation = "left", panel_size = 30 } }
 
 function M.config(_, opts)
 	require("litee.lib").setup({
-		tree = { icon_set = "nerd" },
+		tree = { icon_set = "codicons" },
 		panel = { orientation = "left", panel_size = 30 },
 		notify = { enabled = false },
 	})
