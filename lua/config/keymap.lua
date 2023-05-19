@@ -76,6 +76,8 @@ util.imap("jk", function()
 end, { desc = "Write and go to normal mode" })
 util.imap("jj", function() escape() end, { desc = "Go to normal mode" })
 
+util.vmap("<", "<gv", { desc = "Easy unindent" })
+util.vmap(">", ">gv", { desc = "Easy indent" })
 util.vmap("J", ":m '>+1<CR>gv=gv", { desc = "Move lines down" })
 util.vmap("K", ":m '<-2<CR>gv=gv", { desc = "Move lines up" })
 
