@@ -2,12 +2,13 @@ local vault_directory = os.getenv("NOTES") or os.getenv("HOME") .. "/notes"
 
 local Constants = {}
 
+Constants.mason_dir = ""
+
 Constants.no_format = {
 	"",
 	"alpha",
 	"checkhealth",
 	"dapui_*",
-	"pr",
 	"diffview",
 	"fugitive",
 	"fugitiveblame",
@@ -24,8 +25,10 @@ Constants.no_format = {
 	"ObsidianBacklinks",
 	"Outline",
 	"packer",
+	"pr",
 	"qf",
 	"query",
+	"spectre_panel",
 	"toggleterm",
 	"Trouble",
 	"undotree",
