@@ -7,6 +7,7 @@ Constants.no_format = {
 	"alpha",
 	"checkhealth",
 	"dapui_*",
+	"pr",
 	"diffview",
 	"fugitive",
 	"fugitiveblame",
