@@ -52,7 +52,6 @@ M.opts = {
 		bcommits = { prompt = get_prompt(icons.git.commit_2) },
 		branches = { prompt = get_prompt(icons.git.branch) },
 		commits = {
-			cmd = "git lsa --color",
 			preview_pager = preview_pager,
 			prompt = get_prompt(icons.misc.git_commit),
 		},
