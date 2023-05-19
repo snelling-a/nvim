@@ -17,8 +17,8 @@ M.opts = {
 	show_current_context = true,
 	show_foldtext = true,
 	space_char_blankline = " ",
-	use_treesitter = true,
-	use_treesitter_scope = true,
+	use_treesitter = false,
+	use_treesitter_scope = false,
 }
 
 M.event = "BufReadPre"
