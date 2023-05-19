@@ -23,7 +23,7 @@ M.opts = {
 		RRGGBBAA = true,
 		sass = { enable = false, parsers = { "css" } },
 		tailwind = false,
-		virtualtext = "■",
+		virtualtext = require("config.ui.icons").misc.square,
 	},
 }
 

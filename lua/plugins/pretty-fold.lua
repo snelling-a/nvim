@@ -6,7 +6,7 @@ M.dependencies = {
 	{
 		"anuvyklack/fold-preview.nvim",
 		dependencies = { "anuvyklack/keymap-amend.nvim" },
-		opts = { border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" } },
+		opts = { border = "rounded" },
 	},
 }
 

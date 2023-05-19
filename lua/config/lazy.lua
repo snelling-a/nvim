@@ -34,7 +34,7 @@ require("lazy").setup({
 	ui = {
 		border = "rounded",
 		icons = {
-			cmd = icons.languages.bash,
+			cmd = icons.cmp.cmd,
 			config = icons.misc.gears,
 			event = icons.kind_icons.Event,
 			ft = icons.file.buffer,
@@ -47,7 +47,7 @@ require("lazy").setup({
 			runtime = icons.misc.code,
 			source = icons.file.folder_open,
 			start = icons.misc.right,
-			task = " ",
+			task = icons.misc.checklist,
 			list = {
 				icons.misc.selection,
 				icons.misc.chevron_right,

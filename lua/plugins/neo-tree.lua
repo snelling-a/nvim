@@ -62,15 +62,20 @@ M.opts = {
 		},
 		git_status = {
 			symbols = {
-				added = icons.git.added,
-				conflict = icons.git.merge,
-				deleted = icons.git.removed,
-				ignored = icons.git.ignored,
-				-- modified = icons.git.modified,
+				-- Change type
+				added = icons.gitsigns.GitSignsAdd,
+				deleted = icons.gitsigns.GitSignsChangedelete,
+				modified = icons.gitsigns.GitSignsAdd,
 				renamed = icons.git.renamed,
+				-- Status type
+				untracked = icons.gitsigns.GitSignsUntracked,
+				ignored = icons.git.ignored,
+				unstaged = "", --icons.gitsigns.GitSignsChange,
 				staged = icons.git.staged,
-				unstaged = icons.git.modified,
-				untracked = icons.misc.help,
+				conflict = icons.git.merge,
+			},
+		},
+	},
 			},
 		},
 	},

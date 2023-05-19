@@ -17,9 +17,9 @@ M.dependencies = {
 			ui = {
 				border = "rounded",
 				icons = {
-					package_installed = icons.done,
-					package_pending = icons.pending,
-					package_uninstalled = icons.trash,
+					package_installed = icons.progress.done,
+					package_pending = icons.progress.pending,
+					package_uninstalled = icons.progress.trash,
 				},
 			},
 		},

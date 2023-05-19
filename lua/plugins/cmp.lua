@@ -114,6 +114,8 @@ local function get_window()
 	})
 end
 
+local cmdline_view = { entries = { name = "wildmenu", separator = icons.fillchars.foldsep } }
+
 local function luasnip_extend()
 	local extend = require("luasnip").filetype_extend
 
@@ -182,13 +184,13 @@ function M.config(_, opts)
 	setup.cmdline({ "/", "?" }, {
 		mapping = mapping.preset.cmdline(),
 		sources = cmp.config.sources({ { name = "nvim_lsp_document_symbol" } }, { { name = "buffer" } }),
-		view = { entries = { name = "wildmenu", separator = "|" } },
+		view = cmdline_view,
 	})
 
 	setup.cmdline(":", {
 		mapping = mapping.preset.cmdline(),
 		sources = config.sources({ { name = "path" } }, { { name = "cmdline" } }),
-		view = { entries = { name = "wildmenu", separator = "|" } },
+		view = cmdline_view,
 	})
 end
 
