@@ -24,7 +24,11 @@ function LspConfig.on_attach(client, bufnr)
 	end
 
 	require("config.lsp.handlers").on_attach()
-	require("config.lsp.diagnostic").on_attach(bufnr)
+
+	if client.supports_method("textDocument/publishDiagnostics") then
+		require("config.lsp.diagnostic").on_attach(bufnr)
+	end
+
 	require("config.lsp.keymap").on_attach(bufnr)
 end
 
