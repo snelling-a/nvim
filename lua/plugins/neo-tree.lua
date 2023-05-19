@@ -70,15 +70,13 @@ M.opts = {
 		},
 		git_status = {
 			symbols = {
-				-- Change type
 				added = icons.gitsigns.GitSignsAdd,
 				deleted = icons.gitsigns.GitSignsChangedelete,
 				modified = icons.gitsigns.GitSignsAdd,
 				renamed = icons.git.renamed,
-				-- Status type
 				untracked = icons.gitsigns.GitSignsUntracked,
 				ignored = icons.git.ignored,
-				unstaged = "", --icons.gitsigns.GitSignsChange,
+				unstaged = "",
 				staged = icons.git.staged,
 				conflict = icons.git.merge,
 			},
@@ -88,7 +86,5 @@ M.opts = {
 		},
 	},
 }
-
-M.config = true
 
 return M
