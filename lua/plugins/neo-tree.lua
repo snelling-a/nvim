@@ -29,7 +29,15 @@ M.keys = {
 M.opts = {
 	filesystem = {
 		filtered_items = {
-			never_show = { ".git", ".hg", ".DS_Store", ".Trashes", "__MACOSX", "ehthumbs.db", "Thumbs.db" },
+			never_show_by_pattern = {
+				"*.git",
+				"*.hg",
+				"*.DS_Store",
+				"*.Trashes",
+				"*__MACOSX",
+				"*ehthumbs.db",
+				"*Thumbs.db",
+			},
 			hide_dotfiles = false,
 			hide_gitignored = false,
 			visible = true,
