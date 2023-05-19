@@ -70,15 +70,7 @@ M.opts = {
 	},
 	lines = { prompt = get_prompt(icons.location.line) },
 	lsp = {
-		code_actions = {
-			prompt = get_prompt(icons.misc.code_action),
-			async_or_timeout = 5000,
-			winopts = {
-				row = 0.40,
-				height = 0.35,
-				width = 0.60,
-			},
-		},
+		code_actions = { prompt = get_prompt(icons.misc.code_action) },
 		cwd_only = true,
 		finder = { git_icons = true, includeDeclaration = true, prompt = get_prompt(icons.cmp.nvim_lsp) },
 		git_icons = true,
