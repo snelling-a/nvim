@@ -1,10 +1,7 @@
 local icons = require("config.ui.icons")
+local get_prompt = require("config.util").get_prompt
 
 local preview_pager = "delta --width=$FZF_PREVIEW_COLUMNS"
-
----@param icon string
----@return string
-local function get_prompt(icon) return string.format("%s %s ", icon, icons.misc.right) end
 
 local M = { "ibhagwan/fzf-lua" }
 
@@ -27,6 +24,7 @@ M.keys = {
 }
 
 M.opts = {
+	"fzf-native",
 	blines = { prompt = get_prompt(icons.location.line) },
 	btags = { prompt = get_prompt(icons.misc.tag) },
 	buffers = { prompt = get_prompt(icons.file.buffers), cwd_only = true },
@@ -44,6 +42,7 @@ M.opts = {
 		severity_limit = "warning",
 	},
 	files = {
+		cwd_prompt = false,
 		fd_opts = "--color=never --type f --hidden --no-ignore --follow --exclude .git --exclude node_modules",
 		fzf_opts = { ["--history"] = vim.fn.stdpath("data") .. "/fzf-lua-files-history" },
 		prompt = get_prompt(icons.misc.files),
@@ -55,7 +54,7 @@ M.opts = {
 			preview_pager = preview_pager,
 			prompt = get_prompt(icons.misc.git_commit),
 		},
-		files = { prompt = get_prompt(icons.git.folder) },
+		files = { prompt = "x" }, --get_prompt(icons.git.folder) },
 		icons = {
 			["A"] = { icon = icons.git.added, color = "green" },
 			["D"] = { icon = icons.git.removed, color = "red" },
