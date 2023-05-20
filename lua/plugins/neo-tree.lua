@@ -88,6 +88,12 @@ M.opts = {
 		["js"] = { "d.ts" },
 		["jsx"] = { "d.ts" },
 	},
+	source_selector = {
+		winbar = true,
+		sources = {
+			{ source = "filesystem", display_name = icons.misc.files .. " Files " },
+			{ source = "buffers", display_name = icons.file.buffer .. " Buffers " },
+			{ source = "git_status", display_name = icons.git.git .. " Git " },
 		},
 	},
 }
