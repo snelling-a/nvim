@@ -97,4 +97,9 @@ function Util.is_buf_big(bufnr)
 	end
 end
 
+---wrapper around  icon so prompts are consistant
+---@param icon string
+---@return string ' + icon'
+function Util.get_prompt(icon) return string.format("%s %s ", icon, require("config.ui.icons").misc.right) end
+
 return Util

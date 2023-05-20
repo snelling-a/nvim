@@ -158,6 +158,7 @@ Icons.misc = {
 	chevron_down = " ",
 	chevron_right = "󰄾 ",
 	chevron_up = " ",
+	clipboard_check = "󰢨 ",
 	code = " ",
 	code_action = "󰘦 ",
 	down = down,

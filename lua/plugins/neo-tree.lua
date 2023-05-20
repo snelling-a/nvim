@@ -1,4 +1,35 @@
 local icons = require("config.ui.icons")
+local logger = require("config.util.logger")
+
+local function copy_selector(state)
+	local node = state.tree:get_node()
+	local filepath = node:get_id()
+	local modify = vim.fn.fnamemodify
+
+	local results = {
+		{ msg = "Tail of the file name (last component of the name)", val = modify(filepath, ":t") },
+		{
+			msg = "Reduce file name to be relative to current directory, if possible",
+			val = modify(filepath, ":p:."),
+		},
+		{
+			msg = "Reduce file name to be relative to the home directory, if possible",
+			val = modify(filepath, ":p:~"),
+		},
+		{ msg = "Absolute path", val = modify(filepath, ":p") },
+		{ msg = "Root of the file name (the last extension removed)", val = modify(filepath, ":t:r") },
+		{ msg = "Extension of the file name", val = modify(filepath, ":e") },
+	}
+
+	vim.ui.select(vim.tbl_keys(results), {
+		prompt = require("config.util").get_prompt(icons.misc.clipboard_check),
+		format_item = function(item) return results[item].msg end,
+	}, function(choice)
+		local val = results[choice].val
+		vim.fn.setreg("+", val)
+		logger.info({ msg = "Copied to clipboard: " .. val, title = "NeoTree" })
+	end)
+end
 
 local M = { "nvim-neo-tree/neo-tree.nvim" }
 
@@ -28,6 +59,7 @@ M.keys = {
 
 M.opts = {
 	filesystem = {
+		commands = { copy_selector = copy_selector },
 		filtered_items = {
 			never_show_by_pattern = {
 				"*.git",
@@ -59,6 +91,7 @@ M.opts = {
 			["Z"] = "expand_all_nodes",
 			["a"] = { "add", config = { show_path = "relative" } },
 			["A"] = { "add_directory", config = { show_path = "relative" } },
+			["y"] = "copy_selector",
 		},
 	},
 	open_files_do_not_replace_types = { "terminal", "trouble", "qf", "neo-tree" },
