@@ -82,7 +82,12 @@ M.opts = {
 			},
 		},
 	},
-			},
+	nesting_rules = {
+		["ts"] = { "spec.ts", "spec.tsx", "stories.tsx", "stories.mdx" },
+		["tsx"] = { "spec.ts", "spec.tsx", "stories.tsx", "stories.mdx" },
+		["js"] = { "d.ts" },
+		["jsx"] = { "d.ts" },
+	},
 		},
 	},
 }
