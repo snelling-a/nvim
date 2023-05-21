@@ -1,6 +1,23 @@
 local api = vim.api
 local lsp = vim.lsp.buf
 
+local function highlight_references()
+	local node = require("nvim-treesitter.ts_utils").get_node_at_cursor()
+	while node ~= nil do
+		local node_type = node:type()
+		if
+			node_type == "string"
+			or node_type == "string_fragment"
+			or node_type == "template_string"
+			or node_type == "document"
+		then
+			return
+		end
+		node = node:parent()
+	end
+	lsp.document_highlight()
+end
+
 local DocumentHighlight = {}
 
 function DocumentHighlight.on_attach(bufnr)
@@ -10,7 +27,7 @@ function DocumentHighlight.on_attach(bufnr)
 
 	api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
 		buffer = bufnr,
-		callback = lsp.document_highlight,
+		callback = highlight_references,
 		desc = "Highlight all occurrences of the word under the cursor",
 		group = LspDocumentHighlightGroup,
 	})
