@@ -1,5 +1,35 @@
 # Changelog
 
+## [3.9.0](https://github.com/snelling-a/nvim/compare/v3.8.0...v3.9.0) (2023-05-21)
+
+
+### Features
+
+* copy path options from neo-tree ([d6147dc](https://github.com/snelling-a/nvim/commit/d6147dc2a207e6fca817bee9b7ab0f043740df44))
+* has ([49eb628](https://github.com/snelling-a/nvim/commit/49eb6283a07091a396801cfee9feef722db4f3ac))
+* **keys:** easy indent ([6b077a2](https://github.com/snelling-a/nvim/commit/6b077a27e8bdf388cc368973be296ec9a9ac5b0f))
+* **lsp:** codeLens ([690652c](https://github.com/snelling-a/nvim/commit/690652c917d53f642f50ed5379989c4bdabe9ab9))
+* **lsp:** inlay hints ([8025026](https://github.com/snelling-a/nvim/commit/8025026fbb8d806102d2dca5d0178fadb47042a6))
+* neo-tree nesting rules ([a4cd2c9](https://github.com/snelling-a/nvim/commit/a4cd2c99111b2affbebd2d58ff461a708a173ba6))
+* **ui:** icons ([7c37f3a](https://github.com/snelling-a/nvim/commit/7c37f3acd0447c1f68c569139064dbafbd01abbd))
+
+
+### Bug Fixes
+
+* add pr to list of no_format filetypes ([7a012cc](https://github.com/snelling-a/nvim/commit/7a012cc9095832b6657869fdcddf2ae403b8f3ec))
+* delete repeated keybinding ([c26aca5](https://github.com/snelling-a/nvim/commit/c26aca597adefbc96abea802187636ca2f592aae))
+* don't use treesitter for indent-blankline ([2881f5d](https://github.com/snelling-a/nvim/commit/2881f5d447a0da2ba769621a298f6044e7c8c6e6))
+* **fzf:** delete use of custom git log ([d7a09c9](https://github.com/snelling-a/nvim/commit/d7a09c94c927babc04e94013a90baf1d40b17673))
+* **lsp:** remove runtime from lua_ls ([43be29c](https://github.com/snelling-a/nvim/commit/43be29c8daad33059a41ceffdfd06da790857d37))
+* remove executable mode ([fb55d5f](https://github.com/snelling-a/nvim/commit/fb55d5f0ac58a611f9527ebebf11ead6b54f35bc))
+* remove no filetype from no_format ([47a61c1](https://github.com/snelling-a/nvim/commit/47a61c1a4d7ff33b16dc906f614c47e84795373e))
+
+
+### Miscellaneous
+
+* **plugin:** update packages ([e72225a](https://github.com/snelling-a/nvim/commit/e72225ab01de1f2ecb9f3cf56c6e98befdb901a2))
+* **spell:** update cspell.json ([840b46f](https://github.com/snelling-a/nvim/commit/840b46f1f01421e6acafc6fb4f15a5d44a8742bc))
+
 ## [3.8.0](https://github.com/snelling-a/nvim/compare/v3.7.0...v3.8.0) (2023-05-18)
 
 
