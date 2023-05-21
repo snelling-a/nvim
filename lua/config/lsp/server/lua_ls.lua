@@ -6,24 +6,26 @@ local config_files =
 local settings = {
 	Lua = {
 		codeLens = { enable = true },
-		completion = { keywordSnippet = "Both" },
-		diagnostics = {
-			enable = true,
-			disable = { "spell-check" },
-			globals = { "vim" },
-			unusedLocalExclude = { "_*" },
-		},
+		diagnostics = { globals = { "vim" } },
 		format = { enable = false },
-		hint = { enabled = true },
-		runtime = { path = vim.split(package.path, ";"), version = "LuaJIT" },
-		telemetry = { enable = false },
-		workspace = { checkThirdParty = false, library = vim.api.nvim_get_runtime_file("", true) },
+		hint = {
+			enable = true,
+			arrayIndex = "Disable",
+			await = true,
+			paramName = "Disable",
+			semicolon = "Disable",
+			setType = true,
+		},
+		unusedLocalExclude = { "_*" },
+		workspace = { checkThirdParty = false },
 	},
 }
 
 local M = {}
 
 function M.setup(opts)
+	require("neodev").setup()
+
 	opts.root_dir = lspconfig.util.root_pattern(unpack(config_files))
 
 	opts.settings = settings
