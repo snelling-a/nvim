@@ -76,9 +76,9 @@ vim_diagnostic.handlers.current_line_virt = {
 	end,
 }
 
-local Diagnostic = {}
+local PublishDiagnostics = {}
 
-function Diagnostic.on_attach(bufnr)
+function PublishDiagnostics.on_attach(bufnr)
 	for type, icon in pairs(signs) do
 		local hl = "DiagnosticSign" .. type
 		vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
@@ -112,4 +112,4 @@ function Diagnostic.on_attach(bufnr)
 	})
 end
 
-return Diagnostic
+return PublishDiagnostics

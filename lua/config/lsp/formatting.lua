@@ -1,11 +1,11 @@
 local logger = require("config.util.logger")
 
-local Formatting = {}
+local DocumentFormatting = {}
 
 local lsp_formatting = "LspFormatting"
 local autoformat = true
 
-function Formatting.toggle()
+function DocumentFormatting.toggle()
 	autoformat = not autoformat
 
 	if autoformat then
@@ -15,7 +15,7 @@ function Formatting.toggle()
 	end
 end
 
-function Formatting.format()
+function DocumentFormatting.format()
 	local buf = vim.api.nvim_get_current_buf()
 	local have_nls = package.loaded["null-ls"]
 		and (#require("null-ls.sources").get_available(vim.bo.filetype, "NULL_LS_FORMATTING") > 0)
@@ -31,23 +31,23 @@ function Formatting.format()
 	})
 end
 
-function Formatting.on_attach(buf)
+function DocumentFormatting.on_attach(bufnr)
 	vim.api.nvim_create_autocmd("BufWritePre", {
-		buffer = buf,
+		buffer = bufnr,
 		callback = function()
 			if autoformat then
-				Formatting.format()
+				DocumentFormatting.format()
 			end
 		end,
 		desc = "Format on save",
-		group = require("config.util").augroup(lsp_formatting .. "." .. buf),
+		group = require("config.util").augroup(lsp_formatting .. "." .. bufnr),
 	})
 
 	vim.api.nvim_create_user_command(
 		"AutoformatToggle",
-		function() Formatting.toggle() end,
+		function() DocumentFormatting.toggle() end,
 		{ desc = "Toggle format on save", nargs = 0 }
 	)
 end
 
-return Formatting
+return DocumentFormatting
