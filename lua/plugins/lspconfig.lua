@@ -31,12 +31,12 @@ function M.config()
 	require("lspconfig.ui.windows").default_options.border = "rounded"
 
 	local opts = {
-		capabilities = require("config.lsp.util").get_capabilities(),
+		capabilities = require("config.lsp.capabilities").get_capabilities(),
 		flags = { debounce_text_changes = 150 },
 		on_attach = require("config.lsp").on_attach,
 	}
 
-	for index, value in vim.fs.dir("$XDG_CONFIG_HOME/neovim/lua/config/lsp/server") do
+	for index, value in vim.fs.dir("$XDG_CONFIG_HOME/nvim/lua/config/lsp/server") do
 		if value ~= "file" then
 			return
 		end
