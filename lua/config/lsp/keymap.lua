@@ -1,22 +1,11 @@
 local logger = require("config.util.logger")
 local util = require("config.util")
 
-local diagnostic = vim.diagnostic
 local lsp = vim.lsp.buf
 
 local M = {}
 
 function M.on_attach(bufnr)
-	util.nmap("<leader>d", diagnostic.open_float, { desc = "Open [d]iagnostic float" })
-	util.nmap("[d", function()
-		diagnostic.goto_prev({ float = false })
-		util.scroll_center()
-	end, { desc = "Goto previous [d]iagnostic issue" })
-	util.nmap("]d", function()
-		diagnostic.goto_next({ float = false })
-		util.scroll_center()
-	end, { desc = "Goto next [d]iagnostic issue" })
-
 	local function bind(target, source, desc)
 		local opts = { buffer = bufnr, desc = desc }
 

@@ -1,4 +1,6 @@
 local signs = require("config.ui.icons").diagnostics
+local util = require("config.util")
+
 local vim_diagnostic = vim.diagnostic
 local api = vim.api
 
@@ -110,6 +112,16 @@ function PublishDiagnostics.on_attach(bufnr)
 		desc = "Hide current line diagnostics",
 		group = LspDiagnostiCurrentLineGroup,
 	})
+
+	util.nmap("<leader>d", vim_diagnostic.open_float, { desc = "Open [d]iagnostic float" })
+	util.nmap("[d", function()
+		vim_diagnostic.goto_prev({ float = false })
+		util.scroll_center()
+	end, { desc = "Goto previous [d]iagnostic issue" })
+	util.nmap("]d", function()
+		vim_diagnostic.goto_next({ float = false })
+		util.scroll_center()
+	end, { desc = "Goto next [d]iagnostic issue" })
 end
 
 return PublishDiagnostics
