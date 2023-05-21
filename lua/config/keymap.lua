@@ -65,8 +65,20 @@ util.nmap("n", function()
 	util.feedkeys("zv")
 end, { desc = "Go to [n]ext search result and center" })
 
-map({ "n", "v" }, "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, desc = "Move to next visual line" })
-map({ "n", "v" }, "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, desc = "Move to previous visual line" })
+util.nmap("j", function()
+	if vim.v.count > 0 and vim.v.count >= 3 then
+		return ("m'" .. vim.v.count .. "j")
+	else
+		return "gj"
+	end
+end, { noremap = true, expr = true, desc = "Move to next visual line" })
+util.nmap("k", function()
+	if vim.v.count > 0 and vim.v.count >= 3 then
+		return ("m'" .. vim.v.count .. "k")
+	else
+		return "gk"
+	end
+end, { noremap = true, expr = true, desc = "Move to previous visual line" })
 
 util.imap("jk", function()
 	escape()
