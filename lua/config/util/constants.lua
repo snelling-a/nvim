@@ -5,7 +5,6 @@ local Constants = {}
 Constants.mason_dir = ""
 
 Constants.no_format = {
-	"",
 	"alpha",
 	"checkhealth",
 	"dapui_*",
