@@ -1,20 +1,20 @@
 local icons = require("config.ui.icons")
+local util = require("config.util")
 
-local function pad_right(icon) return icon .. " " end
 local function get_search(icon) return icons.misc.search .. icon end
 
 local cmdline = {
 	-- view = "cmdline",
 	format = {
-		cmdline = { icon = pad_right(icons.languages.vim), lang = "vim", pattern = "^:" },
-		filter = { icon = pad_right(icons.languages.bash), lang = "bash", pattern = "^:%s*!" },
+		cmdline = { icon = util.pad_right(icons.languages.vim), lang = "vim", pattern = "^:" },
+		filter = { icon = util.pad_right(icons.languages.bash), lang = "bash", pattern = "^:%s*!" },
 		input = { lang = "vim" },
 		lua = {
-			icon = pad_right(icons.languages.lua),
+			icon = util.pad_right(icons.languages.lua),
 			lang = "lua",
 			pattern = { "^:%s*lua%s+", "^:%s*lua%s*=%s*", "^:%s*=%s*" },
 		},
-		help = { icon = pad_right(icons.misc.help), pattern = "^:%s*he?l?p?%s+" },
+		help = { icon = util.pad_right(icons.misc.help), pattern = "^:%s*he?l?p?%s+" },
 		search_down = { icon = get_search(icons.misc.chevron_down), kind = "search", lang = "regex", pattern = "^/" },
 		search_up = { icon = get_search(icons.misc.chevron_up), kind = "search", lang = "regex", pattern = "^%?" },
 	},
@@ -42,7 +42,7 @@ local routes = {
 
 local M = { "folke/noice.nvim" }
 
-M.cond = require("config.util").is_vim()
+M.cond = util.is_vim()
 
 M.dependencies = {
 	"MunifTanjim/nui.nvim",
@@ -61,7 +61,7 @@ M.dependencies = {
 			max_width = function() return math.floor(vim.o.columns * 0.75) end,
 		},
 		init = function()
-			if not require("config.util").has("noice") then
+			if not util.has("noice") then
 				vim.opt.termguicolors = true
 				vim.notify = require("notify")
 			end

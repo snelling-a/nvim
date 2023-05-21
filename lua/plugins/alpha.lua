@@ -1,4 +1,5 @@
 local icons = require("config.ui.icons")
+local util = require("config.util")
 
 local is_obsidian = require("config.util.constants").obsidian.is_vault_directory
 
@@ -11,57 +12,77 @@ local function get_header(text)
 		.. " ▌│║▌║▌│║║▌█║▌║█ "
 end
 
-local quit_button = { shortcut = "q", val = icons.misc.exit .. " Quit", on_press = ":qa<CR>" }
+local quit_button = { shortcut = "q", val = util.pad_right(icons.misc.exit) .. "Quit", on_press = ":qa<CR>" }
 
 local default_buttons = {
-	{ shortcut = "p", val = icons.misc.search .. " Find file", on_press = [[:lua require("fzf-lua").files() <CR>]] },
-	{ shortcut = "n", val = icons.file.newfile .. " New file", on_press = ":ene <BAR> startinsert <CR>" },
+	{
+		shortcut = "p",
+		val = util.pad_right(icons.misc.search) .. "Find file",
+		on_press = [[:lua require("fzf-lua").files() <CR>]],
+	},
+	{
+		shortcut = "n",
+		val = util.pad_right(icons.file.newfile) .. "New file",
+		on_press = ":ene <BAR> startinsert <CR>",
+	},
 	{
 		shortcut = "o",
-		val = icons.misc.files .. " Recent files",
+		val = util.pad_right(icons.misc.files) .. "Recent files",
 		on_press = [[:lua require("fzf-lua").oldfiles() <CR>]],
 	},
 	{
 		shortcut = "r",
-		val = icons.misc.search_text .. " Find text",
+		val = util.pad_right(icons.misc.search_text) .. "Find text",
 		on_press = [[:lua require("fzf-lua").live_grep() <CR>]],
 	},
 	{
 		shortcut = "s",
-		val = icons.misc.restore .. " Restore Session",
+		val = util.pad_right(icons.misc.restore) .. "Restore Session",
 		on_press = [[:lua require("config.session").load_session() <cr>]],
 	},
-	{ shortcut = "h", val = icons.misc.help .. " Help", on_press = [[:lua require("fzf-lua").help_tags() <CR>]] },
-	{ shortcut = "l", val = icons.misc.lazy .. " Lazy", on_press = [[:lua vim.cmd.Lazy("update") <CR>]] },
-	{ shortcut = "m", val = icons.misc.tools .. " Mason", on_press = [[:lua vim.cmd.Mason() <CR>]] },
-	{ shortcut = "c", val = icons.misc.health .. " Check health", on_press = [[:lua vim.cmd.checkhealth() <CR>]] },
+	{
+		shortcut = "h",
+		val = util.pad_right(icons.misc.help) .. "Help",
+		on_press = [[:lua require("fzf-lua").help_tags() <CR>]],
+	},
+	{
+		shortcut = "l",
+		val = util.pad_right(icons.misc.lazy) .. "Lazy",
+		on_press = [[:lua vim.cmd.Lazy("update") <CR>]],
+	},
+	{ shortcut = "m", val = util.pad_right(icons.misc.tools) .. "Mason", on_press = [[:lua vim.cmd.Mason() <CR>]] },
+	{
+		shortcut = "c",
+		val = util.pad_right(icons.misc.health) .. "Check health",
+		on_press = [[:lua vim.cmd.checkhealth() <CR>]],
+	},
 	quit_button,
 }
 
 local obsidian_buttons = {
 	{
 		shortcut = "d",
-		val = icons.obsidian.today .. " Today's daily note",
+		val = util.pad_right(icons.obsidian.today) .. "Today's daily note",
 		on_press = [[:lua vim.cmd.ObsidianToday() <CR>]],
 	},
 	{
 		shortcut = "y",
-		val = icons.obsidian.yesterday .. " Yesterday's daily note",
+		val = util.pad_right(icons.obsidian.yesterday) .. "Yesterday's daily note",
 		on_press = [[:lua vim.cmd.ObsidianYesterday() <CR>]],
 	},
 	{
 		shortcut = "n",
-		val = icons.obsidian.new .. " New note",
+		val = util.pad_right(icons.obsidian.new) .. "New note",
 		on_press = [[:lua vim.cmd.ObsidianNew() <CR>]],
 	},
 	{
 		shortcut = "s",
-		val = icons.obsidian.search .. " Search vault",
+		val = util.pad_right(icons.obsidian.search) .. "Search vault",
 		on_press = [[:lua vim.cmd.ObsidianSearch() <CR>]],
 	},
 	{
 		shortcut = "c",
-		val = icons.obsidian.health .. " Check health",
+		val = util.pad_right(icons.obsidian.health) .. "Check health",
 		on_press = [[:lua vim.cmd.ObsidianCheckHealth() <CR>]],
 	},
 	quit_button,
@@ -74,7 +95,7 @@ M.cond = not vim.g.started_by_firenvim
 M.event = "VimEnter"
 
 function M.config(_, dashboard)
-	local augroup = require("config.util").augroup
+	local augroup = util.augroup
 
 	if vim.o.filetype == "lazy" then
 		vim.cmd.close()

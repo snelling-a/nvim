@@ -1,4 +1,5 @@
 local icons = require("config.ui.icons")
+local pad_right = require("config.util").pad_right
 
 local Statusline = {}
 
@@ -64,9 +65,9 @@ local lsp = {
 		local clients = vim.lsp.get_active_clients({ bufnr = 0 })
 		if #clients ~= 0 then
 			if progress then
-				return icons.misc.gears .. clients[1].name
+				return pad_right(icons.misc.gears) .. clients[1].name
 			else
-				return icons.progress.done .. clients[1].name
+				return pad_right(icons.progress.done) .. clients[1].name
 			end
 		end
 		return ""
