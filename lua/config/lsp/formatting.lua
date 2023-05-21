@@ -1,4 +1,5 @@
 local logger = require("config.util.logger")
+local bind = require("config.lsp.util").bind
 
 local DocumentFormatting = {}
 
@@ -48,6 +49,10 @@ function DocumentFormatting.on_attach(bufnr)
 		function() DocumentFormatting.toggle() end,
 		{ desc = "Toggle format on save", nargs = 0 }
 	)
+
+	bind(bufnr, "<leader>f", function() DocumentFormatting.format() end, "[F]ormat the current buffer")
+	bind(bufnr, "<leader>tf", function() DocumentFormatting.toggle() end, "[T]oggle Auto[f]ormat")
+	bind(bufnr, "<leader>sw", function() vim.cmd("noautocmd write") end, "[S]ave [w]ithout formatting")
 end
 
 return DocumentFormatting
