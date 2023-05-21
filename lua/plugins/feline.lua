@@ -11,6 +11,7 @@ function M.config()
 
 	feline.setup({
 		components = statusbar.components,
+		force_inactive = { filetypes = require("config.util.constants").no_format },
 		theme = statusbar.theme,
 		vi_mode_colors = statusbar.vi_mode_colors,
 	})
