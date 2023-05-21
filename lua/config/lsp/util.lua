@@ -4,6 +4,16 @@ local protocol = vim.lsp.protocol
 
 local M = {}
 
+---wrapper for vim.api.nvim_buf_set_keymap
+---@param bufnr integer 'buffer number'
+---@param lhs string 'keymap'
+---@param rhs string|function 'keymap functionality'
+---@param desc string description
+function M.bind(bufnr, lhs, rhs, desc)
+	local opts = { buffer = bufnr, desc = desc }
+
+	return util.nmap(lhs, rhs, opts)
+end
 ---wrapper for lspconfig.util.root_pattern
 ---@param config_files string[]
 ---@return function (startpath: any) -> string|unknown|nil
