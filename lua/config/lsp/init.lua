@@ -29,6 +29,10 @@ function LspConfig.on_attach(client, bufnr)
 		require("config.lsp.diagnostic").on_attach(bufnr)
 	end
 
+	if client.supports_method("textDocument/codeLens") then
+		require("config.lsp.codelens").on_attach(bufnr)
+	end
+
 	require("config.lsp.keymap").on_attach(bufnr)
 end
 
