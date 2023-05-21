@@ -19,11 +19,11 @@ local javascript_settings = {
 
 local typescript_settings = {
 	inlayHints = {
-		includeInlayParameterNameHints = "literal",
+		includeInlayParameterNameHints = "all",
 		includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-		includeInlayFunctionParameterTypeHints = false,
-		includeInlayVariableTypeHints = false,
-		includeInlayPropertyDeclarationTypeHints = false,
+		includeInlayFunctionParameterTypeHints = true,
+		includeInlayVariableTypeHints = true,
+		includeInlayPropertyDeclarationTypeHints = true,
 		includeInlayFunctionLikeReturnTypeHints = true,
 		includeInlayEnumMemberValueHints = true,
 	},

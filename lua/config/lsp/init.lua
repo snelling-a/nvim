@@ -20,7 +20,7 @@ function LspConfig.on_attach(client, bufnr)
 	end
 
 	if client.server_capabilities.inlayHintProvider then
-		require("lsp-inlayhints").on_attach(client, bufnr)
+		require("lsp-inlayhints").on_attach(client, bufnr, true)
 	end
 
 	require("config.lsp.handlers").on_attach()
