@@ -102,4 +102,8 @@ end
 ---@return string ' + icon'
 function Util.get_prompt(icon) return string.format("%s %s ", icon, require("config.ui.icons").misc.right) end
 
+---@param icon string
+---@return string 'icon + " "'
+function Util.pad_right(icon) return string.format("%s ", icon) end
+
 return Util
