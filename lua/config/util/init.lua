@@ -64,6 +64,10 @@ for _, mode in ipairs(key_map_modes) do
 	Util[mode .. "map"] = function(...) Util.map(mode, ...) end
 end
 
+---Check if plugin is available
+---@param plugin string name of plugin
+---@return boolean boolean if plugin is loaded
+function Util.has(plugin) return package.loaded[plugin] and true end
 
 function Util.scroll_center() feedkeys("zz") end
 
