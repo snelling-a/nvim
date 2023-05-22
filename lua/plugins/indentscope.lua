@@ -3,14 +3,17 @@ local M = { "echasnovski/mini.indentscope" }
 M.event = { "BufReadPre", "BufNewFile" }
 
 M.opts = {
-	symbol = "│",
+	symbol = require("config.ui.icons").fillchars.foldsep,
 	options = { try_as_border = true },
 }
 
+M.version = "*"
+
 function M.init()
 	vim.api.nvim_create_autocmd("FileType", {
-		pattern = vim.tbl_filter(function(ft) return ft ~= "alpha" end, require("config.util.constants").no_format),
 		callback = function() vim.b.miniindentscope_disable = true end,
+		group = require("config.util").augroup("Indentscope"),
+		pattern = require("config.util.constants").no_format,
 	})
 end
 
