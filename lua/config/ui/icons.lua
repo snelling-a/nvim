@@ -1,6 +1,5 @@
 local buffer = " "
 local right = ""
-
 local copilot = " "
 local down = ""
 local elipsis = "…"
