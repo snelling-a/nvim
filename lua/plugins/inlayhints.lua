@@ -1,5 +1,7 @@
 local M = { "lvimuser/lsp-inlayhints.nvim" }
 
-M.opts = { inlay_hints = { parameter_hints = { prefix = "", show = true }, type_hints = { show = true } } }
+M.branch = "anticonceal"
+
+M.config = true
 
 return M
