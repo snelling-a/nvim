@@ -1,8 +1,9 @@
-local icon = require("config.ui.icons").misc.indent
+local icon = require("config.ui.icons").fillchars.foldsep
+local util = require("config.util")
 
 local M = { "lukas-reineke/indent-blankline.nvim" }
 
-M.cond = require("config.util").is_vim()
+M.cond = util.is_vim()
 
 M.opts = {
 	char = icon,
@@ -14,6 +15,7 @@ M.opts = {
 		"IndentBlanklineIndent5",
 		"IndentBlanklineIndent6",
 	},
+	filetype_exclude = require("config.util.constants").no_format,
 	show_current_context = true,
 	show_foldtext = true,
 	space_char_blankline = " ",
