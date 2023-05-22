@@ -53,7 +53,11 @@ M.dependencies = {
 M.keys = {
 	{ "<leader>.", function() vim.cmd.Neotree("toggle") end, desc = "Toggle NeoTree" },
 	{ "<leader>bf", function() vim.cmd.Neotree("buffers") end, desc = "Toggle open buffers" },
-	{ "<leader>gss", function() vim.cmd.Neotree({ args = { "float", "git_status" } }) end },
+	{
+		"<leader>gss",
+		function() vim.cmd.Neotree({ args = { "float", "git_status" } }) end,
+		desc = "Open NeoTree [G]it [S]tatus",
+	},
 	{ "|", function() vim.cmd.Neotree("reveal") end, desc = "Reveal current file in Neotree" },
 }
 
