@@ -27,7 +27,7 @@ M.opts = {
 	"fzf-native",
 	blines = { prompt = get_prompt(icons.location.line) },
 	btags = { prompt = get_prompt(icons.misc.tag) },
-	buffers = { prompt = get_prompt(icons.file.buffers), cwd_only = true },
+	buffers = { prompt = get_prompt(icons.file.buffer), cwd_only = true },
 	colorschemes = {
 		live_preview = true,
 		post_reset_cb = function() require("feline").reset_highlights() end,
