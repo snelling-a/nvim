@@ -1,5 +1,25 @@
 # Changelog
 
+## [3.10.0](https://github.com/snelling-a/nvim/compare/v3.9.0...v3.10.0) (2023-05-22)
+
+
+### Features
+
+* **keys:** add missing descriptions ([580bfb7](https://github.com/snelling-a/nvim/commit/580bfb78586668592a625cae81731f7e7c156c83))
+* **ui:** inline inlay hints ([76bec3b](https://github.com/snelling-a/nvim/commit/76bec3bb9159ef79ea733bec0a472bc3e162c864))
+
+
+### Bug Fixes
+
+* **flit:** unmap commonly used keymaps ([08390c9](https://github.com/snelling-a/nvim/commit/08390c94a4ca39d325b98a02007af67209b8eaf8))
+* **indentscope:** consistency ([3b3bda7](https://github.com/snelling-a/nvim/commit/3b3bda7e7e6e0388ef4fddc599d0b4c5eee554fd))
+* **ui:** indent blankline ([215e842](https://github.com/snelling-a/nvim/commit/215e8426e5851f712eb8db8a45f76cc2006520d9))
+
+
+### Miscellaneous
+
+* **plugin:** update plugins ([d8e57b6](https://github.com/snelling-a/nvim/commit/d8e57b6ec4610dbd2bb9053814366b0f518f0ca3))
+
 ## [3.9.0](https://github.com/snelling-a/nvim/compare/v3.8.0...v3.9.0) (2023-05-21)
 
 
