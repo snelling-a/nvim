@@ -5,6 +5,7 @@
 |[anuvyklack/keymap-amend.nvim](https://github.com/anuvyklack/keymap-amend.nvim)|Amend the existing keymap in Neovim|
 |[anuvyklack/pretty-fold.nvim](https://github.com/anuvyklack/pretty-fold.nvim)|Foldtext customization in Neovim|
 |[b0o/schemastore.nvim](https://github.com/b0o/schemastore.nvim)|🛍 JSON schemas for Neovim|
+|[barrett-ruth/import-cost.nvim](https://github.com/barrett-ruth/import-cost.nvim)|Display javascript import costs inside of neovim|
 |[David-Kunz/jester](https://github.com/David-Kunz/jester)|A Neovim plugin to easily run and debug Jest tests|
 |[davidsierradz/cmp-conventionalcommits](https://github.com/davidsierradz/cmp-conventionalcommits)|(WIP) nvim-cmp source for autocompleting git commits with conventional commits types and lerna packages as scope|
 |[eandrju/cellular-automaton.nvim](https://github.com/eandrju/cellular-automaton.nvim)|A useless plugin that might help you cope with stubbornly broken tests or overall lack of sense in life. It lets you execute aesthetically pleasing, cellular automaton animations based on the content of neovim buffer.|

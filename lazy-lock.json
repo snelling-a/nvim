@@ -31,6 +31,7 @@
   "headlines.nvim": { "branch": "master", "commit": "ddef41b2664f0ce25fe76520d708e2dc9dfebd70" },
   "indent-blankline.nvim": { "branch": "master", "commit": "018bd04d80c9a73d399c1061fa0c3b14a7614399" },
   "jester": { "branch": "main", "commit": "65c63eab28e0ea77a1a81eb9abca56a9e9b50115" },
+  "import-cost.nvim": { "branch": "main", "commit": "d2c93deee35fa4042fde28719ddcbad664544fcf" },
   "keymap-amend.nvim": { "branch": "master", "commit": "b8bf9d820878d5497fdd11d6de55dea82872d98e" },
   "lazy.nvim": { "branch": "main", "commit": "6610b15dfd76f7992423916e2b87f031881d7b25" },
   "leap.nvim": { "branch": "main", "commit": "2950d4826fb92ec3b56c59b5d4f2d575a84cb3fa" },
