@@ -1,5 +1,17 @@
 # Changelog
 
+## [3.11.0](https://github.com/snelling-a/nvim/compare/v3.10.0...v3.11.0) (2023-05-23)
+
+
+### Features
+
+* import cost ([0fa7ce9](https://github.com/snelling-a/nvim/commit/0fa7ce9b75334ca334c5b1e7ba5e1950d6a77846))
+
+
+### Miscellaneous
+
+* **spell:** update cspell.json ([dc2bb3d](https://github.com/snelling-a/nvim/commit/dc2bb3d777fcb7a6fd911ca9581ab8d5bc5d375b))
+
 ## [3.10.0](https://github.com/snelling-a/nvim/compare/v3.9.0...v3.10.0) (2023-05-22)
 
 
