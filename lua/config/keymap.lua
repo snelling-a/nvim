@@ -13,19 +13,6 @@ util.map({ "c", "v", "x" }, "jk", escape, { desc = "Escape to normal mode" })
 util.map({ "n", "v" }, ":", ";", { desc = "Command is remapped to `;`" })
 map({ "n", "v" }, ";", ":", { desc = "Command is remapped to `;`" })
 
-local function move_map(bad, good)
-	return util.nmap(
-		"<" .. bad .. ">",
-		function() logger.warn({ msg = string.format("NO! use %s", good), title = "HARD MODE" }) end,
-		{ desc = string.format("DON'T USE <%s>", string.upper(bad)) }
-	)
-end
-
-move_map("down", "j")
-move_map("left", "h")
-move_map("right", "l")
-move_map("up", "k")
-
 map(
 	"n",
 	"<leader>s",

@@ -34,6 +34,27 @@ opt.synmaxcol = 500
 opt.termguicolors = true
 opt.whichwrap:append({ ["h"] = true, ["l"] = true })
 
+local function hard_mode()
+	local function move_map(bad, good)
+		return util.nmap(
+			bad,
+			function()
+				require("config.util.logger").warn({ msg = string.format("NO! use %s", good), title = "HARD MODE" })
+			end,
+			{ buffer = 0, desc = string.format("DON'T USE %s", string.upper(bad)) }
+		)
+	end
+
+	for direction, key in pairs({
+		["<down>"] = "j",
+		["<left>"] = "h",
+		["<right>"] = "l",
+		["<up>"] = "k",
+	}) do
+		move_map(direction, key)
+	end
+end
+
 local function get_local_option_value(option) return api.nvim_get_option_value(option, { scope = "local" }) end
 
 local function toggle_buffer_opts()
