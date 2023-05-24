@@ -1,5 +1,18 @@
 # Changelog
 
+## [4.2.0](https://github.com/snelling-a/nvim/compare/v4.1.0...v4.2.0) (2023-05-24)
+
+
+### Features
+
+* **keys:** make hard mode conditional ([e73f6fb](https://github.com/snelling-a/nvim/commit/e73f6fbe193b6b3bd66d8760ebfa226f799c36d2))
+* **ui:** guicursor ([a9fb4c8](https://github.com/snelling-a/nvim/commit/a9fb4c83b9c6a60306b401aa491525609b321770))
+
+
+### Miscellaneous
+
+* update plugins ([ba7486a](https://github.com/snelling-a/nvim/commit/ba7486a2b1e8aa3c021fcbd77ed7cf9a525bdbcc))
+
 ## [4.1.0](https://github.com/snelling-a/nvim/compare/v4.0.0...v4.1.0) (2023-05-24)
 
 
