@@ -1,4 +1,4 @@
-## Plugins
+# Plugins
 |Plugin|Description|
 |---|---|
 |[anuvyklack/fold-preview.nvim](https://github.com/anuvyklack/fold-preview.nvim)|Preview folds in float window |
