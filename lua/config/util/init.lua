@@ -49,9 +49,20 @@ function Util.mapL(lhs, rhs, opts) Util.nmap( "<leader>" .. lhs, rhs, opts) end
 ---@return boolean boolean if plugin is loaded
 function Util.has(plugin) return package.loaded[plugin] and true end
 
-function Util.scroll_center() feedkeys("zz") end
+---wrapper for nvim_feedkeys that handles <key> syntax
+---@param keys string
+---@param mode "c"|"i"|"n"|"o"|"t"|"v"|"x"? -- default: `n`
+---@param escape_ks boolean? default: false
+function Util.feedkeys(keys, mode, escape_ks)
+	if keys:sub(1, 1) == "<" then
+		keys = vim.api.nvim_replace_termcodes(keys, true, false, true)
+	end
 
-Util.feedkeys = feedkeys
+	return api.nvim_feedkeys(keys, mode or "n", escape_ks or false)
+end
+
+---Scroll to center
+function Util.scroll_center() Util.feedkeys("zz") end
 
 ---check if the current editor is terminal vim
 ---@return boolean
