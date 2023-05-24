@@ -4,6 +4,6 @@ M.build = "sh install.sh yarn"
 
 M.opts = { highlight = "TSComment" }
 
-M.filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" }
+M.ft = { "javascript", "javascriptreact", "typescript", "typescriptreact" }
 
 return M
