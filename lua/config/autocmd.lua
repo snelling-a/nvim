@@ -85,11 +85,16 @@ autocmd({ "BufWritePre" }, {
 	pattern = "!markdown",
 })
 
+local function get_local_option_value(option) return api.nvim_get_option_value(option, { scope = "local" }) end
+
 local function toggle_buffer_opts()
 	if util.is_file() then
-		opt_local.cursorline = api.nvim_get_option_value("cursorline", { scope = "local" }) and false or true
+		local cursorline = get_local_option_value("cursorline")
+		local relativenumber = get_local_option_value("relativenumber")
+
+		opt_local.cursorline = not cursorline
 		opt_local.number = true
-		opt_local.relativenumber = api.nvim_get_option_value("relativenumber", { scope = "local" }) and false or true
+		opt_local.relativenumber = not relativenumber
 		opt_local.statuscolumn = [[%!v:lua.Status.column()]]
 	end
 end
@@ -100,7 +105,6 @@ autocmd({ "BufLeave" }, {
 	callback = toggle_buffer_opts,
 	desc = "Toggle buffer options off",
 	group = ToggleWindowOptionsGroup,
-	pattern = "*",
 })
 
 autocmd("BufEnter", {
