@@ -7,7 +7,6 @@ local bo = vim.bo
 local cmd = vim.cmd
 local fn = vim.fn
 local opt = vim.opt
-local opt_local = vim.opt_local
 
 autocmd({ "BufLeave", "FocusLost" }, {
 	callback = function()
@@ -83,34 +82,6 @@ autocmd({ "BufWritePre" }, {
 	desc = "Strip whitespace from the end of the line",
 	group = augroup("StripWhitespace"),
 	pattern = "!markdown",
-})
-
-local function get_local_option_value(option) return api.nvim_get_option_value(option, { scope = "local" }) end
-
-local function toggle_buffer_opts()
-	if util.is_file() then
-		local cursorline = get_local_option_value("cursorline")
-		local relativenumber = get_local_option_value("relativenumber")
-
-		opt_local.cursorline = not cursorline
-		opt_local.number = true
-		opt_local.relativenumber = not relativenumber
-		opt_local.statuscolumn = [[%!v:lua.Status.column()]]
-	end
-end
-
-local ToggleWindowOptionsGroup = augroup("ToggleWindowOptions")
-
-autocmd({ "BufLeave" }, {
-	callback = toggle_buffer_opts,
-	desc = "Toggle buffer options off",
-	group = ToggleWindowOptionsGroup,
-})
-
-autocmd("BufEnter", {
-	callback = toggle_buffer_opts,
-	desc = "Toggle buffer options on",
-	group = ToggleWindowOptionsGroup,
 })
 
 autocmd({ "FocusGained", "TermClose", "TermLeave" }, {

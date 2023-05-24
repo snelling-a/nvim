@@ -1,6 +1,11 @@
 local icons = require("config.ui.icons")
+local util = require("config.util")
 
+local api = vim.api
+local augroup = util.augroup
+local autocmd = api.nvim_create_autocmd
 local opt = vim.opt
+local opt_local = vim.opt_local
 
 opt.fillchars = icons.fillchars
 opt.foldcolumn = "auto:3"
@@ -28,3 +33,33 @@ opt.splitright = true
 opt.synmaxcol = 500
 opt.termguicolors = true
 opt.whichwrap:append({ ["h"] = true, ["l"] = true })
+
+local function get_local_option_value(option) return api.nvim_get_option_value(option, { scope = "local" }) end
+
+local function toggle_buffer_opts()
+	if util.is_file() then
+		local cursorline = get_local_option_value("cursorline")
+		local relativenumber = get_local_option_value("relativenumber")
+
+		opt_local.cursorline = not cursorline
+		opt_local.number = true
+		opt_local.relativenumber = not relativenumber
+		opt_local.statuscolumn = [[%!v:lua.Status.column()]]
+
+		hard_mode()
+	end
+end
+
+local ToggleWindowOptionsGroup = augroup("ToggleWindowOptions")
+
+autocmd({ "BufLeave" }, {
+	callback = toggle_buffer_opts,
+	desc = "Toggle buffer options off",
+	group = ToggleWindowOptionsGroup,
+})
+
+autocmd("BufEnter", {
+	callback = toggle_buffer_opts,
+	desc = "Toggle buffer options on",
+	group = ToggleWindowOptionsGroup,
+})
