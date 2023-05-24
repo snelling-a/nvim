@@ -64,6 +64,12 @@ for _, mode in ipairs(key_map_modes) do
 	Util[mode .. "map"] = function(...) Util.map(mode, ...) end
 end
 
+---Wrapper around Util.nmap using the <leader> in lhs
+---@param lhs string Left-hand side |{lhs}| of the mapping
+---@param rhs string|function Right-hand side |{rhs}| of the mapping, can be a Lua function
+---@param opts table|nil Table of |:map-arguments|
+function Util.mapL(lhs, rhs, opts) Util.nmap( "<leader>" .. lhs, rhs, opts) end
+
 ---Check if plugin is available
 ---@param plugin string name of plugin
 ---@return boolean boolean if plugin is loaded

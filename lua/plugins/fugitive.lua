@@ -13,7 +13,7 @@ local function set_fugitive_keymaps()
 	local bufnr = api.nvim_get_current_buf()
 	local opts = { buffer = bufnr }
 
-	util.nmap("<leader>p", function() git("push") end, util.tbl_extend_force(opts, { desc = "Git [p]ush" }))
+	util.mapL("p", function() git("push") end, util.tbl_extend_force(opts, { desc = "Git [p]ush" }))
 	util.nmap(
 		"<leader>P",
 		function() git({ "pull", "--rebase" }) end,
@@ -24,9 +24,9 @@ local function set_fugitive_keymaps()
 		function() git({ "push -u origin" }) end,
 		util.tbl_extend_force(opts, { desc = "Push [t]o origin" })
 	)
-	util.nmap("<leader>gb", fzf.git_branches, { desc = "View [g]it [b]ranches" })
-	util.nmap("<leader>gc", fzf.git_commits, { desc = "View [g]it [c]ommits" })
-	util.nmap("<leader>gst", fzf.git_stash, { desc = "View [g]it [st]ash" })
+	util.mapL("gb", fzf.git_branches, { desc = "View [g]it [b]ranches" })
+	util.mapL("gc", fzf.git_commits, { desc = "View [g]it [c]ommits" })
+	util.mapL("gst", fzf.git_stash, { desc = "View [g]it [st]ash" })
 end
 
 local M = { "tpope/vim-fugitive" }

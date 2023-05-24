@@ -7,7 +7,7 @@ local vim_diagnostic = vim.diagnostic
 local M = {}
 
 function M.on_attach(bufnr)
-	util.nmap("<leader>d", vim_diagnostic.open_float, { desc = "Open [d]iagnostic float" })
+	util.mapL("d", vim_diagnostic.open_float, { desc = "Open [d]iagnostic float" })
 	util.nmap("[d", function()
 		vim_diagnostic.goto_prev({ float = false })
 		util.scroll_center()
