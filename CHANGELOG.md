@@ -1,5 +1,21 @@
 # Changelog
 
+## [4.0.0](https://github.com/snelling-a/nvim/compare/v3.11.0...v4.0.0) (2023-05-24)
+
+
+### ⚠ BREAKING CHANGES
+
+* **ui:** ui options are off by default
+
+### Features
+
+* **ui:** statusbar ([d60e321](https://github.com/snelling-a/nvim/commit/d60e321eae3ed5dbe6c72c95a084dbeb4fa8990f))
+
+
+### Bug Fixes
+
+* **fzf:** fix typo ([9b97b95](https://github.com/snelling-a/nvim/commit/9b97b950b0cdcf6a4a1995a74e915b1545dfbd96))
+
 ## [3.11.0](https://github.com/snelling-a/nvim/compare/v3.10.0...v3.11.0) (2023-05-23)
 
 
