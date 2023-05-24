@@ -7,6 +7,12 @@ opt.foldcolumn = "auto:3"
 opt.foldexpr = "nvim_treesitter#foldexpr()"
 opt.foldlevelstart = 0
 opt.foldmethod = "expr"
+opt.guicursor:append("i-c-ci:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor")
+opt.guicursor:append("i-ci-ve:ver25")
+opt.guicursor:append("n-v-c:block")
+opt.guicursor:append("o:hor50")
+opt.guicursor:append("r-cr:hor20")
+opt.guicursor:append("sm:block-blinkwait175-blinkoff150-blinkon175")
 opt.hlsearch = true
 opt.inccommand = "split"
 opt.incsearch = true
