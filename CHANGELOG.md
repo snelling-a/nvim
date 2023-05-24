@@ -1,5 +1,27 @@
 # Changelog
 
+## [4.1.0](https://github.com/snelling-a/nvim/compare/v4.0.0...v4.1.0) (2023-05-24)
+
+
+### Features
+
+* **lsp:** use TSComment highlight for signature hint ([d82fb0b](https://github.com/snelling-a/nvim/commit/d82fb0be1e2b226c05370ca784cab7cf110f4590))
+* **session:** add user command to load session ([45a1855](https://github.com/snelling-a/nvim/commit/45a1855f4f11cf5481c8f5945003d71b329bb654))
+* **ui:** override nvim-web-devicons for UNLICENSE ([5e52f92](https://github.com/snelling-a/nvim/commit/5e52f921a0214eca57eeed9102ec0e23e7108e86))
+
+
+### Bug Fixes
+
+* filetype property should be ft ([89b4247](https://github.com/snelling-a/nvim/commit/89b42473554a12c466c24a44c592bf589a18e5b4))
+* **ui:** adjust dressing/nui settings ([b88460f](https://github.com/snelling-a/nvim/commit/b88460fdb5996d044a094e5d285ce1addca6ac3b))
+* **ui:** fix toggle ui opts ([39ff537](https://github.com/snelling-a/nvim/commit/39ff537d62f52efc1069d07299da53d8018e38a5))
+
+
+### Miscellaneous
+
+* license ([0cd6312](https://github.com/snelling-a/nvim/commit/0cd6312a2aaeae9493124e953b9bd4b35ea20872))
+* **spell:** update cspell.json ([2044aeb](https://github.com/snelling-a/nvim/commit/2044aeb61dc34cca23bef9083cff200bf73b14b5))
+
 ## [4.0.0](https://github.com/snelling-a/nvim/compare/v3.11.0...v4.0.0) (2023-05-24)
 
 
