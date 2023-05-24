@@ -36,4 +36,6 @@ Constants.no_format = {
 
 Constants.obsidian = { vault_directory = vault_directory, is_vault_directory = vim.fn.getcwd() == vault_directory }
 
+Constants.dev_dir = os.getenv("DEV") or os.getenv("HOME") .. "/dev/github.com/"
+
 return Constants

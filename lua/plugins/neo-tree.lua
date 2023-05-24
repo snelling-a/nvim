@@ -1,5 +1,5 @@
+local constants = require("config.util.constants")
 local icons = require("config.ui.icons")
-local logger = require("config.util.logger")
 
 local function copy_selector(state)
 	local node = state.tree:get_node()
@@ -27,7 +27,7 @@ local function copy_selector(state)
 	}, function(choice)
 		local val = results[choice].val
 		vim.fn.setreg("+", val)
-		logger.info({ msg = "Copied to clipboard: " .. val, title = "NeoTree" })
+		require("config.util.logger").info({ msg = "Copied to clipboard: " .. val, title = "NeoTree" })
 	end)
 end
 
@@ -36,7 +36,13 @@ local M = { "nvim-neo-tree/neo-tree.nvim" }
 M.dependencies = {
 	"MunifTanjim/nui.nvim",
 	"nvim-lua/plenary.nvim",
-	"nvim-tree/nvim-web-devicons",
+	{
+		"nvim-tree/nvim-web-devicons",
+		-- opts = {
+		-- 	override = { unlicense = { icon = "", color = "#d0bf41", cterm_color = "185", name = "License" } },
+		-- },
+		dir = constants.dev_dir .. "nvim-tree/nvim-web-devicons",
+	},
 	{
 		"s1n7ax/nvim-window-picker",
 		opts = {
