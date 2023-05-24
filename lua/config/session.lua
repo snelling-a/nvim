@@ -29,6 +29,8 @@ function M.load_session()
 	end
 end
 
+api.nvim_create_user_command("LoadSession", M.load_session, { desc = "Load a session" })
+
 api.nvim_create_autocmd("VimEnter", {
 	callback = function()
 		local path = fn.expand("%")
