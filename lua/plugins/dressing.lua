@@ -1,5 +1,3 @@
-local icons = require("config.ui.icons")
-
 local M = { "stevearc/dressing.nvim" }
 
 function M.init()
@@ -20,11 +18,18 @@ function M.init()
 end
 
 M.opts = {
+	get_config = function(opts)
+		if opts.kind == "codeaction" then
+			return { builtin = { relative = "cursor" } }
+		end
+	end,
 	input = {
-		default_prompt = icons.misc.right,
+		default_prompt = require("config.util").get_prompt(""),
+		mappings = { i = { ["<C-p>"] = "HistoryPrev", ["<C-n>"] = "HistoryNext" } },
 		max_width = { 50, 0.3 },
 		min_width = { 30, 0.2 },
 	},
+	nui = { relative = "cursor" },
 	select = {
 		backend = { "fzf_lua", "builtin" },
 		builtin = {
@@ -33,18 +38,9 @@ M.opts = {
 			min_width = { 30, 0.2 },
 			max_height = 0.3,
 			min_height = { 10, 0.2 },
-			mappings = {
-				["<Esc>"] = "Close",
-				["q"] = "Close",
-				["<C-c>"] = "Close",
-				["<CR>"] = "Confirm",
-			},
 		},
-		get_config = function(opts)
-			if opts.kind == "codeaction" then
-				return { builtin = { relative = "cursor" } }
-			end
-		end,
+		fzf_lua = { winopts = { height = 0.4, width = 0.4 } },
+		trim_prompt = false,
 	},
 }
 
