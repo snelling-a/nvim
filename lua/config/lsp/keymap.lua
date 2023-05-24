@@ -30,7 +30,7 @@ function M.on_attach(bufnr)
 	bind("<leader>wa", lsp.add_workspace_folder, "[A]dd [w]orkspace folder")
 	bind(
 		"<leader>wl",
-		function() logger.info({ msg = vim.inspect(lsp.list_workspace_folders()) }) end,
+		function() logger.info(vim.inspect(lsp.list_workspace_folders())) end,
 		"[L]ist [w]orkspace folders"
 	)
 	bind("<leader>wr", lsp.remove_workspace_folder, "[R]emove [w]orkspace folder")

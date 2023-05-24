@@ -42,7 +42,7 @@ util.nmap("<Tab>", function() cmd.bnext() end, { desc = "Go to the next buffer" 
 util.nmap("<leader>,", "``", { desc = "Press `,,` to jump back to the last cursor position." })
 util.nmap("<leader>/", function()
 	cmd.nohlsearch()
-	logger.info({ msg = "Highlighting cleared" })
+	logger.info("Highlighting cleared")
 end, { desc = "Clear search highlighting" })
 util.nmap("<leader>x", function()
 	fn.setfperm(fn.expand("%:p"), "rwxr-xr-x")
@@ -96,6 +96,6 @@ util.vmap("K", ":m '<-2<CR>gv=gv", { desc = "Move lines up" })
 util.nmap("<leader>g", function()
 	local conf = logger.confirm({ msg = "Are you sure you want to quit?", type = "Warning" })
 	if conf == 1 then
-		cmd.quit()
+		cmd.quitall()
 	end
 end, { desc = "[Q]uit all windows" })

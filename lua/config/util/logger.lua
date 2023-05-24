@@ -1,38 +1,49 @@
-local Logger = {}
-
-local logger = vim.notify
-
-local levels = {
-	info = vim.log.levels.INFO,
-	warn = vim.log.levels.WARN,
-	error = vim.log.levels.ERROR,
+local levels = vim.log.levels
+local titles = {
+	[levels.INFO] = { tile = "Hey!" },
+	[levels.WARN] = { tile = "Listen!" },
+	[levels.ERROR] = { tile = "Error!" },
 }
 
+local Logger = {}
+
+---@alias Message string?
+---@alias Title string?
+---@alias Level 0|1|2|3|4|5
+
+---@param msg Message
+---@param title Title
+---@param level Level
+local function log(level, title, msg)
+	vim.defer_fn(function() vim.notify(msg or "", level, { title = title or titles[level].titletitle }) end, 500)
+end
+
 ---@class LoggerArgs
----@field msg string?
----@field title string?
----@param logger_args LoggerArgs
-function Logger.info(logger_args) --
-	vim.defer_fn(
-		function() logger(logger_args.msg or "", levels.info, { Title = logger_args.title or "Hey!" }) end,
-		500
-	)
+---@field msg Message
+---@field title Title
+
+---@param logger_args LoggerArgs|string
+function Logger.info(logger_args)
+	if type(logger_args) == "string" then
+		logger_args = { msg = logger_args }
+	end
+	log(levels.INFO, logger_args.title, logger_args.msg)
 end
 
----@param logger_args LoggerArgs
+---@param logger_args LoggerArgs|string
 function Logger.warn(logger_args)
-	vim.defer_fn(
-		function() logger(logger_args.msg or "", levels.warn, { Title = logger_args.title or "Listen!" }) end,
-		500
-	)
+	if type(logger_args) == "string" then
+		logger_args = { msg = logger_args }
+	end
+	log(levels.WARN, logger_args.title, logger_args.msg)
 end
 
----@param logger_args LoggerArgs
+---@param logger_args LoggerArgs|string
 function Logger.error(logger_args)
-	vim.defer_fn(
-		function() logger(logger_args.msg or "", levels.error, { Title = logger_args.title or "Error!" }) end,
-		500
-	)
+	if type(logger_args) == "string" then
+		logger_args = { msg = logger_args }
+	end
+	log(levels.ERROR, logger_args.title, logger_args.msg)
 end
 
 ---@class ConfirmArgs
