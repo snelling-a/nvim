@@ -1,28 +1,6 @@
 local api = vim.api
 local g = vim.g
 
----@alias KeyMapMode "c"|"i"|"n"|"o"|"t"|"v"|"x"
-local key_map_modes = { "c", "i", "n", "o", "t", "v", "x" }
-
----wrapper for nvim_feedkeys that handles <key> syntax
----@param keys string
----@param mode? KeyMapMode default: "n"
----@param escape_ks? boolean default: false
-local function feedkeys(keys, mode, escape_ks)
-	if keys:sub(1, 1) == "<" then
-		keys = vim.api.nvim_replace_termcodes(keys, true, false, true)
-	end
-
-	return api.nvim_feedkeys(keys, mode or "n", escape_ks or false)
-end
-
----@class MapOptions
----@field silent? boolean
----@field noremap? boolean
----@field desc? string
----@field callback? function
----@field replace_keycodes? boolean
-
 local Util = {}
 
 ---wrapper around nvim_create_augroup with
@@ -36,31 +14,27 @@ function Util.augroup(name, clear) return api.nvim_create_augroup("User" .. name
 ---@return table merged
 function Util.tbl_extend_force(...) return vim.tbl_extend("force", ...) end
 
----comment
----@param custom_options MapOptions
----@return MapOptions
+---@param custom_options table|nil Table of |:map-arguments|
+---@return table '|:map-arguments|'
 local function get_map_options(custom_options)
-	local options = { silent = true, noremap = true }
+	local default_options = { silent = true, noremap = true }
+
 	if custom_options then
-		options = Util.tbl_extend_force(options, custom_options or {})
+		default_options = Util.tbl_extend_force(default_options, custom_options or {})
 	end
-	return options
+
+	return default_options
 end
 
----@class KeyMapArgs
----@field mode string|table
----@field target string
----@field source string|function
----@field opts? MapOptions
+---@param mode string|table Mode short-name, see |nvim_set_keymap()|.
+--- Can also be list of modes to create mapping on multiple modes.
+---@param lhs string Left-hand side |{lhs}| of the mapping.
+---@param rhs string|function Right-hand side |{rhs}| of the mapping, can be a Lua function.
+---
+---@param opts table|nil Table of |:map-arguments|.
+function Util.map(mode, lhs, rhs, opts) vim.keymap.set(mode, lhs, rhs, get_map_options(opts)) end
 
----create a keymap
----@param mode string|table
----@param target string
----@param source string|function
----@param opts? MapOptions
-function Util.map(mode, target, source, opts) vim.keymap.set(mode, target, source, opts and get_map_options(opts)) end
-
-for _, mode in ipairs(key_map_modes) do
+for _, mode in ipairs({ "c", "i", "n", "o", "t", "v", "x" }) do
 	Util[mode .. "map"] = function(...) Util.map(mode, ...) end
 end
 

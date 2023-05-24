@@ -4,8 +4,8 @@ local util = require("config.util")
 local is_obsidian = require("config.util.constants").obsidian.is_vault_directory
 
 ---comment
----@param text? string @The text to display in the logo; defaults to "neovim"
----@return _ string @The header for alpha
+---@param text? string 'The text to display in the logo; defaults to "neovim"'
+---@return string 'The header for alpha'
 local function get_header(text)
 	return " ▌║█║▌│║▌│║▌║▌█║ "
 		.. (text or "neovim")
