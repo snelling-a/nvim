@@ -1,4 +1,3 @@
-local signs = require("config.ui.icons").gitsigns
 local utils = require("config.util")
 
 local function current_line_blame_formatter_nc(_, blame_info, _)
@@ -67,10 +66,8 @@ local M = { "lewis6991/gitsigns.nvim" }
 M.opts = {
 	current_line_blame = true,
 	current_line_blame_formatter_nc = current_line_blame_formatter_nc,
-	numhl = true,
 	on_attach = on_attach,
 	preview_config = { border = "rounded" },
-	signs = signs,
 }
 
 M.config = true

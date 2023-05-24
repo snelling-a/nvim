@@ -84,12 +84,8 @@ function Util.is_vim()
 end
 
 ---returns `true` if current buffer should be formatted or not
----@param filetype string result of `vim.bo.filetype`
----@return boolean 'if `filetype` should have formatting'
-function Util.should_have_formatting(filetype)
-	local no_format = require("config.util.constants").no_format
-	return not vim.tbl_contains(no_format, filetype)
-end
+---@return boolean 'should file have formatting'
+function Util.is_file() return not vim.tbl_contains(require("config.util.constants").no_format, vim.bo.filetype) end
 
 function Util.is_buf_big(bufnr)
 	local max_filesize = 100 * 1024 -- 100 KB

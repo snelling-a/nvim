@@ -7,5 +7,4 @@ require("config.command")
 require("config.opt")
 require("config.session")
 require("config.ui")
-
-require("config.util.netrw")
+-- require("config.util.netrw")

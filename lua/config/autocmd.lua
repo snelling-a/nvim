@@ -85,34 +85,27 @@ autocmd({ "BufWritePre" }, {
 	pattern = "!markdown",
 })
 
-local ToggleWindowOptionsGroup = augroup("ToggleWindowOptions")
-autocmd({ "BufLeave" }, {
-	callback = function()
-		opt_local.cursorline = false
-		opt_local.relativenumber = false
+local function toggle_buffer_opts()
+	if util.is_file() then
+		opt_local.cursorline = api.nvim_get_option_value("cursorline", { scope = "local" }) and false or true
+		opt_local.number = true
+		opt_local.relativenumber = api.nvim_get_option_value("relativenumber", { scope = "local" }) and false or true
+		opt_local.statuscolumn = [[%!v:lua.Status.column()]]
+	end
+end
 
-		if util.should_have_formatting then
-			opt_local.number = true
-		else
-			opt_local.number = false
-		end
-	end,
-	desc = "Toggle cursorline and relative number off",
+local ToggleWindowOptionsGroup = augroup("ToggleWindowOptions")
+
+autocmd({ "BufLeave" }, {
+	callback = toggle_buffer_opts,
+	desc = "Toggle buffer options off",
 	group = ToggleWindowOptionsGroup,
 	pattern = "*",
 })
 
 autocmd("BufEnter", {
-	callback = function()
-		if util.should_have_formatting then
-			opt_local.cursorline = true
-			-- opt_local.number = true
-			-- opt_local.relativenumber = true
-		else
-			opt_local.colorcolumn = ""
-		end
-	end,
-	desc = "Toggle cursorline and relative number on",
+	callback = toggle_buffer_opts,
+	desc = "Toggle buffer options on",
 	group = ToggleWindowOptionsGroup,
 })
 

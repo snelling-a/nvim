@@ -20,6 +20,7 @@ Constants.no_format = {
 	"neo-tree",
 	"noice",
 	"notify",
+	"NvimSeparator",
 	"NvimTree",
 	"ObsidianBacklinks",
 	"Outline",

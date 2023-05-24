@@ -1,4 +1,4 @@
-local icons = require("config.ui.icons").misc
+local icons = require("config.ui.icons")
 
 local M = {}
 _G.Status = M
@@ -15,7 +15,7 @@ end
 function M.get_line_numbers()
 	local v
 	if vim.v.virtnum > 0 then
-		v = icons.wrap .. " "
+		v = icons.misc.wrap .. " "
 	elseif vim.v.virtnum < 0 then
 		v = " "
 	else
@@ -28,7 +28,7 @@ function M.get_gitsign(git_sign)
 	if git_sign then
 		return "%#" .. git_sign.texthl .. "#" .. string.gsub(git_sign.text, "%s+", "") .. "%*"
 	else
-		return ""
+		return require("config.util").is_file() and icons.fillchars.foldsep or ""
 	end
 end
 
@@ -36,20 +36,20 @@ function M.column()
 	local sign, git_sign
 	for _, s in ipairs(M.get_signs()) do
 		if s.name:find("GitSign") then
+			s.text = icons.gitsigns[s.name]
 			git_sign = s
 		else
 			sign = s
 		end
 	end
+
 	local components = {
-		M.get_gitsign(git_sign),
 		[[%C]],
 		sign and ("%#" .. sign.texthl .. "#" .. sign.text .. "%*") or " ",
 		M.get_line_numbers(),
+		M.get_gitsign(git_sign),
 	}
 	return table.concat(components, "")
 end
-
-vim.opt.statuscolumn = [[%!v:lua.Status.column()]]
 
 return M
