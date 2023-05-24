@@ -29,7 +29,7 @@ autocmd({ "FileType" }, {
 	end,
 	desc = "Use [q] to close the buffer for helper files",
 	group = augroup("EasyQuit"),
-	pattern = require("config.util.constants").no_format,
+	pattern = vim.tbl_filter(function(ft) return ft ~= "spectre_panel" end, require("config.util.constants").no_format),
 })
 
 autocmd({ "BufEnter", "FileType" }, {

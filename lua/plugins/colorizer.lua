@@ -1,13 +1,7 @@
-local no_format = require("config.util.constants").no_format
-
-local function no_color()
-	return vim.tbl_map(function(filetype) return "!" .. filetype end, no_format)
-end
-
 local M = { "NvChad/nvim-colorizer.lua" }
 
 M.opts = {
-	buftypes = no_color(),
+	buftypes = require("config.util").no_format,
 	filetypes = { "*", cmp_docs = { always_update = true } },
 	user_default_options = {
 		AARRGGBB = true,

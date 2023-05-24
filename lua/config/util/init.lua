@@ -87,6 +87,9 @@ end
 ---@return boolean 'should file have formatting'
 function Util.is_file() return not vim.tbl_contains(require("config.util.constants").no_format, vim.bo.filetype) end
 
+---returns `!filetype[]` for each filetype in `no_format`
+Util.no_format = vim.tbl_map(function(filetype) return "!" .. filetype end, require("config.util.constants").no_format)
+
 function Util.is_buf_big(bufnr)
 	local max_filesize = 100 * 1024 -- 100 KB
 	local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(bufnr))

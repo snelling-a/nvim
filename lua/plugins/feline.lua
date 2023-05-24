@@ -1,3 +1,5 @@
+local no_format = require("config.util.constants").no_format
+
 local M = { "freddiehaddad/feline.nvim" }
 
 M.cond = require("config.util").is_vim()
@@ -11,12 +13,12 @@ function M.config()
 
 	feline.setup({
 		components = statusbar.components,
-		force_inactive = { filetypes = require("config.util.constants").no_format },
+		force_inactive = { filetypes = no_format },
 		theme = statusbar.theme,
 		vi_mode_colors = statusbar.vi_mode_colors,
 	})
 
-	feline.winbar.setup({ components = winbar.components })
+	feline.winbar.setup({ components = winbar.components, force_inactive = { filetypes = no_format } })
 end
 
 return M
