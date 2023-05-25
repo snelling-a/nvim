@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.3.0](https://github.com/snelling-a/nvim/compare/v4.2.0...v4.3.0) (2023-05-25)
+
+
+### Features
+
+* **spell:** SpellCheck command ([68adb03](https://github.com/snelling-a/nvim/commit/68adb03abe7ce701c3dc220dbd6585851c9fcc12))
+
 ## [4.2.0](https://github.com/snelling-a/nvim/compare/v4.1.0...v4.2.0) (2023-05-24)
 
 
