@@ -1,5 +1,3 @@
-local icons = require("config.ui.icons")
-
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
 	vim.fn.system({
@@ -31,29 +29,5 @@ require("lazy").setup({
 		},
 	},
 	spec = { import = "plugins" },
-	ui = {
-		border = "rounded",
-		icons = {
-			cmd = icons.cmp.cmd,
-			config = icons.misc.gears,
-			event = icons.kind_icons.Event,
-			ft = icons.file.buffer,
-			init = icons.misc.rocket,
-			import = icons.file.import,
-			keys = icons.misc.keyboard,
-			loaded = icons.progress.done,
-			not_loaded = icons.progress.pending,
-			plugin = icons.kind_icons.Package,
-			runtime = icons.misc.code,
-			source = icons.file.folder_open,
-			start = icons.misc.right,
-			task = icons.misc.checklist,
-			list = {
-				icons.misc.selection,
-				icons.misc.chevron_right,
-				"‒",
-				icons.listchars.trail,
-			},
-		},
-	},
+	ui = require("config.ui.icons").lazy,
 })

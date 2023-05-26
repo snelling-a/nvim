@@ -192,4 +192,22 @@ Icons.progress = { done = "󰗡 ", error = error, pending = "󰔟", trash = "
 
 Icons.obsidian = { health = "󱨌 ", new = " ", search = "󱙔 ", today = "󱨰 ", yesterday = "󱓩 " }
 
+Icons.lazy = {
+	cmd = Icons.cmp.cmd,
+	config = Icons.misc.gears,
+	event = Icons.kind_icons.Event,
+	ft = Icons.file.buffer,
+	init = Icons.misc.rocket,
+	import = Icons.file.import,
+	keys = Icons.misc.keyboard,
+	loaded = Icons.progress.done,
+	not_loaded = Icons.progress.pending,
+	plugin = Icons.kind_icons.Package,
+	runtime = Icons.misc.code,
+	source = Icons.file.folder_open,
+	start = Icons.misc.right,
+	task = Icons.misc.checklist,
+	list = { Icons.misc.selection, Icons.misc.chevron_right, "‒", Icons.listchars.trail },
+}
+
 return Icons
