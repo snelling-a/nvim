@@ -36,7 +36,8 @@ function M.column()
 	local sign, git_sign
 	for _, s in ipairs(M.get_signs()) do
 		if s.name:find("GitSign") then
-			s.text = icons.gitsigns[s.name]
+			-- HACK: breaking change in internal api https://github.com/lewis6991/gitsigns.nvim/pull/799
+			s.text = icons.gitsigns[s.texthl]
 			git_sign = s
 		else
 			sign = s
