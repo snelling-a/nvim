@@ -31,6 +31,13 @@ local function copy_selector(state)
 	end)
 end
 
+local function image_wezterm(state)
+	local node = state.tree:get_node()
+	if node.type == "file" then
+		require("image_preview").PreviewImage(node.path)
+	end
+end
+
 local M = { "nvim-neo-tree/neo-tree.nvim" }
 
 M.dependencies = {
@@ -69,7 +76,7 @@ M.keys = {
 
 M.opts = {
 	filesystem = {
-		commands = { copy_selector = copy_selector },
+		commands = { copy_selector = copy_selector, image_wezterm = image_wezterm },
 		filtered_items = {
 			never_show_by_pattern = {
 				"*.git",
@@ -93,6 +100,7 @@ M.opts = {
 		width = 30,
 		fuzzy_finder_mappings = { ["<C-j>"] = "move_cursor_down", ["<C-k>"] = "move_cursor_up" },
 		mappings = {
+			["<leader>p"] = "image_wezterm",
 			["<C-s>"] = "split_with_window_picker",
 			["<C-t>"] = "open_tabnew",
 			["<C-v>"] = "vsplit_with_window_picker",
