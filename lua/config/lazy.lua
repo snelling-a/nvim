@@ -14,6 +14,7 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
 	change_detection = { notify = false },
 	dev = { path = os.getenv("HOME") .. "/dev/github.com/snelling-a" },
+	install = { colorscheme = { "base16-default-dark", "habamax" } },
 	performance = {
 		rtp = {
 			disabled_plugins = {
