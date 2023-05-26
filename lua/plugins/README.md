@@ -67,8 +67,7 @@
 |[saadparwaiz1/cmp_luasnip](https://github.com/saadparwaiz1/cmp_luasnip)|luasnip completion source for nvim-cmp|
 |[simrat39/symbols-outline.nvim](https://github.com/simrat39/symbols-outline.nvim)|A tree like view for symbols in Neovim using the Language Server Protocol. Supports all your favourite languages.|
 |[SmiteshP/nvim-navic](https://github.com/SmiteshP/nvim-navic)|Simple winbar/statusline plugin that shows your current code context|
-|[snelling-a/base16.lua](https://github.com/snelling-a/base16.lua)|Neovim plugin for building a sync base16 colorscheme. Includes support for Treesitter and LSP highlight groups.|
-|[snelling-a/nvim-base16](https://github.com/snelling-a/nvim-base16)|Neovim plugin for building a sync base16 colorscheme. Includes support for Treesitter and LSP highlight groups.|
+|[snelling-a/base16.nvim](https://github.com/snelling-a/base16.nvim)|Neovim plugin for building a sync base16 colorscheme. Includes support for Treesitter and LSP highlight groups.|
 |[Sonicfury/scretch.nvim](https://github.com/Sonicfury/scretch.nvim)|📝 Neovim plugin to manage scratch files !|
 |[sQVe/bufignore.nvim](https://github.com/sQVe/bufignore.nvim)|Unlist hidden buffers matching specified ignore sources.|
 |[stevearc/dressing.nvim](https://github.com/stevearc/dressing.nvim)|Neovim plugin to improve the default vim.ui interfaces|

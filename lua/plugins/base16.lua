@@ -1,7 +1,4 @@
--- local M = "snelling-a/base16.lua"
-local M = { "snelling-a/nvim-base16" }
-
-M.cond = not vim.g.vscode
+local M = { "snelling-a/base16.nvim" }
 
 M.dev = true
 
