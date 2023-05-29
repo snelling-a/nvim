@@ -1,5 +1,27 @@
 # Changelog
 
+## [4.4.0](https://github.com/snelling-a/nvim/compare/v4.3.0...v4.4.0) (2023-05-29)
+
+
+### Features
+
+* image_previewer ([beb97fc](https://github.com/snelling-a/nvim/commit/beb97fcf2b31bdeb4e424171aa49b0d702ffaec4))
+* **ui:** colorschemes/transparency ([21d5046](https://github.com/snelling-a/nvim/commit/21d504603a8b69f7e7480eb6a44dd75d41e0cfc1))
+* **ui:** use devicons source ([e0a8c1e](https://github.com/snelling-a/nvim/commit/e0a8c1e2cbb933e870f31eee69b69a6459f29628))
+
+
+### Bug Fixes
+
+* typo in filename ([53fdea3](https://github.com/snelling-a/nvim/commit/53fdea3636e40e41ca4c1d12710de69f3e6b3d48))
+* **ui:** breaking change in gitsigns internal api ([250c25b](https://github.com/snelling-a/nvim/commit/250c25b26fe0869b65714f1a8787f737a8c861f8))
+
+
+### Miscellaneous
+
+* update colorscheme repo name ([3f29f87](https://github.com/snelling-a/nvim/commit/3f29f87631fa3263354663e63ce5a57107df538f))
+* update packages ([33de445](https://github.com/snelling-a/nvim/commit/33de44532499a3025d0aad27fdef6210d465d08c))
+* update packages ([45abdbb](https://github.com/snelling-a/nvim/commit/45abdbb335d85650a4a64dc5c9f2f13d8f07099e))
+
 ## [4.3.0](https://github.com/snelling-a/nvim/compare/v4.2.0...v4.3.0) (2023-05-25)
 
 
