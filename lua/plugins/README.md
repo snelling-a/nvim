@@ -13,6 +13,7 @@
 |[epwalsh/obsidian.nvim](https://github.com/epwalsh/obsidian.nvim)|Neovim plugin for Obsidian, written in Lua|
 |[folke/neodev.nvim](https://github.com/folke/neodev.nvim)|💻  Neovim setup for init.lua and plugin development with full signature help, docs and completion for the nvim lua API.|
 |[folke/noice.nvim](https://github.com/folke/noice.nvim)|💥 Highly experimental plugin that completely replaces the UI for messages, cmdline and the popupmenu.|
+|[folke/tokyonight.nvim](https://github.com/folke/tokyonight.nvim)|🏙  A clean, dark Neovim theme written in Lua, with support for lsp, treesitter and lots of plugins. Includes additional themes for Kitty, Alacritty, iTerm and Fish.|
 |[folke/trouble.nvim](https://github.com/folke/trouble.nvim)|🚦 A pretty diagnostics, references, telescope results, quickfix and location list to help you solve all the trouble your code is causing.|
 |[freddiehaddad/feline.nvim](https://github.com/freddiehaddad/feline.nvim)|A minimal, stylish and customizable statusline, statuscolumn, and winbar for Neovim|
 |[ggandor/flit.nvim](https://github.com/ggandor/flit.nvim)|Enhanced f/t motions for Leap|
@@ -63,6 +64,7 @@
 |[ray-x/lsp_signature.nvim](https://github.com/ray-x/lsp_signature.nvim)|LSP signature hint as you type|
 |[rcarriga/nvim-dap-ui](https://github.com/rcarriga/nvim-dap-ui)|A UI for nvim-dap|
 |[rcarriga/nvim-notify](https://github.com/rcarriga/nvim-notify)|A fancy, configurable, notification manager for NeoVim|
+|[rose-pine/neovim](https://github.com/rose-pine/neovim)|Soho vibes for Neovim|
 |[s1n7ax/nvim-window-picker](https://github.com/s1n7ax/nvim-window-picker)|This plugins prompts the user to pick a window and returns the window id of the picked window|
 |[saadparwaiz1/cmp_luasnip](https://github.com/saadparwaiz1/cmp_luasnip)|luasnip completion source for nvim-cmp|
 |[simrat39/symbols-outline.nvim](https://github.com/simrat39/symbols-outline.nvim)|A tree like view for symbols in Neovim using the Language Server Protocol. Supports all your favourite languages.|
