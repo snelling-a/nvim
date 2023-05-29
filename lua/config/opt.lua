@@ -14,6 +14,7 @@ opt.grepprg = "rg --hidden --vimgrep --smartcase"
 opt.ignorecase = true
 opt.isfname:append("@-@")
 opt.mouse = "a"
+opt.runtimepath:append("/usr/local/opt/fzf")
 opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize" }
 opt.shiftround = true
 opt.shiftwidth = 4
