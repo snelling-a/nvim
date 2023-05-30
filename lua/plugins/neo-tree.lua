@@ -132,10 +132,10 @@ M.opts = {
 		},
 	},
 	nesting_rules = {
-		["ts"] = { "spec.ts", "spec.tsx", "stories.tsx", "stories.mdx" },
-		["tsx"] = { "spec.ts", "spec.tsx", "stories.tsx", "stories.mdx" },
-		["js"] = { "d.ts" },
-		["jsx"] = { "d.ts" },
+		["ts"] = { "test.ts", "spec.ts" },
+		["tsx"] = { "test.tsx", "spec.tsx", "stories.tsx", "stories.mdx" },
+		["js"] = { "test.js", "d.ts" },
+		["jsx"] = { "test.jsx", "d.ts" },
 	},
 	source_selector = {
 		winbar = true,
