@@ -14,11 +14,11 @@ M.keys = {
 	{ "<leader><tab>", function() require("fzf-lua").keymaps() end, desc = "Show keymaps" },
 	{ "<leader>b", function() require("fzf-lua").buffers() end, desc = "Show [b]uffers" },
 	{ "<leader>ca", function() require("fzf-lua").lsp_code_actions() end, desc = "[C]ode [a]ction" },
-	{ "<leader>fs", function() require("fzf-lua").lsp_document_symbols() end, desc = "Show [d]ocument [s]ymbols" },
 	{ "<leader>fh", function() require("fzf-lua").help_tags() end, desc = "[H]elp" },
+	{ "<leader>fr", function() require("fzf-lua").lsp_finder() end, desc = "All lsp locations combined" },
+	{ "<leader>fs", function() require("fzf-lua").lsp_document_symbols() end, desc = "Show [d]ocument [s]ymbols" },
 	{ "<leader>q", function() require("fzf-lua").quickfix() end, desc = "[Q]uick fix menu" },
 	{ "<leader>qf", function() require("fzf-lua").quickfix() end, desc = "[Q]uick [F]ix menu" },
-	{ "fr", function() require("fzf-lua").lsp_finder() end, desc = "All lsp locations combined" },
 	{ "?", function() require("fzf-lua").blines() end, desc = "Search current buffer" },
 	{ '""', function() require("fzf-lua").registers() end, desc = "View registers" },
 }
