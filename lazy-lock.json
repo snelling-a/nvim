@@ -26,6 +26,7 @@
   "fold-preview.nvim": { "branch": "main", "commit": "b7920cb0aba2b48a6b679bff45f98c3ebc0f0b89" },
   "fzf-lua": { "branch": "main", "commit": "bc5110738d44c16655cf1b23534343aaade855a2" },
   "gh.nvim": { "branch": "main", "commit": "2b5551656c1b896bf4ae06546eaaab00311f9a18" },
+  "github-nvim-theme": { "branch": "main", "commit": "3c6ed264e09f493c3bba0044bf1e6eda8c863e23" },
   "gitsigns.nvim": { "branch": "main", "commit": "f868d82a36f7f7f5e110eb0a9659993984f59875" },
   "goto-breakpoints.nvim": { "branch": "master", "commit": "e57cf63d152534db3a9177ae53abbff43fcab6c2" },
   "headlines.nvim": { "branch": "master", "commit": "ddef41b2664f0ce25fe76520d708e2dc9dfebd70" },
