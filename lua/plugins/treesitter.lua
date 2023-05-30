@@ -91,6 +91,9 @@ M.opts = {
 
 M.version = false
 
-function M.config(_, opts) require("nvim-treesitter.configs").setup(opts) end
+function M.config(_, opts)
+	require("nvim-treesitter.configs").setup(opts)
+	require("nvim-treesitter.install").compilers = { "gcc-13" } -- for neorg
+end
 
 return M
