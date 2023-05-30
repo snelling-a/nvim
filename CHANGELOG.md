@@ -1,5 +1,25 @@
 # Changelog
 
+## [4.6.0](https://github.com/snelling-a/nvim/compare/v4.5.0...v4.6.0) (2023-05-30)
+
+
+### Features
+
+* expand neo-tree nesting_rules ([a987623](https://github.com/snelling-a/nvim/commit/a98762308910a85269c446a621865c6565f3d0ef))
+* lf ([d5c5fbb](https://github.com/snelling-a/nvim/commit/d5c5fbbfeb62b1c93428839dafbbac91fd8dd9a9))
+* **lsp:** marksman ([3b105ad](https://github.com/snelling-a/nvim/commit/3b105ad70aab6cdf298a765007340e96ef30abbf))
+* **ui:** github theme ([9423ad4](https://github.com/snelling-a/nvim/commit/9423ad4436eb2c2e2e917ca47917c5f47299516f))
+
+
+### Bug Fixes
+
+* **fzf:** mapping for lsp_finder ([8ef53a5](https://github.com/snelling-a/nvim/commit/8ef53a524e0b73c18a608e53dd1f1bbaf6a00272))
+
+
+### Miscellaneous
+
+* update plugins ([82de79d](https://github.com/snelling-a/nvim/commit/82de79d3261b736ee4fcbfb85e039ebf00459384))
+
 ## [4.5.0](https://github.com/snelling-a/nvim/compare/v4.4.0...v4.5.0) (2023-05-30)
 
 
