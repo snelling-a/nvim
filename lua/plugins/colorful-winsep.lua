@@ -1,7 +1,18 @@
-local M = { "nvim-zh/colorful-winsep.nvim" }
+local ColorfulWinsep = { "nvim-zh/colorful-winsep.nvim" }
 
-M.config = true
+ColorfulWinsep.opts = {
+	no_exec_files = {
+		"CompetiTest",
+		"fzf",
+		"mason",
+		"noice",
+		"nui",
+		"NvimTree",
+		"packer",
+		"TelescopePrompt",
+	},
+}
 
-M.event = { "WinNew" }
+ColorfulWinsep.event = { "WinNew" }
 
-return M
+return ColorfulWinsep
