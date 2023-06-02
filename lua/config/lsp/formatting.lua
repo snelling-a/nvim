@@ -24,9 +24,14 @@ function DocumentFormatting.format()
 	vim.lsp.buf.format({
 		bufnr = buf,
 		filter = function(client)
+			if client.name == "eslint" then
+				return vim.cmd.EslintFixAll
+			end
+
 			if have_nls then
 				return client.name == "null-ls"
 			end
+
 			return client.name ~= "null-ls"
 		end,
 	})

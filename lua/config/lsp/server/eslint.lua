@@ -1,5 +1,21 @@
-local M = {}
+local util = require("config.lsp.util")
 
-function M.setup(opts) require("lspconfig").eslint.setup(opts) end
+local config_files = {
+	".eslintrc",
+	".eslintrc.cjs",
+	".eslintrc.js",
+	".eslintrc.json",
+	".eslintrc.yaml",
+	".eslintrc.yml",
+	"package.json",
+}
 
-return M
+local Eslint = {}
+
+function Eslint.setup(opts)
+	opts.root_dir = util.get_root_pattern(config_files)
+
+	require("lspconfig").eslint.setup(opts)
+end
+
+return Eslint

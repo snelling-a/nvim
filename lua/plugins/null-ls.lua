@@ -65,12 +65,12 @@ function M.config()
 			builtins_code_actions.cspell.with({ disabled_filetypes = disabled_filetypes }),
 			builtins_code_actions.shellcheck,
 			builtins_diagnostics.gitlint,
-			builtins_diagnostics_shellcheck,
 			builtins_diagnostics.todo_comments,
 			builtins_diagnostics.vint,
 			builtins_diagnostics.zsh,
 			builtins_diagnostics_cspell,
 			builtins_diagnostics_luacheck,
+			builtins_diagnostics_shellcheck,
 			builtins_diagnostics_vale,
 			builtins_diagnostics_yamllint,
 			builtins_formatting.cbfmt,
@@ -84,7 +84,7 @@ function M.config()
 		},
 	})
 
-	require("mason-null-ls").setup({ ensure_installed = nil, automatic_installation = true, automatic_setup = false })
+	require("mason-null-ls").setup({ automatic_installation = true, automatic_setup = false })
 end
 
 return M
