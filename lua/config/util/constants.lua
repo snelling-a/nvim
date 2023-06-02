@@ -9,6 +9,7 @@ Constants.no_format = {
 	"checkhealth",
 	"dapui_*",
 	"diffview",
+	"dropbar_menu",
 	"fugitive",
 	"fugitiveblame",
 	"git",

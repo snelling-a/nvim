@@ -174,4 +174,9 @@ local right = { search_count, gap, git_branch, git_add, git_diff_removed, git_di
 Statusline.components =
 	{ active = { left, middle, right }, inactive = { { git_branch }, { git_diff_changed, git_diff_removed }, {} } }
 
-return Statusline
+return {
+	components = Statusline.components,
+	force_inactive = Statusline.force_inactive,
+	theme = Statusline.theme,
+	vi_mode_colors = Statusline.vi_mode_colors,
+}

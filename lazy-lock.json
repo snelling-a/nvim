@@ -20,6 +20,7 @@
   "copilot-cmp": { "branch": "master", "commit": "c2cdb3c0f5078b0619055af192295830a7987790" },
   "copilot.lua": { "branch": "master", "commit": "77e3a4907928f0813024e573b882dc879dfc0c6b" },
   "dressing.nvim": { "branch": "master", "commit": "f19cbd56f7f8cad212c58a7285d09c5d9c273896" },
+  "dropbar.nvim": { "branch": "master", "commit": "e1cc5d1673c40315e45dbb2a9bc83738b5897e06" },
   "feline.nvim": { "branch": "main", "commit": "c63983da180595339163d8b7185dd43ddc31e70e" },
   "firenvim": { "branch": "master", "commit": "e2d5a0f97d1f41e03c8d2a3c71ee60b1a4a6bb83" },
   "flit.nvim": { "branch": "main", "commit": "f60e4b3d49bb5a5e97cfffe66f2e671eb422078e" },
