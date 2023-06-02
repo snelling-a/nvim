@@ -1,5 +1,28 @@
 # Changelog
 
+## [4.7.0](https://github.com/snelling-a/nvim/compare/v4.6.0...v4.7.0) (2023-06-02)
+
+
+### Features
+
+* make StripWhitespace a user command ([9facb16](https://github.com/snelling-a/nvim/commit/9facb16421cff1b7d3d1b74011e3af868ffbdcf8))
+* **ui:** dropbar ([eaceb8f](https://github.com/snelling-a/nvim/commit/eaceb8fff0a90295e85498528f8db34e073c8510))
+
+
+### Bug Fixes
+
+* don't lazy load firenvim ([c9894fe](https://github.com/snelling-a/nvim/commit/c9894fe9d146ae7d9913fc9fa179ebbfa62a2844))
+* **lsp:** use eslint to format ([b886b61](https://github.com/snelling-a/nvim/commit/b886b611554bb39a71d638b5afa50a64b13c44c9))
+* pin window-picker to v1.5 ([2981e41](https://github.com/snelling-a/nvim/commit/2981e4192535aececa4977f56dc0d7032aba22b5))
+* **ui:** don't show winsep on non-files ([78dc54e](https://github.com/snelling-a/nvim/commit/78dc54eba22976474c91f8fb1e5fe8d345ba0469))
+* **ui:** DRY icons ([0908ec4](https://github.com/snelling-a/nvim/commit/0908ec4338276030b268f04bbff3a0d3d4248e77))
+* **ui:** increase size of left pannel in gh ui ([94cf25c](https://github.com/snelling-a/nvim/commit/94cf25ccfca8ea13a8c92185805b82ab731a86e4))
+
+
+### Miscellaneous
+
+* **plugin:** update ([e8f7e33](https://github.com/snelling-a/nvim/commit/e8f7e33fb2a4e318ecb79bd97adab8ec907ee35b))
+
 ## [4.6.0](https://github.com/snelling-a/nvim/compare/v4.5.0...v4.6.0) (2023-05-30)
 
 
