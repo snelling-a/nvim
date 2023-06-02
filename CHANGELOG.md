@@ -1,5 +1,24 @@
 # Changelog
 
+## [4.8.0](https://github.com/snelling-a/nvim/compare/v4.7.0...v4.8.0) (2023-06-02)
+
+
+### Features
+
+* **keys:** Q ([adac7f3](https://github.com/snelling-a/nvim/commit/adac7f375e4e89c4ce0d2d74bb7dbb76e38ad37b))
+* **qf:** better quickfix ([e433d37](https://github.com/snelling-a/nvim/commit/e433d3770d1f94b76bacdda7d4c0effdf67539dc))
+
+
+### Bug Fixes
+
+* changelog ([e3c9ff8](https://github.com/snelling-a/nvim/commit/e3c9ff8fb0036786acd512aaf43b4c7684febb8c))
+
+
+### Miscellaneous
+
+* **spell:** update cspell.json ([e1f8a80](https://github.com/snelling-a/nvim/commit/e1f8a809c817f9f8da886d2483e7c33a27e08322))
+* update plugins ([113c3b1](https://github.com/snelling-a/nvim/commit/113c3b156e0a5c99afa77fcb92b8853263bf25f2))
+
 ## [4.7.0](https://github.com/snelling-a/nvim/compare/v4.6.0...v4.7.0) (2023-06-02)
 
 
