@@ -1,5 +1,21 @@
+local variable = "󰀫 "
 local buffer = " "
-local right = ""
+local trail = "·"
+local chevron_right = "󰄾 "
+local selection = " "
+local checklist = " "
+local folder_open = " "
+local code = " "
+local package = ""
+local pending = "󰔟"
+local done = "󰗡 "
+local keyboard = "󰌓 "
+local import = "󱀯 "
+local rocket = " "
+local event = " "
+local gears = " "
+local line = "󰚈 "
+local command_line = " "
 local copilot = " "
 local down = ""
 local elipsis = "…"
@@ -9,8 +25,9 @@ local folder = " "
 local lsp = " "
 local modified = "󰏭 "
 local moved = "󱦰"
+local right = ""
+local snippet = "󰩫 "
 local vert = "┃"
-local command_line = " "
 
 local Icons = {}
 
@@ -25,7 +42,7 @@ Icons.dap = {
 Icons.cmp = {
 	Copilot = copilot,
 	buffer = buffer,
-	luasnip = "󰃐 ",
+	luasnip = snippet,
 	nvim_lsp = lsp,
 	nvim_lsp_signature_help = lsp,
 	nvim_lua = " ",
@@ -65,11 +82,13 @@ Icons.gitsigns = {
 	GitSignsUntracked = "┋",
 }
 
+Icons.headings = { "󰉫 ", "󰉬 ", "󰉭 ", "󰉮 ", "󰉯 ", "󰉰 " }
+
 Icons.file = {
 	buffer = buffer,
 	folder_empty = "󰷍 ",
-	folder_open = " ",
-	import = "󱀯 ",
+	folder_open = folder_open,
+	import = import,
 	modified = modified,
 	newfile = file,
 	oldfiles = "󱀸 ",
@@ -82,39 +101,68 @@ Icons.fillchars =
 	{ diff = "░", eob = " ", fold = "󰇼", foldclose = right, foldopen = down, foldsep = "│", vert = vert }
 
 Icons.kind_icons = {
-	Array = "󱡠",
-	Boolean = "󰨙",
+	Array = "󱡠 ",
+	Boolean = "󰨙 ",
+	BreakStatement = "󰙧 ",
+	Call = "󰃷 ",
+	CaseStatement = "󱃙 ",
 	Class = " ",
 	Color = " ",
 	Constant = " ",
 	Constructor = " ",
+	ContinueStatement = "→ ",
 	Copilot = copilot,
+	Declaration = "󰙠 ",
+	Delete = "󰩺 ",
+	DoStatement = "󰑖 ",
 	Enum = " ",
 	EnumMember = " ",
-	Event = " ",
+	Event = event,
 	Field = " ",
 	File = file,
 	Folder = folder,
+	ForStatement = "󰑖 ",
 	Function = "󰊕 ",
+	Identifier = variable,
+	IfStatement = "󰇉 ",
 	Interface = " ",
 	Keyword = "󰌋 ",
+	List = line,
+	Log = "󰦪 ",
+	Lsp = " ",
+	Macro = "󰁌 ",
+	MarkdownH1 = "󰉫 ",
+	MarkdownH2 = "󰉬 ",
+	MarkdownH3 = "󰉭 ",
+	MarkdownH4 = "󰉮 ",
+	MarkdownH5 = "󰉯 ",
+	MarkdownH6 = "󰉰 ",
 	Method = "󰊕",
 	Module = " ",
+	Namespace = " ",
 	Null = "󰟢 ",
 	Number = "󰎠",
 	Object = "",
 	Operator = " ",
-	Package = "",
+	Package = package,
 	Property = " ",
 	Reference = " ",
-	Snippet = " ",
-	String = "",
+	Regex = " ",
+	Repeat = "󰑖 ",
+	Scope = " ",
+	Snippet = snippet,
+	Specifier = "󰦪 ",
+	Statement = " ",
+	String = "󱆨 ",
 	Struct = " ",
+	SwitchStatement = "󰺟 ",
 	Text = " ",
+	Type = " ",
 	TypeParameter = " ",
 	Unit = " ",
 	Value = "󰎠 ",
-	Variable = "󰀫 ",
+	Variable = variable,
+	WhileStatement = "󰑖 ",
 }
 
 Icons.languages = {
@@ -140,6 +188,24 @@ Icons.languages = {
 	zsh = "",
 }
 
+Icons.lazy = {
+	cmd = command_line,
+	config = gears,
+	event = event,
+	ft = buffer,
+	init = rocket,
+	import = import,
+	keys = keyboard,
+	loaded = done,
+	not_loaded = pending,
+	plugin = package,
+	runtime = code,
+	source = folder_open,
+	start = right,
+	task = checklist,
+	list = { selection, chevron_right, "‒", trail },
+}
+
 Icons.listchars = {
 	extends = elipsis,
 	leadmultispace = " ",
@@ -147,40 +213,41 @@ Icons.listchars = {
 	nbsp = "␣",
 	precedes = elipsis,
 	tab = "  ",
-	trail = "·",
+	trail = trail,
 }
 
-Icons.location = { bottom = " ", col = "󰚉 ", line = "󰚈 ", top = " " }
+Icons.location = { bottom = " ", col = "󰚉 ", line = line, top = " " }
 
 Icons.misc = {
-	checklist = " ",
+	checklist = checklist,
 	chevron_down = " ",
-	chevron_right = "󰄾 ",
+	chevron_right = chevron_right,
 	chevron_up = " ",
 	clipboard_check = "󰢨 ",
-	code = " ",
+	code = code,
 	code_action = "󰘦 ",
 	down = down,
 	exit = "󰩈 ",
 	files = " ",
-	gears = " ",
+	gears = gears,
 	health = " ",
 	help = "󰋖 ",
 	indent = "▏",
-	keyboard = "󰌓 ",
+	keyboard = keyboard,
 	l = "ℓ",
 	lazy = "󰒲 ",
 	lightbulb_alert = "󱧢 ",
 	moved = moved,
 	multi = " ",
+	note = " ",
 	panda = "󰏚 ",
 	percent = "󰏰 ",
 	restore = "󰁯 ",
 	right = right,
-	rocket = " ",
+	rocket = rocket,
 	search = " ",
 	search_text = "󰱽 ",
-	selection = " ",
+	selection = selection,
 	square = "󰝤 ",
 	tag = " ",
 	tools = " ",
@@ -188,26 +255,8 @@ Icons.misc = {
 	wrap = "↵",
 }
 
-Icons.progress = { done = "󰗡 ", error = error, pending = "󰔟", trash = " " }
+Icons.progress = { done = done, error = error, pending = pending, trash = " " }
 
 Icons.obsidian = { health = "󱨌 ", new = " ", search = "󱙔 ", today = "󱨰 ", yesterday = "󱓩 " }
-
-Icons.lazy = {
-	cmd = Icons.cmp.cmd,
-	config = Icons.misc.gears,
-	event = Icons.kind_icons.Event,
-	ft = Icons.file.buffer,
-	init = Icons.misc.rocket,
-	import = Icons.file.import,
-	keys = Icons.misc.keyboard,
-	loaded = Icons.progress.done,
-	not_loaded = Icons.progress.pending,
-	plugin = Icons.kind_icons.Package,
-	runtime = Icons.misc.code,
-	source = Icons.file.folder_open,
-	start = Icons.misc.right,
-	task = Icons.misc.checklist,
-	list = { Icons.misc.selection, Icons.misc.chevron_right, "‒", Icons.listchars.trail },
-}
 
 return Icons
