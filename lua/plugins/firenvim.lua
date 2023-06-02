@@ -1,13 +1,13 @@
-local M = { "glacambre/firenvim" }
+local Firenvim = { "glacambre/firenvim" }
 
-M.cond = not not vim.g.started_by_firenvim
+Firenvim.lazy = false
 
-function M.build()
-	require("lazy").load({ plugins = "firenvim", wait = true })
+function Firenvim.build()
+	require("lazy").load({ plugins = { "firenvim" }, wait = false })
 	vim.fn["firenvim#install"](1)
 end
 
-function M.config()
+function Firenvim.config()
 	local api = vim.api
 	local g = vim.g
 	local opt = vim.opt
@@ -49,4 +49,4 @@ function M.config()
 	})
 end
 
-return M
+return Firenvim
