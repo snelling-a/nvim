@@ -53,6 +53,7 @@ M.dependencies = {
 			include_current = false,
 			other_win_hl_color = "#e35e4f",
 		},
+		version = "v1.5",
 	},
 }
 
