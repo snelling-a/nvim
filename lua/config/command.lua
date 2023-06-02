@@ -1,4 +1,5 @@
 local command = vim.api.nvim_create_user_command
+local cmd = vim.cmd
 
 command("SortJSON", function() vim.cmd("%!jq . --sort-keys") end, { desc = "Sort json keys alphabetically" })
 
@@ -21,3 +22,9 @@ command("ColorMyPencils", function()
 		vim.cmd.colorscheme(vim.g.colors_name)
 	end
 end, { desc = "Toggle transparent background" })
+
+command(
+	"StripWhitespace",
+	function() cmd.substitute([[/\s\+$/]], [[\=submatch(0)]], [[e]]) end,
+	{ desc = "Strip whitespace from the end of the line" }
+)

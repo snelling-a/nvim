@@ -78,7 +78,7 @@ autocmd("TextYankPost", {
 })
 
 autocmd({ "BufWritePre" }, {
-	callback = function() cmd.substitute([[/\s\+$/]], [[\=submatch(0)]], [[e]]) end,
+	callback = cmd.StripWhitespace,
 	desc = "Strip whitespace from the end of the line",
 	group = augroup("StripWhitespace"),
 	pattern = "!markdown",
