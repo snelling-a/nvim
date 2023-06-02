@@ -1,11 +1,13 @@
 # Plugins
 |Plugin|Description|
 |---|---|
+|[akinsho/toggleterm.nvim](https://github.com/akinsho/toggleterm.nvim)|A neovim lua plugin to help easily manage multiple terminal windows|
 |[anuvyklack/fold-preview.nvim](https://github.com/anuvyklack/fold-preview.nvim)|Preview folds in float window |
 |[anuvyklack/keymap-amend.nvim](https://github.com/anuvyklack/keymap-amend.nvim)|Amend the existing keymap in Neovim|
 |[anuvyklack/pretty-fold.nvim](https://github.com/anuvyklack/pretty-fold.nvim)|Foldtext customization in Neovim|
 |[b0o/schemastore.nvim](https://github.com/b0o/schemastore.nvim)|🛍 JSON schemas for Neovim|
 |[barrett-ruth/import-cost.nvim](https://github.com/barrett-ruth/import-cost.nvim)|Display javascript import costs inside of neovim|
+|[Bekaboo/dropbar.nvim](https://github.com/Bekaboo/dropbar.nvim)|IDE-like breadcrumbs, out of the box|
 |[David-Kunz/jester](https://github.com/David-Kunz/jester)|A Neovim plugin to easily run and debug Jest tests|
 |[davidsierradz/cmp-conventionalcommits](https://github.com/davidsierradz/cmp-conventionalcommits)|(WIP) nvim-cmp source for autocompleting git commits with conventional commits types and lerna packages as scope|
 |[eandrju/cellular-automaton.nvim](https://github.com/eandrju/cellular-automaton.nvim)|A useless plugin that might help you cope with stubbornly broken tests or overall lack of sense in life. It lets you execute aesthetically pleasing, cellular automaton animations based on the content of neovim buffer.|
@@ -35,11 +37,12 @@
 |[JoosepAlviste/nvim-ts-context-commentstring](https://github.com/JoosepAlviste/nvim-ts-context-commentstring)|Neovim treesitter plugin for setting the commentstring based on the cursor location in a file.|
 |[jose-elias-alvarez/null-ls.nvim](https://github.com/jose-elias-alvarez/null-ls.nvim)|Use Neovim as a language server to inject LSP diagnostics, code actions, and more via Lua.|
 |[jparise/vim-graphql](https://github.com/jparise/vim-graphql)|A Vim plugin that provides GraphQL file detection, syntax highlighting, and indentation.|
+|[kevinhwang91/nvim-bqf](https://github.com/kevinhwang91/nvim-bqf)|Better quickfix window in Neovim, polish old quickfix window.|
 |[kylechui/nvim-surround](https://github.com/kylechui/nvim-surround)|Add/change/delete surrounding delimiter pairs with ease. Written with :heart: in Lua.|
 |[L3MON4D3/LuaSnip](https://github.com/L3MON4D3/LuaSnip)|Snippet Engine for Neovim written in Lua.|
 |[ldelossa/gh.nvim](https://github.com/ldelossa/gh.nvim)|A fully featured GitHub integration for performing code reviews in Neovim.|
-|[ldelossa/litee.nvim](https://github.com/ldelossa/litee.nvim)|A framework for building Neovim plugins|
 |[lewis6991/gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)|Git integration for buffers|
+|[lmburns/lf.nvim](https://github.com/lmburns/lf.nvim)|Lf file manager for Neovim (in Lua)|
 |[lukas-reineke/headlines.nvim](https://github.com/lukas-reineke/headlines.nvim)|This plugin adds horizontal highlights for text filetypes, like markdown, orgmode, and neorg.|
 |[lukas-reineke/indent-blankline.nvim](https://github.com/lukas-reineke/indent-blankline.nvim)|Indent guides  for Neovim|
 |[lvimuser/lsp-inlayhints.nvim](https://github.com/lvimuser/lsp-inlayhints.nvim)||
@@ -60,6 +63,7 @@
 |[nvim-treesitter/nvim-treesitter-textobjects](https://github.com/nvim-treesitter/nvim-treesitter-textobjects)||
 |[nvim-zh/colorful-winsep.nvim](https://github.com/nvim-zh/colorful-winsep.nvim)|Make your nvim window separators colorful|
 |[ofirgall/goto-breakpoints.nvim](https://github.com/ofirgall/goto-breakpoints.nvim)|Cycle between breakpoints with keymappings for nvim-dap|
+|[projekt0n/github-nvim-theme](https://github.com/projekt0n/github-nvim-theme)|Github's Neovim themes |
 |[ray-x/cmp-treesitter](https://github.com/ray-x/cmp-treesitter)|cmp source for treesitter|
 |[ray-x/lsp_signature.nvim](https://github.com/ray-x/lsp_signature.nvim)|LSP signature hint as you type|
 |[rcarriga/nvim-dap-ui](https://github.com/rcarriga/nvim-dap-ui)|A UI for nvim-dap|
