@@ -18,6 +18,7 @@ Constants.no_format = {
 	"log",
 	"lspinfo",
 	"mason",
+	"netrw",
 	"neo-tree",
 	"noice",
 	"notify",
