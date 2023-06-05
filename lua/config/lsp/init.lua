@@ -5,10 +5,6 @@ function LspConfig.on_attach(client, bufnr)
 		client.server_capabilities.documentFormattingProvider = false
 	end
 
-	if client.server_capabilities.documentSymbolProvider then
-		require("nvim-navic").attach(client, bufnr)
-	end
-
 	if client.server_capabilities.documentFormattingProvider == true then
 		require("config.lsp.formatting").on_attach(bufnr)
 	end
