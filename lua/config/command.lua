@@ -29,3 +29,5 @@ command(
 	function() cmd.substitute([[/\s\+$/]], [[\=submatch(0)]], [[e]]) end,
 	{ desc = "Strip whitespace from the end of the line" }
 )
+
+command("GenrateAverageColor", function() require("config.ui.average-colorscheme") end, {})

@@ -1,5 +1,3 @@
-local M = { "folke/tokyonight.nvim" }
+local TokyoNight = { "folke/tokyonight.nvim" }
 
-M.config = true
-
-return M
+return TokyoNight

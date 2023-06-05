@@ -1,5 +1,5 @@
-local M = { "rose-pine/neovim" }
+local RosePine = { "rose-pine/neovim" }
 
-M.name = "rose-pine"
+RosePine.name = "rose-pine"
 
-return M
+return RosePine
