@@ -1,5 +1,25 @@
 # Changelog
 
+## [4.9.0](https://github.com/snelling-a/nvim/compare/v4.8.0...v4.9.0) (2023-06-06)
+
+
+### Features
+
+* add netrw to list of no_format ([2f27322](https://github.com/snelling-a/nvim/commit/2f273227b99df8d62724e7d14fabe2616ed5136f))
+* add scroll_center to down movement ([5517d61](https://github.com/snelling-a/nvim/commit/5517d61228f5adb628b1394715ea2ed591fd67ef))
+* **ui:** average dark color theme ([d740039](https://github.com/snelling-a/nvim/commit/d740039a7952e5160313f5ea6d87a3deb09fcfdf))
+
+
+### Bug Fixes
+
+* remove redunant comment ([4f96e90](https://github.com/snelling-a/nvim/commit/4f96e90828c622598521e08e3d1ff23513dabee8))
+
+
+### Miscellaneous
+
+* **spell:** update cspell.json ([ebcd0cd](https://github.com/snelling-a/nvim/commit/ebcd0cd60cffea9a9ff38afe5d9d886f3adfdd43))
+* update plugins ([8b27a3d](https://github.com/snelling-a/nvim/commit/8b27a3ddcd8b2a9c83598252430d6ca745b1c511))
+
 ## [4.8.0](https://github.com/snelling-a/nvim/compare/v4.7.0...v4.8.0) (2023-06-02)
 
 
