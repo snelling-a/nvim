@@ -1,13 +1,13 @@
 local icons = require("config.ui.icons")
 local get_prompt = require("config.util").get_prompt
 
-local preview_pager = "delta --width=$FZF_PREVIEW_COLUMNS"
+local preview_pager = vim.fn.executable("delta") and "delta --width=$FZF_PREVIEW_COLUMNS"
 
-local M = { "ibhagwan/fzf-lua" }
 
-M.dependencies = { "neovim/nvim-lspconfig", "nvim-tree/nvim-web-devicons" }
+local FzfLua = { "ibhagwan/fzf-lua" }
 
-M.keys = {
+FzfLua.dependencies = { "nvim-tree/nvim-web-devicons" }
+FzfLua.keys = {
 	{ "<C-p>", function() require("fzf-lua").files() end, desc = "Open [p]roject files" },
 	{ "<C-r>", function() require("fzf-lua").live_grep() end, desc = "[R]un live grep" },
 	{ "<leader><space>", function() require("fzf-lua").builtin() end, desc = "Open builtins" },
@@ -23,8 +23,7 @@ M.keys = {
 	{ '""', function() require("fzf-lua").registers() end, desc = "View registers" },
 }
 
-M.opts = {
-	"fzf-native",
+FzfLua.opts = {
 	blines = { prompt = get_prompt(icons.location.line) },
 	btags = { prompt = get_prompt(icons.misc.tag) },
 	buffers = { prompt = get_prompt(icons.file.buffer), cwd_only = true },
@@ -85,10 +84,10 @@ M.opts = {
 	quickfix_stack = { marker = icons.misc.right },
 	tabs = { prompt = get_prompt(icons.file.tab) },
 	tags = { prompt = get_prompt(icons.misc.tag) },
-	winopts = { preview = { default = "bat" } },
+	winopts = { on_create = function() vim.b.miniindentscope_disable = true end },
 }
 
-function M.config(_, opts)
+function FzfLua.config(_, opts)
 	local fzf_lua = require("fzf-lua")
 
 	vim.api.nvim_create_autocmd("VimResized", {
@@ -101,4 +100,4 @@ function M.config(_, opts)
 	fzf_lua.setup(opts)
 end
 
-return M
+return FzfLua
