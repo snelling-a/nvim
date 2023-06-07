@@ -13,10 +13,6 @@ function LspConfig.on_attach(client, bufnr)
 		require("config.lsp.document_highlight").on_attach(bufnr)
 	end
 
-	if client.server_capabilities.inlayHintProvider then
-		require("lsp-inlayhints").on_attach(client, bufnr, true)
-	end
-
 	if client.supports_method("textDocument/publishDiagnostics") then
 		require("config.lsp.diagnostic").on_attach(bufnr)
 	end
