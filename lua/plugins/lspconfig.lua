@@ -6,10 +6,7 @@ M.dependencies = {
 	"b0o/schemastore.nvim",
 	"folke/neodev.nvim",
 	"hrsh7th/cmp-nvim-lsp",
-	"ibhagwan/fzf-lua",
 	"jparise/vim-graphql",
-	"lvimuser/lsp-inlayhints.nvim",
-	"SmiteshP/nvim-navic",
 	{ "yioneko/nvim-vtsls", ft = { "typescript", "typescriptreact", "javascript", "javascriptreact" } },
 	{
 		"williamboman/mason.nvim",
