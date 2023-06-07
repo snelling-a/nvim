@@ -3,6 +3,8 @@ local icons = require("config.ui.icons")
 
 local Dropbar = { "Bekaboo/dropbar.nvim" }
 
+Dropbar.lazy = true
+
 Dropbar.opts = {
 	icons = {
 		kinds = { symbols = vim.tbl_map(function(icon) return icon .. " " end, icons.kind_icons) },
