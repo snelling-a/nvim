@@ -1,6 +1,8 @@
 local M = { "jose-elias-alvarez/null-ls.nvim" }
 
-M.dependencies = { "jay-babu/mason-null-ls.nvim", "williamboman/mason.nvim" }
+M.dependencies = { "jay-babu/mason-null-ls.nvim" }
+
+M.event = "LspAttach"
 
 function M.config()
 	local disabled_filetypes = require("config.util.constants").no_format
