@@ -65,6 +65,9 @@
   "nvim-dap-virtual-text": { "branch": "master", "commit": "57f1dbd0458dd84a286b27768c142e1567f3ce3b" },
   "nvim-dap-vscode-js": { "branch": "main", "commit": "03bd29672d7fab5e515fc8469b7d07cc5994bbf6" },
   "nvim-lspconfig": { "branch": "master", "commit": "c89b22e9a6fd9747df1d101a2425f7454bb6d2ef" },
+||||||| parent of df66c4f (chore: update plugins)
+  "nvim-lspconfig": { "branch": "master", "commit": "1028360e0f2f724d93e876df3d22f63c1acd6ff9" },
+=======
   "nvim-navic": { "branch": "master", "commit": "15704c607569d6c5cfeab486d3ef9459645a70ce" },
   "nvim-notify": { "branch": "master", "commit": "f3024b912073774111202f5fa6518b0cd2a74432" },
   "nvim-spectre": { "branch": "master", "commit": "1abe23ec9b7bc3082164f4cb842d521ef70e080e" },
@@ -95,4 +98,3 @@
   "vim-graphql": { "branch": "master", "commit": "996749a7d69a3709768fa8c4d259f79b5fd9bdb1" },
   "vim-repeat": { "branch": "master", "commit": "24afe922e6a05891756ecf331f39a1f6743d3d5a" },
   "vim-unimpaired": { "branch": "master", "commit": "6d44a6dc2ec34607c41ec78acf81657248580bf1" }
-}
