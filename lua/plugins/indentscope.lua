@@ -2,6 +2,8 @@ local M = { "echasnovski/mini.indentscope" }
 
 M.event = { "BufReadPre", "BufNewFile" }
 
+M.lazy = true
+
 M.opts = {
 	symbol = require("config.ui.icons").fillchars.foldsep,
 	options = { try_as_border = true },
