@@ -61,15 +61,17 @@ local function on_attach(bufnr)
 	utils.map({ "o", "x" }, "ah", function() gs.select_hunk() end, { desc = "Select [a]round [h]unk" })
 end
 
-local M = { "lewis6991/gitsigns.nvim" }
+local Gitsigns = { "lewis6991/gitsigns.nvim" }
 
-M.opts = {
+Gitsigns.event = { "BufReadPre", "BufNewFile" }
+
+Gitsigns.opts = {
 	current_line_blame = true,
 	current_line_blame_formatter_nc = current_line_blame_formatter_nc,
 	on_attach = on_attach,
 	preview_config = { border = "rounded" },
 }
 
-M.config = true
+Gitsigns.config = true
 
-return M
+return Gitsigns
