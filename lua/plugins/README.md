@@ -8,10 +8,13 @@
 |[b0o/schemastore.nvim](https://github.com/b0o/schemastore.nvim)|🛍 JSON schemas for Neovim|
 |[barrett-ruth/import-cost.nvim](https://github.com/barrett-ruth/import-cost.nvim)|Display javascript import costs inside of neovim|
 |[Bekaboo/dropbar.nvim](https://github.com/Bekaboo/dropbar.nvim)|IDE-like breadcrumbs, out of the box|
+|[catppuccin/nvim](https://github.com/catppuccin/nvim)|🍨 Soothing pastel theme for (Neo)vim|
 |[David-Kunz/jester](https://github.com/David-Kunz/jester)|A Neovim plugin to easily run and debug Jest tests|
 |[davidsierradz/cmp-conventionalcommits](https://github.com/davidsierradz/cmp-conventionalcommits)|(WIP) nvim-cmp source for autocompleting git commits with conventional commits types and lerna packages as scope|
 |[eandrju/cellular-automaton.nvim](https://github.com/eandrju/cellular-automaton.nvim)|A useless plugin that might help you cope with stubbornly broken tests or overall lack of sense in life. It lets you execute aesthetically pleasing, cellular automaton animations based on the content of neovim buffer.|
+|[echasnovski/mini.colors](https://github.com/echasnovski/mini.colors)|Tweak and save any color scheme. Part of 'mini.nvim' library.|
 |[echasnovski/mini.indentscope](https://github.com/echasnovski/mini.indentscope)|Neovim Lua plugin to visualize and operate on indent scope. Part of 'mini.nvim' library.|
+|[EdenEast/nightfox.nvim](https://github.com/EdenEast/nightfox.nvim)|🦊A highly customizable theme for vim and neovim with support for lsp, treesitter and a variety of plugins.|
 |[epwalsh/obsidian.nvim](https://github.com/epwalsh/obsidian.nvim)|Neovim plugin for Obsidian, written in Lua|
 |[folke/neodev.nvim](https://github.com/folke/neodev.nvim)|💻  Neovim setup for init.lua and plugin development with full signature help, docs and completion for the nvim lua API.|
 |[folke/noice.nvim](https://github.com/folke/noice.nvim)|💥 Highly experimental plugin that completely replaces the UI for messages, cmdline and the popupmenu.|
@@ -32,6 +35,7 @@
 |[hrsh7th/cmp-path](https://github.com/hrsh7th/cmp-path)|nvim-cmp source for path|
 |[hrsh7th/nvim-cmp](https://github.com/hrsh7th/nvim-cmp)|A completion plugin for neovim coded in Lua.|
 |[ibhagwan/fzf-lua](https://github.com/ibhagwan/fzf-lua)|Improved fzf.vim written in lua|
+|[jay-babu/mason-null-ls.nvim](https://github.com/jay-babu/mason-null-ls.nvim)||
 |[jay-babu/mason-nvim-dap.nvim](https://github.com/jay-babu/mason-nvim-dap.nvim)||
 |[jbyuki/one-small-step-for-vimkind](https://github.com/jbyuki/one-small-step-for-vimkind)|Debug adapter for Neovim plugins|
 |[JoosepAlviste/nvim-ts-context-commentstring](https://github.com/JoosepAlviste/nvim-ts-context-commentstring)|Neovim treesitter plugin for setting the commentstring based on the cursor location in a file.|
@@ -68,11 +72,11 @@
 |[ray-x/lsp_signature.nvim](https://github.com/ray-x/lsp_signature.nvim)|LSP signature hint as you type|
 |[rcarriga/nvim-dap-ui](https://github.com/rcarriga/nvim-dap-ui)|A UI for nvim-dap|
 |[rcarriga/nvim-notify](https://github.com/rcarriga/nvim-notify)|A fancy, configurable, notification manager for NeoVim|
+|[rebelot/kanagawa.nvim](https://github.com/rebelot/kanagawa.nvim)|NeoVim dark colorscheme inspired by the colors of the famous painting by Katsushika Hokusai.|
 |[rose-pine/neovim](https://github.com/rose-pine/neovim)|Soho vibes for Neovim|
 |[s1n7ax/nvim-window-picker](https://github.com/s1n7ax/nvim-window-picker)|This plugins prompts the user to pick a window and returns the window id of the picked window|
 |[saadparwaiz1/cmp_luasnip](https://github.com/saadparwaiz1/cmp_luasnip)|luasnip completion source for nvim-cmp|
 |[simrat39/symbols-outline.nvim](https://github.com/simrat39/symbols-outline.nvim)|A tree like view for symbols in Neovim using the Language Server Protocol. Supports all your favourite languages.|
-|[SmiteshP/nvim-navic](https://github.com/SmiteshP/nvim-navic)|Simple winbar/statusline plugin that shows your current code context|
 |[snelling-a/base16.nvim](https://github.com/snelling-a/base16.nvim)|Neovim plugin for building a sync base16 colorscheme. Includes support for Treesitter and LSP highlight groups.|
 |[Sonicfury/scretch.nvim](https://github.com/Sonicfury/scretch.nvim)|📝 Neovim plugin to manage scratch files !|
 |[sQVe/bufignore.nvim](https://github.com/sQVe/bufignore.nvim)|Unlist hidden buffers matching specified ignore sources.|
@@ -81,7 +85,7 @@
 |[tpope/vim-fugitive](https://github.com/tpope/vim-fugitive)|fugitive.vim: A Git wrapper so awesome, it should be illegal|
 |[tpope/vim-repeat](https://github.com/tpope/vim-repeat)|repeat.vim: enable repeating supported plugin maps with "."|
 |[tpope/vim-unimpaired](https://github.com/tpope/vim-unimpaired)|unimpaired.vim: Pairs of handy bracket mappings|
-|[williamboman/mason-lspconfig.nvim](https://github.com/williamboman/mason-lspconfig.nvim)|Extension to mason.nvim that makes it easier to use lspconfig with mason.nvim. Strongly recommended for Windows users.|
+|[williamboman/mason-lspconfig.nvim](https://github.com/williamboman/mason-lspconfig.nvim)|Extension to mason.nvim that makes it easier to use lspconfig with mason.nvim.|
 |[williamboman/mason.nvim](https://github.com/williamboman/mason.nvim)|Portable package manager for Neovim that runs everywhere Neovim runs. Easily install and manage LSP servers, DAP servers, linters, and formatters.|
 |[windwp/nvim-autopairs](https://github.com/windwp/nvim-autopairs)|autopairs for neovim written by lua|
 |[windwp/nvim-ts-autotag](https://github.com/windwp/nvim-ts-autotag)|Use treesitter to auto close and auto rename html tag|
