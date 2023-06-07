@@ -1,21 +1,6 @@
 local M = { "stevearc/dressing.nvim" }
 
-function M.init()
-	local load = require("lazy").load
-	local ui = vim.ui
-
-	---@diagnostic disable-next-line: duplicate-set-field
-	ui.select = function(...)
-		load({ plugins = { "dressing.nvim" } })
-		return ui.select(...)
-	end
-
-	---@diagnostic disable-next-line: duplicate-set-field
-	ui.input = function(...)
-		load({ plugins = { "dressing.nvim" } })
-		return ui.input(...)
-	end
-end
+M.lazy = true
 
 M.opts = {
 	get_config = function(opts)
@@ -43,5 +28,22 @@ M.opts = {
 		trim_prompt = false,
 	},
 }
+
+function M.init()
+	local load = require("lazy").load
+	local ui = vim.ui
+
+	---@diagnostic disable-next-line: duplicate-set-field
+	ui.select = function(...)
+		load({ plugins = { "dressing.nvim" } })
+		return ui.select(...)
+	end
+
+	---@diagnostic disable-next-line: duplicate-set-field
+	ui.input = function(...)
+		load({ plugins = { "dressing.nvim" } })
+		return ui.input(...)
+	end
+end
 
 return M
