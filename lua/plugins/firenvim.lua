@@ -15,7 +15,6 @@ function Firenvim.config()
 	if g.started_by_firenvim then
 		opt.colorcolumn = ""
 		opt.cursorline = false
-		opt.guifont = "Iosevka Nerd Font Mono"
 		opt.laststatus = 1
 		opt.number = false
 		opt.relativenumber = false
