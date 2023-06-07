@@ -3,6 +3,8 @@ local M = { "lukas-reineke/headlines.nvim" }
 
 M.dependencies = { "nvim-treesitter/nvim-treesitter" }
 
+M.ft = { "markdown" }
+
 M.opts = {
 	markdown = {
 		codeblock_highlight = "CodeBlock",
