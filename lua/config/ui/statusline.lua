@@ -61,10 +61,9 @@ local lsp = {
 		if vim.o.columns < 100 then
 			return ""
 		end
-		local progress = vim.lsp.util.get_progress_messages()[1]
 		local clients = vim.lsp.get_active_clients({ bufnr = 0 })
 		if #clients ~= 0 then
-			if progress then
+			if vim.lsp.status() then
 				return pad_right(icons.misc.gears) .. clients[1].name
 			else
 				return pad_right(icons.progress.done) .. clients[1].name
@@ -73,7 +72,7 @@ local lsp = {
 		return ""
 	end,
 	hl = function()
-		local progress = vim.lsp.util.get_progress_messages()[1]
+		local progress = vim.lsp.status()
 		return { fg = progress and "yellow" or "fg" }
 	end,
 }
