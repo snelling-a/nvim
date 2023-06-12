@@ -1,10 +1,10 @@
-local M = { "windwp/nvim-autopairs" }
+local Autopairs = { "windwp/nvim-autopairs" }
 
-M.opts = { check_ts = true }
+Autopairs.opts = { check_ts = true }
 
-M.event = "InsertEnter"
+Autopairs.event = "InsertEnter"
 
-function M.config(_, opts)
+function Autopairs.config(_, opts)
 	local autopairs = require("nvim-autopairs")
 
 	autopairs.setup(opts)
@@ -15,4 +15,4 @@ function M.config(_, opts)
 	require("cmp").event:on("confirm_done", cmp_autopairs.on_confirm_done({}))
 end
 
-return M
+return Autopairs

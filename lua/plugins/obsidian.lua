@@ -10,20 +10,16 @@ local function note_id_func(input)
 	return os.date("%Y%m%d%H%M") .. "-" .. title
 end
 
-local M = { "epwalsh/obsidian.nvim" }
+local Obsidian = { "epwalsh/obsidian.nvim" }
 
-M.dependencies = {
-	"nvim-lua/plenary.nvim",
-	"hrsh7th/nvim-cmp",
-	"ibhagwan/fzf-lua",
-	"nvim-treesitter/nvim-treesitter",
-}
+Obsidian.dependencies =
+	{ "hrsh7th/nvim-cmp", "ibhagwan/fzf-lua", "nvim-lua/plenary.nvim", "nvim-treesitter/nvim-treesitter" }
 
-M.event = { "BufReadPre " .. obsidian.vault_directory .. "/*" }
+Obsidian.event = { "BufReadPre " .. obsidian.vault_directory .. "/*" }
 
-M.ft = "markdown"
+Obsidian.ft = "markdown"
 
-M.keys = {
+Obsidian.keys = {
 	{ "<leader>dn", cmd.ObsidianToday, desc = "Open today's [d]aily [n]ote" },
 	{ "<leader>ob", cmd.ObsidianBacklinks, desc = "[O]pen [b]acklinks" },
 	{ "<leader>ol", cmd.ObsidianLinkNew, desc = "[O]pen [l]ink in new buffer" },
@@ -43,9 +39,9 @@ M.keys = {
 	},
 }
 
-M.lazy = not obsidian.is_vault_directory
+Obsidian.lazy = not obsidian.is_vault_directory
 
-M.opts = {
+Obsidian.opts = {
 	completion = { nvim_cmp = true },
 	daily_notes = { folder = "daily-notes" },
 	dir = obsidian.vault_directory,
@@ -54,4 +50,4 @@ M.opts = {
 	use_advanced_uri = true,
 }
 
-return M
+return Obsidian

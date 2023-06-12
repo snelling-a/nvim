@@ -125,11 +125,11 @@ local function luasnip_extend()
 	extend("typescriptreact", { "html", "javascript" })
 end
 
-local M = { "hrsh7th/nvim-cmp" }
+local CMP = { "hrsh7th/nvim-cmp" }
 
-M.cond = not vim.g.vscode
+CMP.cond = not vim.g.vscode
 
-M.dependencies = {
+CMP.dependencies = {
 	"davidsierradz/cmp-conventionalcommits",
 	"hrsh7th/cmp-buffer",
 	"hrsh7th/cmp-cmdline",
@@ -148,16 +148,16 @@ M.dependencies = {
 	{ "petertriho/cmp-git", dependencies = { "nvim-lua/plenary.nvim" } },
 }
 
-M.event = "InsertEnter"
+CMP.event = "InsertEnter"
 
-M.opts = {
+CMP.opts = {
 	enabled = enabled,
 	experimental = { ghost_text = { hl_group = "LspCodeLens" } },
 	formatting = formatting,
 	snippet = { expand = function(args) require("luasnip").lsp_expand(args.body) end },
 }
 
-function M.config(_, opts)
+function CMP.config(_, opts)
 	local cmp = require("cmp")
 
 	local config, mapping, setup = cmp.config, cmp.mapping, cmp.setup
@@ -194,4 +194,4 @@ function M.config(_, opts)
 	})
 end
 
-return M
+return CMP

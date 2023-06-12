@@ -1,6 +1,6 @@
-local M = { "folke/trouble.nvim" }
+local Trouble = { "folke/trouble.nvim" }
 
-M.keys = {
+Trouble.keys = {
 	{ "<leader>xx", function() vim.cmd.TroubleToggle(nil) end, desc = "Toggle trouble" },
 	{
 		"<leader>xw",
@@ -17,6 +17,6 @@ M.keys = {
 	{ "gR", function() vim.cmd.TroubleToggle("lsp_references") end, desc = "Toggle trouble for LSP [R]eference" },
 }
 
-M.opts = { auto_close = true, mode = "workspace_diagnostics", use_diagnostic_signs = true }
+Trouble.opts = { auto_close = true, mode = "workspace_diagnostics", use_diagnostic_signs = true }
 
-return M
+return Trouble
