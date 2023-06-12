@@ -1,6 +1,6 @@
-local augroup = require("config.util").augroup
-
 local LspInlayHints = { "lvimuser/lsp-inlayhints.nvim" }
+
+LspInlayHints.ft = table.insert(require("config.util.constants").javascript_typescript, "lua")
 
 LspInlayHints.branch = "anticonceal"
 
@@ -10,7 +10,7 @@ LspInlayHints.config = function(_, opts)
 	require("lsp-inlayhints").setup(opts)
 
 	vim.api.nvim_create_autocmd("LspAttach", {
-		group = augroup("LspInlayHints"),
+		group = require("config.util").augroup("LspInlayHints"),
 		callback = function(args)
 			if not (args.data and args.data.client_id) then
 				return

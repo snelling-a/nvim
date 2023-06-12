@@ -1,9 +1,9 @@
-local M = { "barrett-ruth/import-cost.nvim" }
+local ImportCost = { "barrett-ruth/import-cost.nvim" }
 
-M.build = "sh install.sh yarn"
+ImportCost.build = "sh install.sh yarn"
 
-M.opts = { highlight = "TSComment" }
+ImportCost.opts = { highlight = "TSComment" }
 
-M.ft = { "javascript", "javascriptreact", "typescript", "typescriptreact" }
+ImportCost.ft = require("config.util.constants").javascript_typescript
 
-return M
+return ImportCost

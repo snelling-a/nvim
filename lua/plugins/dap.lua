@@ -94,7 +94,7 @@ function M.config()
 		vim.fn.sign_define("Dap" .. name, { text = sign })
 	end
 
-	for _, language in ipairs({ "typescript", "javascript" }) do
+	for _, language in ipairs(require("config.util.constants").javascript_typescript) do
 		dap.configurations[language] = {
 			{
 				name = "Debug Jest Unit Tests (default)",
@@ -141,4 +141,5 @@ function M.config()
 end
 
 M.enabled = false
+
 return M
