@@ -1,27 +1,13 @@
-local icons = require("config.ui.icons")
-
 local M = { "neovim/nvim-lspconfig" }
 
 M.dependencies = {
 	"b0o/schemastore.nvim",
 	"folke/neodev.nvim",
 	"hrsh7th/cmp-nvim-lsp",
+	-- "ibhagwan/fzf-lua",
 	"jparise/vim-graphql",
-	{ "yioneko/nvim-vtsls", ft = { "typescript", "typescriptreact", "javascript", "javascriptreact" } },
-	{
-		"williamboman/mason.nvim",
-		opts = {
-			ui = {
-				border = "rounded",
-				icons = {
-					package_installed = icons.progress.done,
-					package_pending = icons.progress.pending,
-					package_uninstalled = icons.progress.trash,
-				},
-			},
-		},
-	},
-	{ "williamboman/mason-lspconfig.nvim", opts = { automatic_installation = true } },
+	"lvimuser/lsp-inlayhints.nvim",
+	"yioneko/nvim-vtsls",
 }
 
 function M.config()
