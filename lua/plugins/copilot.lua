@@ -14,9 +14,11 @@ end
 
 local M = { "zbirenbaum/copilot.lua" }
 
+M.cond = not vim.g.vscode
+
 M.build = ":Copilot auth"
 
-M.cond = not vim.g.vscode
+M.event = "BufAdd"
 
 M.dependencies = {
 	{
