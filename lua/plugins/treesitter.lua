@@ -67,7 +67,7 @@ M.dependencies = {
 	{ "nvim-treesitter/nvim-treesitter-context", opts = { mode = "topline" } },
 }
 
-M.event = { "BufReadPost", "BufNewFile" }
+M.event = "BufEnter"
 
 M.opts = {
 	auto_install = true,
