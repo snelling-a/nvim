@@ -9,6 +9,7 @@
 |[barrett-ruth/import-cost.nvim](https://github.com/barrett-ruth/import-cost.nvim)|Display javascript import costs inside of neovim|
 |[Bekaboo/dropbar.nvim](https://github.com/Bekaboo/dropbar.nvim)|IDE-like breadcrumbs, out of the box|
 |[catppuccin/nvim](https://github.com/catppuccin/nvim)|🍨 Soothing pastel theme for (Neo)vim|
+|[danymat/neogen](https://github.com/danymat/neogen)|A better annotation generator. Supports multiple languages and annotation conventions.|
 |[David-Kunz/jester](https://github.com/David-Kunz/jester)|A Neovim plugin to easily run and debug Jest tests|
 |[davidsierradz/cmp-conventionalcommits](https://github.com/davidsierradz/cmp-conventionalcommits)|(WIP) nvim-cmp source for autocompleting git commits with conventional commits types and lerna packages as scope|
 |[eandrju/cellular-automaton.nvim](https://github.com/eandrju/cellular-automaton.nvim)|A useless plugin that might help you cope with stubbornly broken tests or overall lack of sense in life. It lets you execute aesthetically pleasing, cellular automaton animations based on the content of neovim buffer.|
