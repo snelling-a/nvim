@@ -1,16 +1,20 @@
-local M = { "neovim/nvim-lspconfig" }
+local javascript_typescript = require("config.util.constants").javascript_typescript
 
-M.dependencies = {
-	"b0o/schemastore.nvim",
-	"folke/neodev.nvim",
+local LspConfig = { "neovim/nvim-lspconfig" }
+
+LspConfig.dependencies = {
 	"hrsh7th/cmp-nvim-lsp",
-	-- "ibhagwan/fzf-lua",
-	"jparise/vim-graphql",
+	"ibhagwan/fzf-lua",
 	"lvimuser/lsp-inlayhints.nvim",
-	"yioneko/nvim-vtsls",
+	{ "b0o/schemastore.nvim", ft = { "json", "jsonc", "yaml", "yml" } },
+	{ "folke/neodev.nvim", ft = { "lua" } },
+	{ "jparise/vim-graphql", ft = table.insert(javascript_typescript, "graphql") },
+	{ "yioneko/nvim-vtsls", ft = javascript_typescript },
 }
 
-function M.config()
+LspConfig.event = "BufAdd"
+
+function LspConfig.config()
 	require("lspconfig.ui.windows").default_options.border = "rounded"
 
 	local opts = {
@@ -28,4 +32,4 @@ function M.config()
 	end
 end
 
-return M
+return LspConfig
