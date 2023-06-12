@@ -1,6 +1,5 @@
 local Firenvim = { "glacambre/firenvim" }
 
-Firenvim.lazy = false
 
 function Firenvim.build()
 	require("lazy").load({ plugins = { "firenvim" }, wait = false })
@@ -22,7 +21,7 @@ function Firenvim.config()
 		opt.spell = true
 	end
 
-	vim.g.firenvim_config = {
+	g.firenvim_config = {
 		globalSettings = { alt = "all" },
 		localSettings = {
 			[".*"] = { cmdline = "neovim", takeover = "never" },
