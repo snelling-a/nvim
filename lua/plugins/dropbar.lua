@@ -3,7 +3,7 @@ local icons = require("config.ui.icons")
 
 local Dropbar = { "Bekaboo/dropbar.nvim" }
 
-Dropbar.lazy = true
+Dropbar.event = "BufAdd"
 
 Dropbar.opts = {
 	icons = {
