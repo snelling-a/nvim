@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.11.0](https://github.com/snelling-a/nvim/compare/v4.10.0...v4.11.0) (2023-06-13)
+
+
+### Features
+
+* deadcolumn ([b42de65](https://github.com/snelling-a/nvim/commit/b42de65adda3d737b24390649b0b8525b67e936b))
+
 ## [4.10.0](https://github.com/snelling-a/nvim/compare/v4.9.0...v4.10.0) (2023-06-13)
 
 
