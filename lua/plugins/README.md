@@ -13,6 +13,7 @@
 |[danymat/neogen](https://github.com/danymat/neogen)|A better annotation generator. Supports multiple languages and annotation conventions.|
 |[David-Kunz/jester](https://github.com/David-Kunz/jester)|A Neovim plugin to easily run and debug Jest tests|
 |[davidsierradz/cmp-conventionalcommits](https://github.com/davidsierradz/cmp-conventionalcommits)|(WIP) nvim-cmp source for autocompleting git commits with conventional commits types and lerna packages as scope|
+|[dnlhc/glance.nvim](https://github.com/dnlhc/glance.nvim)|A pretty window for previewing, navigating and editing your LSP locations|
 |[eandrju/cellular-automaton.nvim](https://github.com/eandrju/cellular-automaton.nvim)|A useless plugin that might help you cope with stubbornly broken tests or overall lack of sense in life. It lets you execute aesthetically pleasing, cellular automaton animations based on the content of neovim buffer.|
 |[echasnovski/mini.colors](https://github.com/echasnovski/mini.colors)|Tweak and save any color scheme. Part of 'mini.nvim' library.|
 |[echasnovski/mini.indentscope](https://github.com/echasnovski/mini.indentscope)|Neovim Lua plugin to visualize and operate on indent scope. Part of 'mini.nvim' library.|

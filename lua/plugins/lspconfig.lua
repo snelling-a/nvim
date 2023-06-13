@@ -3,6 +3,7 @@ local javascript_typescript = require("config.util.constants").javascript_typesc
 local LspConfig = { "neovim/nvim-lspconfig" }
 
 LspConfig.dependencies = {
+	"dnlhc/glance.nvim",
 	"hrsh7th/cmp-nvim-lsp",
 	"ibhagwan/fzf-lua",
 	"lvimuser/lsp-inlayhints.nvim",

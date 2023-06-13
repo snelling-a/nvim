@@ -23,9 +23,9 @@ function M.on_attach(bufnr)
 		return util.nmap(target, source, opts)
 	end
 
-	bind("<C-g>", lsp.signature_help, "Show signature help")
-	bind("<leader>D", lsp.type_definition, "Show type [d]efinition")
 	-- bind("ca", lsp.code_action, "[C]ode [a]ction")
+	bind("<C-g>", lsp.signature_help, "Show signature help")
+	bind("<leader>gD", lsp.declaration, { desc = "Show [d]eclaration" })
 	bind("<leader>rn", lsp.rename, "[R]ename variable")
 	bind("<leader>wa", lsp.add_workspace_folder, "[A]dd [w]orkspace folder")
 	bind(
@@ -35,16 +35,16 @@ function M.on_attach(bufnr)
 	)
 	bind("<leader>wr", lsp.remove_workspace_folder, "[R]emove [w]orkspace folder")
 	bind("K", lsp.hover, "Show hover")
-	bind("gD", lsp.declaration, { desc = "Show [d]eclaration" })
-	bind("gd", function()
+	bind("gD", function()
 		lsp.definition()
 		util.scroll_center()
 	end, "Show [d]efinition")
-	bind("gi", lsp.implementation, "Show [i]mplementation")
-	bind("gr", function()
+	bind("gR", function()
 		lsp.references()
 		util.scroll_center()
 	end, "[G]et [r]eferences")
+	bind("gY", lsp.type_definition, "Show t[y]pe definition")
+	bind("gI", lsp.implementation, "Show [i]mplementation")
 end
 
 return M
