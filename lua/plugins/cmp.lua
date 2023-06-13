@@ -148,7 +148,7 @@ CMP.dependencies = {
 	{ "petertriho/cmp-git", dependencies = { "nvim-lua/plenary.nvim" } },
 }
 
-CMP.event = "InsertEnter"
+CMP.event = "BufAdd"
 
 CMP.opts = {
 	enabled = enabled,
