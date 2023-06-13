@@ -7,6 +7,7 @@
 |[anuvyklack/pretty-fold.nvim](https://github.com/anuvyklack/pretty-fold.nvim)|Foldtext customization in Neovim|
 |[b0o/schemastore.nvim](https://github.com/b0o/schemastore.nvim)|🛍 JSON schemas for Neovim|
 |[barrett-ruth/import-cost.nvim](https://github.com/barrett-ruth/import-cost.nvim)|Display javascript import costs inside of neovim|
+|[Bekaboo/deadcolumn.nvim](https://github.com/Bekaboo/deadcolumn.nvim)|A neovim plugin that shows colorcolumn dynamically|
 |[Bekaboo/dropbar.nvim](https://github.com/Bekaboo/dropbar.nvim)|IDE-like breadcrumbs, out of the box|
 |[catppuccin/nvim](https://github.com/catppuccin/nvim)|🍨 Soothing pastel theme for (Neo)vim|
 |[danymat/neogen](https://github.com/danymat/neogen)|A better annotation generator. Supports multiple languages and annotation conventions.|
