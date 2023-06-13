@@ -22,7 +22,7 @@ function Dropbar.config(_, opts)
 
 	dropbar.setup(opts)
 
-	nmap("<leader>;", api.pick)
+	nmap("<leader>;", api.pick, { desc = "Pick a component from current dropbar" })
 	nmap("[s", api.goto_context_start, { desc = "Dropbar: go to context [S]tart" })
 	nmap("]s", api.select_next_context, { desc = "Dropbar: [S]elect next context" })
 end
