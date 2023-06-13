@@ -1,5 +1,23 @@
 # Changelog
 
+## [4.12.0](https://github.com/snelling-a/nvim/compare/v4.11.0...v4.12.0) (2023-06-13)
+
+
+### Features
+
+* **lsp:** glance ([3ac0d16](https://github.com/snelling-a/nvim/commit/3ac0d160ef341f6db42ee070a5fd64ae792cc684))
+
+
+### Bug Fixes
+
+* add description to dropbar keymap ([3eb6fa5](https://github.com/snelling-a/nvim/commit/3eb6fa5b76133a4c8212368ceaabf5f6ff81a450))
+* **cmp:** fix event ([8d23aea](https://github.com/snelling-a/nvim/commit/8d23aea66a7c8b192a106613d40e482d679fb9d6))
+
+
+### Miscellaneous
+
+* update plugins ([6bfefc0](https://github.com/snelling-a/nvim/commit/6bfefc0a551305c9d2becd35079c678f7d53565e))
+
 ## [4.11.0](https://github.com/snelling-a/nvim/compare/v4.10.0...v4.11.0) (2023-06-13)
 
 
