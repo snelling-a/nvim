@@ -1,5 +1,31 @@
 # Changelog
 
+## [4.10.0](https://github.com/snelling-a/nvim/compare/v4.9.0...v4.10.0) (2023-06-13)
+
+
+### Features
+
+* neogen ([6011aa9](https://github.com/snelling-a/nvim/commit/6011aa9b26e88e0068e1d809a4b4023ca092b18e))
+* **opt:** set options ([426cfb7](https://github.com/snelling-a/nvim/commit/426cfb74ffadae40daaca9eee73dee208b035852))
+
+
+### Bug Fixes
+
+* **dropbar:** don't lazy load ([c9ef64e](https://github.com/snelling-a/nvim/commit/c9ef64e4b98b1d9f95eb720cad26ded913dfe4b9))
+* firenvim ([d1bbc30](https://github.com/snelling-a/nvim/commit/d1bbc303f1f9152de85b4a151d5755e2fa33e39a))
+* **lsp:** delete emmet ([28134ce](https://github.com/snelling-a/nvim/commit/28134ceed2fe30fae52b5f0aa20578f329efdb0d))
+* **statusline:** update deprecated method ([330436e](https://github.com/snelling-a/nvim/commit/330436e275dfcb053450c29ec1de503bd68da110))
+
+
+### Miscellaneous
+
+* **spell:** update cspell.json ([28d5482](https://github.com/snelling-a/nvim/commit/28d5482868dd7332bfca087f3cc8b0ea868fc7a5))
+* **spell:** update cspell.json ([cce5011](https://github.com/snelling-a/nvim/commit/cce5011bf64a8c802bc649ac6c3e9dffe93d8496))
+* upadate plugins ([0e5fe12](https://github.com/snelling-a/nvim/commit/0e5fe1207a772fc0dfc9fda05be848c71e9680d7))
+* update plugins ([af77077](https://github.com/snelling-a/nvim/commit/af7707736d35d1755c472827cad38a912895f72e))
+* update plugins ([1c1d385](https://github.com/snelling-a/nvim/commit/1c1d3850d1c87fe298909d7321defd38b1007c3b))
+* update plugins ([ea58839](https://github.com/snelling-a/nvim/commit/ea58839fb44612dcb6fe1edf11232dc4142962ed))
+
 ## [4.9.0](https://github.com/snelling-a/nvim/compare/v4.8.0...v4.9.0) (2023-06-06)
 
 
