@@ -18,4 +18,6 @@ function Eslint.setup(opts)
 	require("lspconfig").eslint.setup(opts)
 end
 
+Eslint.config_files = config_files
+
 return Eslint

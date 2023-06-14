@@ -40,7 +40,12 @@ function M.config()
 		condition = function(utils) return utils.root_has_file({ "deno.json*" }) end,
 	})
 
+	local builtins_formatting_eslint_d = builtins_formatting.eslint_d.with({
+		condition = function(utils) return utils.root_has_file(require("config.lsp.server.eslint").config_files) end,
+	})
+
 	local builtins_formatting_prettierd = builtins.formatting.prettierd.with({
+
 		condition = function(utils)
 			return utils.root_has_file({
 				".prettierrc",
@@ -80,6 +85,7 @@ function M.config()
 			builtins_formatting.taplo,
 			builtins_formatting.yamlfmt,
 			builtins_formatting_deno_fmt,
+			builtins_formatting_eslint_d,
 			builtins_formatting_prettierd,
 		},
 	})
