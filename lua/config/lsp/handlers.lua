@@ -15,6 +15,7 @@ function Handlers.on_attach()
 			logger.warn({ msg = "[LSP] Could not find definition", title = "LSP" })
 			return
 		end
+
 		if vim.tbl_islist(result) then
 			util.jump_to_location(result[1], "utf-8")
 		else
