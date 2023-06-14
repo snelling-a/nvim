@@ -1,5 +1,22 @@
 # Changelog
 
+## [4.13.0](https://github.com/snelling-a/nvim/compare/v4.12.0...v4.13.0) (2023-06-14)
+
+
+### Features
+
+* **treesitter:** improve text objects ([81ffb5d](https://github.com/snelling-a/nvim/commit/81ffb5d02bdf725ea5cdc1faea8d3bc4b4cd9716))
+
+
+### Bug Fixes
+
+* **inlayhints:** filetypes ([6141f60](https://github.com/snelling-a/nvim/commit/6141f60eb083523f9cdaba800182392381eb3334))
+
+
+### Miscellaneous
+
+* update plugins ([c45e82c](https://github.com/snelling-a/nvim/commit/c45e82c4858b7a68b27a7f8fb5d9d22cd489278b))
+
 ## [4.12.0](https://github.com/snelling-a/nvim/compare/v4.11.0...v4.12.0) (2023-06-13)
 
 
