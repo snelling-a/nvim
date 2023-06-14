@@ -6,10 +6,8 @@ Mason.build = ":MasonUpdate"
 
 Mason.dependencies = {
 	"jay-babu/mason-null-ls.nvim",
-	{ "williamboman/mason-lspconfig.nvim", event = "LspAttach", opts = { automatic_installation = true } },
+	{ "williamboman/mason-lspconfig.nvim" },
 }
-
-Mason.event = "BufAdd"
 
 Mason.opts = {
 	ui = {
