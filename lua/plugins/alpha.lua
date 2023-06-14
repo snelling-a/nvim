@@ -1,8 +1,6 @@
 local icons = require("config.ui.icons")
 local util = require("config.util")
 
-local is_obsidian = require("config.util.constants").obsidian.is_vault_directory
-
 ---@param text? string 'The text to display in the logo; defaults to "neovim"'
 ---@return string 'The header for alpha'
 local function get_header(text)
@@ -145,7 +143,7 @@ function M.opts()
 	end
 
 	local function get_content()
-		if is_obsidian then
+		if require("config.util.constants").obsidian.is_vault_directory then
 			return { header = get_header("obsidian"), buttons = get_buttons(obsidian_buttons) }
 		else
 			return { header = get_header(), buttons = get_buttons() }
