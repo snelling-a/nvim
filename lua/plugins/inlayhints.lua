@@ -1,10 +1,14 @@
 local LspInlayHints = { "lvimuser/lsp-inlayhints.nvim" }
 
-LspInlayHints.ft = table.insert(require("config.util.constants").javascript_typescript, "lua")
+local ft = { "lua" }
+
+for _, filetype in ipairs(require("config.util.constants").javascript_typescript) do
+	table.insert(ft, filetype)
+end
+
+LspInlayHints.ft = ft
 
 LspInlayHints.branch = "anticonceal"
-
-LspInlayHints.event = "LspAttach"
 
 LspInlayHints.config = function(_, opts)
 	require("lsp-inlayhints").setup(opts)
