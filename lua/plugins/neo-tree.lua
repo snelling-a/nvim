@@ -43,18 +43,7 @@ M.dependencies = {
 	"MunifTanjim/nui.nvim",
 	"nvim-lua/plenary.nvim",
 	"nvim-tree/nvim-web-devicons",
-	{
-		"s1n7ax/nvim-window-picker",
-		opts = {
-			autoselect_one = true,
-			filter_rules = {
-				bo = { buftype = { "terminal", "quickfix" }, filetype = { "neo-tree", "neo-tree-popup", "notify" } },
-			},
-			include_current = false,
-			other_win_hl_color = "#e35e4f",
-		},
-		version = "v1.5",
-	},
+	"s1n7ax/nvim-window-picker",
 }
 
 M.keys = {
