@@ -1,5 +1,18 @@
 # Changelog
 
+## [4.14.0](https://github.com/snelling-a/nvim/compare/v4.13.0...v4.14.0) (2023-06-14)
+
+
+### Features
+
+* update .gitignore ([10196c3](https://github.com/snelling-a/nvim/commit/10196c3821a8e6dcf6948718447055fb246c2091))
+* window picker api 2.0 ([f70d362](https://github.com/snelling-a/nvim/commit/f70d3621e1e05593bf2aec441f0da4fc5508a91a))
+
+
+### Miscellaneous
+
+* **spell:** update cspell.json ([eb47234](https://github.com/snelling-a/nvim/commit/eb4723498eab260a1e1ab03fb0047334c9ad5f4e))
+
 ## [4.13.0](https://github.com/snelling-a/nvim/compare/v4.12.0...v4.13.0) (2023-06-14)
 
 
