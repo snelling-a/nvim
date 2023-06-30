@@ -9,6 +9,14 @@
 |[barrett-ruth/import-cost.nvim](https://github.com/barrett-ruth/import-cost.nvim)|Display javascript import costs inside of neovim|
 |[Bekaboo/deadcolumn.nvim](https://github.com/Bekaboo/deadcolumn.nvim)|A neovim plugin that shows colorcolumn dynamically|
 |[Bekaboo/dropbar.nvim](https://github.com/Bekaboo/dropbar.nvim)|IDE-like breadcrumbs, out of the box|
+|[akinsho/toggleterm.nvim](https://github.com/akinsho/toggleterm.nvim)|A neovim lua plugin to help easily manage multiple terminal windows|
+|[anuvyklack/fold-preview.nvim](https://github.com/anuvyklack/fold-preview.nvim)|Preview folds in float window |
+|[anuvyklack/keymap-amend.nvim](https://github.com/anuvyklack/keymap-amend.nvim)|Amend the existing keymap in Neovim|
+|[anuvyklack/pretty-fold.nvim](https://github.com/anuvyklack/pretty-fold.nvim)|Foldtext customization in Neovim|
+|[b0o/schemastore.nvim](https://github.com/b0o/schemastore.nvim)|🛍 JSON schemas for Neovim|
+|[barrett-ruth/import-cost.nvim](https://github.com/barrett-ruth/import-cost.nvim)|Display javascript import costs inside of neovim|
+|[Bekaboo/deadcolumn.nvim](https://github.com/Bekaboo/deadcolumn.nvim)|A neovim plugin that shows colorcolumn dynamically|
+|[Bekaboo/dropbar.nvim](https://github.com/Bekaboo/dropbar.nvim)|IDE-like breadcrumbs, out of the box|
 |[catppuccin/nvim](https://github.com/catppuccin/nvim)|🍨 Soothing pastel theme for (Neo)vim|
 |[danymat/neogen](https://github.com/danymat/neogen)|A better annotation generator. Supports multiple languages and annotation conventions.|
 |[David-Kunz/jester](https://github.com/David-Kunz/jester)|A Neovim plugin to easily run and debug Jest tests|
@@ -52,7 +60,6 @@
 |[lmburns/lf.nvim](https://github.com/lmburns/lf.nvim)|Lf file manager for Neovim (in Lua)|
 |[lukas-reineke/headlines.nvim](https://github.com/lukas-reineke/headlines.nvim)|This plugin adds horizontal highlights for text filetypes, like markdown, orgmode, and neorg.|
 |[lukas-reineke/indent-blankline.nvim](https://github.com/lukas-reineke/indent-blankline.nvim)|Indent guides  for Neovim|
-|[lvimuser/lsp-inlayhints.nvim](https://github.com/lvimuser/lsp-inlayhints.nvim)||
 |[mbbill/undotree](https://github.com/mbbill/undotree)|The undo history visualizer for VIM|
 |[mfussenegger/nvim-dap](https://github.com/mfussenegger/nvim-dap)|Debug Adapter Protocol client implementation for Neovim|
 |[mrjones2014/smart-splits.nvim](https://github.com/mrjones2014/smart-splits.nvim)|🧠 Smart, seamless, directional navigation and resizing of Neovim + terminal multiplexer splits. Supports tmux, Wezterm, and Kitty. Think about splits in terms of "up/down/left/right".|
