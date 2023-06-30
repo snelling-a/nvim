@@ -6,7 +6,6 @@ LspConfig.dependencies = {
 	"dnlhc/glance.nvim",
 	"hrsh7th/cmp-nvim-lsp",
 	"ibhagwan/fzf-lua",
-	"lvimuser/lsp-inlayhints.nvim",
 	{ "b0o/schemastore.nvim", ft = { "json", "jsonc", "yaml", "yml" } },
 	{ "folke/neodev.nvim", ft = { "lua" } },
 	{ "jparise/vim-graphql", ft = table.insert(javascript_typescript, "graphql") },
