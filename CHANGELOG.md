@@ -1,5 +1,17 @@
 # Changelog
 
+## [4.15.0](https://github.com/snelling-a/nvim/compare/v4.14.0...v4.15.0) (2023-06-30)
+
+
+### Features
+
+* **lsp:** inlay hints ([f45a3b4](https://github.com/snelling-a/nvim/commit/f45a3b489234770f352e282673c7c5e0d735192b))
+
+
+### Bug Fixes
+
+* update no_format list ([1bccb0d](https://github.com/snelling-a/nvim/commit/1bccb0d06c71b0fd29631feb50d92c2e7909f9d0))
+
 ## [4.14.0](https://github.com/snelling-a/nvim/compare/v4.13.0...v4.14.0) (2023-06-14)
 
 
