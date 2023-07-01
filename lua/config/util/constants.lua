@@ -15,6 +15,7 @@ Constants.no_format = {
 	"fugitive",
 	"fugitiveblame",
 	"git",
+	"Glance",
 	"help",
 	"lazy",
 	"log",
