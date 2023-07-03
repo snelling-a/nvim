@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.15.1](https://github.com/snelling-a/nvim/compare/v4.15.0...v4.15.1) (2023-07-03)
+
+
+### Bug Fixes
+
+* **lsp:** reference highlighting ([4ef972b](https://github.com/snelling-a/nvim/commit/4ef972b6372ce73c993c68dab9b640b3a1f34dd9))
+
 ## [4.15.0](https://github.com/snelling-a/nvim/compare/v4.14.0...v4.15.0) (2023-07-03)
 
 
