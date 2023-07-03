@@ -32,9 +32,9 @@ function DocumentHighlight.on_attach(bufnr)
 		group = LspDocumentHighlightGroup,
 	})
 
-	api.nvim_create_autocmd("CursorMoved", {
+	api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
 		buffer = bufnr,
-		callback = lsp.clear_references,
+		callback = function() lsp.clear_references() end,
 		desc = "Clear highlighted references on cursor move",
 		group = LspDocumentHighlightGroup,
 	})
