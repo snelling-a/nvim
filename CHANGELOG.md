@@ -1,5 +1,22 @@
 # Changelog
 
+## [4.16.0](https://github.com/snelling-a/nvim/compare/v4.15.1...v4.16.0) (2023-07-08)
+
+
+### Features
+
+* **keys:** center page on certain actions ([042087e](https://github.com/snelling-a/nvim/commit/042087e9db83d161408799cce7625b5debff5d7d))
+
+
+### Bug Fixes
+
+* **lsp:** inlay hint ([babc5d1](https://github.com/snelling-a/nvim/commit/babc5d126164d82696b1f6593568a0bdf5aafcf3))
+
+
+### Miscellaneous
+
+* update plugins ([5f76c92](https://github.com/snelling-a/nvim/commit/5f76c925c02a13b3ba404e78f82e4628d7ca3b9e))
+
 ## [4.15.1](https://github.com/snelling-a/nvim/compare/v4.15.0...v4.15.1) (2023-07-03)
 
 
