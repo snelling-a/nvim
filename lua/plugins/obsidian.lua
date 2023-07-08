@@ -43,7 +43,7 @@ Obsidian.lazy = not obsidian.is_vault_directory
 
 Obsidian.opts = {
 	completion = { nvim_cmp = true },
-	daily_notes = { folder = "daily-notes" },
+	daily_notes = { folder = "daily_notes" },
 	dir = obsidian.vault_directory,
 	note_id_func = note_id_func,
 	open_app_foreground = true,
