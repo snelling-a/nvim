@@ -32,7 +32,6 @@
   "github-nvim-theme": { "branch": "main", "commit": "8b363abc5c1eac23603e115810fe72411f67184d" },
   "gitsigns.nvim": { "branch": "main", "commit": "a36bc3360d584d39b4fb076d855c4180842d4444" },
   "glance.nvim": { "branch": "master", "commit": "3e7158ffaaa0fa1f7268df30ae40f24c07b840d1" },
-  "headlines.nvim": { "branch": "master", "commit": "ddef41b2664f0ce25fe76520d708e2dc9dfebd70" },
   "image_preview.nvim": { "branch": "main", "commit": "367122b7fe7ab1a52fb71d09eab2db187de7330d" },
   "import-cost.nvim": { "branch": "main", "commit": "d2c93deee35fa4042fde28719ddcbad664544fcf" },
   "indent-blankline.nvim": { "branch": "master", "commit": "7075d7861f7a6bbf0de0298c83f8a13195e6ec01" },
