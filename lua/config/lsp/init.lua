@@ -18,7 +18,7 @@ function LspConfig.on_attach(client, bufnr)
 	end
 
 	if client.supports_method("textDocument/inlayHint") then
-		vim.lsp.buf.inlay_hint(bufnr, true)
+		vim.lsp.inlay_hint(bufnr, true)
 	end
 
 	if client.supports_method("textDocument/publishDiagnostics") then
