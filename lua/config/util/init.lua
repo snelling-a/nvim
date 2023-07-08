@@ -3,13 +3,13 @@ local g = vim.g
 
 local Util = {}
 
----wrapper around nvim_create_augroup with
+---wrapper around |nvim_create_augroup| with
 ---@param name string augroup name
 ---@param clear? boolean clear existing augroup default: true
 ---@return number 'augroup id'
 function Util.augroup(name, clear) return api.nvim_create_augroup("User" .. name, { clear = clear or true }) end
 
----wrapper around vim.tbl_extend that always overwrites existing keys
+---wrapper around |vim.tbl_extend| that always overwrites existing keys
 ---@param ... table two or more map-like tables
 ---@return table merged
 function Util.tbl_extend_force(...) return vim.tbl_extend("force", ...) end
@@ -25,12 +25,12 @@ local function get_map_options(custom_options)
 
 	return default_options
 end
+---@alias VimMode "c"|"i"|"n"|"o"|"t"|"v"|"x"
 
----@param mode string|table Mode short-name, see |nvim_set_keymap()|.
+---@param mode VimMode|table<VimMode> Mode short-name, see |nvim_set_keymap()|.
 --- Can also be list of modes to create mapping on multiple modes.
 ---@param lhs string Left-hand side |{lhs}| of the mapping.
 ---@param rhs string|function Right-hand side |{rhs}| of the mapping, can be a Lua function.
----
 ---@param opts table|nil Table of |:map-arguments|.
 function Util.map(mode, lhs, rhs, opts) vim.keymap.set(mode, lhs, rhs, get_map_options(opts)) end
 
@@ -41,24 +41,31 @@ end
 ---Wrapper around Util.nmap using the <leader> in lhs
 ---@param lhs string Left-hand side |{lhs}| of the mapping
 ---@param rhs string|function Right-hand side |{rhs}| of the mapping, can be a Lua function
----@param opts table|nil Table of |:map-arguments|
-function Util.mapL(lhs, rhs, opts) Util.nmap( "<leader>" .. lhs, rhs, opts) end
+---@param opts? table Table of |:map-arguments|
+---@param mode? VimMode|table<VimMode> Mode short-name, see |nvim_set_keymap()|.
+--- Can also be list of modes to create mapping on multiple modes.
+function Util.mapL(lhs, rhs, opts, mode) Util.map(mode or "n", "<leader>" .. lhs, rhs, opts) end
 
 ---Check if plugin is available
 ---@param plugin string name of plugin
 ---@return boolean boolean if plugin is loaded
 function Util.has(plugin) return package.loaded[plugin] and true end
 
----wrapper for nvim_feedkeys that handles <key> syntax
+---wrapper for |nvim_feedkeys| that handles <key> syntax
 ---@param keys string
----@param mode "c"|"i"|"n"|"o"|"t"|"v"|"x"? -- default: `n`
----@param escape_ks boolean? default: false
+---@param mode? VimMode
+---@param escape_ks? boolean default: true
 function Util.feedkeys(keys, mode, escape_ks)
 	if keys:sub(1, 1) == "<" then
 		keys = vim.api.nvim_replace_termcodes(keys, true, false, true)
+		escape_ks = false
 	end
 
-	return api.nvim_feedkeys(keys, mode or "n", escape_ks or false)
+	if escape_ks == nil then
+		escape_ks = true
+	end
+
+	return api.nvim_feedkeys(keys, mode or "n", escape_ks)
 end
 
 ---Scroll to center
