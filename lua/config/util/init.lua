@@ -69,7 +69,14 @@ function Util.feedkeys(keys, mode, escape_ks)
 end
 
 ---Scroll to center
-function Util.scroll_center() Util.feedkeys("zz") end
+function Util.scroll_center()
+	Util.feedkeys("zz")
+
+	local line = vim.fn.line(".")
+	local is_fold_closed = vim.fn.foldclosed(line) ~= -1
+
+	return is_fold_closed == true and Util.feedkeys("zv") or nil
+end
 
 ---check if the current editor is terminal vim
 ---@return boolean

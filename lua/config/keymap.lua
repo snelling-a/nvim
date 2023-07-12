@@ -8,20 +8,18 @@ local map = vim.keymap.set
 vim.g.mapleader = ","
 
 local function escape() util.feedkeys("<Esc>", "i", true) end
-local function open_fold() util.feedkeys("zv") end
+
 local function act_center(lhs)
 	util.map({ "n" }, lhs, function()
 		util.feedkeys(lhs)
 		util.scroll_center()
-		open_fold()
 	end, { desc = "Center screen after " .. lhs })
 end
 local function center_act(lhs)
 	map({ "n" }, lhs, function()
 		util.scroll_center()
-		open_fold()
 		util.feedkeys(lhs)
-	end, { nowait = true, desc = "Center screen before " .. lhs })
+	end, { desc = "Center screen before " .. lhs })
 end
 
 act_center("G")
@@ -35,8 +33,10 @@ center_act("<C-d>")
 center_act("<C-u>")
 center_act("A")
 center_act("a")
-center_act("C")
-center_act("c")
+-- center_act("C")
+-- center_act("c")
+map("n", "c", "zzzvc", { desc = "Center screen after c" })
+map("n", "C", "zzzvC", { desc = "Center screen after C" })
 center_act("I")
 center_act("i")
 center_act("O")
