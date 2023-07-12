@@ -1,5 +1,19 @@
 # Changelog
 
+## [4.16.1](https://github.com/snelling-a/nvim/compare/v4.16.0...v4.16.1) (2023-07-12)
+
+
+### Bug Fixes
+
+* **keys:** fix center_scroll actions ([68e6997](https://github.com/snelling-a/nvim/commit/68e699722cb69874966d3cb2709ec68c35675643))
+
+
+### Miscellaneous
+
+* **lazy:** update plugins ([1b1fc86](https://github.com/snelling-a/nvim/commit/1b1fc860f8be2ce0b4eed70bd3d31aa92752c521))
+* **plugins:** update lazy-lock.json ([bccdff2](https://github.com/snelling-a/nvim/commit/bccdff2f134756af53b9a28723acd081b0470bb0))
+* **spell:** update cspell.json ([61e1ad6](https://github.com/snelling-a/nvim/commit/61e1ad6dd4b3e73e447b20ad5bfad86119358c8b))
+
 ## [4.16.0](https://github.com/snelling-a/nvim/compare/v4.15.1...v4.16.0) (2023-07-08)
 
 
