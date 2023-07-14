@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.16.2](https://github.com/snelling-a/nvim/compare/v4.16.1...v4.16.2) (2023-07-13)
+
+
+### Miscellaneous
+
+* **plugins:** update lazy-lock.json ([d25702d](https://github.com/snelling-a/nvim/commit/d25702d6234a3d972c7deb89e03b6be669e0fa3c))
+
 ## [4.16.1](https://github.com/snelling-a/nvim/compare/v4.16.0...v4.16.1) (2023-07-12)
 
 
