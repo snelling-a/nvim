@@ -1,10 +1,6 @@
 local LspConfig = {}
 
 function LspConfig.on_attach(client, bufnr)
-	if client.name == "tsserver" then
-		client.server_capabilities.documentFormattingProvider = false
-	end
-
 	if client.server_capabilities.documentFormattingProvider == true then
 		require("config.lsp.formatting").on_attach(bufnr)
 	end
