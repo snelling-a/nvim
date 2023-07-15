@@ -1,5 +1,18 @@
 # Changelog
 
+## [4.17.0](https://github.com/snelling-a/nvim/compare/v4.16.2...v4.17.0) (2023-07-15)
+
+
+### Features
+
+* typescript-tools ([14eda27](https://github.com/snelling-a/nvim/commit/14eda276edc2c39da225c2bba70e564fa6caf4a3))
+
+
+### Miscellaneous
+
+* **plugins:** update lazy-lock.json ([5fbdcd0](https://github.com/snelling-a/nvim/commit/5fbdcd06b2a5e9e51d1f70f294e2a388de7832c7))
+* **spell:** update cspell.json ([16311c8](https://github.com/snelling-a/nvim/commit/16311c8028309d7d89a58e6550a947a5745f0f8c))
+
 ## [4.16.2](https://github.com/snelling-a/nvim/compare/v4.16.1...v4.16.2) (2023-07-13)
 
 
