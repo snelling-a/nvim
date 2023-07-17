@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.18.0](https://github.com/snelling-a/nvim/compare/v4.17.2...v4.18.0) (2023-07-17)
+
+
+### Features
+
+* **lsp:** efm server ([a61d8a8](https://github.com/snelling-a/nvim/commit/a61d8a888fcb65164cf687ffd572017355b50354))
+
 ## [4.17.2](https://github.com/snelling-a/nvim/compare/v4.17.1...v4.17.2) (2023-07-17)
 
 
