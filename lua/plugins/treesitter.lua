@@ -83,7 +83,6 @@ local M = { "nvim-treesitter/nvim-treesitter" }
 M.build = ":TSUpdate"
 
 M.dependencies = {
-	"HiPhish/nvim-ts-rainbow2",
 	"JoosepAlviste/nvim-ts-context-commentstring",
 	"nvim-treesitter/nvim-treesitter-textobjects",
 	"windwp/nvim-ts-autotag",
@@ -109,10 +108,7 @@ M.opts = {
 	},
 	indent = { enable = true },
 	textobjects = textobjects,
-	rainbow = { enable = true },
 }
-
-M.version = false
 
 function M.config(_, opts)
 	require("nvim-treesitter.configs").setup(opts)
