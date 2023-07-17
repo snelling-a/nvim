@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.18.1](https://github.com/snelling-a/nvim/compare/v4.18.0...v4.18.1) (2023-07-17)
+
+
+### Bug Fixes
+
+* ts-rainbow2 -&gt; rainbow-delimeters ([d45e391](https://github.com/snelling-a/nvim/commit/d45e391ff0fe52ebc441a97f755015f91b22979e))
+
 ## [4.18.0](https://github.com/snelling-a/nvim/compare/v4.17.2...v4.18.0) (2023-07-17)
 
 
