@@ -68,14 +68,11 @@ function Util.feedkeys(keys, mode, escape_ks)
 	return api.nvim_feedkeys(keys, mode or "n", escape_ks)
 end
 
----Scroll to center
+---Wrapper for |zz| (to scroll center) and |zv| (to open fold) keymaps
 function Util.scroll_center()
 	Util.feedkeys("zz")
 
-	local line = vim.fn.line(".")
-	local is_fold_closed = vim.fn.foldclosed(line) ~= -1
-
-	return is_fold_closed == true and Util.feedkeys("zv") or nil
+	Util.feedkeys("zv")
 end
 
 ---check if the current editor is terminal vim
