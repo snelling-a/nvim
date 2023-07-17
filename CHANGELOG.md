@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.18.2](https://github.com/snelling-a/nvim/compare/v4.18.1...v4.18.2) (2023-07-17)
+
+
+### Bug Fixes
+
+* **keys:** scroll_center ([cc5639b](https://github.com/snelling-a/nvim/commit/cc5639b32d79a95c045f63172e6d84630de7a031))
+
 ## [4.18.1](https://github.com/snelling-a/nvim/compare/v4.18.0...v4.18.1) (2023-07-17)
 
 
