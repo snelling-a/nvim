@@ -1,5 +1,5 @@
-local M = {}
+local Sql = {}
 
-function M.setup(opts) require("lspconfig").sqlls.setup(opts) end
+function Sql.setup(opts) require("lspconfig").sqlls.setup(opts) end
 
-return M
+return Sql

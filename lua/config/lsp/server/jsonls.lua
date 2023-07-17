@@ -1,8 +1,10 @@
-local M = {}
-
 local settings = { json = { schemas = require("schemastore").json.schemas(), validate = { enable = true } } }
 
-function M.setup(opts)
+local Json = {}
+
+Json.mason_name = "json-lsp"
+
+function Json.setup(opts)
 	opts = require("config.lsp.capabilities").enable_broadcasting(opts)
 
 	opts.settings = settings
@@ -10,4 +12,4 @@ function M.setup(opts)
 	require("lspconfig").jsonls.setup(opts)
 end
 
-return M
+return Json

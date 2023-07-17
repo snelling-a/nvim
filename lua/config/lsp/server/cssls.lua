@@ -1,9 +1,11 @@
-local M = {}
+local Css = {}
 
-function M.setup(opts)
+Css.mason_name = "css-lsp"
+
+function Css.setup(opts)
 	opts = require("config.lsp.capabilities").enable_broadcasting(opts)
 
 	require("lspconfig").cssls.setup(opts)
 end
 
-return M
+return Css
