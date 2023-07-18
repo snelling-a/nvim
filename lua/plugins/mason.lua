@@ -4,10 +4,7 @@ local Mason = { "williamboman/mason.nvim" }
 
 Mason.build = ":MasonUpdate"
 
-Mason.dependencies = {
-	"jay-babu/mason-null-ls.nvim",
-	{ "williamboman/mason-lspconfig.nvim" },
-}
+Mason.dependencies = { "jay-babu/mason-null-ls.nvim" }
 
 Mason.opts = {
 	ui = {
@@ -19,5 +16,7 @@ Mason.opts = {
 		},
 	},
 }
+
+Mason.config = true
 
 return Mason

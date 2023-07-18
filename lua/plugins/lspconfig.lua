@@ -23,13 +23,7 @@ function LspConfig.config()
 		on_attach = require("config.lsp").on_attach,
 	}
 
-	for index, value in vim.fs.dir("$XDG_CONFIG_HOME/nvim/lua/config/lsp/server") do
-		if value ~= "file" then
-			return
-		end
-
-		require("config.lsp.server." .. index:gsub(".lua", "")).setup(opts)
-	end
+	require("config.lsp.util").setup_lsp_servers(opts)
 end
 
 return LspConfig
