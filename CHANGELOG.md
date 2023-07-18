@@ -1,5 +1,13 @@
 # Changelog
 
+## [4.18.3](https://github.com/snelling-a/nvim/compare/v4.18.2...v4.18.3) (2023-07-18)
+
+
+### Miscellaneous
+
+* **docs:** update readme ([097204c](https://github.com/snelling-a/nvim/commit/097204c36adc920b6660bbc9d2227ad6469648e4))
+* **plugins:** update lazy-lock.json ([9f359d5](https://github.com/snelling-a/nvim/commit/9f359d525dfdc1bb9ce56e468d16b852fb36cdc0))
+
 ## [4.18.2](https://github.com/snelling-a/nvim/compare/v4.18.1...v4.18.2) (2023-07-17)
 
 
