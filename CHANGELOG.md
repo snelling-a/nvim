@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.18.4](https://github.com/snelling-a/nvim/compare/v4.18.3...v4.18.4) (2023-07-19)
+
+
+### Miscellaneous
+
+* update plugins ([acee68f](https://github.com/snelling-a/nvim/commit/acee68fdfeb2a59549be12ee4c291920cceb2c5f))
+
 ## [4.18.3](https://github.com/snelling-a/nvim/compare/v4.18.2...v4.18.3) (2023-07-18)
 
 
