@@ -112,7 +112,7 @@ M.opts = {
 
 function M.config(_, opts)
 	require("nvim-treesitter.configs").setup(opts)
-	require("nvim-treesitter.install").compilers = { "gcc-13" } -- for neorg
+	-- require("nvim-treesitter.install").compilers = { "gcc-13" } -- for neorg
 end
 
 return M
