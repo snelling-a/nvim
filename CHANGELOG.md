@@ -1,5 +1,17 @@
 # Changelog
 
+## [4.18.5](https://github.com/snelling-a/nvim/compare/v4.18.4...v4.18.5) (2023-07-20)
+
+
+### Bug Fixes
+
+* **treesitter:** use default compiler ([afacac6](https://github.com/snelling-a/nvim/commit/afacac6a854637c11949196a3821b71a9b9db7d3))
+
+
+### Miscellaneous
+
+* update plugins ([06b19b6](https://github.com/snelling-a/nvim/commit/06b19b688b60cec3ea5dbc16d2662e5283cdeb92))
+
 ## [4.18.4](https://github.com/snelling-a/nvim/compare/v4.18.3...v4.18.4) (2023-07-19)
 
 
