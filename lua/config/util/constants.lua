@@ -2,7 +2,6 @@ local vault_directory = os.getenv("NOTES") or os.getenv("HOME") .. "/notes"
 
 local Constants = {}
 
-
 Constants.javascript_typescript = { "javascript", "javascriptreact", "typescript", "typescriptreact" }
 
 Constants.no_format = {

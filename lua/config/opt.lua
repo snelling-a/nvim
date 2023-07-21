@@ -20,6 +20,7 @@ opt.hlsearch = true
 opt.ignorecase = true
 opt.isfname:append("@-@")
 opt.mouse = "a"
+opt.path:append("**")
 opt.pumheight = 10
 opt.runtimepath:append("/usr/local/opt/fzf")
 opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize" }
@@ -34,10 +35,19 @@ opt.swapfile = false
 opt.switchbuf = "useopen"
 opt.tabstop = 4
 opt.termguicolors = true
-opt.timeoutlen = 200
+opt.timeoutlen = 400
 opt.ttimeoutlen = 20
 opt.undodir = { os.getenv("HOME") .. "/.vim/undodir" }
 opt.undofile = true
 opt.updatetime = 200
-opt.wildmode = "longest,full"
+opt.wildignore:append(".,..")
+opt.wildignore:append(".ai,*.bmp,*.gif,*.ico,*.jpg,*.jpeg,*.png,*.psd,*.webp")
+opt.wildignore:append("*.avi,*.divx,*.mp4,*.webm,*.mov,*.m2ts,*.mkv,*.vob,*.mpg,*.mpeg")
+opt.wildignore:append("*.doc,*.pdf,*.cbr,*.cbz")
+opt.wildignore:append("*.eot,*.otf,*.ttf,*.woff")
+opt.wildignore:append("*.git,.hg,.svn")
+opt.wildignore:append("*.mp3,*.oga,*.ogg,*.wav,*.flac")
+opt.wildignore:append("*.swp,.lock,.DS_Store,._*")
+opt.wildignore:append("*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz,*.kgb")
+opt.wildmode = "list:longest,list:full"
 opt.writebackup = false
