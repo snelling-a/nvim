@@ -1,5 +1,18 @@
 # Changelog
 
+## [4.19.0](https://github.com/snelling-a/nvim/compare/v4.18.5...v4.19.0) (2023-07-21)
+
+
+### Features
+
+* wild opts ([e9aff41](https://github.com/snelling-a/nvim/commit/e9aff414e38fa62e81ae8d40c7a57488a9059b11))
+
+
+### Miscellaneous
+
+* **spell:** update cspell.json ([6d69436](https://github.com/snelling-a/nvim/commit/6d6943665dcf4193db750217ae886b677978f99e))
+* update plugins ([54e2050](https://github.com/snelling-a/nvim/commit/54e2050f0f8d25843d667add584f7d455fc829e3))
+
 ## [4.18.5](https://github.com/snelling-a/nvim/compare/v4.18.4...v4.18.5) (2023-07-20)
 
 
