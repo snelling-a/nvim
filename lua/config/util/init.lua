@@ -111,4 +111,21 @@ function Util.get_prompt(icon) return string.format("%s %s ", icon, require("con
 ---@return string 'icon + " "'
 function Util.pad_right(icon) return string.format("%s ", icon) end
 
+function Util.capitalize_first_letter(str) return str:gsub("^%l", string.upper) end
+
+---ftdetect
+---name the `ftdetect/*.lua` file the target filetype
+---@param pattern string|table<string> pattern for the autocmd
+---@param filetype string
+function Util.ftdetect(pattern, filetype)
+	pattern = type(pattern) == "table" and pattern or { pattern }
+
+	vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
+		callback = function() vim.bo.filetype = filetype end,
+		desc = "Set filetype for " .. filetype .. " files",
+		group = Util.augroup("FTDetect" .. Util.capitalize_first_letter(filetype) .. "Filetype"),
+		pattern = pattern,
+	})
+end
+
 return Util
