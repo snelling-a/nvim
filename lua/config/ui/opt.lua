@@ -23,7 +23,7 @@ opt.inccommand = "split"
 opt.incsearch = true
 opt.list = true
 opt.listchars = icons.listchars
-opt.numberwidth = 2
+opt.numberwidth = 1
 opt.scrollback = 10000
 opt.scrolloff = 8
 opt.showmode = false
@@ -33,6 +33,7 @@ opt.splitright = true
 opt.synmaxcol = 500
 opt.termguicolors = true
 opt.whichwrap:append({ ["h"] = true, ["l"] = true })
+opt.concealcursor = "nc"
 
 local function hard_mode()
 	local function move_map(bad, good)

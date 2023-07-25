@@ -1,2 +1,5 @@
-vim.opt_local.cursorcolumn = true
-vim.opt_local.conceallevel = 1
+local opt = vim.opt_local
+
+opt.cursorcolumn = true
+opt.conceallevel = 1
+opt.cursorlineopt = "number"
