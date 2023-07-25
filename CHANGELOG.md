@@ -1,5 +1,17 @@
 # Changelog
 
+## [4.22.1](https://github.com/snelling-a/nvim/compare/v4.22.0...v4.22.1) (2023-07-25)
+
+
+### Bug Fixes
+
+* ripgrep args ([6492bbe](https://github.com/snelling-a/nvim/commit/6492bbe3f490f5fee0c38ac79e68923c42f42fd4))
+
+
+### Miscellaneous
+
+* update README ([fb1b1be](https://github.com/snelling-a/nvim/commit/fb1b1bef0f698a0e2323e1f1547bd024527c46fa))
+
 ## [4.22.0](https://github.com/snelling-a/nvim/compare/v4.21.0...v4.22.0) (2023-07-25)
 
 
