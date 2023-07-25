@@ -1,5 +1,22 @@
 # Changelog
 
+## [4.20.0](https://github.com/snelling-a/nvim/compare/v4.19.1...v4.20.0) (2023-07-25)
+
+
+### Features
+
+* ftdetect helper function ([83be9d6](https://github.com/snelling-a/nvim/commit/83be9d6488d640d338d76e4b82d5952d86df8d48))
+
+
+### Bug Fixes
+
+* move jsx ftdetect -&gt; ftplugin ([24c330c](https://github.com/snelling-a/nvim/commit/24c330c55b199026459fb6174e7b6781ebf3508a))
+
+
+### Miscellaneous
+
+* update plugins ([695acdb](https://github.com/snelling-a/nvim/commit/695acdb79cfdf8ca86b46434c43682db87f80ccc))
+
 ## [4.19.1](https://github.com/snelling-a/nvim/compare/v4.19.0...v4.19.1) (2023-07-24)
 
 
