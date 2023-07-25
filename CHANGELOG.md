@@ -1,5 +1,13 @@
 # Changelog
 
+## [4.21.0](https://github.com/snelling-a/nvim/compare/v4.20.0...v4.21.0) (2023-07-25)
+
+
+### Features
+
+* carbon-now ([a5224fe](https://github.com/snelling-a/nvim/commit/a5224fea7071e137fae7851a578b5990004644d4))
+* gx ([b6016d2](https://github.com/snelling-a/nvim/commit/b6016d2792c8e4a74a7d842246fce4c4de0ebd15))
+
 ## [4.20.0](https://github.com/snelling-a/nvim/compare/v4.19.1...v4.20.0) (2023-07-25)
 
 
