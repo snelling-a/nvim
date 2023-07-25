@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.22.0](https://github.com/snelling-a/nvim/compare/v4.21.0...v4.22.0) (2023-07-25)
+
+
+### Features
+
+* QOL keymaps ([5f0e23e](https://github.com/snelling-a/nvim/commit/5f0e23e2ef8cedf08ea3b27b00629877bbad2182))
+
 ## [4.21.0](https://github.com/snelling-a/nvim/compare/v4.20.0...v4.21.0) (2023-07-25)
 
 
