@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.19.1](https://github.com/snelling-a/nvim/compare/v4.19.0...v4.19.1) (2023-07-24)
+
+
+### Bug Fixes
+
+* generate_readme script ([707a6e5](https://github.com/snelling-a/nvim/commit/707a6e553a76126557207bf2870063bf9dc98659))
+
 ## [4.19.0](https://github.com/snelling-a/nvim/compare/v4.18.5...v4.19.0) (2023-07-21)
 
 
