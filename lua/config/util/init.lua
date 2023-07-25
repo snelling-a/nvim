@@ -15,7 +15,7 @@ function Util.augroup(name, clear) return api.nvim_create_augroup("User" .. name
 function Util.tbl_extend_force(...) return vim.tbl_extend("force", ...) end
 
 ---@param custom_options table|nil Table of |:map-arguments|
----@return table '|:map-arguments|'
+---@return table -- |:map-arguments|
 local function get_map_options(custom_options)
 	local default_options = { silent = true, noremap = true }
 
@@ -86,7 +86,7 @@ function Util.is_vim()
 end
 
 ---returns `true` if current buffer should be formatted or not
----@return boolean 'should file have formatting'
+---@return boolean -- should file have formatting
 function Util.is_file() return not vim.tbl_contains(require("config.util.constants").no_format, vim.bo.filetype) end
 
 ---returns `!filetype[]` for each filetype in `no_format`
@@ -104,11 +104,11 @@ end
 
 ---wrapper around  icon so prompts are consistant
 ---@param icon string
----@return string ' + icon'
+---@return string --  + icon
 function Util.get_prompt(icon) return string.format("%s %s ", icon, require("config.ui.icons").misc.right) end
 
 ---@param icon string
----@return string 'icon + " "'
+---@return string -- icon + " "
 function Util.pad_right(icon) return string.format("%s ", icon) end
 
 function Util.capitalize_first_letter(str) return str:gsub("^%l", string.upper) end
