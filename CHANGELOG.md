@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.23.0](https://github.com/snelling-a/nvim/compare/v4.22.1...v4.23.0) (2023-07-26)
+
+
+### Features
+
+* known_hosts highlighting ([255dfce](https://github.com/snelling-a/nvim/commit/255dfce08476715aae59b02d6ffccc30bd4125c0))
+
 ## [4.22.1](https://github.com/snelling-a/nvim/compare/v4.22.0...v4.22.1) (2023-07-25)
 
 
