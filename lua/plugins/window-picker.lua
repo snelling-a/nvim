@@ -21,7 +21,6 @@ WindowPicker.opts = {
 		bo = { buftype = { "terminal", "quickfix", "nofile" }, filetype = { "neo-tree", "neo-tree-popup", "notify" } },
 	},
 	hint = "floating-big-letter",
-	selection_chars = "hjkl;'asdfg",
 	highlights = { statusline = highlights, winbar = highlights },
 }
 
