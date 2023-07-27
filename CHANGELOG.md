@@ -1,5 +1,17 @@
 # Changelog
 
+## [4.23.1](https://github.com/snelling-a/nvim/compare/v4.23.0...v4.23.1) (2023-07-26)
+
+
+### Bug Fixes
+
+* window picker options ([10a66dd](https://github.com/snelling-a/nvim/commit/10a66dd4dba5f9ea894fe59ba540a5ad333f0895))
+
+
+### Miscellaneous
+
+* update plugins ([897a0b4](https://github.com/snelling-a/nvim/commit/897a0b42121274f0e7cbb9d45bf3fc24f65dc1c0))
+
 ## [4.23.0](https://github.com/snelling-a/nvim/compare/v4.22.1...v4.23.0) (2023-07-26)
 
 
