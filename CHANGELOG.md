@@ -1,5 +1,13 @@
 # Changelog
 
+## [4.23.2](https://github.com/snelling-a/nvim/compare/v4.23.1...v4.23.2) (2023-07-29)
+
+
+### Miscellaneous
+
+* **spell:** update cspell.json ([9424ed0](https://github.com/snelling-a/nvim/commit/9424ed00b0792306545a79b6f5641c60e1c06ebb))
+* update plugins ([e7466cb](https://github.com/snelling-a/nvim/commit/e7466cbfb7e997b85892582115ca10ca992263c8))
+
 ## [4.23.1](https://github.com/snelling-a/nvim/compare/v4.23.0...v4.23.1) (2023-07-26)
 
 
