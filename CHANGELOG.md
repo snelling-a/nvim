@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.24.1](https://github.com/snelling-a/nvim/compare/v4.24.0...v4.24.1) (2023-07-31)
+
+
+### Bug Fixes
+
+* typo ([2a0d7c7](https://github.com/snelling-a/nvim/commit/2a0d7c710ce0a7f4ac1dafb0b88bc958914f6720))
+
 ## [4.24.0](https://github.com/snelling-a/nvim/compare/v4.23.2...v4.24.0) (2023-07-31)
 
 
