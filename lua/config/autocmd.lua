@@ -78,9 +78,9 @@ autocmd("TextYankPost", {
 })
 
 autocmd({ "BufWritePre" }, {
-	callback = cmd.StripWhitespace,
-	desc = "Strip whitespace from the end of the line",
-	group = augroup("StripWhitespace"),
+	callback = function() cmd.TrimAllTrailingWhitespace() end,
+	desc = "Trim whitespace from the end of the line",
+	group = augroup("TrimTrailingWhitespace"),
 	pattern = "!markdown",
 })
 

@@ -81,6 +81,8 @@ local function trim_space(opts)
 	vim.api.nvim_buf_set_lines(buf, line1 - 1, line2, false, new_lines)
 end
 
+command("TrimAllTrailingWhitespace", trim_space, { range = "%", desc = "Strip whitespace from the end of the line" })
+
 command(
 	"TrimTrailingWhitespace",
 	trim_space,
