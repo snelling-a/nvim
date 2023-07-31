@@ -70,7 +70,7 @@ autocmd({ "BufEnter", "FileType" }, {
 	pattern = "*",
 })
 
-autocmd("TextYankPost", {
+autocmd({ "TextYankPost" }, {
 	callback = function() vim.highlight.on_yank({ higroup = "IncSearch", timeout = 40 }) end,
 	desc = "Highlight yanked text",
 	group = augroup("HighlightOnYank"),
@@ -91,7 +91,7 @@ autocmd({ "FocusGained", "TermClose", "TermLeave" }, {
 })
 
 autocmd({ "VimResized" }, {
-	callback = function() vim.cmd.tabdo("wincmd =") end,
+	callback = function() cmd.tabdo("wincmd =") end,
 	desc = "Resize splits if window got resized",
 	group = augroup("ResizeSplits"),
 })
