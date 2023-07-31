@@ -1,5 +1,17 @@
 # Changelog
 
+## [4.24.0](https://github.com/snelling-a/nvim/compare/v4.23.2...v4.24.0) (2023-07-31)
+
+
+### Features
+
+* change gx search engine ([5f6f07b](https://github.com/snelling-a/nvim/commit/5f6f07bf3617a3dcf918db1d3c6c04eaa98d6c9f))
+
+
+### Miscellaneous
+
+* update plugins ([ee96124](https://github.com/snelling-a/nvim/commit/ee9612428578e24dddfa55a96d013845ce42562c))
+
 ## [4.23.2](https://github.com/snelling-a/nvim/compare/v4.23.1...v4.23.2) (2023-07-29)
 
 
