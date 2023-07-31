@@ -8,7 +8,7 @@ Gx.event = { "BufEnter" }
 
 Gx.opts = {
 	handler_options = {
-		search_engine = "duckduckgo",
+		search_engine = "ecosia",
 	},
 }
 
