@@ -6,11 +6,20 @@ command("SortJSON", function() cmd("%!jq . --sort-keys") end, { desc = "Sort jso
 
 command("SortYAML", function() cmd("%!yq 'sort_keys(..)' %") end, { desc = "Sort yaml keys alphabetically" })
 
-command(
-	"SpellCheck",
-	function() os.execute("cspell --unique --words-only --gitignore ** | sort > z_spell.txt") end,
-	{ desc = "Toggle spell check" }
-)
+command("SpellCheck", function(ctx)
+	local target = ctx.args or "**"
+
+	if target == "%" then
+		---@diagnostic disable-next-line: cast-local-type
+		target = vim.fn.expand(target)
+	end
+
+	os.execute("cspell --unique --words-only --gitignore " .. target .. " | sort > z_spell.txt")
+end, {
+	nargs = "?",
+	complete = function() return { "**", "%" } end,
+	desc = "Check spelling",
+})
 
 command("ColorMyPencils", function()
 	local normal = api.nvim_get_hl(0, { name = "Normal" })
