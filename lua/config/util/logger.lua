@@ -5,63 +5,69 @@ local titles = {
 	[levels.ERROR] = { tile = "Error!" },
 }
 
-local Logger = {}
-
 ---@alias Message string?
 ---@alias Title string?
 ---@alias Level 0|1|2|3|4|5
 
----@param msg Message
----@param title Title
+---@class NotifyArgs
+---@field msg Message?
+---@field title Title?
+
+---@alias LoggerArgs NotifyArgs|string?
+
+---@param args LoggerArgs
+---@return NotifyArgs logger_args
+local function get_logger_args(args, title)
+	local logger_args = { title = title }
+
+	if type(args) == "table" and type(args.msg) == "string" then
+		logger_args.msg = args.msg
+		logger_args.title = type(args.title) == "string" and args.title or title
+	end
+
+	if type(args) == "string" then
+		logger_args.msg = args
+	elseif type(args) == "nil" then
+		logger_args.msg = title
+	end
+
+	return logger_args
+end
+
+local Logger = {}
+
 ---@param level Level
-local function log(level, title, msg)
-	vim.defer_fn(function() vim.notify(msg or "", level, { title = title or titles[level].titletitle }) end, 500)
+---@param args LoggerArgs
+local function log(level, args)
+	local logger_args = get_logger_args(args, titles[level].title)
+
+	vim.defer_fn(function() vim.notify(logger_args.msg, level, { title = logger_args.title }) end, 500)
 end
 
----@class LoggerArgs
----@field msg Message
----@field title Title
+---@param logger_args LoggerArgs
+function Logger.info(logger_args) log(levels.INFO, logger_args) end
 
----@param logger_args LoggerArgs|string
-function Logger.info(logger_args)
-	if type(logger_args) == "string" then
-		logger_args = { msg = logger_args }
-	end
-	log(levels.INFO, logger_args.title, logger_args.msg)
-end
+---@param logger_args LoggerArgs
+function Logger.warn(logger_args) log(levels.WARN, logger_args) end
 
----@param logger_args LoggerArgs|string
-function Logger.warn(logger_args)
-	if type(logger_args) == "string" then
-		logger_args = { msg = logger_args }
-	end
-	log(levels.WARN, logger_args.title, logger_args.msg)
-end
-
----@param logger_args LoggerArgs|string
-function Logger.error(logger_args)
-	if type(logger_args) == "string" then
-		logger_args = { msg = logger_args }
-	end
-	log(levels.ERROR, logger_args.title, logger_args.msg)
-end
+---@param logger_args LoggerArgs
+function Logger.error(logger_args) log(levels.ERROR, logger_args) end
 
 ---@class ConfirmArgs
 ---@field msg string?
 ---@field choices string?
 ---@field default number?
 ---@field type string?
+
 ---@param confirm_args ConfirmArgs
----@return number confirmation
+---@return number|nil confirmation
 function Logger.confirm(confirm_args)
-	local confirmation = vim.fn.confirm(
+	return vim.fn.confirm(
 		confirm_args.msg or "Confirm",
 		confirm_args.choices or "&Yes\n&No\n&Cancel",
 		confirm_args.default or 1,
 		confirm_args.type or "Question"
 	)
-
-	return confirmation
 end
 
 return Logger
