@@ -21,7 +21,7 @@ function CodeLens.on_attach(bufnr)
 			vim.schedule(lsp.codelens.refresh)
 		end,
 		desc = "Initialize codelens",
-		group = util.augroup("LspCodlens"),
+		group = util.augroup("LspCodelens"),
 	})
 end
 
