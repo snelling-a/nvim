@@ -1,5 +1,13 @@
 # Changelog
 
+## [4.24.2](https://github.com/snelling-a/nvim/compare/v4.24.1...v4.24.2) (2023-07-31)
+
+
+### Bug Fixes
+
+* autocmd to trim trailing whitespace ([db242cd](https://github.com/snelling-a/nvim/commit/db242cd4ba0f31ff64b98210728d6c184b358c98))
+* trim trailing whitespace ([d5e6ea4](https://github.com/snelling-a/nvim/commit/d5e6ea42ab61c34aae083706f9cd9e9fc17d83da))
+
 ## [4.24.1](https://github.com/snelling-a/nvim/compare/v4.24.0...v4.24.1) (2023-07-31)
 
 
