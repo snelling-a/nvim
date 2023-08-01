@@ -83,7 +83,7 @@ M.opts = {
 	},
 	messages = { view = "mini", view_error = "mini", view_warn = "mini", view_search = false },
 	notify = { view = "mini" },
-	popupmenu = { enabled = true, backend = "cmp", kind_icons = icons.kind_icons },
+	popupmenu = { enabled = true, kind_icons = icons.kind_icons },
 	presets = {
 		bottom_search = true,
 		command_palette = true,
