@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.25.0](https://github.com/snelling-a/nvim/compare/v4.24.3...v4.25.0) (2023-08-01)
+
+
+### Features
+
+* path logic ([b9000ee](https://github.com/snelling-a/nvim/commit/b9000eeab731ce903b3b56056ea8708fe4ab3339))
+
 ## [4.24.3](https://github.com/snelling-a/nvim/compare/v4.24.2...v4.24.3) (2023-08-01)
 
 
