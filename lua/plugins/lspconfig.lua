@@ -23,7 +23,10 @@ function LspConfig.config()
 		on_attach = require("config.lsp").on_attach,
 	}
 
-	require("config.lsp.util").setup_lsp_servers(opts)
+	local function cb(path) require(path).setup(opts) end
+	local target_dir = require("config.util.path").lsp_servers
+
+	require("config.lsp.util").ensure_installed(target_dir, cb)
 end
 
 return LspConfig

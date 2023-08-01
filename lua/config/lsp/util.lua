@@ -32,13 +32,13 @@ function LspUtil.get_graphql_root_pattern()
 	})
 end
 
-local server_path = "$XDG_CONFIG_HOME/nvim/lua/config/lsp/server"
-
-function LspUtil.setup_lsp_servers(opts)
+---@param target_dir string
+---@param cb function?
+function LspUtil.ensure_installed(target_dir, cb)
 	local registry = require("mason-registry")
 
 	registry.refresh(function()
-		for index, value in vim.fs.dir(server_path) do
+	for index, value in vim.fs.dir(target_dir) do
 			if value ~= "file" then
 				return
 			end
@@ -50,7 +50,7 @@ function LspUtil.setup_lsp_servers(opts)
 			local pkg = server_config.mason_name or server_name
 
 			if pkg == "relay_lsp" then
-				return
+				goto continue
 			else
 				local package = registry.get_package(pkg)
 
@@ -59,7 +59,10 @@ function LspUtil.setup_lsp_servers(opts)
 				end
 			end
 
-			require(require_path).setup(opts)
+			::continue::
+			if cb then
+				cb(require_path)
+			end
 		end
 	end)
 end
