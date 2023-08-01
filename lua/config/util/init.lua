@@ -14,6 +14,20 @@ function Util.augroup(name, clear) return api.nvim_create_augroup("User" .. name
 ---@return table merged
 function Util.tbl_extend_force(...) return vim.tbl_extend("force", ...) end
 
+--- Convert string arguments to `table[1]`
+--- Typecheck for nil values when table is needed
+---@param args string|table|nil
+---@return table
+function Util.table_or_string(args)
+	if type(args) == "string" then
+		return { args }
+	elseif type(args) == "nil" then
+		return {}
+	end
+
+	return args
+end
+
 ---@param custom_options table|nil Table of |:map-arguments|
 ---@return table -- |:map-arguments|
 local function get_map_options(custom_options)

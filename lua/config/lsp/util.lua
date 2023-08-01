@@ -13,9 +13,13 @@ function LspUtil.bind(bufnr, lhs, rhs, desc)
 	return util.nmap(lhs, rhs, opts)
 end
 ---wrapper for lspconfig.util.root_pattern
----@param config_files string[]
+---@param config_files string|string[]
 ---@return function (startpath: any) -> string|unknown|nil
-function LspUtil.get_root_pattern(config_files) return require("lspconfig").util.root_pattern(unpack(config_files)) end
+function LspUtil.get_root_pattern(config_files)
+	local list = util.table_or_string(config_files)
+
+	return require("lspconfig").util.root_pattern(unpack(list))
+end
 
 ---wrapper for lspconfig.util.root_pattern for graphql language servers
 ---@return function (startpath: any) -> string|unknown|nil
