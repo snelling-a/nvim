@@ -3,7 +3,6 @@ local get_prompt = require("config.util").get_prompt
 
 local preview_pager = vim.fn.executable("delta") and "delta --width=$FZF_PREVIEW_COLUMNS"
 
-
 local FzfLua = { "ibhagwan/fzf-lua" }
 
 FzfLua.dependencies = { "nvim-tree/nvim-web-devicons" }
