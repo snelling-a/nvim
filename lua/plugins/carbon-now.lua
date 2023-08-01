@@ -11,6 +11,9 @@ CarbonNow.opts = {
 		line_numbers = true,
 		theme = "base16-dark",
 		titlebar = "",
+		background_image = nil,
+		background_imageSelection = nil,
+		background_mode = "image",
 	},
 }
 
