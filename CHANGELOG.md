@@ -1,5 +1,23 @@
 # Changelog
 
+## [4.26.0](https://github.com/snelling-a/nvim/compare/v4.25.0...v4.26.0) (2023-08-07)
+
+
+### Features
+
+* **treesitter:** queries ([34eef81](https://github.com/snelling-a/nvim/commit/34eef81d56c8e4365662ab7c411635f975ac0434))
+
+
+### Bug Fixes
+
+* **treesitter:** textobjects ([5671df6](https://github.com/snelling-a/nvim/commit/5671df6f6d55e9a5ba1a49a6e25517047094f352))
+
+
+### Miscellaneous
+
+* update plugins ([b274103](https://github.com/snelling-a/nvim/commit/b2741037cf1d158be9142d3f8ff40e0b9b438f1b))
+* update plugins ([8dd86ba](https://github.com/snelling-a/nvim/commit/8dd86bafd49e977f80ba60b30b1c3e43a8db68d2))
+
 ## [4.25.0](https://github.com/snelling-a/nvim/compare/v4.24.3...v4.25.0) (2023-08-01)
 
 
