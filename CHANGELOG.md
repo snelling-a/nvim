@@ -1,5 +1,21 @@
 # Changelog
 
+## [5.0.0](https://github.com/snelling-a/nvim/compare/v4.26.1...v5.0.0) (2023-08-09)
+
+
+### ⚠ BREAKING CHANGES
+
+* **lsp:** deprecate null-ls
+
+### Features
+
+* **lsp:** migrate lint/format to efm ([2531232](https://github.com/snelling-a/nvim/commit/2531232f6cee391eb276d90307db3bb38806a2ae))
+
+
+### Miscellaneous
+
+* **spell:** update cspell.json ([e35af80](https://github.com/snelling-a/nvim/commit/e35af80585a8bae7f6abf40c280a01a41e2f5bcd))
+
 ## [4.26.1](https://github.com/snelling-a/nvim/compare/v4.26.0...v4.26.1) (2023-08-09)
 
 
