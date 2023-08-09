@@ -1,5 +1,17 @@
 # Changelog
 
+## [4.26.1](https://github.com/snelling-a/nvim/compare/v4.26.0...v4.26.1) (2023-08-09)
+
+
+### Bug Fixes
+
+* **treesitter:** comment highlights ([3184508](https://github.com/snelling-a/nvim/commit/3184508f01758d3d4eacc57ed7a1bc98e4621f79))
+
+
+### Miscellaneous
+
+* update plugins ([584a6ee](https://github.com/snelling-a/nvim/commit/584a6eeaf5ffffbb95ba5c0247dbceb811484174))
+
 ## [4.26.0](https://github.com/snelling-a/nvim/compare/v4.25.0...v4.26.0) (2023-08-07)
 
 
