@@ -36,15 +36,15 @@ end
 ---@param cb function?
 function LspUtil.ensure_installed(target_dir, cb)
 	local registry = require("mason-registry")
+	local dir = string.match(target_dir, "config/lsp/%a+"):gsub("/", ".")
 
 	registry.refresh(function()
-	for index, value in vim.fs.dir(target_dir) do
+		for index, value in vim.fs.dir(target_dir) do
 			if value ~= "file" then
 				return
 			end
-
-			local server_name = index:gsub(".lua", "")
-			local require_path = "config.lsp.server." .. server_name
+			local server_name = string.gsub(index, "%.lua", "")
+			local require_path = string.format("%s.%s", dir, server_name)
 
 			local server_config = require(require_path) or {}
 			local pkg = server_config.mason_name or server_name
@@ -65,6 +65,32 @@ function LspUtil.ensure_installed(target_dir, cb)
 			end
 		end
 	end)
+end
+
+---Get the full path to executable
+---@param name string
+---@return string
+local function get_exec_path(name)
+	if vim.fn.executable(name) == 1 then
+		return vim.fn.exepath(name)
+	else
+		require("config.util.logger").error({
+			msg = "Cannot find executable: " .. name,
+			title = require("config.ui.icons").cmp.nvim_lsp .. "LSP",
+		})
+
+		return ""
+	end
+end
+
+---Get the command to run a formatter
+---@param name string
+---@param args string|string[]?
+---@return string
+function LspUtil.get_linter_formatter_command(name, args)
+	local list = util.table_or_string(args)
+
+	return string.format("%s %s", get_exec_path(name), table.concat(list, " "))
 end
 
 return LspUtil

@@ -29,6 +29,14 @@ Path.lsp_servers = Path.concat({
 	"server",
 })
 
+Path.linters_formatters = Path.concat({
+	vim.fn.stdpath("config"),
+	"lua",
+	"config",
+	"lsp",
+	"efm",
+})
+
 --- Path to Mason.nvim packages
 ---@param package_name string
 ---@param args string|table<string>?

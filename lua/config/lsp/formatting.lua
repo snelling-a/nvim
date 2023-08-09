@@ -17,23 +17,27 @@ function DocumentFormatting.toggle()
 end
 
 function DocumentFormatting.format()
-	local buf = vim.api.nvim_get_current_buf()
-	local have_nls = package.loaded["null-ls"]
-		and (#require("null-ls.sources").get_available(vim.bo.filetype, "NULL_LS_FORMATTING") > 0)
-
 	vim.lsp.buf.format({
-		bufnr = buf,
-		filter = function(client)
-			if have_nls then
-				return client.name == "null-ls"
-			end
 
-			return client.name ~= "null-ls"
+		bufnr = vim.api.nvim_get_current_buf(),
+		filter = function(client)
+			local formatting_disabled = {
+				"tsserver",
+				"typescript-tools",
+			}
+
+			return not vim.tbl_contains(formatting_disabled, client.name)
 		end,
 	})
 end
 
 function DocumentFormatting.on_attach(bufnr)
+	local group = require("config.util").augroup(lsp_formatting .. "." .. bufnr)
+
+	vim.api.nvim_clear_autocmds({
+		group = group,
+	})
+
 	vim.api.nvim_create_autocmd("BufWritePre", {
 		buffer = bufnr,
 		callback = function()
@@ -42,7 +46,7 @@ function DocumentFormatting.on_attach(bufnr)
 			end
 		end,
 		desc = "Format on save",
-		group = require("config.util").augroup(lsp_formatting .. "." .. bufnr),
+		group = group,
 	})
 
 	vim.api.nvim_create_user_command(
