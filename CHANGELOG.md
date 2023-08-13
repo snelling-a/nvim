@@ -1,5 +1,17 @@
 # Changelog
 
+## [5.1.0](https://github.com/snelling-a/nvim/compare/v5.0.1...v5.1.0) (2023-08-13)
+
+
+### Features
+
+* **git:** gitcommit ftplugin ([4c9728b](https://github.com/snelling-a/nvim/commit/4c9728bb1ad82df6943156199881fe73eef80677))
+
+
+### Miscellaneous
+
+* **colors:** update average-dark ([05dc48f](https://github.com/snelling-a/nvim/commit/05dc48f3d365281ca71448d302364471fb6c62e4))
+
 ## [5.0.1](https://github.com/snelling-a/nvim/compare/v5.0.0...v5.0.1) (2023-08-10)
 
 
