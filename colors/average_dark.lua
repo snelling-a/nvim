@@ -1,8 +1,6 @@
 -- Made with 'mini.colors' module of https://github.com/echasnovski/mini.nvim
 
-if vim.g.colors_name ~= nil then
-	vim.cmd("highlight clear")
-end
+if vim.g.colors_name ~= nil then vim.cmd('highlight clear') end
 vim.g.colors_name = "average_dark"
 
 -- Highlight groups
@@ -74,13 +72,17 @@ hi(0, "DashboardFooter", { ctermfg = 180, fg = "#cdb785" })
 hi(0, "DashboardHeader", { ctermfg = 111, fg = "#80a9ec" })
 hi(0, "DashboardShortCut", { ctermfg = 116, fg = "#9cceda" })
 hi(0, "DiagnosticError", { ctermfg = 167, fg = "#db4b4b" })
+hi(0, "DiagnosticErrorStatus", { bg = "#161925", ctermbg = 234, ctermfg = 167, fg = "#db4b4b" })
 hi(0, "DiagnosticHint", { ctermfg = 108, fg = "#79afa1" })
+hi(0, "DiagnosticHintStatus", { bg = "#161925", ctermbg = 234, ctermfg = 108, fg = "#79afa1" })
 hi(0, "DiagnosticInfo", { ctermfg = 74, fg = "#6aa0c9" })
+hi(0, "DiagnosticInfoStatus", { bg = "#161925", ctermbg = 234, ctermfg = 74, fg = "#6aa0c9" })
 hi(0, "DiagnosticUnderlineError", { sp = "#db4b4b" })
 hi(0, "DiagnosticUnderlineHint", { sp = "#79afa1" })
 hi(0, "DiagnosticUnderlineInfo", { sp = "#6aa0c9" })
 hi(0, "DiagnosticUnderlineWarn", { sp = "#dfb068" })
 hi(0, "DiagnosticWarn", { ctermfg = 179, fg = "#dfb068" })
+hi(0, "DiagnosticWarnStatus", { bg = "#161925", ctermbg = 234, ctermfg = 179, fg = "#dfb068" })
 hi(0, "DiffAdd", { bg = "#2f3c3d", ctermbg = 237 })
 hi(0, "DiffAdded", { ctermfg = 72, fg = "#76ac7d" })
 hi(0, "DiffChange", { bg = "#282d40", ctermbg = 236 })
@@ -197,101 +199,17 @@ hi(0, "Italic", { italic = true })
 hi(0, "Keyword", { ctermfg = 176, fg = "#bc96df" })
 hi(0, "LineNr", { ctermfg = 240, fg = "#50556d" })
 hi(0, "LspCodeLens", { ctermfg = 243, fg = "#697283" })
+hi(0, "LspName", { bg = "#161925", ctermbg = 234 })
 hi(0, "LspReferenceRead", { bg = "#3d435c", ctermbg = 238 })
 hi(0, "LspReferenceText", { bg = "#3d435c", ctermbg = 238 })
 hi(0, "LspReferenceWrite", { bg = "#3d435c", ctermbg = 238 })
 hi(0, "MatchParen", { bold = true, ctermfg = 215, fg = "#fbaf73" })
 hi(0, "ModeMsg", { bold = true, ctermfg = 179, fg = "#d4b46a" })
 hi(0, "MoreMsg", { ctermfg = 104, fg = "#6d9bdf" })
-hi(0, "NoiceCmdlineIcon", { ctermfg = 74, fg = "#6aa0c9" })
-hi(0, "NoiceCmdlineIconCalculator", { ctermfg = 74, fg = "#6aa0c9" })
-hi(0, "NoiceCmdlineIconCmdline", { ctermfg = 74, fg = "#6aa0c9" })
-hi(0, "NoiceCmdlineIconFilter", { ctermfg = 74, fg = "#6aa0c9" })
-hi(0, "NoiceCmdlineIconHelp", { ctermfg = 74, fg = "#6aa0c9" })
-hi(0, "NoiceCmdlineIconInput", { ctermfg = 74, fg = "#6aa0c9" })
-hi(0, "NoiceCmdlineIconLua", { ctermfg = 74, fg = "#6aa0c9" })
-hi(0, "NoiceCmdlineIconSearch", { ctermfg = 179, fg = "#dfb068" })
-hi(0, "NoiceCmdlinePopup", { bg = "#1f2130", ctermbg = 235, ctermfg = 188, fg = "#d3d6dd" })
-hi(0, "NoiceCmdlinePopupBorder", { ctermfg = 74, fg = "#6aa0c9" })
-hi(0, "NoiceCmdlinePopupBorderCalculator", { ctermfg = 74, fg = "#6aa0c9" })
-hi(0, "NoiceCmdlinePopupBorderCmdline", { ctermfg = 74, fg = "#6aa0c9" })
-hi(0, "NoiceCmdlinePopupBorderFilter", { ctermfg = 74, fg = "#6aa0c9" })
-hi(0, "NoiceCmdlinePopupBorderHelp", { ctermfg = 74, fg = "#6aa0c9" })
-hi(0, "NoiceCmdlinePopupBorderInput", { ctermfg = 74, fg = "#6aa0c9" })
-hi(0, "NoiceCmdlinePopupBorderLua", { ctermfg = 74, fg = "#6aa0c9" })
-hi(0, "NoiceCmdlinePopupBorderSearch", { ctermfg = 179, fg = "#dfb068" })
-hi(0, "NoiceCmdlinePopupTitle", { ctermfg = 74, fg = "#6aa0c9" })
-hi(0, "NoiceCmdlinePrompt", { bold = true, ctermfg = 111, fg = "#80a9ec" })
-hi(0, "NoiceCompletionItemKindClass", { ctermfg = 250, fg = "#afbace" })
-hi(0, "NoiceCompletionItemKindColor", { ctermfg = 146, fg = "#a4b4d1" })
-hi(0, "NoiceCompletionItemKindConstant", { ctermfg = 146, fg = "#a0afcc" })
-hi(0, "NoiceCompletionItemKindConstructor", { ctermfg = 110, fg = "#97adc9" })
-hi(0, "NoiceCompletionItemKindDefault", { ctermfg = 146, fg = "#a4b4d1" })
-hi(0, "NoiceCompletionItemKindEnum", { ctermfg = 250, fg = "#afbace" })
-hi(0, "NoiceCompletionItemKindEnumMember", { ctermfg = 251, fg = "#afc9da" })
-hi(0, "NoiceCompletionItemKindField", { ctermfg = 251, fg = "#afc9da" })
-hi(0, "NoiceCompletionItemKindFile", { ctermfg = 146, fg = "#a4b4d1" })
-hi(0, "NoiceCompletionItemKindFolder", { ctermfg = 146, fg = "#a4b4d1" })
-hi(0, "NoiceCompletionItemKindFunction", { ctermfg = 110, fg = "#97adc9" })
-hi(0, "NoiceCompletionItemKindInterface", { ctermfg = 250, fg = "#afbace" })
-hi(0, "NoiceCompletionItemKindKeyword", { ctermfg = 251, fg = "#aac8e3" })
-hi(0, "NoiceCompletionItemKindMethod", { ctermfg = 110, fg = "#97adc9" })
-hi(0, "NoiceCompletionItemKindModule", { ctermfg = 250, fg = "#aeb9cd" })
-hi(0, "NoiceCompletionItemKindProperty", { ctermfg = 251, fg = "#afc9da" })
-hi(0, "NoiceCompletionItemKindSnippet", { ctermfg = 110, fg = "#9cabc9" })
-hi(0, "NoiceCompletionItemKindStruct", { ctermfg = 250, fg = "#afbace" })
-hi(0, "NoiceCompletionItemKindText", { ctermfg = 146, fg = "#a4b4d1" })
-hi(0, "NoiceCompletionItemKindUnit", { ctermfg = 250, fg = "#afbace" })
-hi(0, "NoiceCompletionItemKindValue", { ctermfg = 146, fg = "#a0afcc" })
-hi(0, "NoiceCompletionItemKindVariable", { ctermfg = 146, fg = "#a0afcc" })
-hi(0, "NoiceConfirm", { bg = "#1f2130", ctermbg = 235, ctermfg = 188, fg = "#d3d6dd" })
-hi(0, "NoiceConfirmBorder", { ctermfg = 74, fg = "#6aa0c9" })
-hi(0, "NoiceCursor", { bg = "#d3d6dd", ctermbg = 188, ctermfg = 235, fg = "#1f2130" })
-hi(0, "NoiceFormatConfirm", { bg = "#333748", ctermbg = 237 })
-hi(0, "NoiceFormatConfirmDefault", { bg = "#2e3f57", ctermbg = 237 })
-hi(0, "NoiceFormatDate", { ctermfg = 110, fg = "#96b3ce" })
-hi(0, "NoiceFormatEvent", { ctermfg = 59, fg = "#585d75" })
-hi(0, "NoiceFormatKind", { ctermfg = 59, fg = "#585d75" })
-hi(0, "NoiceFormatLevelDebug", { ctermfg = 59, fg = "#585d75" })
-hi(0, "NoiceFormatLevelError", { ctermfg = 167, fg = "#db4b4b" })
-hi(0, "NoiceFormatLevelInfo", { ctermfg = 74, fg = "#6aa0c9" })
-hi(0, "NoiceFormatLevelOff", { ctermfg = 59, fg = "#585d75" })
-hi(0, "NoiceFormatLevelTrace", { ctermfg = 59, fg = "#585d75" })
-hi(0, "NoiceFormatLevelWarn", { ctermfg = 179, fg = "#dfb068" })
-hi(0, "NoiceFormatProgressDone", { bg = "#3f5570", ctermbg = 240 })
-hi(0, "NoiceFormatProgressTodo", { bg = "#333748", ctermbg = 237 })
-hi(0, "NoiceFormatTitle", { bold = true, ctermfg = 111, fg = "#80a9ec" })
-hi(0, "NoiceHiddenCursor", { nocombine = true })
-hi(0, "NoiceLspProgressClient", { bold = true, ctermfg = 111, fg = "#80a9ec" })
-hi(0, "NoiceLspProgressSpinner", { ctermfg = 215, fg = "#f1a872" })
-hi(0, "NoiceLspProgressTitle", { ctermfg = 59, fg = "#585d75" })
-hi(0, "NoicePopup", { bg = "#171924", ctermbg = 234, ctermfg = 252, fg = "#cbced5" })
-hi(0, "NoicePopupBorder", { ctermfg = 67, fg = "#71839b" })
-hi(0, "NoicePopupmenu", { bg = "#242d3e", ctermbg = 236, ctermfg = 252, fg = "#cbced5" })
-hi(0, "NoicePopupmenuBorder", { ctermfg = 67, fg = "#71839b" })
-hi(0, "NoicePopupmenuMatch", { ctermfg = 110, fg = "#96b3ce" })
-hi(0, "NoicePopupmenuSelected", { bg = "#374d67", ctermbg = 239 })
-hi(0, "NoiceScrollbar", { bg = "#293142", ctermbg = 236 })
-hi(0, "NoiceScrollbarThumb", { bg = "#374e6a", ctermbg = 239 })
-hi(0, "NoiceSplit", { bg = "#171924", ctermbg = 234, ctermfg = 252, fg = "#cbced5" })
-hi(0, "NoiceSplitBorder", { ctermfg = 67, fg = "#71839b" })
-hi(0, "NoiceVirtualText", { ctermfg = 74, fg = "#6aa0c9" })
 hi(0, "NonText", { ctermfg = 59, fg = "#585d75" })
 hi(0, "Normal", { bg = "#1f2130", ctermbg = 235, ctermfg = 188, fg = "#d3d6dd" })
 hi(0, "NormalFloat", { bg = "#171924", ctermbg = 234, ctermfg = 252, fg = "#cbced5" })
 hi(0, "NormalNC", { bg = "#1f2130", ctermbg = 235, ctermfg = 188, fg = "#d3d6dd" })
-hi(0, "NotifyERRORBorder", { ctermfg = 88, fg = "#8b2020" })
-hi(0, "NotifyERRORIcon", { ctermfg = 167, fg = "#da4b4e" })
-hi(0, "NotifyERRORTitle", { ctermfg = 167, fg = "#da4b4e" })
-hi(0, "NotifyINFOBorder", { ctermfg = 59, fg = "#3f6773" })
-hi(0, "NotifyINFOIcon", { ctermfg = 37, fg = "#2db1b4" })
-hi(0, "NotifyINFOTitle", { ctermfg = 37, fg = "#2db1b4" })
-hi(0, "NotifyTRACEBorder", { ctermfg = 239, fg = "#50486c" })
-hi(0, "NotifyTRACEIcon", { ctermfg = 140, fg = "#a07dcf" })
-hi(0, "NotifyTRACETitle", { ctermfg = 140, fg = "#a07dcf" })
-hi(0, "NotifyWARNBorder", { ctermfg = 94, fg = "#8f6a3b" })
-hi(0, "NotifyWARNIcon", { ctermfg = 179, fg = "#e8ac3e" })
-hi(0, "NotifyWARNTitle", { ctermfg = 179, fg = "#e8ac3e" })
 hi(0, "NvimTreeGitDeleted", { ctermfg = 168, fg = "#c8506d" })
 hi(0, "NvimTreeGitDirty", { ctermfg = 179, fg = "#ccad63" })
 hi(0, "NvimTreeGitNew", { ctermfg = 108, fg = "#79aa92" })
@@ -326,6 +244,7 @@ hi(0, "SpellRare", { sp = "#8caa9a", undercurl = true })
 hi(0, "Statement", { ctermfg = 140, fg = "#ba96e5" })
 hi(0, "StatusLine", { bg = "#161925", ctermbg = 234, ctermfg = 249, fg = "#afb3bd" })
 hi(0, "StatusLineNC", { bg = "#171924", ctermbg = 234, ctermfg = 238, fg = "#42475e" })
+hi(0, "StatusTS", { bg = "#161925", ctermbg = 234, ctermfg = 104, fg = "#6d9bdf" })
 hi(0, "String", { ctermfg = 150, fg = "#a0cb8d" })
 hi(0, "Substitute", { bg = "#ca4f69", ctermbg = 168, ctermfg = 237, fg = "#2d3644" })
 hi(0, "TabLine", { bg = "#212330", ctermbg = 235, ctermfg = 102, fg = "#7f8398" })
@@ -351,17 +270,17 @@ local g = vim.g
 
 g.terminal_color_0 = "#1f2130"
 g.terminal_color_1 = "#db4b4b"
-g.terminal_color_2 = "#dfb068"
-g.terminal_color_3 = "#dfb068"
+g.terminal_color_2 = "#a0cb8d"
+g.terminal_color_3 = "#d9ba6f"
 g.terminal_color_4 = "#d3d6dd"
 g.terminal_color_5 = "#c29ce1"
-g.terminal_color_6 = "#96b3ce"
+g.terminal_color_6 = "#a4cfc9"
 g.terminal_color_7 = "#d3d6dd"
 g.terminal_color_8 = "#1f2130"
 g.terminal_color_9 = "#db4b4b"
-g.terminal_color_10 = "#dfb068"
-g.terminal_color_11 = "#dfb068"
+g.terminal_color_10 = "#a0cb8d"
+g.terminal_color_11 = "#d9ba6f"
 g.terminal_color_12 = "#d3d6dd"
 g.terminal_color_13 = "#c29ce1"
-g.terminal_color_14 = "#96b3ce"
+g.terminal_color_14 = "#a4cfc9"
 g.terminal_color_15 = "#d3d6dd"
