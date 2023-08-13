@@ -5,18 +5,18 @@ local titles = {
 	[levels.ERROR] = { tile = "Error!" },
 }
 
----@alias Message string?
----@alias Title string?
----@alias Level 0|1|2|3|4|5
+--- @alias Message string?
+--- @alias Title string?
+--- @alias Level 0|1|2|3|4|5
 
----@class NotifyArgs
----@field msg Message?
----@field title Title?
+--- @class NotifyArgs
+--- @field msg Message?
+--- @field title Title?
 
----@alias LoggerArgs NotifyArgs|string?
+--- @alias LoggerArgs NotifyArgs|string?
 
----@param args LoggerArgs
----@return NotifyArgs logger_args
+--- @param args LoggerArgs
+--- @return NotifyArgs logger_args
 local function get_logger_args(args, title)
 	local logger_args = { title = title }
 
@@ -36,31 +36,31 @@ end
 
 local Logger = {}
 
----@param level Level
----@param args LoggerArgs
+--- @param level Level
+--- @param args LoggerArgs
 local function log(level, args)
 	local logger_args = get_logger_args(args, titles[level].title)
 
 	vim.defer_fn(function() vim.notify(logger_args.msg, level, { title = logger_args.title }) end, 500)
 end
 
----@param logger_args LoggerArgs
+--- @param logger_args LoggerArgs
 function Logger.info(logger_args) log(levels.INFO, logger_args) end
 
----@param logger_args LoggerArgs
+--- @param logger_args LoggerArgs
 function Logger.warn(logger_args) log(levels.WARN, logger_args) end
 
----@param logger_args LoggerArgs
+--- @param logger_args LoggerArgs
 function Logger.error(logger_args) log(levels.ERROR, logger_args) end
 
----@class ConfirmArgs
----@field msg string?
----@field choices string?
----@field default number?
----@field type string?
+--- @class ConfirmArgs
+--- @field msg string?
+--- @field choices string?
+--- @field default number?
+--- @field type string?
 
----@param confirm_args ConfirmArgs
----@return number|nil confirmation
+--- @param confirm_args ConfirmArgs
+--- @return number|nil confirmation
 function Logger.confirm(confirm_args)
 	return vim.fn.confirm(
 		confirm_args.msg or "Confirm",

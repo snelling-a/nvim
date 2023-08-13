@@ -2,17 +2,17 @@ local util = require("config.util")
 
 local protocol = vim.lsp.protocol
 
----use default capabilities to create cmp capabilities
----@param capabilities table
----@return table
+--- use default capabilities to create cmp capabilities
+--- @param capabilities table
+--- @return table
 local function cmp_wrapper(capabilities) return require("cmp_nvim_lsp").default_capabilities(capabilities) end
 
 local Capabilities = {}
 
----wrapper for tbl_extend.completion.completionItem.snippetSupport
----to enable (broadcasting) snippet capability for completion
----@param opts table
----@return table
+--- wrapper for tbl_extend.completion.completionItem.snippetSupport
+--- to enable (broadcasting) snippet capability for completion
+--- @param opts table
+--- @return table
 function Capabilities.enable_broadcasting(opts)
 	local capabilities = protocol.make_client_capabilities()
 	capabilities.textDocument.completion.completionItem.snippetSupport = true

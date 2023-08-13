@@ -160,7 +160,7 @@ local median_hl_group = function(gr_tbl)
   return res
 end
 
----@type fun(arr_arr: table<string, table<string, string>>): table<string>
+--- @type fun(arr_arr: table<string, table<string, string>>): table<string>
 local union = function(arr_arr)
 	local value_is_present = {}
 	for _, arr in pairs(arr_arr) do
@@ -192,4 +192,5 @@ local cs_array = vim.tbl_map(
 	cs_names
 )
 local average_cs = average_colorschemes(cs_array)
+
 average_cs:write({ name = output_name, directory = output_directory })

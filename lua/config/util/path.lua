@@ -14,13 +14,12 @@ end
 
 local Path = {}
 
----@param path_components string[]
----@return string
+--- @param path_components string[]
+--- @return string
 function Path.concat(path_components) return table.concat(path_components, get_separator()) end
 
 --- Path to all LSP server configurations
----
---- macos: `$XDG_CONFIG_HOME/nvim/lua/config/lsp/server`
+--- macos: `~/.config/nvim/lua/config/lsp/server`
 Path.lsp_servers = Path.concat({
 	vim.fn.stdpath("config"),
 	"lua",
@@ -29,6 +28,8 @@ Path.lsp_servers = Path.concat({
 	"server",
 })
 
+--- Path to all EFM linters/formatters
+--- macos: `~/.config/nvim/lua/config/lsp/efm`
 Path.linters_formatters = Path.concat({
 	vim.fn.stdpath("config"),
 	"lua",

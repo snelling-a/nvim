@@ -1,6 +1,5 @@
 local Firenvim = { "glacambre/firenvim" }
 
-
 function Firenvim.build()
 	require("lazy").load({ plugins = { "firenvim" }, wait = false })
 	vim.fn["firenvim#install"](1)

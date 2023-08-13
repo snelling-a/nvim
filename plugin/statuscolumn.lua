@@ -3,7 +3,7 @@ local icons = require("config.ui.icons")
 local M = {}
 _G.Status = M
 
----@return {name:string, text:string, texthl:string}[]
+--- @return {name:string, text:string, texthl:string}[]
 function M.get_signs()
 	local buf = vim.api.nvim_win_get_buf(vim.g.statusline_winid)
 	return vim.tbl_map(

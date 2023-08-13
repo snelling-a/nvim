@@ -11,7 +11,6 @@ function Autopairs.config(_, opts)
 
 	local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 
-	---@diagnostic disable-next-line: undefined-field
 	require("cmp").event:on("confirm_done", cmp_autopairs.on_confirm_done({}))
 end
 
