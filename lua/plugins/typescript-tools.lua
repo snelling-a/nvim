@@ -1,8 +1,17 @@
-local TypeScriptTools = { "pmizio/typescript-tools.nvim" }
-
-TypeScriptTools.dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" }
+local TypeScriptTools = {
+	"pmizio/typescript-tools.nvim",
+}
 
 TypeScriptTools.config = true
+
+TypeScriptTools.dependencies = {
+	"nvim-lua/plenary.nvim",
+	"neovim/nvim-lspconfig",
+}
+
+TypeScriptTools.event = "LspAttach"
+
+TypeScriptTools.cond = require("config.lsp.util").get_root_pattern({ "package.json" }) ~= nil
 
 TypeScriptTools.opts = {
 	on_attach = require("config.lsp").on_attach,
@@ -25,7 +34,10 @@ TypeScriptTools.opts = {
 			useLabelDetailsInCompletionEntries = true,
 		},
 		tsserver_format_options = {},
-		tsserver_plugins = { "@styled/typescript-styled-plugin" },
+		tsserver_plugins = {
+			"@styled/typescript-styled-plugin",
+		},
 	},
 }
+
 return TypeScriptTools
