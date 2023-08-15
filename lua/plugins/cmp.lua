@@ -2,7 +2,11 @@ local icons = require("config.ui.icons")
 local util = require("config.util")
 
 local formatting = {
-	fields = { "kind", "abbr", "menu" },
+	fields = {
+		"kind",
+		"abbr",
+		"menu",
+	},
 	format = function(entry, vim_item)
 		vim_item.kind = icons.kind_icons[vim_item.kind]
 		vim_item.menu = icons.cmp[entry.source.name]
@@ -49,14 +53,24 @@ local function get_mapping()
 	local mapping = cmp.mapping
 
 	return mapping.preset.insert({
-		["<C-Space>"] = mapping(mapping.complete(), { "i", "c" }),
+		["<C-Space>"] = mapping(mapping.complete(), {
+			"i",
+			"c",
+		}),
 		["<C-b>"] = mapping.scroll_docs(-1),
-		["<C-e>"] = mapping({ i = mapping.abort(), c = mapping.close() }),
+		["<C-e>"] = mapping({
+			i = mapping.abort(),
+			c = mapping.close(),
+		}),
 		["<C-f>"] = mapping.scroll_docs(1),
 		["<C-j>"] = mapping.select_next_item(),
 		["<C-k>"] = mapping.select_prev_item(),
-		["<C-y>"] = mapping.confirm({ select = true }),
-		["<CR>"] = mapping.confirm({ select = false }),
+		["<C-y>"] = mapping.confirm({
+			select = true,
+		}),
+		["<CR>"] = mapping.confirm({
+			select = false,
+		}),
 		["<Tab>"] = mapping(function(fallback)
 			if cmp.visible() then
 				cmp.select_next_item()
@@ -67,7 +81,10 @@ local function get_mapping()
 			else
 				fallback()
 			end
-		end, { "i", "s" }),
+		end, {
+			"i",
+			"s",
+		}),
 		["<S-Tab>"] = mapping(function(fallback)
 			if cmp.visible() then
 				cmp.select_prev_item()
@@ -76,25 +93,44 @@ local function get_mapping()
 			else
 				fallback()
 			end
-		end, { "i", "s" }),
+		end, {
+			"i",
+			"s",
+		}),
 	})
 end
 
 local function get_sources()
 	local cmp = require("cmp")
 
-	local default_sources = cmp.config.sources(
-		{ { name = "copilot" }, { name = "nvim_lsp" }, { name = "nvim_lsp_signature_help" } },
-		{ { name = "luasnip" } },
-		{ { name = "buffer" }, { name = "nvim_lua" } },
-		{ { name = "npm", keyword_length = 4 } }
-	)
+	local default_sources = cmp.config.sources({
+		{ name = "copilot" },
+		{
+			name = "nvim_lsp",
+		},
+		{
+			name = "nvim_lsp_signature_help",
+		},
+	}, {
+		{ name = "luasnip" },
+	}, {
+		{ name = "buffer" },
+		{
+			name = "nvim_lua",
+		},
+	}, {
+		{ name = "npm", keyword_length = 4 },
+	})
 
 	vim.api.nvim_create_autocmd("BufReadPre", {
 		callback = function(event)
 			local sources = default_sources
 			if not util.is_buf_big(event.buf) then
-				sources[#sources + 1] = { name = "treesitter", group_index = 2, keyword_length = 4 }
+				sources[#sources + 1] = {
+					name = "treesitter",
+					group_index = 2,
+					keyword_length = 4,
+				}
 			end
 
 			cmp.setup.buffer({
@@ -114,23 +150,40 @@ local function get_window()
 	})
 end
 
-local cmdline_view = { entries = { name = "wildmenu", separator = icons.fillchars.foldsep } }
+local cmdline_view = {
+	entries = {
+		name = "wildmenu",
+		separator = icons.fillchars.foldsep,
+	},
+}
 
 local function luasnip_extend()
 	local extend = require("luasnip").filetype_extend
 
-	extend("javascript", { "html" })
-	extend("javascriptreact", { "html", "javascript" })
-	extend("typescript", { "html", "javascript" })
-	extend("typescriptreact", { "html", "javascript" })
+	extend("javascript", {
+		"html",
+	})
+	extend("javascriptreact", {
+		"html",
+		"javascript",
+	})
+	extend("typescript", {
+		"html",
+		"javascript",
+	})
+	extend("typescriptreact", {
+		"html",
+		"javascript",
+	})
 end
 
-local CMP = { "hrsh7th/nvim-cmp" }
+local CMP = {
+	"hrsh7th/nvim-cmp",
+}
 
 CMP.cond = not vim.g.vscode
 
 CMP.dependencies = {
-	"davidsierradz/cmp-conventionalcommits",
 	"hrsh7th/cmp-buffer",
 	"hrsh7th/cmp-cmdline",
 	"hrsh7th/cmp-nvim-lsp",
@@ -144,17 +197,21 @@ CMP.dependencies = {
 	"saadparwaiz1/cmp_luasnip",
 	"windwp/nvim-autopairs",
 	"zbirenbaum/copilot-cmp",
-	{ "David-Kunz/cmp-npm", dependencies = { "nvim-lua/plenary.nvim" } },
-	{ "petertriho/cmp-git", dependencies = { "nvim-lua/plenary.nvim" } },
 }
 
 CMP.event = "BufAdd"
 
 CMP.opts = {
 	enabled = enabled,
-	experimental = { ghost_text = { hl_group = "LspCodeLens" } },
+	experimental = {
+		ghost_text = {
+			hl_group = "LspCodeLens",
+		},
+	},
 	formatting = formatting,
-	snippet = { expand = function(args) require("luasnip").lsp_expand(args.body) end },
+	snippet = {
+		expand = function(args) require("luasnip").lsp_expand(args.body) end,
+	},
 }
 
 function CMP.config(_, opts)
@@ -163,33 +220,59 @@ function CMP.config(_, opts)
 	local config, mapping, setup = cmp.config, cmp.mapping, cmp.setup
 
 	setup(util.tbl_extend_force(opts, {
-		confirm_opts = { behavior = cmp.ConfirmBehavior.Replace, select = false },
+		confirm_opts = {
+			behavior = cmp.ConfirmBehavior.Replace,
+			select = false,
+		},
 		mapping = get_mapping(),
 		sorting = {
 			priority_weight = 2,
 			comparators = get_comparators(),
 		},
 		sources = get_sources(),
-		window = { completion = get_window(), documentation = get_window() },
+		window = {
+			completion = get_window(),
+			documentation = get_window(),
+		},
 	}))
 
 	luasnip_extend()
 	require("luasnip.loaders.from_vscode").lazy_load()
 
 	setup.filetype("gitcommit", {
-		sources = config.sources({ { name = "git" }, { name = "conventionalcommits" } }, { { name = "buffer" } }),
-		window = { completion = get_window() },
+		sources = config.sources({
+			{ name = "git" },
+			{
+				name = "conventionalcommits",
+			},
+		}, {
+			{ name = "buffer" },
+		}),
+		window = {
+			completion = get_window(),
+		},
 	})
 
-	setup.cmdline({ "/", "?" }, {
+	setup.cmdline({
+		"/",
+		"?",
+	}, {
 		mapping = mapping.preset.cmdline(),
-		sources = cmp.config.sources({ { name = "nvim_lsp_document_symbol" } }, { { name = "buffer" } }),
+		sources = cmp.config.sources({
+			{ name = "nvim_lsp_document_symbol" },
+		}, {
+			{ name = "buffer" },
+		}),
 		view = cmdline_view,
 	})
 
 	setup.cmdline(":", {
 		mapping = mapping.preset.cmdline(),
-		sources = config.sources({ { name = "path" } }, { { name = "cmdline" } }),
+		sources = config.sources({
+			{ name = "path" },
+		}, {
+			{ name = "cmdline" },
+		}),
 		view = cmdline_view,
 	})
 end
