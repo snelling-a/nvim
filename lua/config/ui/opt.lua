@@ -5,7 +5,6 @@ local api = vim.api
 local augroup = util.augroup
 local autocmd = api.nvim_create_autocmd
 local opt = vim.opt
-local opt_local = vim.opt_local
 
 opt.fillchars = icons.fillchars
 opt.foldcolumn = "auto:3"
@@ -60,6 +59,7 @@ local function get_local_option_value(option) return api.nvim_get_option_value(o
 
 local function toggle_buffer_opts()
 	if util.is_file() then
+		local opt_local = vim.opt_local
 		local cursorline = get_local_option_value("cursorline")
 		local relativenumber = get_local_option_value("relativenumber")
 
