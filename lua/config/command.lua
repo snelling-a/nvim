@@ -7,10 +7,10 @@ command("SortJSON", function() cmd("%!jq . --sort-keys") end, { desc = "Sort jso
 command("SortYAML", function() cmd("%!yq 'sort_keys(..)' %") end, { desc = "Sort yaml keys alphabetically" })
 
 command("SpellCheck", function(ctx)
-	local target = ctx.args or "**"
+	local target = #ctx.fargs > 0 and table.concat(ctx.fargs) or "**"
 
 	if target == "%" then
-		---@diagnostic disable-next-line: cast-local-type
+		--- @diagnostic disable-next-line: cast-local-type
 		target = vim.fn.expand(target)
 	end
 
