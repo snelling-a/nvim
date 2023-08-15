@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.3.1](https://github.com/snelling-a/nvim/compare/v5.3.0...v5.3.1) (2023-08-15)
+
+
+### Bug Fixes
+
+* remove query from no format list ([743ebf1](https://github.com/snelling-a/nvim/commit/743ebf1f72434cd78e9d7cf5f01aca3ec2740c3b))
+
 ## [5.3.0](https://github.com/snelling-a/nvim/compare/v5.2.0...v5.3.0) (2023-08-15)
 
 
