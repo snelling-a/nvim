@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.3.0](https://github.com/snelling-a/nvim/compare/v5.2.0...v5.3.0) (2023-08-15)
+
+
+### Features
+
+* lua format user command ([01c7c77](https://github.com/snelling-a/nvim/commit/01c7c7783abd21a80dc70b8fee81356126fa4578))
+
 ## [5.2.0](https://github.com/snelling-a/nvim/compare/v5.1.1...v5.2.0) (2023-08-15)
 
 
