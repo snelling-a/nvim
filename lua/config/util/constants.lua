@@ -32,7 +32,6 @@ Constants.no_format = {
 	"packer",
 	"pr",
 	"qf",
-	"query",
 	"spectre_panel",
 	"toggleterm",
 	"Trouble",
