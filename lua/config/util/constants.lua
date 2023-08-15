@@ -38,6 +38,6 @@ Constants.no_format = {
 	"undotree",
 }
 
-Constants.obsidian = { vault_directory = vault_directory, is_vault_directory = vim.fn.getcwd() == vault_directory }
+Constants.obsidian = { vault_directory = vault_directory, is_vault_directory = vim.loop.cwd() == vault_directory }
 
 return Constants
