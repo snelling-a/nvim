@@ -1,28 +1,34 @@
----@class E
----@field bufnr integer
----@field col integer
----@field lnum integer
----@field text string
----@field type string
----@field valid integer
+--- @class E
+--- @field bufnr integer
+--- @field col integer
+--- @field lnum integer
+--- @field text string
+--- @field type string
+--- @field valid integer
 
----@param info any
----@return table
+--- @param info any
+--- @return table
 function _G.qftf(info)
-    local fn = vim.fn
-    local items
-    local ret = {}
+	local fn = vim.fn
+	local items
+	local ret = {}
 
 	if info.quickfix == 1 then
-		items = fn.getqflist({ id = info.id, items = 0 }).items
+		items = fn.getqflist({
+			id = info.id,
+			items = 0,
+		}).items
 	else
-		items = fn.getloclist(info.winid, { id = info.id, items = 0 }).items
+		items = fn.getloclist(info.winid, {
+			id = info.id,
+			items = 0,
+		}).items
 	end
 	local limit = 31
 	local fnameFmt1, fnameFmt2 = "%-" .. limit .. "s", "…%." .. (limit - 1) .. "s"
 	local validFmt = "%s │%5d:%-3d│%s %s"
 	for i = info.start_idx, info.end_idx do
-		---@type E
+		--- @type E
 		local e = items[i]
 		local fname = ""
 		local str
@@ -53,4 +59,4 @@ function _G.qftf(info)
 	return ret
 end
 
-vim.o.qftf = "{info -> v:lua._G.qftf(info)}"
+vim.o.quickfixtextfunc = "{info -> v:lua._G.qftf(info)}"
