@@ -1,9 +1,20 @@
-local settings = { evenBetterToml = { schema = { repositoryEnabled = true } } }
+local config_files = {
+	"taplo.toml",
+	".taplo.toml",
+}
+
+local settings = {
+	evenBetterToml = {
+		schema = {
+			repositoryEnabled = true,
+		},
+	},
+}
 
 local Taplo = {}
 
 function Taplo.setup(opts)
-	opts.root_dir = require("config.lsp.util").get_root_pattern({ "*.toml" })
+	opts.root_dir = require("config.lsp.util").get_root_pattern(config_files)
 
 	opts.settings = settings
 
