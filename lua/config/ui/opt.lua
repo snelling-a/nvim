@@ -6,6 +6,7 @@ local augroup = util.augroup
 local autocmd = api.nvim_create_autocmd
 local opt = vim.opt
 
+opt.concealcursor = "nc"
 opt.fillchars = icons.fillchars
 opt.foldcolumn = "auto:3"
 opt.foldexpr = "nvim_treesitter#foldexpr()"
@@ -32,7 +33,7 @@ opt.splitright = true
 opt.synmaxcol = 500
 opt.termguicolors = true
 opt.whichwrap:append({ ["h"] = true, ["l"] = true })
-opt.concealcursor = "nc"
+opt.wrap = false
 
 local function hard_mode()
 	local function move_map(bad, good)
