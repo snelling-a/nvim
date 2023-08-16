@@ -27,6 +27,9 @@ function Handlers.on_attach()
 	handlers["textDocument/publishDiagnostics"] = lsp.with(lsp.diagnostic.on_publish_diagnostics, { signs = true })
 	handlers["textDocument/references"] = fzf_lua.lsp_references
 	handlers["workspace/symbol"] = fzf_lua.lsp_workspace_symbols
+	handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+		border = "rounded",
+	})
 end
 
 return Handlers
