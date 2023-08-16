@@ -1,5 +1,13 @@
 # Changelog
 
+## [5.5.0](https://github.com/snelling-a/nvim/compare/v5.4.1...v5.5.0) (2023-08-16)
+
+
+### Features
+
+* Gvdiffsplit as fugitive.cmd ([afc83e3](https://github.com/snelling-a/nvim/commit/afc83e39c89a6c84e80998bc887ddf492e24186b))
+* toggle wrap ([c1ad2f6](https://github.com/snelling-a/nvim/commit/c1ad2f66993c05bfc775af870c628f0aed9f1612))
+
 ## [5.4.1](https://github.com/snelling-a/nvim/compare/v5.4.0...v5.4.1) (2023-08-16)
 
 
