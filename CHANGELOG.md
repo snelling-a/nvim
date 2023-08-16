@@ -1,5 +1,18 @@
 # Changelog
 
+## [5.4.0](https://github.com/snelling-a/nvim/compare/v5.3.1...v5.4.0) (2023-08-16)
+
+
+### Features
+
+* notifier ([54f2559](https://github.com/snelling-a/nvim/commit/54f255935de8aa54038dc1a22238a6c31e1fd77a))
+
+
+### Miscellaneous
+
+* **spell:** update cspell.json ([ff2b811](https://github.com/snelling-a/nvim/commit/ff2b8118e94f502d3db4ee5ef6689aacfffd43a8))
+* update plugins ([70cead0](https://github.com/snelling-a/nvim/commit/70cead01b81c16010b61e3d3b3af0c77c313803c))
+
 ## [5.3.1](https://github.com/snelling-a/nvim/compare/v5.3.0...v5.3.1) (2023-08-15)
 
 
