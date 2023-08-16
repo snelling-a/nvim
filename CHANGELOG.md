@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.4.1](https://github.com/snelling-a/nvim/compare/v5.4.0...v5.4.1) (2023-08-16)
+
+
+### Bug Fixes
+
+* import cost ([4c9f5ce](https://github.com/snelling-a/nvim/commit/4c9f5ce66dac01a6c9b42aea21fb86277ab41ff7))
+
 ## [5.4.0](https://github.com/snelling-a/nvim/compare/v5.3.1...v5.4.0) (2023-08-16)
 
 
