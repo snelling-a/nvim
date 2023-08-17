@@ -1,5 +1,18 @@
 # Changelog
 
+## [5.6.1](https://github.com/snelling-a/nvim/compare/v5.6.0...v5.6.1) (2023-08-17)
+
+
+### Bug Fixes
+
+* **lsp:** disable jsonlsp formatting ([be4ece5](https://github.com/snelling-a/nvim/commit/be4ece5c71955df581a53aa752910f8623f73938))
+* **treesitter:** remove exclude children directive ([8741121](https://github.com/snelling-a/nvim/commit/87411216d353edd442a86389efdcadf7da9df144))
+
+
+### Miscellaneous
+
+* **spell:** update cspell.json ([d9f394a](https://github.com/snelling-a/nvim/commit/d9f394a3468d01a9e70cebf96043186c8ef595dd))
+
 ## [5.6.0](https://github.com/snelling-a/nvim/compare/v5.5.1...v5.6.0) (2023-08-17)
 
 
