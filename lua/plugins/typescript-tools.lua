@@ -9,10 +9,6 @@ TypeScriptTools.dependencies = {
 	"neovim/nvim-lspconfig",
 }
 
-TypeScriptTools.event = "LspAttach"
-
-TypeScriptTools.cond = require("config.lsp.util").get_root_pattern({ "package.json" }) ~= nil
-
 TypeScriptTools.opts = {
 	on_attach = require("config.lsp").on_attach,
 	settings = {
