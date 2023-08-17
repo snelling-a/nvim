@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.6.0](https://github.com/snelling-a/nvim/compare/v5.5.1...v5.6.0) (2023-08-17)
+
+
+### Features
+
+* icon-picker ([984bde4](https://github.com/snelling-a/nvim/commit/984bde4410e5198eea758ea5c585f32d08080251))
+
 ## [5.5.1](https://github.com/snelling-a/nvim/compare/v5.5.0...v5.5.1) (2023-08-17)
 
 
