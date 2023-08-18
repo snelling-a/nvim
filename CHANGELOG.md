@@ -1,5 +1,17 @@
 # Changelog
 
+## [5.6.2](https://github.com/snelling-a/nvim/compare/v5.6.1...v5.6.2) (2023-08-18)
+
+
+### Bug Fixes
+
+* **lsp:** typescript-tools ([61ac6bd](https://github.com/snelling-a/nvim/commit/61ac6bd3195b6e4c0b5c5f65cfb596019f2f9bdf))
+
+
+### Miscellaneous
+
+* update plugins ([98fd07e](https://github.com/snelling-a/nvim/commit/98fd07e5da40407d729c221bbd37e72a6cb3f931))
+
 ## [5.6.1](https://github.com/snelling-a/nvim/compare/v5.6.0...v5.6.1) (2023-08-17)
 
 
