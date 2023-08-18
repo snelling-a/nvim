@@ -9,7 +9,11 @@ local function get_header(text)
 		.. " ▌│║▌║▌│║║▌█║▌║█ "
 end
 
-local quit_button = { shortcut = "q", val = util.pad_right(icons.misc.exit) .. "Quit", on_press = ":qa<CR>" }
+local quit_button = {
+	shortcut = "q",
+	val = util.pad_right(icons.misc.exit) .. "Quit",
+	on_press = ":qa<CR>",
+}
 
 local default_buttons = {
 	{
@@ -47,7 +51,11 @@ local default_buttons = {
 		val = util.pad_right(icons.misc.lazy) .. "Lazy",
 		on_press = [[:lua vim.cmd.Lazy("update") <CR>]],
 	},
-	{ shortcut = "m", val = util.pad_right(icons.misc.tools) .. "Mason", on_press = [[:lua vim.cmd.Mason() <CR>]] },
+	{
+		shortcut = "m",
+		val = util.pad_right(icons.misc.tools) .. "Mason",
+		on_press = [[:lua vim.cmd.Mason() <CR>]],
+	},
 	{
 		shortcut = "c",
 		val = util.pad_right(icons.misc.health) .. "Check health",
@@ -85,7 +93,9 @@ local obsidian_buttons = {
 	quit_button,
 }
 
-local M = { "goolord/alpha-nvim" }
+local M = {
+	"goolord/alpha-nvim",
+}
 
 M.cond = not vim.g.started_by_firenvim
 
@@ -144,9 +154,15 @@ function M.opts()
 
 	local function get_content()
 		if require("config.util.constants").obsidian.is_vault_directory then
-			return { header = get_header("obsidian"), buttons = get_buttons(obsidian_buttons) }
+			return {
+				header = get_header("obsidian"),
+				buttons = get_buttons(obsidian_buttons),
+			}
 		else
-			return { header = get_header(), buttons = get_buttons() }
+			return {
+				header = get_header(),
+				buttons = get_buttons(),
+			}
 		end
 	end
 

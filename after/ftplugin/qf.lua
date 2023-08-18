@@ -1,1 +1,4 @@
-vim.opt_local.listchars = { space = " " }
+vim.opt_local.listchars = {
+	space = " ",
+}
+

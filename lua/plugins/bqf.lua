@@ -1,4 +1,6 @@
-local BQF = { "kevinhwang91/nvim-bqf" }
+local BQF = {
+	"kevinhwang91/nvim-bqf",
+}
 
 BQF.ft = "qf"
 

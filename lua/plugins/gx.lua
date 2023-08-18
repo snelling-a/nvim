@@ -1,15 +1,21 @@
-local Gx = { "chrishrb/gx.nvim" }
+local Gx = {
+    "chrishrb/gx.nvim",
+}
 
 Gx.config = true
 
-Gx.dependencies = { "nvim-lua/plenary.nvim" }
+Gx.dependencies = {
+    "nvim-lua/plenary.nvim",
+}
 
-Gx.event = { "BufEnter" }
+Gx.event = {
+    "BufEnter",
+}
 
 Gx.opts = {
-	handler_options = {
-		search_engine = "ecosia",
-	},
+    handler_options = {
+        search_engine = "ecosia",
+    },
 }
 
 return Gx

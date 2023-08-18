@@ -104,7 +104,9 @@ local function get_sources()
 	local cmp = require("cmp")
 
 	local default_sources = cmp.config.sources({
-		{ name = "copilot" },
+		{
+			name = "copilot",
+		},
 		{
 			name = "nvim_lsp",
 		},
@@ -112,14 +114,21 @@ local function get_sources()
 			name = "nvim_lsp_signature_help",
 		},
 	}, {
-		{ name = "luasnip" },
+		{
+			name = "luasnip",
+		},
 	}, {
-		{ name = "buffer" },
+		{
+			name = "buffer",
+		},
 		{
 			name = "nvim_lua",
 		},
 	}, {
-		{ name = "npm", keyword_length = 4 },
+		{
+			name = "npm",
+			keyword_length = 4,
+		},
 	})
 
 	vim.api.nvim_create_autocmd("BufReadPre", {
@@ -241,12 +250,16 @@ function CMP.config(_, opts)
 
 	setup.filetype("gitcommit", {
 		sources = config.sources({
-			{ name = "git" },
+			{
+				name = "git",
+			},
 			{
 				name = "conventionalcommits",
 			},
 		}, {
-			{ name = "buffer" },
+			{
+				name = "buffer",
+			},
 		}),
 		window = {
 			completion = get_window(),
@@ -259,9 +272,13 @@ function CMP.config(_, opts)
 	}, {
 		mapping = mapping.preset.cmdline(),
 		sources = cmp.config.sources({
-			{ name = "nvim_lsp_document_symbol" },
+			{
+				name = "nvim_lsp_document_symbol",
+			},
 		}, {
-			{ name = "buffer" },
+			{
+				name = "buffer",
+			},
 		}),
 		view = cmdline_view,
 	})
@@ -269,9 +286,13 @@ function CMP.config(_, opts)
 	setup.cmdline(":", {
 		mapping = mapping.preset.cmdline(),
 		sources = config.sources({
-			{ name = "path" },
+			{
+				name = "path",
+			},
 		}, {
-			{ name = "cmdline" },
+			{
+				name = "cmdline",
+			},
 		}),
 		view = cmdline_view,
 	})

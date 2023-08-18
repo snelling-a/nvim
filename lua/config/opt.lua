@@ -4,15 +4,25 @@ opt.autoindent = true
 opt.autowrite = true
 opt.background = "dark"
 opt.backup = false
-opt.clipboard = { "unnamed", "unnamedplus" }
+opt.clipboard = {
+	"unnamed",
+	"unnamedplus",
+}
 opt.cmdheight = 1
 opt.complete = ".,w,b,u,u"
-opt.completeopt = { "menu", "menuone", "noselect" }
+opt.completeopt = {
+	"menu",
+	"menuone",
+	"noselect",
+}
 opt.conceallevel = 0
 opt.confirm = true
 opt.expandtab = true
 opt.fileencoding = "utf-8"
-opt.fileformats = { "unix", "mac" }
+opt.fileformats = {
+	"unix",
+	"mac",
+}
 opt.gdefault = true
 opt.grepprg = "rg --hidden --vimgrep --smart-case"
 opt.guifont = "Iosevka Nerd Font Mono"
@@ -23,7 +33,12 @@ opt.mouse = "a"
 opt.path:append("**")
 opt.pumheight = 10
 opt.runtimepath:append("/usr/local/opt/fzf")
-opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize" }
+opt.sessionoptions = {
+	"buffers",
+	"curdir",
+	"tabpages",
+	"winsize",
+}
 opt.shiftround = true
 opt.shiftwidth = 4
 opt.showmode = false
@@ -37,7 +52,9 @@ opt.tabstop = 4
 opt.termguicolors = true
 opt.timeoutlen = 400
 opt.ttimeoutlen = 20
-opt.undodir = { os.getenv("HOME") .. "/.vim/undodir" }
+opt.undodir = {
+	os.getenv("HOME") .. "/.vim/undodir",
+}
 opt.undofile = true
 opt.updatetime = 200
 opt.wildignore:append(".,..")
