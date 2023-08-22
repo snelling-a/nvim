@@ -4,6 +4,7 @@ require("config.keymap.center_actions")
 require("config.keymap.escape")
 require("config.keymap.leader")
 require("config.keymap.normal")
+require("config.keymap.unimpaired")
 require("config.keymap.visual")
 
 local map = vim.keymap.set
