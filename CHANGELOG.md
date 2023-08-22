@@ -1,5 +1,14 @@
 # Changelog
 
+## [5.6.3](https://github.com/snelling-a/nvim/compare/v5.6.2...v5.6.3) (2023-08-21)
+
+
+### Miscellaneous
+
+* **spell:** update cspell.json ([f298836](https://github.com/snelling-a/nvim/commit/f298836dc0c490d070e1cef577d8f1c02765a256))
+* update average_dark ([f785bcf](https://github.com/snelling-a/nvim/commit/f785bcfe746f6c1a3ab2b59ac4a7423c6f075a30))
+* update plugins ([2603a50](https://github.com/snelling-a/nvim/commit/2603a5058669ceb8b00b137716f327422865c3d9))
+
 ## [5.6.2](https://github.com/snelling-a/nvim/compare/v5.6.1...v5.6.2) (2023-08-18)
 
 
