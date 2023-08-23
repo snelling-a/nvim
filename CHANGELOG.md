@@ -1,5 +1,18 @@
 # Changelog
 
+## [5.7.0](https://github.com/snelling-a/nvim/compare/v5.6.3...v5.7.0) (2023-08-23)
+
+
+### Features
+
+* **keys:** unimpaired ([a38fffb](https://github.com/snelling-a/nvim/commit/a38fffb095960d0a36a7742b3b4271d65a5ac439))
+* opts ([ea91ab7](https://github.com/snelling-a/nvim/commit/ea91ab7ee0ecc05f51764aad46e166c5311afe55))
+
+
+### Miscellaneous
+
+* update plugins ([4ab4e97](https://github.com/snelling-a/nvim/commit/4ab4e97cca81bd301022c43a411308e5f2720aa1))
+
 ## [5.6.3](https://github.com/snelling-a/nvim/compare/v5.6.2...v5.6.3) (2023-08-21)
 
 
