@@ -6,7 +6,11 @@ local Util = {}
 --- @param name string augroup name
 --- @param clear? boolean clear existing augroup default: true
 --- @return number 'augroup id'
-function Util.augroup(name, clear) return api.nvim_create_augroup("User" .. name, { clear = clear or true }) end
+function Util.augroup(name, clear)
+	return api.nvim_create_augroup("User" .. name, {
+		clear = clear or true,
+	})
+end
 
 --- wrapper around |vim.tbl_extend| that always overwrites existing keys
 --- @param ... table two or more map-like tables
@@ -19,7 +23,9 @@ function Util.tbl_extend_force(...) return vim.tbl_extend("force", ...) end
 --- @return table
 function Util.table_or_string(args)
 	if type(args) == "string" then
-		return { args }
+		return {
+			args,
+		}
 	elseif type(args) == "nil" then
 		return {}
 	end
@@ -30,7 +36,10 @@ end
 --- @param custom_options table|nil Table of |:map-arguments|
 --- @return table -- |:map-arguments|
 local function get_map_options(custom_options)
-	local default_options = { silent = true, noremap = true }
+	local default_options = {
+		silent = true,
+		noremap = true,
+	}
 
 	if custom_options then
 		default_options = Util.tbl_extend_force(default_options, custom_options or {})
@@ -47,7 +56,15 @@ end
 --- @param opts table|nil Table of |:map-arguments|.
 function Util.map(mode, lhs, rhs, opts) vim.keymap.set(mode, lhs, rhs, get_map_options(opts)) end
 
-for _, mode in ipairs({ "c", "i", "n", "o", "t", "v", "x" }) do
+for _, mode in ipairs({
+	"c",
+	"i",
+	"n",
+	"o",
+	"t",
+	"v",
+	"x",
+}) do
 	Util[mode .. "map"] = function(...) Util.map(mode, ...) end
 end
 
@@ -131,9 +148,14 @@ function Util.capitalize_first_letter(str) return str:gsub("^%l", string.upper) 
 --- @param pattern string|table<string> pattern for the autocmd
 --- @param filetype string
 function Util.ftdetect(pattern, filetype)
-	pattern = type(pattern) == "table" and pattern or { pattern }
+	pattern = type(pattern) == "table" and pattern or {
+		pattern,
+	}
 
-	vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
+	vim.api.nvim_create_autocmd({
+		"BufNewFile",
+		"BufRead",
+	}, {
 		callback = function() vim.bo.filetype = filetype end,
 		desc = "Set filetype for " .. filetype .. " files",
 		group = Util.augroup("FTDetect" .. Util.capitalize_first_letter(filetype) .. "Filetype"),
@@ -141,4 +163,11 @@ function Util.ftdetect(pattern, filetype)
 	})
 end
 
+--- wrapper for `nvim_get_option_value` with `scope = "local"`
+--- @param name string
+function Util.get_opt_local(name)
+	return vim.api.nvim_get_option_value(name, {
+		scope = "local",
+	})
+end
 return Util

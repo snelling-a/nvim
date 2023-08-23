@@ -40,9 +40,15 @@ local function hard_mode()
 		return util.nmap(
 			bad,
 			function()
-				require("config.util.logger").warn({ msg = string.format("NO! use %s", good), title = "HARD MODE" })
+				require("config.util.logger").warn({
+					msg = string.format("NO! use %s", good),
+					title = "HARD MODE",
+				})
 			end,
-			{ buffer = 0, desc = string.format("DON'T USE %s", string.upper(bad)) }
+			{
+				buffer = 0,
+				desc = string.format("DON'T USE %s", string.upper(bad)),
+			}
 		)
 	end
 
@@ -56,13 +62,11 @@ local function hard_mode()
 	end
 end
 
-local function get_local_option_value(option) return api.nvim_get_option_value(option, { scope = "local" }) end
-
 local function toggle_buffer_opts()
 	if util.is_file() then
 		local opt_local = vim.opt_local
-		local cursorline = get_local_option_value("cursorline")
-		local relativenumber = get_local_option_value("relativenumber")
+		local cursorline = util.get_opt_local("cursorline")
+		local relativenumber = util.get_opt_local("relativenumber")
 
 		opt_local.cursorline = not cursorline
 		opt_local.number = true
@@ -75,7 +79,9 @@ end
 
 local ToggleWindowOptionsGroup = augroup("ToggleWindowOptions")
 
-autocmd({ "BufLeave" }, {
+autocmd({
+	"BufLeave",
+}, {
 	callback = toggle_buffer_opts,
 	desc = "Toggle buffer options off",
 	group = ToggleWindowOptionsGroup,

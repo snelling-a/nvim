@@ -4,7 +4,7 @@ local util = require("config.util")
 local cmd = vim.cmd
 local fn = vim.fn
 
-util.mapL(",", "``", {
+util.mapL("<leader>", "``", {
 	desc = "Press `,,` to jump back to the last cursor position.",
 })
 util.mapL("/", function()
@@ -31,9 +31,8 @@ end, {
 	desc = "[Q]uit all windows",
 })
 util.mapL("w", function()
-	local wrap = vim.api.nvim_get_option_value("wrap", {
-		scope = "local",
-	})
+	local wrap = util.get_opt_local("wrap")
+
 	vim.opt_local.wrap = not wrap
 end, {
 	desc = "[W]rap lines",
