@@ -3,27 +3,27 @@
 (_) @spell
 
 ((tag
-   (name) @text.todo 
+   (name) @text.todo
    ":" @punctuation.delimiter)
  (#eq? @text.todo "TODO"))
 
 ((tag
-   (name) @text.note 
+   (name) @text.note
    ":" @punctuation.delimiter)
  (#any-of? @text.note "NOTE" "XXX"))
 
 ((tag
-   (name) @text.warning 
+   (name) @text.warning
    ":" @punctuation.delimiter)
  (#any-of? @text.warning "HACK" "WARNING" "SAFETY" "PERF"))
 
 ((tag
-   (name) @text.danger 
+   (name) @text.danger
    ":" @punctuation.delimiter)
  (#any-of? @text.danger "FIXME" "BUG" "DANGER"))
 
 ("text" @number
  (#lua-match? @number "^#[0-9]+$"))
 
-("text" @constant 
+("text" @constant
  (#lua-match? @constant "^[@][a-zA-Z0-9_-]+$"))
