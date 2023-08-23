@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.7.1](https://github.com/snelling-a/nvim/compare/v5.7.0...v5.7.1) (2023-08-23)
+
+
+### Bug Fixes
+
+* icons ([82bcf7c](https://github.com/snelling-a/nvim/commit/82bcf7c0b47ca1195b9dafaef8436c4d9adfdb8e))
+
 ## [5.7.0](https://github.com/snelling-a/nvim/compare/v5.6.3...v5.7.0) (2023-08-23)
 
 
