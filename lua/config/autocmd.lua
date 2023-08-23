@@ -39,6 +39,7 @@ autocmd({ "BufEnter", "FileType" }, {
 			"l", -- Long lines are not broken in insert mode
 			"n", -- When formatting text, recognize numbered lists.
 			"q", -- (default) Allow formatting of comments with "gq".
+			"r", -- Automatically insert the current comment leader after hitting <Enter> in Insert mode.
 		}
 		local formatoptions_remove = {
 			"/", -- When 'o' is included: do not insert the comment leader for a // comment after a statement
@@ -51,7 +52,6 @@ autocmd({ "BufEnter", "FileType" }, {
 			"m", -- Also break at a multibyte character above 255.
 			"o", -- Auto insert the current comment leader after hitting 'o' or 'O' in Normal mode.
 			"p", -- Don't break lines at single spaces that follow periods.
-			"r", -- Automatically insert the current comment leader after hitting <Enter> in Insert mode.
 			"t", -- Auto-wrap text using 'textwidth'
 			"v", -- Vi-compatible auto-wrapping in insert mode
 			"w", -- Trailing white space indicates a paragraph continues in the next line.

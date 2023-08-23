@@ -6,6 +6,9 @@ local augroup = util.augroup
 local autocmd = api.nvim_create_autocmd
 local opt = vim.opt
 
+require("config.ui.statusline")
+
+opt.breakindent = true
 opt.concealcursor = "nc"
 opt.fillchars = icons.fillchars
 opt.foldcolumn = "auto:3"
@@ -18,21 +21,28 @@ opt.guicursor:append("n-v-c:block")
 opt.guicursor:append("o:hor50")
 opt.guicursor:append("r-cr:hor20")
 opt.guicursor:append("sm:block-blinkwait175-blinkoff150-blinkon175")
-opt.hlsearch = true
+opt.guifont = "Iosevka Nerd Font Mono"
 opt.inccommand = "split"
-opt.incsearch = true
+opt.linebreak = true
 opt.list = true
 opt.listchars = icons.listchars
 opt.numberwidth = 1
-opt.scrollback = 10000
+opt.pumblend = 30
+opt.pumheight = 10
 opt.scrolloff = 8
+opt.showbreak = string.rep(" ", 4) --[[@as vim.opt.showbreak]]
+opt.showcmd = false
 opt.showmode = false
 opt.signcolumn = "yes:2"
+opt.smoothscroll = true
 opt.splitbelow = true
 opt.splitright = true
 opt.synmaxcol = 500
 opt.termguicolors = true
-opt.whichwrap:append({ ["h"] = true, ["l"] = true })
+opt.whichwrap:append({
+	["h"] = true,
+	["l"] = true,
+})
 opt.wrap = false
 
 local function hard_mode()
