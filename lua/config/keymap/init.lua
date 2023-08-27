@@ -21,6 +21,17 @@ map(
 	";",
 	":",
 	{
+		desc = "Enter command mode with `;`",
+	}
+)
+map(
+	{
+		"n",
+		"v",
+	},
+	":",
+	";",
+	{
 		desc = "Command is remapped to `;`",
 	}
 )
