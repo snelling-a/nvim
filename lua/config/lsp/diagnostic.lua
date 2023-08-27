@@ -32,7 +32,9 @@ end
 local function current_line_diagnostics()
 	local bufnr = 0
 	local line_nr = api.nvim_win_get_cursor(0)[1] - 1
-	local opts = { ["lnum"] = line_nr }
+	local opts = {
+		["lnum"] = line_nr,
+	}
 
 	return vim_diagnostic.get(bufnr, opts)
 end
@@ -66,9 +68,13 @@ vim_diagnostic.handlers.current_line_virt = {
 			return
 		end
 
-		local filtered_diagnostics = { diagnostic }
+		local filtered_diagnostics = {
+			diagnostic,
+		}
 
-		pcall(virt_handler.show, ns, bufnr, filtered_diagnostics, { virtual_text = virt_options })
+		pcall(virt_handler.show, ns, bufnr, filtered_diagnostics, {
+			virtual_text = virt_options,
+		})
 	end,
 
 	hide = function(_, bufnr)
@@ -82,11 +88,18 @@ local PublishDiagnostics = {}
 function PublishDiagnostics.on_attach(bufnr)
 	for type, icon in pairs(signs) do
 		local hl = "DiagnosticSign" .. type
-		vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+		vim.fn.sign_define(hl, {
+			text = icon,
+			texthl = hl,
+			numhl = hl,
+		})
 	end
 
 	vim.diagnostic.config({
-		float = { source = "always", border = "rounded" },
+		float = {
+			source = "always",
+			border = "rounded",
+		},
 		severity_sort = true,
 		signs = true,
 		underline = true,
@@ -96,9 +109,15 @@ function PublishDiagnostics.on_attach(bufnr)
 
 	local LspDiagnostiCurrentLineGroup = require("config.util").augroup("LspDiagnostiCurrentLine")
 
-	api.nvim_clear_autocmds({ buffer = bufnr, group = LspDiagnostiCurrentLineGroup })
+	api.nvim_clear_autocmds({
+		buffer = bufnr,
+		group = LspDiagnostiCurrentLineGroup,
+	})
 
-	api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+	api.nvim_create_autocmd({
+		"CursorHold",
+		"CursorHoldI",
+	}, {
 		buffer = bufnr,
 		callback = function() vim_diagnostic.handlers.current_line_virt.show(nil, 0, current_line_diagnostics(), nil) end,
 		desc = "Show current line diagnostics",
