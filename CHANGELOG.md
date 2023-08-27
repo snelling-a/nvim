@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.8.0](https://github.com/snelling-a/nvim/compare/v5.7.1...v5.8.0) (2023-08-27)
+
+
+### Features
+
+* fugitive blame cursor line ([f82df33](https://github.com/snelling-a/nvim/commit/f82df3352d803277ee6701b8b0be6c8cd0ff2608))
+
 ## [5.7.1](https://github.com/snelling-a/nvim/compare/v5.7.0...v5.7.1) (2023-08-23)
 
 
