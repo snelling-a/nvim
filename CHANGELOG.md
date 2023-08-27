@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.8.1](https://github.com/snelling-a/nvim/compare/v5.8.0...v5.8.1) (2023-08-27)
+
+
+### Bug Fixes
+
+* **keymap:** remap : to ; ([8de7125](https://github.com/snelling-a/nvim/commit/8de7125d41d1bb77a1f739097e4e9de79f77dc06))
+
 ## [5.8.0](https://github.com/snelling-a/nvim/compare/v5.7.1...v5.8.0) (2023-08-27)
 
 
