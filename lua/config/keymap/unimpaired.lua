@@ -10,28 +10,30 @@
 --- @param rhs LeftRight
 --- @param desc Description
 local function unimapired(lhs, rhs, desc)
-	local util = require("config.util")
+	local nmap = require("config.util").nmap
 	local format = string.format
 
-	util.nmap("[" .. lhs, rhs.left, {
+	nmap("[" .. lhs, rhs.left, {
 		desc = format("%s %s", desc.base, desc.text.left),
 	})
 
-	util.nmap("]" .. lhs, rhs.right, {
+	nmap("]" .. lhs, rhs.right, {
 		desc = format("%s %s", desc.base, desc.text.right),
 	})
 end
 
+local fn = vim.fn
+
 unimapired("<space>", {
 	left = function()
-		local line_nr = vim.fn.line(".")
+		local line_nr = fn.line(".")
 
-		vim.fn.append(line_nr - 1, "")
+		fn.append(line_nr - 1, "")
 	end,
 	right = function()
-		local line_nr = vim.fn.line(".") --[[@as number]]
+		local line_nr = fn.line(".") --[[@as number]]
 
-		vim.fn.append(line_nr, "")
+		fn.append(line_nr, "")
 	end,
 }, {
 	base = "Put empty line",

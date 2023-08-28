@@ -1,17 +1,17 @@
-local util = require("config.util")
+local vmap = require("config.util").vmap
 
-util.vmap("<", "<gv", {
+vmap("<", "<gv", {
 	desc = "Easy unindent",
 })
-util.vmap(">", ">gv", {
+vmap(">", ">gv", {
 	desc = "Easy indent",
 })
-util.vmap("J", ":m '>+1<CR>gv=gv", {
+vmap("J", ":m '>+1<CR>gv=gv", {
 	desc = "Move lines down",
 })
-util.vmap("K", ":m '<-2<CR>gv=gv", {
+vmap("K", ":m '<-2<CR>gv=gv", {
 	desc = "Move lines up",
 })
-util.vmap("Q", ":norm @q<CR>", {
+vmap("Q", ":norm @q<CR>", {
 	desc = "Use macro stored in the [q] register",
 })
