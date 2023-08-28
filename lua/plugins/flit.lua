@@ -1,28 +1,44 @@
-local M = { "ggandor/flit.nvim" }
+local lables = {
+	"s",
+	"f",
+	"n",
+	"u",
+	"t",
+}
 
-M.opts = { labeled_modes = "nx" }
+local M = {
+	"ggandor/flit.nvim",
+}
+
+M.opts = {
+	labeled_modes = "nx",
+}
 
 M.dependencies = {
-	"tpope/vim-repeat",
+	{
+		"tpope/vim-repeat",
+		event = "VeryLazy",
+	},
 	{
 		"ggandor/leap.nvim",
-		-- keys = {
-		-- 	{ "s", mode = { "n", "x", "o" }, desc = "Leap forward to" },
-		-- 	{ "S", mode = { "n", "x", }, desc = "Leap backward to" },
-		-- 	{ "gs", mode = { "n", "x", "o" }, desc = "Leap from windows" },
-		-- },
 		opts = {
-			safe_labels = { "f", "n", "u", "t" },
-			labels = { "f", "n", "j", "k" },
+			labels = lables,
+			safe_labels = lables,
 			special_keys = {
-				repeat_search = "<enter>",
-				next_phase_one_target = "<enter>",
-				next_target = { "<enter>", ";" },
-				prev_target = { "<tab>", "," },
-				next_group = "<space>",
-				prev_group = "<tab>",
 				multi_accept = "<enter>",
 				multi_revert = "<backspace>",
+				next_group = "<space>",
+				next_phase_one_target = "<enter>",
+				next_target = {
+					"<enter>",
+					";",
+				},
+				prev_group = "<tab>",
+				prev_target = {
+					"<tab>",
+					",",
+				},
+				repeat_search = "<enter>",
 			},
 		},
 		config = function(_, opts)
@@ -30,17 +46,28 @@ M.dependencies = {
 			for k, v in pairs(opts) do
 				leap.opts[k] = v
 			end
-			-- leap.add_default_mappings(true)
-			-- vim.keymap.del({ "x", "o" }, "x")
-			-- vim.keymap.del({ "x", "o" }, "X")
 		end,
 	},
 }
 
 function M.keys()
 	local ret = {}
-	for _, key in ipairs({ "f", "F", "t", "T" }) do
-		ret[#ret + 1] = { key, mode = { "n", "x", "o" }, desc = key }
+	for _, key in ipairs({
+		"f",
+		"F",
+		"t",
+		"T",
+	}) do
+		ret[#ret + 1] = {
+			key,
+			mode = {
+				"n",
+				"o",
+				"v",
+				"x",
+			},
+			desc = key,
+		}
 	end
 	return ret
 end
