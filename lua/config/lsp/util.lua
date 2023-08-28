@@ -49,7 +49,7 @@ function LspUtil.ensure_installed(target_dir, cb)
 			local server_config = require(require_path) or {}
 			local pkg = server_config.mason_name or server_name
 
-			if pkg == "relay_lsp" then
+			if pkg == "" then
 				goto continue
 			else
 				local package = registry.get_package(pkg)
