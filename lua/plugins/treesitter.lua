@@ -134,6 +134,11 @@ function M.config(_, opts)
 	require("nvim-treesitter.install").compilers = {
 		"gcc-13",
 	}
+
+	require("config.util").nmap("[x", function() require("treesitter-context").go_to_context() end, {
+		silent = true,
+		desc = "Jump to conte[x]t",
+	})
 end
 
 return M
