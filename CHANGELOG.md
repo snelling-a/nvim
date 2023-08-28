@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.12.0](https://github.com/snelling-a/nvim/compare/v5.11.0...v5.12.0) (2023-08-28)
+
+
+### Features
+
+* **vscode:** improve opts and keymaps ([3945d0b](https://github.com/snelling-a/nvim/commit/3945d0b3420db9d547be02a0acf6eb11b251737b))
+
 ## [5.11.0](https://github.com/snelling-a/nvim/compare/v5.10.2...v5.11.0) (2023-08-28)
 
 
