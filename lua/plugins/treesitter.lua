@@ -58,11 +58,11 @@ local textobjects = {
 			["]["] = "@class.outer",
 		},
 		goto_previous_start = {
-			["[m"] = "@function.outer",
+			["[f"] = "@function.outer",
 			["[["] = "@class.outer",
 		},
 		goto_previous_end = {
-			["[M"] = "@function.outer",
+			["[F"] = "@function.outer",
 			["[]"] = "@class.outer",
 		},
 	},
