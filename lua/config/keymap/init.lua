@@ -9,7 +9,7 @@ require("config.keymap.visual")
 
 local map = vim.keymap.set
 
-map("n", "<leader>s", [[ :%s/\<<C-r><C-w>\>/<C-r><C-w>/I<Left><Left><Left> ]], {
+map("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/I<Left><Left>]], {
 	desc = "[S]earch and replace word under the cursor",
 })
 
