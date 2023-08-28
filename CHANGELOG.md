@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.10.2](https://github.com/snelling-a/nvim/compare/v5.10.1...v5.10.2) (2023-08-28)
+
+
+### Bug Fixes
+
+* **obsidian:** note_id_function ([5a356a1](https://github.com/snelling-a/nvim/commit/5a356a12a6a8c4a2ee7a359ef0887b26b1cd6266))
+
 ## [5.10.1](https://github.com/snelling-a/nvim/compare/v5.10.0...v5.10.1) (2023-08-28)
 
 
