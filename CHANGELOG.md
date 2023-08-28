@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.11.0](https://github.com/snelling-a/nvim/compare/v5.10.2...v5.11.0) (2023-08-28)
+
+
+### Features
+
+* nvim-spider ([1a2c23c](https://github.com/snelling-a/nvim/commit/1a2c23ce397b45faf8a831cd7fbf8de10a561493))
+
 ## [5.10.2](https://github.com/snelling-a/nvim/compare/v5.10.1...v5.10.2) (2023-08-28)
 
 
