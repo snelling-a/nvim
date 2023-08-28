@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.13.0](https://github.com/snelling-a/nvim/compare/v5.12.1...v5.13.0) (2023-08-28)
+
+
+### Features
+
+* **treesitter:** map jump to context ([5042416](https://github.com/snelling-a/nvim/commit/504241691f0759fb0cb64f5b0dcdd5f168e98ef2))
+
 ## [5.12.1](https://github.com/snelling-a/nvim/compare/v5.12.0...v5.12.1) (2023-08-28)
 
 
