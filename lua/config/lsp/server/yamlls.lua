@@ -7,14 +7,14 @@ local settings = {
 	},
 }
 
-local Yaml = {}
+local M = {}
 
-Yaml.mason_name = "yaml-language-server"
+M.mason_name = "yaml-language-server"
 
-function Yaml.setup(opts)
+function M.setup(opts)
 	opts.settings = settings
 
 	require("lspconfig").yamlls.setup(opts)
 end
 
-return Yaml
+return M

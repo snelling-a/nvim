@@ -30,9 +30,9 @@ local trail = "·"
 local variable = "󰀫 "
 local vert = "┃"
 
-local Icons = {}
+local M = {}
 
-Icons.dap = {
+M.dap = {
 	Breakpoint = " ",
 	BreakpointCondition = " ",
 	BreakpointRejected = error,
@@ -40,7 +40,7 @@ Icons.dap = {
 	Stopped = "",
 }
 
-Icons.cmp = {
+M.cmp = {
 	Copilot = copilot,
 	buffer = buffer,
 	luasnip = snippet,
@@ -54,9 +54,9 @@ Icons.cmp = {
 	cmdline = command_line,
 }
 
-Icons.diagnostics = { Error = error, Hint = "󰌶 ", Info = " ", Warn = " " }
+M.diagnostics = { Error = error, Hint = "󰌶 ", Info = " ", Warn = " " }
 
-Icons.git = {
+M.git = {
 	added = " ",
 	branch = "󰘬",
 	commit = " ",
@@ -74,7 +74,7 @@ Icons.git = {
 	status = " ",
 }
 
-Icons.gitsigns = {
+M.gitsigns = {
 	GitSignsAdd = "┃",
 	GitSignsChange = "┃",
 	GitSignsChangedelete = "┃",
@@ -83,9 +83,9 @@ Icons.gitsigns = {
 	GitSignsUntracked = "┋",
 }
 
-Icons.headings = { "󰉫 ", "󰉬 ", "󰉭 ", "󰉮 ", "󰉯 ", "󰉰 " }
+M.headings = { "󰉫 ", "󰉬 ", "󰉭 ", "󰉮 ", "󰉯 ", "󰉰 " }
 
-Icons.file = {
+M.file = {
 	buffer = buffer,
 	folder_empty = "󰷍 ",
 	folder_open = folder_open,
@@ -93,15 +93,15 @@ Icons.file = {
 	modified = modified,
 	newfile = file,
 	oldfiles = "󱀸 ",
-	readonly = " ",
+	readonly = " ",
 	tab = "󱦞 ",
 	unnamed = " ",
 }
 
-Icons.fillchars =
+M.fillchars =
 	{ diff = "░", eob = " ", fold = "󰇼", foldclose = right, foldopen = down, foldsep = "│", vert = vert }
 
-Icons.kind_icons = {
+M.kind_icons = {
 	Array = "󱡠 ",
 	Boolean = "󰨙 ",
 	BreakStatement = "󰙧 ",
@@ -167,7 +167,7 @@ Icons.kind_icons = {
 	WhileStatement = "󰑖 ",
 }
 
-Icons.languages = {
+M.languages = {
 	bash = "",
 	css = "",
 	dockerfile = "",
@@ -190,7 +190,7 @@ Icons.languages = {
 	zsh = "",
 }
 
-Icons.lazy = {
+M.lazy = {
 	cmd = command_line,
 	config = gears,
 	event = event,
@@ -208,7 +208,7 @@ Icons.lazy = {
 	list = { selection, chevron_right, "‒", trail },
 }
 
-Icons.listchars = {
+M.listchars = {
 	extends = elipsis,
 	leadmultispace = " ",
 	multispace = "·",
@@ -218,9 +218,9 @@ Icons.listchars = {
 	trail = trail,
 }
 
-Icons.location = { bottom = " ", col = "󰚉 ", line = line, top = " " }
+M.location = { bottom = " ", col = "󰚉 ", line = line, top = " " }
 
-Icons.misc = {
+M.misc = {
 	checklist = checklist,
 	chevron_down = " ",
 	chevron_right = chevron_right,
@@ -257,8 +257,8 @@ Icons.misc = {
 	wrap = "↵",
 }
 
-Icons.progress = { done = done, error = error, pending = pending, trash = " " }
+M.progress = { done = done, error = error, pending = pending, trash = " " }
 
-Icons.obsidian = { health = "󱨌 ", new = " ", search = "󱙔 ", today = "󱨰 ", yesterday = "󱓩 " }
+M.obsidian = { health = "󱨌 ", new = " ", search = "󱙔 ", today = "󱨰 ", yesterday = "󱓩 " }
 
-return Icons
+return M

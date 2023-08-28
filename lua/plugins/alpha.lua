@@ -1,5 +1,5 @@
-local icons = require("config.ui.icons")
-local util = require("config.util")
+local Icons = require("config.ui.icons")
+local Util = require("config.util")
 
 --- @param text? string 'The text to display in the logo; defaults to "neovim"'
 --- @return string 'The header for alpha'
@@ -11,54 +11,54 @@ end
 
 local quit_button = {
 	shortcut = "q",
-	val = util.pad_right(icons.misc.exit) .. "Quit",
+	val = Util.pad_right(Icons.misc.exit) .. "Quit",
 	on_press = ":qa<CR>",
 }
 
 local default_buttons = {
 	{
 		shortcut = "p",
-		val = util.pad_right(icons.misc.search) .. "Find file",
+		val = Util.pad_right(Icons.misc.search) .. "Find file",
 		on_press = [[:lua require("fzf-lua").files() <CR>]],
 	},
 	{
 		shortcut = "n",
-		val = util.pad_right(icons.file.newfile) .. "New file",
+		val = Util.pad_right(Icons.file.newfile) .. "New file",
 		on_press = ":ene <BAR> startinsert <CR>",
 	},
 	{
 		shortcut = "o",
-		val = util.pad_right(icons.misc.files) .. "Recent files",
+		val = Util.pad_right(Icons.misc.files) .. "Recent files",
 		on_press = [[:lua require("fzf-lua").oldfiles() <CR>]],
 	},
 	{
 		shortcut = "r",
-		val = util.pad_right(icons.misc.search_text) .. "Find text",
+		val = Util.pad_right(Icons.misc.search_text) .. "Find text",
 		on_press = [[:lua require("fzf-lua").live_grep() <CR>]],
 	},
 	{
 		shortcut = "s",
-		val = util.pad_right(icons.misc.restore) .. "Restore Session",
+		val = Util.pad_right(Icons.misc.restore) .. "Restore Session",
 		on_press = [[:lua require("config.session").load_session() <cr>]],
 	},
 	{
 		shortcut = "h",
-		val = util.pad_right(icons.misc.help) .. "Help",
+		val = Util.pad_right(Icons.misc.help) .. "Help",
 		on_press = [[:lua require("fzf-lua").help_tags() <CR>]],
 	},
 	{
 		shortcut = "l",
-		val = util.pad_right(icons.misc.lazy) .. "Lazy",
+		val = Util.pad_right(Icons.misc.lazy) .. "Lazy",
 		on_press = [[:lua vim.cmd.Lazy("update") <CR>]],
 	},
 	{
 		shortcut = "m",
-		val = util.pad_right(icons.misc.tools) .. "Mason",
+		val = Util.pad_right(Icons.misc.tools) .. "Mason",
 		on_press = [[:lua vim.cmd.Mason() <CR>]],
 	},
 	{
 		shortcut = "c",
-		val = util.pad_right(icons.misc.health) .. "Check health",
+		val = Util.pad_right(Icons.misc.health) .. "Check health",
 		on_press = [[:lua vim.cmd.checkhealth() <CR>]],
 	},
 	quit_button,
@@ -67,27 +67,27 @@ local default_buttons = {
 local obsidian_buttons = {
 	{
 		shortcut = "d",
-		val = util.pad_right(icons.obsidian.today) .. "Today's daily note",
+		val = Util.pad_right(Icons.obsidian.today) .. "Today's daily note",
 		on_press = [[:lua vim.cmd.ObsidianToday() <CR>]],
 	},
 	{
 		shortcut = "y",
-		val = util.pad_right(icons.obsidian.yesterday) .. "Yesterday's daily note",
+		val = Util.pad_right(Icons.obsidian.yesterday) .. "Yesterday's daily note",
 		on_press = [[:lua vim.cmd.ObsidianYesterday() <CR>]],
 	},
 	{
 		shortcut = "n",
-		val = util.pad_right(icons.obsidian.new) .. "New note",
+		val = Util.pad_right(Icons.obsidian.new) .. "New note",
 		on_press = [[:lua vim.cmd.ObsidianNew() <CR>]],
 	},
 	{
 		shortcut = "s",
-		val = util.pad_right(icons.obsidian.search) .. "Search vault",
+		val = Util.pad_right(Icons.obsidian.search) .. "Search vault",
 		on_press = [[:lua vim.cmd.ObsidianSearch() <CR>]],
 	},
 	{
 		shortcut = "c",
-		val = util.pad_right(icons.obsidian.health) .. "Check health",
+		val = Util.pad_right(Icons.obsidian.health) .. "Check health",
 		on_press = [[:lua vim.cmd.ObsidianCheckHealth() <CR>]],
 	},
 	quit_button,
@@ -102,7 +102,7 @@ M.cond = not vim.g.started_by_firenvim
 M.event = "VimEnter"
 
 function M.config(_, dashboard)
-	local augroup = util.augroup
+	local augroup = Util.augroup
 
 	if vim.o.filetype == "lazy" then
 		vim.cmd.close()
@@ -121,12 +121,12 @@ function M.config(_, dashboard)
 			local stats = require("lazy").stats()
 			local v = vim.version()
 
-			local version = string.format("%s %d.%d.%d", icons.misc.version, v.major, v.minor, v.patch)
+			local version = string.format("%s %d.%d.%d", Icons.misc.version, v.major, v.minor, v.patch)
 
 			local time = (math.floor(stats.startuptime * 100 + 0.5) / 100)
-			local startup_time = string.format("%s %d ms", icons.progress.pending, time)
+			local startup_time = string.format("%s %d ms", Icons.progress.pending, time)
 
-			local plugins = string.format("%s %d Plugins", icons.misc.rocket, stats.count)
+			local plugins = string.format("%s %d Plugins", Icons.misc.rocket, stats.count)
 
 			dashboard.section.footer.val = string.format("%s %s %s", version, plugins, startup_time)
 

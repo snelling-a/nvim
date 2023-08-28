@@ -1,6 +1,8 @@
-local Notifier = { "vigoux/notifier.nvim" }
+local M = {
+	"vigoux/notifier.nvim",
+}
 
-Notifier.opts = {
+M.opts = {
 	ignore_messages = {},
 	components = {
 		"nvim",
@@ -14,4 +16,4 @@ Notifier.opts = {
 	zindex = 50,
 }
 
-return Notifier
+return M

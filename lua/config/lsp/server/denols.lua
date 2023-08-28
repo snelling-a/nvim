@@ -1,13 +1,13 @@
 local config_files = { "deno.json", "deno.jsonc" }
 
-local Deno = {}
+local M = {}
 
-Deno.mason_name = "deno"
+M.mason_name = "deno"
 
-function Deno.setup(opts)
+function M.setup(opts)
 	opts.root_dir = require("config.lsp.util").get_root_pattern(config_files)
 
 	require("lspconfig").denols.setup(opts)
 end
 
-return Deno
+return M

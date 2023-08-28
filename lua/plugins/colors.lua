@@ -1,5 +1,5 @@
-local Colors = { "echasnovski/mini.colors" }
+local M = { "echasnovski/mini.colors" }
 
-Colors.event = "VeryLazy"
+M.event = "VeryLazy"
 
-return Colors
+return M

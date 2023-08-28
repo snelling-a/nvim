@@ -1,5 +1,7 @@
-local Kanagawa = { "rebelot/kanagawa.nvim" }
+local M = {
+	"rebelot/kanagawa.nvim",
+}
 
-Kanagawa.event = "VeryLazy"
+M.event = "VeryLazy"
 
-return Kanagawa
+return M

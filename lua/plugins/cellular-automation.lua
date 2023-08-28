@@ -1,10 +1,10 @@
-local CellularAutomation = {
+local M = {
 	"eandrju/cellular-automaton.nvim",
 }
 
-CellularAutomation.lazy = true
+M.lazy = true
 
-CellularAutomation.keys = {
+M.keys = {
 	{
 		"<leader>fml",
 		function() vim.cmd.CellularAutomaton("make_it_rain") end,
@@ -12,4 +12,4 @@ CellularAutomation.keys = {
 	},
 }
 
-return CellularAutomation
+return M

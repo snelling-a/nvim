@@ -1,5 +1,5 @@
 local api = vim.api
-local git = vim.cmd.Git
+local Git = vim.cmd.Git
 
 local function set_fugitive_keymaps()
 	if vim.bo.ft ~= "fugitive" then
@@ -17,15 +17,15 @@ local function set_fugitive_keymaps()
 		})
 	end
 
-	mapLeader("p", function() git("push") end, "Git [p]ush")
+	mapLeader("p", function() Git("push") end, "Git [p]ush")
 	mapLeader("P", function()
-		git({
+		Git({
 			"pull",
 			"--rebase",
 		})
 	end, "Git [P]ull")
 	mapLeader("t", function()
-		git({
+		Git({
 			"push -u origin",
 		})
 	end, "Push [t]o origin")
@@ -45,7 +45,7 @@ M.cmd = {
 }
 
 M.keys = {
-	{ "<leader>gs", git, desc = "[G]it [s]tatus" },
+	{ "<leader>gs", Git, desc = "[G]it [s]tatus" },
 }
 
 function M.config()

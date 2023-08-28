@@ -1,15 +1,15 @@
-local LF = {
+local M = {
 	"lmburns/lf.nvim",
 }
 
-LF.dependencies = {
+M.dependencies = {
 	"nvim-lua/plenary.nvim",
 	"akinsho/toggleterm.nvim",
 }
 
-LF.lazy = false
+M.lazy = false
 
-LF.keys = {
+M.keys = {
 	{
 		"<M-o>",
 		vim.cmd.Lf,
@@ -21,14 +21,14 @@ LF.keys = {
 	},
 }
 
-LF.opts = {
+M.opts = {
 	default_actions = {
 		["<C-s>"] = "split",
 	},
 }
 
-function LF.config(_, opts)
-	vim.g.lf_netrw = 1
+function M.config(_, opts)
+	-- vim.g.lf_netrw = 1
 
 	require("lf").setup(opts)
 
@@ -42,4 +42,4 @@ function LF.config(_, opts)
 	})
 end
 
-return LF
+return M

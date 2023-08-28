@@ -1,10 +1,10 @@
 local javascript_typescript = require("config.util.constants").javascript_typescript
 
-local LspConfig = {
+local M = {
 	"neovim/nvim-lspconfig",
 }
 
-LspConfig.dependencies = {
+M.dependencies = {
 	"dnlhc/glance.nvim",
 	"hrsh7th/cmp-nvim-lsp",
 	"ibhagwan/fzf-lua",
@@ -29,9 +29,9 @@ LspConfig.dependencies = {
 	},
 }
 
-LspConfig.event = "BufAdd"
+M.event = "BufAdd"
 
-function LspConfig.config()
+function M.config()
 	require("lspconfig.ui.windows").default_options.border = "rounded"
 
 	local opts = {
@@ -49,4 +49,4 @@ function LspConfig.config()
 	require("config.lsp.util").ensure_installed(require("config.util.path").lsp_servers, cb)
 end
 
-return LspConfig
+return M

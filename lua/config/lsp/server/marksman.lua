@@ -1,5 +1,5 @@
-local Marksman = {}
+local M = {}
 
-function Marksman.setup(opts) require("lspconfig").marksman.setup(opts) end
+function M.setup(opts) require("lspconfig").marksman.setup(opts) end
 
-return Marksman
+return M

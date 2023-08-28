@@ -1,11 +1,11 @@
-local Html = {}
+local M = {}
 
-Html.mason_name = "html-lsp"
+M.mason_name = "html-lsp"
 
-function Html.setup(opts)
+function M.setup(opts)
 	opts.root_dir = require("config.lsp.util").get_root_pattern({ "*.html" })
 
 	require("lspconfig").html.setup(opts)
 end
 
-return Html
+return M

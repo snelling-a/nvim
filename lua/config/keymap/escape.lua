@@ -1,14 +1,14 @@
-local util = require("config.util")
+local Util = require("config.util")
 
 local cmd = vim.cmd
 
-local function escape() util.feedkeys("<Esc>", "i", true) end
+local function escape() Util.feedkeys("<Esc>", "i", true) end
 
-util.imap("jj", function() escape() end, {
+Util.imap("jj", function() escape() end, {
 	desc = "Go to normal mode",
 })
 
-util.imap("jk", function()
+Util.imap("jk", function()
 	escape()
 
 	if vim.bo.buftype == "" then
@@ -18,7 +18,7 @@ end, {
 	desc = "Write and go to normal mode",
 })
 
-util.map(
+Util.map(
 	{
 		"c",
 		"v",

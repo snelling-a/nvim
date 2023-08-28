@@ -1,8 +1,8 @@
-local IconPicker = {
+local M = {
 	"ziontee113/icon-picker.nvim",
 }
 
-IconPicker.keys = {
+M.keys = {
 	{
 		"<Leader><Leader>i",
 		vim.cmd.IconPickerNormal,
@@ -16,8 +16,8 @@ IconPicker.keys = {
 	},
 }
 
-IconPicker.opts = {
+M.opts = {
 	disable_legacy_commands = true,
 }
 
-return IconPicker
+return M

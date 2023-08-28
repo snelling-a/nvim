@@ -34,7 +34,7 @@ local function get_logger_args(args, title)
 	return logger_args
 end
 
-local Logger = {}
+local M = {}
 
 --- @param level Level
 --- @param args LoggerArgs
@@ -45,13 +45,13 @@ local function log(level, args)
 end
 
 --- @param logger_args LoggerArgs
-function Logger.info(logger_args) log(levels.INFO, logger_args) end
+function M.info(logger_args) log(levels.INFO, logger_args) end
 
 --- @param logger_args LoggerArgs
-function Logger.warn(logger_args) log(levels.WARN, logger_args) end
+function M.warn(logger_args) log(levels.WARN, logger_args) end
 
 --- @param logger_args LoggerArgs
-function Logger.error(logger_args) log(levels.ERROR, logger_args) end
+function M.error(logger_args) log(levels.ERROR, logger_args) end
 
 --- @class ConfirmArgs
 --- @field msg string?
@@ -61,7 +61,7 @@ function Logger.error(logger_args) log(levels.ERROR, logger_args) end
 
 --- @param confirm_args ConfirmArgs
 --- @return number|nil confirmation
-function Logger.confirm(confirm_args)
+function M.confirm(confirm_args)
 	return vim.fn.confirm(
 		confirm_args.msg or "Confirm",
 		confirm_args.choices or "&Yes\n&No\n&Cancel",
@@ -70,4 +70,4 @@ function Logger.confirm(confirm_args)
 	)
 end
 
-return Logger
+return M

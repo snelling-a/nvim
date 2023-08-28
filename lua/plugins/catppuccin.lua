@@ -1,7 +1,7 @@
-local Catppuccin = { "catppuccin/nvim" }
+local M = { "catppuccin/nvim" }
 
-Catppuccin.event = "VeryLazy"
+M.event = "VeryLazy"
 
-Catppuccin.name = "catppuccin"
+M.name = "catppuccin"
 
-return Catppuccin
+return M

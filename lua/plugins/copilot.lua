@@ -1,11 +1,11 @@
 local kind_icons = require("config.ui.icons").kind_icons
-local logger = require("config.util.logger")
+local Logger = require("config.util.logger")
 
 local function get_node_path()
 	local node = vim.fn.exepath("node")
 
 	if not node then
-		logger.warn({ msg = "Node not found in path", title = kind_icons.Copilot .. " Copilot" })
+		Logger.warn({ msg = "Node not found in path", title = kind_icons.Copilot .. " Copilot" })
 		return
 	end
 

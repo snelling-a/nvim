@@ -12,15 +12,15 @@ local function get_separator()
 	end
 end
 
-local Path = {}
+local M = {}
 
 --- @param path_components string[]
 --- @return string
-function Path.concat(path_components) return table.concat(path_components, get_separator()) end
+function M.concat(path_components) return table.concat(path_components, get_separator()) end
 
 --- Path to all LSP server configurations
 --- macos: `~/.config/nvim/lua/config/lsp/server`
-Path.lsp_servers = Path.concat({
+M.lsp_servers = M.concat({
 	vim.fn.stdpath("config"),
 	"lua",
 	"config",
@@ -30,7 +30,7 @@ Path.lsp_servers = Path.concat({
 
 --- Path to all EFM linters/formatters
 --- macos: `~/.config/nvim/lua/config/lsp/efm`
-Path.linters_formatters = Path.concat({
+M.linters_formatters = M.concat({
 	vim.fn.stdpath("config"),
 	"lua",
 	"config",
@@ -38,22 +38,8 @@ Path.linters_formatters = Path.concat({
 	"efm",
 })
 
---- Path to Mason.nvim packages
----@param package_name string
----@param args string|table<string>?
----@return string
-function Path.get_mason_path(package_name, args)
-	local list = require("config.util").table_or_string(args)
-
-	local path_components = {
-		vim.fn.stdpath("data"),
-		"mason",
-		"packages",
-		package_name,
-		unpack(list),
 	}
 
-	return Path.concat(path_components)
 end
 
-return Path
+return M

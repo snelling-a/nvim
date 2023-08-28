@@ -1,10 +1,10 @@
-local icons = require("config.ui.icons").fillchars
+local Icons = require("config.ui.icons").fillchars
 
-local Glance = { "dnlhc/glance.nvim" }
+local M = { "dnlhc/glance.nvim" }
 
-Glance.event = "LspAttach"
+M.event = "LspAttach"
 
-Glance.keys = {
+M.keys = {
 	{
 		"gd",
 		function() vim.cmd.Glance("definitions") end,
@@ -27,10 +27,10 @@ Glance.keys = {
 	},
 }
 
-Glance.opts = {
+M.opts = {
 	preview_win_opts = { wrap = false },
-	folds = { fold_closed = icons.foldclose, fold_open = icons.foldopen },
-	indent_lines = { icon = icons.foldsep },
+	folds = { fold_closed = Icons.foldclose, fold_open = Icons.foldopen },
+	indent_lines = { icon = Icons.foldsep },
 }
 
-return Glance
+return M

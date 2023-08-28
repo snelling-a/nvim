@@ -1,16 +1,17 @@
-local icons = require("config.ui.icons")
+local Icons = require("config.ui.icons")
 local get_prompt = require("config.util").get_prompt
 
 local preview_pager = vim.fn.executable("delta") and "delta --width=$FZF_PREVIEW_COLUMNS"
 
-local FzfLua = {
+local M = {
 	"ibhagwan/fzf-lua",
 }
 
-FzfLua.dependencies = {
+M.dependencies = {
 	"nvim-tree/nvim-web-devicons",
 }
-FzfLua.keys = {
+
+M.keys = {
 	{
 		"<C-p>",
 		function() require("fzf-lua").files() end,
@@ -78,21 +79,21 @@ FzfLua.keys = {
 	},
 }
 
-FzfLua.opts = {
+M.opts = {
 	blines = {
-		prompt = get_prompt(icons.location.line),
+		prompt = get_prompt(Icons.location.line),
 	},
 	btags = {
-		prompt = get_prompt(icons.misc.tag),
+		prompt = get_prompt(Icons.misc.tag),
 	},
 	buffers = {
-		prompt = get_prompt(icons.file.buffer),
+		prompt = get_prompt(Icons.file.buffer),
 		cwd_only = true,
 	},
 	colorschemes = {
 		live_preview = true,
 		post_reset_cb = function() require("feline").reset_highlights() end,
-		prompt = get_prompt(icons.misc.color),
+		prompt = get_prompt(Icons.misc.color),
 	},
 	commands = {
 		sort_lastused = true,
@@ -101,7 +102,7 @@ FzfLua.opts = {
 		cwd_only = true,
 		file_icons = true,
 		git_icons = true,
-		prompt = get_prompt(icons.misc.tools),
+		prompt = get_prompt(Icons.misc.tools),
 		severity_limit = "warning",
 	},
 	files = {
@@ -110,49 +111,49 @@ FzfLua.opts = {
 		fzf_opts = {
 			["--history"] = vim.fn.stdpath("data") .. "/fzf-lua-files-history",
 		},
-		prompt = get_prompt(icons.misc.files),
+		prompt = get_prompt(Icons.misc.files),
 	},
 	git = {
 		bcommits = {
-			prompt = get_prompt(icons.git.commit_2),
+			prompt = get_prompt(Icons.git.commit_2),
 		},
 		branches = {
-			prompt = get_prompt(icons.git.branch),
+			prompt = get_prompt(Icons.git.branch),
 		},
 		commits = {
 			preview_pager = preview_pager,
-			prompt = get_prompt(icons.misc.git_commit),
+			prompt = get_prompt(Icons.misc.git_commit),
 		},
 		files = {
 			prompt = "x",
 		}, --get_prompt(icons.git.folder) },
 		icons = {
 			["A"] = {
-				icon = icons.git.added,
+				icon = Icons.git.added,
 				color = "green",
 			},
 			["D"] = {
-				icon = icons.git.removed,
+				icon = Icons.git.removed,
 				color = "red",
 			},
 			["M"] = {
-				icon = icons.git.modified,
+				icon = Icons.git.modified,
 				color = "magenta",
 			},
 		},
 		stash = {
-			prompt = get_prompt(icons.git.stash),
+			prompt = get_prompt(Icons.git.stash),
 		},
 		status = {
 			preview_pager = preview_pager,
-			prompt = get_prompt(icons.git.status),
+			prompt = get_prompt(Icons.git.status),
 		},
 	},
 	grep = {
 		fzf_opts = {
 			["--history"] = vim.fn.stdpath("data") .. "/fzf-lua-grep-history",
 		},
-		prompt = get_prompt(icons.misc.search),
+		prompt = get_prompt(Icons.misc.search),
 	},
 	keymap = {
 		fzf = {
@@ -162,26 +163,26 @@ FzfLua.opts = {
 		},
 	},
 	lines = {
-		prompt = get_prompt(icons.location.line),
+		prompt = get_prompt(Icons.location.line),
 	},
 	lsp = {
 		code_actions = {
-			prompt = get_prompt(icons.misc.code_action),
+			prompt = get_prompt(Icons.misc.code_action),
 		},
 		cwd_only = true,
 		finder = {
 			git_icons = true,
 			includeDeclaration = true,
-			prompt = get_prompt(icons.cmp.nvim_lsp),
+			prompt = get_prompt(Icons.cmp.nvim_lsp),
 		},
 		git_icons = true,
 		symbols = {
-			symbol_icons = icons.kind_icons,
+			symbol_icons = Icons.kind_icons,
 			symbol_fmt = function(s) return "|" .. s .. "|" end,
 		},
 	},
 	oldfiles = {
-		prompt = get_prompt(icons.file.oldfiles),
+		prompt = get_prompt(Icons.file.oldfiles),
 		cwd_only = true,
 	},
 	previewers = {
@@ -200,13 +201,13 @@ FzfLua.opts = {
 		git_icons = true,
 	},
 	quickfix_stack = {
-		marker = icons.misc.right,
+		marker = Icons.misc.right,
 	},
 	tabs = {
-		prompt = get_prompt(icons.file.tab),
+		prompt = get_prompt(Icons.file.tab),
 	},
 	tags = {
-		prompt = get_prompt(icons.misc.tag),
+		prompt = get_prompt(Icons.misc.tag),
 	},
 	winopts = {
 		on_create = function() vim.b.miniindentscope_disable = true end,
@@ -267,7 +268,7 @@ FzfLua.opts = {
 	},
 }
 
-function FzfLua.config(_, opts)
+function M.config(_, opts)
 	local fzf_lua = require("fzf-lua")
 
 	vim.api.nvim_create_autocmd("VimResized", {
@@ -280,4 +281,4 @@ function FzfLua.config(_, opts)
 	fzf_lua.setup(opts)
 end
 
-return FzfLua
+return M

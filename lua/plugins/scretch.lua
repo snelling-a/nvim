@@ -1,17 +1,17 @@
-local Scretch = {
+local M = {
 	"Sonicfury/scretch.nvim",
 }
 
-Scretch.dependencies = {
+M.dependencies = {
 	"ibhagwan/fzf-lua",
 }
 
-Scretch.opts = {
+M.opts = {
 	backend = "fzf-lua",
 	scretch_dir = vim.fn.stdpath("cache") .. "/scretch/",
 }
 
-Scretch.keys = {
+M.keys = {
 	{
 		"<leader>sn",
 		function() require("scretch").new() end,
@@ -44,4 +44,4 @@ Scretch.keys = {
 	},
 }
 
-return Scretch
+return M

@@ -1,5 +1,5 @@
-local GithubTheme = { "projekt0n/github-nvim-theme" }
+local M = { "projekt0n/github-nvim-theme" }
 
-GithubTheme.event = "VeryLazy"
+M.event = "VeryLazy"
 
-return GithubTheme
+return M

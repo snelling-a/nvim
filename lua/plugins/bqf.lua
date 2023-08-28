@@ -1,7 +1,7 @@
-local BQF = {
+local M = {
 	"kevinhwang91/nvim-bqf",
 }
 
-BQF.ft = "qf"
+M.ft = "qf"
 
-return BQF
+return M

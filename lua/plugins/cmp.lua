@@ -1,5 +1,5 @@
-local icons = require("config.ui.icons")
-local util = require("config.util")
+local Icons = require("config.ui.icons")
+local Util = require("config.util")
 
 local formatting = {
 	fields = {
@@ -8,8 +8,8 @@ local formatting = {
 		"menu",
 	},
 	format = function(entry, vim_item)
-		vim_item.kind = icons.kind_icons[vim_item.kind]
-		vim_item.menu = icons.cmp[entry.source.name]
+		vim_item.kind = Icons.kind_icons[vim_item.kind]
+		vim_item.menu = Icons.cmp[entry.source.name]
 		return vim_item
 	end,
 }
@@ -134,7 +134,7 @@ local function get_sources()
 	vim.api.nvim_create_autocmd("BufReadPre", {
 		callback = function(event)
 			local sources = default_sources
-			if not util.is_buf_big(event.buf) then
+			if not Util.is_buf_big(event.buf) then
 				sources[#sources + 1] = {
 					name = "treesitter",
 					group_index = 2,
@@ -146,7 +146,7 @@ local function get_sources()
 				sources = sources,
 			})
 		end,
-		group = util.augroup("CmpConditionalSources"),
+		group = Util.augroup("CmpConditionalSources"),
 	})
 end
 
@@ -162,7 +162,7 @@ end
 local cmdline_view = {
 	entries = {
 		name = "wildmenu",
-		separator = icons.fillchars.foldsep,
+		separator = Icons.fillchars.foldsep,
 	},
 }
 
@@ -186,13 +186,13 @@ local function luasnip_extend()
 	})
 end
 
-local CMP = {
+local M = {
 	"hrsh7th/nvim-cmp",
 }
 
-CMP.cond = not vim.g.vscode
+M.cond = not vim.g.vscode
 
-CMP.dependencies = {
+M.dependencies = {
 	"hrsh7th/cmp-buffer",
 	"hrsh7th/cmp-cmdline",
 	"hrsh7th/cmp-nvim-lsp",
@@ -208,9 +208,9 @@ CMP.dependencies = {
 	"zbirenbaum/copilot-cmp",
 }
 
-CMP.event = "BufAdd"
+M.event = "BufAdd"
 
-CMP.opts = {
+M.opts = {
 	enabled = enabled,
 	experimental = {
 		ghost_text = {
@@ -223,12 +223,12 @@ CMP.opts = {
 	},
 }
 
-function CMP.config(_, opts)
+function M.config(_, opts)
 	local cmp = require("cmp")
 
 	local config, mapping, setup = cmp.config, cmp.mapping, cmp.setup
 
-	setup(util.tbl_extend_force(opts, {
+	setup(Util.tbl_extend_force(opts, {
 		confirm_opts = {
 			behavior = cmp.ConfirmBehavior.Replace,
 			select = false,
@@ -298,4 +298,4 @@ function CMP.config(_, opts)
 	})
 end
 
-return CMP
+return M

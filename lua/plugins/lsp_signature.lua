@@ -1,4 +1,6 @@
-local M = { "ray-x/lsp_signature.nvim" }
+local M = {
+	"ray-x/lsp_signature.nvim",
+}
 
 M.event = "LspAttach"
 

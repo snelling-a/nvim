@@ -1,16 +1,14 @@
-local icons = require("config.ui.icons")
-local util = require("config.util")
+local Icons = require("config.ui.icons")
+local Util = require("config.util")
 
 local api = vim.api
-local augroup = util.augroup
+local augroup = Util.augroup
 local autocmd = api.nvim_create_autocmd
 local opt = vim.opt
 
-require("config.ui.statusline")
-
 opt.breakindent = true
 opt.concealcursor = "nc"
-opt.fillchars = icons.fillchars
+opt.fillchars = Icons.fillchars
 opt.foldcolumn = "auto:3"
 opt.foldexpr = "nvim_treesitter#foldexpr()"
 opt.foldlevelstart = 0
@@ -25,7 +23,7 @@ opt.guifont = "Iosevka Nerd Font Mono"
 opt.inccommand = "split"
 opt.linebreak = true
 opt.list = true
-opt.listchars = icons.listchars
+opt.listchars = Icons.listchars
 opt.numberwidth = 1
 opt.pumblend = 30
 opt.pumheight = 10
@@ -47,7 +45,7 @@ opt.wrap = false
 
 local function hard_mode()
 	local function move_map(bad, good)
-		return util.nmap(
+		return Util.nmap(
 			bad,
 			function()
 				require("config.util.logger").warn({
@@ -73,10 +71,10 @@ local function hard_mode()
 end
 
 local function toggle_buffer_opts()
-	if util.is_file() then
+	if Util.is_file() then
 		local opt_local = vim.opt_local
-		local cursorline = util.get_opt_local("cursorline")
-		local relativenumber = util.get_opt_local("relativenumber")
+		local cursorline = Util.get_opt_local("cursorline")
+		local relativenumber = Util.get_opt_local("relativenumber")
 
 		opt_local.cursorline = not cursorline
 		opt_local.number = true

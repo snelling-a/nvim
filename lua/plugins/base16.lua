@@ -1,11 +1,11 @@
-local Base16 = { "snelling-a/base16.nvim" }
+local M = { "snelling-a/base16.nvim" }
 
-Base16.dev = true
+M.dev = true
 
-Base16.lazy = false
+M.lazy = false
 
-Base16.priority = 1000
+M.priority = 1000
 
-function Base16.config() vim.cmd.colorscheme("base16-default-dark") end
+function M.config() vim.cmd.colorscheme("base16-default-dark") end
 
-return Base16
+return M

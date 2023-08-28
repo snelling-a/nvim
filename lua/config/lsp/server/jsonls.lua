@@ -11,11 +11,11 @@ local init_options = {
 	provideFormatter = false,
 }
 
-local Json = {}
+local M = {}
 
-Json.mason_name = "json-lsp"
+M.mason_name = "json-lsp"
 
-function Json.setup(opts)
+function M.setup(opts)
 	opts = require("config.lsp.capabilities").enable_broadcasting(opts)
 
 	opts.init_options = init_options
@@ -25,4 +25,4 @@ function Json.setup(opts)
 	require("lspconfig").jsonls.setup(opts)
 end
 
-return Json
+return M

@@ -1,8 +1,8 @@
-local Eslint = {}
+local M = {}
 
-Eslint.mason_name = "eslint-lsp"
+M.mason_name = "eslint-lsp"
 
-Eslint.config_files = {
+M.config_files = {
 	".eslintrc",
 	".eslintrc.cjs",
 	".eslintrc.js",
@@ -12,10 +12,10 @@ Eslint.config_files = {
 	"package.json",
 }
 
-function Eslint.setup(opts)
-	opts.root_dir = require("config.lsp.util").get_root_pattern(Eslint.config_files)
+function M.setup(opts)
+	opts.root_dir = require("config.lsp.util").get_root_pattern(M.config_files)
 
 	require("lspconfig").eslint.setup(opts)
 end
 
-return Eslint
+return M

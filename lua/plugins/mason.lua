@@ -1,22 +1,20 @@
-local icons = require("config.ui.icons").progress
+local Icons = require("config.ui.icons").progress
 
-local Mason = { "williamboman/mason.nvim" }
+local M = { "williamboman/mason.nvim" }
 
-Mason.build = ":MasonUpdate"
+M.build = ":MasonUpdate"
 
-Mason.dependencies = { "jay-babu/mason-null-ls.nvim" }
-
-Mason.opts = {
+M.opts = {
 	ui = {
 		border = "rounded",
 		icons = {
-			package_installed = icons.done,
-			package_pending = icons.pending,
-			package_uninstalled = icons.trash,
+			package_installed = Icons.done,
+			package_pending = Icons.pending,
+			package_uninstalled = Icons.trash,
 		},
 	},
 }
 
-Mason.config = true
+M.config = true
 
-return Mason
+return M

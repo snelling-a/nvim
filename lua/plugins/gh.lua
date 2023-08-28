@@ -1,10 +1,10 @@
-local GH = {
+local M = {
 	"ldelossa/gh.nvim",
 }
 
-GH.cmd = "GH"
+M.cmd = "GH"
 
-GH.dependencies = {
+M.dependencies = {
 	"ibhagwan/fzf-lua",
 	{
 		"ldelossa/litee.nvim",
@@ -14,7 +14,7 @@ GH.dependencies = {
 	},
 }
 
-GH.opts = {
+M.opts = {
 	icon_set = "codicons",
 	panel = {
 		orientation = "left",
@@ -22,7 +22,7 @@ GH.opts = {
 	},
 }
 
-function GH.config(_, opts)
+function M.config(_, opts)
 	require("litee.lib").setup({
 		tree = {
 			icon_set = "codicons",
@@ -39,4 +39,4 @@ function GH.config(_, opts)
 	require("litee.gh").setup(opts)
 end
 
-return GH
+return M

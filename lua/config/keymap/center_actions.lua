@@ -1,14 +1,14 @@
-local util = require("config.util")
+local Util = require("config.util")
 
 local function act_center(lhs)
-	util.map(
+	Util.map(
 		{
 			"n",
 		},
 		lhs,
 		function()
-			util.feedkeys(lhs)
-			util.scroll_center()
+			Util.feedkeys(lhs)
+			Util.scroll_center()
 		end,
 		{
 			desc = "Center screen after " .. lhs,
@@ -16,14 +16,14 @@ local function act_center(lhs)
 	)
 end
 local function center_act(lhs)
-	util.map(
+	Util.map(
 		{
 			"n",
 		},
 		lhs,
 		function()
-			util.scroll_center()
-			util.feedkeys(lhs)
+			Util.scroll_center()
+			Util.feedkeys(lhs)
 		end,
 		{
 			desc = "Center screen before " .. lhs,
@@ -50,9 +50,9 @@ center_act("o")
 center_act("S")
 center_act("s")
 
-util.map("n", "c", "zzzvc", {
+Util.map("n", "c", "zzzvc", {
 	desc = "Center screen after c",
 })
-util.map("n", "C", "zzzvC", {
+Util.map("n", "C", "zzzvC", {
 	desc = "Center screen after C",
 })

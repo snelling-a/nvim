@@ -1,6 +1,8 @@
-local SmartSplits = { "mrjones2014/smart-splits.nvim" }
+local M = {
+	"mrjones2014/smart-splits.nvim",
+}
 
-SmartSplits.keys = {
+M.keys = {
 	{
 		"<A-h>",
 		function() require("smart-splits").resize_left() end,
@@ -63,4 +65,4 @@ SmartSplits.keys = {
 	},
 }
 
-return SmartSplits
+return M

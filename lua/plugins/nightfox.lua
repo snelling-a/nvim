@@ -1,5 +1,7 @@
-local Nighfox = { "EdenEast/nightfox.nvim" }
+local M = {
+	"EdenEast/nightfox.nvim",
+}
 
-Nighfox.event = "VeryLazy"
+M.event = "VeryLazy"
 
-return Nighfox
+return M

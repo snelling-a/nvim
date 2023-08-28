@@ -1,7 +1,7 @@
-local Bash = {}
+local M = {}
 
-Bash.mason_name = "bash-language-server"
+M.mason_name = "bash-language-server"
 
-function Bash.setup(opts) require("lspconfig").bashls.setup(opts) end
+function M.setup(opts) require("lspconfig").bashls.setup(opts) end
 
-return Bash
+return M

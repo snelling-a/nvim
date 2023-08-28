@@ -11,9 +11,9 @@ local settings = {
 	},
 }
 
-local Taplo = {}
+local M = {}
 
-function Taplo.setup(opts)
+function M.setup(opts)
 	opts.root_dir = require("config.lsp.util").get_root_pattern(config_files)
 
 	opts.settings = settings
@@ -21,4 +21,4 @@ function Taplo.setup(opts)
 	require("lspconfig").taplo.setup(opts)
 end
 
-return Taplo
+return M

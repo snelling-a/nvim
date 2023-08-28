@@ -1,10 +1,10 @@
-local Deadcolumn = { "Bekaboo/deadcolumn.nvim" }
+local M = { "Bekaboo/deadcolumn.nvim" }
 
-Deadcolumn.event = "BufAdd"
+M.event = "BufAdd"
 
-Deadcolumn.opts = {
+M.opts = {
 	blending = { hlgroup = { "ColorColumn", "background" }, threshold = 0 },
 	warning = { colorcode = vim.g.base08 },
 }
 
-return Deadcolumn
+return M

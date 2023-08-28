@@ -55,9 +55,9 @@ local settings = {
 	languages = languages,
 }
 
-local EFM = {}
+local M = {}
 
-function EFM.setup(opts)
+function M.setup(opts)
 	opts.init_options = {
 		documentFormatting = true,
 		hover = true,
@@ -70,4 +70,4 @@ function EFM.setup(opts)
 	require("lspconfig").efm.setup(opts)
 end
 
-return EFM
+return M

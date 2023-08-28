@@ -1,15 +1,17 @@
-local TypeScriptTools = {
+local M = {
 	"pmizio/typescript-tools.nvim",
 }
 
-TypeScriptTools.config = true
+M.config = true
 
-TypeScriptTools.dependencies = {
+M.dependencies = {
 	"nvim-lua/plenary.nvim",
 	"neovim/nvim-lspconfig",
 }
 
-TypeScriptTools.opts = {
+M.ft = vim.deepcopy(require("config.util.constants").javascript_typescript)
+
+M.opts = {
 	on_attach = require("config.lsp").on_attach,
 	settings = {
 		tsserver_file_preferences = {
@@ -36,4 +38,4 @@ TypeScriptTools.opts = {
 	},
 }
 
-return TypeScriptTools
+return M

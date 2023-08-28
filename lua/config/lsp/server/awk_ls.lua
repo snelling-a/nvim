@@ -1,7 +1,7 @@
-local Awk = {}
+local M = {}
 
-Awk.mason_name = "awk-language-server"
+M.mason_name = "awk-language-server"
 
-function Awk.setup(opts) require("lspconfig").awk_ls.setup(opts) end
+function M.setup(opts) require("lspconfig").awk_ls.setup(opts) end
 
-return Awk
+return M

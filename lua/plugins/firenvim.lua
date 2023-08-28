@@ -1,11 +1,11 @@
-local Firenvim = { "glacambre/firenvim" }
+local M = { "glacambre/firenvim" }
 
-function Firenvim.build()
+function M.build()
 	require("lazy").load({ plugins = { "firenvim" }, wait = false })
 	vim.fn["firenvim#install"](1)
 end
 
-function Firenvim.config()
+function M.config()
 	local api = vim.api
 	local g = vim.g
 	local opt = vim.opt
@@ -46,4 +46,4 @@ function Firenvim.config()
 	})
 end
 
-return Firenvim
+return M

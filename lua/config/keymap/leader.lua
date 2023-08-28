@@ -1,26 +1,26 @@
-local logger = require("config.util.logger")
-local util = require("config.util")
+local Logger = require("config.util.logger")
+local Util = require("config.util")
 
 local cmd = vim.cmd
 local fn = vim.fn
 
-util.mapL("<leader>", "``", {
+Util.mapL("<leader>", "``", {
 	desc = "Press `,,` to jump back to the last cursor position.",
 })
-util.mapL("/", function()
+Util.mapL("/", function()
 	cmd.nohlsearch()
-	logger.info("Highlighting cleared")
+	Logger.info("Highlighting cleared")
 end, {
 	desc = "Clear search highlighting",
 })
-util.mapL("e", "%", {
+Util.mapL("e", "%", {
 	desc = "Go to matching bracket",
 }, {
 	"n",
 	"v",
 })
-util.mapL("g", function()
-	local conf = logger.confirm({
+Util.mapL("g", function()
+	local conf = Logger.confirm({
 		msg = "Are you sure you want to quit?",
 		type = "Warning",
 	})
@@ -30,16 +30,16 @@ util.mapL("g", function()
 end, {
 	desc = "[Q]uit all windows",
 })
-util.mapL("w", function()
-	local wrap = util.get_opt_local("wrap")
+Util.mapL("w", function()
+	local wrap = Util.get_opt_local("wrap")
 
 	vim.opt_local.wrap = not wrap
 end, {
 	desc = "[W]rap lines",
 })
-util.mapL("x", function()
+Util.mapL("x", function()
 	fn.setfperm(fn.expand("%:p"), "rwxr-xr-x")
-	logger.info({
+	Logger.info({
 		msg = string.format("%s made executable", fn.expand("%")),
 		title = "CHMOD!",
 	})

@@ -1,6 +1,6 @@
-local Relay = {}
+local M = {}
 
-function Relay.setup(opts)
+function M.setup(opts)
 	if not vim.fn.executable("relay") then
 		os.execute("npm install -g relay-compiler")
 	end
@@ -10,4 +10,4 @@ function Relay.setup(opts)
 	require("lspconfig").relay_lsp.setup(opts)
 end
 
-return Relay
+return M

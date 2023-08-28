@@ -1,7 +1,9 @@
-local RosePine = { "rose-pine/neovim" }
+local M = {
+	"rose-pine/neovim",
+}
 
-RosePine.event = "VeryLazy"
+M.event = "VeryLazy"
 
-RosePine.name = "rose-pine"
+M.name = "rose-pine"
 
-return RosePine
+return M

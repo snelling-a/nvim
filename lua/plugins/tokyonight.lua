@@ -1,5 +1,7 @@
-local TokyoNight = { "folke/tokyonight.nvim" }
+local M = {
+	"folke/tokyonight.nvim",
+}
 
-TokyoNight.event = "VeryLazy"
+M.event = "VeryLazy"
 
-return TokyoNight
+return M

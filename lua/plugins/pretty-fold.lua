@@ -1,13 +1,13 @@
-local PrettyFold = {
+local M = {
 	"anuvyklack/pretty-fold.nvim",
 }
 
-PrettyFold.event = {
+M.event = {
 	"BufReadPost",
 	"BufNewFile",
 }
 
-PrettyFold.dependencies = {
+M.dependencies = {
 	{
 		"anuvyklack/fold-preview.nvim",
 		dependencies = {
@@ -19,7 +19,7 @@ PrettyFold.dependencies = {
 	},
 }
 
-PrettyFold.opts = {
+M.opts = {
 	keep_indentation = false,
 	fill_char = "━",
 	sections = {
@@ -40,4 +40,4 @@ PrettyFold.opts = {
 	},
 }
 
-return PrettyFold
+return M

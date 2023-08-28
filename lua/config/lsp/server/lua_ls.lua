@@ -20,11 +20,11 @@ local settings = {
 	},
 }
 
-local Lua = {}
+local M = {}
 
-Lua.mason_name = "lua-language-server"
+M.mason_name = "lua-language-server"
 
-function Lua.setup(opts)
+function M.setup(opts)
 	require("neodev").setup()
 
 	opts.root_dir = require("config.lsp.util").get_root_pattern(config_files)
@@ -46,4 +46,4 @@ function Lua.setup(opts)
 	end, { desc = "Ensure consistent formatting of lua tables", force = true })
 end
 
-return Lua
+return M

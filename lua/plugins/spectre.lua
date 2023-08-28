@@ -1,8 +1,8 @@
-local Spectre = {
+local M = {
 	"nvim-pack/nvim-spectre",
 }
 
-Spectre.keys = {
+M.keys = {
 	{
 		"<leader>sr",
 		function() require("spectre").open() end,
@@ -10,4 +10,4 @@ Spectre.keys = {
 	},
 }
 
-return Spectre
+return M

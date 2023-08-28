@@ -1,4 +1,4 @@
-local icons = require("config.ui.icons")
+local Icons = require("config.ui.icons")
 
 local M = { "simrat39/symbols-outline.nvim" }
 
@@ -7,7 +7,7 @@ M.cmd = "SymbolsOutline"
 local function get_symbols()
 	local symbols = {}
 
-	for k, v in pairs(icons.kind_icons) do
+	for k, v in pairs(Icons.kind_icons) do
 		symbols[k] = { icon = v }
 	end
 
@@ -15,7 +15,7 @@ local function get_symbols()
 end
 
 M.opts = {
-	fold_markers = { icons.misc.right, icons.misc.down },
+	fold_markers = { Icons.misc.right, Icons.misc.down },
 	position = "left",
 	symbols = get_symbols(),
 }

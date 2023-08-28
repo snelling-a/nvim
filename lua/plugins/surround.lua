@@ -1,4 +1,6 @@
-local M = { "kylechui/nvim-surround" }
+local M = {
+	"kylechui/nvim-surround",
+}
 
 M.config = true
 

@@ -1,8 +1,8 @@
-local Trouble = {
+local M = {
 	"folke/trouble.nvim",
 }
 
-Trouble.keys = {
+M.keys = {
 	{
 		"<leader>xx",
 		function() vim.cmd.TroubleToggle(nil) end,
@@ -35,10 +35,10 @@ Trouble.keys = {
 	},
 }
 
-Trouble.opts = {
+M.opts = {
 	auto_close = true,
 	mode = "workspace_diagnostics",
 	use_diagnostic_signs = true,
 }
 
-return Trouble
+return M
