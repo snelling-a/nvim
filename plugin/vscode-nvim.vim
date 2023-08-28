@@ -12,30 +12,57 @@ function! s:vscodeGoToDefinition(str)
     endif
 endfunction
 
-nnoremap <leader>D <Cmd>call <SID>vscodeGoToDefinition('revealDefinition')<CR>
+nnoremap gD <Cmd>call <SID>vscodeGoToDefinition('revealDefinition')<CR>
 nnoremap gDD <Cmd>call VSCodeNotify('editor.action.peekDeclaration')<CR>
 nnoremap gr <Cmd>call VSCodeNotify('editor.action.referenceSearch.trigger')<CR>
 nnoremap gd <Cmd>call VSCodeNotify('editor.action.peekDefinition')<CR>
 nnoremap K <Cmd>call VSCodeNotify('editor.action.showHover')<CR>
-nnoremap gD <Cmd>call <SID>vscodeGoToDefinition('revealDeclaration')<CR>
+nnoremap gdd <Cmd>call <SID>vscodeGoToDefinition('revealDeclaration')<CR>
 nnoremap fs <Cmd>call VSCodeNotify('workbench.action.gotoSymbol')<CR>
 nnoremap gD <Cmd>call <SID>vscodeGoToDefinition('revealDefinition')<CR>
+nnoremap <leader>ca <Cmd>call VSCodeNotify('editor.action.codeAction')<CR>
 
-xnoremap <leader>D <Cmd>call <SID>vscodeGoToDefinition('revealDefinition')<CR>
+xnoremap gD <Cmd>call <SID>vscodeGoToDefinition('revealDefinition')<CR>
 xnoremap gDD <Cmd>call VSCodeNotify('editor.action.peekDeclaration')<CR>
 xnoremap gr <Cmd>call VSCodeNotify('editor.action.referenceSearch.trigger')<CR>
 xnoremap gd <Cmd>call VSCodeNotify('editor.action.peekDefinition')<CR>
 xnoremap K <Cmd>call VSCodeNotify('editor.action.showHover')<CR>
-xnoremap gD <Cmd>call <SID>vscodeGoToDefinition('revealDeclaration')<CR>
+xnoremap gdd <Cmd>call <SID>vscodeGoToDefinition('revealDeclaration')<CR>
 xnoremap fs <Cmd>call VSCodeNotify('workbench.action.gotoSymbol')<CR>
 xnoremap gD <Cmd>call <SID>vscodeGoToDefinition('revealDefinition')<CR>
+
+" Diagnostic jumping
+nnoremap [d <Cmd>call VSCodeNotify('editor.action.marker.prev')<CR>
+nnoremap ]d <Cmd>call VSCodeNotify('editor.action.marker.next')<CR>
+
+" Open-browser-like
+nnoremap gx <Cmd>call VSCodeNotify('editor.action.openLink')<CR>
+
+" vscode commentary
+function! s:vscodeCommentary(...) abort
+    if !a:0
+        let &operatorfunc = matchstr(expand('<sfile>'), '[^. ]*$')
+        return 'g@'
+    elseif a:0 > 1
+        let [line1, line2] = [a:1, a:2]
+    else
+        let [line1, line2] = [line("'["), line("']")]
+    endif
+
+    call VSCodeCallRange("editor.action.commentLine", line1, line2, 0)
+endfunction
+xmap gc  <SID>VSCodeCommentary
+nmap gc  <SID>VSCodeCommentary
+omap gc  <SID>VSCodeCommentary
+nmap gcc <SID>VSCodeCommentaryLine
 
 " Git keymap settings
 nnoremap ]c <Cmd>call VSCodeNotify('workbench.action.editor.nextChange')<CR>
 nnoremap [c <Cmd>call VSCodeNotify('workbench.action.editor.previousChange')<CR>
-
-" Navigation
-nnoremap <leader>ff <Cmd>call VSCodeNotify('workbench.action.quickOpen')<CR>
+nnoremap <Leader>hs <Cmd>call VSCodeNotify('git.stageSelectedRanges')<CR>
+nnoremap <Leader>hu <Cmd>call VSCodeNotify('git.unstageSelectedRanges')<CR>
+nnoremap <Leader>hr <Cmd>call VSCodeNotify('git.revertSelectedRanges')<CR>
+nnoremap <Leader>hp <Cmd>call VSCodeNotify('editor.action.dirtydiff.next')<CR>
 
 " Window and buffer keymap settings
 function! s:split(...) abort
@@ -112,27 +139,12 @@ xnoremap <C->> <Cmd>call <SID>manageEditorWidth(v:count, 'increase')<CR>
 xnoremap <C-<> <Cmd>call <SID>manageEditorWidth(v:count, 'decrease')<CR>
 xnoremap <C-o> <Cmd>call VSCodeNotify('workbench.action.joinAllGroups')<CR>
 
-" window navigation
-nnoremap <C-h> <Cmd>call VSCodeNotify('workbench.action.focusLeftGroup')<CR>
-nnoremap <C-j> <Cmd>call VSCodeNotify('workbench.action.focusBelowGroup')<CR>
-nnoremap <C-k> <Cmd>call VSCodeNotify('workbench.action.focusAboveGroup')<CR>
-nnoremap <C-l> <Cmd>call VSCodeNotify('workbench.action.focusRightGroup')<CR>
-nnoremap <C-H> <Cmd>call VSCodeNotify('workbench.action.moveEditorToLeftGroup')<CR>
-nnoremap <C-J> <Cmd>call VSCodeNotify('workbench.action.moveEditorToBelowGroup')<CR>
-nnoremap <C-K> <Cmd>call VSCodeNotify('workbench.action.moveEditorToAboveGroup')<CR>
-nnoremap <C-L> <Cmd>call VSCodeNotify('workbench.action.moveEditorToRightGroup')<CR>
-nnoremap <C-w> <Cmd>call VSCodeNotify('workbench.action.focusNextGroup')<CR>
-nnoremap <C-W> <Cmd>call VSCodeNotify('workbench.action.focusPreviousGroup')<CR>
-nnoremap <C-p> <Cmd>call VSCodeNotify('workbench.action.focusPreviousGroup')<CR>
-
-xnoremap <C-h> <Cmd>call VSCodeNotify('workbench.action.focusLeftGroup')<CR>
-xnoremap <C-j> <Cmd>call VSCodeNotify('workbench.action.focusBelowGroup')<CR>
-xnoremap <C-k> <Cmd>call VSCodeNotify('workbench.action.focusAboveGroup')<CR>
-xnoremap <C-l> <Cmd>call VSCodeNotify('workbench.action.focusRightGroup')<CR>
-xnoremap <C-H> <Cmd>call VSCodeNotify('workbench.action.moveEditorToLeftGroup')<CR>
-xnoremap <C-J> <Cmd>call VSCodeNotify('workbench.action.moveEditorToBelowGroup')<CR>
-xnoremap <C-K> <Cmd>call VSCodeNotify('workbench.action.moveEditorToAboveGroup')<CR>
-xnoremap <C-L> <Cmd>call VSCodeNotify('workbench.action.moveEditorToRightGroup')<CR>
-xnoremap <C-w> <Cmd>call VSCodeNotify('workbench.action.focusNextGroup')<CR>
-xnoremap <C-W> <Cmd>call VSCodeNotify('workbench.action.focusPreviousGroup')<CR>
-xnoremap <C-p> <Cmd>call VSCodeNotify('workbench.action.focusPreviousGroup')<CR>
+" Better Navigation
+nnoremap <silent> <C-j> <Cmd>call VSCodeNotify('workbench.action.navigateDown')<CR>
+xnoremap <silent> <C-j> <Cmd>call VSCodeNotify('workbench.action.navigateDown')<CR>
+nnoremap <silent> <C-k> <Cmd>call VSCodeNotify('workbench.action.navigateUp')<CR>
+xnoremap <silent> <C-k> <Cmd>call VSCodeNotify('workbench.action.navigateUp')<CR>
+nnoremap <silent> <C-h> <Cmd>call VSCodeNotify('workbench.action.navigateLeft')<CR>
+xnoremap <silent> <C-h> <Cmd>call VSCodeNotify('workbench.action.navigateLeft')<CR>
+nnoremap <silent> <C-l> <Cmd>call VSCodeNotify('workbench.action.navigateRight')<CR>
+xnoremap <silent> <C-l> <Cmd>call VSCodeNotify('workbench.action.navigateRight')<CR>
