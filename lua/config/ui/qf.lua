@@ -8,7 +8,7 @@
 
 --- @param info any
 --- @return table
-function _G.qftf(info)
+function _G.quickfixtextfunc(info)
 	local fn = vim.fn
 	local items
 	local ret = {}
@@ -34,7 +34,7 @@ function _G.qftf(info)
 		local str
 		if e.valid == 1 then
 			if e.bufnr > 0 then
-				fname = fn.bufname(e.bufnr)
+				fname = fn.bufname(e.bufnr) --[[@as string]]
 				if fname == "" then
 					fname = "[No Name]"
 				else
@@ -59,4 +59,4 @@ function _G.qftf(info)
 	return ret
 end
 
-vim.o.quickfixtextfunc = "{info -> v:lua._G.qftf(info)}"
+vim.o.quickfixtextfunc = "{info -> v:lua._G.quickfixtextfunc(info)}"
