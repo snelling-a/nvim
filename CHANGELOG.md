@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.10.1](https://github.com/snelling-a/nvim/compare/v5.10.0...v5.10.1) (2023-08-28)
+
+
+### Bug Fixes
+
+* flit usage ([a0bb94c](https://github.com/snelling-a/nvim/commit/a0bb94c1c4a9cb02aa7d8defbc44389e4e65afec))
+
 ## [5.10.0](https://github.com/snelling-a/nvim/compare/v5.9.0...v5.10.0) (2023-08-28)
 
 
