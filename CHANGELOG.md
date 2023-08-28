@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.10.0](https://github.com/snelling-a/nvim/compare/v5.9.0...v5.10.0) (2023-08-28)
+
+
+### Features
+
+* abbreviations ([c7b328d](https://github.com/snelling-a/nvim/commit/c7b328d6a80dfbde1a7a05cecf2250391b14c6c8))
+
 ## [5.9.0](https://github.com/snelling-a/nvim/compare/v5.8.2...v5.9.0) (2023-08-28)
 
 
