@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.12.1](https://github.com/snelling-a/nvim/compare/v5.12.0...v5.12.1) (2023-08-28)
+
+
+### Bug Fixes
+
+* **treesitter:** function goto_previous kemaps ([373f3ae](https://github.com/snelling-a/nvim/commit/373f3aed6e19f6db5b871b4b2753c9a8011a0b4d))
+
 ## [5.12.0](https://github.com/snelling-a/nvim/compare/v5.11.0...v5.12.0) (2023-08-28)
 
 
