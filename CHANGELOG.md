@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.9.0](https://github.com/snelling-a/nvim/compare/v5.8.2...v5.9.0) (2023-08-28)
+
+
+### Features
+
+* statusline ([66eea7d](https://github.com/snelling-a/nvim/commit/66eea7d1ef2084e9529199035e4842236ee98664))
+
 ## [5.8.2](https://github.com/snelling-a/nvim/compare/v5.8.1...v5.8.2) (2023-08-28)
 
 
