@@ -1,5 +1,17 @@
 # Changelog
 
+## [5.8.2](https://github.com/snelling-a/nvim/compare/v5.8.1...v5.8.2) (2023-08-28)
+
+
+### Bug Fixes
+
+* **keys:** global search and replace spacing ([4f3162a](https://github.com/snelling-a/nvim/commit/4f3162aae9a650561d19f0e907c61df3610d127f))
+
+
+### Miscellaneous
+
+* update plugins ([b6a8514](https://github.com/snelling-a/nvim/commit/b6a8514fb731f6c998e8f34ca1db74e67f029098))
+
 ## [5.8.1](https://github.com/snelling-a/nvim/compare/v5.8.0...v5.8.1) (2023-08-27)
 
 
