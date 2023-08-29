@@ -1,14 +1,20 @@
-local util = require("config.util")
+local Util = require("config.util")
 
 local api = vim.api
 local lsp = vim.lsp
 
+local group = Util.augroup("LspCodelens")
+
 local function create_codelens_autocmd(bufnr)
-	api.nvim_create_autocmd({ "BufEnter", "InsertLeave", "BufWritePost", "CursorHold" }, {
+	api.nvim_create_autocmd({
+		"BufEnter",
+		"BufWritePost",
+		"InsertLeave",
+	}, {
 		buffer = bufnr,
-		desc = "Refresh codelens",
-		group = util.augroup("LspCodelens" .. "." .. bufnr),
 		callback = function() lsp.codelens.refresh() end,
+		desc = "Refresh codelens",
+		group = group,
 	})
 end
 
@@ -24,7 +30,7 @@ function M.on_attach(bufnr)
 			vim.schedule(lsp.codelens.refresh)
 		end,
 		desc = "Initialize codelens",
-		group = util.augroup("LspCodelens"),
+		group = group,
 	})
 end
 
