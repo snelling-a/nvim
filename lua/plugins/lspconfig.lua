@@ -1,3 +1,4 @@
+local ensure_installed = require("config.lsp.util").ensure_installed
 local javascript_typescript = require("config.util.constants").javascript_typescript
 
 local M = {
@@ -42,11 +43,11 @@ function M.config()
 		on_attach = require("config.lsp").on_attach,
 	}
 
-	require("config.lsp.util").ensure_installed(require("config.util.path").linters_formatters)
+	ensure_installed(require("config.util.path").linters_formatters)
 
 	local function cb(path) require(path).setup(opts) end
 
-	require("config.lsp.util").ensure_installed(require("config.util.path").lsp_servers, cb)
+	ensure_installed(require("config.util.path").lsp_servers, cb)
 end
 
 return M
