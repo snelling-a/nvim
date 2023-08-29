@@ -12,12 +12,15 @@ local function create_codelens_autocmd(bufnr)
 	})
 end
 
-local CodeLens = {}
+local M = {}
 
-function CodeLens.on_attach(bufnr)
-	api.nvim_create_autocmd("LspAttach", {
+function M.on_attach(bufnr)
+	api.nvim_create_autocmd({
+		"LspAttach",
+	}, {
 		callback = function()
 			create_codelens_autocmd(bufnr)
+
 			vim.schedule(lsp.codelens.refresh)
 		end,
 		desc = "Initialize codelens",
@@ -25,4 +28,4 @@ function CodeLens.on_attach(bufnr)
 	})
 end
 
-return CodeLens
+return M

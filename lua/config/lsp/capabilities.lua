@@ -7,13 +7,13 @@ local protocol = vim.lsp.protocol
 --- @return table
 local function cmp_wrapper(capabilities) return require("cmp_nvim_lsp").default_capabilities(capabilities) end
 
-local Capabilities = {}
+local M = {}
 
 --- wrapper for tbl_extend.completion.completionItem.snippetSupport
 --- to enable (broadcasting) snippet capability for completion
 --- @param opts table
 --- @return table
-function Capabilities.enable_broadcasting(opts)
+function M.enable_broadcasting(opts)
 	local capabilities = protocol.make_client_capabilities()
 	capabilities.textDocument.completion.completionItem.snippetSupport = true
 
@@ -24,7 +24,7 @@ function Capabilities.enable_broadcasting(opts)
 	return opts
 end
 
-function Capabilities.get_capabilities()
+function M.get_capabilities()
 	local capabilities = protocol.make_client_capabilities()
 	capabilities = {
 		textDocument = {
@@ -52,4 +52,4 @@ function Capabilities.get_capabilities()
 	return capabilities
 end
 
-return Capabilities
+return M

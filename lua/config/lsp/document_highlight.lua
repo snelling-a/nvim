@@ -3,6 +3,7 @@ local lsp = vim.lsp.buf
 
 local function highlight_references()
 	local node = require("nvim-treesitter.ts_utils").get_node_at_cursor()
+
 	while node ~= nil do
 		local node_type = node:type()
 		if
@@ -13,26 +14,38 @@ local function highlight_references()
 		then
 			return
 		end
+
 		node = node:parent()
+
 	end
+
 	lsp.document_highlight()
 end
 
-local DocumentHighlight = {}
+local M = {}
 
-function DocumentHighlight.on_attach(bufnr)
+function M.on_attach(bufnr)
 	local LspDocumentHighlightGroup = require("config.util").augroup("LspDocumentHightlight", false)
 
-	api.nvim_clear_autocmds({ buffer = bufnr, group = LspDocumentHighlightGroup })
+	api.nvim_clear_autocmds({
+		buffer = bufnr,
+		group = LspDocumentHighlightGroup,
+	})
 
-	api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+	api.nvim_create_autocmd({
+		"CursorHold",
+		"CursorHoldI",
+	}, {
 		buffer = bufnr,
 		callback = highlight_references,
 		desc = "Highlight all occurrences of the word under the cursor",
 		group = LspDocumentHighlightGroup,
 	})
 
-	api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
+	api.nvim_create_autocmd({
+		"CursorMoved",
+		"CursorMovedI",
+	}, {
 		buffer = bufnr,
 		callback = function() lsp.clear_references() end,
 		desc = "Clear highlighted references on cursor move",
@@ -40,4 +53,4 @@ function DocumentHighlight.on_attach(bufnr)
 	})
 end
 
-return DocumentHighlight
+return M

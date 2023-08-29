@@ -1,4 +1,4 @@
-local signs = require("config.ui.icons").diagnostics
+local diagnostic_signs = require("config.ui.icons").diagnostics
 
 local vim_diagnostic = vim.diagnostic
 local api = vim.api
@@ -48,13 +48,13 @@ local virt_options = {
 		local message = vim.split(diagnostic.message, "\n")[1]
 
 		if diagnostic.severity == severity.ERROR then
-			return signs.Error .. message
+			return diagnostic_signs.Error .. message
 		elseif diagnostic.severity == severity.INFO then
-			return signs.Info .. message
+			return diagnostic_signs.Info .. message
 		elseif diagnostic.severity == severity.WARN then
-			return signs.Warn .. message
+			return diagnostic_signs.Warn .. message
 		elseif diagnostic.severity == severity.HINT then
-			return signs.Hint .. message
+			return diagnostic_signs.Hint .. message
 		else
 			return message
 		end
@@ -83,10 +83,10 @@ vim_diagnostic.handlers.current_line_virt = {
 	end,
 }
 
-local PublishDiagnostics = {}
+local M = {}
 
-function PublishDiagnostics.on_attach(bufnr)
-	for type, icon in pairs(signs) do
+function M.on_attach(bufnr)
+	for type, icon in pairs(diagnostic_signs) do
 		local hl = "DiagnosticSign" .. type
 		vim.fn.sign_define(hl, {
 			text = icon,
@@ -132,4 +132,4 @@ function PublishDiagnostics.on_attach(bufnr)
 	})
 end
 
-return PublishDiagnostics
+return M
