@@ -50,6 +50,7 @@ languages.zsh = {
 languages["="] = {
 	require_efm_config("cspell"),
 }
+languages.toml = { nil }
 
 local settings = {
 	languages = languages,
