@@ -11,10 +11,8 @@ function M.setup(parser)
 		"--parser" .. (parser or "json"),
 	}
 
-	local command = require("config.lsp.util").get_linter_formatter_command(M.mason_name, args)
-
 	return {
-		formatCommand = command,
+		formatCommand = require("config.lsp.util").get_linter_formatter_command(M.mason_name, args),
 		formatStdin = true,
 	}
 end

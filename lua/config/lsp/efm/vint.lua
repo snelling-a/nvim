@@ -1,7 +1,3 @@
-local M = {}
-
-M.mason_name = "vint"
-
 local args = {
 	"--format",
 	"--no-color",
@@ -13,11 +9,13 @@ local args = {
 	"{reference})",
 }
 
-local command = require("config.lsp.util").get_linter_formatter_command(M.mason_name, args)
+local M = {}
+
+M.mason_name = "vint"
 
 function M.setup()
 	return {
-		lintCommand = command,
+		lintCommand = require("config.lsp.util").get_linter_formatter_command(M.mason_name, args),
 		lintStdin = false,
 		lintFormats = {
 			"%f:%l:%c: %trror: %m",

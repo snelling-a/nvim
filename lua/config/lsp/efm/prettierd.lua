@@ -1,7 +1,3 @@
-local M = {}
-
-M.mason_name = "prettierd"
-
 local args = {
 	"${INPUT}",
 	"${--range-start=charStart}",
@@ -10,11 +6,13 @@ local args = {
 	"${--use-tabs=!insertSpaces}",
 }
 
-local command = require("config.lsp.util").get_linter_formatter_command(M.mason_name, args)
+local M = {}
+
+M.mason_name = "prettierd"
 
 function M.setup()
 	return {
-		formatCommand = command,
+		formatCommand = require("config.lsp.util").get_linter_formatter_command(M.mason_name, args),
 		formatCanRange = true,
 		formatStdin = true,
 		rootMarkers = {

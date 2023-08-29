@@ -1,7 +1,3 @@
-local M = {}
-
-M.mason_name = "cspell"
-
 local args = {
 	"lint",
 	"--no-color",
@@ -9,12 +5,14 @@ local args = {
 	"--no-summary",
 }
 
-local command = require("config.lsp.util").get_linter_formatter_command(M.mason_name, args)
+local M = {}
+
+M.mason_name = "cspell"
 
 function M.setup()
 	return {
 		prefix = M.mason_name,
-		lintCommand = command,
+		lintCommand = require("config.lsp.util").get_linter_formatter_command(M.mason_name, args),
 		lintFormats = {
 			"%f:%l:%c:%trror - %m",
 			"%f:%l:%c %m",

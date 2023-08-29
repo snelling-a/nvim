@@ -1,7 +1,3 @@
-local M = {}
-
-M.mason_name = "stylua"
-
 local args = {
 	"${--indent-width:tabSize}",
 	"${--range-start:charStart}",
@@ -10,6 +6,10 @@ local args = {
 	"Never",
 	"-",
 }
+
+local M = {}
+
+M.mason_name = "stylua"
 
 local command = require("config.lsp.util").get_linter_formatter_command(M.mason_name, args)
 

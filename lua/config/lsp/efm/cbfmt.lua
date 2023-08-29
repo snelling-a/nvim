@@ -1,18 +1,20 @@
+local args = {
+	"--stdin-filepath",
+	"${INPUT}",
+	"--best-effort",
+}
+
 local M = {}
 
 M.mason_name = "cbfmt"
 
-local command = require("config.lsp.util").get_linter_formatter_command(M.mason_name, {
-	"--stdin-filepath",
-	"${INPUT}",
-	"--best-effort",
-})
-
 function M.setup()
 	return {
-		formatCommand = command,
+		formatCommand = require("config.lsp.util").get_linter_formatter_command(M.mason_name, args),
 		formatStdin = true,
-		rootMarkers = { ".cbfmt.toml" },
+		rootMarkers = {
+			".cbfmt.toml",
+		},
 	}
 end
 
