@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.13.2](https://github.com/snelling-a/nvim/compare/v5.13.1...v5.13.2) (2023-08-29)
+
+
+### Bug Fixes
+
+* **lsp:** diagnostic icons ([f7951c0](https://github.com/snelling-a/nvim/commit/f7951c00a54c331ea765d0fb7439e6472516ede3))
+
 ## [5.13.1](https://github.com/snelling-a/nvim/compare/v5.13.0...v5.13.1) (2023-08-29)
 
 
