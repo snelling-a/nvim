@@ -1,5 +1,17 @@
 # Changelog
 
+## [5.13.1](https://github.com/snelling-a/nvim/compare/v5.13.0...v5.13.1) (2023-08-29)
+
+
+### Bug Fixes
+
+* toml formatting ([b758013](https://github.com/snelling-a/nvim/commit/b7580131c5837efe0db80478768dff123673534a))
+
+
+### Miscellaneous
+
+* update plugins ([b289aad](https://github.com/snelling-a/nvim/commit/b289aadd0cc5dea52207efc317bf5f9e58aa39c9))
+
 ## [5.13.0](https://github.com/snelling-a/nvim/compare/v5.12.1...v5.13.0) (2023-08-28)
 
 
