@@ -3,15 +3,12 @@ local lsp = vim.lsp.buf
 
 local function highlight_references()
 	local node = require("nvim-treesitter.ts_utils").get_node_at_cursor()
+	local no_highlight = { "string", "string_fragment", "template_string", "document" }
 
 	while node ~= nil do
 		local node_type = node:type()
-		if
-			node_type == "string"
-			or node_type == "string_fragment"
-			or node_type == "template_string"
-			or node_type == "document"
-		then
+
+		if vim.tbl_contains(no_highlight, node_type) then
 			return
 		end
 
