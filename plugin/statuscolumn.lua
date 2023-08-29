@@ -1,9 +1,9 @@
-local icons = require("config.ui.icons")
+local Icons = require("config.ui.icons")
 
 local M = {}
 _G.Status = M
 
---- @return {name:string, text:string, texthl:string}[]
+--- @return {name:string, icon:string, texthl:string}[]
 function M.get_signs()
 	local buf = vim.api.nvim_win_get_buf(vim.g.statusline_winid)
 	return vim.tbl_map(
@@ -15,7 +15,7 @@ end
 function M.get_line_numbers()
 	local v
 	if vim.v.virtnum > 0 then
-		v = icons.misc.wrap .. " "
+		v = Icons.misc.wrap .. " "
 	elseif vim.v.virtnum < 0 then
 		v = " "
 	else
@@ -28,7 +28,7 @@ function M.get_gitsign(git_sign)
 	if git_sign then
 		return "%#" .. git_sign.texthl .. "#" .. string.gsub(git_sign.text, "%s+", "") .. "%*"
 	else
-		return require("config.util").is_file() and icons.fillchars.foldsep or ""
+		return require("config.util").is_file() and Icons.fillchars.foldsep or ""
 	end
 end
 
@@ -37,7 +37,8 @@ function M.column()
 	for _, s in ipairs(M.get_signs()) do
 		if s.name:find("GitSign") then
 			-- HACK: breaking change in internal api https://github.com/lewis6991/gitsigns.nvim/pull/799
-			s.text = icons.gitsigns[s.texthl]
+			s.text = Icons.gitsigns[s.texthl]
+
 			git_sign = s
 		else
 			sign = s
@@ -46,10 +47,11 @@ function M.column()
 
 	local components = {
 		[[%C]],
-		sign and ("%#" .. sign.texthl .. "#" .. sign.text .. "%*") or " ",
+		sign and ("%#" .. sign.texthl .. "#" .. sign.icon .. "%*") or " ",
 		M.get_line_numbers(),
 		M.get_gitsign(git_sign),
 	}
+
 	return table.concat(components, "")
 end
 
