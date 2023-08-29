@@ -1,16 +1,16 @@
 local LspConfig = {}
 
 function LspConfig.on_attach(client, bufnr)
-	if client.server_capabilities.documentFormattingProvider == true then
-		require("config.lsp.formatting").on_attach(bufnr)
-	end
-
 	if client.supports_method("textDocument/codeLens") then
 		require("config.lsp.codelens").on_attach(bufnr)
 	end
 
 	if client.supports_method("textDocument/documentHighlight") then
 		require("config.lsp.document_highlight").on_attach(bufnr)
+	end
+
+	if client.supports_method("textDocument/formatting") then
+		require("config.lsp.formatting").on_attach(bufnr)
 	end
 
 	if client.supports_method("textDocument/inlayHint") then
