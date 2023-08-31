@@ -1,30 +1,30 @@
-local util = require("config.util")
+local Util = require("config.util")
 
-local LspUtil = {}
+local M = {}
 
 --- wrapper for vim.api.nvim_buf_set_keymap
 --- @param bufnr integer 'buffer number'
 --- @param lhs string 'keymap'
 --- @param rhs string|function 'keymap functionality'
 --- @param desc string description
-function LspUtil.bind(bufnr, lhs, rhs, desc)
+function M.bind(bufnr, lhs, rhs, desc)
 	local opts = { buffer = bufnr, desc = desc }
 
-	return util.nmap(lhs, rhs, opts)
+	return Util.nmap(lhs, rhs, opts)
 end
 --- wrapper for lspconfig.util.root_pattern
 --- @param config_files string|string[]
 --- @return function (startpath: any) -> string|unknown|nil
-function LspUtil.get_root_pattern(config_files)
-	local list = util.table_or_string(config_files)
+function M.get_root_pattern(config_files)
+	local list = Util.table_or_string(config_files)
 
 	return require("lspconfig").util.root_pattern(unpack(list))
 end
 
 --- wrapper for lspconfig.util.root_pattern for graphql language servers
 --- @return function (startpath: any) -> string|unknown|nil
-function LspUtil.get_graphql_root_pattern()
-	return LspUtil.get_root_pattern({
+function M.get_graphql_root_pattern()
+	return M.get_root_pattern({
 		".graphqlrc*",
 		".graphql.config.*",
 		"graphql.config.*",
@@ -34,7 +34,7 @@ end
 
 --- @param target_dir string
 --- @param cb function?
-function LspUtil.ensure_installed(target_dir, cb)
+function M.ensure_installed(target_dir, cb)
 	local registry = require("mason-registry")
 	local dir = string.match(target_dir, "config/lsp/%a+"):gsub("/", ".")
 
@@ -87,10 +87,10 @@ end
 --- @param name string
 --- @param args string|string[]?
 --- @return string
-function LspUtil.get_linter_formatter_command(name, args)
-	local list = util.table_or_string(args)
+function M.get_linter_formatter_command(name, args)
+	local list = Util.table_or_string(args)
 
 	return string.format("%s %s", get_exec_path(name), table.concat(list, " "))
 end
 
-return LspUtil
+return M
