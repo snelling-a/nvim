@@ -1,5 +1,14 @@
 # Changelog
 
+## [5.14.1](https://github.com/snelling-a/nvim/compare/v5.14.0...v5.14.1) (2023-08-31)
+
+
+### Bug Fixes
+
+* **obsidian:** typo ([3f80777](https://github.com/snelling-a/nvim/commit/3f807776a7869f1d08382bf78490029230f9612b))
+* parenthasis ([f9aa42a](https://github.com/snelling-a/nvim/commit/f9aa42ae698c63fa0b1d29f9c26025f74983c5a0))
+* path typo ([7112390](https://github.com/snelling-a/nvim/commit/711239070ad94403ddb1c0a31284e0c2105512aa))
+
 ## [5.14.0](https://github.com/snelling-a/nvim/compare/v5.13.3...v5.14.0) (2023-08-31)
 
 
