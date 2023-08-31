@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.15.0](https://github.com/snelling-a/nvim/compare/v5.14.2...v5.15.0) (2023-08-31)
+
+
+### Features
+
+* qf improvements ([8bf1b6d](https://github.com/snelling-a/nvim/commit/8bf1b6d68d40814349baa9a0f2573b9230b17464))
+
 ## [5.14.2](https://github.com/snelling-a/nvim/compare/v5.14.1...v5.14.2) (2023-08-31)
 
 
