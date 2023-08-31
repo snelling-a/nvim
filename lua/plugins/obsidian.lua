@@ -95,7 +95,6 @@ M.opts = {
 		subdir = "templates",
 	},
 	use_advanced_uri = true,
-	note_frontmatter_func = note_frontmatter_func,
 }
 
 return M
