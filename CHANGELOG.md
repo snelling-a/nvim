@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.14.2](https://github.com/snelling-a/nvim/compare/v5.14.1...v5.14.2) (2023-08-31)
+
+
+### Bug Fixes
+
+* **ui:** use text for signs instead of icon ([80be195](https://github.com/snelling-a/nvim/commit/80be195582bde08010f1215ed115ae8d81fcdd7d))
+
 ## [5.14.1](https://github.com/snelling-a/nvim/compare/v5.14.0...v5.14.1) (2023-08-31)
 
 
