@@ -12,27 +12,42 @@ command("SpellCheck", function(ctx)
 
 	os.execute("cspell --unique --words-only --gitignore " .. target .. " | sort > z_spell.txt")
 end, {
-	nargs = "?",
-	complete = function() return { "**", "%" } end,
+	complete = function()
+		return {
+			"**",
+			"%",
+		}
+	end,
 	desc = "Check spelling",
+	nargs = "?",
 })
 
 command("ColorMyPencils", function()
-	local normal = api.nvim_get_hl(0, { name = "Normal" })
-	local normal_float = api.nvim_get_hl(0, { name = "NormalFloat" })
+	local normal = api.nvim_get_hl(0, {
+		name = "Normal",
+	})
+	local normal_float = api.nvim_get_hl(0, {
+		name = "NormalFloat",
+	})
 
 	if vim.tbl_get(normal_float, "bg") or vim.tbl_get(normal, "bg") then
-		api.nvim_set_hl(0, "Normal", { bg = "none" })
-		api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+		api.nvim_set_hl(0, "Normal", {
+			bg = "none",
+		})
+		api.nvim_set_hl(0, "NormalFloat", {
+			bg = "none",
+		})
 	else
 		cmd.colorscheme(vim.g.colors_name)
 	end
-end, { desc = "Toggle transparent background" })
+end, {
+	desc = "Toggle transparent background",
+})
 
 command("GenrateAverageColor", function() require("config.ui.average-colorscheme") end, {})
 
 local function trim_space_preview(opts, preview_ns, preview_buf)
-	vim.cmd("hi clear Whitespace")
+	vim.cmd([[hi clear Whitespace]])
 	local line1 = opts.line1
 	local line2 = opts.line2
 	local buf = vim.api.nvim_get_current_buf()
@@ -46,7 +61,9 @@ local function trim_space_preview(opts, preview_ns, preview_buf)
 			-- Add lines and set highlights in the preview buffer if inccommand=split
 			if preview_buf then
 				local prefix = string.format("|%d| ", line1 + i - 1)
-				vim.api.nvim_buf_set_lines(preview_buf, preview_buf_line, preview_buf_line, false, { prefix .. line })
+				vim.api.nvim_buf_set_lines(preview_buf, preview_buf_line, preview_buf_line, false, {
+					prefix .. line,
+				})
 				vim.api.nvim_buf_add_highlight(
 					preview_buf,
 					preview_ns,
@@ -77,10 +94,14 @@ local function trim_space(opts)
 	vim.api.nvim_buf_set_lines(buf, line1 - 1, line2, false, new_lines)
 end
 
-command("TrimAllTrailingWhitespace", trim_space, { range = "%", desc = "Strip whitespace from the end of the line" })
+command("TrimAllTrailingWhitespace", trim_space, {
+	desc = "Strip whitespace from the end of the line",
+	range = "%",
+})
 
-command(
-	"TrimTrailingWhitespace",
-	trim_space,
-	{ nargs = "?", range = "%", addr = "lines", preview = trim_space_preview }
-)
+command("TrimTrailingWhitespace", trim_space, {
+	addr = "lines",
+	nargs = "?",
+	preview = trim_space_preview,
+	range = "%",
+})
