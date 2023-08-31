@@ -9,8 +9,6 @@ M.dependencies = {
 	"neovim/nvim-lspconfig",
 }
 
-M.ft = vim.deepcopy(require("config.util.constants").javascript_typescript)
-
 M.opts = {
 	on_attach = require("config.lsp").on_attach,
 	settings = {

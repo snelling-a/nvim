@@ -8,7 +8,7 @@ M.opts = {
 	highlight = "TSComment",
 }
 
-M.ft = vim.fn.deepcopy(require("config.util.constants").javascript_typescript)
+M.ft = require("config.util.constants").javascript_typescript
 
 M.config = true
 

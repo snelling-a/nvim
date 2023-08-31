@@ -26,7 +26,7 @@ M.dependencies = {
 	},
 	{
 		"jparise/vim-graphql",
-		ft = table.insert(javascript_typescript, "graphql"),
+		ft = require("config.util").tbl_extend_force(javascript_typescript, { "graphql" }),
 	},
 }
 
