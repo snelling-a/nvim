@@ -172,4 +172,5 @@ function M.get_opt_local(name)
 		scope = "local",
 	})
 end
+
 return M
