@@ -2,10 +2,6 @@ local command = vim.api.nvim_create_user_command
 local api = vim.api
 local cmd = vim.cmd
 
-command("SortJSON", function() cmd("%!jq . --sort-keys") end, { desc = "Sort json keys alphabetically" })
-
-command("SortYAML", function() cmd("%!yq 'sort_keys(..)' %") end, { desc = "Sort yaml keys alphabetically" })
-
 command("SpellCheck", function(ctx)
 	local target = #ctx.fargs > 0 and table.concat(ctx.fargs) or "**"
 
