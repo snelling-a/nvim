@@ -129,7 +129,7 @@ function M.config(_, dashboard)
 			local plugins = string.format("%s %d Plugins", Icons.misc.rocket, stats.count)
 
 			dashboard.section.footer.val = string.format("%s %s %s", version, plugins, startup_time)
-
+			vim.opt_local.statusline = " "
 			pcall(vim.cmd.AlphaRedraw)
 		end,
 		desc = "Render alpha footer",
