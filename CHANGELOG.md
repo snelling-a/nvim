@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.15.2](https://github.com/snelling-a/nvim/compare/v5.15.1...v5.15.2) (2023-08-31)
+
+
+### Miscellaneous
+
+* **spell:** update cspell.json/fix typos ([38f00b7](https://github.com/snelling-a/nvim/commit/38f00b7e9e71a8fedc9db4f296b011916376ab63))
+
 ## [5.15.1](https://github.com/snelling-a/nvim/compare/v5.15.0...v5.15.1) (2023-08-31)
 
 
