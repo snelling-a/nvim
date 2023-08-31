@@ -17,6 +17,7 @@ require("lazy").setup({
 		notify = false,
 	},
 	dev = {
+		fallback = true,
 		path = require("config.util.constants").dev_dir .. "/snelling-a",
 	},
 	install = {
