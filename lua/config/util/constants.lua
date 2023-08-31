@@ -1,4 +1,4 @@
-local vault_directory = (os.getenv("NOTES") or os.getenv("HOME")) .. "/notes"
+local vault_directory = os.getenv("NOTES") or os.getenv("HOME") .. "/notes"
 
 local M = {}
 
