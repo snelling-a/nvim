@@ -4,4 +4,17 @@ local M = {
 
 M.ft = "qf"
 
+M.opts = {
+	filter = {
+		fzf = {
+			extra_opts = {
+				"--bind",
+				"ctrl-o:toggle-all",
+				"--delimiter",
+				"│",
+			},
+		},
+	},
+}
+
 return M
