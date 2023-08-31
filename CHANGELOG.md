@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.13.3](https://github.com/snelling-a/nvim/compare/v5.13.2...v5.13.3) (2023-08-31)
+
+
+### Bug Fixes
+
+* **keys:** jump to end of line ([d1b3afc](https://github.com/snelling-a/nvim/commit/d1b3afca7853477e3c0d605d3dfdd6fa023e5ca5))
+
 ## [5.13.2](https://github.com/snelling-a/nvim/compare/v5.13.1...v5.13.2) (2023-08-29)
 
 
