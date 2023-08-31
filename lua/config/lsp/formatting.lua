@@ -6,12 +6,12 @@ local M = {}
 local lsp_formatting = "LspFormatting"
 
 --- @type boolean
-local AUTOFOMRMAT = true
+local AUTOFORMAT = true
 
 local function toggle()
-	AUTOFOMRMAT = not AUTOFOMRMAT
+	AUTOFORMAT = not AUTOFORMAT
 
-	if AUTOFOMRMAT then
+	if AUTOFORMAT then
 		Logger.info({
 			msg = "Enabled format on save",
 			title = lsp_formatting,
@@ -80,7 +80,7 @@ local function setup_formatting(client, bufnr)
 		event,
 		Util.tbl_extend_force(opts, {
 			callback = function()
-				if AUTOFOMRMAT then
+				if AUTOFORMAT then
 					format(client, bufnr)
 				end
 			end,

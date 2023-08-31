@@ -1,5 +1,5 @@
 --- @param branch string
---- @return string 'branch orjira tag'
+--- @return string 'branch or jira tag'
 local function get_jira_tag(branch) return branch:match("%w%w+-%d+") or branch end
 
 --- @return string branch
