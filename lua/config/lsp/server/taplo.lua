@@ -1,11 +1,13 @@
 local config_files = {
 	"taplo.toml",
 	".taplo.toml",
+	"*.toml",
 }
 
 local settings = {
 	evenBetterToml = {
 		schema = {
+			enabled = true,
 			repositoryEnabled = true,
 		},
 	},

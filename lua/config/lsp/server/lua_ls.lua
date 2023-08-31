@@ -1,11 +1,26 @@
-local config_files =
-	{ ".luarc.json", ".luarc.jsonc", ".luacheckrc", ".stylua.toml", "stylua.toml", "selene.toml", "selene.yml" }
+local config_files = {
+	".luarc.json",
+	".luarc.jsonc",
+	".luacheckrc",
+	".stylua.toml",
+	"stylua.toml",
+	"selene.toml",
+	"selene.yml",
+}
 
 local settings = {
 	Lua = {
-		codeLens = { enable = true },
-		diagnostics = { globals = { "vim" } },
-		format = { enable = false },
+		codeLens = {
+			enable = true,
+		},
+		diagnostics = {
+			globals = {
+				"vim",
+			},
+		},
+		format = {
+			enable = false,
+		},
 		hint = {
 			arrayIndex = "Disable",
 			await = true,
@@ -15,8 +30,12 @@ local settings = {
 			semicolon = "Disable",
 			setType = true,
 		},
-		unusedLocalExclude = { "_*" },
-		workspace = { checkThirdParty = false },
+		unusedLocalExclude = {
+			"_*",
+		},
+		workspace = {
+			checkThirdParty = false,
+		},
 	},
 }
 
@@ -39,11 +58,16 @@ function M.setup(opts)
             silent! %s/\s\+{\s\?{/{\r{/
             silent! %s/{\n\{2,\}/{\r/
             ]],
-			{ output = false }
+			{
+				output = false,
+			}
 		)
 
 		vim.cmd.write()
-	end, { desc = "Ensure consistent formatting of lua tables", force = true })
+	end, {
+		desc = "Ensure consistent formatting of lua tables",
+		force = true,
+	})
 end
 
 return M

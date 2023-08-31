@@ -8,7 +8,10 @@ local M = {}
 --- @param rhs string|function 'keymap functionality'
 --- @param desc string description
 function M.bind(bufnr, lhs, rhs, desc)
-	local opts = { buffer = bufnr, desc = desc }
+	local opts = {
+		buffer = bufnr,
+		desc = desc,
+	}
 
 	return Util.nmap(lhs, rhs, opts)
 end

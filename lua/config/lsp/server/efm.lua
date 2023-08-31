@@ -8,7 +8,7 @@ local function add_languages(filetypes, config)
 	end
 end
 
-local js_ts_filetypes = vim.fn.deepcopy(require("config.util.constants").javascript_typescript)
+local js_ts_filetypes = require("config.util.constants").javascript_typescript
 
 local shfmt = require_efm_config("shfmt")
 
@@ -50,7 +50,9 @@ languages.zsh = {
 languages["="] = {
 	require_efm_config("cspell"),
 }
-languages.toml = { nil }
+languages.toml = {
+	nil,
+}
 
 local settings = {
 	languages = languages,

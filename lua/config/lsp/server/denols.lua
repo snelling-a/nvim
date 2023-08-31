@@ -1,4 +1,7 @@
-local config_files = { "deno.json", "deno.jsonc" }
+local config_files = {
+	"deno.json",
+	"deno.jsonc",
+}
 
 local M = {}
 
