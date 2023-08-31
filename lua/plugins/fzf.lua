@@ -38,11 +38,6 @@ M.keys = {
 		desc = "Show [b]uffers",
 	},
 	{
-		"<leader>ca",
-		function() require("fzf-lua").lsp_code_actions() end,
-		desc = "[C]ode [a]ction",
-	},
-	{
 		"<leader>fh",
 		function() require("fzf-lua").help_tags() end,
 		desc = "[H]elp",
@@ -51,16 +46,6 @@ M.keys = {
 		"<leader>fr",
 		function() require("fzf-lua").lsp_finder() end,
 		desc = "All lsp locations combined",
-	},
-	{
-		"<leader>fs",
-		function() require("fzf-lua").lsp_document_symbols() end,
-		desc = "Show [d]ocument [s]ymbols",
-	},
-	{
-		"<leader>q",
-		function() require("fzf-lua").quickfix() end,
-		desc = "[Q]uick fix menu",
 	},
 	{
 		"<leader>qf",
