@@ -2,7 +2,6 @@ local File = require("config.ui.statusline.file")
 local Git = require("config.ui.statusline.git")
 local Lsp = require("config.ui.statusline.lsp")
 local Statusline = require("config.ui.statusline")
-local M = {}
 
 local api = vim.api
 
@@ -13,16 +12,6 @@ local function hldefs()
 	api.nvim_set_hl(0, "StatusTS", { fg = fg, bg = Statusline.bg })
 end
 
-M.lsp_status = Lsp.status
-
-M.git_status = Git.status
-
-M.filetype = File.type
-
-M.encoding = File.encoding
-
-M.bufname = require("config.ui.statusline.buffer").name
-
 local F = setmetatable({}, {
 	__index = function(_, name)
 		return function(active, mods)
@@ -32,6 +21,18 @@ local F = setmetatable({}, {
 		end
 	end,
 })
+
+local M = {}
+
+M.lsp_status = Lsp.status
+
+M.git_status = Git.status
+
+M.filetype = File.type
+
+M.encoding = File.encoding
+
+M.bufname = require("config.ui.statusline.buffer").name
 
 local function set(active, global)
 	local scope = global and "o" or "wo"
