@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.15.1](https://github.com/snelling-a/nvim/compare/v5.15.0...v5.15.1) (2023-08-31)
+
+
+### Miscellaneous
+
+* update plugins ([0b27c70](https://github.com/snelling-a/nvim/commit/0b27c701ce9d8871e32fead5d1966fe88bdc9e1b))
+
 ## [5.15.0](https://github.com/snelling-a/nvim/compare/v5.14.2...v5.15.0) (2023-08-31)
 
 
