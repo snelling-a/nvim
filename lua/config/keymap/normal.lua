@@ -17,7 +17,13 @@ nmap("J", "mzJ`z", {
 nmap("H", "g^", {
 	desc = "Move to the start of line",
 })
-nmap("L", "g$", {
+nmap("L", function()
+	if vim.api.nvim_get_option_value("wrap", { scope = "local" }) then
+		vim.cmd([[normal! g$]])
+	else
+		vim.cmd([[normal! $]])
+	end
+end, {
 	desc = "Move to the end of line",
 })
 nmap("U", function() cmd.redo() end, {
