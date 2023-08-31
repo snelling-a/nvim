@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.14.0](https://github.com/snelling-a/nvim/compare/v5.13.3...v5.14.0) (2023-08-31)
+
+
+### Features
+
+* **lsp:** peek/jump to definition ([ceba0a2](https://github.com/snelling-a/nvim/commit/ceba0a247f7ffdc729c9b58d73350239f053e5de))
+
 ## [5.13.3](https://github.com/snelling-a/nvim/compare/v5.13.2...v5.13.3) (2023-08-31)
 
 
