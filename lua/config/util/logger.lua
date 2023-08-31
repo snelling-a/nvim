@@ -13,16 +13,25 @@ local titles = {
 --- @field msg Message?
 --- @field title Title?
 
---- @alias LoggerArgs NotifyArgs|string?
+--- @class Args
+--- @field msg Message|table?
+--- @field title Title?
+
+--- @alias LoggerArgs Args|string
 
 --- @param args LoggerArgs
 --- @return NotifyArgs logger_args
 local function get_logger_args(args, title)
 	local logger_args = { title = title }
 
-	if type(args) == "table" and type(args.msg) == "string" then
-		logger_args.msg = args.msg
+	if type(args) == "table" then
 		logger_args.title = type(args.title) == "string" and args.title or title
+		if type(args.msg) == "string" then
+			logger_args.msg = args.msg
+		end
+		if type(args.msg) == "table" then
+			logger_args.msg = vim.inspect(args.msg)
+		end
 	end
 
 	if type(args) == "string" then
