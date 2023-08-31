@@ -3,7 +3,7 @@ local Icons = require("config.ui.icons")
 local M = {}
 _G.Status = M
 
---- @return {name:string, icon:string, texthl:string}[]
+--- @return {name:string, text:string, texthl:string}[]
 function M.get_signs()
 	local buf = vim.api.nvim_win_get_buf(vim.g.statusline_winid)
 	return vim.tbl_map(
@@ -37,7 +37,7 @@ function M.column()
 	for _, s in ipairs(M.get_signs()) do
 		if s.name:find("GitSign") then
 			-- HACK: breaking change in internal api https://github.com/lewis6991/gitsigns.nvim/pull/799
-			s.text = Icons.gitsigns[s.texthl]
+			s.text = Icons.gitsigns[s.name]
 
 			git_sign = s
 		else
@@ -47,7 +47,7 @@ function M.column()
 
 	local components = {
 		[[%C]],
-		sign and ("%#" .. sign.texthl .. "#" .. sign.icon .. "%*") or " ",
+		sign and ("%#" .. sign.texthl .. "#" .. sign.text .. "%*") or " ",
 		M.get_line_numbers(),
 		M.get_gitsign(git_sign),
 	}
