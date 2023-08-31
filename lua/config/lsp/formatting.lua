@@ -1,63 +1,108 @@
 local Logger = require("config.util.logger")
-local bind = require("config.lsp.util").bind
+local Util = require("config.util")
 
 local M = {}
 
 local lsp_formatting = "LspFormatting"
-local autoformat = true
 
-function M.toggle()
-	autoformat = not autoformat
+--- @type boolean
+local AUTOFOMRMAT = true
 
-	if autoformat then
-		Logger.info({ msg = "Enabled format on save", title = lsp_formatting })
+local function toggle()
+	AUTOFOMRMAT = not AUTOFOMRMAT
+
+	if AUTOFOMRMAT then
+		Logger.info({
+			msg = "Enabled format on save",
+			title = lsp_formatting,
+		})
 	else
-		Logger.warn({ msg = "Disabled format on save", title = lsp_formatting })
+		Logger.warn({
+			msg = "Disabled format on save",
+			title = lsp_formatting,
+		})
 	end
 end
 
-function M.format()
+local function format(client, bufnr)
+	local formatting_disabled = {
+		"tsserver",
+		"typescript-tools",
+	}
+
+	local ok, result = pcall(function() return not vim.tbl_contains(formatting_disabled, client.name) end or true)
+	if not ok then
+		return
+	end
+
 	vim.lsp.buf.format({
-
-		bufnr = vim.api.nvim_get_current_buf(),
-		filter = function(client)
-			local formatting_disabled = {
-				"tsserver",
-				"typescript-tools",
-			}
-
-			return not vim.tbl_contains(formatting_disabled, client.name)
-		end,
+		bufnr = bufnr,
+		filter = function() return result end,
+		timeout_ms = 1000,
 	})
 end
 
-function M.on_attach(bufnr)
+local function setup_keymaps(client, bufnr)
+	local bind = require("config.lsp.util").bind
+
+	bind(bufnr, "<leader>f", function() format(client, bufnr) end, "[F]ormat the current buffer")
+	bind(bufnr, "<leader>tf", function() toggle() end, "[T]oggle Auto[f]ormat")
+	bind(bufnr, "<leader>sw", function() vim.cmd([[noautocmd write]]) end, "[S]ave [w]ithout formatting")
+end
+
+local function setup_formatting(client, bufnr)
 	local group = require("config.util").augroup(lsp_formatting .. "." .. bufnr)
 
-	vim.api.nvim_clear_autocmds({
-		group = group,
-	})
+	local event = {
+		"BufWritePre",
+	}
 
-	vim.api.nvim_create_autocmd("BufWritePre", {
+	local opts = {
 		buffer = bufnr,
-		callback = function()
-			if autoformat then
-				M.format()
-			end
-		end,
 		desc = "Format on save",
-		group = group,
-	})
+		group = Util.augroup(lsp_formatting .. "." .. bufnr),
+	}
 
-	vim.api.nvim_create_user_command(
-		"AutoformatToggle",
-		function() M.toggle() end,
-		{ desc = "Toggle format on save", nargs = 0 }
+	local ok, hl_autocmds = pcall(
+		vim.api.nvim_get_autocmds,
+		Util.tbl_extend_force(opts, {
+			event = event,
+		})
 	)
 
-	bind(bufnr, "<leader>f", function() M.format() end, "[F]ormat the current buffer")
-	bind(bufnr, "<leader>tf", function() M.toggle() end, "[T]oggle Auto[f]ormat")
-	bind(bufnr, "<leader>sw", function() vim.cmd("noautocmd write") end, "[S]ave [w]ithout formatting")
+	if ok and #hl_autocmds > 0 then
+		vim.api.nvim_clear_autocmds({
+			group = group,
+		})
+	end
+
+	vim.api.nvim_create_autocmd(
+		event,
+		Util.tbl_extend_force(opts, {
+			callback = function()
+				if AUTOFOMRMAT then
+					format(client, bufnr)
+				end
+			end,
+		})
+	)
+
+	vim.api.nvim_create_user_command("AutoformatToggle", function() toggle() end, {
+		desc = "Toggle format on save",
+		nargs = 0,
+	})
+
+	setup_keymaps(client, bufnr)
+end
+
+function M.on_attach(client, bufnr)
+	local ok, formatting_supported = pcall(function() return client.supports_method("textDocument/formatting") end)
+
+	if not ok or not formatting_supported then
+		return
+	end
+
+	setup_formatting(client, bufnr)
 end
 
 return M

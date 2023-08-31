@@ -1,11 +1,16 @@
-local util = require("config.util")
-
 local protocol = vim.lsp.protocol
 
 --- use default capabilities to create cmp capabilities
---- @param capabilities table
---- @return table
-local function cmp_wrapper(capabilities) return require("cmp_nvim_lsp").default_capabilities(capabilities) end
+--- @param capabilities lsp.ClientCapabilities
+--- @return lsp.ClientCapabilities
+local function cmp_wrapper(capabilities)
+	local ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
+	if not ok then
+		return {}
+	end
+
+	return cmp_nvim_lsp.default_capabilities(capabilities)
+end
 
 local M = {}
 
@@ -19,7 +24,7 @@ function M.enable_broadcasting(opts)
 
 	capabilities = cmp_wrapper(capabilities)
 
-	opts.capabilities = util.tbl_extend_force(opts.capabilities or {}, capabilities)
+	opts.capabilities = require("config.util").tbl_extend_force(opts.capabilities or {}, capabilities)
 
 	return opts
 end
@@ -28,11 +33,20 @@ function M.get_capabilities()
 	local capabilities = protocol.make_client_capabilities()
 	capabilities = {
 		textDocument = {
-			foldingRange = { dynamicRegistration = false, lineFoldingOnly = true },
+			foldingRange = {
+				dynamicRegistration = false,
+				lineFoldingOnly = true,
+			},
 			completion = {
 				completionItem = {
 					snippetSupport = true,
-					resolveSupport = { properties = { "documentation", "detail", "additionalTextEdits" } },
+					resolveSupport = {
+						properties = {
+							"documentation",
+							"detail",
+							"additionalTextEdits",
+						},
+					},
 				},
 			},
 			codeAction = {

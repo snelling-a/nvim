@@ -1,11 +1,20 @@
+local Util = require("config.util")
+
 local api = vim.api
 local lsp = vim.lsp.buf
 
-local function highlight_references()
+local function document_highlight()
 	local node = require("nvim-treesitter.ts_utils").get_node_at_cursor()
-	local no_highlight = { "string", "string_fragment", "template_string", "document" }
 
 	while node ~= nil do
+		local no_highlight = {
+			"document",
+			"string",
+			"string_fragment",
+			"template_string",
+			"unknown_builtin_statement",
+		}
+
 		local node_type = node:type()
 
 		if vim.tbl_contains(no_highlight, node_type) then
@@ -13,41 +22,63 @@ local function highlight_references()
 		end
 
 		node = node:parent()
-
 	end
 
 	lsp.document_highlight()
 end
 
-local M = {}
-
-function M.on_attach(bufnr)
-	local LspDocumentHighlightGroup = require("config.util").augroup("LspDocumentHightlight", false)
-
-	api.nvim_clear_autocmds({
-		buffer = bufnr,
-		group = LspDocumentHighlightGroup,
-	})
-
-	api.nvim_create_autocmd({
+local function setup_document_highlight(bufnr)
+	local event = {
 		"CursorHold",
 		"CursorHoldI",
-	}, {
-		buffer = bufnr,
-		callback = highlight_references,
-		desc = "Highlight all occurrences of the word under the cursor",
-		group = LspDocumentHighlightGroup,
-	})
+	}
 
-	api.nvim_create_autocmd({
-		"CursorMoved",
-		"CursorMovedI",
-	}, {
+	local opts = {
+		group = Util.augroup("LspDocumentHightlight", false),
 		buffer = bufnr,
-		callback = function() lsp.clear_references() end,
-		desc = "Clear highlighted references on cursor move",
-		group = LspDocumentHighlightGroup,
-	})
+	}
+
+	local ok, hl_autocmds = pcall(
+		api.nvim_get_autocmds,
+		Util.tbl_extend_force(opts, {
+			event = event,
+		})
+	)
+
+	if ok and #hl_autocmds > 0 then
+		return
+	end
+
+	api.nvim_create_autocmd(
+		event,
+		Util.tbl_extend_force(opts, {
+			callback = document_highlight,
+		})
+	)
+
+	api.nvim_create_autocmd(
+		{
+			"CursorMoved",
+			"CursorMovedI",
+		},
+		Util.tbl_extend_force(opts, {
+			callback = lsp.clear_references,
+		})
+	)
+end
+
+local M = {}
+
+function M.on_attach(client, bufnr)
+	local ok, highlight_supported = pcall(
+		function() return client.supports_method("textDocument/documentHighlight") end
+	)
+
+	if not ok or not highlight_supported then
+		return
+	end
+
+	setup_document_highlight(bufnr)
 end
 
 return M

@@ -40,7 +40,7 @@ local function current_line_diagnostics()
 end
 
 local virt_handler = vim_diagnostic.handlers.virtual_text
-local ns = api.nvim_create_namespace("current_line_virt")
+local ns = api.nvim_create_namespace("CurrentLineDiagnostics")
 local severity = vim_diagnostic.severity
 local virt_options = {
 	prefix = "",
@@ -85,7 +85,7 @@ vim_diagnostic.handlers.current_line_virt = {
 
 local M = {}
 
-function M.on_attach(bufnr)
+function M.on_attach(client, bufnr)
 	for type, icon in pairs(diagnostic_signs) do
 		local hl = "DiagnosticSign" .. type
 		vim.fn.sign_define(hl, {
@@ -96,7 +96,7 @@ function M.on_attach(bufnr)
 		})
 	end
 
-	vim.diagnostic.config({
+	vim_diagnostic.config({
 		float = {
 			source = "always",
 			border = "rounded",
@@ -107,6 +107,14 @@ function M.on_attach(bufnr)
 		update_in_insert = false,
 		virtual_text = false,
 	})
+
+	local ok, diagnostics_supported = pcall(
+		function() return client.supports_method("textDocument/publishDiagnostics") end
+	)
+
+	if not ok or not diagnostics_supported then
+		return
+	end
 
 	local LspDiagnostiCurrentLineGroup = require("config.util").augroup("LspDiagnostiCurrentLine")
 

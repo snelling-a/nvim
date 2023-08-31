@@ -1,37 +1,46 @@
 local Util = require("config.util")
 
-local api = vim.api
-local lsp = vim.lsp
-
-local group = Util.augroup("LspCodelens")
-
-local function create_codelens_autocmd(bufnr)
-	api.nvim_create_autocmd({
+local function setup_codelens_refresh(bufnr)
+	local api = vim.api
+	local event = {
 		"BufEnter",
 		"BufWritePost",
 		"InsertLeave",
-	}, {
+	}
+
+	local opts = {
+		group = Util.augroup("LspCodelens"),
 		buffer = bufnr,
-		callback = function() lsp.codelens.refresh() end,
-		desc = "Refresh codelens",
-		group = group,
-	})
+	}
+
+	local ok, code_lens_autocmd = pcall(
+		api.nvim_get_autocmds,
+		Util.tbl_extend_force(opts, {
+			event = event,
+		})
+	)
+
+	if ok and #code_lens_autocmd > 0 then
+		return
+	end
+
+	api.nvim_create_autocmd(
+		event,
+		Util.tbl_extend_force(opts, {
+			callback = vim.lsp.codelens.refresh,
+		})
+	)
 end
 
 local M = {}
 
-function M.on_attach(bufnr)
-	api.nvim_create_autocmd({
-		"LspAttach",
-	}, {
-		callback = function()
-			create_codelens_autocmd(bufnr)
+function M.on_attach(client, bufnr)
+	local ok, codelens_supported = pcall(function() return client.supports_method("textDocument/codeLens") end)
+	if not ok or not codelens_supported then
+		return
+	end
 
-			vim.schedule(lsp.codelens.refresh)
-		end,
-		desc = "Initialize codelens",
-		group = group,
-	})
+	setup_codelens_refresh(bufnr)
 end
 
 return M
