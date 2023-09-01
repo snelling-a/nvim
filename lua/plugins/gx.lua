@@ -1,3 +1,4 @@
+--- @type LazySpec
 local M = {
 	"chrishrb/gx.nvim",
 }

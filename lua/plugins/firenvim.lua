@@ -1,7 +1,15 @@
-local M = { "glacambre/firenvim" }
+--- @type LazySpec
+local M = {
+	"glacambre/firenvim",
+}
 
 function M.build()
-	require("lazy").load({ plugins = { "firenvim" }, wait = false })
+	require("lazy").load({
+		plugins = {
+			"firenvim",
+		},
+		wait = false,
+	})
 	vim.fn["firenvim#install"](1)
 end
 
@@ -21,15 +29,24 @@ function M.config()
 	end
 
 	g.firenvim_config = {
-		globalSettings = { alt = "all" },
+		globalSettings = {
+			alt = "all",
+		},
 		localSettings = {
-			[".*"] = { cmdline = "neovim", takeover = "never" },
+			[".*"] = {
+				cmdline = "neovim",
+				takeover = "never",
+			},
 			["https?://github\\.com/"] = {
 				priority = 1,
 				takeover = "always",
 				selector = "textarea:not(#read-only-cursor-text-area)",
 			},
-			["https://mail.proton.me"] = { priority = 1, takeover = "always", selector = 'div[id="rooster-editor"]' },
+			["https://mail.proton.me"] = {
+				priority = 1,
+				takeover = "always",
+				selector = 'div[id="rooster-editor"]',
+			},
 			["https?://www\\.reddit\\.com/"] = {
 				priority = 1,
 				takeover = "always",
@@ -42,7 +59,10 @@ function M.config()
 		callback = function() vim.bo.filetype = "markdown" end,
 		desc = "Use markdown formatting for GitHub and reddit",
 		group = require("config.util").augroup("Firenvim"),
-		pattern = { "*github.com_*", "*reddit.com_*" },
+		pattern = {
+			"*github.com_*",
+			"*reddit.com_*",
+		},
 	})
 end
 

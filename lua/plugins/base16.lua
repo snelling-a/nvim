@@ -1,4 +1,7 @@
-local M = { "snelling-a/base16.nvim" }
+--- @type LazySpec
+local M = {
+	"snelling-a/base16.nvim",
+}
 
 M.dev = true
 

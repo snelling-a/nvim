@@ -1,3 +1,4 @@
+--- @type LazySpec
 local M = {
 	"ray-x/lsp_signature.nvim",
 }

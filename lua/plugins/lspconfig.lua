@@ -1,6 +1,7 @@
 local ensure_installed = require("config.lsp.util").ensure_installed
 local javascript_typescript = require("config.util.constants").javascript_typescript
 
+--- @type LazySpec
 local M = {
 	"neovim/nvim-lspconfig",
 }
@@ -26,7 +27,9 @@ M.dependencies = {
 	},
 	{
 		"jparise/vim-graphql",
-		ft = require("config.util").tbl_extend_force(javascript_typescript, { "graphql" }),
+		ft = require("config.util").tbl_extend_force(javascript_typescript, {
+			"graphql",
+		}),
 	},
 }
 

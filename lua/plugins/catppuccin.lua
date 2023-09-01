@@ -1,4 +1,7 @@
-local M = { "catppuccin/nvim" }
+--- @type LazySpec
+local M = {
+	"catppuccin/nvim",
+}
 
 M.event = "VeryLazy"
 

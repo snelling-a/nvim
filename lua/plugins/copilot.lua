@@ -5,14 +5,20 @@ local function get_node_path()
 	local node = vim.fn.exepath("node")
 
 	if not node then
-		Logger.warn({ msg = "Node not found in path", title = kind_icons.Copilot .. " Copilot" })
+		Logger.warn({
+			msg = "Node not found in path",
+			title = kind_icons.Copilot .. " Copilot",
+		})
 		return
 	end
 
 	return node
 end
 
-local M = { "zbirenbaum/copilot.lua" }
+--- @type LazySpec
+local M = {
+	"zbirenbaum/copilot.lua",
+}
 
 M.cond = not vim.g.vscode
 
@@ -29,7 +35,7 @@ M.dependencies = {
 
 			vim.api.nvim_create_autocmd("LspAttach", {
 				callback = function(args)
-					local client = vim.lsp.get_client_by_id(args.data.client_id)
+					local client = vim.lsp.get_client_by_id(args.data.client_id) or {}
 
 					if client.name == "copilot" then
 						copilot_cmp._on_insert_enter(opts)
@@ -42,6 +48,14 @@ M.dependencies = {
 	},
 }
 
-M.opts = { copilot_node_path = get_node_path, panel = { enabled = false }, suggestion = { enabled = true } }
+M.opts = {
+	copilot_node_path = get_node_path,
+	panel = {
+		enabled = false,
+	},
+	suggestion = {
+		enabled = true,
+	},
+}
 
 return M

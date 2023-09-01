@@ -1,3 +1,4 @@
+--- @type LazySpec
 local M = {
 	"ziontee113/icon-picker.nvim",
 }

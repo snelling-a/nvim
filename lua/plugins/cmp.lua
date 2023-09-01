@@ -186,6 +186,7 @@ local function luasnip_extend()
 	})
 end
 
+--- @type LazySpec
 local M = {
 	"hrsh7th/nvim-cmp",
 }

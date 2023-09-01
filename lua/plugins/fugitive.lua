@@ -45,7 +45,11 @@ M.cmd = {
 }
 
 M.keys = {
-	{ "<leader>gs", Git, desc = "[G]it [s]tatus" },
+	{
+		"<leader>gs",
+		Git,
+		desc = "[G]it [s]tatus",
+	},
 }
 
 function M.config()

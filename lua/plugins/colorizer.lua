@@ -1,10 +1,18 @@
-local M = { "NvChad/nvim-colorizer.lua" }
+--- @type LazySpec
+local M = {
+	"NvChad/nvim-colorizer.lua",
+}
 
 M.event = "BufAdd"
 
 M.opts = {
 	buftypes = require("config.util").no_format,
-	filetypes = { "*", cmp_docs = { always_update = true } },
+	filetypes = {
+		"*",
+		cmp_docs = {
+			always_update = true,
+		},
+	},
 	user_default_options = {
 		AARRGGBB = true,
 		always_update = false,
@@ -17,7 +25,12 @@ M.opts = {
 		rgb_fn = false,
 		RRGGBB = true,
 		RRGGBBAA = true,
-		sass = { enable = false, parsers = { "css" } },
+		sass = {
+			enable = false,
+			parsers = {
+				"css",
+			},
+		},
 		tailwind = false,
 		virtualtext = require("config.ui.icons").misc.square,
 	},

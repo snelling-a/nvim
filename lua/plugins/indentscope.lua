@@ -1,10 +1,11 @@
+--- @type LazySpec
 local M = {
 	"echasnovski/mini.indentscope",
 }
 
 M.event = {
-	"BufReadPre",
 	"BufNewFile",
+	"BufReadPre",
 }
 
 M.lazy = true

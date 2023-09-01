@@ -1,3 +1,4 @@
+--- @type LazySpec
 local M = {
 	"barrett-ruth/import-cost.nvim",
 }

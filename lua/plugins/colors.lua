@@ -1,4 +1,7 @@
-local M = { "echasnovski/mini.colors" }
+--- @type LazySpec
+local M = {
+	"echasnovski/mini.colors",
+}
 
 M.event = "VeryLazy"
 

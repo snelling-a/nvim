@@ -1,6 +1,11 @@
-local M = { "windwp/nvim-autopairs" }
+--- @type LazySpec
+local M = {
+	"windwp/nvim-autopairs",
+}
 
-M.opts = { check_ts = true }
+M.opts = {
+	check_ts = true,
+}
 
 M.event = "InsertEnter"
 

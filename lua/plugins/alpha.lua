@@ -93,6 +93,7 @@ local obsidian_buttons = {
 	quit_button,
 }
 
+--- @type LazySpec
 local M = {
 	"goolord/alpha-nvim",
 }

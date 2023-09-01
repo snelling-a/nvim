@@ -138,6 +138,7 @@ local function on_attach(bufnr)
 	)
 end
 
+--- @type LazySpec
 local M = {
 	"lewis6991/gitsigns.nvim",
 }

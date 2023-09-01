@@ -1,6 +1,9 @@
 local Icons = require("config.ui.icons").progress
 
-local M = { "williamboman/mason.nvim" }
+--- @type LazySpec
+local M = {
+	"williamboman/mason.nvim",
+}
 
 M.build = ":MasonUpdate"
 
