@@ -6,6 +6,7 @@ local lables = {
 	"t",
 }
 
+--- @type LazySpec
 local M = {
 	"ggandor/flit.nvim",
 }

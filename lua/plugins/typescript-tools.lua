@@ -1,3 +1,4 @@
+--- @type LazySpec
 local M = {
 	"pmizio/typescript-tools.nvim",
 }
