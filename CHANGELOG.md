@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.16.0](https://github.com/snelling-a/nvim/compare/v5.15.4...v5.16.0) (2023-09-01)
+
+
+### Features
+
+* **qf:** easy close/cfilter ([af1b209](https://github.com/snelling-a/nvim/commit/af1b2090d62148ddc0a2b8046ea8007d3c210c27))
+
 ## [5.15.4](https://github.com/snelling-a/nvim/compare/v5.15.3...v5.15.4) (2023-09-01)
 
 
