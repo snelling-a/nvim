@@ -1,5 +1,18 @@
 # Changelog
 
+## [5.15.3](https://github.com/snelling-a/nvim/compare/v5.15.2...v5.15.3) (2023-09-01)
+
+
+### Bug Fixes
+
+* dev dir fallback ([abcc43b](https://github.com/snelling-a/nvim/commit/abcc43b61f725714fd4a818d223c12a3e59086a9))
+
+
+### Miscellaneous
+
+* update plugins ([e1f08e2](https://github.com/snelling-a/nvim/commit/e1f08e261706fe46801e0a18f3efcd282a783741))
+* update plugins ([6439d9c](https://github.com/snelling-a/nvim/commit/6439d9c20245f9d4dc38efc9642d9ddc22097d40))
+
 ## [5.15.2](https://github.com/snelling-a/nvim/compare/v5.15.1...v5.15.2) (2023-08-31)
 
 
