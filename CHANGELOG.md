@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.15.4](https://github.com/snelling-a/nvim/compare/v5.15.3...v5.15.4) (2023-09-01)
+
+
+### Bug Fixes
+
+* **qf:** syntax highlighting ([3ef5ff4](https://github.com/snelling-a/nvim/commit/3ef5ff4966fa242c2a82649b42bbc750a9f6d4e2))
+
 ## [5.15.3](https://github.com/snelling-a/nvim/compare/v5.15.2...v5.15.3) (2023-09-01)
 
 
