@@ -20,12 +20,12 @@ local function filetype_symbol(active)
 	return Statusline.hl(hlname, active) .. icon
 end
 
-local function get_treesitter_status()
+local function get_treesitter_status(active)
 	local bufnr = api.nvim_get_current_buf()
 
 	local is_treesitter = vim.treesitter.highlighter.active[bufnr] ~= nil
 
-	return is_treesitter and Icons.cmp.treesitter or ""
+	return is_treesitter and (Statusline.hl("StatusTS", active) .. Icons.cmp.treesitter) or ""
 end
 
 local M = {}
@@ -33,8 +33,7 @@ local M = {}
 function M.type(active)
 	local filetype_items = {
 		filetype_symbol(active),
-		get_treesitter_status(),
-	}
+		get_treesitter_status(active), }
 
 	return table.concat(filetype_items, " ")
 end
