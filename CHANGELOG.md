@@ -1,5 +1,17 @@
 # Changelog
 
+## [5.16.2](https://github.com/snelling-a/nvim/compare/v5.16.1...v5.16.2) (2023-09-06)
+
+
+### Bug Fixes
+
+* **ui:** statusine treesitter highlght ([c9a95db](https://github.com/snelling-a/nvim/commit/c9a95db46616085102c662cd5a23ec7cea096927))
+
+
+### Miscellaneous
+
+* update plugins ([449436c](https://github.com/snelling-a/nvim/commit/449436c8f5f356770d4576aec7b5612e888fabe0))
+
 ## [5.16.1](https://github.com/snelling-a/nvim/compare/v5.16.0...v5.16.1) (2023-09-04)
 
 
