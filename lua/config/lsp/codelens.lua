@@ -1,5 +1,6 @@
 local Util = require("config.util")
 
+--- @param bufnr integer
 local function setup_codelens_refresh(bufnr)
 	local api = vim.api
 	local event = {
@@ -34,6 +35,8 @@ end
 
 local M = {}
 
+--- @param client lsp.Client
+--- @param bufnr integer
 function M.on_attach(client, bufnr)
 	local ok, codelens_supported = pcall(function() return client.supports_method("textDocument/codeLens") end)
 	if not ok or not codelens_supported then

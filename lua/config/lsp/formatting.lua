@@ -24,6 +24,8 @@ local function toggle()
 	end
 end
 
+--- @param client lsp.Client
+--- @param bufnr integer
 local function format(client, bufnr)
 	local formatting_disabled = {
 		"tsserver",
@@ -42,6 +44,8 @@ local function format(client, bufnr)
 	})
 end
 
+--- @param client lsp.Client
+--- @param bufnr integer
 local function setup_keymaps(client, bufnr)
 	local bind = require("config.lsp.util").bind
 
@@ -50,6 +54,8 @@ local function setup_keymaps(client, bufnr)
 	bind(bufnr, "<leader>sw", function() vim.cmd([[noautocmd write]]) end, "[S]ave [w]ithout formatting")
 end
 
+--- @param client lsp.Client
+--- @param bufnr integer
 local function setup_formatting(client, bufnr)
 	local group = require("config.util").augroup(lsp_formatting .. "." .. bufnr)
 
@@ -95,6 +101,8 @@ local function setup_formatting(client, bufnr)
 	setup_keymaps(client, bufnr)
 end
 
+--- @param client lsp.Client
+--- @param bufnr integer
 function M.on_attach(client, bufnr)
 	local ok, formatting_supported = pcall(function() return client.supports_method("textDocument/formatting") end)
 

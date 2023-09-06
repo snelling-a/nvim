@@ -27,6 +27,7 @@ local function document_highlight()
 	lsp.document_highlight()
 end
 
+--- @param bufnr integer
 local function setup_document_highlight(bufnr)
 	local event = {
 		"CursorHold",
@@ -69,6 +70,8 @@ end
 
 local M = {}
 
+--- @param client lsp.Client
+--- @param bufnr integer
 function M.on_attach(client, bufnr)
 	local ok, highlight_supported = pcall(
 		function() return client.supports_method("textDocument/documentHighlight") end

@@ -165,6 +165,8 @@ function M.handler(_, result, ctx, config)
 	end
 end
 
+--- @param client lsp.Client
+--- @param bufnr integer
 function M.on_attach(client, bufnr)
 	local ok, definition_supported = pcall(function() return client.supports_method("textDocument/definition") end)
 

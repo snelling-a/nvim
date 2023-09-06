@@ -85,6 +85,8 @@ vim_diagnostic.handlers.current_line_virt = {
 
 local M = {}
 
+--- @param client lsp.Client
+--- @param bufnr integer
 function M.on_attach(client, bufnr)
 	for type, icon in pairs(diagnostic_signs) do
 		local hl = "DiagnosticSign" .. type

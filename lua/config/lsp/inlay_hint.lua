@@ -1,5 +1,7 @@
 local M = {}
 
+--- @param client lsp.Client
+--- @param bufnr integer
 function M.on_attach(client, bufnr)
 	local ok, inlay_hint_supported = pcall(function() return client.supports_method("textDocument/inlayHint") end)
 

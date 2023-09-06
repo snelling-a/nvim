@@ -1,5 +1,7 @@
 local LspConfig = {}
 
+--- @param client lsp.Client
+--- @param bufnr integer
 function LspConfig.on_attach(client, bufnr)
 	require("config.lsp.codelens").on_attach(client, bufnr)
 	require("config.lsp.definition").on_attach(client, bufnr)
