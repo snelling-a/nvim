@@ -1,7 +1,5 @@
 local languages = {}
 
-local function require_efm_config(file_name, args) return require("config.lsp.efm." .. file_name).setup(args or nil) end
-
 local function add_languages(filetypes, config)
 	for _, v in ipairs(filetypes) do
 		languages[v] = config
@@ -9,46 +7,46 @@ local function add_languages(filetypes, config)
 end
 
 local js_ts_filetypes = require("config.util.constants").javascript_typescript
-
-local shfmt = require_efm_config("shfmt")
+local prettier = require("config.lsp.efm.prettier")
+local shfmt = require("config.lsp.efm.shfmt")
 
 add_languages(js_ts_filetypes, {
-	require_efm_config("eslint"),
-	require_efm_config("prettierd"),
+	require("config.lsp.efm.eslint").setup(),
+	require("config.lsp.efm.prettierd").setup(),
 })
 add_languages({
 	"bash",
 	"sh",
 }, {
-	shfmt,
-	require_efm_config("shellcheck"),
+	shfmt.setup(),
+	require("config.lsp.efm.shellcheck").setup(),
 })
 
 languages.html = {
-	require_efm_config("prettier", "html"),
+	prettier.setup("html"),
 }
 languages.json = {
-	require_efm_config("jq"),
+	require("config.lsp.efm.jq").setup(),
 }
 languages.jsonc = {
-	require_efm_config("prettier", "json"),
+	prettier.setup("json"),
 }
 languages.lua = {
-	require_efm_config("luacheck"),
-	require_efm_config("stylua"),
+	require("config.lsp.efm.luacheck").setup(),
+	require("config.lsp.efm.stylua").setup(),
 }
 languages.markdown = {
-	require_efm_config("cbfmt"),
+	require("config.lsp.efm.cbfmt").setup(),
 }
 languages.yaml = {
-	require_efm_config("yamllint"),
-	require_efm_config("yamlfmt"),
+	require("config.lsp.efm.yamllint").setup(),
+	require("config.lsp.efm.yamlfmt").setup(),
 }
 languages.zsh = {
-	shfmt,
+	shfmt.setup(),
 }
 languages["="] = {
-	require_efm_config("cspell"),
+	require("config.lsp.efm.cspell").setup(),
 }
 languages.toml = {
 	nil,
