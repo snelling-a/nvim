@@ -134,11 +134,12 @@ function M.handler(_, result, ctx, config)
 	local reuse_win = vim.uri_from_bufnr(0) == definition.targetUri
 	local offset_encoding = client.offset_encoding or "utf-8"
 
-	local jump_args = unpack({
+	local jump_args = {
 		definition,
 		offset_encoding,
 		reuse_win,
-	})
+	}
+
 	if vim.tbl_islist(result) then
 		local items = util.locations_to_items(result, offset_encoding)
 		local list = {
@@ -151,7 +152,7 @@ function M.handler(_, result, ctx, config)
 			config.on_list(list)
 		else
 			if #result == 1 then
-				util.jump_to_location(jump_args)
+				util.jump_to_location(unpack(jump_args))
 
 				return
 			end
@@ -161,7 +162,7 @@ function M.handler(_, result, ctx, config)
 			api.nvim_command("botright copen")
 		end
 	else
-		util.jump_to_location(jump_args)
+		util.jump_to_location(unpack(jump_args))
 	end
 end
 
