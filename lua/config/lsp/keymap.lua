@@ -45,11 +45,14 @@ function M.on_attach(bufnr)
         Util.scroll_center()
     end, "Show [d]efinition")
     bind(bufnr, "gr", function()
-        lsp.references()
         Util.scroll_center()
     end, "[G]et [r]eferences")
     bind(bufnr, "gY", lsp.type_definition, "Show t[y]pe definition")
     bind(bufnr, "gI", lsp.implementation, "Show [i]mplementation")
+	bind(bufnr, "gr", function()
+		lsp.references({
+			includeDeclaration = false,
+		})
 end
 
 return M
