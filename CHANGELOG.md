@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.16.3](https://github.com/snelling-a/nvim/compare/v5.16.2...v5.16.3) (2023-09-07)
+
+
+### Bug Fixes
+
+* **lsp:** jump_to_location args ([f0c222f](https://github.com/snelling-a/nvim/commit/f0c222f965303e46f91c3a37c997b54010654876))
+
 ## [5.16.2](https://github.com/snelling-a/nvim/compare/v5.16.1...v5.16.2) (2023-09-06)
 
 
