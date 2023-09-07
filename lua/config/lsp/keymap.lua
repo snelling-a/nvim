@@ -1,4 +1,3 @@
-local Logger = require("config.util.logger")
 local bind = require("config.lsp.util").bind
 local Util = require("config.util")
 
@@ -9,25 +8,29 @@ local M = {}
 
 --- @param bufnr integer
 function M.on_attach(bufnr)
-    Util.mapL("d", vim_diagnostic.open_float, {
-        desc = "Open [d]iagnostic float",
-    })
-    Util.nmap("[d", function()
-        vim_diagnostic.goto_prev({
-            float = false,
-        })
-        Util.scroll_center()
-    end, {
-        desc = "Goto previous [d]iagnostic issue",
-    })
-    Util.nmap("]d", function()
-        vim_diagnostic.goto_next({
-            float = false,
-        })
-        Util.scroll_center()
-    end, {
-        desc = "Goto next [d]iagnostic issue",
-    })
+	Util.mapL("d", vim_diagnostic.open_float, {
+		desc = "Open [d]iagnostic float",
+	})
+	require("config.keymap.unimpaired").unimapired("d", {
+		left = function()
+			vim_diagnostic.goto_prev({
+				float = false,
+			})
+			Util.scroll_center()
+		end,
+		right = function()
+			vim_diagnostic.goto_next({
+				float = false,
+			})
+			Util.scroll_center()
+		end,
+	}, {
+		base = "Go to ",
+		text = {
+			left = "previous [d]iagnostic issue",
+			right = "next [d]iagnostic issue",
+		},
+	})
 
 	bind(bufnr, "<leader>ca", lsp.code_action, "[C]ode [a]ction")
 	bind(bufnr, "<C-g>", lsp.signature_help, "Show signature help")

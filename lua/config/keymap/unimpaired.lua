@@ -1,3 +1,4 @@
+local M = {}
 --- @alias LeftRight table<"right"|"left", string|function>
 
 --- @class Description
@@ -9,7 +10,7 @@
 --- @param lhs string
 --- @param rhs LeftRight
 --- @param desc Description
-local function unimapired(lhs, rhs, desc)
+function M.unimapired(lhs, rhs, desc)
 	local nmap = require("config.util").nmap
 	local format = string.format
 
@@ -24,7 +25,7 @@ end
 
 local fn = vim.fn
 
-unimapired("<space>", {
+M.unimapired("<space>", {
 	left = function()
 		local line_nr = fn.line(".")
 
@@ -42,3 +43,5 @@ unimapired("<space>", {
 		right = "below",
 	},
 })
+
+return M
