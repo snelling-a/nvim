@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.17.0](https://github.com/snelling-a/nvim/compare/v5.16.3...v5.17.0) (2023-09-07)
+
+
+### Features
+
+* **lsp:** don't show definition in references ([624e63b](https://github.com/snelling-a/nvim/commit/624e63b78e098b298f70c33195f7f1a8cfcac16b))
+
 ## [5.16.3](https://github.com/snelling-a/nvim/compare/v5.16.2...v5.16.3) (2023-09-07)
 
 
