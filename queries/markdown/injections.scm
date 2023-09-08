@@ -2,20 +2,7 @@
 
 (fenced_code_block
   (info_string
-    (language) @_lang)
-  (code_fence_content) @content
-  (#set-lang-from-info-string! @_lang)
-  )
-
-((html_block) @html @combined)
-
-((minus_metadata) @yaml (#offset! @yaml 1 0 -1 0))
-((plus_metadata) @toml (#offset! @toml 1 0 -1 0))
-
-([
-  (inline)
-  (pipe_table_cell)
-  ]
- @markdown_inline
- )
-
+    (language) @language)
+  (#any-of? @language "tsx" "jsx" "typescriptreact" "javascriptreact")
+  (code_fence_content) @injection.content
+  (#set! injection.language "tsx"))
