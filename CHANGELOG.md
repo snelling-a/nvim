@@ -1,5 +1,17 @@
 # Changelog
 
+## [5.19.0](https://github.com/snelling-a/nvim/compare/v5.18.0...v5.19.0) (2023-09-08)
+
+
+### Features
+
+* jsx/tsx highlighting in markdown code blocks ([b464957](https://github.com/snelling-a/nvim/commit/b464957c6016ab1947016950dcf5c117d40b2d69))
+
+
+### Miscellaneous
+
+* update plugins ([f45dfe6](https://github.com/snelling-a/nvim/commit/f45dfe647037bd1f5e11148cd57d76af5b1eff93))
+
 ## [5.18.0](https://github.com/snelling-a/nvim/compare/v5.17.0...v5.18.0) (2023-09-07)
 
 
