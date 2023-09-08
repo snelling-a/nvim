@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.18.0](https://github.com/snelling-a/nvim/compare/v5.17.0...v5.18.0) (2023-09-07)
+
+
+### Features
+
+* use unimpaired for keymaps ([61eea3b](https://github.com/snelling-a/nvim/commit/61eea3b6bd7e2ab9d8d32d4015eb8bc4fd3d6926))
+
 ## [5.17.0](https://github.com/snelling-a/nvim/compare/v5.16.3...v5.17.0) (2023-09-07)
 
 
