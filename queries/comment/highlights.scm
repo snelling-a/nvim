@@ -21,9 +21,3 @@
    (name) @text.danger
    ":" @punctuation.delimiter)
  (#any-of? @text.danger "FIXME" "BUG" "DANGER"))
-
-("text" @number
- (#lua-match? @number "^#[0-9]+$"))
-
-("text" @constant
- (#lua-match? @constant "^[@][a-zA-Z0-9_-]+$"))
