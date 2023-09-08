@@ -11,4 +11,3 @@
                                    (string
                                      content: _ @vim))))))
  (#any-of? @vim_cmd_call "vim.cmd"))
-
