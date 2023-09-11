@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.21.1](https://github.com/snelling-a/nvim/compare/v5.21.0...v5.21.1) (2023-09-11)
+
+
+### Bug Fixes
+
+* add starter to no_format constants ([2cb2544](https://github.com/snelling-a/nvim/commit/2cb2544e183deb59bddd5b98cf37d582bf716781))
+
 ## [5.21.0](https://github.com/snelling-a/nvim/compare/v5.20.0...v5.21.0) (2023-09-11)
 
 
