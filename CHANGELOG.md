@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.21.0](https://github.com/snelling-a/nvim/compare/v5.20.0...v5.21.0) (2023-09-11)
+
+
+### Features
+
+* boole ([b8f52da](https://github.com/snelling-a/nvim/commit/b8f52da417d305e22f57e93c0df138da381f0eb9))
+
 ## [5.20.0](https://github.com/snelling-a/nvim/compare/v5.19.1...v5.20.0) (2023-09-11)
 
 
