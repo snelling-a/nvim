@@ -44,29 +44,24 @@ opt.whichwrap:append({
 opt.wrap = false
 
 local function hard_mode()
+	local Logger = require("config.util.logger"):new("HARD MODE")
+
+	--- @param bad "<down>"|"<left>"|"<right>"|"<up>"
+	--- @param good "j"|"h"|"l"|"k"
 	local function move_map(bad, good)
-		return Util.nmap(
-			bad,
-			function()
-				require("config.util.logger").warn({
-					msg = string.format("NO! use %s", good),
-					title = "HARD MODE",
-				})
-			end,
-			{
-				buffer = 0,
-				desc = string.format("DON'T USE %s", string.upper(bad)),
-			}
-		)
+		return Util.nmap(bad, function() Logger:warn(string.format("NO! use %s", good)) end, {
+			buffer = 0,
+			desc = string.format("DON'T USE %s", string.upper(bad)),
+		})
 	end
 
-	for direction, key in pairs({
+	for bad, good in pairs({
 		["<down>"] = "j",
 		["<left>"] = "h",
 		["<right>"] = "l",
 		["<up>"] = "k",
 	}) do
-		move_map(direction, key)
+		move_map(bad, good)
 	end
 end
 

@@ -1,3 +1,4 @@
+local Logger = require("config.util.logger"):new("LSP")
 local Util = require("config.util")
 
 local M = {}
@@ -66,7 +67,7 @@ local function get_exec_path(name)
 	if vim.fn.executable(name) == 1 then
 		return vim.fn.exepath(name)
 	else
-		require("config.util.logger").error({
+		Logger:error({
 			msg = "Cannot find executable: " .. name,
 			title = require("config.ui.icons").cmp.nvim_lsp .. "LSP",
 		})

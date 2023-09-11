@@ -2,19 +2,12 @@ if not pcall(require, "lspconfig") then
 	return
 end
 
+local Logger = require("config.util.logger"):new("LSP Definition")
+
 local api = vim.api
 local fn = vim.fn
 local lsp = vim.lsp
 local util = lsp.util
-
---- @param level "error"|"warn"|"info"
---- @param msg string|table?
-local function log(level, msg)
-	return require("config.util.logger")[level]({
-		title = "LSP",
-		msg = msg,
-	})
-end
 
 local float_win = nil
 
@@ -94,7 +87,7 @@ end
 
 local function preview_location_callback(_, result, ctx)
 	if result == nil or vim.tbl_isempty(result) then
-		local _ = log("info", "") and log("error", ("Error running LSP query: " .. ctx.method))
+		local _ = Logger:info("") and Logger:error("Error running LSP query: " .. ctx.method)
 
 		return nil
 	end
@@ -121,7 +114,7 @@ local M = {}
 
 function M.handler(_, result, ctx, config)
 	if result == nil or vim.tbl_isempty(result) then
-		local _ = log("info", "") and log("error", ("Error running LSP query: " .. ctx.method))
+		local _ = Logger:info("") and Logger:error("Error running LSP query: " .. ctx.method)
 
 		return nil
 	end

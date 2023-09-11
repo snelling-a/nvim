@@ -1,9 +1,9 @@
-local Logger = require("config.util.logger")
+local lsp_formatting = "Lsp Formatting"
+
+local Logger = require("config.util.logger"):new(lsp_formatting)
 local Util = require("config.util")
 
 local M = {}
-
-local lsp_formatting = "LspFormatting"
 
 --- @type boolean
 local AUTOFORMAT = true
@@ -12,15 +12,9 @@ local function toggle()
 	AUTOFORMAT = not AUTOFORMAT
 
 	if AUTOFORMAT then
-		Logger.info({
-			msg = "Enabled format on save",
-			title = lsp_formatting,
-		})
+		Logger:info("Enabled format on save")
 	else
-		Logger.warn({
-			msg = "Disabled format on save",
-			title = lsp_formatting,
-		})
+		Logger:warn("Disabled format on save")
 	end
 end
 
@@ -28,10 +22,12 @@ end
 --- @param bufnr integer
 local function format(client, bufnr)
 	local formatting_disabled = {
+		"eslint",
 		"tsserver",
 		"typescript-tools",
 	}
 
+	client = client or {}
 	local ok, result = pcall(function() return not vim.tbl_contains(formatting_disabled, client.name) end or true)
 	if not ok then
 		return
@@ -57,7 +53,7 @@ end
 --- @param client lsp.Client
 --- @param bufnr integer
 local function setup_formatting(client, bufnr)
-	local group = require("config.util").augroup(lsp_formatting .. "." .. bufnr)
+	local group = require("config.util").augroup(lsp_formatting:gsub(" ", "") .. "." .. bufnr)
 
 	local event = {
 		"BufWritePre",
@@ -66,7 +62,7 @@ local function setup_formatting(client, bufnr)
 	local opts = {
 		buffer = bufnr,
 		desc = "Format on save",
-		group = Util.augroup(lsp_formatting .. "." .. bufnr),
+		group = group,
 	}
 
 	local ok, hl_autocmds = pcall(
