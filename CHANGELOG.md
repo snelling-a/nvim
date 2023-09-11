@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.20.0](https://github.com/snelling-a/nvim/compare/v5.19.1...v5.20.0) (2023-09-11)
+
+
+### Features
+
+* **start:** alpha -&gt; mini.starter ([30f501a](https://github.com/snelling-a/nvim/commit/30f501ad0c22127b415f8428f64f2ed8da690c8c))
+
 ## [5.19.1](https://github.com/snelling-a/nvim/compare/v5.19.0...v5.19.1) (2023-09-10)
 
 
