@@ -1,5 +1,17 @@
 # Changelog
 
+## [5.19.1](https://github.com/snelling-a/nvim/compare/v5.19.0...v5.19.1) (2023-09-10)
+
+
+### Bug Fixes
+
+* **lsp:** config_files ([9bfccf8](https://github.com/snelling-a/nvim/commit/9bfccf811bef60212900dbca0a2e4e65cbc2f3f5))
+
+
+### Miscellaneous
+
+* move snytax out of after folder ([5c4c273](https://github.com/snelling-a/nvim/commit/5c4c273051c4e6a51a4380ae0ea66c856984cf23))
+
 ## [5.19.0](https://github.com/snelling-a/nvim/compare/v5.18.0...v5.19.0) (2023-09-08)
 
 
