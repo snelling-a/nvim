@@ -10,7 +10,7 @@ M.dependencies = {
 }
 
 M.event = {
-	"BufEnter",
+	"BufAdd",
 }
 
 M.opts = {

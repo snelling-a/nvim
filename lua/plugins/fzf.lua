@@ -8,6 +8,8 @@ local M = {
 	"ibhagwan/fzf-lua",
 }
 
+M.cmd = "FzfLua"
+
 M.dependencies = {
 	"nvim-tree/nvim-web-devicons",
 }

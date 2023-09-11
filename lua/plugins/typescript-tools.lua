@@ -3,7 +3,9 @@ local M = {
 	"pmizio/typescript-tools.nvim",
 }
 
-M.config = true
+M.event = {
+	"BufAdd",
+}
 
 M.dependencies = {
 	"nvim-lua/plenary.nvim",
@@ -13,6 +15,7 @@ M.dependencies = {
 M.opts = {
 	on_attach = require("config.lsp").on_attach,
 	settings = {
+		expose_as_code_action = "all",
 		tsserver_file_preferences = {
 			includeCompletionsForImportStatements = true,
 			includeCompletionsWithClassMemberSnippets = true,

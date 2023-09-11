@@ -7,7 +7,6 @@ local M = {
 }
 
 M.dependencies = {
-	"dnlhc/glance.nvim",
 	"hrsh7th/cmp-nvim-lsp",
 	"ibhagwan/fzf-lua",
 	{

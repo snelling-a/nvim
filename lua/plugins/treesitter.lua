@@ -30,6 +30,7 @@ local ensure_installed = {
 	"typescript",
 	"vim",
 	"vimdoc",
+	"xml",
 	"yaml",
 }
 
@@ -96,7 +97,9 @@ M.dependencies = {
 	},
 }
 
-M.event = "BufEnter"
+M.event = {
+	"BufAdd",
+}
 
 M.opts = {
 	auto_install = true,
