@@ -1,21 +1,7 @@
 local Icons = require("config.ui.icons")
 local Util = require("config.util")
 
---- @param text? string 'The text to display in the logo; defaults to "neovim"'
---- @return string 'The header for alpha'
-local function get_header(text)
-	return " ▌║█║▌│║▌│║▌║▌█║ "
-		.. (text or "neovim")
-		.. " ▌│║▌║▌│║║▌█║▌║█ "
-end
-
-local quit_button = {
-	shortcut = "q",
-	val = Util.pad_right(Icons.misc.exit) .. "Quit",
-	on_press = ":qa<CR>",
-}
-
-local default_buttons = {
+local buttons = {
 	{
 		shortcut = "p",
 		val = Util.pad_right(Icons.misc.search) .. "Find file",
@@ -61,36 +47,11 @@ local default_buttons = {
 		val = Util.pad_right(Icons.misc.health) .. "Check health",
 		on_press = [[:lua vim.cmd.checkhealth() <CR>]],
 	},
-	quit_button,
-}
-
-local obsidian_buttons = {
 	{
-		shortcut = "d",
-		val = Util.pad_right(Icons.obsidian.today) .. "Today's daily note",
-		on_press = [[:lua vim.cmd.ObsidianToday() <CR>]],
+		shortcut = "q",
+		val = Util.pad_right(Icons.misc.exit) .. "Quit",
+		on_press = ":qa<CR>",
 	},
-	{
-		shortcut = "y",
-		val = Util.pad_right(Icons.obsidian.yesterday) .. "Yesterday's daily note",
-		on_press = [[:lua vim.cmd.ObsidianYesterday() <CR>]],
-	},
-	{
-		shortcut = "n",
-		val = Util.pad_right(Icons.obsidian.new) .. "New note",
-		on_press = [[:lua vim.cmd.ObsidianNew() <CR>]],
-	},
-	{
-		shortcut = "s",
-		val = Util.pad_right(Icons.obsidian.search) .. "Search vault",
-		on_press = [[:lua vim.cmd.ObsidianSearch() <CR>]],
-	},
-	{
-		shortcut = "c",
-		val = Util.pad_right(Icons.obsidian.health) .. "Check health",
-		on_press = [[:lua vim.cmd.ObsidianCheckHealth() <CR>]],
-	},
-	quit_button,
 }
 
 --- @type LazySpec
@@ -142,7 +103,7 @@ end
 function M.opts()
 	local dashboard = require("alpha.themes.dashboard")
 
-	local function get_buttons(button_set)
+	local function get_buttons()
 		return vim.tbl_map(function(b)
 			local button = dashboard.button(b.shortcut, b.val, b.on_press)
 
@@ -150,24 +111,13 @@ function M.opts()
 			button.opts.hl_shortcut = "AlphaShortcut"
 
 			return button
-		end, button_set or default_buttons)
+		end, buttons)
 	end
 
-	local function get_content()
-		if require("config.util.constants").obsidian.is_vault_directory then
-			return {
-				header = get_header("obsidian"),
-				buttons = get_buttons(obsidian_buttons),
-			}
-		else
-			return {
-				header = get_header(),
-				buttons = get_buttons(),
-			}
-		end
-	end
-
-	local content = get_content()
+	local content = {
+		header = " ▌║█║▌│║▌│║▌║▌█║  neovim  ▌│║▌║▌│║║▌█║▌║█ ",
+		buttons = get_buttons(),
+	}
 
 	dashboard.section.header.val = content.header
 
@@ -181,4 +131,5 @@ function M.opts()
 	return dashboard
 end
 
+M.enabled = false
 return M
