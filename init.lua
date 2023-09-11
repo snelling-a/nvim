@@ -1,7 +1,5 @@
 vim.loader.enable()
 
-if vim.g.vscode then
-	require("vscode")
-else
+if not vim.g.vscode then
 	require("config")
 end
