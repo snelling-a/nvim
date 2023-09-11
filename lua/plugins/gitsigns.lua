@@ -22,7 +22,34 @@ local function on_attach(bufnr)
 		Util.scroll_center()
 		gs.preview_hunk_inline()
 	end
-
+	require("config.keymap.unimpaired").unimapired("c", {
+		left = function()
+			if vim.wo.diff then
+				return "[c"
+			end
+			vim.schedule(function()
+				gs.prev_hunk()
+				preview()
+			end)
+			return "<Ignore>"
+		end,
+		right = function()
+			if vim.wo.diff then
+				return "]c"
+			end
+			vim.schedule(function()
+				gs.next_hunk()
+				preview()
+			end)
+			return "<Ignore>"
+		end,
+	}, {
+		base = "Jump to ",
+		text = {
+			right = "next [c]hange (hunk)",
+			left = "preview [c]hange (hunk)",
+		},
+	})
 	Util.nmap(
 		"]c",
 		function()
