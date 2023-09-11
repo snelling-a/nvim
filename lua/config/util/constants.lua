@@ -33,6 +33,7 @@ M.no_format = {
 	"pr",
 	"qf",
 	"spectre_panel",
+	"starter",
 	"toggleterm",
 	"Trouble",
 	"undotree",
