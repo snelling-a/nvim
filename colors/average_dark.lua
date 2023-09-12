@@ -1,6 +1,6 @@
 -- Made with 'mini.colors' module of https://github.com/echasnovski/mini.nvim
 
-if vim.g.colors_name ~= nil then vim.cmd([[highlight clear]]) end
+if vim.g.colors_name ~= nil then vim.cmd('highlight clear') end
 vim.g.colors_name = "average_dark"
 
 -- Highlight groups
@@ -66,13 +66,17 @@ hi(0, "DashboardFooter", { ctermfg = 180, fg = "#cdb785" })
 hi(0, "DashboardHeader", { ctermfg = 111, fg = "#80a9ec" })
 hi(0, "DashboardShortCut", { ctermfg = 116, fg = "#9cceda" })
 hi(0, "DiagnosticError", { ctermfg = 167, fg = "#db4b4b" })
+hi(0, "DiagnosticErrorStatus", { bg = "#161925", ctermbg = 234, ctermfg = 167, fg = "#db4b4b" })
 hi(0, "DiagnosticHint", { ctermfg = 108, fg = "#79afa1" })
+hi(0, "DiagnosticHintStatus", { bg = "#161925", ctermbg = 234, ctermfg = 108, fg = "#79afa1" })
 hi(0, "DiagnosticInfo", { ctermfg = 74, fg = "#6aa0c9" })
+hi(0, "DiagnosticInfoStatus", { bg = "#161925", ctermbg = 234, ctermfg = 74, fg = "#6aa0c9" })
 hi(0, "DiagnosticUnderlineError", { sp = "#db4b4b" })
 hi(0, "DiagnosticUnderlineHint", { sp = "#79afa1" })
 hi(0, "DiagnosticUnderlineInfo", { sp = "#6aa0c9" })
 hi(0, "DiagnosticUnderlineWarn", { sp = "#dfb068" })
 hi(0, "DiagnosticWarn", { ctermfg = 179, fg = "#dfb068" })
+hi(0, "DiagnosticWarnStatus", { bg = "#161925", ctermbg = 234, ctermfg = 179, fg = "#dfb068" })
 hi(0, "DiffAdd", { bg = "#2f3c3d", ctermbg = 237 })
 hi(0, "DiffAdded", { ctermfg = 72, fg = "#76ac7d" })
 hi(0, "DiffChange", { bg = "#282d40", ctermbg = 236 })
@@ -91,23 +95,6 @@ hi(0, "Function", { ctermfg = 111, fg = "#85a8ea" })
 hi(0, "GitSignsAdd", { ctermfg = 108, fg = "#7cab7d" })
 hi(0, "GitSignsChange", { ctermfg = 179, fg = "#ccad63" })
 hi(0, "GitSignsDelete", { ctermfg = 131, fg = "#cb4f63" })
-hi(0, "GlanceBorderTop", { bg = "#2f3342", ctermbg = 236, ctermfg = 67, fg = "#71839b" })
-hi(0, "GlanceFoldIcon", { ctermfg = 247, fg = "#989ba2" })
-hi(0, "GlanceIndent", { ctermfg = 59, fg = "#555c74" })
-hi(0, "GlanceListBorderBottom", { bg = "#2c2f3e", ctermbg = 236, ctermfg = 67, fg = "#71839b" })
-hi(0, "GlanceListCursorLine", { bg = "#373d4e", ctermbg = 237 })
-hi(0, "GlanceListEndOfBuffer", { bg = "#2c2f3e", ctermbg = 236, ctermfg = 236, fg = "#2c2f3e" })
-hi(0, "GlanceListFilepath", { ctermfg = 247, fg = "#989ba2" })
-hi(0, "GlanceListNormal", { bg = "#2c2f3e", ctermbg = 236, ctermfg = 188, fg = "#d3d6dd" })
-hi(0, "GlancePreviewBorderBottom", { bg = "#262a38", ctermbg = 235, ctermfg = 67, fg = "#71839b" })
-hi(0, "GlancePreviewCursorLine", { bg = "#3d4253", ctermbg = 238 })
-hi(0, "GlancePreviewEndOfBuffer", { bg = "#262a38", ctermbg = 235, ctermfg = 235, fg = "#262a38" })
-hi(0, "GlancePreviewMatch", { bg = "#3f5570", ctermbg = 240 })
-hi(0, "GlancePreviewNormal", { bg = "#262a38", ctermbg = 235 })
-hi(0, "GlancePreviewSignColumn", { ctermfg = 235, fg = "#262a38" })
-hi(0, "GlanceWinBarFilename", { bg = "#2f3342", ctermbg = 236, ctermfg = 188, fg = "#d3d6dd" })
-hi(0, "GlanceWinBarFilepath", { bg = "#2f3342", ctermbg = 236, ctermfg = 247, fg = "#9a9da4" })
-hi(0, "GlanceWinBarTitle", { bg = "#2f3342", ctermbg = 236, ctermfg = 188, fg = "#d3d6dd" })
 hi(0, "Identifier", { ctermfg = 251, fg = "#cec5cf" })
 hi(0, "IncSearch", { bg = "#f8a163", ctermbg = 215, ctermfg = 234, fg = "#1a212f" })
 hi(0, "IndentBlanklineChar", { ctermfg = 238, fg = "#3e4359" })
@@ -123,6 +110,11 @@ hi(0, "LspReferenceWrite", { bg = "#3d435c", ctermbg = 238 })
 hi(0, "MatchParen", { bold = true, ctermfg = 215, fg = "#fbaf73" })
 hi(0, "ModeMsg", { bold = true, ctermfg = 179, fg = "#d4b46a" })
 hi(0, "MoreMsg", { ctermfg = 104, fg = "#6d9bdf" })
+hi(0, "NeogitDiffAddHighlight", { bg = "#313c38", ctermbg = 237 })
+hi(0, "NeogitDiffContextHighlight", { bg = "#282c3f", ctermbg = 236 })
+hi(0, "NeogitDiffDeleteHighlight", { bg = "#402d3b", ctermbg = 236 })
+hi(0, "NeogitHunkHeader", { ctermfg = 104, fg = "#7b99d5" })
+hi(0, "NeogitHunkHeaderHighlight", { bg = "#353e5a", ctermbg = 238, ctermfg = 111, fg = "#7ba5ea" })
 hi(0, "NonText", { ctermfg = 59, fg = "#585d75" })
 hi(0, "Normal", { bg = "#1f2130", ctermbg = 235, ctermfg = 188, fg = "#d3d6dd" })
 hi(0, "NormalFloat", { bg = "#171924", ctermbg = 234, ctermfg = 252, fg = "#cbced5" })
@@ -143,13 +135,6 @@ hi(0, "PmenuThumb", { bg = "#374e6a", ctermbg = 239 })
 hi(0, "PreProc", { ctermfg = 175, fg = "#e48fbf" })
 hi(0, "Question", { ctermfg = 104, fg = "#6d9bdf" })
 hi(0, "QuickFixLine", { bg = "#363e4f", ctermbg = 237 })
-hi(0, "RainbowDelimiterBlue", { ctermfg = 30, fg = "#458588" })
-hi(0, "RainbowDelimiterCyan", { ctermfg = 247, fg = "#a89984" })
-hi(0, "RainbowDelimiterGreen", { ctermfg = 72, fg = "#689d6a" })
-hi(0, "RainbowDelimiterOrange", { ctermfg = 166, fg = "#d65d0e" })
-hi(0, "RainbowDelimiterRed", { ctermfg = 160, fg = "#cc241d" })
-hi(0, "RainbowDelimiterViolet", { ctermfg = 132, fg = "#b16286" })
-hi(0, "RainbowDelimiterYellow", { ctermfg = 172, fg = "#d79921" })
 hi(0, "Search", { bg = "#3f5570", ctermbg = 240 })
 hi(0, "SignColumn", { ctermfg = 243, fg = "#6e748e" })
 hi(0, "Special", { ctermfg = 110, fg = "#96b3ce" })
@@ -159,13 +144,9 @@ hi(0, "SpellCap", { sp = "#dfb068", undercurl = true })
 hi(0, "SpellLocal", { sp = "#7da8e3", undercurl = true })
 hi(0, "SpellRare", { sp = "#8caa9a", undercurl = true })
 hi(0, "Statement", { ctermfg = 140, fg = "#ba96e5" })
-hi(0, "StatusError", { bg = "#161925", ctermbg = 234, ctermfg = 167, fg = "#db4b4b" })
-hi(0, "StatusHint", { bg = "#161925", ctermbg = 234, ctermfg = 108, fg = "#79afa1" })
-hi(0, "StatusInfo", { bg = "#161925", ctermbg = 234, ctermfg = 74, fg = "#6aa0c9" })
 hi(0, "StatusLine", { bg = "#161925", ctermbg = 234, ctermfg = 249, fg = "#afb3bd" })
 hi(0, "StatusLineNC", { bg = "#171924", ctermbg = 234, ctermfg = 238, fg = "#42475e" })
-hi(0, "StatusTS", { bg = "#161925", ctermbg = 234, ctermfg = 104, fg = "#6d9bdf" })
-hi(0, "StatusWarn", { bg = "#161925", ctermbg = 234, ctermfg = 179, fg = "#dfb068" })
+hi(0, "StatusTS", { bg = "#383838", ctermbg = 237, ctermfg = 104, fg = "#6d9bdf" })
 hi(0, "String", { ctermfg = 150, fg = "#a0cb8d" })
 hi(0, "Substitute", { bg = "#ca4f69", ctermbg = 168, ctermfg = 237, fg = "#2d3644" })
 hi(0, "TabLine", { bg = "#212330", ctermbg = 235, ctermfg = 102, fg = "#7f8398" })
@@ -192,16 +173,16 @@ local g = vim.g
 g.terminal_color_0 = "#1f2130"
 g.terminal_color_1 = "#db4b4b"
 g.terminal_color_2 = "#79afa1"
-g.terminal_color_3 = "#dfb068"
+g.terminal_color_3 = "#ccad63"
 g.terminal_color_4 = "#d3d6dd"
-g.terminal_color_5 = "#d3d6dd"
+g.terminal_color_5 = "#bfb5bf"
 g.terminal_color_6 = "#79afa1"
 g.terminal_color_7 = "#d3d6dd"
 g.terminal_color_8 = "#1f2130"
 g.terminal_color_9 = "#db4b4b"
 g.terminal_color_10 = "#79afa1"
-g.terminal_color_11 = "#dfb068"
+g.terminal_color_11 = "#ccad63"
 g.terminal_color_12 = "#d3d6dd"
-g.terminal_color_13 = "#d3d6dd"
+g.terminal_color_13 = "#bfb5bf"
 g.terminal_color_14 = "#79afa1"
 g.terminal_color_15 = "#d3d6dd"
