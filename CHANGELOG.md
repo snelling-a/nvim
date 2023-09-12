@@ -1,5 +1,19 @@
 # Changelog
 
+## [5.22.1](https://github.com/snelling-a/nvim/compare/v5.22.0...v5.22.1) (2023-09-12)
+
+
+### Bug Fixes
+
+* **session:** export get_separator method ([629204b](https://github.com/snelling-a/nvim/commit/629204bdf0d2e1def092a3fc37df6f5c52803344))
+
+
+### Miscellaneous
+
+* update AverageDark colorscheme ([96f8b5e](https://github.com/snelling-a/nvim/commit/96f8b5e2f9aa5d7bf66a5c9c4ca875a6a5986ee6))
+* update plugins ([e9f880f](https://github.com/snelling-a/nvim/commit/e9f880fe5ebdb2fa9e0bb45c5ac5ca4635ef61ce))
+* update plugins ([e9f880f](https://github.com/snelling-a/nvim/commit/e9f880fe5ebdb2fa9e0bb45c5ac5ca4635ef61ce))
+
 ## [5.22.0](https://github.com/snelling-a/nvim/compare/v5.21.1...v5.22.0) (2023-09-12)
 
 
