@@ -44,7 +44,7 @@ end, {
 	desc = "Toggle transparent background",
 })
 
-command("GenrateAverageColor", function() require("config.ui.average-colorscheme") end, {})
+command("GenerateAverageColor", function() require("config.ui.average-colorscheme") end, {})
 
 local function trim_space_preview(opts, preview_ns, preview_buf)
 	vim.cmd([[hi clear Whitespace]])
