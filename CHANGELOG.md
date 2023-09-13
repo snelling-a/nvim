@@ -1,5 +1,18 @@
 # Changelog
 
+## [5.22.2](https://github.com/snelling-a/nvim/compare/v5.22.1...v5.22.2) (2023-09-13)
+
+
+### Bug Fixes
+
+* calling session ([04decc7](https://github.com/snelling-a/nvim/commit/04decc77b5b9bba991031b2a3185b8eac7f19ce5))
+
+
+### Miscellaneous
+
+* update AverageDark colorscheme ([63c117f](https://github.com/snelling-a/nvim/commit/63c117ffc98c37dae09d8d4332b48b5b91372b95))
+* update plugins ([d923275](https://github.com/snelling-a/nvim/commit/d9232753d2c2951c48c8bd2fe9fa2074880942a0))
+
 ## [5.22.1](https://github.com/snelling-a/nvim/compare/v5.22.0...v5.22.1) (2023-09-12)
 
 
