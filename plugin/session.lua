@@ -27,8 +27,9 @@ end
 local fnameescape = vim.fn.fnameescape
 
 local function save_session()
-
-	vim.cmd.mksession({ args = { fnameescape(get_current_session()) }, bang = true })
+	if #vim.fn.getbufinfo({ buflisted = 1 }) > 0 then
+		vim.cmd.mksession({ args = { fnameescape(get_current_session()) }, bang = true })
+	end
 end
 
 local function load_session()
