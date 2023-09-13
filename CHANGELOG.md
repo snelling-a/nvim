@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.22.3](https://github.com/snelling-a/nvim/compare/v5.22.2...v5.22.3) (2023-09-13)
+
+
+### Bug Fixes
+
+* typo ([4833183](https://github.com/snelling-a/nvim/commit/4833183360409be3c06b29287b438830b3ae8222))
+
 ## [5.22.2](https://github.com/snelling-a/nvim/compare/v5.22.1...v5.22.2) (2023-09-13)
 
 
