@@ -2,17 +2,35 @@ local Icons = require("config.ui.icons")
 local Statusline = require("config.ui.statusline")
 
 local diagnostics = {
-	{ "Error", Icons.diagnostics.Error, "DiagnosticErrorStatus" },
-	{ "Warn", Icons.diagnostics.Warn, "DiagnosticWarnStatus" },
-	{ "Hint", Icons.diagnostics.Hint, "DiagnosticHintStatus" },
-	{ "Info", Icons.diagnostics.Info, "DiagnosticInfoStatus" },
+	{
+		"Error",
+		Icons.diagnostics.Error,
+		"DiagnosticErrorStatus",
+	},
+	{
+		"Warn",
+		Icons.diagnostics.Warn,
+		"DiagnosticWarnStatus",
+	},
+	{
+		"Hint",
+		Icons.diagnostics.Hint,
+		"DiagnosticHintStatus",
+	},
+	{
+		"Info",
+		Icons.diagnostics.Info,
+		"DiagnosticInfoStatus",
+	},
 }
 
 local function get_diagnostics(active)
 	local status = {}
 
 	for _, attrs in ipairs(diagnostics) do
-		local n = vim.diagnostic.get(0, { severity = attrs[1] })
+		local n = vim.diagnostic.get(0, {
+			severity = attrs[1],
+		})
 		if #n > 0 then
 			table.insert(status, ("%s %s %d"):format(Statusline.hl(attrs[3], active), attrs[2], #n))
 		end
@@ -23,7 +41,9 @@ end
 
 local function get_lsp_names()
 	local names = {}
-	local attached = vim.lsp.get_clients({ bufnr = 0 })
+	local attached = vim.lsp.get_clients({
+		bufnr = 0,
+	})
 
 	for _, c in ipairs(attached) do
 		names[#names + 1] = c.name
@@ -51,12 +71,18 @@ function M.hl_definitions()
 
 	for _, attrs in ipairs(diagnostics) do
 		local fg = Statusline.get_hl("Diagnostic" .. attrs[1]).fg
-		api.nvim_set_hl(0, attrs[3], { fg = fg, bg = bg })
+		api.nvim_set_hl(0, attrs[3], {
+			fg = fg,
+			bg = bg,
+		})
 	end
 
 	local lsp_fg = Statusline.get_hl("User8")
 
-	api.nvim_set_hl(0, "LspName", { fg = lsp_fg.fg, bg = bg })
+	api.nvim_set_hl(0, "LspName", {
+		fg = lsp_fg.fg,
+		bg = bg,
+	})
 end
 
 function M.status(active)

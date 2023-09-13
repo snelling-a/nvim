@@ -12,10 +12,15 @@ local function filetype_symbol(active)
 	end
 
 	local name = api.nvim_buf_get_name(0)
-	local icon, iconhl = devicons.get_icon_color(name, bo.filetype, { default = true })
+	local icon, iconhl = devicons.get_icon_color(name, bo.filetype, {
+		default = true,
+	})
 
 	local hlname = iconhl:gsub("#", "Status")
-	api.nvim_set_hl(0, hlname, { fg = iconhl, bg = Statusline.bg })
+	api.nvim_set_hl(0, hlname, {
+		fg = iconhl,
+		bg = Statusline.bg,
+	})
 
 	return Statusline.hl(hlname, active) .. icon
 end
@@ -33,7 +38,8 @@ local M = {}
 function M.type(active)
 	local filetype_items = {
 		filetype_symbol(active),
-		get_treesitter_status(active), }
+		get_treesitter_status(active),
+	}
 
 	return table.concat(filetype_items, " ")
 end

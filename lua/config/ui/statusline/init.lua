@@ -4,7 +4,11 @@ local M = {}
 
 --- @param name string
 --- @return table<string,any>
-function M.get_hl(name) return api.nvim_get_hl(0, { name = name }) end
+function M.get_hl(name)
+	return api.nvim_get_hl(0, {
+		name = name,
+	})
+end
 
 ---@param name string
 ---@param val vim.api.keyset.highlight
