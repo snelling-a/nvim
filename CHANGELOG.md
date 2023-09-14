@@ -1,5 +1,18 @@
 # Changelog
 
+## [5.22.4](https://github.com/snelling-a/nvim/compare/v5.22.3...v5.22.4) (2023-09-14)
+
+
+### Bug Fixes
+
+* prevent creating session when no files open ([2e5f548](https://github.com/snelling-a/nvim/commit/2e5f548fda2a40bde1b74185bff47f8194a65da4))
+
+
+### Miscellaneous
+
+* update AverageDark colorscheme ([43d4ec0](https://github.com/snelling-a/nvim/commit/43d4ec0b17a643e6297497fb3c2fb62a4ab9802f))
+* update plugins ([0ad6480](https://github.com/snelling-a/nvim/commit/0ad648066622e85a5d34273e5b46c87dc1d36873))
+
 ## [5.22.3](https://github.com/snelling-a/nvim/compare/v5.22.2...v5.22.3) (2023-09-13)
 
 
