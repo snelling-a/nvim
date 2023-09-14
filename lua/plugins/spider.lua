@@ -29,6 +29,6 @@ function M.keys()
 	return keys
 end
 
-M.lazy = true
+M.event = "BufAdd"
 
 return M

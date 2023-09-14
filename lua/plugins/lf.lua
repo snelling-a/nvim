@@ -10,8 +10,6 @@ M.dependencies = {
 	"akinsho/toggleterm.nvim",
 }
 
-M.lazy = false
-
 M.keys = {
 	{
 		"<M-o>",

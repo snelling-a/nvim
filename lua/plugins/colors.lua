@@ -3,6 +3,6 @@ local M = {
 	"echasnovski/mini.colors",
 }
 
-M.event = "VeryLazy"
+M.cmd = "GenerateAverageColor"
 
 return M

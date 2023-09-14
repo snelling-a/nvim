@@ -7,6 +7,6 @@ M.dependencies = {
 	"nvim-lua/plenary.nvim",
 }
 
-M.config = true
+M.event = "BufAdd"
 
 return M

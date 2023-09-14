@@ -59,7 +59,7 @@ vim.api.nvim_create_autocmd({
 })
 
 vim.api.nvim_create_autocmd({
-	"VimEnter",
+	"UIEnter",
 }, {
 	group = group,
 	callback = function()
