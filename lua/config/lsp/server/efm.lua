@@ -1,3 +1,7 @@
+local js_ts_filetypes = require("config.util.constants").javascript_typescript
+local prettierd = require("config.lsp.efm.prettierd").setup()
+local shfmt = require("config.lsp.efm.shfmt")
+
 local languages = {}
 
 local function add_languages(filetypes, config)
@@ -6,13 +10,9 @@ local function add_languages(filetypes, config)
 	end
 end
 
-local js_ts_filetypes = require("config.util.constants").javascript_typescript
-local prettier = require("config.lsp.efm.prettier")
-local shfmt = require("config.lsp.efm.shfmt")
-
 add_languages(js_ts_filetypes, {
 	require("config.lsp.efm.eslint").setup(),
-	require("config.lsp.efm.prettierd").setup(),
+	prettierd,
 })
 add_languages({
 	"bash",
@@ -22,14 +22,17 @@ add_languages({
 	require("config.lsp.efm.shellcheck").setup(),
 })
 
+languages.css = {
+	prettierd,
+}
 languages.html = {
-	prettier.setup("html"),
+	prettierd,
 }
 languages.json = {
 	require("config.lsp.efm.jq").setup(),
 }
 languages.jsonc = {
-	prettier.setup("json"),
+	require("config.lsp.efm.prettier").setup("json"),
 }
 languages.lua = {
 	require("config.lsp.efm.luacheck").setup(),
@@ -37,6 +40,7 @@ languages.lua = {
 }
 languages.markdown = {
 	require("config.lsp.efm.cbfmt").setup(),
+	prettierd,
 }
 languages.yaml = {
 	require("config.lsp.efm.yamllint").setup(),

@@ -2,7 +2,7 @@ local M = {}
 
 M.mason_name = "prettier"
 
---- @param parser "json"|"css"
+--- @param parser "html"|"json"
 function M.setup(parser)
 	local args = {
 		"--stdin-filepath",
