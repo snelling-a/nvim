@@ -1,5 +1,17 @@
 # Changelog
 
+## [5.23.1](https://github.com/snelling-a/nvim/compare/v5.23.0...v5.23.1) (2023-09-15)
+
+
+### Bug Fixes
+
+* add colorschemes to list ([ece23fc](https://github.com/snelling-a/nvim/commit/ece23fcaba3ca3c41a2f78cc6febdcf156d21806))
+
+
+### Miscellaneous
+
+* vim.loop -&gt; vim.uv ([c6bf51c](https://github.com/snelling-a/nvim/commit/c6bf51c43489ae37ce0172ad1d27203665e75b51))
+
 ## [5.23.0](https://github.com/snelling-a/nvim/compare/v5.22.4...v5.23.0) (2023-09-15)
 
 
