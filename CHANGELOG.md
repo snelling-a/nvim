@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.23.2](https://github.com/snelling-a/nvim/compare/v5.23.1...v5.23.2) (2023-09-15)
+
+
+### Bug Fixes
+
+* leap lables ([46fc969](https://github.com/snelling-a/nvim/commit/46fc9699c6eaa9ea0e521c370338056a8eb6aafe))
+
 ## [5.23.1](https://github.com/snelling-a/nvim/compare/v5.23.0...v5.23.1) (2023-09-15)
 
 
