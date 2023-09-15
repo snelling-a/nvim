@@ -42,12 +42,17 @@ local colors = require("mini.colors")
 -- Hyperparameters ------------------------------------------------------------
 -- Color scheme names to average
 local cs_names = {
-	-- Use the default variants of supplied color schemes.
-	"tokyonight",
+	"base16-default-dark",
+	"carbonfox",
 	"catppuccin",
+	"github_dark",
 	"kanagawa",
 	"nightfox",
-	"github_dark",
+	"nord",
+	"onedark",
+	"oxocarbon",
+	"rose-pine",
+	"tokyonight",
 }
 
 -- Output color scheme name
