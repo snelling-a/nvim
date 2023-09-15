@@ -9,7 +9,7 @@ function M:new(title)
 	}, {
 		__index = self,
 	})
-	self.title = title
+	self.title = ("[%s]"):format(title)
 
 	return self
 end
