@@ -3,13 +3,13 @@ local util = require("config.util")
 local api = vim.api
 local augroup = util.augroup
 local autocmd = api.nvim_create_autocmd
-local bo = vim.bo
 local cmd = vim.cmd
 local fn = vim.fn
-local opt = vim.opt
 
 autocmd({ "BufLeave", "FocusLost" }, {
 	callback = function()
+		local bo = vim.bo
+
 		if not bo.readonly and fn.expand("%") ~= "" and bo.buftype == "" then
 			cmd.update()
 		end
@@ -56,6 +56,8 @@ autocmd({ "BufEnter", "FileType" }, {
 			"v", -- Vi-compatible auto-wrapping in insert mode
 			"w", -- Trailing white space indicates a paragraph continues in the next line.
 		}
+
+		local opt = vim.opt
 
 		for _, v in ipairs(formatoptions_append) do
 			opt.formatoptions:append(v)
@@ -104,7 +106,7 @@ autocmd({ "BufWritePre" }, {
 
 		local file = vim.loop.fs_realpath(event.match) or event.match
 
-		vim.fn.mkdir(vim.fn.fnamemodify(file, ":p:h"), "p")
+		fn.mkdir(fn.fnamemodify(file, ":p:h"), "p")
 	end,
 	desc = "Auto create dir when saving a file, in case some intermediate directory does not exist",
 	group = augroup("AutoCreateDir"),
