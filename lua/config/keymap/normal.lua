@@ -1,6 +1,7 @@
 local nmap = require("config.util").nmap
 
 local cmd = vim.cmd
+local v = vim.v
 
 nmap("<C-z>", "<nop>", {
 	desc = "I'm sure there is a use for this, but for now it's just annoying",
@@ -18,10 +19,12 @@ nmap("H", "g^", {
 	desc = "Move to the start of line",
 })
 nmap("L", function()
-	if vim.api.nvim_get_option_value("wrap", { scope = "local" }) then
-		vim.cmd([[normal! g$]])
+	if vim.api.nvim_get_option_value("wrap", {
+		scope = "local",
+	}) then
+		cmd.normal("g$")
 	else
-		vim.cmd([[normal! $]])
+		cmd.normal("$")
 	end
 end, {
 	desc = "Move to the end of line",
@@ -36,8 +39,8 @@ nmap("Y", "y$", {
 	desc = "[Y]ank to the end of the line",
 })
 nmap("j", function()
-	if vim.v.count > 0 and vim.v.count >= 3 then
-		return ("m'" .. vim.v.count .. "j")
+	if v.count > 0 and v.count >= 3 then
+		return ("m'" .. v.count .. "j")
 	else
 		return "gj"
 	end
@@ -47,8 +50,8 @@ end, {
 	desc = "Move to next visual line",
 })
 nmap("k", function()
-	if vim.v.count > 0 and vim.v.count >= 3 then
-		return ("m'" .. vim.v.count .. "k")
+	if v.count > 0 and v.count >= 3 then
+		return ("m'" .. v.count .. "k")
 	else
 		return "gk"
 	end

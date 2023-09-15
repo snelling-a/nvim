@@ -12,7 +12,14 @@ Util.mapL("/", function()
 end, {
 	desc = "Clear search highlighting",
 })
-Util.mapL("e", "%", {
+Util.mapL("e", function()
+	vim.cmd.normal({
+		args = {
+			"%",
+		},
+		-- bang = true,
+	})
+end, {
 	desc = "Go to matching bracket",
 }, {
 	"n",
