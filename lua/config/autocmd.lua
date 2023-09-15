@@ -104,7 +104,7 @@ autocmd({ "BufWritePre" }, {
 			return
 		end
 
-		local file = vim.loop.fs_realpath(event.match) or event.match
+		local file = vim.uv.fs_realpath(event.match) or event.match
 
 		fn.mkdir(fn.fnamemodify(file, ":p:h"), "p")
 	end,
