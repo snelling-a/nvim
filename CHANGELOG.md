@@ -1,5 +1,13 @@
 # Changelog
 
+## [5.23.3](https://github.com/snelling-a/nvim/compare/v5.23.2...v5.23.3) (2023-09-18)
+
+
+### Miscellaneous
+
+* update AverageDark colorscheme ([7e76e9b](https://github.com/snelling-a/nvim/commit/7e76e9b4466fc95afbc51cc32a088793fc23dbcb))
+* update plugins ([68936da](https://github.com/snelling-a/nvim/commit/68936da1a656129f263908c595d8f93be83822fd))
+
 ## [5.23.2](https://github.com/snelling-a/nvim/compare/v5.23.1...v5.23.2) (2023-09-15)
 
 
