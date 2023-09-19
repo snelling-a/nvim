@@ -15,15 +15,15 @@ local shortmess_append = {
 	"I", --  don't give the intro message when starting Vim
 	"o", -- overwrite message for writing a file with subsequent message for reading a file
 	"q", --  use "recording" instead of "recording @a"
-	"S", --  do not show search count message when searching, e.g. "[1/5]"
 	"s", --  don't give "search hit BOTTOM/TOP, continuing at TOP/BOTTOM" messages; "W" after the count message
 	"t", -- truncate file message at the start if it is too long to fit on the command-line
 	"W", --	don't give "written" or "[w]" when writing a file
 }
 
 local shortmess_remove = {
-	"T", -- Truncate other messages in the middle if they are too long to fit on the command line
 	"O", -- message for reading a file overwrites any previous message; also for quickfix message (e.g., ":cn")
+	"T", -- Truncate other messages in the middle if they are too long to fit on the command line
+	"S", --  do not show search count message when searching, e.g. "[1/5]"
 }
 
 for _, flag in ipairs(shortmess_append) do
