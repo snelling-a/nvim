@@ -7,9 +7,11 @@ vim.opt.wildignore:append({
 	"**/vendor/**",
 })
 
-vim.cmd.compiler("typescript")
+vim.cmd.compiler("tsc")
 
-vim.keymap.set("n", "<leader>tt", function()
+require("config.util").nmap("<leader>tt", function()
 	vim.cmd.make()
-	vim.cmd.redraw({ bang = true })
-end, {})
+	vim.cmd([[redraw!]])
+end, { desc = ":make tsc" })
+
+vim.opt_local.matchpairs:append({ "=:;" })
