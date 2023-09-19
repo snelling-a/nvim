@@ -23,6 +23,11 @@ M.dependencies = {
 		ft = {
 			"lua",
 		},
+		opts = {
+			library = {
+				types = false,
+			},
+		},
 	},
 	{
 		"jparise/vim-graphql",
