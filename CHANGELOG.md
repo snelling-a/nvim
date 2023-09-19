@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.25.0](https://github.com/snelling-a/nvim/compare/v5.24.0...v5.25.0) (2023-09-19)
+
+
+### Features
+
+* matchpairs ([8e6ec86](https://github.com/snelling-a/nvim/commit/8e6ec866950e817b9491c36e6cab7966c07f59bb))
+
 ## [5.24.0](https://github.com/snelling-a/nvim/compare/v5.23.5...v5.24.0) (2023-09-19)
 
 
