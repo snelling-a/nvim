@@ -1,5 +1,5 @@
-local kind_icons = require("config.ui.icons").kind_icons
-local Logger = require("config.util.logger"):new(kind_icons.Copilot .. " Copilot")
+local icon = require("config.ui.icons").kind_icons.Copilot
+local Logger = require("config.util.logger"):new(icon .. " Copilot")
 
 local function get_node_path()
 	local node = vim.fn.exepath("node")
