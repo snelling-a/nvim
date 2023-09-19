@@ -3,16 +3,20 @@ local M = {
 	"nat-418/boole.nvim",
 }
 
+local increment = "<C-a>"
+local decrement = "<C-x>"
+
 M.keys = {
 	{
-		"<C-a>",
+		increment,
 		mode = {
 			"n",
 			"v",
 		},
+		desc = "Better increment",
 	},
 	{
-		"<C-x>",
+		decrement,
 		mode = {
 			"n",
 			"v",
@@ -23,21 +27,15 @@ M.keys = {
 
 M.opts = {
 	mappings = {
-		increment = "<C-a>",
-		decrement = "<C-x>",
+		increment = increment,
+		decrement = decrement,
 	},
-	additions = {
-		{
-			"Foo",
-			"Bar",
-		},
-		{
-			"tic",
-			"tac",
-			"toe",
-		},
-	},
+	additions = {},
 	allow_caps_additions = {
+		{
+			"foo",
+			"bar",
+		},
 		{
 			"enable",
 			"disable",
