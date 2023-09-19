@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.25.3](https://github.com/snelling-a/nvim/compare/v5.25.2...v5.25.3) (2023-09-19)
+
+
+### Bug Fixes
+
+* center action keymaps ([eace026](https://github.com/snelling-a/nvim/commit/eace026d6118da30f4fc2b79c35bcd31d2dad1ff))
+
 ## [5.25.2](https://github.com/snelling-a/nvim/compare/v5.25.1...v5.25.2) (2023-09-19)
 
 
