@@ -3,7 +3,10 @@ local Util = require("config.util")
 
 local cmd = vim.cmd
 
-Util.mapL("<leader>", "``", {
+Util.mapL("<leader>", function()
+	Util.feedkeys("``")
+	Util.scroll_center()
+end, {
 	desc = "Press `,,` to jump back to the last cursor position.",
 })
 Util.mapL("/", function()

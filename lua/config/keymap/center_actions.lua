@@ -31,13 +31,18 @@ local function center_act(lhs)
 	)
 end
 
+act_center("(")
+act_center(")")
 act_center("G")
 act_center("N")
 act_center("n")
-act_center("}")
+act_center("za")
+act_center("zA")
+act_center("zj")
+act_center("zk")
+act_center("zx")
 act_center("{")
-act_center(")")
-act_center("(")
+act_center("}")
 
 center_act("<C-d>")
 center_act("<C-u>")
@@ -51,8 +56,8 @@ center_act("S")
 center_act("s")
 
 Util.map("n", "c", "zzzvc", {
-	desc = "Center screen after c",
+	desc = "Center screen before c",
 })
 Util.map("n", "C", "zzzvC", {
-	desc = "Center screen after C",
+	desc = "Center screen before C",
 })
