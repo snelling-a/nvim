@@ -209,7 +209,10 @@ M.dependencies = {
 	"zbirenbaum/copilot-cmp",
 }
 
-M.event = "BufAdd"
+M.event = {
+	"CmdlineEnter",
+	"BufAdd",
+}
 
 M.opts = {
 	enabled = enabled,
