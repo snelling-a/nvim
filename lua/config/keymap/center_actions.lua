@@ -36,8 +36,6 @@ act_center(")")
 act_center("G")
 act_center("N")
 act_center("n")
-act_center("za")
-act_center("zA")
 act_center("zj")
 act_center("zk")
 act_center("zx")
@@ -59,5 +57,11 @@ Util.map("n", "c", "zzzvc", {
 	desc = "Center screen before c",
 })
 Util.map("n", "C", "zzzvC", {
+	desc = "Center screen before C",
+})
+Util.map("n", "za", "zazz", {
+	desc = "Center screen before c",
+})
+Util.map("n", "zA", "zAzz", {
 	desc = "Center screen before C",
 })
