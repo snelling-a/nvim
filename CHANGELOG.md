@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.26.0](https://github.com/snelling-a/nvim/compare/v5.25.3...v5.26.0) (2023-09-19)
+
+
+### Features
+
+* use luacheck as compiler ([4ce465a](https://github.com/snelling-a/nvim/commit/4ce465a06597a49f5073a76377f8d4827c7c69ba))
+
 ## [5.25.3](https://github.com/snelling-a/nvim/compare/v5.25.2...v5.25.3) (2023-09-19)
 
 
