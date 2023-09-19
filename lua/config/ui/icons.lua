@@ -10,7 +10,6 @@ local elipsis = "…"
 local error = "󰅚 "
 local event = " "
 local file = " "
-local folder = " "
 local folder_open = " "
 local gears = " "
 local import = "󱀯 "
@@ -28,7 +27,6 @@ local selection = " "
 local snippet = "󰩫 "
 local trail = "·"
 local variable = "󰀫 "
-local vert = "┃"
 
 local M = {}
 
@@ -43,18 +41,23 @@ M.dap = {
 M.cmp = {
 	Copilot = copilot,
 	buffer = buffer,
+	cmdline = command_line,
 	luasnip = snippet,
+	npm = " ",
 	nvim_lsp = lsp,
+	nvim_lsp_document_symbol = lsp,
 	nvim_lsp_signature_help = lsp,
 	nvim_lua = " ",
 	path = " ",
 	treesitter = " ",
-	npm = " ",
-	nvim_lsp_document_symbol = lsp,
-	cmdline = command_line,
 }
 
-M.diagnostics = { Error = error, Hint = "󰌶 ", Info = " ", Warn = " " }
+M.diagnostics = {
+	Error = error,
+	Hint = "󰌶 ",
+	Info = " ",
+	Warn = " ",
+}
 
 M.git = {
 	added = " ",
@@ -62,11 +65,14 @@ M.git = {
 	commit = " ",
 	commit_2 = " ",
 	compare = " ",
+	diff = " ",
 	folder = " ",
 	git = "󰊢 ",
+	github = " ",
 	ignored = " ",
 	merge = " ",
 	modified = modified,
+	pull = " ",
 	removed = " ",
 	renamed = moved,
 	staged = "󰱒 ",
@@ -83,8 +89,6 @@ M.gitsigns = {
 	GitSignsUntracked = "┋",
 }
 
-M.headings = { "󰉫 ", "󰉬 ", "󰉭 ", "󰉮 ", "󰉯 ", "󰉰 " }
-
 M.file = {
 	buffer = buffer,
 	folder_empty = "󰷍 ",
@@ -98,8 +102,15 @@ M.file = {
 	unnamed = " ",
 }
 
-M.fillchars =
-	{ diff = "░", eob = " ", fold = "󰇼", foldclose = right, foldopen = down, foldsep = "│", vert = vert }
+M.fillchars = {
+	diff = "░",
+	eob = " ",
+	fold = "󰇼",
+	foldclose = right,
+	foldopen = down,
+	foldsep = "│",
+	vert = "┃",
+}
 
 M.kind_icons = {
 	Array = "󱡠 ",
@@ -121,17 +132,17 @@ M.kind_icons = {
 	Event = event,
 	Field = " ",
 	File = file,
-	Folder = folder,
+	Folder = " ",
 	ForStatement = "󰑖 ",
 	Function = "󰊕 ",
 	Identifier = variable,
 	IfStatement = "󰇉 ",
 	Interface = " ",
-	Keyword = key,
 	Key = key,
+	Keyword = key,
 	List = line,
 	Log = "󰦪 ",
-	Lsp = " ",
+	Lsp = lsp,
 	Macro = "󰁌 ",
 	MarkdownH1 = "󰉫 ",
 	MarkdownH2 = "󰉬 ",
@@ -167,37 +178,20 @@ M.kind_icons = {
 	WhileStatement = "󰑖 ",
 }
 
-M.languages = {
-	bash = "",
-	css = "",
-	dockerfile = "",
-	go = "",
-	html = "",
-	javascript = "",
-	json = "",
-	lua = "",
-	markdown = "",
-	python = "",
-	ruby = "",
-	rust = "",
-	scss = "",
-	sh = "",
-	sql = "",
-	toml = "",
-	typescript = "",
-	vim = "",
-	yaml = "",
-	zsh = "",
-}
-
 M.lazy = {
 	cmd = command_line,
 	config = gears,
 	event = event,
 	ft = buffer,
-	init = rocket,
 	import = import,
+	init = rocket,
 	keys = keyboard,
+	list = {
+		selection,
+		chevron_right,
+		"‒",
+		trail,
+	},
 	loaded = done,
 	not_loaded = pending,
 	plugin = package,
@@ -205,7 +199,6 @@ M.lazy = {
 	source = folder_open,
 	start = right,
 	task = checklist,
-	list = { selection, chevron_right, "‒", trail },
 }
 
 M.listchars = {
@@ -218,7 +211,12 @@ M.listchars = {
 	trail = trail,
 }
 
-M.location = { bottom = " ", col = "󰚉 ", line = line, top = " " }
+M.location = {
+	bottom = " ",
+	col = "󰚉 ",
+	line = line,
+	top = " ",
+}
 
 M.misc = {
 	checklist = checklist,
@@ -257,8 +255,12 @@ M.misc = {
 	wrap = "↵",
 }
 
-M.progress = { done = done, error = error, pending = pending, trash = " " }
+M.progress = {
+	done = done,
+	error = error,
+	pending = pending,
+	trash = " ",
+}
 
-M.obsidian = { health = "󱨌 ", new = " ", search = "󱙔 ", today = "󱨰 ", yesterday = "󱓩 " }
 
 return M
