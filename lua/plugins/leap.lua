@@ -1,5 +1,4 @@
 local labels = {
-	"g",
 	"m",
 	"M",
 	"z",
