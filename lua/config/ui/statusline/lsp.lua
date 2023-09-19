@@ -1,96 +1,72 @@
 local Icons = require("config.ui.icons")
 local Statusline = require("config.ui.statusline")
 
-local diagnostics = {
-	{
-		"Error",
-		Icons.diagnostics.Error,
-		"DiagnosticErrorStatus",
-	},
-	{
-		"Warn",
-		Icons.diagnostics.Warn,
-		"DiagnosticWarnStatus",
-	},
-	{
-		"Hint",
-		Icons.diagnostics.Hint,
-		"DiagnosticHintStatus",
-	},
-	{
-		"Info",
-		Icons.diagnostics.Info,
-		"DiagnosticInfoStatus",
-	},
-}
-
-local function get_diagnostics(active)
-	local status = {}
-
-	for _, attrs in ipairs(diagnostics) do
-		local n = vim.diagnostic.get(0, {
-			severity = attrs[1],
-		})
-		if #n > 0 then
-			table.insert(status, ("%s %s %d"):format(Statusline.hl(attrs[3], active), attrs[2], #n))
-		end
-	end
-
-	return status
-end
-
 local function get_lsp_names()
 	local names = {}
 	local attached = vim.lsp.get_clients({
 		bufnr = 0,
 	})
 
+	table.sort(attached, function(a, b) return a.name < b.name end)
+
 	for _, c in ipairs(attached) do
-		names[#names + 1] = c.name
+		names[#names + 1] = Icons.servers[c.name] or Icons.kind_icons.Lsp
 	end
 
-	return names
+	local fg = Statusline.get_hl("NonText").fg
+	vim.api.nvim_set_hl(0, "StatusLsp", {
+		fg = fg,
+		bg = Statusline.bg,
+	})
+
+	table.insert(names, 1, Statusline.hl("StatusLsp", true))
+	return table.concat(names, " ")
 end
 
-local function get_text(active)
-	local text = ""
-	local names = get_lsp_names()
+local function get_diagnostics()
+	local status = {}
+	for type, icon in pairs(Icons.diagnostics) do
+		local n = vim.diagnostic.get(0, {
+			severity = type,
+		})
 
-	if #names > 0 then
-		text = Statusline.hl("LspName", active) .. table.concat(names, ",")
+		if #n > 0 then
+			local highlight = Statusline.hl("StatusDiagnostic" .. type, true)
+			local ret = ("%s %s %d"):format(highlight, icon, #n)
+
+			table.insert(status, ret)
+		end
 	end
 
-	return text
+	return table.concat(status, " ")
 end
 
 local M = {}
 
-function M.hl_definitions()
-	local api = vim.api
-	local bg = Statusline.get_hl("StatusLine").bg
-
-	for _, attrs in ipairs(diagnostics) do
-		local fg = Statusline.get_hl("Diagnostic" .. attrs[1]).fg
-		api.nvim_set_hl(0, attrs[3], {
+function M.lsp_hldefs()
+	for type in pairs(Icons.diagnostics) do
+		local fg = Statusline.get_hl("Diagnostic" .. type).fg
+		vim.api.nvim_set_hl(0, "StatusDiagnostic" .. type, {
 			fg = fg,
-			bg = bg,
+			bg = Statusline.bg,
 		})
 	end
-
-	local lsp_fg = Statusline.get_hl("User8")
-
-	api.nvim_set_hl(0, "LspName", {
-		fg = lsp_fg.fg,
-		bg = bg,
-	})
 end
 
+--- @param active boolean
 function M.status(active)
-	local status = get_diagnostics(active)
+	if not active then
+		return ""
+	end
 
-	local text = get_text(active)
+	local lsp_names = get_lsp_names()
+	local lsp_status = get_diagnostics()
 
-	return text .. " " .. table.concat(status, " ")
+	return table.concat({
+		Statusline.highlight(active),
+		lsp_names,
+		lsp_status,
+	}, "")
 end
 
 return M
