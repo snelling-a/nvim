@@ -1,5 +1,18 @@
 # Changelog
 
+## [5.23.4](https://github.com/snelling-a/nvim/compare/v5.23.3...v5.23.4) (2023-09-19)
+
+
+### Bug Fixes
+
+* **cmp:** trigger load on CmdlineEnter ([e92d1d4](https://github.com/snelling-a/nvim/commit/e92d1d4412ee98e6907df64bab0e867f4eec2d65))
+
+
+### Miscellaneous
+
+* update AverageDark colorscheme ([a1b55c6](https://github.com/snelling-a/nvim/commit/a1b55c6f35bebd5bab266cefafa0e1af0131a382))
+* update plugins ([61506f5](https://github.com/snelling-a/nvim/commit/61506f55d12f3cae934b58569289acee29918acb))
+
 ## [5.23.3](https://github.com/snelling-a/nvim/compare/v5.23.2...v5.23.3) (2023-09-18)
 
 
