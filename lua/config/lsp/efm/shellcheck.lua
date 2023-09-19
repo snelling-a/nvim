@@ -1,6 +1,7 @@
 local args = {
 	"--color=never",
 	"--format=gcc",
+	"--external-sources",
 	"-",
 }
 
