@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.25.2](https://github.com/snelling-a/nvim/compare/v5.25.1...v5.25.2) (2023-09-19)
+
+
+### Bug Fixes
+
+* remove 'g' from leap lables ([c4d9b37](https://github.com/snelling-a/nvim/commit/c4d9b373c77340a0d7b54c10e3a868bbd01c53df))
+
 ## [5.25.1](https://github.com/snelling-a/nvim/compare/v5.25.0...v5.25.1) (2023-09-19)
 
 
