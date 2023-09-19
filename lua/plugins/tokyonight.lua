@@ -10,7 +10,6 @@ M.cmd = "GenerateAverageColor"
 M.opts = {
 	style = "night",
 	dim_inactive = true,
-	lualine_bold = false,
 }
 
 -- M.priority = 1000
