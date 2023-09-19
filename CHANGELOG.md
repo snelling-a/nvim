@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.24.0](https://github.com/snelling-a/nvim/compare/v5.23.5...v5.24.0) (2023-09-19)
+
+
+### Features
+
+* improve keymaps ([11f3102](https://github.com/snelling-a/nvim/commit/11f3102d2947c75b5a507f42dd7d9575645842d6))
+
 ## [5.23.5](https://github.com/snelling-a/nvim/compare/v5.23.4...v5.23.5) (2023-09-19)
 
 
