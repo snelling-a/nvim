@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.23.5](https://github.com/snelling-a/nvim/compare/v5.23.4...v5.23.5) (2023-09-19)
+
+
+### Bug Fixes
+
+* shellcheck external-sources ([f781610](https://github.com/snelling-a/nvim/commit/f781610ddbc9c9b41cd8280e500dfa547c0794b9))
+
 ## [5.23.4](https://github.com/snelling-a/nvim/compare/v5.23.3...v5.23.4) (2023-09-19)
 
 
