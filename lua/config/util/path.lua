@@ -21,7 +21,7 @@ function M.concat(path_components) return table.concat(path_components, M.get_se
 --- Path to all LSP server configurations
 --- macos: `~/.config/nvim/lua/config/lsp/server`
 M.lsp_servers = M.concat({
-	---@diagnostic disable-next-line: assign-type-mismatch
+	--- @diagnostic disable-next-line: assign-type-mismatch
 	vim.fn.stdpath("config"),
 	"lua",
 	"config",
@@ -32,7 +32,7 @@ M.lsp_servers = M.concat({
 --- Path to all EFM linters/formatters
 --- macos: `~/.config/nvim/lua/config/lsp/efm`
 M.linters_formatters = M.concat({
-	---@diagnostic disable-next-line: assign-type-mismatch
+	--- @diagnostic disable-next-line: assign-type-mismatch
 	vim.fn.stdpath("config"),
 	"lua",
 	"config",

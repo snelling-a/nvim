@@ -102,7 +102,7 @@ local function peek_definition()
 		pcall(api.nvim_win_hide, float_win)
 	end
 	if vim.tbl_contains(api.nvim_list_wins(), float_win) then
-		---@diagnostic disable-next-line: param-type-mismatch
+		--- @diagnostic disable-next-line: param-type-mismatch
 		api.nvim_set_current_win(float_win)
 	else
 		local params = lsp.util.make_position_params()

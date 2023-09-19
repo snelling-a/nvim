@@ -11,7 +11,7 @@ M.dependencies = {
 	"ggandor/leap.nvim",
 }
 
----@diagnostic disable-next-line: assign-type-mismatch
+--- @diagnostic disable-next-line: assign-type-mismatch
 function M.keys(_, _)
 	local keys = {}
 
