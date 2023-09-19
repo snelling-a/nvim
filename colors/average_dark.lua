@@ -1,6 +1,8 @@
 -- Made with 'mini.colors' module of https://github.com/echasnovski/mini.nvim
 
-if vim.g.colors_name ~= nil then vim.cmd('highlight clear') end
+if vim.g.colors_name ~= nil then
+	vim.cmd("highlight clear")
+end
 vim.g.colors_name = "average_dark"
 
 -- Highlight groups
@@ -15,6 +17,12 @@ hi(0, "@string.escape", { ctermfg = 145, fg = "#a7afc2" })
 hi(0, "@variable", { ctermfg = 188, fg = "#d5d7de" })
 hi(0, "@variable.builtin", { ctermfg = 174, fg = "#e07993" })
 hi(0, "Character", { ctermfg = 144, fg = "#a7b586" })
+hi(0, "CmpItemAbbrDefault", { ctermfg = 252, fg = "#cdd0d7" })
+hi(0, "CmpItemAbbrDeprecatedDefault", { ctermfg = 242, fg = "#696e7b" })
+hi(0, "CmpItemAbbrMatchDefault", { ctermfg = 252, fg = "#cdd0d7" })
+hi(0, "CmpItemAbbrMatchFuzzyDefault", { ctermfg = 252, fg = "#cdd0d7" })
+hi(0, "CmpItemKindDefault", { ctermfg = 249, fg = "#afb6c1" })
+hi(0, "CmpItemMenuDefault", { ctermfg = 252, fg = "#cdd0d7" })
 hi(0, "ColorColumn", { bg = "#252830", ctermbg = 235 })
 hi(0, "Comment", { ctermfg = 242, fg = "#696e7b" })
 hi(0, "Constant", { ctermfg = 180, fg = "#ddb9a1" })
@@ -34,8 +42,18 @@ hi(0, "Error", { ctermfg = 168, fg = "#de6387" })
 hi(0, "FoldColumn", { ctermfg = 243, fg = "#717581" })
 hi(0, "Folded", { ctermfg = 244, fg = "#78818f" })
 hi(0, "Function", { ctermfg = 110, fg = "#90b6e7" })
+hi(0, "GitSignsStagedAdd", { ctermfg = 23, fg = "#435a3f" })
+hi(0, "GitSignsStagedAddNr", { ctermfg = 23, fg = "#435a3f" })
+hi(0, "GitSignsStagedDelete", { ctermfg = 238, fg = "#6d2e3a" })
+hi(0, "GitSignsStagedDeleteNr", { ctermfg = 238, fg = "#6d2e3a" })
+hi(0, "GitSignsStagedTopdelete", { ctermfg = 238, fg = "#6d2e3a" })
+hi(0, "GitSignsStagedTopdeleteNr", { ctermfg = 238, fg = "#6d2e3a" })
 hi(0, "Identifier", { ctermfg = 249, fg = "#b6b3b4" })
 hi(0, "Keyword", { ctermfg = 140, fg = "#b08ad2" })
+hi(0, "LeapLabelPrimary", { ctermfg = 233, fg = "#161616" })
+hi(0, "LeapLabelSecondary", { ctermfg = 233, fg = "#161616" })
+hi(0, "LeapLabelSelected", { bg = "#ff00ff", ctermbg = 201, ctermfg = 16, fg = "#000000", nocombine = true })
+hi(0, "LeapMatch", { ctermfg = 223, fg = "#e9deb0" })
 hi(0, "LineNr", { ctermfg = 242, fg = "#696e7a" })
 hi(0, "LspReferenceRead", { bg = "#3c4252", ctermbg = 238 })
 hi(0, "LspReferenceText", { bg = "#3c4252", ctermbg = 238 })
@@ -52,8 +70,13 @@ hi(0, "SignColumn", { ctermfg = 244, fg = "#7c818d" })
 hi(0, "Special", { ctermfg = 249, fg = "#afb6c1" })
 hi(0, "SpecialKey", { ctermfg = 59, fg = "#585e6a" })
 hi(0, "Statement", { ctermfg = 140, fg = "#ae8ad9" })
+hi(0, "StatusBlue", { bg = "#383838", ctermbg = 237, ctermfg = 146, fg = "#9ab7d0" })
+hi(0, "StatusCyan", { bg = "#383838", ctermbg = 237, ctermfg = 243, fg = "#717581" })
+hi(0, "StatusGreen", { bg = "#383838", ctermbg = 237 })
 hi(0, "StatusLine", { bg = "#161922", ctermbg = 234, ctermfg = 250, fg = "#b4b8c2" })
 hi(0, "StatusLineNC", { ctermfg = 243, fg = "#717581" })
+hi(0, "StatusMagenta", { bg = "#383838", ctermbg = 237 })
+hi(0, "StatusRed", { bg = "#383838", ctermbg = 237 })
 hi(0, "String", { ctermfg = 144, fg = "#9eb87f" })
 hi(0, "Substitute", { bg = "#eb6e85", ctermbg = 204, ctermfg = 235, fg = "#23262d" })
 hi(0, "TabLine", { ctermfg = 248, fg = "#a3a8b2" })
@@ -71,16 +94,16 @@ local g = vim.g
 g.terminal_color_0 = "#191c23"
 g.terminal_color_1 = "#ddb9a1"
 g.terminal_color_2 = "#9eb87f"
-g.terminal_color_3 = "#e1ae69"
+g.terminal_color_3 = "#e9deb0"
 g.terminal_color_4 = "#d4d7de"
-g.terminal_color_5 = "#c89cd0"
+g.terminal_color_5 = "#ff00ff"
 g.terminal_color_6 = "#90c3d1"
 g.terminal_color_7 = "#d4d7de"
 g.terminal_color_8 = "#191c23"
 g.terminal_color_9 = "#ddb9a1"
 g.terminal_color_10 = "#9eb87f"
-g.terminal_color_11 = "#e1ae69"
+g.terminal_color_11 = "#e9deb0"
 g.terminal_color_12 = "#d4d7de"
-g.terminal_color_13 = "#c89cd0"
+g.terminal_color_13 = "#ff00ff"
 g.terminal_color_14 = "#90c3d1"
 g.terminal_color_15 = "#d4d7de"

@@ -1,17 +1,44 @@
-local command = vim.api.nvim_create_user_command
-local api = vim.api
-local cmd = vim.cmd
+local Util = require("config.util")
 
-command("SpellCheck", function(ctx)
+local user_command = vim.api.nvim_create_user_command
+
+--- Create a user command when the command is called
+--- see |CmdUndefined|
+--- @param name string name of the command
+--- @param command fun(ctx?: Context)
+--- @param desc string description passed to |vim.api.nvim_create_autocmd| and |vim.api.nvim_create_user_command|
+--- @param opts? table opts for |vim.api.nvim_create_user_command|
+--- @param once? boolean
+local function define_and_call_user_command(name, command, desc, opts, once)
+	opts = Util.tbl_extend_force(opts or {}, {
+		desc = desc,
+	})
+
+	vim.api.nvim_create_autocmd({
+		"CmdUndefined",
+	}, {
+		callback = function() user_command(name, command, opts) end,
+		desc = desc,
+		group = Util.augroup(name),
+		pattern = {
+			name,
+		},
+		once = once,
+	})
+end
+
+--- @param ctx Context
+local function spell_check(ctx)
 	local target = #ctx.fargs > 0 and table.concat(ctx.fargs) or "**"
 
 	if target == "%" then
-		--- @diagnostic disable-next-line: cast-local-type
-		target = vim.fn.expand(target)
+		target = vim.fn.expand(target) --[[@as string]]
 	end
 
 	os.execute("cspell --unique --words-only --gitignore " .. target .. " | sort > z_spell.txt")
-end, {
+end
+
+define_and_call_user_command("SpellCheck", spell_check, "Check spelling", {
 	complete = function()
 		return {
 			"**",
@@ -22,60 +49,80 @@ end, {
 	nargs = "?",
 })
 
-command("ColorMyPencils", function()
-	local normal = api.nvim_get_hl(0, {
+local function color_my_pencils()
+	local get_hl = vim.api.nvim_get_hl
+	local set_hl = vim.api.nvim_set_hl
+	local normal = get_hl(0, {
 		name = "Normal",
 	})
-	local normal_float = api.nvim_get_hl(0, {
+	local normal_float = get_hl(0, {
 		name = "NormalFloat",
 	})
 
 	if vim.tbl_get(normal_float, "bg") or vim.tbl_get(normal, "bg") then
-		api.nvim_set_hl(0, "Normal", {
+		set_hl(0, "Normal", {
 			bg = "none",
 		})
-		api.nvim_set_hl(0, "NormalFloat", {
+		set_hl(0, "NormalFloat", {
 			bg = "none",
 		})
 	else
-		cmd.colorscheme(vim.g.colors_name)
+		vim.cmd.colorscheme(vim.g.colors_name)
 	end
-end, {
-	desc = "Toggle transparent background",
-})
+end
 
-command("GenerateAverageColor", function()
+define_and_call_user_command("ColorMyPencils", color_my_pencils, "Toggle transparent background")
+
+--- @param ctx Context
+local function generate_average_color(ctx)
 	require("config.ui.average-colorscheme")
 
-	vim.cmd.colorschem("average_dark")
-end, {})
+	local path = ("%s/colors/average_dark.lua"):format(vim.fn.stdpath("config"), "colors/average_dark.lua")
+	local command = ("stylua %s"):format(path)
 
-local function trim_space_preview(opts, preview_ns, preview_buf)
+	os.execute(command)
+
+	if ctx.fargs[1] == "true" then
+		vim.cmd([[colorscheme average_dark]])
+	end
+end
+
+user_command("GenerateAverageColor", generate_average_color, {
+	desc = "Generate Average Dark Colorscheme",
+	complete = function()
+		return {
+			true,
+			false,
+		}
+	end,
+	nargs = "?",
+})
+
+--- @param opts Opts
+--- @param ns number preview namespace id for highlights
+--- @param buf integer buffer that your preview routine will directly modify to show the previewed results
+local function trim_space_preview(opts, ns, buf)
 	vim.cmd([[hi clear Whitespace]])
 	local line1 = opts.line1
-	local line2 = opts.line2
-	local buf = vim.api.nvim_get_current_buf()
-	local lines = vim.api.nvim_buf_get_lines(buf, line1 - 1, line2, false)
+	local line2 = opts.line2 --[[@as number]]
+
+	local current_buf = vim.api.nvim_get_current_buf()
+	local lines = vim.api.nvim_buf_get_lines(current_buf, line1 - 1, line2, false)
 	local preview_buf_line = 0
+	local buf_add_highlight = vim.api.nvim_buf_add_highlight
+
 	for i, line in ipairs(lines) do
 		local start_idx, end_idx = string.find(line, "%s+$")
 		if start_idx then
 			-- Highlight the match
-			vim.api.nvim_buf_add_highlight(buf, preview_ns, "Substitute", line1 + i - 2, start_idx - 1, end_idx or 0)
+			buf_add_highlight(current_buf, ns, "Substitute", line1 + i - 2, start_idx - 1, end_idx or 0)
 			-- Add lines and set highlights in the preview buffer if inccommand=split
-			if preview_buf then
+			if buf then
 				local prefix = string.format("|%d| ", line1 + i - 1)
-				vim.api.nvim_buf_set_lines(preview_buf, preview_buf_line, preview_buf_line, false, {
+				vim.api.nvim_buf_set_lines(buf, preview_buf_line, preview_buf_line, false, {
 					prefix .. line,
 				})
-				vim.api.nvim_buf_add_highlight(
-					preview_buf,
-					preview_ns,
-					"Substitute",
-					preview_buf_line,
-					#prefix + start_idx - 1,
-					#prefix + end_idx
-				)
+				buf_add_highlight(buf, ns, "Substitute", preview_buf_line, #prefix + start_idx - 1, #prefix + end_idx)
 				preview_buf_line = preview_buf_line + 1
 			end
 		end
@@ -84,9 +131,10 @@ local function trim_space_preview(opts, preview_ns, preview_buf)
 	return 2
 end
 
-local function trim_space(opts)
-	local line1 = opts.line1
-	local line2 = opts.line2
+--- @param ctx Context
+local function trim_space(ctx)
+	local line1 = ctx.line1
+	local line2 = ctx.line2 --[[@as number]]
 	local buf = vim.api.nvim_get_current_buf()
 	local lines = vim.api.nvim_buf_get_lines(buf, line1 - 1, line2, false)
 	local new_lines = {}
@@ -98,12 +146,12 @@ local function trim_space(opts)
 	vim.api.nvim_buf_set_lines(buf, line1 - 1, line2, false, new_lines)
 end
 
-command("TrimAllTrailingWhitespace", trim_space, {
+user_command("TrimAllTrailingWhitespace", trim_space, {
 	desc = "Strip whitespace from the end of the line",
 	range = "%",
 })
 
-command("TrimTrailingWhitespace", trim_space, {
+user_command("TrimTrailingWhitespace", trim_space, {
 	addr = "lines",
 	nargs = "?",
 	preview = trim_space_preview,
