@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.25.1](https://github.com/snelling-a/nvim/compare/v5.25.0...v5.25.1) (2023-09-19)
+
+
+### Bug Fixes
+
+* shortmess/showmode ([5cf6957](https://github.com/snelling-a/nvim/commit/5cf69577554140cb724ec36d783d566e5ab19bf4))
+
 ## [5.25.0](https://github.com/snelling-a/nvim/compare/v5.24.0...v5.25.0) (2023-09-19)
 
 
