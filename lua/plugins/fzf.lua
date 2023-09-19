@@ -80,7 +80,6 @@ M.opts = {
 	},
 	colorschemes = {
 		live_preview = true,
-		post_reset_cb = function() require("feline").reset_highlights() end,
 		prompt = get_prompt(Icons.misc.color),
 	},
 	commands = {
