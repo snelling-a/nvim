@@ -51,6 +51,7 @@ function M.setup(opts)
 	opts.settings = settings
 
 	require("lspconfig").lua_ls.setup(opts)
+
 	vim.api.nvim_create_user_command("FormatLua", function()
 		vim.api.nvim_exec2(
 			[[

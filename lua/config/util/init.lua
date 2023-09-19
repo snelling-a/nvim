@@ -103,7 +103,6 @@ end
 --- Wrapper for |zz| (to scroll center) and |zv| (to open fold) keymaps
 function M.scroll_center()
 	M.feedkeys("zz")
-
 	M.feedkeys("zv")
 end
 
