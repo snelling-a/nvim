@@ -1,5 +1,3 @@
-local vault_directory = os.getenv("NOTES") or os.getenv("HOME") .. "/notes"
-
 local M = {}
 
 M.dev_dir = os.getenv("DEV") or (os.getenv("HOME") .. "/dev/github.com/")
@@ -38,7 +36,5 @@ M.no_format = {
 	"Trouble",
 	"undotree",
 }
-
-M.obsidian = { vault_directory = vault_directory, is_vault_directory = vim.loop.cwd() == vault_directory }
 
 return M
