@@ -39,6 +39,21 @@ Util.mapL("g", function()
 end, {
 	desc = "[Q]uit all windows",
 })
+Util.mapL("rr", function()
+	vim.api.nvim_exec2(
+		[[
+        wall!
+        cquit
+    ]],
+		{
+			output = false,
+		}
+	)
+end, {
+	noremap = true,
+	silent = true,
+	desc = "Exit with error code 1",
+})
 Util.mapL("w", function()
 	local wrap = Util.get_opt_local("wrap")
 
