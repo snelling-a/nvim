@@ -1,1 +1,4 @@
-require("config.util").ftdetect({ "known_hosts" }, "sshknownhosts")
+require("config.util").ftdetect({
+	"known_hosts",
+}, "sshknownhosts")
+

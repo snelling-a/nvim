@@ -1,1 +1,7 @@
-require("config.util").ftdetect({ "conf", "*.conf", "config", "*.config" }, "conf")
+require("config.util").ftdetect({
+	"conf",
+	"*.conf",
+	"config",
+	"*.config",
+}, "conf")
+
