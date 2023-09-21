@@ -20,7 +20,6 @@ Util.mapL("e", function()
 		args = {
 			"%",
 		},
-		-- bang = true,
 	})
 end, {
 	desc = "Go to matching bracket",
