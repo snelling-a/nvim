@@ -1,4 +1,3 @@
-local api = vim.api
 local Git = vim.cmd.Git
 
 local function set_fugitive_keymaps()
@@ -8,7 +7,7 @@ local function set_fugitive_keymaps()
 
 	local fzf = require("fzf-lua")
 
-	local bufnr = api.nvim_get_current_buf()
+	local bufnr = vim.api.nvim_get_current_buf()
 
 	local function mapLeader(lhs, rhs, desc)
 		return require("config.util").mapL(lhs, rhs, {
@@ -53,7 +52,7 @@ M.keys = {
 }
 
 function M.config()
-	api.nvim_create_autocmd("BufWinEnter", {
+	vim.api.nvim_create_autocmd("BufWinEnter", {
 		callback = function() set_fugitive_keymaps() end,
 		desc = "Set fugitive keymaps",
 		group = require("config.util").augroup("Fugitive"),

@@ -1,7 +1,7 @@
-local icon = require("config.ui.icons").kind_icons.Copilot
-local Logger = require("config.util.logger"):new(icon .. " Copilot")
-
 local function get_node_path()
+	local icon = require("config.ui.icons").kind_icons.Copilot
+	local Logger = require("config.util.logger"):new(icon .. " Copilot")
+
 	local node = vim.fn.exepath("node")
 
 	if not node then
@@ -17,7 +17,7 @@ local M = {
 	"zbirenbaum/copilot.lua",
 }
 
-M.cond = not vim.g.vscode
+M.cond = require("config.util").is_vim()
 
 M.build = ":Copilot auth"
 
