@@ -1,5 +1,18 @@
 # Changelog
 
+## [5.28.0](https://github.com/snelling-a/nvim/compare/v5.27.0...v5.28.0) (2023-09-21)
+
+
+### Features
+
+* keymap for neodev.sh ([a8b85d7](https://github.com/snelling-a/nvim/commit/a8b85d76c020effd0bcada7be1f5ec3298ee6077))
+
+
+### Miscellaneous
+
+* update AverageDark colorscheme ([bf10aa5](https://github.com/snelling-a/nvim/commit/bf10aa58dbb5647633fe3e19f1face1e10903506))
+* update plugins ([185123c](https://github.com/snelling-a/nvim/commit/185123cddfc144767fab8df5b748a7a6718b3a9c))
+
 ## [5.27.0](https://github.com/snelling-a/nvim/compare/v5.26.0...v5.27.0) (2023-09-19)
 
 
