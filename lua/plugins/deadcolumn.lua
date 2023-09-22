@@ -9,14 +9,10 @@ M.event = {
 
 M.opts = {
 	blending = {
-		hlgroup = {
-			"ColorColumn",
-			"background",
-		},
-		threshold = 0,
+		threshold = 0.90,
 	},
 	warning = {
-		colorcode = vim.g.base08,
+		offset = 5,
 	},
 }
 
