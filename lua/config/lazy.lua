@@ -27,6 +27,7 @@ require("lazy").setup({
 			"habamax",
 		},
 	},
+	lazy = true,
 	performance = {
 		rtp = {
 			disabled_plugins = {
