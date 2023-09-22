@@ -35,7 +35,10 @@ M.dependencies = {
 	},
 }
 
-M.event = "BufAdd"
+M.event = {
+	"BufAdd",
+	"SessionLoadPost",
+}
 
 function M.config()
 	require("lspconfig.ui.windows").default_options.border = "rounded"

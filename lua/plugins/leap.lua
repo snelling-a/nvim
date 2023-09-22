@@ -10,9 +10,7 @@ local M = {
 	"ggandor/leap.nvim",
 }
 
-M.event = {
-	"BufAdd",
-}
+M.event = require("config.util.constants").lazy_event
 
 M.opts = {
 	labels = labels,

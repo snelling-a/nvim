@@ -9,8 +9,6 @@ M.dependencies = {
 	"nvim-lua/plenary.nvim",
 }
 
-M.event = {
-	"BufAdd",
-}
+M.event = require("config.util.constants").lazy_event
 
 return M

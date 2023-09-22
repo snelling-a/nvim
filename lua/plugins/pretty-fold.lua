@@ -22,6 +22,7 @@ M.dependencies = {
 M.opts = {
 	keep_indentation = false,
 	fill_char = "━",
+	ft_ignore = require("config.util.constants").no_format,
 	sections = {
 		left = {
 			"━ ",

@@ -21,9 +21,7 @@ M.cond = require("config.util").is_vim()
 
 M.build = ":Copilot auth"
 
-M.event = {
-	"BufAdd",
-}
+M.event = require("config.util.constants").lazy_event
 
 M.dependencies = {
 	{

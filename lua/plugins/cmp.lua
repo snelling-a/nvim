@@ -208,8 +208,9 @@ M.dependencies = {
 }
 
 M.event = {
-	"CmdlineEnter",
 	"BufAdd",
+	"SessionLoadPost",
+	"CmdlineEnter",
 }
 
 M.opts = {

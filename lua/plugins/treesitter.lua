@@ -97,9 +97,7 @@ M.dependencies = {
 	},
 }
 
-M.event = {
-	"BufAdd",
-}
+M.event = require("config.util.constants").lazy_event
 
 M.opts = {
 	auto_install = true,

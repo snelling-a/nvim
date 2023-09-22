@@ -3,14 +3,14 @@ local M = {
 	"pmizio/typescript-tools.nvim",
 }
 
-M.event = {
-	"BufAdd",
-}
+M.event = require("config.util.constants").lazy_event
 
 M.dependencies = {
 	"nvim-lua/plenary.nvim",
 	"neovim/nvim-lspconfig",
 }
+
+M.ft = require("config.util.constants").javascript_typescript
 
 M.opts = {
 	on_attach = require("config.lsp").on_attach,

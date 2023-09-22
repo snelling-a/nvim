@@ -3,10 +3,8 @@ local M = {
 	"echasnovski/mini.indentscope",
 }
 
-M.event = {
-	"BufNewFile",
-	"BufReadPre",
-}
+
+M.event = require("config.util.constants").lazy_event
 
 M.lazy = true
 

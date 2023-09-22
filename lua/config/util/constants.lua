@@ -4,6 +4,11 @@ M.dev_dir = os.getenv("DEV") or (os.getenv("HOME") .. "/dev/github.com/")
 
 M.javascript_typescript = { "javascript", "javascriptreact", "typescript", "typescriptreact" }
 
+M.lazy_event = {
+	"BufAdd",
+	"SessionLoadPost",
+}
+
 M.no_format = {
 	"alpha",
 	"checkhealth",
@@ -30,7 +35,6 @@ M.no_format = {
 	"packer",
 	"pr",
 	"qf",
-	"spectre_panel",
 	"starter",
 	"toggleterm",
 	"Trouble",

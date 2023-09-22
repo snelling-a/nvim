@@ -3,12 +3,8 @@ local M = {
 	"kylechui/nvim-surround",
 }
 
-M.config = true
-
 M.event = {
-	"BufRead",
+	"InsertEnter",
 }
-
-M.version = "*"
 
 return M

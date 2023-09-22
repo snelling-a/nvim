@@ -3,9 +3,7 @@ local M = {
 	"Bekaboo/deadcolumn.nvim",
 }
 
-M.event = {
-	"BufAdd",
-}
+M.event = require("config.util.constants").lazy_event
 
 M.opts = {
 	blending = {
