@@ -28,12 +28,6 @@ opt.gdefault = true
 opt.grepprg = "rg --hidden --vimgrep --smart-case"
 opt.ignorecase = true
 opt.isfname:append("@-@")
-opt.matchpairs:append({
-	"':'",
-	"<:>",
-	"`:`",
-	'":"',
-})
 opt.modelines = 1
 opt.mouse = "a"
 opt.path:append("**")
