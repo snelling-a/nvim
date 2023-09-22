@@ -3,7 +3,9 @@ local M = {
 	"navarasu/onedark.nvim",
 }
 
-M.cmd = "GenerateAverageColor"
+M.cmd = {
+	"GenerateAverageColor",
+}
 
 -- M.lazy = false
 

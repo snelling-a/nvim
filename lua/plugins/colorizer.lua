@@ -3,7 +3,9 @@ local M = {
 	"NvChad/nvim-colorizer.lua",
 }
 
-M.event = "BufAdd"
+M.event = {
+	"BufAdd",
+}
 
 M.opts = {
 	buftypes = require("config.util").no_format,

@@ -5,7 +5,9 @@ local M = {
 	"simrat39/symbols-outline.nvim",
 }
 
-M.cmd = "SymbolsOutline"
+M.cmd = {
+	"SymbolsOutline",
+}
 
 local function get_symbols()
 	local symbols = {}

@@ -3,7 +3,9 @@ local M = {
 	"kevinhwang91/nvim-bqf",
 }
 
-M.ft = "qf"
+M.ft = {
+	"qf",
+}
 
 M.opts = {
 	filter = {

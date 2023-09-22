@@ -33,6 +33,7 @@ local function set_fugitive_keymaps()
 	mapLeader("gst", fzf.git_stash, "View [g]it [st]ash")
 end
 
+--- @type LazySpec
 local M = {
 	"tpope/vim-fugitive",
 }
@@ -44,6 +45,7 @@ M.cmd = {
 }
 
 M.keys = {
+	---@diagnostic disable-next-line: missing-fields
 	{
 		"<leader>gs",
 		Git,

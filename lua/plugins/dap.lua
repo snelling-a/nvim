@@ -1,7 +1,9 @@
 local icons = require("config.ui.icons").dap
 
 --- @type LazySpec
-local M = { "mfussenegger/nvim-dap" }
+local M = {
+	"mfussenegger/nvim-dap",
+}
 
 M.dependencies = {
 	"rcarriga/nvim-dap-ui",

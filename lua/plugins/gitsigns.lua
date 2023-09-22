@@ -171,8 +171,8 @@ local M = {
 }
 
 M.event = {
+    "BufNewFile",
 	"BufReadPre",
-	"BufNewFile",
 }
 
 M.opts = {

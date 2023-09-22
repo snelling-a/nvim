@@ -10,7 +10,9 @@ local M = {
 	"ggandor/leap.nvim",
 }
 
-M.event = "BufAdd"
+M.event = {
+	"BufAdd",
+}
 
 M.opts = {
 	labels = labels,

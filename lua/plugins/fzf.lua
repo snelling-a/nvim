@@ -8,58 +8,70 @@ local M = {
 	"ibhagwan/fzf-lua",
 }
 
-M.cmd = "FzfLua"
+M.cmd = {
+	"FzfLua",
+}
 
 M.dependencies = {
 	"nvim-tree/nvim-web-devicons",
 }
 
 M.keys = {
+	---@diagnostic disable-next-line: missing-fields
 	{
 		"<C-p>",
 		function() require("fzf-lua").files() end,
 		desc = "Open [p]roject files",
 	},
+	---@diagnostic disable-next-line: missing-fields
 	{
 		"<C-r>",
 		function() require("fzf-lua").live_grep() end,
 		desc = "[R]un live grep",
 	},
+	---@diagnostic disable-next-line: missing-fields
 	{
 		"<leader><space>",
 		function() require("fzf-lua").builtin() end,
 		desc = "Open builtins",
 	},
+	---@diagnostic disable-next-line: missing-fields
 	{
 		"<leader><tab>",
 		function() require("fzf-lua").keymaps() end,
 		desc = "Show keymaps",
 	},
+	---@diagnostic disable-next-line: missing-fields
 	{
 		"<leader>b",
 		function() require("fzf-lua").buffers() end,
 		desc = "Show [b]uffers",
 	},
+	---@diagnostic disable-next-line: missing-fields
 	{
 		"<leader>fh",
 		function() require("fzf-lua").help_tags() end,
 		desc = "[H]elp",
 	},
+	---@diagnostic disable-next-line: missing-fields
 	{
 		"<leader>fr",
 		function() require("fzf-lua").lsp_finder() end,
 		desc = "All lsp locations combined",
 	},
+	---@diagnostic disable-next-line: missing-fields
 	{
 		"<leader>qf",
 		function() require("fzf-lua").quickfix() end,
 		desc = "[Q]uick [F]ix menu",
 	},
+	---@diagnostic disable-next-line: missing-fields
 	{
 		"?",
 		function() require("fzf-lua").blines() end,
 		desc = "Search current buffer",
 	},
+	---@diagnostic disable-next-line: missing-fields
 	{
 		'""',
 		function() require("fzf-lua").registers() end,

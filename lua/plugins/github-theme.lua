@@ -3,7 +3,9 @@ local M = {
 	"projekt0n/github-nvim-theme",
 }
 
-M.cmd = "GenerateAverageColor"
+M.cmd = {
+	"GenerateAverageColor",
+}
 
 -- M.lazy = false
 

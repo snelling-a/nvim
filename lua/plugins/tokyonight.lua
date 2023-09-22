@@ -3,7 +3,9 @@ local M = {
 	"folke/tokyonight.nvim",
 }
 
-M.cmd = "GenerateAverageColor"
+M.cmd = {
+	"GenerateAverageColor",
+}
 
 -- M.lazy = false
 

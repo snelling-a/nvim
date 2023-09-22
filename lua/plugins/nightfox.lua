@@ -3,7 +3,9 @@ local M = {
 	"EdenEast/nightfox.nvim",
 }
 
-M.cmd = "GenerateAverageColor"
+M.cmd = {
+	"GenerateAverageColor",
+}
 
 -- M.lazy = false
 

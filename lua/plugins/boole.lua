@@ -6,7 +6,12 @@ local M = {
 local increment = "<C-a>"
 local decrement = "<C-x>"
 
+M.event = {
+	"BufAdd",
+}
+
 M.keys = {
+	---@diagnostic disable-next-line: missing-fields
 	{
 		increment,
 		mode = {
@@ -15,6 +20,7 @@ M.keys = {
 		},
 		desc = "Better increment",
 	},
+	---@diagnostic disable-next-line: missing-fields
 	{
 		decrement,
 		mode = {

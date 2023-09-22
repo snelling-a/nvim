@@ -5,7 +5,9 @@ local M = {
 
 M.config = true
 
-M.event = "BufRead"
+M.event = {
+	"BufRead",
+}
 
 M.version = "*"
 

@@ -2,7 +2,9 @@ local M = {
 	"rose-pine/neovim",
 }
 
-M.cmd = "GenerateAverageColor"
+M.cmd = {
+	"GenerateAverageColor",
+}
 
 -- M.lazy = false
 

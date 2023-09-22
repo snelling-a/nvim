@@ -3,7 +3,9 @@ local M = {
 	"ldelossa/gh.nvim",
 }
 
-M.cmd = "GH"
+M.cmd = {
+	"GH",
+}
 
 M.dependencies = {
 	"ibhagwan/fzf-lua",

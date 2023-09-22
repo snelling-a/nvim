@@ -3,7 +3,9 @@ local M = {
 	"catppuccin/nvim",
 }
 
-M.cmd = "GenerateAverageColor"
+M.cmd = {
+	"GenerateAverageColor",
+}
 
 -- M.lazy = false
 
@@ -22,10 +24,18 @@ M.opts = {
 		native_lsp = {
 			enabled = true,
 			underlines = {
-				errors = { "undercurl" },
-				hints = { "undercurl" },
-				warnings = { "undercurl" },
-				information = { "undercurl" },
+				errors = {
+					"undercurl",
+				},
+				hints = {
+					"undercurl",
+				},
+				warnings = {
+					"undercurl",
+				},
+				information = {
+					"undercurl",
+				},
 			},
 			inlay_hints = {
 				background = false,

@@ -3,7 +3,9 @@ local M = {
 	"Bekaboo/deadcolumn.nvim",
 }
 
-M.event = "BufAdd"
+M.event = {
+	"BufAdd",
+}
 
 M.opts = {
 	blending = {

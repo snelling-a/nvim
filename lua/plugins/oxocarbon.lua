@@ -3,7 +3,9 @@ local M = {
 	"nyoom-engineering/oxocarbon.nvim",
 }
 
-M.cmd = "GenerateAverageColor"
+M.cmd = {
+	"GenerateAverageColor",
+}
 
 -- M.lazy = false
 

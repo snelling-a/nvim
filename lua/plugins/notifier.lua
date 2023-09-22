@@ -3,6 +3,10 @@ local M = {
 	"vigoux/notifier.nvim",
 }
 
+M.event = {
+	"VeryLazy",
+}
+
 M.opts = {
 	ignore_messages = {},
 	components = {

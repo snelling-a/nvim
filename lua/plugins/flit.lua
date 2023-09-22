@@ -12,7 +12,7 @@ M.dependencies = {
 }
 
 --- @diagnostic disable-next-line: assign-type-mismatch
-function M.keys(_, _)
+function M.keys()
 	local keys = {}
 
 	for _, key in ipairs({
