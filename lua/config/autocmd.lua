@@ -73,7 +73,7 @@ autocmd({ "BufEnter", "FileType" }, {
 })
 
 autocmd({ "TextYankPost" }, {
-	callback = function() vim.highlight.on_yank({ higroup = "IncSearch", timeout = 40 }) end,
+	callback = function() vim.highlight.on_yank({ higroup = "Search", timeout = 40 }) end,
 	desc = "Highlight yanked text",
 	group = augroup("HighlightOnYank"),
 	pattern = "*",
