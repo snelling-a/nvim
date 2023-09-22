@@ -24,7 +24,7 @@ autocmd({ "FileType" }, {
 
 		vim.bo[buffer].buflisted = false
 
-		util.nmap("q", cmd.close, { buffer = buffer })
+		util.nmap("q", cmd.close, { buffer = buffer, silent = true })
 	end,
 	desc = "Use [q] to close the buffer for helper files",
 	group = augroup("EasyQuit"),
