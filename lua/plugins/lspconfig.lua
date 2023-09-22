@@ -7,8 +7,6 @@ local M = {
 }
 
 M.dependencies = {
-	"hrsh7th/cmp-nvim-lsp",
-	"ibhagwan/fzf-lua",
 	{
 		"b0o/schemastore.nvim",
 		ft = {

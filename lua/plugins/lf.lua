@@ -8,7 +8,6 @@ M.cmd = {
 }
 
 M.dependencies = {
-	"nvim-lua/plenary.nvim",
 	"akinsho/toggleterm.nvim",
 }
 

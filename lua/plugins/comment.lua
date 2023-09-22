@@ -3,9 +3,8 @@ local M = {
 	"numToStr/Comment.nvim",
 }
 
-M.dependencies = "nvim-treesitter/nvim-treesitter"
-
 M.keys = {
+	---@diagnostic disable-next-line: missing-fields
 	{
 		"gc",
 		mode = {
@@ -14,6 +13,7 @@ M.keys = {
 		},
 		desc = "To[g]gle [c]omment",
 	},
+	---@diagnostic disable-next-line: missing-fields
 	{
 		"gb",
 		mode = {

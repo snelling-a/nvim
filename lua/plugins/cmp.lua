@@ -202,10 +202,8 @@ M.dependencies = {
 	"hrsh7th/cmp-nvim-lua",
 	"hrsh7th/cmp-path",
 	"L3MON4D3/LuaSnip",
-	"neovim/nvim-lspconfig",
 	"ray-x/cmp-treesitter",
 	"saadparwaiz1/cmp_luasnip",
-	"windwp/nvim-autopairs",
 	"zbirenbaum/copilot-cmp",
 }
 
