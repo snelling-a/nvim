@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.30.3](https://github.com/snelling-a/nvim/compare/v5.30.2...v5.30.3) (2023-09-25)
+
+
+### Bug Fixes
+
+* **types:** extract util types ([ac7ee32](https://github.com/snelling-a/nvim/commit/ac7ee326795235966a961fa07c4df8f8e6f4faa1))
+
 ## [5.30.2](https://github.com/snelling-a/nvim/compare/v5.30.1...v5.30.2) (2023-09-25)
 
 
