@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.30.1](https://github.com/snelling-a/nvim/compare/v5.30.0...v5.30.1) (2023-09-25)
+
+
+### Bug Fixes
+
+* **keys:** jump to start of line ([d5676b3](https://github.com/snelling-a/nvim/commit/d5676b3eac09e2489e708bc379150b15c5529fa5))
+
 ## [5.30.0](https://github.com/snelling-a/nvim/compare/v5.29.1...v5.30.0) (2023-09-25)
 
 
