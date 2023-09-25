@@ -26,6 +26,7 @@ local rocket = " "
 local selection = " "
 local snippet = "󰩫 "
 local trail = "·"
+local typescript = "󰛦 "
 local variable = "󰀫 "
 
 local M = {}
@@ -267,7 +268,7 @@ M.progress = {
 }
 
 M.servers = {
-	["typescript-tools"] = " ",
+	["typescript-tools"] = typescript,
 	bashls = "󱆃 ",
 	copilot = copilot,
 	cssls = " ",
@@ -286,6 +287,7 @@ M.servers = {
 	scss = "",
 	sqlls = " ",
 	taplo = " ",
+	tsserver = typescript,
 	vimls = " ",
 	yamlls = " ",
 	zsh = "",
