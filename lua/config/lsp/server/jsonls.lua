@@ -15,6 +15,7 @@ local M = {}
 
 M.mason_name = "json-lsp"
 
+--- @param opts lspconfig.Config
 function M.setup(opts)
 	opts = require("config.lsp.capabilities").enable_broadcasting(opts)
 
@@ -23,10 +24,6 @@ function M.setup(opts)
 	opts.settings = settings
 
 	require("lspconfig").jsonls.setup(opts)
-
-	vim.api.nvim_create_user_command("SortJSON", function() vim.cmd([[%!jq . --sort-keys]]) end, {
-		desc = "Sort json keys alphabetically",
-	})
 end
 
 return M
