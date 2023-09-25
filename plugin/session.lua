@@ -19,7 +19,7 @@ local function list_sessions() return vim.fn.glob(sessions_dir .. "*.vim", true,
 
 local function get_last_session()
 	local sessions = list_sessions()
-	table.sort(sessions, function(a, b) return vim.loop.fs_stat(a).mtime.sec > vim.loop.fs_stat(b).mtime.sec end)
+	table.sort(sessions, function(a, b) return vim.uv.fs_stat(a).mtime.sec > vim.uv.fs_stat(b).mtime.sec end)
 
 	return sessions[1]
 end

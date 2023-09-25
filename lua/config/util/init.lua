@@ -55,7 +55,6 @@ function M.ftdetect(pattern, filetype)
 	})
 end
 
-
 --- @param custom_options table|nil Table of |:map-arguments|
 --- @return table -- |:map-arguments|
 local function get_map_options(custom_options)
@@ -91,7 +90,7 @@ function M.has(plugin) return package.loaded[plugin] and true end
 
 function M.is_buf_big(bufnr)
 	local max_filesize = 100 * 1024 -- 100 KB
-	local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(bufnr))
+	local ok, stats = pcall(vim.uv.fs_stat, vim.api.nvim_buf_get_name(bufnr))
 	if ok and stats and stats.size > max_filesize then
 		return true
 	else
