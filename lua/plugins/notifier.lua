@@ -4,7 +4,16 @@ local M = {
 }
 
 M.event = {
-	"VeryLazy",
+	"BufAdd",
+}
+
+M.opts = {
+	components = {
+		"nvim",
+		"lsp",
+		"mason",
+		"treesitter",
+	},
 }
 
 return M
