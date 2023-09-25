@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.31.0](https://github.com/snelling-a/nvim/compare/v5.30.4...v5.31.0) (2023-09-25)
+
+
+### Features
+
+* indentscope -&gt; hlchunk ([7e7246d](https://github.com/snelling-a/nvim/commit/7e7246d8345225d164e08ee85039e8f0b5cdee42))
+
 ## [5.30.4](https://github.com/snelling-a/nvim/compare/v5.30.3...v5.30.4) (2023-09-25)
 
 
