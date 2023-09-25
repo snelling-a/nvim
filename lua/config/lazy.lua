@@ -1,6 +1,9 @@
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
 if not vim.uv.fs_stat(lazypath) then
+	local Logger = require("config.util.logger"):new("Lazy")
+	Logger:info("Installing Lazy.nvim")
+
 	vim.fn.system({
 		"git",
 		"clone",
@@ -10,6 +13,7 @@ if not vim.uv.fs_stat(lazypath) then
 		lazypath,
 	})
 end
+
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
