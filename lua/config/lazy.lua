@@ -16,13 +16,17 @@ end
 
 vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup({
+---@type LazyConfig
+local opts = {
 	change_detection = {
 		notify = false,
 	},
 	dev = {
 		fallback = true,
 		path = require("config.util.constants").dev_dir .. "/snelling-a",
+		patterns = {
+			"snelling-a",
+		},
 	},
 	install = {
 		colorscheme = {
@@ -51,5 +55,10 @@ require("lazy").setup({
 	spec = {
 		import = "plugins",
 	},
-	ui = require("config.ui.icons").lazy,
-})
+	ui = {
+		border = "rounded",
+		icons = require("config.ui.icons").lazy,
+	},
+}
+
+require("lazy").setup(opts)
