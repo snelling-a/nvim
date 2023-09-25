@@ -25,6 +25,10 @@ function M.get_root_pattern(config_files)
 	return require("lspconfig").util.root_pattern(unpack(list))
 end
 
+--- @param cond boolean
+--- @return "enabled"|"disabled" state
+function M.get_state(cond) return cond and "enabled" or "disabled" end
+
 --- @param target_dir string
 --- @param cb function?
 function M.ensure_installed(target_dir, cb)
@@ -86,4 +90,15 @@ function M.get_linter_formatter_command(name, args)
 	return string.format("%s %s", get_exec_path(name), table.concat(list, " "))
 end
 
+--- @param cond boolean
+--- @param msg string
+function M.toggle(cond, msg)
+	cond = not cond
+
+	if cond then
+		Logger:info(("Enabled %s"):format(msg))
+	else
+		Logger:warn(("Disabled %s"):format(msg))
+	end
+end
 return M

@@ -1,59 +1,126 @@
+--- @type boolean
+_G.AUTOFORMAT = true
+--- @type boolean
+_G.FORMAT_NOTIFY = true
+
+local Util = require("config.lsp.util")
+
+local METHOD = "textDocument/formatting"
+
 local lsp_formatting = "Lsp Formatting"
 
 local Logger = require("config.util.logger"):new(lsp_formatting)
-local Util = require("config.util")
 
-local M = {}
+local block_list = {
+	lua = false,
+	typescript = false,
+	javascript = false,
+	typescriptreact = false,
+	javascriptreact = false,
+}
 
---- @type boolean
-local AUTOFORMAT = true
+local formatting_disabled = {
+	eslint = true,
+	tsserver = true,
+	["typescript-tools"] = true,
+}
 
-local function toggle()
-	AUTOFORMAT = not AUTOFORMAT
+--- @param clients lsp.Client[]
+--- @return lsp.Client[] clients
+local function format_filter(clients)
+	return vim.tbl_filter(
+		function(client) return client.name == "efm" or not formatting_disabled[client.name] end,
+		clients
+	)
+end
 
-	if AUTOFORMAT then
-		Logger:info("Enabled format on save")
-	else
-		Logger:warn("Disabled format on save")
+--- @param bufnr integer
+local function format(bufnr)
+	bufnr = bufnr or vim.api.nvim_get_current_buf()
+	local clients = vim.lsp.get_clients({ bufnr = bufnr })
+
+	clients = format_filter(clients)
+
+	if #clients == 0 then
+		Logger:warn("Format request failed, no matching language servers.")
+	end
+
+	for _, client in pairs(clients) do
+		if block_list[vim.bo.filetype] then
+			Logger:warn(
+				("[%s] Formatting for [%s] has been disabled. This file is not being processed."):format(
+					client.name,
+					vim.bo.filetype
+				)
+			)
+			return
+		end
+
+		local params = vim.lsp.util.make_formatting_params({})
+		---@diagnostic disable-next-line: invisible
+		local result, err = client.request_sync(METHOD, params, 1000, bufnr)
+
+		if result and result.result then
+			vim.lsp.util.apply_text_edits(result.result, bufnr, client.offset_encoding)
+
+			if _G.FORMAT_NOTIFY then
+				Logger:info(("%s"):format(client.name))
+			end
+		elseif err then
+			Logger:error(("[%s] %s"):format(client.name, err))
+		end
 	end
 end
 
---- @param client lsp.Client
+local toggle = Util.toggle
+local function toggle_autoformat() return toggle(_G.AUTOFORMAT, "autoformat") end
+
 --- @param bufnr integer
-local function format(client, bufnr)
-	local formatting_disabled = {
-		"eslint",
-		"tsserver",
-		"typescript-tools",
-	}
-
-	client = client or {}
-	local ok, result = pcall(function() return not vim.tbl_contains(formatting_disabled, client.name) end or true)
-	if not ok then
-		return
-	end
-
-	vim.lsp.buf.format({
-		bufnr = bufnr,
-		filter = function() return result end,
-		timeout_ms = 1000,
-	})
-end
-
---- @param client lsp.Client
---- @param bufnr integer
-local function setup_keymaps(client, bufnr)
+local function setup_keymaps(bufnr)
 	local bind = require("config.lsp.util").bind
 
-	bind(bufnr, "<leader>f", function() format(client, bufnr) end, "[F]ormat the current buffer")
-	bind(bufnr, "<leader>tf", function() toggle() end, "[T]oggle Auto[f]ormat")
+	bind(bufnr, "<leader>f", function() format(bufnr) end, "[F]ormat the current buffer")
+	bind(bufnr, "<leader>tf", function() toggle_autoformat() end, "[T]oggle Auto[f]ormat")
 	bind(bufnr, "<leader>sw", function() vim.cmd([[noautocmd write]]) end, "[S]ave [w]ithout formatting")
 end
 
---- @param client lsp.Client
+local function setup_user_commands()
+	vim.api.nvim_create_user_command("AutoformatToggle", function() toggle_autoformat() end, {
+		desc = "Toggle format on save",
+		nargs = 0,
+	})
+
+	local function toggle_notify() return toggle(_G.FORMAT_NOTIFY, "notifications") end
+	vim.api.nvim_create_user_command("FormattingNotificationsToggle", function() toggle_notify() end, {
+		desc = "Toggle notifications when formatting",
+		nargs = 0,
+	})
+
+	vim.api.nvim_create_user_command("FtFormatToggle", function(opts)
+		if block_list[opts.args] == nil then
+			Logger:warn(("Formatter for [%s] has been recorded in list and disabled."):format(opts.args))
+
+			block_list[opts.args] = true
+		else
+			block_list[opts.args] = not block_list[opts.args]
+
+			local state = Util.get_state(not block_list[opts.args])
+			local str = ("Formatting for [%s] has been %s."):format(opts.args, state)
+
+			if block_list[opts.args] then
+				Logger:warn(str)
+			else
+				Logger:info(str)
+			end
+		end
+	end, { desc = "Add/remove filetypes from being formatted", complete = "filetype", nargs = 1 })
+end
+
 --- @param bufnr integer
-local function setup_formatting(client, bufnr)
-	local group = require("config.util").augroup(lsp_formatting:gsub(" ", "") .. "." .. bufnr)
+local function setup_formatting(bufnr)
+	local Util = require("config.util")
+
+	local group = Util.augroup(lsp_formatting:gsub(" ", "") .. "." .. bufnr)
 
 	local event = {
 		"BufWritePre",
@@ -82,31 +149,28 @@ local function setup_formatting(client, bufnr)
 		event,
 		Util.tbl_extend_force(opts, {
 			callback = function()
-				if AUTOFORMAT then
-					format(client, bufnr)
+				if _G.AUTOFORMAT then
+					format(bufnr)
 				end
 			end,
 		})
 	)
-
-	vim.api.nvim_create_user_command("AutoformatToggle", function() toggle() end, {
-		desc = "Toggle format on save",
-		nargs = 0,
-	})
-
-	setup_keymaps(client, bufnr)
 end
+
+local M = {}
 
 --- @param client lsp.Client
 --- @param bufnr integer
 function M.on_attach(client, bufnr)
-	local ok, formatting_supported = pcall(function() return client.supports_method("textDocument/formatting") end)
+	local ok, formatting_supported = pcall(function() return client.supports_method(METHOD) end)
 
 	if not ok or not formatting_supported then
 		return
 	end
 
-	setup_formatting(client, bufnr)
+	setup_formatting(bufnr)
+	setup_user_commands()
+	setup_keymaps(bufnr)
 end
 
 return M
