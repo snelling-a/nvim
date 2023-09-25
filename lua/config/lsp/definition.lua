@@ -4,10 +4,11 @@ end
 
 local Logger = require("config.util.logger"):new("LSP Definition")
 
+local METHOD = "textDocument/definition"
+
 local api = vim.api
 local fn = vim.fn
-local lsp = vim.lsp
-local util = lsp.util
+local util = vim.lsp.util
 
 local float_win = nil
 
@@ -32,9 +33,9 @@ local function preview_location(result)
 		before = before - 1
 	end
 
-	local ft = api.nvim_buf_get_option(bufnr, "filetype")
+	local ft = api.nvim_get_option_value("filetype", { buf = bufnr })
 
-	local buf, win = lsp.util.open_floating_preview(lines, ft, {})
+	local buf, win = util.open_floating_preview(lines, ft, {})
 
 	api.nvim_win_set_config(win, {
 		border = "rounded",
@@ -47,7 +48,7 @@ local function preview_location(result)
 	}
 
 	for name, value in pairs(buf_opts) do
-		api.nvim_buf_set_option(buf, name, value)
+		api.nvim_set_option_value(name, value, { buf = bufnr })
 	end
 
 	local win_opts = {
@@ -58,7 +59,7 @@ local function preview_location(result)
 	}
 
 	for name, value in pairs(win_opts) do
-		api.nvim_win_set_option(win, name, value)
+		api.nvim_set_option_value(name, value, { buf = bufnr })
 	end
 
 	api.nvim_win_set_cursor(win, {
@@ -97,7 +98,7 @@ local function preview_location_callback(_, result, ctx)
 	_, float_win = preview_location(definition)
 end
 
-local function peek_definition()
+local function peek_definition(bufnr)
 	if float_win ~= nil then
 		pcall(api.nvim_win_hide, float_win)
 	end
@@ -105,8 +106,8 @@ local function peek_definition()
 		--- @diagnostic disable-next-line: param-type-mismatch
 		api.nvim_set_current_win(float_win)
 	else
-		local params = lsp.util.make_position_params()
-		return lsp.buf_request(0, "textDocument/definition", params, preview_location_callback)
+		local params = util.make_position_params()
+		return vim.lsp.buf_request(bufnr, METHOD, params, preview_location_callback)
 	end
 end
 
@@ -118,7 +119,7 @@ function M.handler(_, result, ctx, config)
 
 		return nil
 	end
-	local client = lsp.get_client_by_id(ctx.client_id) or {}
+	local client = vim.lsp.get_client_by_id(ctx.client_id) or {}
 
 	config = config or {}
 
@@ -162,13 +163,13 @@ end
 --- @param client lsp.Client
 --- @param bufnr integer
 function M.on_attach(client, bufnr)
-	local ok, definition_supported = pcall(function() return client.supports_method("textDocument/definition") end)
+	local ok, definition_supported = pcall(function() return client.supports_method(METHOD) end)
 
 	if not ok or not definition_supported then
 		return
 	end
 
-	require("config.lsp.util").bind(bufnr, "<leader>gd", peek_definition, "Peek [d]efinition")
+	require("config.lsp.util").bind(bufnr, "<leader>gd", function() peek_definition(bufnr) end, "Peek [d]efinition")
 end
 
 return M

@@ -1,7 +1,30 @@
 local diagnostic_signs = require("config.ui.icons").diagnostics
 
-local vim_diagnostic = vim.diagnostic
 local api = vim.api
+
+local function setup_diagnostics()
+	for type, icon in pairs(diagnostic_signs) do
+		local hl = "DiagnosticSign" .. type
+		vim.fn.sign_define(hl, {
+			icon = icon,
+			numhl = hl,
+			text = icon,
+			texthl = hl,
+		})
+	end
+
+	vim.diagnostic.config({
+		float = {
+			source = "always",
+			border = "rounded",
+		},
+		severity_sort = true,
+		signs = true,
+		underline = true,
+		update_in_insert = false,
+		virtual_text = false,
+	})
+end
 
 local function best_diagnostic(diagnostics)
 	if vim.tbl_isempty(diagnostics) then
@@ -36,12 +59,10 @@ local function current_line_diagnostics()
 		["lnum"] = line_nr,
 	}
 
-	return vim_diagnostic.get(bufnr, opts)
+	return vim.diagnostic.get(bufnr, opts)
 end
 
-local virt_handler = vim_diagnostic.handlers.virtual_text
-local ns = api.nvim_create_namespace("CurrentLineDiagnostics")
-local severity = vim_diagnostic.severity
+local severity = vim.diagnostic.severity
 local virt_options = {
 	prefix = "",
 	format = function(diagnostic)
@@ -61,64 +82,42 @@ local virt_options = {
 	end,
 }
 
-vim_diagnostic.handlers.current_line_virt = {
-	show = function(_, bufnr, diagnostics, _)
-		local diagnostic = best_diagnostic(diagnostics)
-		if not diagnostic then
-			return
-		end
+local name = "LspCurrentLineDiagnostics"
 
-		local filtered_diagnostics = {
-			diagnostic,
-		}
+local function set_current_line_vert_handler()
+	local virt_handler = vim.diagnostic.handlers.virtual_text
+	local ns = api.nvim_create_namespace(name)
 
-		pcall(virt_handler.show, ns, bufnr, filtered_diagnostics, {
-			virtual_text = virt_options,
-		})
-	end,
+	vim.diagnostic.handlers.current_line_virt = {
+		show = function(_, bufnr, diagnostics, _)
+			local diagnostic = best_diagnostic(diagnostics)
+			if not diagnostic then
+				return
+			end
 
-	hide = function(_, bufnr)
-		bufnr = bufnr or api.nvim_get_current_buf()
-		virt_handler.hide(ns, bufnr)
-	end,
-}
+			local filtered_diagnostics = {
+				diagnostic,
+			}
 
-local M = {}
+			pcall(virt_handler.show, ns, bufnr, filtered_diagnostics, {
+				virtual_text = virt_options,
+			})
+		end,
 
---- @param client lsp.Client
+		hide = function(_, bufnr)
+			bufnr = bufnr or api.nvim_get_current_buf()
+			virt_handler.hide(ns, bufnr)
+		end,
+	}
+end
+
+
+
 --- @param bufnr integer
-function M.on_attach(client, bufnr)
-	for type, icon in pairs(diagnostic_signs) do
-		local hl = "DiagnosticSign" .. type
-		vim.fn.sign_define(hl, {
-			icon = icon,
-			numhl = hl,
-			text = icon,
-			texthl = hl,
-		})
-	end
+local function setup_autocmds(bufnr)
+	set_current_line_vert_handler()
 
-	vim_diagnostic.config({
-		float = {
-			source = "always",
-			border = "rounded",
-		},
-		severity_sort = true,
-		signs = true,
-		underline = true,
-		update_in_insert = false,
-		virtual_text = false,
-	})
-
-	local ok, diagnostics_supported = pcall(
-		function() return client.supports_method("textDocument/publishDiagnostics") end
-	)
-
-	if not ok or not diagnostics_supported then
-		return
-	end
-
-	local LspDiagnostiCurrentLineGroup = require("config.util").augroup("LspDiagnostiCurrentLine")
+	local LspDiagnostiCurrentLineGroup = require("config.util").augroup(name)
 
 	api.nvim_clear_autocmds({
 		buffer = bufnr,
@@ -130,17 +129,36 @@ function M.on_attach(client, bufnr)
 		"CursorHoldI",
 	}, {
 		buffer = bufnr,
-		callback = function() vim_diagnostic.handlers.current_line_virt.show(nil, 0, current_line_diagnostics(), nil) end,
+		callback = function() vim.diagnostic.handlers.current_line_virt.show(nil, 0, current_line_diagnostics(), nil) end,
 		desc = "Show current line diagnostics",
 		group = LspDiagnostiCurrentLineGroup,
 	})
 
-	api.nvim_create_autocmd("CursorMoved", {
+	api.nvim_create_autocmd({
+		"CursorMoved",
+	}, {
 		buffer = bufnr,
-		callback = function() vim_diagnostic.handlers.current_line_virt.hide(nil, nil) end,
+		callback = function() vim.diagnostic.handlers.current_line_virt.hide(nil, nil) end,
 		desc = "Hide current line diagnostics",
 		group = LspDiagnostiCurrentLineGroup,
 	})
+end
+local M = {}
+
+--- @param client lsp.Client
+--- @param bufnr integer
+function M.on_attach(client, bufnr)
+	setup_diagnostics()
+
+	local ok, diagnostics_supported = pcall(
+		function() return client.supports_method("textDocument/publishDiagnostics") end
+	)
+
+	if not ok or not diagnostics_supported then
+		return
+	end
+
+	setup_autocmds(bufnr)
 end
 
 return M

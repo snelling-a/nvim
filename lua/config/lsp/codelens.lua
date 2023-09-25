@@ -1,11 +1,12 @@
 local Util = require("config.util")
 
 --- @param bufnr integer
-local function setup_codelens_refresh(bufnr)
+local function setup_codelens(bufnr)
 	local api = vim.api
 	local event = {
 		"BufEnter",
 		"BufWritePost",
+		"CursorHold",
 		"InsertLeave",
 	}
 
@@ -39,11 +40,12 @@ local M = {}
 --- @param bufnr integer
 function M.on_attach(client, bufnr)
 	local ok, codelens_supported = pcall(function() return client.supports_method("textDocument/codeLens") end)
+
 	if not ok or not codelens_supported then
 		return
 	end
 
-	setup_codelens_refresh(bufnr)
+	setup_codelens(bufnr)
 end
 
 return M
