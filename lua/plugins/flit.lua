@@ -3,12 +3,12 @@ local M = {
 	"ggandor/flit.nvim",
 }
 
-M.opts = {
-	labeled_modes = "nvx",
-}
-
 M.dependencies = {
 	"ggandor/leap.nvim",
+}
+
+M.opts = {
+	labeled_modes = "nvx",
 }
 
 --- @diagnostic disable-next-line: assign-type-mismatch
