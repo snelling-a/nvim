@@ -3,10 +3,6 @@ local M = {
 	"chrisgrieser/nvim-spider",
 }
 
-M.event = {
-	"BufAdd",
-}
-
 ---@diagnostic disable-next-line: assign-type-mismatch
 function M.keys()
 	local mode = {
