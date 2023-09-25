@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.30.0](https://github.com/snelling-a/nvim/compare/v5.29.1...v5.30.0) (2023-09-25)
+
+
+### Features
+
+* toggle autosave ([e7071ab](https://github.com/snelling-a/nvim/commit/e7071ab70f962fbe1250a6b4821f6f0ae6c854ef))
+
 ## [5.29.1](https://github.com/snelling-a/nvim/compare/v5.29.0...v5.29.1) (2023-09-25)
 
 
