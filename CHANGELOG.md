@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.30.4](https://github.com/snelling-a/nvim/compare/v5.30.3...v5.30.4) (2023-09-25)
+
+
+### Bug Fixes
+
+* flit modes ([76f3cb6](https://github.com/snelling-a/nvim/commit/76f3cb6a73a7d02725260c9513f55f241daa8ecd))
+
 ## [5.30.3](https://github.com/snelling-a/nvim/compare/v5.30.2...v5.30.3) (2023-09-25)
 
 
