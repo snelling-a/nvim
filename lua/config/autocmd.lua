@@ -5,11 +5,17 @@ local autocmd = vim.api.nvim_create_autocmd
 local cmd = vim.cmd
 local fn = vim.fn
 
+_G.AUTOSAVE = true
+
 autocmd({
 	"BufLeave",
 	"FocusLost",
 }, {
 	callback = function()
+		if not _G.AUTOSAVE then
+			return
+		end
+
 		local bo = vim.bo
 
 		if not bo.readonly and fn.expand("%") ~= "" and bo.buftype == "" then
@@ -20,7 +26,20 @@ autocmd({
 	group = augroup("AutoSave"),
 })
 
-autocmd({ "FileType" }, {
+vim.api.nvim_create_user_command("AutoSaveToggle", function()
+	local Logger = require("config.util.logger"):new("Auto Save")
+	_G.AUTOSAVE = not _G.AUTOSAVE
+
+	if _G.AUTOSAVE then
+		Logger:info("Enabled")
+	else
+		Logger:info("Disabled")
+	end
+end, {
+	desc = "Toggle auto save",
+	nargs = 0,
+})
+
 autocmd({
 	"FileType",
 }, {
