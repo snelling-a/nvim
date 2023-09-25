@@ -1,6 +1,13 @@
 local Icons = require("config.ui.icons")
 local Util = require("config.util")
 
+local cmdline_view = {
+	entries = {
+		name = "wildmenu",
+		separator = Icons.fillchars.foldsep,
+	},
+}
+
 local formatting = {
 	fields = {
 		"kind",
@@ -159,13 +166,6 @@ local function get_window()
 	})
 end
 
-local cmdline_view = {
-	entries = {
-		name = "wildmenu",
-		separator = Icons.fillchars.foldsep,
-	},
-}
-
 local function luasnip_extend()
 	local extend = require("luasnip").filetype_extend
 
@@ -191,7 +191,7 @@ local M = {
 	"hrsh7th/nvim-cmp",
 }
 
-M.cond = not vim.g.vscode
+M.cond = Util.is_vim()
 
 M.dependencies = {
 	"hrsh7th/cmp-buffer",
@@ -249,6 +249,7 @@ function M.config(_, opts)
 	}))
 
 	luasnip_extend()
+
 	require("luasnip.loaders.from_vscode").lazy_load()
 
 	setup.filetype("gitcommit", {
