@@ -15,7 +15,15 @@ nmap("<Tab>", function() cmd.bnext() end, {
 nmap("J", "mzJ`z", {
 	desc = "[J]oin next line to current line",
 })
-nmap("H", "g^", {
+nmap("H", function()
+	if vim.api.nvim_get_option_value("wrap", {
+		scope = "local",
+	}) then
+		cmd.normal("g^")
+	else
+		cmd.normal("^")
+	end
+end, {
 	desc = "Move to the start of line",
 })
 nmap("L", function()
