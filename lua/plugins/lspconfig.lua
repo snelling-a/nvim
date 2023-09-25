@@ -17,17 +17,6 @@ M.dependencies = {
 		},
 	},
 	{
-		"folke/neodev.nvim",
-		ft = {
-			"lua",
-		},
-		opts = {
-			library = {
-				types = false,
-			},
-		},
-	},
-	{
 		"jparise/vim-graphql",
 		ft = require("config.util").tbl_extend_force(javascript_typescript, {
 			"graphql",
@@ -43,6 +32,7 @@ M.event = {
 function M.config()
 	require("lspconfig.ui.windows").default_options.border = "rounded"
 
+	--- @type lspconfig.Config
 	local opts = {
 		capabilities = require("config.lsp.capabilities").get_capabilities(),
 		flags = {
