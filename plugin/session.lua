@@ -26,13 +26,13 @@ end
 
 local fnameescape = vim.fn.fnameescape
 
-local function save_session()
+local function session_save()
 	if #vim.fn.getbufinfo({ buflisted = 1 }) > 0 then
 		vim.cmd.mksession({ args = { fnameescape(get_current_session()) }, bang = true })
 	end
 end
 
-local function load_session()
+local function session_load()
 	local sfile = get_current_session()
 
 	if sfile and vim.fn.filereadable(sfile) ~= 0 then
@@ -55,7 +55,7 @@ vim.api.nvim_create_autocmd({
 	"VimLeavePre",
 }, {
 	group = group,
-	callback = save_session,
+	callback = session_save,
 })
 
 vim.api.nvim_create_autocmd({
@@ -75,7 +75,7 @@ vim.api.nvim_create_autocmd({
 	end,
 })
 
-vim.api.nvim_create_user_command("LoadSession", load_session, {
+vim.api.nvim_create_user_command("SessionLoad", session_load, {
 	desc = "Load a session",
 })
 
