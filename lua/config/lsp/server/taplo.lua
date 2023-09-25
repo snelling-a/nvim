@@ -15,6 +15,7 @@ local settings = {
 
 local M = {}
 
+--- @param opts lspconfig.Config
 function M.setup(opts)
 	opts.root_dir = require("config.lsp.util").get_root_pattern(config_files)
 

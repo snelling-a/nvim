@@ -2,6 +2,7 @@ local M = {}
 
 M.mason_name = "vim-language-server"
 
+--- @param opts lspconfig.Config
 function M.setup(opts)
 	opts.init_options = {
 		vimruntime = vim.env.VIMRUNTIME,

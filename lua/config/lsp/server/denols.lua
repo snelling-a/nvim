@@ -7,6 +7,7 @@ local M = {}
 
 M.mason_name = "deno"
 
+--- @param opts lspconfig.Config
 function M.setup(opts)
 	opts.root_dir = require("config.lsp.util").get_root_pattern(config_files)
 

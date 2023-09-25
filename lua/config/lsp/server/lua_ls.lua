@@ -43,6 +43,7 @@ local M = {}
 
 M.mason_name = "lua-language-server"
 
+--- @param opts lspconfig.Config
 function M.setup(opts)
 	require("neodev").setup()
 

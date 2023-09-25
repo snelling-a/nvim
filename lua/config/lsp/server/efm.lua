@@ -62,6 +62,7 @@ local settings = {
 
 local M = {}
 
+--- @param opts lspconfig.Config
 function M.setup(opts)
 	opts.init_options = {
 		documentFormatting = true,

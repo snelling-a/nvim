@@ -11,6 +11,7 @@ local M = {}
 
 M.mason_name = "yaml-language-server"
 
+--- @param opts lspconfig.Config
 function M.setup(opts)
 	opts.settings = settings
 

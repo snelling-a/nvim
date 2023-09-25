@@ -12,6 +12,7 @@ M.config_files = {
 	"package.json",
 }
 
+--- @param opts lspconfig.Config
 function M.setup(opts)
 	opts.root_dir = require("config.lsp.util").get_root_pattern(M.config_files)
 
