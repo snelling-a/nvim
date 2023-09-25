@@ -1,12 +1,14 @@
-local util = require("config.util")
+local Util = require("config.util")
 
-local api = vim.api
-local augroup = util.augroup
-local autocmd = api.nvim_create_autocmd
+local augroup = Util.augroup
+local autocmd = vim.api.nvim_create_autocmd
 local cmd = vim.cmd
 local fn = vim.fn
 
-autocmd({ "BufLeave", "FocusLost" }, {
+autocmd({
+	"BufLeave",
+	"FocusLost",
+}, {
 	callback = function()
 		local bo = vim.bo
 
@@ -19,19 +21,28 @@ autocmd({ "BufLeave", "FocusLost" }, {
 })
 
 autocmd({ "FileType" }, {
+autocmd({
+	"FileType",
+}, {
 	callback = function(event)
 		local buffer = event.buf
 
 		vim.bo[buffer].buflisted = false
 
-		util.nmap("q", cmd.close, { buffer = buffer, silent = true })
+		Util.nmap("q", cmd.close, {
+			buffer = buffer,
+			silent = true,
+		})
 	end,
 	desc = "Use [q] to close the buffer for helper files",
 	group = augroup("EasyQuit"),
 	pattern = vim.tbl_filter(function(ft) return ft ~= "spectre_panel" end, require("config.util.constants").no_format),
 })
 
-autocmd({ "BufEnter", "FileType" }, {
+autocmd({
+	"BufEnter",
+	"FileType",
+}, {
 	callback = function()
 		local formatoptions_append = {
 			"c", -- (default) Auto-wrap comments using 'textwidth', inserting the current comment leader automatically.
@@ -72,21 +83,32 @@ autocmd({ "BufEnter", "FileType" }, {
 	pattern = "*",
 })
 
-autocmd({ "TextYankPost" }, {
-	callback = function() vim.highlight.on_yank({ higroup = "Search", timeout = 40 }) end,
+autocmd({
+	"TextYankPost",
+}, {
+	callback = function()
+		vim.highlight.on_yank({
+			higroup = "Search",
+			timeout = 40,
+		})
+	end,
 	desc = "Highlight yanked text",
 	group = augroup("HighlightOnYank"),
 	pattern = "*",
 })
 
-autocmd({ "BufWritePre" }, {
+autocmd({
+	"BufWritePre",
+}, {
 	callback = function() cmd.TrimAllTrailingWhitespace() end,
 	desc = "Trim whitespace from the end of the line",
 	group = augroup("TrimTrailingWhitespace"),
 	pattern = "!markdown",
 })
 
-autocmd({ "FocusGained", "TermClose", "TermLeave" }, {
+autocmd({
+	"FocusGained",
+}, {
 	command = "checktime",
 	desc = "Check if we need to reload the file when it changed",
 	group = augroup("Checktime"),
@@ -100,7 +122,9 @@ autocmd({
 	group = augroup("ResizeSplits"),
 })
 
-autocmd({ "BufWritePre" }, {
+autocmd({
+	"BufWritePre",
+}, {
 	callback = function(event)
 		if event.match:match("^%w%w+://") then
 			return
