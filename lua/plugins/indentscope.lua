@@ -3,6 +3,7 @@ local M = {
 	"echasnovski/mini.indentscope",
 }
 
+M.enabled = false
 
 M.event = require("config.util.constants").lazy_event
 
