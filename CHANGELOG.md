@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.29.1](https://github.com/snelling-a/nvim/compare/v5.29.0...v5.29.1) (2023-09-25)
+
+
+### Bug Fixes
+
+* abbrev ([8d6da33](https://github.com/snelling-a/nvim/commit/8d6da33f6833282bd6f5882d2373bab57b304b62))
+
 ## [5.29.0](https://github.com/snelling-a/nvim/compare/v5.28.1...v5.29.0) (2023-09-25)
 
 
