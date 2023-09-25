@@ -3,40 +3,13 @@ local M = {
 	"nat-418/boole.nvim",
 }
 
-local increment = "<C-a>"
-local decrement = "<C-x>"
-
-M.event = {
-	"BufAdd",
-}
-
-M.keys = {
-	---@diagnostic disable-next-line: missing-fields
-	{
-		increment,
-		mode = {
-			"n",
-			"v",
-		},
-		desc = "Better increment",
-	},
-	---@diagnostic disable-next-line: missing-fields
-	{
-		decrement,
-		mode = {
-			"n",
-			"v",
-		},
-		desc = "Better decrement",
-	},
-}
+M.event = require("config.util.constants").lazy_event
 
 M.opts = {
 	mappings = {
-		increment = increment,
-		decrement = decrement,
+		increment = "<C-a>",
+		decrement = "<C-x>",
 	},
-	additions = {},
 	allow_caps_additions = {
 		{
 			"foo",
