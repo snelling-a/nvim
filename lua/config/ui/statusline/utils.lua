@@ -1,6 +1,5 @@
 local M = {}
 
----comment
 --- @param fallback string
 --- @return string|nil
 --- @return nil|Gitsigns.StatusObj
