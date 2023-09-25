@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.30.2](https://github.com/snelling-a/nvim/compare/v5.30.1...v5.30.2) (2023-09-25)
+
+
+### Bug Fixes
+
+* **lsp:** formatting ([9579389](https://github.com/snelling-a/nvim/commit/957938988a3922b87663e1748d2ea39b547c450d))
+
 ## [5.30.1](https://github.com/snelling-a/nvim/compare/v5.30.0...v5.30.1) (2023-09-25)
 
 
