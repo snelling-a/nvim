@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.32.0](https://github.com/snelling-a/nvim/compare/v5.31.0...v5.32.0) (2023-09-25)
+
+
+### Features
+
+* MasonUpdateAll ([d78e387](https://github.com/snelling-a/nvim/commit/d78e3874d0a3324f3e35d4f6a9608b731b7172b7))
+
 ## [5.31.0](https://github.com/snelling-a/nvim/compare/v5.30.4...v5.31.0) (2023-09-25)
 
 
