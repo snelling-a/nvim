@@ -1,9 +1,9 @@
 local Util = require("config.util")
 
-local api = vim.api
-local lsp = vim.lsp.buf
+local METHOD = "textDocument/documentHighlight"
 
-local function document_highlight()
+--- @param client lsp.Client
+local function document_highlight(client)
 	local node = require("nvim-treesitter.ts_utils").get_node_at_cursor()
 
 	while node ~= nil do
@@ -24,20 +24,25 @@ local function document_highlight()
 		node = node:parent()
 	end
 
-	lsp.document_highlight()
+	local current_buf = vim.api.nvim_get_current_buf()
+	local params = vim.lsp.util.make_position_params(0, client.offset_encoding)
+
+	client.request(METHOD, params, nil, current_buf)
 end
 
+--- @param client lsp.Client
 --- @param bufnr integer
-local function setup_document_highlight(bufnr)
+local function setup_document_highlight(client, bufnr)
 	local event = {
 		"CursorHold",
-		"CursorHoldI",
 	}
 
 	local opts = {
 		group = Util.augroup("LspDocumentHightlight", false),
 		buffer = bufnr,
 	}
+
+	local api = vim.api
 
 	local ok, hl_autocmds = pcall(
 		api.nvim_get_autocmds,
@@ -53,17 +58,16 @@ local function setup_document_highlight(bufnr)
 	api.nvim_create_autocmd(
 		event,
 		Util.tbl_extend_force(opts, {
-			callback = document_highlight,
+			callback = function() document_highlight(client) end,
 		})
 	)
 
 	api.nvim_create_autocmd(
 		{
 			"CursorMoved",
-			"CursorMovedI",
 		},
 		Util.tbl_extend_force(opts, {
-			callback = lsp.clear_references,
+			callback = function() pcall(vim.lsp.buf.clear_references) end,
 		})
 	)
 end
@@ -73,15 +77,13 @@ local M = {}
 --- @param client lsp.Client
 --- @param bufnr integer
 function M.on_attach(client, bufnr)
-	local ok, highlight_supported = pcall(
-		function() return client.supports_method("textDocument/documentHighlight") end
-	)
+	local ok, highlight_supported = pcall(function() return client.supports_method(METHOD) end)
 
 	if not ok or not highlight_supported then
 		return
 	end
 
-	setup_document_highlight(bufnr)
+	setup_document_highlight(client, bufnr)
 end
 
 return M
