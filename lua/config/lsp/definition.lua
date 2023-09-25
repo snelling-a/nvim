@@ -152,7 +152,7 @@ function M.handler(_, result, ctx, config)
 
 			fn.setqflist({}, " ", list)
 
-			api.nvim_command("botright copen")
+			vim.cmd([[botright copen]])
 		end
 	else
 		util.jump_to_location(unpack(jump_args))

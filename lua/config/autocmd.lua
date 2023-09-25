@@ -11,7 +11,7 @@ autocmd({ "BufLeave", "FocusLost" }, {
 		local bo = vim.bo
 
 		if not bo.readonly and fn.expand("%") ~= "" and bo.buftype == "" then
-			cmd.update()
+			vim.cmd([[update]])
 		end
 	end,
 	desc = "Auto save when leaving the buffer",
@@ -92,8 +92,10 @@ autocmd({ "FocusGained", "TermClose", "TermLeave" }, {
 	group = augroup("Checktime"),
 })
 
-autocmd({ "VimResized" }, {
-	callback = function() cmd.tabdo("wincmd =") end,
+autocmd({
+	"VimResized",
+}, {
+	callback = function() vim.cmd([[tabdo wincmd =]]) end,
 	desc = "Resize splits if window got resized",
 	group = augroup("ResizeSplits"),
 })
