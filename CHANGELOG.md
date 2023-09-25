@@ -1,5 +1,18 @@
 # Changelog
 
+## [5.28.1](https://github.com/snelling-a/nvim/compare/v5.28.0...v5.28.1) (2023-09-25)
+
+
+### Bug Fixes
+
+* lazy types/ui ([7eaa26a](https://github.com/snelling-a/nvim/commit/7eaa26a5b2efb13d0859a67734b92bddbef73ec7))
+
+
+### Miscellaneous
+
+* update AverageDark colorscheme ([e006a29](https://github.com/snelling-a/nvim/commit/e006a298c2487511669373b5461a33c249dc6480))
+* update plugins ([776facf](https://github.com/snelling-a/nvim/commit/776facf264035942c4b65422825e2d328c116044))
+
 ## [5.28.0](https://github.com/snelling-a/nvim/compare/v5.27.0...v5.28.0) (2023-09-21)
 
 
