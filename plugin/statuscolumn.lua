@@ -1,4 +1,5 @@
 local Icons = require("config.ui.icons")
+local Util = require("config.util")
 
 local M = {}
 _G.Status = M
@@ -8,7 +9,10 @@ function M.get_signs()
 	local buf = vim.api.nvim_win_get_buf(vim.g.statusline_winid)
 	return vim.tbl_map(
 		function(sign) return vim.fn.sign_getdefined(sign.name)[1] end,
-		vim.fn.sign_getplaced(buf, { group = "*", lnum = vim.v.lnum })[1].signs
+		vim.fn.sign_getplaced(buf, {
+			group = "*",
+			lnum = vim.v.lnum,
+		})[1].signs
 	)
 end
 
@@ -28,7 +32,7 @@ function M.get_gitsign(git_sign)
 	if git_sign then
 		return "%#" .. git_sign.texthl .. "#" .. string.gsub(git_sign.text, "%s+", "") .. "%*"
 	else
-		return require("config.util").is_file() and Icons.fillchars.foldsep or ""
+		return ("%%#LineNr#%s"):format(Icons.fillchars.foldsep)
 	end
 end
 
@@ -54,5 +58,19 @@ function M.column()
 
 	return table.concat(components, "")
 end
+
+vim.api.nvim_create_autocmd({
+	"BufEnter",
+}, {
+	group = Util.augroup("Statuscolumn"),
+	callback = function()
+		if Util.is_file() then
+			vim.opt_local.statusline = [[%!v:lua.Status.column()]]
+		else
+			vim.opt_local.statuscolumn = [[]]
+		end
+	end,
+})
+vim.opt.statuscolumn = [[%!v:lua.Status.column()]]
 
 return M
