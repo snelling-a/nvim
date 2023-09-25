@@ -8,6 +8,20 @@ local config_files = {
 	"selene.yml",
 }
 
+local function get_lua_runtime()
+	local result = {}
+	for _, path in pairs(vim.api.nvim_list_runtime_paths()) do
+		local lua_path = path .. "/lua/"
+		if vim.fn.isdirectory(lua_path) then
+			result[lua_path] = true
+		end
+	end
+	result[vim.fn.expand("$VIMRUNTIME/lua")] = true
+	result[vim.fn.expand("~/dev/neovim/src/nvim/lua")] = true
+
+	return result
+end
+
 local settings = {
 	Lua = {
 		codeLens = {
@@ -35,6 +49,9 @@ local settings = {
 		},
 		workspace = {
 			checkThirdParty = false,
+			library = get_lua_runtime(),
+			maxPreload = 1000,
+			preloadFileSize = 1000,
 		},
 	},
 }
