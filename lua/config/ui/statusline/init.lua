@@ -1,21 +1,14 @@
+local Util = require("config.ui.util")
 local api = vim.api
 
 local M = {}
 
 --- @param name string
---- @return table<string,any>
-function M.get_hl(name)
-	return api.nvim_get_hl(0, {
-		name = name,
-	})
-end
+--- @param what? What
+function M.get_hl(name, what) return Util.get_hl(name, what or "fg") end
 
---- @param name string
---- @param val vim.api.keyset.highlight
-function M.set_hl(name, val) return api.nvim_set_hl(0, name, val) end
-
-M.bg = M.get_hl("StatusLine").bg
-M.fg = M.get_hl("StatusLine").fg
+--- @param active boolean
+function M.highlight(active) return active and "%#StatusLine#" or "%#StatusLineNC#" end
 
 --- Use a statusline highlight group
 --- @param name string statusline highlight group
@@ -28,18 +21,7 @@ function M.hl(name, active)
 	return "%#" .. name .. "#"
 end
 
---- @param active boolean
-function M.highlight(active) return active and "%#StatusLine#" or "%#StatusLineNC#" end
-
-function M.recording()
-	local recording = vim.fn.reg_recording()
-
-	if recording ~= "" then
-		return "%#MoreMsg# @[" .. recording .. "] "
-	else
-		return ""
-	end
-end
+M.no_statusline = ("%s "):format(M.highlight(false))
 
 --- @param str string
 function M.pad(str) return ("%%(%s %%)"):format(str) end
@@ -62,5 +44,21 @@ function M.parse_sections(sections)
 	-- Leading '%=' needed for first Statusline.highlight to work
 	return "%=" .. table.concat(result, "%=")
 end
+
+function M.recording()
+	local recording = vim.fn.reg_recording()
+
+	if recording ~= "" then
+		return "%#MoreMsg# @[" .. recording .. "] "
+	else
+		return ""
+	end
+end
+
+--- @param name string
+--- @param val vim.api.keyset.highlight
+function M.set_hl(name, val) return api.nvim_set_hl(0, name, val) end
+
+M.bg = Util.get_hl("StatusLine", "bg")
 
 return M

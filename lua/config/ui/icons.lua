@@ -233,6 +233,7 @@ M.misc = {
 	health = " ",
 	help = "󰋖 ",
 	indent = "▏",
+	jira = "󰌃 ",
 	keyboard = keyboard,
 	l = "ℓ",
 	lazy = "󰒲 ",
@@ -240,6 +241,7 @@ M.misc = {
 	moved = moved,
 	multi = " ",
 	note = " ",
+	outline = " ",
 	panda = "󰏚 ",
 	percent = "󰏰 ",
 	restore = "󰁯 ",
@@ -250,7 +252,9 @@ M.misc = {
 	selection = selection,
 	square = "󰝤 ",
 	tag = " ",
+	thread = " ",
 	tools = " ",
+	undo = " ",
 	version = " ",
 	wrap = "↵",
 }
@@ -262,5 +266,29 @@ M.progress = {
 	trash = " ",
 }
 
+M.servers = {
+	["typescript-tools"] = " ",
+	bashls = "󱆃 ",
+	copilot = copilot,
+	cssls = " ",
+	denols = "톋",
+	eslint = " ",
+	go = "",
+	graphql = " ",
+	html = " ",
+	javascript = "",
+	jsonls = " ",
+	lua_ls = "",
+	marksman = " ",
+	python = "",
+	ruby = "",
+	rust = "",
+	scss = "",
+	sqlls = " ",
+	taplo = " ",
+	vimls = " ",
+	yamlls = " ",
+	zsh = "",
+}
 
 return M

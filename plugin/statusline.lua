@@ -1,42 +1,9 @@
 local File = require("config.ui.statusline.file")
+local Highlights = require("config.ui.statusline.highlights")
 local Lsp = require("config.ui.statusline.lsp")
 local Statusline = require("config.ui.statusline")
 
 local api = vim.api
-
-local function hldefs()
-	Lsp.lsp_hldefs()
-
-	local green_fg = Statusline.get_hl("ModeMsg").fg
-	api.nvim_set_hl(0, "StatusGreen", {
-		fg = green_fg,
-		bg = Statusline.bg,
-	})
-
-	local red_fg = Statusline.get_hl("ErrorMsg").fg
-	api.nvim_set_hl(0, "StatusRed", {
-		fg = red_fg,
-		bg = Statusline.bg,
-	})
-
-	local blue_fg = Statusline.get_hl("Title").fg
-	api.nvim_set_hl(0, "StatusBlue", {
-		fg = blue_fg,
-		bg = Statusline.bg,
-	})
-
-	local cyan_fg = Statusline.get_hl("FoldColumn").fg
-	api.nvim_set_hl(0, "StatusCyan", {
-		fg = cyan_fg,
-		bg = Statusline.bg,
-	})
-
-	local magenta_fg = Statusline.get_hl("Conditional").fg
-	api.nvim_set_hl(0, "StatusMagenta", {
-		fg = magenta_fg,
-		bg = Statusline.bg,
-	})
-end
 
 local F = setmetatable({}, {
 	__index = function(_, name)
@@ -68,7 +35,7 @@ local function set(active, global)
 		},
 		{
 			"%<",
-			Statusline.pad(F.bufname(nil, "0.60") .. "%m%r%h%q"),
+			Statusline.pad(F.bufname(nil, "0.80") .. "%m%r%h%q"),
 		},
 		{
 			Statusline.pad(F.filetype(active)),
@@ -89,18 +56,13 @@ api.nvim_create_autocmd({
 	once = true,
 	callback = function()
 		api.nvim_create_autocmd({
-			"BufWinEnter",
+			"BufEnter",
 			"FocusGained",
 			"RecordingEnter",
 			"WinEnter",
 		}, {
 			group = group,
-			callback = function()
-				if vim.bo.filetype == "starter" then
-					return ""
-				end
-				set(true)
-			end,
+			callback = function() set(true) end,
 		})
 	end,
 })
@@ -115,6 +77,8 @@ api.nvim_create_autocmd({
 
 api.nvim_create_autocmd({
 	"BufAdd",
+	"SessionLoadPost",
+	"VimEnter",
 }, {
 	group = group,
 	callback = function() set(true, true) end,
@@ -124,9 +88,10 @@ api.nvim_create_autocmd({
 	"ColorScheme",
 }, {
 	group = group,
-	callback = hldefs,
+	callback = Highlights.defintions,
 })
-hldefs()
+
+Highlights.defintions()
 
 _G.statusline = M
 

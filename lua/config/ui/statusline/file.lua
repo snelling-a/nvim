@@ -1,58 +1,58 @@
 local is_file = require("config.util").is_file
-local Icons = require("config.ui.icons")
 local Statusline = require("config.ui.statusline")
-local api = vim.api
-local bo = vim.bo
 
 local function filetype_symbol()
-    local ok, devicons = pcall(require, "nvim-web-devicons")
-    if not ok then
-        return ""
-    end
+	local ok, devicons = pcall(require, "nvim-web-devicons")
+	if not ok then
+		return ""
+	end
 
-    local icon, iconhl = devicons.get_icon_color_by_filetype(bo.filetype, { default = true })
+	local ft = vim.bo.filetype
+	local icon, iconhl = devicons.get_icon_color_by_filetype(ft, {
+		default = true,
+	})
 
-    local hlname = ("%s%s"):format("Status", bo.filetype)
+	local hlname = ("%s%s"):format("Status", ft)
 
-    api.nvim_set_hl(0, hlname, {
-        fg = iconhl,
-        bg = Statusline.bg,
-    })
+	Statusline.set_hl(hlname, {
+		fg = iconhl,
+		bg = Statusline.bg,
+	})
 
-    return Statusline.hl(hlname, true) .. icon
+	return Statusline.hl(hlname, true) .. icon
 end
 
 local function get_treesitter_status()
-    local bufnr = api.nvim_get_current_buf()
+	local bufnr = vim.api.nvim_get_current_buf()
 
-    local is_treesitter = vim.treesitter.highlighter.active[bufnr] ~= nil
+	local is_treesitter = vim.treesitter.highlighter.active[bufnr] ~= nil
 
-    return is_treesitter and (Statusline.hl("StatusGreen", true) .. Icons.cmp.treesitter) or ""
+	return is_treesitter and (Statusline.hl("StatusGreen", true) .. require("config.ui.icons").cmp.treesitter) or ""
 end
 
 local M = {}
 
-function M.type(active)
-    if not active or not is_file() then
-        return ""
-    end
+function M.encoding()
+	if not is_file() then
+		return ""
+	end
 
-    local filetype_items = {
-        filetype_symbol(),
-        get_treesitter_status(),
-    }
+	local encoding = vim.bo.fileencoding and vim.bo.fileencoding or vim.o.encoding
 
-    return table.concat(filetype_items, " ")
+	return encoding ~= "utf-8" and encoding or ""
 end
 
-function M.encoding()
-    if not is_file() then
-        return ""
-    end
+function M.type(active)
+	if not active or not is_file() then
+		return ""
+	end
 
-    local encoding = vim.bo.fileencoding and vim.bo.fileencoding or vim.o.encoding
+	local filetype_items = {
+		filetype_symbol(),
+		get_treesitter_status(),
+	}
 
-    return encoding ~= "utf-8" and encoding or ""
+	return table.concat(filetype_items, " ")
 end
 
 return M

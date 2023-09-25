@@ -11,25 +11,35 @@ local function get_jira_tag(branch)
 	return tag, icon
 end
 
-local function get_branch()
-	local branch = (vim.b.gitsigns_head or vim.g.gitsigns_head) or nil --[[@as string|nil]]
+local function branch2()
+	local icon = Icons.git.git
+	local highlight = "StatusRed"
+	local branch = (vim.b.gitsigns_head or vim.g.gitsigns_head) or "" --[[@as string]]
+
+	local ret = {
+		" ",
+		Statusline.hl(highlight, true),
+		icon,
+		" ",
+	}
 
 	if branch == "master" or branch == "main" then
-		branch = nil
+		return table.concat(ret, "")
 	end
 
-	local jira_tag, jira_icon
+	local jira_tag, jira_icon = get_jira_tag(branch)
 
-	if branch then
-		jira_tag, jira_icon = get_jira_tag(branch)
+	if jira_tag and jira_icon then
+		return table.concat({
+			Statusline.hl("StatusBlue", true),
+			jira_icon,
+			jira_tag,
+		}, " ")
 	end
 
-	branch = jira_tag or branch or ""
+	table.insert(ret, branch)
 
-    return table.concat({
-			Statusline.hl((jira_icon and "StatusBlue" or "StatusRed"), true),
-			(" %s %s "):format(jira_icon or Icons.git.git, branch),
-		},'')
+	return table.concat(ret, "")
 end
 
 local function get_status_element(count, icon)
@@ -73,9 +83,9 @@ function M.status(active)
 	end
 
 	return table.concat({
-		get_branch(),
+		branch2(),
 		get_status(),
-	}, "")
+	}, " ")
 end
 
 return M
