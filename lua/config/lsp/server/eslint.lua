@@ -2,7 +2,7 @@ local M = {}
 
 M.mason_name = "eslint-lsp"
 
-M.config_files = {
+local config_files = {
 	".eslintrc",
 	".eslintrc.cjs",
 	".eslintrc.js",
@@ -14,7 +14,7 @@ M.config_files = {
 
 --- @param opts lspconfig.Config
 function M.setup(opts)
-	opts.root_dir = require("config.lsp.util").get_root_pattern(M.config_files)
+	opts.root_dir = require("config.lsp.util").get_root_pattern(config_files)
 
 	require("lspconfig").eslint.setup(opts)
 end

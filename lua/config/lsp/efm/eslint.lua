@@ -13,24 +13,23 @@ local linter_args = {
 	"--format",
 	"visualstudio",
 	"--stdin",
+	"--stdin-filename",
+	"${INPUT}",
 }
 
 local M = {}
 
 M.mason_name = "eslint_d"
 
-function M.setup()
-	return {
-		lintCommand = command(M.mason_name, linter_args),
-		lintStdin = true,
-		lintFormats = {
-			"%f:%l:%c: %m",
-		},
-		lintIgnoreExitCode = true,
-		formatCommand = command(M.mason_name, formatter_args),
-		formatStdin = true,
-		rootMarkers = require("config.lsp.server.eslint").config_files,
-	}
-end
+M.config = {
+	formatCommand = command(M.mason_name, formatter_args),
+	formatStdin = true,
+	lintCommand = command(M.mason_name, linter_args),
+	lintFormats = { "%f:%l:%c: %m" },
+	lintIgnoreExitCode = true,
+	lintSource = "eslint",
+	lintStdin = true,
+	rootMarkers = { "package.json" },
+}
 
 return M

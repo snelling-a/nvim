@@ -1,7 +1,5 @@
 local args = {
-	"${--indent-width:tabSize}",
-	"${--range-start:charStart}",
-	"${--range-end:charEnd}",
+	"--search-parent-directories",
 	"--color",
 	"Never",
 	"-",
@@ -13,16 +11,14 @@ M.mason_name = "stylua"
 
 local command = require("config.lsp.util").get_linter_formatter_command(M.mason_name, args)
 
-function M.setup()
-	return {
-		formatCommand = command,
-		formatCanRange = true,
-		formatStdin = true,
-		rootMarkers = {
-			"stylua.toml",
-			".stylua.toml",
-		},
-	}
-end
+M.config = {
+	formatCommand = command,
+	formatCanRange = true,
+	formatStdin = true,
+	rootMarkers = {
+		"stylua.toml",
+		".stylua.toml",
+	},
+}
 
 return M

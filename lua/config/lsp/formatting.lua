@@ -21,6 +21,8 @@ local block_list = {
 
 local formatting_disabled = {
 	eslint = true,
+	jsonls = true,
+	lua_ls = true,
 	tsserver = true,
 	["typescript-tools"] = true,
 }

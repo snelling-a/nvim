@@ -1,8 +1,43 @@
 local js_ts_filetypes = require("config.util.constants").javascript_typescript
-local prettierd = require("config.lsp.efm.prettierd").setup()
-local shfmt = require("config.lsp.efm.shfmt")
+local prettierd = require("config.lsp.efm.prettierd").config
+local shfmt = require("config.lsp.efm.shfmt").config
 
-local languages = {}
+local languages = {
+	css = {
+		prettierd,
+	},
+	html = {
+		prettierd,
+	},
+	json = {
+		prettierd,
+		require("config.lsp.efm.jq").config,
+	},
+	jsonc = {
+		prettierd,
+	},
+	lua = {
+		require("config.lsp.efm.luacheck").config,
+		require("config.lsp.efm.stylua").config,
+	},
+	markdown = {
+		prettierd,
+		require("config.lsp.efm.cbfmt").config,
+	},
+	vim = {
+		require("config.lsp.efm.vint").config,
+	},
+	yaml = {
+		require("config.lsp.efm.yamlfmt").config,
+		require("config.lsp.efm.yamllint").config,
+	},
+	zsh = {
+		shfmt.config,
+	},
+	["="] = {
+		require("config.lsp.efm.cspell").config,
+	},
+}
 
 local function add_languages(filetypes, config)
 	for _, v in ipairs(filetypes) do
@@ -11,54 +46,16 @@ local function add_languages(filetypes, config)
 end
 
 add_languages(js_ts_filetypes, {
-	require("config.lsp.efm.eslint").setup(),
 	prettierd,
+	require("config.lsp.efm.eslint").config,
 })
 add_languages({
 	"bash",
 	"sh",
 }, {
-	shfmt.setup(),
-	require("config.lsp.efm.shellcheck").setup(),
+	require("config.lsp.efm.shellcheck").config,
+	shfmt,
 })
-
-languages.css = {
-	prettierd,
-}
-languages.html = {
-	prettierd,
-}
-languages.json = {
-	require("config.lsp.efm.jq").setup(),
-}
-languages.jsonc = {
-	require("config.lsp.efm.prettier").setup("json"),
-}
-languages.lua = {
-	require("config.lsp.efm.luacheck").setup(),
-	require("config.lsp.efm.stylua").setup(),
-}
-languages.markdown = {
-	require("config.lsp.efm.cbfmt").setup(),
-	prettierd,
-}
-languages.yaml = {
-	require("config.lsp.efm.yamllint").setup(),
-	require("config.lsp.efm.yamlfmt").setup(),
-}
-languages.zsh = {
-	shfmt.setup(),
-}
-languages["="] = {
-	require("config.lsp.efm.cspell").setup(),
-}
-languages.toml = {
-	nil,
-}
-
-local settings = {
-	languages = languages,
-}
 
 local M = {}
 
@@ -71,7 +68,8 @@ function M.setup(opts)
 		codeAction = true,
 		completion = true,
 	}
-	opts.settings = settings
+
+	opts.settings.languages = languages
 
 	require("lspconfig").efm.setup(opts)
 end

@@ -9,18 +9,12 @@ local M = {}
 
 M.mason_name = "shellcheck"
 
-function M.setup()
-	return {
-		prefix = M.mason_name,
-		lintCommand = require("config.lsp.util").get_linter_formatter_command(M.mason_name, args),
-		lintStdin = true,
-		lintFormats = {
-			"-:%l:%c: %trror: %m",
-			"-:%l:%c: %tarning: %m",
-			"-:%l:%c: %tote: %m",
-		},
-		rootMarkers = {},
-	}
-end
+M.config = {
+	lintCommand = require("config.lsp.util").get_linter_formatter_command(M.mason_name, args),
+	lintSource = "shellcheck",
+	lintStdin = true,
+	prefix = M.mason_name,
+    lintFormats = { "%f:%l:%c: %trror: %m", "%f:%l:%c: %tarning: %m", "%f:%l:%c: %tote: %m" },
+}
 
 return M
