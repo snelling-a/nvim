@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.33.0](https://github.com/snelling-a/nvim/compare/v5.32.1...v5.33.0) (2023-09-26)
+
+
+### Features
+
+* scroll ([83d5f86](https://github.com/snelling-a/nvim/commit/83d5f86caf8fdf95af8a101992b01b686a03f599))
+
 ## [5.32.1](https://github.com/snelling-a/nvim/compare/v5.32.0...v5.32.1) (2023-09-26)
 
 
