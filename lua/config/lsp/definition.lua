@@ -59,7 +59,8 @@ local function preview_location(result)
 	}
 
 	for name, value in pairs(win_opts) do
-		api.nvim_set_option_value(name, value, { buf = bufnr })
+		api.nvim_set_option_value(name, value, { win = win })
+		-- vim.api.nvim_win_set_option(win, name, value)
 	end
 
 	api.nvim_win_set_cursor(win, {
