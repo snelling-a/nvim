@@ -1,5 +1,19 @@
 # Changelog
 
+## [5.32.1](https://github.com/snelling-a/nvim/compare/v5.32.0...v5.32.1) (2023-09-26)
+
+
+### Bug Fixes
+
+* **lsp:** definition preview ([1766f6d](https://github.com/snelling-a/nvim/commit/1766f6d7dbbff3d226652be283a16e900d983df3))
+* **lsp:** json formatting ([31e7f94](https://github.com/snelling-a/nvim/commit/31e7f94789443ebdf30c37a4531f1eb8d30d6b5c))
+
+
+### Miscellaneous
+
+* update cspell.json ([a19035f](https://github.com/snelling-a/nvim/commit/a19035f2edafa5e8b100176ccac598066a5a8144))
+* update plugins ([d73f003](https://github.com/snelling-a/nvim/commit/d73f00374e4994a66cf5dd777b6701e86d8bfbde))
+
 ## [5.32.0](https://github.com/snelling-a/nvim/compare/v5.31.0...v5.32.0) (2023-09-25)
 
 
