@@ -5,6 +5,19 @@ local M = {
 	"echasnovski/mini.starter",
 }
 
+local function pad_10(content)
+	local empty_item = { { type = "empty", string = "" } }
+
+	for i = 1, 10 do
+		-- NOTE: for some reason, the header renders twice
+		local pos = i % 2 == 0 and 3 or #content - 1
+
+		table.insert(content, pos, empty_item)
+	end
+
+	return content
+end
+
 function M.opts()
 	local pad = string.rep(" ", 16)
 	local new_item = function(name, action, section)
@@ -33,6 +46,7 @@ function M.opts()
 			new_item("Quit", "qa", "Built-in"),
 		},
 		content_hooks = {
+			pad_10,
 			starter.gen_hook.adding_bullet(pad .. "░ ", false),
 			starter.gen_hook.aligning("center", "center"),
 		},
@@ -66,7 +80,7 @@ function M.config(_, opts)
 			local time = (math.floor(stats.startuptime * 100 + 0.5) / 100)
 			local startup_time = string.format("%s %d ms", Icons.progress.pending, time)
 
-			local plugins = string.format("%s %d / %d Plugins", Icons.misc.rocket, stats.loaded, stats.count)
+			local plugins = string.format("%s\t\t%d / %d\t\tPlugins", Icons.misc.rocket, stats.loaded, stats.count)
 
 			starter.config.footer = string.format("%s %s %s", version, plugins, startup_time)
 
