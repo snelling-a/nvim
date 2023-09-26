@@ -1,5 +1,17 @@
 # Changelog
 
+## [5.33.2](https://github.com/snelling-a/nvim/compare/v5.33.1...v5.33.2) (2023-09-26)
+
+
+### Bug Fixes
+
+* statuscolumn border on special buffers ([e320b03](https://github.com/snelling-a/nvim/commit/e320b03b4697c6bc6ebe0a0e6a26e455b6ede657))
+
+
+### Miscellaneous
+
+* remove deprecated shortmess flags ([4993246](https://github.com/snelling-a/nvim/commit/499324674b3c1e7685e993c8a313773abe91da64))
+
 ## [5.33.1](https://github.com/snelling-a/nvim/compare/v5.33.0...v5.33.1) (2023-09-26)
 
 
