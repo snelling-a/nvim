@@ -68,3 +68,6 @@ end, {
 	expr = true,
 	desc = "Move to previous visual line",
 })
+nmap("z<CR>", "zt", {
+	desc = "Redraw, line at top of window. Leave the cursor in the same column.",
+})
