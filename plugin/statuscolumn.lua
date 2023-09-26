@@ -32,7 +32,7 @@ function M.get_gitsign(git_sign)
 	if git_sign then
 		return "%#" .. git_sign.texthl .. "#" .. string.gsub(git_sign.text, "%s+", "") .. "%*"
 	else
-		return ("%%#LineNr#%s"):format(Icons.fillchars.foldsep)
+		return Util.is_file() and ("%%#LineNr#%s"):format(Icons.fillchars.foldsep) or ""
 	end
 end
 
