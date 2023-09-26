@@ -28,7 +28,7 @@ function M.opts()
 			new_item("Mason", "Mason", "Config"),
 			new_item("MasonUpdateAll", "MasonUpdateAll", "Config"),
 			new_item("GenerateAverageColor", "GenerateAverageColor", "Colors"),
-			new_item("Session restore", "LoadSession", "Session"),
+			new_item("Session restore", "SessionLoad", "Session"),
 			new_item("Checkhealth", "checkhealth", "Built-in"),
 			new_item("Quit", "qa", "Built-in"),
 		},
