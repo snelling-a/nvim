@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.33.1](https://github.com/snelling-a/nvim/compare/v5.33.0...v5.33.1) (2023-09-26)
+
+
+### Bug Fixes
+
+* SessionLoad command in starter ([75304ca](https://github.com/snelling-a/nvim/commit/75304ca9f40cadb0d62904ac46c5227ae3df24a6))
+
 ## [5.33.0](https://github.com/snelling-a/nvim/compare/v5.32.1...v5.33.0) (2023-09-26)
 
 
