@@ -51,6 +51,8 @@ local cs_names = {
 	"nord",
 	"onedark",
 	"oxocarbon",
+	"palette",
+	"palette",
 	"rose-pine",
 	"tokyonight",
 }
