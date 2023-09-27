@@ -17,7 +17,7 @@ local function get_lua_runtime()
 		end
 	end
 	result[vim.fn.expand("$VIMRUNTIME/lua")] = true
-	result[vim.fn.expand("~/dev/neovim/src/nvim/lua")] = true
+	result[vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true
 
 	return result
 end
