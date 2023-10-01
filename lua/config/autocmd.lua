@@ -119,7 +119,7 @@ autocmd({
 autocmd({
 	"BufWritePre",
 }, {
-	callback = function() cmd.TrimAllTrailingWhitespace() end,
+	callback = cmd.TrimAllTrailingWhitespace,
 	desc = "Trim whitespace from the end of the line",
 	group = augroup("TrimTrailingWhitespace"),
 	pattern = "!markdown",

@@ -3,43 +3,9 @@ local M = {
 	"folke/trouble.nvim",
 }
 
-M.keys = {
-	---@diagnostic disable-next-line: missing-fields
-	{
-		"<leader>xx",
-		function() vim.cmd.TroubleToggle(nil) end,
-		desc = "Toggle trouble",
-	},
-	---@diagnostic disable-next-line: missing-fields
-	{
-		"<leader>xw",
-		function() vim.cmd.TroubleToggle("workspace_diagnostics") end,
-		desc = "Toggle trouble for [w]orspace",
-	},
-	---@diagnostic disable-next-line: missing-fields
-	{
-		"<leader>xd",
-		function() vim.cmd.TroubleToggle("document_diagnostics") end,
-		desc = "Toggle trouble for [d]ocument",
-	},
-	---@diagnostic disable-next-line: missing-fields
-	{
-		"<leader>xl",
-		function() vim.cmd.TroubleToggle("loclist") end,
-		desc = "Toggle trouble [l]oclist",
-	},
-	---@diagnostic disable-next-line: missing-fields
-	{
-		"<leader>xq",
-		function() vim.cmd.TroubleToggle("quickfix") end,
-		desc = "Toggle trouble [q]uickfix",
-	},
-	---@diagnostic disable-next-line: missing-fields
-	{
-		"<leader>gR",
-		function() vim.cmd.TroubleToggle("lsp_references") end,
-		desc = "Toggle trouble for LSP [R]eference",
-	},
+M.cmd = {
+	"Trouble",
+	"TroubleToggle",
 }
 
 M.opts = {
@@ -47,5 +13,43 @@ M.opts = {
 	mode = "workspace_diagnostics",
 	use_diagnostic_signs = true,
 }
+
+---@diagnostic disable-next-line: assign-type-mismatch
+function M.keys()
+	local trouble_toggle = require("trouble").toggle
+
+	return {
+		{
+			"<leader>xx",
+			function() trouble_toggle(nil) end,
+			desc = "Toggle trouble",
+		},
+		{
+			"<leader>xw",
+			function() trouble_toggle("workspace_diagnostics") end,
+			desc = "Toggle trouble for [w]orspace",
+		},
+		{
+			"<leader>xd",
+			function() trouble_toggle("document_diagnostics") end,
+			desc = "Toggle trouble for [d]ocument",
+		},
+		{
+			"<leader>xl",
+			function() trouble_toggle("loclist") end,
+			desc = "Toggle trouble [l]oclist",
+		},
+		{
+			"<leader>xq",
+			function() trouble_toggle("quickfix") end,
+			desc = "Toggle trouble [q]uickfix",
+		},
+		{
+			"<leader>gR",
+			function() trouble_toggle("lsp_references") end,
+			desc = "Toggle trouble for LSP [R]eference",
+		},
+	}
+end
 
 return M
