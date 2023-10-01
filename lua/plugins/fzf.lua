@@ -92,7 +92,7 @@ M.opts = {
 	},
 	colorschemes = {
 		live_preview = true,
-		prompt = get_prompt(Icons.misc.color),
+		prompt = get_prompt(Icons.kind_icons.Color),
 	},
 	commands = {
 		sort_lastused = true,
@@ -121,11 +121,11 @@ M.opts = {
 		},
 		commits = {
 			preview_pager = preview_pager,
-			prompt = get_prompt(Icons.misc.git_commit),
+			prompt = get_prompt(Icons.git.commit),
 		},
 		files = {
-			prompt = "x",
-		}, --get_prompt(icons.git.folder) },
+			prompt = get_prompt(Icons.git.folder),
+		},
 		icons = {
 			["A"] = {
 				icon = Icons.git.added,
