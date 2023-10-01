@@ -1,34 +1,18 @@
 local Util = require("config.util")
 
+local nmap = Util.nmap
+
 local function act_center(lhs)
-	Util.map(
-		{
-			"n",
-		},
-		lhs,
-		function()
-			Util.feedkeys(lhs)
-			Util.scroll_center()
-		end,
-		{
-			desc = "Center screen after " .. lhs,
-		}
-	)
+	nmap(lhs, function()
+		Util.feedkeys(lhs)
+		Util.scroll_center()
+	end, { desc = "Center screen after " .. lhs })
 end
 local function center_act(lhs)
-	Util.map(
-		{
-			"n",
-		},
-		lhs,
-		function()
-			Util.scroll_center()
-			Util.feedkeys(lhs)
-		end,
-		{
-			desc = "Center screen before " .. lhs,
-		}
-	)
+	nmap(lhs, function()
+		Util.scroll_center()
+		Util.feedkeys(lhs)
+	end, { desc = "Center screen before " .. lhs })
 end
 
 act_center("(")
@@ -41,6 +25,8 @@ act_center("zk")
 act_center("zx")
 act_center("{")
 act_center("}")
+act_center("zn")
+act_center("zm")
 
 center_act("<C-d>")
 center_act("<C-u>")
@@ -53,15 +39,7 @@ center_act("o")
 center_act("S")
 center_act("s")
 
-Util.map("n", "c", "zzzvc", {
-	desc = "Center screen before c",
-})
-Util.map("n", "C", "zzzvC", {
-	desc = "Center screen before C",
-})
-Util.map("n", "za", "zazz", {
-	desc = "Center screen before c",
-})
-Util.map("n", "zA", "zAzz", {
-	desc = "Center screen before C",
-})
+nmap("c", "zzzvc", { desc = "Center screen before c" })
+nmap("C", "zzzvC", { desc = "Center screen before C" })
+nmap("za", "zazz", { desc = "Center screen after toggling a fold" })
+nmap("zA", "zAzz", { desc = "Center screen after toggling a fold recursively" })

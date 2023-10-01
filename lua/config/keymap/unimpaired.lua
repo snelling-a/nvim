@@ -1,3 +1,4 @@
+local Util = require("config.util")
 local M = {}
 --- @alias LeftRight table<"right"|"left", string|function>
 
@@ -10,17 +11,29 @@ local M = {}
 --- @param lhs string
 --- @param rhs LeftRight
 --- @param desc Description
-function M.unimapired(lhs, rhs, desc)
-	local nmap = require("config.util").nmap
+--- @param opts table?
+function M.unimapired(lhs, rhs, desc, opts)
+	local tbl_extend = Util.tbl_extend_force
 	local format = string.format
+	local nmap = Util.nmap
 
-	nmap("[" .. lhs, rhs.left, {
-		desc = format("%s %s", desc.base, desc.text.left),
-	})
+	opts = opts or {}
 
-	nmap("]" .. lhs, rhs.right, {
-		desc = format("%s %s", desc.base, desc.text.right),
-	})
+	nmap(
+		"[" .. lhs,
+		rhs.left,
+		tbl_extend(opts, {
+			desc = format("%s %s", desc.base, desc.text.left),
+		})
+	)
+
+	nmap(
+		"]" .. lhs,
+		rhs.right,
+		tbl_extend(opts, {
+			desc = format("%s %s", desc.base, desc.text.right),
+		})
+	)
 end
 
 local fn = vim.fn
@@ -39,8 +52,8 @@ M.unimapired("<space>", {
 }, {
 	base = "Put empty line",
 	text = {
-		left = "above",
-		right = "below",
+		left = "above current",
+		right = "below current",
 	},
 })
 
