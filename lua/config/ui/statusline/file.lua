@@ -1,5 +1,5 @@
 local is_file = require("config.util").is_file
-local Statusline = require("config.ui.statusline")
+local Util = require("config.ui.statusline.util")
 
 local function filetype_symbol()
 	local ok, devicons = pcall(require, "nvim-web-devicons")
@@ -14,12 +14,12 @@ local function filetype_symbol()
 
 	local hlname = ("%s%s"):format("Status", ft)
 
-	Statusline.set_hl(hlname, {
+	Util.set_hl(hlname, {
 		fg = iconhl,
-		bg = Statusline.bg,
+		bg = Util.bg,
 	})
 
-	return Statusline.hl(hlname, true) .. icon
+	return Util.hl(hlname, true) .. icon
 end
 
 local function get_treesitter_status()
@@ -27,7 +27,7 @@ local function get_treesitter_status()
 
 	local is_treesitter = vim.treesitter.highlighter.active[bufnr] ~= nil
 
-	return is_treesitter and (Statusline.hl("StatusGreen", true) .. require("config.ui.icons").cmp.treesitter) or ""
+	return is_treesitter and (Util.hl("StatusGreen", true) .. require("config.ui.icons").cmp.treesitter) or ""
 end
 
 local M = {}

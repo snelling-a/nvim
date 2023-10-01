@@ -1,5 +1,5 @@
 local Icons = require("config.ui.icons")
-local Statusline = require("config.ui.statusline")
+local Util = require("config.ui.statusline.util")
 
 --- @param branch string
 --- @return string|nil 'branch or jira tag'
@@ -18,7 +18,7 @@ local function branch2()
 
 	local ret = {
 		" ",
-		Statusline.hl(highlight, true),
+		Util.hl(highlight, true),
 		icon,
 		" ",
 	}
@@ -31,7 +31,7 @@ local function branch2()
 
 	if jira_tag and jira_icon then
 		return table.concat({
-			Statusline.hl("StatusBlue", true),
+			Util.hl("StatusBlue", true),
 			jira_icon,
 			jira_tag,
 		}, " ")
@@ -51,7 +51,7 @@ end
 
 --- @return string 'git status'
 local function get_status()
-	local fallback, status = require("config.ui.statusline.utils").gitsigns_ok("")
+	local fallback, status = require("config.ui.statusline.util").gitsigns_ok("")
 
 	if not status then
 		return fallback or ""
@@ -61,7 +61,7 @@ local function get_status()
 		return ""
 	end
 
-	local highlight = Statusline.hl
+	local highlight = Util.hl
 
 	return table.concat({
 		highlight("StatusGreen", true),

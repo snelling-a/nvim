@@ -1,7 +1,7 @@
 local File = require("config.ui.statusline.file")
 local Highlights = require("config.ui.statusline.highlights")
 local Lsp = require("config.ui.statusline.lsp")
-local Statusline = require("config.ui.statusline")
+local Util = require("config.ui.statusline.util")
 
 local api = vim.api
 
@@ -26,21 +26,21 @@ M.ruler = require("config.ui.statusline.ruler").get_ruler
 
 local function set(active, global)
 	local scope = global and "o" or "wo"
-	vim[scope].statusline = Statusline.parse_sections({
+	vim[scope].statusline = Util.parse_sections({
 		{
-			Statusline.recording(),
-			Statusline.pad(F.git_status(active)),
-			Statusline.pad(F.lsp_status(active)),
-			Statusline.highlight(active),
+			Util.recording(),
+			Util.pad(F.git_status(active)),
+			Util.pad(F.lsp_status(active)),
+			Util.highlight(active),
 		},
 		{
 			"%<",
-			Statusline.pad(F.bufname(nil, "0.80") .. "%m%r%h%q"),
+			Util.pad(F.bufname(nil, "0.80") .. "%m%r%h%q"),
 		},
 		{
-			Statusline.pad(F.filetype(active)),
-			Statusline.pad(F.encoding()),
-			Statusline.pad(F.ruler(active)),
+			Util.pad(F.filetype(active)),
+			Util.pad(F.encoding()),
+			Util.pad(F.ruler(active)),
 		},
 	})
 end

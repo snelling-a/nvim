@@ -1,5 +1,5 @@
 local Icons = require("config.ui.icons")
-local Statusline = require("config.ui.statusline")
+local Util = require("config.ui.statusline.util")
 
 local function get_diagnostics()
 	local status = {}
@@ -9,7 +9,7 @@ local function get_diagnostics()
 		})
 
 		if #n > 0 then
-			local highlight = Statusline.hl("StatusDiagnostic" .. type, true)
+			local highlight = Util.hl("StatusDiagnostic" .. type, true)
 			local ret = ("%s %s %d"):format(highlight, icon, #n)
 
 			table.insert(status, ret)
@@ -31,17 +31,17 @@ local function get_lsp_names()
 		names[#names + 1] = Icons.servers[c.name] or Icons.kind_icons.Lsp
 	end
 
-	table.insert(names, 1, Statusline.hl("StatusLsp", true))
+	table.insert(names, 1, Util.hl("StatusLsp", true))
 	return table.concat(names, " ")
 end
 
 local M = {}
 
 function M.lsp_hldefs()
-	local bg = Statusline.bg
-	local get_hl = Statusline.get_hl
+	local bg = Util.bg
+	local get_hl = Util.get_hl
 
-	Statusline.set_hl("StatusLsp", {
+	Util.set_hl("StatusLsp", {
 		fg = get_hl("NonText"),
 		bg = bg,
 	})
@@ -64,7 +64,7 @@ function M.status(active)
 	local lsp_status = get_diagnostics()
 
 	return table.concat({
-		Statusline.highlight(active),
+		Util.highlight(active),
 		lsp_names,
 		lsp_status,
 	}, "")

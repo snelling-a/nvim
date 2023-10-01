@@ -26,12 +26,13 @@ function M.get_ruler(active)
 		return ""
 	end
 
-	local Statusline = require("config.ui.statusline")
+	local Util = require("config.ui.statusline.util")
+
 	local str = vim.api.nvim_eval_statusline("%p", {}).str --[[@as string]]
 
 	return table.concat({
-		Statusline.hl("StatusBlue", true),
-		Statusline.pad((get_top_or_bottom(str) or "%p%% %2l[%02c]/%-3L")),
+		Util.hl("StatusBlue", true),
+		Util.pad((get_top_or_bottom(str) or "%p%% %2l[%02c]/%-3L")),
 	}, "")
 end
 
