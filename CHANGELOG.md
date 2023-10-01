@@ -1,5 +1,17 @@
 # Changelog
 
+## [5.34.1](https://github.com/snelling-a/nvim/compare/v5.34.0...v5.34.1) (2023-10-01)
+
+
+### Bug Fixes
+
+* **keys:** trying to change buffer if none listed ([95b14f7](https://github.com/snelling-a/nvim/commit/95b14f74a7cd0c4c1c9b1b63146f20f058f717ec))
+
+
+### Miscellaneous
+
+* use vim.lsp.protocol.Methods ([7d07739](https://github.com/snelling-a/nvim/commit/7d077394126829cccdea1d38ac39e6cd5c64bbbb))
+
 ## [5.34.0](https://github.com/snelling-a/nvim/compare/v5.33.3...v5.34.0) (2023-10-01)
 
 
