@@ -9,28 +9,19 @@ local function set_fugitive_keymaps()
 
 	local bufnr = vim.api.nvim_get_current_buf()
 
-	local function mapLeader(lhs, rhs, desc)
-		return require("config.util").mapL(lhs, rhs, {
+	local function map_l(lhs, rhs, desc)
+		return require("config.util").map_leader(lhs, rhs, {
 			buffer = bufnr,
 			desc = desc,
 		})
 	end
 
-	mapLeader("p", function() Git("push") end, "Git [p]ush")
-	mapLeader("P", function()
-		Git({
-			"pull",
-			"--rebase",
-		})
-	end, "Git [P]ull")
-	mapLeader("t", function()
-		Git({
-			"push -u origin",
-		})
-	end, "Push [t]o origin")
-	mapLeader("gb", fzf.git_branches, "View [g]it [b]ranches")
-	mapLeader("gc", fzf.git_commits, "View [g]it [c]ommits")
-	mapLeader("gst", fzf.git_stash, "View [g]it [st]ash")
+	map_l("p", function() Git("push") end, "Git [p]ush")
+	map_l("P", function() Git("pull --rebase") end, "Git [P]ull")
+	map_l("t", function() Git("push -u origin") end, "Push [t]o origin")
+	map_l("gb", fzf.git_branches, "View [g]it [b]ranches")
+	map_l("gc", fzf.git_commits, "View [g]it [c]ommits")
+	map_l("gst", fzf.git_stash, "View [g]it [st]ash")
 end
 
 --- @type LazySpec

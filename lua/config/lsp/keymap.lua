@@ -8,7 +8,7 @@ local M = {}
 
 --- @param bufnr integer
 function M.on_attach(bufnr)
-	Util.mapL("d", vim_diagnostic.open_float, {
+	Util.map_leader("d", vim_diagnostic.open_float, {
 		desc = "Open [d]iagnostic float",
 	})
 	require("config.keymap.unimpaired").unimapired("d", {

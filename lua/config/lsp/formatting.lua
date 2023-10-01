@@ -3,7 +3,8 @@ _G.AUTOFORMAT = true
 --- @type boolean
 _G.FORMAT_NOTIFY = true
 
-local Util = require("config.lsp.util")
+local LspUtil = require("config.lsp.util")
+local Util = require("config.util")
 
 local method = vim.lsp.protocol.Methods.textDocument_formatting
 
@@ -39,7 +40,9 @@ end
 --- @param bufnr integer
 local function format(bufnr)
 	bufnr = bufnr or vim.api.nvim_get_current_buf()
-	local clients = vim.lsp.get_clients({ bufnr = bufnr })
+	local clients = vim.lsp.get_clients({
+		bufnr = bufnr,
+	})
 
 	clients = format_filter(clients)
 
@@ -74,16 +77,31 @@ local function format(bufnr)
 	end
 end
 
-local toggle = Util.toggle
+local toggle = LspUtil.toggle
 local function toggle_autoformat() return toggle(_G.AUTOFORMAT, "autoformat") end
 
 --- @param bufnr integer
 local function setup_keymaps(bufnr)
-	local bind = require("config.lsp.util").bind
+	local map_leader = Util.map_leader
 
-	bind(bufnr, "<leader>f", function() format(bufnr) end, "[F]ormat the current buffer")
-	bind(bufnr, "<leader>tf", function() toggle_autoformat() end, "[T]oggle Auto[f]ormat")
-	bind(bufnr, "<leader>sw", function() vim.cmd([[noautocmd write]]) end, "[S]ave [w]ithout formatting")
+	map_leader("f", function() format(bufnr) end, {
+		bufnr = bufnr,
+		desc = "[F]ormat the current buffer",
+	})
+	map_leader("tf", function() toggle_autoformat() end, {
+		bufnr = bufnr,
+		desc = "[T]oggle Auto[f]ormat",
+	})
+	map_leader("sw", function()
+		vim.cmd.write({
+			mods = {
+				noautocmd = true,
+			},
+		})
+	end, {
+		bufnr = bufnr,
+		desc = "[S]ave [w]ithout formatting",
+	})
 end
 
 local function setup_user_commands()
@@ -106,7 +124,7 @@ local function setup_user_commands()
 		else
 			block_list[opts.args] = not block_list[opts.args]
 
-			local state = Util.get_state(not block_list[opts.args])
+			local state = LspUtil.get_state(not block_list[opts.args])
 			local str = ("Formatting for [%s] has been %s."):format(opts.args, state)
 
 			if block_list[opts.args] then
@@ -115,13 +133,15 @@ local function setup_user_commands()
 				Logger:info(str)
 			end
 		end
-	end, { desc = "Add/remove filetypes from being formatted", complete = "filetype", nargs = 1 })
+	end, {
+		desc = "Add/remove filetypes from being formatted",
+		complete = "filetype",
+		nargs = 1,
+	})
 end
 
 --- @param bufnr integer
 local function setup_formatting(bufnr)
-	local Util = require("config.util")
-
 	local group = Util.augroup(lsp_formatting:gsub(" ", "") .. "." .. bufnr)
 
 	local event = {

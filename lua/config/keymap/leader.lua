@@ -2,20 +2,21 @@ local Logger = require("config.util.logger"):new("Keymaps")
 local Util = require("config.util")
 
 local cmd = vim.cmd
+local map = Util.map_leader
 
-Util.mapL("<leader>", function()
+map("<leader>", function()
 	Util.feedkeys("``")
 	Util.scroll_center()
 end, {
 	desc = "Press `,,` to jump back to the last cursor position.",
 })
-Util.mapL("/", function()
+map("/", function()
 	cmd.nohlsearch()
 	Logger:info("Highlighting cleared")
 end, {
 	desc = "Clear search highlighting",
 })
-Util.mapL("e", function()
+map("e", function()
 	vim.cmd.normal({
 		args = {
 			"%",
@@ -27,7 +28,7 @@ end, {
 	"n",
 	"v",
 })
-Util.mapL("g", function()
+map("g", function()
 	local conf = Logger:confirm({
 		msg = "Are you sure you want to quit?",
 		type = "Warning",
@@ -38,7 +39,7 @@ Util.mapL("g", function()
 end, {
 	desc = "[Q]uit all windows",
 })
-Util.mapL("rr", function()
+map("rr", function()
 	vim.api.nvim_exec2(
 		[[
         wall!
@@ -49,18 +50,20 @@ Util.mapL("rr", function()
 		}
 	)
 end, {
-	noremap = true,
-	silent = true,
 	desc = "Exit with error code 1",
 })
-Util.mapL("w", function()
+map("s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/I<Left><Left>]], {
+	desc = "[S]earch and replace word under the cursor",
+	silent = false,
+})
+map("w", function()
 	local wrap = Util.get_opt_local("wrap")
 
 	vim.opt_local.wrap = not wrap
 end, {
 	desc = "[W]rap lines",
 })
-Util.mapL("x", function()
+map("x", function()
 	local fn = vim.fn
 
 	fn.setfperm(fn.expand("%:p"), "rwxr-xr-x")

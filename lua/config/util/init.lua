@@ -141,7 +141,7 @@ end
 --- @param opts? table Table of |:map-arguments|
 --- @param mode? VimMode|table<VimMode> Mode short-name, see |nvim_set_keymap()|.
 --- Can also be list of modes to create mapping on multiple modes.
-function M.mapL(lhs, rhs, opts, mode) M.map(mode or "n", "<leader>" .. lhs, rhs, opts) end
+function M.map_leader(lhs, rhs, opts, mode) M.map(mode or "n", "<leader>" .. lhs, rhs, opts) end
 
 --- Wrapper for |zz| (to scroll center) and |zv| (to open fold) keymaps
 function M.scroll_center()
