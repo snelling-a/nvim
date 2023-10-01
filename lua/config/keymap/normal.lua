@@ -1,21 +1,28 @@
-local nmap = require("config.util").nmap
+local Util = require("config.util")
 
-local cmd = vim.cmd
 local v = vim.v
 
-nmap("<C-z>", "<nop>", {
+Util.nmap("<C-z>", "<nop>", {
 	desc = "I'm sure there is a use for this, but for now it's just annoying",
 })
-nmap("<S-TAB>", function() cmd.bprevious() end, {
+Util.nmap("<S-TAB>", function()
+	if Util.are_buffers_listed() then
+		vim.cmd([[bprevious]])
+	end
+end, {
 	desc = "Go to the previous buffer",
 })
-nmap("<Tab>", function() cmd.bnext() end, {
+Util.nmap("<Tab>", function()
+	if Util.are_buffers_listed() then
+		vim.cmd([[bnext]])
+	end
+end, {
 	desc = "Go to the next buffer",
 })
-nmap("J", "mzJ`z", {
+Util.nmap("J", "mzJ`z", {
 	desc = "[J]oin next line to current line",
 })
-nmap("H", function()
+Util.nmap("H", function()
 	if vim.api.nvim_get_option_value("wrap", {
 		scope = "local",
 	}) then
@@ -26,7 +33,7 @@ nmap("H", function()
 end, {
 	desc = "Move to the start of line",
 })
-nmap("L", function()
+Util.nmap("L", function()
 	if vim.api.nvim_get_option_value("wrap", {
 		scope = "local",
 	}) then
@@ -37,16 +44,16 @@ nmap("L", function()
 end, {
 	desc = "Move to the end of line",
 })
-nmap("U", function() cmd.redo() end, {
+Util.nmap("U", function() vim.cmd([[redo]]) end, {
 	desc = "Better redo",
 })
-nmap("Q", "@q", {
+Util.nmap("Q", "@q", {
 	desc = "Use macro stored in the [q] register",
 })
-nmap("Y", "y$", {
+Util.nmap("Y", "y$", {
 	desc = "[Y]ank to the end of the line",
 })
-nmap("j", function()
+Util.nmap("j", function()
 	if v.count > 0 and v.count >= 3 then
 		return ("m'" .. v.count .. "j")
 	else
@@ -57,7 +64,7 @@ end, {
 	expr = true,
 	desc = "Move to next visual line",
 })
-nmap("k", function()
+Util.nmap("k", function()
 	if v.count > 0 and v.count >= 3 then
 		return ("m'" .. v.count .. "k")
 	else
@@ -68,6 +75,6 @@ end, {
 	expr = true,
 	desc = "Move to previous visual line",
 })
-nmap("z<CR>", "zt", {
+Util.nmap("z<CR>", "zt", {
 	desc = "Redraw, line at top of window. Leave the cursor in the same column.",
 })

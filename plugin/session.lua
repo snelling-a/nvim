@@ -27,7 +27,7 @@ end
 local fnameescape = vim.fn.fnameescape
 
 local function session_save()
-	if #vim.fn.getbufinfo({ buflisted = 1 }) > 0 then
+	if Util.are_buffers_listed() then
 		vim.cmd.mksession({ args = { fnameescape(get_current_session()) }, bang = true })
 	end
 end
