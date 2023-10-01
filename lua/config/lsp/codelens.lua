@@ -15,14 +15,14 @@ local function setup_codelens(bufnr)
 		buffer = bufnr,
 	}
 
-	local ok, code_lens_autocmd = pcall(
+	local exists, code_lens_autocmd = pcall(
 		api.nvim_get_autocmds,
 		Util.tbl_extend_force(opts, {
 			event = event,
 		})
 	)
 
-	if ok and #code_lens_autocmd > 0 then
+	if exists and #code_lens_autocmd > 0 then
 		return
 	end
 

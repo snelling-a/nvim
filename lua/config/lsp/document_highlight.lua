@@ -44,14 +44,14 @@ local function setup_document_highlight(client, bufnr)
 
 	local api = vim.api
 
-	local ok, hl_autocmds = pcall(
+	local exists, hl_autocmds = pcall(
 		api.nvim_get_autocmds,
 		Util.tbl_extend_force(opts, {
 			event = event,
 		})
 	)
 
-	if ok and #hl_autocmds > 0 then
+	if exists and #hl_autocmds > 0 then
 		return
 	end
 
