@@ -39,7 +39,9 @@ local M = {}
 --- @param client lsp.Client
 --- @param bufnr integer
 function M.on_attach(client, bufnr)
-	local ok, codelens_supported = pcall(function() return client.supports_method("textDocument/codeLens") end)
+	local method = vim.lsp.protocol.Methods.textDocument_codeLens
+
+	local ok, codelens_supported = pcall(function() return client.supports_method(method) end)
 
 	if not ok or not codelens_supported then
 		return

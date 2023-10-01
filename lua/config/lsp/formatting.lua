@@ -5,7 +5,7 @@ _G.FORMAT_NOTIFY = true
 
 local Util = require("config.lsp.util")
 
-local METHOD = "textDocument/formatting"
+local method = vim.lsp.protocol.Methods.textDocument_formatting
 
 local lsp_formatting = "Lsp Formatting"
 
@@ -60,7 +60,7 @@ local function format(bufnr)
 
 		local params = vim.lsp.util.make_formatting_params({})
 		---@diagnostic disable-next-line: invisible
-		local result, err = client.request_sync(METHOD, params, 1000, bufnr)
+		local result, err = client.request_sync(method, params, 1000, bufnr)
 
 		if result and result.result then
 			vim.lsp.util.apply_text_edits(result.result, bufnr, client.offset_encoding)
@@ -164,7 +164,7 @@ local M = {}
 --- @param client lsp.Client
 --- @param bufnr integer
 function M.on_attach(client, bufnr)
-	local ok, formatting_supported = pcall(function() return client.supports_method(METHOD) end)
+	local ok, formatting_supported = pcall(function() return client.supports_method(method) end)
 
 	if not ok or not formatting_supported then
 		return

@@ -1,6 +1,6 @@
 local Util = require("config.util")
 
-local METHOD = "textDocument/documentHighlight"
+local method = vim.lsp.protocol.Methods.textDocument_documentHighlight
 
 --- @param client lsp.Client
 local function document_highlight(client)
@@ -27,7 +27,7 @@ local function document_highlight(client)
 	local current_buf = vim.api.nvim_get_current_buf()
 	local params = vim.lsp.util.make_position_params(0, client.offset_encoding)
 
-	client.request(METHOD, params, nil, current_buf)
+	client.request(method, params, nil, current_buf)
 end
 
 --- @param client lsp.Client
@@ -77,7 +77,7 @@ local M = {}
 --- @param client lsp.Client
 --- @param bufnr integer
 function M.on_attach(client, bufnr)
-	local ok, highlight_supported = pcall(function() return client.supports_method(METHOD) end)
+	local ok, highlight_supported = pcall(function() return client.supports_method(method) end)
 
 	if not ok or not highlight_supported then
 		return

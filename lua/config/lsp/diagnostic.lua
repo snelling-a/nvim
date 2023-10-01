@@ -111,8 +111,6 @@ local function set_current_line_vert_handler()
 	}
 end
 
-
-
 --- @param bufnr integer
 local function setup_autocmds(bufnr)
 	set_current_line_vert_handler()
@@ -150,9 +148,9 @@ local M = {}
 function M.on_attach(client, bufnr)
 	setup_diagnostics()
 
-	local ok, diagnostics_supported = pcall(
-		function() return client.supports_method("textDocument/publishDiagnostics") end
-	)
+	local method = vim.lsp.protocol.Methods.textDocument_publishDiagnostics
+
+	local ok, diagnostics_supported = pcall(function() return client.supports_method(method) end)
 
 	if not ok or not diagnostics_supported then
 		return

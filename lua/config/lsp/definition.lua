@@ -4,7 +4,7 @@ end
 
 local Logger = require("config.util.logger"):new("LSP Definition")
 
-local METHOD = "textDocument/definition"
+local method = vim.lsp.protocol.Methods.textDocument_definition
 
 local api = vim.api
 local fn = vim.fn
@@ -108,7 +108,7 @@ local function peek_definition(bufnr)
 		api.nvim_set_current_win(float_win)
 	else
 		local params = util.make_position_params()
-		return vim.lsp.buf_request(bufnr, METHOD, params, preview_location_callback)
+		return vim.lsp.buf_request(bufnr, method, params, preview_location_callback)
 	end
 end
 
@@ -164,7 +164,7 @@ end
 --- @param client lsp.Client
 --- @param bufnr integer
 function M.on_attach(client, bufnr)
-	local ok, definition_supported = pcall(function() return client.supports_method(METHOD) end)
+	local ok, definition_supported = pcall(function() return client.supports_method(method) end)
 
 	if not ok or not definition_supported then
 		return

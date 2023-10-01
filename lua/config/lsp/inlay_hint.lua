@@ -27,7 +27,9 @@ local M = {}
 --- @param client lsp.Client
 --- @param bufnr integer
 function M.on_attach(client, bufnr)
-	local ok, inlay_hint_supported = pcall(function() return client.supports_method("textDocument/inlayHint") end)
+	local method = vim.lsp.protocol.Methods.textDocument_inlayHint
+
+	local ok, inlay_hint_supported = pcall(function() return client.supports_method(method) end)
 
 	if not ok or not inlay_hint_supported then
 		return
