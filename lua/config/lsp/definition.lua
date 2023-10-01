@@ -1,7 +1,3 @@
-if not pcall(require, "lspconfig") then
-	return
-end
-
 local Logger = require("config.util.logger"):new("LSP Definition")
 
 local method = vim.lsp.protocol.Methods.textDocument_definition
@@ -33,7 +29,9 @@ local function preview_location(result)
 		before = before - 1
 	end
 
-	local ft = api.nvim_get_option_value("filetype", { buf = bufnr })
+	local ft = api.nvim_get_option_value("filetype", {
+		buf = bufnr,
+	})
 
 	local buf, win = util.open_floating_preview(lines, ft, {})
 
@@ -48,7 +46,9 @@ local function preview_location(result)
 	}
 
 	for name, value in pairs(buf_opts) do
-		api.nvim_set_option_value(name, value, { buf = bufnr })
+		api.nvim_set_option_value(name, value, {
+			buf = bufnr,
+		})
 	end
 
 	local win_opts = {
@@ -59,7 +59,9 @@ local function preview_location(result)
 	}
 
 	for name, value in pairs(win_opts) do
-		api.nvim_set_option_value(name, value, { win = win })
+		api.nvim_set_option_value(name, value, {
+			win = win,
+		})
 		-- vim.api.nvim_win_set_option(win, name, value)
 	end
 
@@ -154,7 +156,7 @@ function M.handler(_, result, ctx, config)
 
 			fn.setqflist({}, " ", list)
 
-			vim.cmd([[botright copen]])
+			vim.cmd.copen()
 		end
 	else
 		util.jump_to_location(unpack(jump_args))
