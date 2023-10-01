@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.34.0](https://github.com/snelling-a/nvim/compare/v5.33.3...v5.34.0) (2023-10-01)
+
+
+### Features
+
+* **colorscheme:** palette ([949743a](https://github.com/snelling-a/nvim/commit/949743a8939746fb4588cbe641a20cacaab677a0))
+
 ## [5.33.3](https://github.com/snelling-a/nvim/compare/v5.33.2...v5.33.3) (2023-09-27)
 
 
