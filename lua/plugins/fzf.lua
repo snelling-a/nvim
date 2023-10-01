@@ -156,8 +156,6 @@ M.opts = {
 	},
 	keymap = {
 		fzf = {
-			-- your other fzf binds
-			-- modify the current 'toggle-all' bind:
 			["alt-a"] = "select-all+accept",
 		},
 	},
@@ -207,63 +205,6 @@ M.opts = {
 	},
 	tags = {
 		prompt = get_prompt(Icons.misc.tag),
-	},
-	winopts = {
-		on_create = function() vim.b.miniindentscope_disable = true end,
-	},
-	fzf_colors = {
-		["fg"] = {
-			"fg",
-			"CursorLine",
-		},
-		["bg"] = {
-			"bg",
-			"Normal",
-		},
-		["hl"] = {
-			"fg",
-			"Comment",
-		},
-		["fg+"] = {
-			"fg",
-			"Normal",
-		},
-		["bg+"] = {
-			"bg",
-			"CursorLine",
-		},
-		["hl+"] = {
-			"fg",
-			"Statement",
-		},
-		["info"] = {
-			"fg",
-			"PreProc",
-		},
-		["prompt"] = {
-			"fg",
-			"Conditional",
-		},
-		["pointer"] = {
-			"fg",
-			"Exception",
-		},
-		["marker"] = {
-			"fg",
-			"Keyword",
-		},
-		["spinner"] = {
-			"fg",
-			"Label",
-		},
-		["header"] = {
-			"fg",
-			"Comment",
-		},
-		["gutter"] = {
-			"bg",
-			"Normal",
-		},
 	},
 }
 
