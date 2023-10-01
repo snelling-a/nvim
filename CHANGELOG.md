@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.33.3](https://github.com/snelling-a/nvim/compare/v5.33.2...v5.33.3) (2023-09-27)
+
+
+### Bug Fixes
+
+* **lsp:** add lsp to lua library ([4c053d7](https://github.com/snelling-a/nvim/commit/4c053d7ae3644a24d03913bf99c289b284ca621a))
+
 ## [5.33.2](https://github.com/snelling-a/nvim/compare/v5.33.1...v5.33.2) (2023-09-26)
 
 
