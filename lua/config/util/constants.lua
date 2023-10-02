@@ -14,6 +14,7 @@ M.no_format = {
 	"checkhealth",
 	"dapui_*",
 	"diffview",
+	"DressingSelect",
 	"dropbar_menu",
 	"fugitive",
 	"fugitiveblame",
