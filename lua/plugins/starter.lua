@@ -1,12 +1,8 @@
 local Icons = require("config.ui.icons")
-
---- @type LazySpec
-local M = {
-	"echasnovski/mini.starter",
-}
-
 local function pad_10(content)
-	local empty_item = { { type = "empty", string = "" } }
+	local empty_item = {
+		{ type = "empty", string = "" },
+	}
 
 	for i = 1, 10 do
 		-- NOTE: for some reason, the header renders twice
@@ -16,6 +12,51 @@ local function pad_10(content)
 	end
 
 	return content
+end
+
+--- @type LazySpec
+local M = {
+	"echasnovski/mini.starter",
+}
+
+M.cond = require("config.util").is_vim()
+
+-- M.event = {
+-- 	"VimEnter",
+-- }
+
+function M.config(_, opts)
+	if vim.o.filetype == "lazy" then
+		vim.cmd.close()
+		vim.api.nvim_create_autocmd("User", {
+			pattern = "MiniStarterOpened",
+			callback = function() require("lazy").show() end,
+		})
+	end
+
+	local starter = require("mini.starter")
+	starter.setup(opts)
+
+	vim.api.nvim_create_autocmd("User", {
+		pattern = "LazyVimStarted",
+		callback = function()
+			local stats = require("lazy").stats()
+			local v = vim.version()
+
+			local version = string.format("%s %d.%d.%d", Icons.misc.version, v.major, v.minor, v.patch)
+
+			local time = (math.floor(stats.startuptime * 100 + 0.5) / 100)
+			local startup_time = string.format("%s %d ms", Icons.progress.pending, time)
+
+			local plugins = string.format("%s %d / %d plugins loaded", Icons.misc.rocket, stats.loaded, stats.count)
+
+			starter.config.footer = string.format("%s\t\t%s\t\t%s", version, plugins, startup_time)
+
+			vim.opt_local.statusline = " "
+
+			pcall(starter.refresh)
+		end,
+	})
 end
 
 function M.opts()
@@ -51,44 +92,6 @@ function M.opts()
 			starter.gen_hook.aligning("center", "center"),
 		},
 	}
-end
-
-M.event = {
-	"VimEnter",
-}
-
-function M.config(_, opts)
-	if vim.o.filetype == "lazy" then
-		vim.cmd.close()
-		vim.api.nvim_create_autocmd("User", {
-			pattern = "MiniStarterOpened",
-			callback = function() require("lazy").show() end,
-		})
-	end
-
-	local starter = require("mini.starter")
-	starter.setup(opts)
-
-	vim.api.nvim_create_autocmd("User", {
-		pattern = "LazyVimStarted",
-		callback = function()
-			local stats = require("lazy").stats()
-			local v = vim.version()
-
-			local version = string.format("%s %d.%d.%d", Icons.misc.version, v.major, v.minor, v.patch)
-
-			local time = (math.floor(stats.startuptime * 100 + 0.5) / 100)
-			local startup_time = string.format("%s %d ms", Icons.progress.pending, time)
-
-			local plugins = string.format("%s\t\t%d / %d\t\tPlugins", Icons.misc.rocket, stats.loaded, stats.count)
-
-			starter.config.footer = string.format("%s %s %s", version, plugins, startup_time)
-
-			vim.opt_local.statusline = " "
-
-			pcall(starter.refresh)
-		end,
-	})
 end
 
 return M
