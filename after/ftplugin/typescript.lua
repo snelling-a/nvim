@@ -10,10 +10,16 @@ vim.opt.wildignore:append({
 if vim.fn.executable("tsc") then
 	vim.cmd.compiler("tsc")
 
-require("config.util").nmap("<leader>tt", function()
-	vim.cmd.make()
-	vim.cmd([[redraw!]])
-end, { desc = ":make tsc" })
+	require("config.util").map_leader("tt", function()
+		vim.cmd.make()
+		vim.cmd.redraw({
+			bang = true,
+		})
+	end, {
+		desc = ":make tsc",
+	})
 end
 
-vim.opt_local.matchpairs:append({ "=:;" })
+vim.opt_local.matchpairs:append({
+	"=:;",
+})
