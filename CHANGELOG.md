@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.34.3](https://github.com/snelling-a/nvim/compare/v5.34.2...v5.34.3) (2023-10-02)
+
+
+### Bug Fixes
+
+* dressing code actions ([67863fe](https://github.com/snelling-a/nvim/commit/67863feb38672d4906919b9f049b5f2e63f7bd8c))
+
 ## [5.34.2](https://github.com/snelling-a/nvim/compare/v5.34.1...v5.34.2) (2023-10-01)
 
 
