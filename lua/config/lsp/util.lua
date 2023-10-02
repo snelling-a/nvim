@@ -16,6 +16,7 @@ function M.bind(bufnr, lhs, rhs, desc)
 
 	return Util.nmap(lhs, rhs, opts)
 end
+
 --- wrapper for lspconfig.util.root_pattern
 --- @param config_files string|string[]
 --- @return function (startpath: any) -> string|unknown|nil

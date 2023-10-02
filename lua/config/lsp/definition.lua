@@ -105,6 +105,7 @@ local function peek_definition(bufnr)
 	if float_win ~= nil then
 		pcall(api.nvim_win_hide, float_win)
 	end
+
 	if vim.tbl_contains(api.nvim_list_wins(), float_win) then
 		--- @diagnostic disable-next-line: param-type-mismatch
 		api.nvim_set_current_win(float_win)
