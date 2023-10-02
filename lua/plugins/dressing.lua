@@ -3,18 +3,9 @@ local M = {
 	"stevearc/dressing.nvim",
 }
 
-M.lazy = true
+M.event = require("config.util.constants").lazy_event
 
 M.opts = {
-	get_config = function(opts)
-		if opts.kind == "codeaction" then
-			return {
-				builtin = {
-					relative = "cursor",
-				},
-			}
-		end
-	end,
 	input = {
 		default_prompt = require("config.util").get_prompt(""),
 		mappings = {
@@ -31,9 +22,9 @@ M.opts = {
 			30,
 			0.2,
 		},
-	},
-	nui = {
-		relative = "cursor",
+		win_opts = {
+			listchars = require("config.ui.icons").listchars,
+		},
 	},
 	select = {
 		backend = {
@@ -41,20 +32,17 @@ M.opts = {
 			"builtin",
 		},
 		builtin = {
-			width = 30,
-			max_width = {
-				60,
-				0.3,
+			win_opts = {
+				winblend = 30,
 			},
-			min_width = {
-				30,
-				0.2,
-			},
-			max_height = 0.3,
-			min_height = {
-				10,
-				0.2,
-			},
+		},
+		format_item_override = {
+			codeaction = function(action_tuple)
+				local title = action_tuple[2].title:gsub("\r\n", "\\r\\n")
+				local client = vim.lsp.get_client_by_id(action_tuple[1]) or ""
+				local client_icon = require("config.ui.icons").servers[client.name] or ""
+				return string.format("%s  [%s]", client_icon, title:gsub("\n", "\\n"))
+			end,
 		},
 		fzf_lua = {
 			winopts = {
@@ -62,33 +50,15 @@ M.opts = {
 				width = 0.4,
 			},
 		},
+		get_config = function(opts)
+			if opts.kind == "codeaction" then
+				return {
+					backend = "builtin",
+				}
+			end
+		end,
 		trim_prompt = false,
 	},
 }
-
-function M.init()
-	local load = require("lazy").load
-	local ui = vim.ui
-
-	--- @diagnostic disable-next-line: duplicate-set-field
-	ui.select = function(...)
-		load({
-			plugins = {
-				"dressing.nvim",
-			},
-		})
-		return ui.select(...)
-	end
-
-	--- @diagnostic disable-next-line: duplicate-set-field
-	ui.input = function(...)
-		load({
-			plugins = {
-				"dressing.nvim",
-			},
-		})
-		return ui.input(...)
-	end
-end
 
 return M
