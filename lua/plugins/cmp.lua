@@ -1,13 +1,6 @@
 local Icons = require("config.ui.icons")
 local Util = require("config.util")
 
-local cmdline_view = {
-	entries = {
-		name = "wildmenu",
-		separator = Icons.fillchars.foldsep,
-	},
-}
-
 local formatting = {
 	fields = {
 		"kind",
@@ -195,7 +188,6 @@ M.cond = Util.is_vim()
 
 M.dependencies = {
 	"hrsh7th/cmp-buffer",
-	"hrsh7th/cmp-cmdline",
 	"hrsh7th/cmp-nvim-lsp",
 	"hrsh7th/cmp-nvim-lsp-document-symbol",
 	"hrsh7th/cmp-nvim-lsp-signature-help",
@@ -210,7 +202,6 @@ M.dependencies = {
 M.event = {
 	"BufAdd",
 	"SessionLoadPost",
-	"CmdlineEnter",
 }
 
 M.opts = {
@@ -228,8 +219,8 @@ M.opts = {
 
 function M.config(_, opts)
 	local cmp = require("cmp")
-
-	local config, mapping, setup = cmp.config, cmp.mapping, cmp.setup
+	local config = cmp.setup
+	local setup = cmp.config
 
 	setup(Util.tbl_extend_force(opts, {
 		confirm_opts = {
@@ -257,9 +248,6 @@ function M.config(_, opts)
 			{
 				name = "git",
 			},
-			{
-				name = "conventionalcommits",
-			},
 		}, {
 			{
 				name = "buffer",
@@ -268,37 +256,6 @@ function M.config(_, opts)
 		window = {
 			completion = get_window(),
 		},
-	})
-
-	setup.cmdline({
-		"/",
-		"?",
-	}, {
-		mapping = mapping.preset.cmdline(),
-		sources = cmp.config.sources({
-			{
-				name = "nvim_lsp_document_symbol",
-			},
-		}, {
-			{
-				name = "buffer",
-			},
-		}),
-		view = cmdline_view,
-	})
-
-	setup.cmdline(":", {
-		mapping = mapping.preset.cmdline(),
-		sources = config.sources({
-			{
-				name = "path",
-			},
-		}, {
-			{
-				name = "cmdline",
-			},
-		}),
-		view = cmdline_view,
 	})
 end
 

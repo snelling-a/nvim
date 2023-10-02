@@ -41,7 +41,6 @@ local opts = {
 			disabled_plugins = {
 				"gzip",
 				"netrwPlugin",
-				"rplugin",
 				"spellfile",
 				"shada",
 				"tarPlugin",
