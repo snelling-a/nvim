@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.34.2](https://github.com/snelling-a/nvim/compare/v5.34.1...v5.34.2) (2023-10-01)
+
+
+### Bug Fixes
+
+* **fzf:** icons ([72d7f40](https://github.com/snelling-a/nvim/commit/72d7f40429c10c09e9df932f452fea9ed651b2df))
+
 ## [5.34.1](https://github.com/snelling-a/nvim/compare/v5.34.0...v5.34.1) (2023-10-01)
 
 
