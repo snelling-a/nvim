@@ -13,11 +13,11 @@ local lsp_formatting = "Lsp Formatting"
 local Logger = require("config.util.logger"):new(lsp_formatting)
 
 local block_list = {
+	javascript = false,
+	javascriptreact = false,
 	lua = false,
 	typescript = false,
-	javascript = false,
 	typescriptreact = false,
-	javascriptreact = false,
 }
 
 local formatting_disabled = {
@@ -83,14 +83,14 @@ local function toggle_autoformat() return toggle(_G.AUTOFORMAT, "autoformat") en
 --- @param bufnr integer
 local function setup_keymaps(bufnr)
 	local map_leader = Util.map_leader
-
 	map_leader("f", function() format(bufnr) end, {
-		bufnr = bufnr,
+		buffer = bufnr,
 		desc = "[F]ormat the current buffer",
 	})
 	map_leader("tf", function() toggle_autoformat() end, {
-		bufnr = bufnr,
+		buffer = bufnr,
 		desc = "[T]oggle Auto[f]ormat",
+		noremap = false,
 	})
 	map_leader("sw", function()
 		vim.cmd.write({
@@ -99,7 +99,7 @@ local function setup_keymaps(bufnr)
 			},
 		})
 	end, {
-		bufnr = bufnr,
+		buffer = bufnr,
 		desc = "[S]ave [w]ithout formatting",
 	})
 end
