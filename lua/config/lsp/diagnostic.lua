@@ -115,11 +115,11 @@ end
 local function setup_autocmds(bufnr)
 	set_current_line_vert_handler()
 
-	local LspDiagnostiCurrentLineGroup = require("config.util").augroup(name)
+	local group = require("config.util").augroup(name)
 
 	api.nvim_clear_autocmds({
 		buffer = bufnr,
-		group = LspDiagnostiCurrentLineGroup,
+		group = group,
 	})
 
 	api.nvim_create_autocmd({
@@ -129,7 +129,7 @@ local function setup_autocmds(bufnr)
 		buffer = bufnr,
 		callback = function() vim.diagnostic.handlers.current_line_virt.show(nil, 0, current_line_diagnostics(), nil) end,
 		desc = "Show current line diagnostics",
-		group = LspDiagnostiCurrentLineGroup,
+		group = group,
 	})
 
 	api.nvim_create_autocmd({
@@ -138,7 +138,7 @@ local function setup_autocmds(bufnr)
 		buffer = bufnr,
 		callback = function() vim.diagnostic.handlers.current_line_virt.hide(nil, nil) end,
 		desc = "Hide current line diagnostics",
-		group = LspDiagnostiCurrentLineGroup,
+		group = group,
 	})
 end
 local M = {}
