@@ -1,5 +1,18 @@
 # Changelog
 
+## [5.34.4](https://github.com/snelling-a/nvim/compare/v5.34.3...v5.34.4) (2023-10-02)
+
+
+### Bug Fixes
+
+* **lsp:** typo ([7eb9201](https://github.com/snelling-a/nvim/commit/7eb920158a80913f4a61c36262eb32914a4076a0))
+
+
+### Miscellaneous
+
+* update AverageDark colorscheme ([08d63aa](https://github.com/snelling-a/nvim/commit/08d63aab28977e125a0eae1a65cc04965f845c1d))
+* update plugins ([c09dec5](https://github.com/snelling-a/nvim/commit/c09dec5bc5fb7966f0d00c908effdaf05a3cbf89))
+
 ## [5.34.3](https://github.com/snelling-a/nvim/compare/v5.34.2...v5.34.3) (2023-10-02)
 
 
