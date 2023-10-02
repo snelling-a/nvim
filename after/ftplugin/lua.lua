@@ -1,7 +1,7 @@
 vim.opt_local.colorcolumn = "120"
 
 if vim.fn.executable("luacheck") then
-	vim.cmd([[compiler luacheck]])
+	vim.cmd.compiler("luacheck")
 end
 
 vim.api.nvim_create_user_command("FormatLua", function()
@@ -21,4 +21,3 @@ end, {
 	desc = "Ensure consistent formatting of lua tables",
 	force = true,
 })
-

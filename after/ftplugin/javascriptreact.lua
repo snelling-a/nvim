@@ -1,3 +1,6 @@
 vim.bo.syntax = "typescriptreact"
 
-vim.cmd([[runtime! ftplugin/typescriptreact.lua]])
+vim.cmd.runtime({
+	args = { "ftplugin/typescriptreact.lua" },
+	bang = true,
+})
