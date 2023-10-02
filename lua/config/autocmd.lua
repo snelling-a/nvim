@@ -19,7 +19,7 @@ autocmd({
 		local bo = vim.bo
 
 		if not bo.readonly and fn.expand("%") ~= "" and bo.buftype == "" then
-			vim.cmd([[update]])
+			cmd.update()
 		end
 	end,
 	desc = "Auto save when leaving the buffer",
@@ -136,7 +136,7 @@ autocmd({
 autocmd({
 	"VimResized",
 }, {
-	callback = function() vim.cmd([[tabdo wincmd =]]) end,
+	callback = function() vim.cmd.tabdo("wincmd =") end,
 	desc = "Resize splits if window got resized",
 	group = augroup("ResizeSplits"),
 })

@@ -83,7 +83,7 @@ local function generate_average_color(ctx)
 	os.execute(command)
 
 	if ctx.fargs[1] == "true" then
-		vim.cmd([[colorscheme average_dark]])
+		vim.cmd.colorscheme("average_dark")
 	end
 end
 
@@ -102,7 +102,7 @@ user_command("GenerateAverageColor", generate_average_color, {
 --- @param ns number preview namespace id for highlights
 --- @param buf integer buffer that your preview routine will directly modify to show the previewed results
 local function trim_space_preview(opts, ns, buf)
-	vim.cmd([[hi clear Whitespace]])
+	vim.cmd.hi("clear Whitespace")
 	local line1 = opts.line1
 	local line2 = opts.line2 --[[@as number]]
 
