@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.35.0](https://github.com/snelling-a/nvim/compare/v5.34.4...v5.35.0) (2023-10-02)
+
+
+### Features
+
+* wilder ([03db7df](https://github.com/snelling-a/nvim/commit/03db7df2c70042f67304efcce9357b46080efd36))
+
 ## [5.34.4](https://github.com/snelling-a/nvim/compare/v5.34.3...v5.34.4) (2023-10-02)
 
 
