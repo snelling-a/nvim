@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.35.1](https://github.com/snelling-a/nvim/compare/v5.35.0...v5.35.1) (2023-10-03)
+
+
+### Bug Fixes
+
+* **cmp:** var assignments ([a6dbd06](https://github.com/snelling-a/nvim/commit/a6dbd068f38ff6d97b61ad0e35b292376faa9344))
+
 ## [5.35.0](https://github.com/snelling-a/nvim/compare/v5.34.4...v5.35.0) (2023-10-02)
 
 
