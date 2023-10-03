@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.35.2](https://github.com/snelling-a/nvim/compare/v5.35.1...v5.35.2) (2023-10-03)
+
+
+### Bug Fixes
+
+* vscode ([87ead26](https://github.com/snelling-a/nvim/commit/87ead260c61b45132368853d3c157bbf54aaedd4))
+
 ## [5.35.1](https://github.com/snelling-a/nvim/compare/v5.35.0...v5.35.1) (2023-10-03)
 
 
