@@ -219,8 +219,8 @@ M.opts = {
 
 function M.config(_, opts)
 	local cmp = require("cmp")
-	local config = cmp.setup
-	local setup = cmp.config
+	local config = cmp.config
+	local setup = cmp.setup
 
 	setup(Util.tbl_extend_force(opts, {
 		confirm_opts = {
