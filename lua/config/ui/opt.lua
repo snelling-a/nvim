@@ -2,7 +2,6 @@ local Icons = require("config.ui.icons")
 local Util = require("config.util")
 
 local api = vim.api
-local augroup = Util.augroup
 local autocmd = api.nvim_create_autocmd
 local opt = vim.opt
 
@@ -30,7 +29,6 @@ opt.pumheight = 10
 opt.scrolloff = 8
 opt.showbreak = string.rep(" ", 4) --[[@as vim.opt.showbreak]]
 opt.showcmd = false
--- opt.showmode = false
 opt.signcolumn = "yes:2"
 opt.smoothscroll = true
 opt.splitbelow = true
@@ -79,18 +77,11 @@ local function toggle_buffer_opts()
 	end
 end
 
-local ToggleWindowOptionsGroup = augroup("ToggleWindowOptions")
-
 autocmd({
+	"BufEnter",
 	"BufLeave",
 }, {
 	callback = toggle_buffer_opts,
-	desc = "Toggle buffer options off",
-	group = ToggleWindowOptionsGroup,
-})
-
-autocmd("BufEnter", {
-	callback = toggle_buffer_opts,
 	desc = "Toggle buffer options on",
-	group = ToggleWindowOptionsGroup,
+	group = Util.augroup("ToggleWindowOptions"),
 })
