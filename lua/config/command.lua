@@ -118,7 +118,7 @@ local function trim_space_preview(opts, ns, buf)
 			buf_add_highlight(current_buf, ns, "Substitute", line1 + i - 2, start_idx - 1, end_idx or 0)
 			-- Add lines and set highlights in the preview buffer if inccommand=split
 			if buf then
-				local prefix = string.format("|%d| ", line1 + i - 1)
+				local prefix = ("|%d| "):format(line1 + i - 1)
 				vim.api.nvim_buf_set_lines(buf, preview_buf_line, preview_buf_line, false, {
 					prefix .. line,
 				})

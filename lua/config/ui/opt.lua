@@ -47,9 +47,9 @@ local function hard_mode()
 	--- @param bad "<down>"|"<left>"|"<right>"|"<up>"
 	--- @param good "j"|"h"|"l"|"k"
 	local function move_map(bad, good)
-		return Util.nmap(bad, function() Logger:warn(string.format("NO! use %s", good)) end, {
+		return Util.nmap(bad, function() Logger:warn(("NO! use %s"):format(good)) end, {
 			buffer = 0,
-			desc = string.format("DON'T USE %s", string.upper(bad)),
+			desc = ("DON'T USE %s"):format(string.upper(bad)),
 		})
 	end
 

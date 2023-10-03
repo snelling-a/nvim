@@ -69,7 +69,7 @@ map("x", function()
 	fn.setfperm(fn.expand("%:p"), "rwxr-xr-x")
 
 	Logger:info({
-		msg = string.format("%s made executable", fn.expand("%")),
+		msg = ("%s made executable"):format(fn.expand("%")),
 		title = "CHMOD!",
 	})
 end, {

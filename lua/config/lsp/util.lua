@@ -42,7 +42,7 @@ function M.ensure_installed(target_dir, cb)
 				return
 			end
 			local server_name = string.gsub(index, "%.lua", "")
-			local require_path = string.format("%s.%s", dir, server_name)
+			local require_path = ("%s.%s"):format(dir, server_name)
 
 			local server_config = require(require_path) or {}
 			local pkg = server_config.mason_name or server_name
@@ -88,7 +88,7 @@ end
 function M.get_linter_formatter_command(name, args)
 	local list = Util.table_or_string(args)
 
-	return string.format("%s %s", get_exec_path(name), table.concat(list, " "))
+	return ("%s %s"):format(get_exec_path(name), table.concat(list, " "))
 end
 
 --- @param cond boolean

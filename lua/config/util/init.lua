@@ -83,7 +83,7 @@ end
 --- wrapper around  icon so prompts are consistant
 --- @param icon string
 --- @return string --  + icon
-function M.get_prompt(icon) return string.format("%s %s ", icon, require("config.ui.icons").misc.right) end
+function M.get_prompt(icon) return ("%s %s "):format(icon, require("config.ui.icons").misc.right) end
 
 --- Check if plugin is available
 --- @param plugin string name of plugin

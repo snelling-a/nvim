@@ -23,7 +23,7 @@ function M.keys()
 		table.insert(keys, {
 			v,
 			function() require("spider").motion(v) end,
-			desc = string.format("Spider-%s", v),
+			desc = ("Spider-%s"):format(v),
 			mode = mode,
 		})
 	end

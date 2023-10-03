@@ -43,14 +43,14 @@ function M.config(_, opts)
 			local stats = require("lazy").stats()
 			local v = vim.version()
 
-			local version = string.format("%s %d.%d.%d", Icons.misc.version, v.major, v.minor, v.patch)
+			local version = ("%s %d.%d.%d"):format(Icons.misc.version, v.major, v.minor, v.patch)
 
 			local time = (math.floor(stats.startuptime * 100 + 0.5) / 100)
-			local startup_time = string.format("%s %d ms", Icons.progress.pending, time)
+			local startup_time = ("%s %d ms"):format(Icons.progress.pending, time)
 
-			local plugins = string.format("%s %d / %d plugins loaded", Icons.misc.rocket, stats.loaded, stats.count)
+			local plugins = ("%s %d / %d plugins loaded"):format(Icons.misc.rocket, stats.loaded, stats.count)
 
-			starter.config.footer = string.format("%s\t\t%s\t\t%s", version, plugins, startup_time)
+			starter.config.footer = ("%s\t\t%s\t\t%s"):format(version, plugins, startup_time)
 
 			vim.opt_local.statusline = " "
 

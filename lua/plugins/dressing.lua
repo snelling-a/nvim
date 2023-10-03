@@ -41,7 +41,7 @@ M.opts = {
 				local title = action_tuple[2].title:gsub("\r\n", "\\r\\n")
 				local client = vim.lsp.get_client_by_id(action_tuple[1]) or ""
 				local client_icon = require("config.ui.icons").servers[client.name] or ""
-				return string.format("%s  [%s]", client_icon, title:gsub("\n", "\\n"))
+				return ("%s  [%s]"):format(client_icon, title:gsub("\n", "\\n"))
 			end,
 		},
 		fzf_lua = {
