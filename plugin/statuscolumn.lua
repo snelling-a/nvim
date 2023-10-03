@@ -1,6 +1,10 @@
 local Icons = require("config.ui.icons")
 local Util = require("config.util")
 
+if not Util.is_vim() then
+	return {}
+end
+
 local M = {}
 _G.Status = M
 
@@ -71,6 +75,7 @@ vim.api.nvim_create_autocmd({
 		end
 	end,
 })
+
 vim.opt.statuscolumn = [[%!v:lua.Status.column()]]
 
 return M

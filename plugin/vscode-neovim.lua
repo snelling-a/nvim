@@ -2,26 +2,20 @@ if not vim.g.vscode then
 	return
 end
 
+local Util = require("config.util")
+
 require("config.keymap")
 require("config.opt")
 
-local Util = require("config.util")
-
-local opt = vim.opt
-
-opt.inccommand = "split"
-opt.splitbelow = true
-opt.splitright = true
-
 local function vscode(vs_action)
-	return function() require("vscode-neovim").notify(vs_action, {}) end
+	return function() require("vscode-neovim").notify(vs_action) end
 end
 
 local function vscode_go_to_definition(str)
 	if vim.fn.exists(vim.b.vscode_controlled) and vim.b.vscode_controlled then
-		return vscode("editor.action." .. str)
+		return vscode(str)
 	else
-		return vim.cmd([[normal! \<C-]>]])
+		return vim.cmd.normal({ args = { "<C-]>" }, bang = true }) --[[@as string]]
 	end
 end
 
@@ -39,25 +33,24 @@ map("<C-j>", "workbench.action.focusBelowGroup")
 map("<C-k>", "workbench.action.focusAboveGroup")
 map("<C-l>", "workbench.action.focusRightGroup")
 map("<C-o>", "workbench.action.previousEditor")
-map("<Leader>ca", "codeAction")
-map("<Leader>hp", "dirtydiff.next")
+map("<Leader>ca", "editor.action.codeAction")
+map("<Leader>hp", "editor.action.dirtydiff.next")
 map("<Leader>hr", "git.revertSelectedRanges")
 map("<Leader>hs", "git.stageSelectedRanges")
 map("<Leader>hu", "git.unstageSelectedRanges")
-map("<leader>rn", "rename")
-map("<leader>sf", "workbench.action.quickOpen")
-map("<leader>w", "workbench.action.files.save")
+map("<leader>rn", "editor.action.rename")
+map("<C-p>", "workbench.action.quickOpen")
+map("K", "editor.action.showHover", { "n", "x" })
 map("[c", "workbench.action.editor.previousChange")
-map("[d", "marker.prevInFiles")
+map("[d", "editor.action.marker.prevInFiles")
 map("]c", "workbench.action.editor.nextChange")
-map("]d", "marker.nextInFiles")
+map("]d", "editor.action.marker.nextInFiles")
 map("fs", "workbench.action.gotoSymbol", { "n", "x" })
-map("gd", "peekDefinition", { "n", "x" })
-map("gI", "peekImplementation")
-map("gr", "referenceSearch.trigger", { "n", "x" })
-map("gx", "openLink")
-map("K", "showHover", { "n", "x" })
-map("za", "editor.toggleFold")
+map("gI", "editor.action.peekImplementation")
+map("gd", "editor.action.peekDefinition", { "n", "x" })
+map("gr", "editor.action.referenceSearch.trigger", { "n", "x" })
+map("gx", "editor.action.openLink")
 map("zA", "editor.unfoldRecursively")
+map("za", "editor.toggleFold")
 map("zm", "editor.foldAll")
 map("zn", "editor.unfoldAll")

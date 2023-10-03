@@ -3,6 +3,10 @@ local Highlights = require("config.ui.statusline.highlights")
 local Lsp = require("config.ui.statusline.lsp")
 local Util = require("config.ui.statusline.util")
 
+if not require("config.util").is_vim() then
+	return {}
+end
+
 local api = vim.api
 
 local F = setmetatable({}, {

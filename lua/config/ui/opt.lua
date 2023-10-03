@@ -74,7 +74,6 @@ local function toggle_buffer_opts()
 		opt_local.cursorline = not cursorline
 		opt_local.number = true
 		opt_local.relativenumber = not relativenumber
-		opt_local.statuscolumn = [[%!v:lua.Status.column()]]
 
 		hard_mode()
 	end
