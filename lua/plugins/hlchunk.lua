@@ -14,6 +14,8 @@ local M = {
 	"shellRaining/hlchunk.nvim",
 }
 
+M.cond = require("config.util").is_vim()
+
 M.event = require("config.util.constants").lazy_event
 
 function M.opts()

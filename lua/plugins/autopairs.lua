@@ -16,9 +16,11 @@ function M.config(_, opts)
 
 	autopairs.setup(opts)
 
-	local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+	if require("config.util").is_vim() then
+		local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 
-	require("cmp").event:on("confirm_done", cmp_autopairs.on_confirm_done({}))
+		require("cmp").event:on("confirm_done", cmp_autopairs.on_confirm_done({}))
+	end
 end
 
 return M
