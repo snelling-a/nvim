@@ -94,7 +94,8 @@ function M.config()
 	local dapui = require("dapui")
 
 	for name, sign in pairs(icons) do
-		vim.fn.sign_define("Dap" .. name, { text = sign })
+		local hl = "Dap" .. name
+		vim.fn.sign_define(hl, { text = sign, texthl = hl })
 	end
 
 	for _, language in ipairs(require("config.util.constants").javascript_typescript) do
@@ -143,6 +144,6 @@ function M.config()
 	dap.listeners.before.event_exited["dapui_config"] = function() dapui.close() end
 end
 
-M.enabled = false
+-- M.enabled = false
 
 return M
