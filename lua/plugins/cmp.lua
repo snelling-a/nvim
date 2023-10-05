@@ -202,6 +202,7 @@ M.dependencies = {
 M.event = {
 	"BufAdd",
 	"SessionLoadPost",
+	"InsertEnter",
 }
 
 M.opts = {
