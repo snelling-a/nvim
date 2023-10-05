@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.35.3](https://github.com/snelling-a/nvim/compare/v5.35.2...v5.35.3) (2023-10-05)
+
+
+### Bug Fixes
+
+* **dap:** sign definitions ([8e3526c](https://github.com/snelling-a/nvim/commit/8e3526ca6e5a73e3123bc9161da1c9eaa0ea039d))
+
 ## [5.35.2](https://github.com/snelling-a/nvim/compare/v5.35.1...v5.35.2) (2023-10-03)
 
 
