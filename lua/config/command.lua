@@ -73,6 +73,37 @@ end
 
 define_and_call_user_command("ColorMyPencils", color_my_pencils, "Toggle transparent background")
 
+local function edit_macro()
+	local register = "q"
+
+	local opts = {
+		default = vim.g.edit_macro_last or "",
+	}
+
+	if opts.default == "" then
+		opts.prompt = "Create Macro"
+	else
+		opts.prompt = "Edit Macro"
+	end
+
+	vim.ui.input(opts, function(value)
+		if value == nil then
+			return
+		end
+
+		local macro = vim.fn.escape(value, '"')
+		local call = ('let @%s="%s"'):format(register, macro)
+
+		vim.cmd(call)
+
+		vim.g.edit_macro_last = value
+	end)
+end
+
+user_command("EditMacro", edit_macro, {
+	desc = "Create/Edit macro in an input",
+})
+
 --- @param ctx Context
 local function generate_average_color(ctx)
 	require("config.ui.average-colorscheme")
