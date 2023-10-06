@@ -1,5 +1,18 @@
 # Changelog
 
+## [5.36.0](https://github.com/snelling-a/nvim/compare/v5.35.3...v5.36.0) (2023-10-06)
+
+
+### Features
+
+* EditMacro user command ([391c99d](https://github.com/snelling-a/nvim/commit/391c99db5ee66cd28c24dc8382e47bd41a0b76f0))
+
+
+### Miscellaneous
+
+* update AverageDark colorscheme ([840b01e](https://github.com/snelling-a/nvim/commit/840b01ea10c12433ab7b4c5a8b35d2be8e6fe381))
+* update plugins ([2c3310f](https://github.com/snelling-a/nvim/commit/2c3310fa9a21aaa61fa519d5494518f9a12356cd))
+
 ## [5.35.3](https://github.com/snelling-a/nvim/compare/v5.35.2...v5.35.3) (2023-10-05)
 
 
