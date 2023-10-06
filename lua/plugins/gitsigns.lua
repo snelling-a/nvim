@@ -140,6 +140,7 @@ M.event = {
 }
 
 M.opts = {
+	_extmark_signs = false,
 	current_line_blame = true,
 	current_line_blame_formatter_nc = current_line_blame_formatter_nc,
 	on_attach = on_attach,
