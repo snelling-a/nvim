@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.37.0](https://github.com/snelling-a/nvim/compare/v5.36.0...v5.37.0) (2023-10-06)
+
+
+### Features
+
+* help keymaps ([7d85b11](https://github.com/snelling-a/nvim/commit/7d85b11405f9e1b985b1d80c84c0c11821969773))
+
 ## [5.36.0](https://github.com/snelling-a/nvim/compare/v5.35.3...v5.36.0) (2023-10-06)
 
 
