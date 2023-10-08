@@ -10,6 +10,6 @@ require("config.ui")
 
 vim.cmd.packadd("cfilter")
 
-if vim.fn.executable("fzf") == 1 then
-	vim.opt.rtp:append("/usr/local/opt/fzf")
-end
+-- if vim.fn.executable("fzf") == 1 then
+-- 	vim.opt.rtp:append("/usr/local/bin/fzf")
+-- end

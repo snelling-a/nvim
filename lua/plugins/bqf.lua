@@ -6,7 +6,11 @@ local M = {
 M.dependencies = {
 	{
 		"junegunn/fzf",
-		build = function() vim.fn["fzf#install"]() end,
+		config = function()
+			if vim.fn.executable("fzf") == 1 then
+				vim.opt.rtp:append(("%s/opt/fzf"):format(os.getenv("HOMEBREW_PREFIX")))
+			end
+		end,
 	},
 }
 
