@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.37.1](https://github.com/snelling-a/nvim/compare/v5.37.0...v5.37.1) (2023-10-06)
+
+
+### Bug Fixes
+
+* **gitsigns:** don't use extmarks ([007db3d](https://github.com/snelling-a/nvim/commit/007db3d46c17b583b565918b00b2e0a478fde8b9))
+
 ## [5.37.0](https://github.com/snelling-a/nvim/compare/v5.36.0...v5.37.0) (2023-10-06)
 
 
