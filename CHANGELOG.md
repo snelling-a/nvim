@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.39.0](https://github.com/snelling-a/nvim/compare/v5.38.0...v5.39.0) (2023-10-08)
+
+
+### Features
+
+* tabline ([7d8876d](https://github.com/snelling-a/nvim/commit/7d8876dfb60d6e1f74aa7fbfa56feed18cb2adb5))
+
 ## [5.38.0](https://github.com/snelling-a/nvim/compare/v5.37.1...v5.38.0) (2023-10-08)
 
 
