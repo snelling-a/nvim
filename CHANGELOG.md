@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.38.0](https://github.com/snelling-a/nvim/compare/v5.37.1...v5.38.0) (2023-10-08)
+
+
+### Features
+
+* treesitter foldtext ([7014baa](https://github.com/snelling-a/nvim/commit/7014baaa8e8d798af6ef94313b79e30af2e61417))
+
 ## [5.37.1](https://github.com/snelling-a/nvim/compare/v5.37.0...v5.37.1) (2023-10-06)
 
 
