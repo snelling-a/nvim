@@ -11,7 +11,7 @@ local function get_jira_tag(branch)
 	return tag, icon
 end
 
-local function branch2()
+local function get_branch()
 	local icon = Icons.git.git
 	local highlight = "StatusRed"
 	local branch = (vim.b.gitsigns_head or vim.g.gitsigns_head) or "" --[[@as string]]
@@ -83,7 +83,7 @@ function M.status(active)
 	end
 
 	return table.concat({
-		branch2(),
+		get_branch(),
 		get_status(),
 	}, " ")
 end
