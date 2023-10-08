@@ -2,6 +2,8 @@ local M = {
 	"anuvyklack/pretty-fold.nvim",
 }
 
+M.enabled = false
+
 M.event = {
 	"BufReadPost",
 	"BufNewFile",
