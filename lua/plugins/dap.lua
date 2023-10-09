@@ -6,47 +6,16 @@ local M = {
 }
 
 M.dependencies = {
-	"rcarriga/nvim-dap-ui",
-	"theHamsta/nvim-dap-virtual-text",
-	"williamboman/mason.nvim",
 	{
-		"David-Kunz/jester",
-		keys = {
-			{ "<leader>djt", function() require("jester").debug() end, desc = "DAP Jester debug test" },
-			{ "<leader>djf", function() require("jester").debug_file() end, desc = "DAP Jester debug file" },
-			{ "<leader>djr", function() require("jester").debug_last() end, desc = "DAP Jester rerun debug" },
-			{ "<leader>djT", function() require("jester").run() end, desc = "DAP Jester run test" },
-			{ "<leader>djF", function() require("jester").run_file() end, desc = "DAP Jester run file" },
-			{ "<leader>djR", function() require("jester").run_last() end, desc = "DAP Jester rerun test" },
-		},
-	},
-	{ "jay-babu/mason-nvim-dap.nvim", opts = { automatic_setup = true } },
-	{
-		"jbyuki/one-small-step-for-vimkind",
-		keys = {
-			{ "<F8>", function() require("dap").toggle_breakpoint() end, desc = "" },
-			{ "<F9>", function() require("dap").continue() end, desc = "" },
-			{ "<F10>", function() require("dap").step_over() end, desc = "" },
-			{ "<S-F10>", function() require("dap").step_into() end, desc = "" },
-			{ "<F12>", function() require("dap.ui.widgets").hover() end, desc = "" },
-			{ "<F5>", function() require("osv").launch({ port = 8086 }) end, desc = "" },
+		"theHamsta/nvim-dap-virtual-text",
+		opts = {
+			commented = true,
 		},
 	},
 	{
-		"mxsdev/nvim-dap-vscode-js",
-		opts = function()
-			return {
-				debugger_path = require("mason-registry").get_package("js-debug-adapter"):get_install_path(),
-				debugger_cmd = { "js-debug-adapter" },
-				adapters = { "pwa-node", "pwa-chrome", "pwa-msedge", "node-terminal", "pwa-extensionHost" },
-			}
-		end,
-	},
-	{
-		"ofirgall/goto-breakpoints.nvim",
-		keys = {
-			{ "]b", function() require("goto-breakpoints").next() end, desc = "Go to next breakpoint" },
-			{ "[b", function() require("goto-breakpoints").prev() end, "Go to previous breakpoint" },
+		"jay-babu/mason-nvim-dap.nvim",
+		opts = {
+			automatic_setup = true,
 		},
 	},
 }
