@@ -1,5 +1,17 @@
 # Changelog
 
+## [5.40.0](https://github.com/snelling-a/nvim/compare/v5.39.0...v5.40.0) (2023-10-10)
+
+
+### Features
+
+* **coq:** coq completion ([e034c75](https://github.com/snelling-a/nvim/commit/e034c75ca45ea95923a93990bdc358b48e6409a5))
+
+
+### Miscellaneous
+
+* update plugins ([64e1069](https://github.com/snelling-a/nvim/commit/64e1069ce7070267fee4c1d0025110304f35860b))
+
 ## [5.39.0](https://github.com/snelling-a/nvim/compare/v5.38.0...v5.39.0) (2023-10-08)
 
 
