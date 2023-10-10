@@ -12,6 +12,7 @@ M.lazy_event = {
 M.no_format = {
 	"alpha",
 	"checkhealth",
+	"copilot.lua",
 	"dapui_*",
 	"diffview",
 	"DressingSelect",
@@ -25,8 +26,8 @@ M.no_format = {
 	"log",
 	"lspinfo",
 	"mason",
-	"netrw",
 	"neo-tree",
+	"netrw",
 	"noice",
 	"notify",
 	"NvimSeparator",

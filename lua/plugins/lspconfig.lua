@@ -1,4 +1,4 @@
-local ensure_installed = require("config.lsp.util").ensure_installed
+local Util = require("config.lsp.util")
 local javascript_typescript = require("config.util.constants").javascript_typescript
 
 --- @type LazySpec
@@ -32,20 +32,15 @@ M.event = {
 function M.config()
 	require("lspconfig.ui.windows").default_options.border = "rounded"
 
-	--- @type lspconfig.Config
-	local opts = {
-		capabilities = require("config.lsp.capabilities").get_capabilities(),
-		flags = {
-			debounce_text_changes = 150,
-		},
-		on_attach = require("config.lsp").on_attach,
-	}
+	local Path = require("config.util.path")
 
-	ensure_installed(require("config.util.path").linters_formatters)
+	Util.ensure_installed(Path.linters_formatters)
+
+	local opts = Util.get_opts()
 
 	local function cb(path) require(path).setup(opts) end
 
-	ensure_installed(require("config.util.path").lsp_servers, cb)
+	Util.ensure_installed(Path.lsp_servers, cb)
 end
 
 return M

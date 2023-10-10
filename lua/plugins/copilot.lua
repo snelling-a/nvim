@@ -1,58 +1,32 @@
 local function get_node_path()
-	local icon = require("config.ui.icons").kind_icons.Copilot
-	local Logger = require("config.util.logger"):new(icon .. " Copilot")
+	local title = ("%s Copilot"):format(require("config.ui.icons").kind_icons.Copilot)
+	local Logger = require("config.util.logger"):new(title)
 
 	local node = vim.fn.exepath("node")
 
-	if not node then
-		Logger:warn("Node not found in path")
-		return
-	end
-
-	return node
+	return node or Logger:warn("Node not found in path")
 end
 
 --- @type LazySpec
 local M = {
-	"zbirenbaum/copilot.lua",
+	"github/copilot.vim",
 }
-
-M.cond = require("config.util").is_vim()
 
 M.build = ":Copilot auth"
 
-M.event = require("config.util.constants").lazy_event
-
-M.dependencies = {
-	{
-		"zbirenbaum/copilot-cmp",
-		config = function(_, opts)
-			local copilot_cmp = require("copilot_cmp")
-			copilot_cmp.setup(opts)
-
-			vim.api.nvim_create_autocmd("LspAttach", {
-				callback = function(args)
-					local client = vim.lsp.get_client_by_id(args.data.client_id) or {}
-
-					if client.name == "copilot" then
-						copilot_cmp._on_insert_enter(opts)
-					end
-				end,
-				desc = "Copilot on attach",
-				group = require("config.util").augroup("CopilotOnAttach"),
-			})
-		end,
-	},
+M.event = {
+	"InsertEnter",
 }
 
-M.opts = {
-	copilot_node_path = get_node_path,
-	panel = {
-		enabled = false,
-	},
-	suggestion = {
-		enabled = true,
-	},
-}
+function M.config()
+	local filetypes = {}
+	for _, v in pairs(require("config.util.constants").no_format) do
+		filetypes[v] = false
+	end
+
+	vim.g.copilot_enabled = true
+	vim.g.copilot_filetypes = filetypes
+	vim.g.copilot_node_command = get_node_path()
+end
 
 return M

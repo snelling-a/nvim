@@ -1,6 +1,13 @@
 local Icons = require("config.ui.icons")
 local Util = require("config.util")
 
+--- @type LazySpec
+local M = {
+	"hrsh7th/nvim-cmp",
+}
+
+M.enabled = false
+
 local formatting = {
 	fields = {
 		"kind",
@@ -178,11 +185,6 @@ local function luasnip_extend()
 		"javascript",
 	})
 end
-
---- @type LazySpec
-local M = {
-	"hrsh7th/nvim-cmp",
-}
 
 M.cond = Util.is_vim()
 

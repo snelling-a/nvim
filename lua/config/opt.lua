@@ -5,11 +5,6 @@ opt.clipboard = {
 	"unnamed",
 	"unnamedplus",
 }
-opt.completeopt = {
-	"menu",
-	"menuone",
-	"noselect",
-}
 opt.confirm = true
 opt.diffopt = {
 	"internal",

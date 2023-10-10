@@ -17,6 +17,32 @@ function M.bind(bufnr, lhs, rhs, desc)
 	return Util.nmap(lhs, rhs, opts)
 end
 
+--- wrapper for tbl_extend.completion.completionItem.snippetSupport
+--- to enable (broadcasting) snippet capability for completion
+--- @param opts lspconfig.Config
+--- @return lspconfig.Config opts
+function M.enable_broadcasting(opts)
+	local capabilities = vim.lsp.protocol.make_client_capabilities()
+	---@diagnostic disable-next-line: inject-field
+	capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+	opts.capabilities = Util.tbl_extend_force(opts.capabilities or {}, capabilities)
+
+	return opts
+end
+
+--- @return lspconfig.Config opts
+function M.get_opts()
+	local opts = {
+		flags = {
+			debounce_text_changes = 150,
+		},
+		on_attach = require("config.lsp").on_attach,
+	}
+
+	return require("coq").lsp_ensure_capabilities(opts) --[[@as lspconfig.Config]]
+end
+
 --- wrapper for lspconfig.util.root_pattern
 --- @param config_files string|string[]
 --- @return function (startpath: any) -> string|unknown|nil
@@ -102,4 +128,5 @@ function M.toggle(cond, msg)
 		Logger:warn(("Disabled %s"):format(msg))
 	end
 end
+
 return M

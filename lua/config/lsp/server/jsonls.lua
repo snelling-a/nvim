@@ -18,7 +18,7 @@ M.mason_name = "json-lsp"
 
 --- @param opts lspconfig.Config
 function M.setup(opts)
-	opts = require("config.lsp.capabilities").enable_broadcasting(opts)
+	opts = require("config.lsp.util").enable_broadcasting(opts)
 
 	opts.init_options = init_options
 
