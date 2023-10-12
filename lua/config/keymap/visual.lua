@@ -12,6 +12,3 @@ vmap("J", ":m '>+1<CR>gv=gv", {
 vmap("K", ":m '<-2<CR>gv=gv", {
 	desc = "Move lines up",
 })
-vmap("Q", ":norm @q<CR>", {
-	desc = "Use macro stored in the [q] register",
-})

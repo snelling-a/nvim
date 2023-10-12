@@ -49,9 +49,6 @@ end, {
 map("U", cmd.redo, {
 	desc = "Better redo",
 })
-map("Q", "@q", {
-	desc = "Use macro stored in the [q] register",
-})
 map("Y", "y$", {
 	desc = "[Y]ank to the end of the line",
 })
