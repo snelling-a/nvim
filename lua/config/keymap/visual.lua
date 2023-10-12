@@ -1,14 +1,14 @@
-local vmap = require("config.util").vmap
+local map = require("config.util").vmap
 
-vmap("<", "<gv", {
+map("<", "<gv", {
 	desc = "Easy unindent",
 })
-vmap(">", ">gv", {
+map(">", ">gv", {
 	desc = "Easy indent",
 })
-vmap("J", ":m '>+1<CR>gv=gv", {
+map("J", ":m '>+1<CR>gv=gv", {
 	desc = "Move lines down",
 })
-vmap("K", ":m '<-2<CR>gv=gv", {
+map("K", ":m '<-2<CR>gv=gv", {
 	desc = "Move lines up",
 })
