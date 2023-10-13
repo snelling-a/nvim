@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.41.0](https://github.com/snelling-a/nvim/compare/v5.40.0...v5.41.0) (2023-10-13)
+
+
+### Features
+
+* keywordprg ([1531619](https://github.com/snelling-a/nvim/commit/15316194a6f9072df5ee895a0b00b30b45a47697))
+
 ## [5.40.0](https://github.com/snelling-a/nvim/compare/v5.39.0...v5.40.0) (2023-10-10)
 
 
