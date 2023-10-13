@@ -39,6 +39,7 @@ map("g", function()
 end, {
 	desc = "[Q]uit all windows",
 })
+map("K", function() vim.cmd.normal({ args = { "K" }, bang = true }) end, { desc = "Keywordprg" })
 map("rr", function()
 	vim.api.nvim_exec2(
 		[[

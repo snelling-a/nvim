@@ -1,9 +1,10 @@
 vim.treesitter.start()
 
-local nmap = require("config.util").nmap
+local Util = require("config.util")
 
 local opt = vim.opt_local
 
+opt.keywordprg = ":vertical help"
 opt.number = true
 opt.numberwidth = 1
 opt.relativenumber = true
@@ -12,17 +13,17 @@ opt.statuscolumn = [[%#NonText#%{&nu?(&rnu&&v:relnum?v:relnum:v:lnum):''}%=]]
 	.. require("config.ui.icons").fillchars.foldsep
 	.. "%T"
 
-nmap("<CR>", "<C-]>", {
+Util.nmap("<CR>", "<C-]>", {
 	desc = "Go to definition",
 })
-nmap("]t", "ta", {
+Util.nmap("]t", "ta", {
 	desc = "Go to next tag",
 })
-nmap("[t", "<C-t>", {
+Util.nmap("[t", "<C-t>", {
 	desc = "Go to prev tag",
 })
 
-nmap("ht", function()
+Util.nmap("ht", function()
 	vim.cmd.vimgrep("/\\v.*\\*\\S+\\*$/j %")
 	vim.cmd.copen()
 
@@ -50,6 +51,7 @@ local function search_map(lhs, rhs, item)
 			right = ("Next %s"):format(item),
 		},
 	}, { buffer = bufnr })
+	Util.scroll_center()
 end
 
 search_map("L", "|\\S\\{-}|", "|link|")
