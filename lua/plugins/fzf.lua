@@ -179,8 +179,8 @@ M.opts = {
 		},
 	},
 	oldfiles = {
-		prompt = get_prompt(Icons.file.oldfiles),
 		cwd_only = true,
+		prompt = get_prompt(Icons.file.oldfiles),
 	},
 	previewers = {
 		bat = {
