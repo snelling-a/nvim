@@ -17,6 +17,7 @@ end
 
 function M.are_buffers_listed() return #vim.fn.getbufinfo({ buflisted = 1 }) > 0 end
 
+--- @param str string
 function M.capitalize_first_letter(str) return str:gsub("^%l", string.upper) end
 
 --- wrapper for |nvim_feedkeys| that handles <key> syntax
