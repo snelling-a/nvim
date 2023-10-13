@@ -27,12 +27,6 @@ opt.modelines = 1
 opt.mouse = "a"
 opt.path:append("**")
 opt.runtimepath:append("/usr/local/opt/fzf")
-opt.sessionoptions = {
-	"buffers",
-	"curdir",
-	"tabpages",
-	"winsize",
-}
 opt.shada = {
 	"!",
 	"'1000",

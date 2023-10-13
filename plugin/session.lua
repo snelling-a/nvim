@@ -3,6 +3,13 @@ if not Util.is_vim() then
 	return {}
 end
 
+vim.opt.sessionoptions = {
+	"buffers",
+	"curdir",
+	"tabpages",
+	"winsize",
+}
+
 local session_string = "Sessions"
 
 local Logger = require("config.util.logger"):new(session_string)
