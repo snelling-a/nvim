@@ -35,10 +35,6 @@ opt.splitbelow = true
 opt.splitright = true
 opt.synmaxcol = 500
 opt.termguicolors = true
-opt.whichwrap:append({
-	["h"] = true,
-	["l"] = true,
-})
 opt.wrap = false
 
 local function hard_mode()
