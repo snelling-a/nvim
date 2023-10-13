@@ -25,11 +25,22 @@ M.event = {
 function M.config()
 	require("coq")
 	require("coq_3p")({
-		{ src = "builtin/html" },
-		{ src = "builtin/js" },
-		{ src = "builtin/syntax" },
-		{ src = "copilot", accept_key = "<C-f>" },
-		{ src = "nvimlua" },
+		{
+			src = "builtin/html",
+		},
+		{
+			src = "builtin/js",
+		},
+		{
+			src = "builtin/syntax",
+		},
+		{
+			src = "copilot",
+			accept_key = "<C-f>",
+		},
+		{
+			src = "nvimlua",
+		},
 	})
 end
 
@@ -85,6 +96,9 @@ function M.init()
 			statusline = {
 				helo = false,
 			},
+		},
+		keymap = {
+			jump_to_mark = "<C-n>",
 		},
 	}
 end
