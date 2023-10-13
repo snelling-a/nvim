@@ -1,4 +1,6 @@
-vim.opt.wildignore:append({
+local opt = vim.opt_local
+
+opt.wildignore:append({
 	"**/build/**",
 	"**/coverage/**",
 	"**/dist/**",
@@ -20,6 +22,6 @@ if vim.fn.executable("tsc") then
 	})
 end
 
-vim.opt_local.matchpairs:append({
+opt.matchpairs:append({
 	"=:;",
 })
