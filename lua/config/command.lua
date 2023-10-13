@@ -129,13 +129,13 @@ user_command("GenerateAverageColor", generate_average_color, {
 	nargs = "?",
 })
 
---- @param opts Opts
+--- @param ctx Context
 --- @param ns number preview namespace id for highlights
 --- @param buf integer buffer that your preview routine will directly modify to show the previewed results
-local function trim_space_preview(opts, ns, buf)
+local function trim_space_preview(ctx, ns, buf)
 	vim.cmd.hi("clear Whitespace")
-	local line1 = opts.line1
-	local line2 = opts.line2 --[[@as number]]
+	local line1 = ctx.line1
+	local line2 = ctx.line2 --[[@as number]]
 
 	local current_buf = vim.api.nvim_get_current_buf()
 	local lines = vim.api.nvim_buf_get_lines(current_buf, line1 - 1, line2, false)

@@ -1,10 +1,9 @@
 local Util = require("config.util")
-local M = {}
---- @alias LeftRight table<"right"|"left", string|function>
 
---- @class Description
---- @field base string
---- @field text LeftRight
+local M = {}
+
+--- @alias LeftRight {right:string|function,left:string|function}
+--- @alias Description {base:string,text:LeftRight}
 
 --- replacement for vim-unimpaired
 --- creates 2 keymaps starting with `"["` and `"]"`

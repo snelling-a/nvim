@@ -21,3 +21,5 @@
 ---| "strikethrough"  "1" if struckthrough
 ---| "altfont"  "1" if alternative font
 ---| "nocombine"  "1" if nocombine
+
+--- @alias E {bufnr:integer, col:integer, lnum:integer, text:string, type:string, valid:integer}

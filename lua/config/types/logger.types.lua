@@ -4,18 +4,11 @@
 --- @alias Title string?
 --- @alias Level 0|1|2|3|4|5
 
---- @class NotifyArgs
---- @field msg Message?
---- @field title Title?
-
---- @alias Args Message|NotifyArgs|table?
+--- @alias NotifyArgs {msg:Message?,title:Title?}
+--- @alias Args Message|NotifyArgs|table
 --- @alias LoggerArgs Args|string
 
---- @class ConfirmArgs
---- @field msg Message?
---- @field choices string?
---- @field default number?
---- @field type string?
+--- @alias ConfirmArgs {msg:Message,choices:string,default:number,type:string}?
 
 --- @class Log
 --- @field new fun(self: Log, title: Title): Log

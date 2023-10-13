@@ -1,10 +1,3 @@
---- @class E
---- @field bufnr integer
---- @field col integer
---- @field lnum integer
---- @field text string
---- @field type string
---- @field valid integer
 
 --- @param info any
 --- @return table
