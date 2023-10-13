@@ -38,9 +38,6 @@ opt.switchbuf = "split"
 opt.tabstop = 4
 opt.timeoutlen = 400
 opt.ttimeoutlen = 20
-opt.undodir = {
-	os.getenv("HOME") .. "/.vim/undodir",
-}
 opt.undofile = true
 opt.updatetime = 200
 opt.wildignore:append("*.avi,*.divx,*.mp4,*.webm,*.mov,*.m2ts,*.mkv,*.vob,*.mpg,*.mpeg")
