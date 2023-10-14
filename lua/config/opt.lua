@@ -21,8 +21,14 @@ opt.modelines = 1
 opt.mouse = "a"
 opt.path:append("**")
 opt.runtimepath:append("/usr/local/opt/fzf")
-opt.shadafile = "NONE"
 opt.shell = "/bin/bash"
+opt.shada = {
+	"!",
+	"'1000",
+	"<50",
+	"s10",
+	"h",
+}
 opt.shiftround = true
 opt.shiftwidth = 4
 opt.smartcase = true
