@@ -14,6 +14,9 @@ local settings = {
 			enable = true,
 		},
 		diagnostics = {
+			unusedLocalExclude = {
+				"_*",
+			},
 			globals = {
 				"vim",
 			},
@@ -30,8 +33,6 @@ local settings = {
 			semicolon = "Disable",
 			setType = true,
 		},
-		unusedLocalExclude = {
-			"_*",
 		},
 		workspace = {
 			checkThirdParty = false,
