@@ -6,19 +6,13 @@ opt.clipboard = {
 	"unnamedplus",
 }
 opt.confirm = true
-opt.diffopt = {
-	"internal",
-	"filler",
-	"closeoff",
+opt.diffopt:append({
 	"hiddenoff",
-	"algorithm:minimal",
-}
+	"vertical",
+})
 opt.expandtab = true
 opt.fileencoding = "utf-8"
-opt.fileformats = {
-	"unix",
-	"mac",
-}
+opt.fileformats:append("mac")
 opt.gdefault = true
 opt.grepprg = "rg --hidden --vimgrep --smart-case"
 opt.ignorecase = true
