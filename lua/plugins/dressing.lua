@@ -3,8 +3,6 @@ local M = {
 	"stevearc/dressing.nvim",
 }
 
-M.event = require("config.util.constants").lazy_event
-
 M.opts = {
 	input = {
 		default_prompt = require("config.util").get_prompt(""),
@@ -50,8 +48,9 @@ M.opts = {
 				width = 0.4,
 			},
 		},
+		--- @param opts {prompt:string,kind:string?}
 		get_config = function(opts)
-			if opts.kind == "codeaction" then
+			if opts.kind == "codeaction" or opts.prompt:match("Do you want to modify the require path") ~= nil then
 				return {
 					backend = "builtin",
 				}
