@@ -27,7 +27,7 @@ Util.nmap("ht", function()
 	vim.cmd.vimgrep("/\\v.*\\*\\S+\\*$/j %")
 	vim.cmd.copen()
 
-	if not require("bqf.preview.handler").showWindow() then
+	if not require("bqf.preview.handler").hideWindow() then
 		vim.cmd.normal("P")
 	end
 end, {
