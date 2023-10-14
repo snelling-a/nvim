@@ -1,5 +1,13 @@
 # Changelog
 
+## [5.41.3](https://github.com/snelling-a/nvim/compare/v5.41.2...v5.41.3) (2023-10-14)
+
+
+### Bug Fixes
+
+* Loop can be executed at most once. ([d2b6c67](https://github.com/snelling-a/nvim/commit/d2b6c67833dfd73127465c7f3a136d3473320d07))
+* luacheck as linter ([4312d00](https://github.com/snelling-a/nvim/commit/4312d001e67b34823430e3ba060e58c5af760596))
+
 ## [5.41.2](https://github.com/snelling-a/nvim/compare/v5.41.1...v5.41.2) (2023-10-14)
 
 
