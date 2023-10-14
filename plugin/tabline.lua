@@ -30,7 +30,6 @@ local function get_best_window_filename(tabpage, window)
 		if #wins > 1 then
 			for _, win in ipairs(wins) do
 				filename = extract_filename(win)
-				break
 			end
 		end
 	end
