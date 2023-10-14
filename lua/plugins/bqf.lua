@@ -33,15 +33,16 @@ M.opts = {
 	preview = {
 		auto_preview = false,
 		should_preview_cb = function(bufnr)
-			local ret = true
+			local should_preview_cb = true
 			local bufname = vim.api.nvim_buf_get_name(bufnr)
 
 			if require("config.util").is_buf_big(bufnr) then
-				ret = false
+				should_preview_cb = false
 			elseif bufname:match("^fugitive://") then
-				ret = false
+				should_preview_cb = false
 			end
-			return ret
+
+			return should_preview_cb
 		end,
 	},
 	filter = {
