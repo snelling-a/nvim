@@ -1,7 +1,7 @@
 local args = {
 	"--codes",
 	"--no-color",
-	"--quiet",
+	"--formatter=plain",
 	"-",
 }
 
@@ -15,7 +15,7 @@ M.config = {
 	lintIgnoreExitCode = true,
 	lintStdin = true,
 	prefix = M.mason_name,
-    lintSource = "luacheck",
+	lintSource = "luacheck",
 }
 
 return M
