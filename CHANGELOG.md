@@ -1,5 +1,18 @@
 # Changelog
 
+## [5.41.1](https://github.com/snelling-a/nvim/compare/v5.41.0...v5.41.1) (2023-10-14)
+
+
+### Bug Fixes
+
+* **help:** use bfq.hideWindow ([57c8f0c](https://github.com/snelling-a/nvim/commit/57c8f0c31bfa77073818ff2430a094c2669a9e15))
+
+
+### Miscellaneous
+
+* update AverageDark colorscheme ([7d9412b](https://github.com/snelling-a/nvim/commit/7d9412b56e88a13c949e02a9b955c566f4bcf319))
+* update plugins ([b2494a8](https://github.com/snelling-a/nvim/commit/b2494a803b3f59b8dba21b664c9392d12488456f))
+
 ## [5.41.0](https://github.com/snelling-a/nvim/compare/v5.40.0...v5.41.0) (2023-10-13)
 
 
