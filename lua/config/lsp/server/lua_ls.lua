@@ -33,6 +33,8 @@ local settings = {
 			semicolon = "Disable",
 			setType = true,
 		},
+		runtime = {
+			version = "LuaJIT",
 		},
 		workspace = {
 			checkThirdParty = false,
