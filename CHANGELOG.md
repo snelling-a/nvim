@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.41.2](https://github.com/snelling-a/nvim/compare/v5.41.1...v5.41.2) (2023-10-14)
+
+
+### Bug Fixes
+
+* **lua_ls:** move unusedLocalExclude to diagnostics ([3b84dd6](https://github.com/snelling-a/nvim/commit/3b84dd6179ee9a86f602687d0721fff9ce0600fe))
+
 ## [5.41.1](https://github.com/snelling-a/nvim/compare/v5.41.0...v5.41.1) (2023-10-14)
 
 
