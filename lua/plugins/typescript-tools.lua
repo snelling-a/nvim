@@ -3,7 +3,10 @@ local M = {
 	"pmizio/typescript-tools.nvim",
 }
 
-M.event = require("config.util.constants").lazy_event
+M.event = require("config.util").tbl_extend_force(require("config.util.constants").lazy_event, {
+	"BufNewFile",
+	"BufReadPre",
+})
 
 M.dependencies = {
 	"nvim-lua/plenary.nvim",
