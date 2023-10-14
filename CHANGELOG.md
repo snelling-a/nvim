@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.42.0](https://github.com/snelling-a/nvim/compare/v5.41.3...v5.42.0) (2023-10-14)
+
+
+### Features
+
+* **lsp:** file renaming ([f856af1](https://github.com/snelling-a/nvim/commit/f856af1f771c7ef3ccde69da8eee7de3b13973b4))
+
 ## [5.41.3](https://github.com/snelling-a/nvim/compare/v5.41.2...v5.41.3) (2023-10-14)
 
 
