@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.42.1](https://github.com/snelling-a/nvim/compare/v5.42.0...v5.42.1) (2023-10-14)
+
+
+### Bug Fixes
+
+* **dap:** unknown opt for lazy spec ([b56ee60](https://github.com/snelling-a/nvim/commit/b56ee602ac4079ef3445ab41c5308792aa056edb))
+
 ## [5.42.0](https://github.com/snelling-a/nvim/compare/v5.41.3...v5.42.0) (2023-10-14)
 
 
