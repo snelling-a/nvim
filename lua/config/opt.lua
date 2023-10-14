@@ -22,6 +22,7 @@ opt.mouse = "a"
 opt.path:append("**")
 opt.runtimepath:append("/usr/local/opt/fzf")
 opt.shadafile = "NONE"
+opt.shell = "/bin/bash"
 opt.shiftround = true
 opt.shiftwidth = 4
 opt.smartcase = true
@@ -34,15 +35,71 @@ opt.timeoutlen = 400
 opt.ttimeoutlen = 20
 opt.undofile = true
 opt.updatetime = 200
-opt.wildignore:append("*.avi,*.divx,*.mp4,*.webm,*.mov,*.m2ts,*.mkv,*.vob,*.mpg,*.mpeg")
-opt.wildignore:append("*.doc,*.pdf,*.cbr,*.cbz")
-opt.wildignore:append("*.eot,*.otf,*.ttf,*.woff")
-opt.wildignore:append("*.git,.hg,.svn")
-opt.wildignore:append("*.mp3,*.oga,*.ogg,*.wav,*.flac")
-opt.wildignore:append("*.swp,.lock,.DS_Store,._*")
-opt.wildignore:append("*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz,*.kgb")
-opt.wildignore:append(".,..")
-opt.wildignore:append(".ai,*.bmp,*.gif,*.ico,*.jpg,*.jpeg,*.png,*.psd,*.webp")
+opt.wildignore:append({
+	"*.avi",
+	"*.divx",
+	"*.m2ts",
+	"*.mkv",
+	"*.mov",
+	"*.mp4",
+	"*.mpeg",
+	"*.mpg",
+	"*.vob",
+	"*.webm",
+})
+opt.wildignore:append({
+	"*.cbr",
+	"*.cbz",
+	"*.doc",
+	"*.pdf",
+})
+opt.wildignore:append({
+	"*.eot",
+	"*.otf",
+	"*.ttf",
+	"*.woff",
+})
+opt.wildignore:append({
+	"*.git",
+	".hg",
+	".svn",
+})
+opt.wildignore:append({
+	"*.flac",
+	"*.mp3",
+	"*.oga",
+	"*.ogg",
+	"*.wav",
+})
+opt.wildignore:append({
+	"*.swp",
+	".DS_Store",
+	"._*",
+	".lock",
+})
+opt.wildignore:append({
+	"*.kgb",
+	"*.rar",
+	"*.tar.bz2",
+	"*.tar.gz",
+	"*.tar.xz",
+	"*.zip",
+})
+opt.wildignore:append({
+	".",
+	"..",
+})
+opt.wildignore:append({
+	"*.bmp",
+	"*.gif",
+	"*.ico",
+	"*.jpeg",
+	"*.jpg",
+	"*.png",
+	"*.psd",
+	"*.webp",
+	".ai",
+})
 opt.wildmode = "list:longest,list:full"
 opt.wildoptions = "fuzzy"
 opt.writebackup = false
