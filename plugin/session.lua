@@ -16,7 +16,7 @@ local Logger = require("config.util.logger"):new(session_string)
 
 local sessions_dir = vim.fn.expand(vim.fn.stdpath("state") .. "/sessions/")
 
-vim.fn.mkdir(sessions_dir, "p")
+vim.fn.mkdir(sessions_dir, "p", 0700)
 
 local function get_current_session()
 	local separator = require("config.util.path").get_separator()
