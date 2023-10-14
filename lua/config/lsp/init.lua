@@ -11,6 +11,7 @@ function LspConfig.on_attach(client, bufnr)
 	require("config.lsp.handlers").on_attach()
 	require("config.lsp.inlay_hint").on_attach(client, bufnr)
 	require("config.lsp.keymap").on_attach(bufnr)
+	require("config.lsp.rename").on_attach(client, bufnr)
 end
 
 return LspConfig
