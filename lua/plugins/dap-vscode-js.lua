@@ -1,3 +1,5 @@
+local ft = require("config.util.constants").javascript_typescript
+
 --- @type LazySpec
 local M = {
 	"mxsdev/nvim-dap-vscode-js",
@@ -6,10 +8,12 @@ local M = {
 M.dependencies = {
 	{
 		"microsoft/vscode-js-debug",
-		opt = true,
 		build = "npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out",
+		ft = ft,
 	},
 }
+
+M.ft = ft
 
 M.opts = {
 	debugger_path = vim.fn.stdpath("data") .. "/lazy/vscode-js-debug",
