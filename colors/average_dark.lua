@@ -1,7 +1,7 @@
 -- Made with 'mini.colors' module of https://github.com/echasnovski/mini.nvim
 
 if vim.g.colors_name ~= nil then
-	vim.cmd("highlight clear")
+  vim.cmd("highlight clear")
 end
 vim.g.colors_name = "average_dark"
 
@@ -13,39 +13,6 @@ hi(0, "Comment", { ctermfg = 242, fg = "#6b6f79" })
 hi(0, "Constant", { ctermfg = 250, fg = "#b9b9b9" })
 hi(0, "CursorLine", { bg = "#282c3a", ctermbg = 236 })
 hi(0, "CursorLineNr", { ctermfg = 251, fg = "#bfc1d2" })
-hi(0, "DapUIBreakpointsCurrentLine", { ctermfg = 155, fg = "#a9ff68" })
-hi(0, "DapUIBreakpointsDisabledLine", { ctermfg = 238, fg = "#424242" })
-hi(0, "DapUIBreakpointsInfo", { ctermfg = 155, fg = "#a9ff68" })
-hi(0, "DapUIBreakpointsPath", { ctermfg = 51, fg = "#00f1f5" })
-hi(0, "DapUIDecoration", { ctermfg = 51, fg = "#00f1f5" })
-hi(0, "DapUIFloatBorder", { ctermfg = 51, fg = "#00f1f5" })
-hi(0, "DapUILineNumber", { ctermfg = 51, fg = "#00f1f5" })
-hi(0, "DapUIModifiedValue", { ctermfg = 51, fg = "#00f1f5" })
-hi(0, "DapUIPlayPause", { ctermfg = 155, fg = "#a9ff68" })
-hi(0, "DapUIPlayPauseNC", { ctermfg = 155, fg = "#a9ff68" })
-hi(0, "DapUIRestart", { ctermfg = 155, fg = "#a9ff68" })
-hi(0, "DapUIRestartNC", { ctermfg = 155, fg = "#a9ff68" })
-hi(0, "DapUIScope", { ctermfg = 51, fg = "#00f1f5" })
-hi(0, "DapUISource", { ctermfg = 177, fg = "#d484ff" })
-hi(0, "DapUIStepBack", { ctermfg = 51, fg = "#00f1f5" })
-hi(0, "DapUIStepBackNC", { ctermfg = 51, fg = "#00f1f5" })
-hi(0, "DapUIStepInto", { ctermfg = 51, fg = "#00f1f5" })
-hi(0, "DapUIStepIntoNC", { ctermfg = 51, fg = "#00f1f5" })
-hi(0, "DapUIStepOut", { ctermfg = 51, fg = "#00f1f5" })
-hi(0, "DapUIStepOutNC", { ctermfg = 51, fg = "#00f1f5" })
-hi(0, "DapUIStepOver", { ctermfg = 51, fg = "#00f1f5" })
-hi(0, "DapUIStepOverNC", { ctermfg = 51, fg = "#00f1f5" })
-hi(0, "DapUIStop", { ctermfg = 197, fg = "#f70067" })
-hi(0, "DapUIStopNC", { ctermfg = 197, fg = "#f70067" })
-hi(0, "DapUIStoppedThread", { ctermfg = 51, fg = "#00f1f5" })
-hi(0, "DapUIThread", { ctermfg = 155, fg = "#a9ff68" })
-hi(0, "DapUIType", { ctermfg = 177, fg = "#d484ff" })
-hi(0, "DapUIUnavailable", { ctermfg = 238, fg = "#424242" })
-hi(0, "DapUIUnavailableNC", { ctermfg = 238, fg = "#424242" })
-hi(0, "DapUIWatchesEmpty", { ctermfg = 197, fg = "#f70067" })
-hi(0, "DapUIWatchesError", { ctermfg = 197, fg = "#f70067" })
-hi(0, "DapUIWatchesValue", { ctermfg = 155, fg = "#a9ff68" })
-hi(0, "DapUIWinSelect", { bold = true, ctermfg = 51, fg = "#00f1f5" })
 hi(0, "DiagnosticError", { ctermfg = 168, fg = "#e16481" })
 hi(0, "DiagnosticHint", { ctermfg = 249, fg = "#9bbbb7" })
 hi(0, "DiagnosticInfo", { ctermfg = 110, fg = "#83b2c7" })
@@ -97,17 +64,17 @@ local g = vim.g
 
 g.terminal_color_0 = "#1b1f29"
 g.terminal_color_1 = "#e16481"
-g.terminal_color_2 = "#a9ff68"
+g.terminal_color_2 = "#a3be8c"
 g.terminal_color_3 = "#d9ae7e"
 g.terminal_color_4 = "#caced9"
 g.terminal_color_5 = "#be9cc6"
-g.terminal_color_6 = "#00f1f5"
+g.terminal_color_6 = "#83b2c7"
 g.terminal_color_7 = "#d7d8dc"
 g.terminal_color_8 = "#1b1f29"
 g.terminal_color_9 = "#e16481"
-g.terminal_color_10 = "#a9ff68"
+g.terminal_color_10 = "#a3be8c"
 g.terminal_color_11 = "#d9ae7e"
 g.terminal_color_12 = "#caced9"
 g.terminal_color_13 = "#be9cc6"
-g.terminal_color_14 = "#00f1f5"
+g.terminal_color_14 = "#83b2c7"
 g.terminal_color_15 = "#d7d8dc"
