@@ -3,79 +3,72 @@ local M = {
 	"mrjones2014/smart-splits.nvim",
 }
 
-M.keys = {
-	---@diagnostic disable-next-line: missing-fields
-	{
-		"<A-h>",
-		function() require("smart-splits").resize_left() end,
-		desc = "Resize split left",
-	},
-	---@diagnostic disable-next-line: missing-fields
-	{
-		"<A-j>",
-		function() require("smart-splits").resize_down() end,
-		desc = "Resize split down",
-	},
-	---@diagnostic disable-next-line: missing-fields
-	{
-		"<A-k>",
-		function() require("smart-splits").resize_up() end,
-		desc = "Resize split up",
-	},
-	---@diagnostic disable-next-line: missing-fields
-	{
-		"<A-l>",
-		function() require("smart-splits").resize_right() end,
-		desc = "Resize split right",
-	},
-	---@diagnostic disable-next-line: missing-fields
-	{
-		"<C-h>",
-		function() require("smart-splits").move_cursor_left() end,
-		desc = "Move split cursor left",
-	},
-	---@diagnostic disable-next-line: missing-fields
-	{
-		"<C-j>",
-		function() require("smart-splits").move_cursor_down() end,
-		desc = "Move split cursor down",
-	},
-	---@diagnostic disable-next-line: missing-fields
-	{
-		"<C-k>",
-		function() require("smart-splits").move_cursor_up() end,
-		desc = "Move split cursor up",
-	},
-	---@diagnostic disable-next-line: missing-fields
-	{
-		"<C-l>",
-		function() require("smart-splits").move_cursor_right() end,
-		desc = "Move split cursor right",
-	},
-	---@diagnostic disable-next-line: missing-fields
-	{
-		"<leader><leader>h",
-		function() require("smart-splits").swap_buf_left() end,
-		desc = "Swap split buf left",
-	},
-	---@diagnostic disable-next-line: missing-fields
-	{
-		"<leader><leader>j",
-		function() require("smart-splits").swap_buf_down() end,
-		desc = "Swap split buf down",
-	},
-	---@diagnostic disable-next-line: missing-fields
-	{
-		"<leader><leader>k",
-		function() require("smart-splits").swap_buf_up() end,
-		desc = "Swap split buf up",
-	},
-	---@diagnostic disable-next-line: missing-fields
-	{
-		"<leader><leader>l",
-		function() require("smart-splits").swap_buf_right() end,
-		desc = "Swap split buf right",
-	},
-}
+---@diagnostic disable-next-line: assign-type-mismatch
+M.keys = function()
+	local smart_splits = require("smart-splits")
+
+	return {
+		{
+			"<A-h>",
+			smart_splits.resize_left,
+			desc = "Resize split left",
+		},
+		{
+			"<A-j>",
+			smart_splits.resize_down,
+			desc = "Resize split down",
+		},
+		{
+			"<A-k>",
+			smart_splits.resize_up,
+			desc = "Resize split up",
+		},
+		{
+			"<A-l>",
+			smart_splits.resize_right,
+			desc = "Resize split right",
+		},
+		{
+			"<C-h>",
+			smart_splits.move_cursor_left,
+			desc = "Move split cursor left",
+		},
+		{
+			"<C-j>",
+			smart_splits.move_cursor_down,
+			desc = "Move split cursor down",
+		},
+		{
+			"<C-k>",
+			smart_splits.move_cursor_up,
+			desc = "Move split cursor up",
+		},
+		{
+			"<C-l>",
+			smart_splits.move_cursor_right,
+			desc = "Move split cursor right",
+		},
+		{
+			"<leader><leader>h",
+			smart_splits.swap_buf_left,
+			desc = "Swap split buf left",
+		},
+		{
+			"<leader><leader>j",
+			smart_splits.swap_buf_down,
+			desc = "Swap split buf down",
+		},
+		{
+			"<leader><leader>k",
+			smart_splits.swap_buf_up,
+			desc = "Swap split buf up",
+		},
+		{
+			"<leader><leader>l",
+			smart_splits.swap_buf_right,
+			desc = "Swap split buf right",
+		},
+	}
+end
 
 return M
