@@ -3,12 +3,42 @@ if not Util.is_vim() then
 	return {}
 end
 
-vim.opt.sessionoptions = {
-	"buffers",
-	"curdir",
-	"tabpages",
-	"winsize",
+local keep = {
+	"buffers", -- hidden and unloaded buffers, not just those in windows
+	"curdir", -- the current directory
+	"globals", -- global variables that start with an uppercase letter and contain at least one lowercase letter.
+	"skiprtp", -- exclude 'runtimepath' and 'packpath' from the options
+	"resize", -- size of the Vim window: 'lines' and 'columns'
+	"tabpages", -- all tab pages
 }
+local lose = {
+	"folds", -- manually created folds, opened/closed folds and local fold options
+	"help", -- 	the help window
+	"blank", -- empty windows
+	"localoptions", -- options and mappings local to a window or buffer (not global values for local options)
+	"options", -- all options and mappings (also global values for local options)
+	"terminal", -- include terminal windows where the command can be restored
+	"sesdir", -- the directory in which the session file is located will become the current directory
+	"winpos", -- position of the whole Vim window
+	"winsize", -- window sizes
+}
+
+for _, v in pairs(keep) do
+	vim.opt.sessionoptions:append(v)
+end
+for _, v in pairs(lose) do
+	vim.opt.sessionoptions:remove(v)
+end
+
+vim.opt.sessionoptions = { "globals", "skiprtp" }
+-- vim.opt.sessionoptions = {
+-- 	"buffers",
+-- 	"curdir",
+-- 	"tabpages",
+-- 	"winsize",
+-- }
+vim.opt.sessionoptions:remove({ "blank", "help", "skiprtp", "terminal" })
+vim.opt.sessionoptions:append({ "skiprtp" })
 
 local session_string = "Sessions"
 
