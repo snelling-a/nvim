@@ -1,5 +1,22 @@
 # Changelog
 
+## [5.42.2](https://github.com/snelling-a/nvim/compare/v5.42.1...v5.42.2) (2023-10-20)
+
+
+### Bug Fixes
+
+* ui.select for lua_ls renam ([a4a53cf](https://github.com/snelling-a/nvim/commit/a4a53cf9c8cacb331a924d0d6b2f59067b95b33f))
+
+
+### Miscellaneous
+
+* update AverageDark colorscheme ([03b04f3](https://github.com/snelling-a/nvim/commit/03b04f30a1490681d0f5470aa9e82a1fa6fad23a))
+* update AverageDark colorscheme ([75e4441](https://github.com/snelling-a/nvim/commit/75e4441106f19b3cd5d5ba8991d8ef595aac83b4))
+* update AverageDark colorscheme ([e54f3ea](https://github.com/snelling-a/nvim/commit/e54f3ea38c236892e813c46f2b7dfa600f1e2b91))
+* update plugins ([2662c5f](https://github.com/snelling-a/nvim/commit/2662c5fdeda9c0185d0cbbf8afe7f327b7c8596a))
+* update plugins ([97bf8ee](https://github.com/snelling-a/nvim/commit/97bf8ee016991a5734acc301aba6080ee6a236b5))
+* update plugins ([24756ee](https://github.com/snelling-a/nvim/commit/24756eed256bb64242152ad834e8c69bf5464f34))
+
 ## [5.42.1](https://github.com/snelling-a/nvim/compare/v5.42.0...v5.42.1) (2023-10-14)
 
 
