@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.42.3](https://github.com/snelling-a/nvim/compare/v5.42.2...v5.42.3) (2023-10-24)
+
+
+### Bug Fixes
+
+* **ui:** package icon ([b2e9913](https://github.com/snelling-a/nvim/commit/b2e99134a2bc1295ec85abf978685992215a7015))
+
 ## [5.42.2](https://github.com/snelling-a/nvim/compare/v5.42.1...v5.42.2) (2023-10-20)
 
 
