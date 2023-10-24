@@ -19,6 +19,10 @@ local M = {
 	"echasnovski/mini.starter",
 }
 
+M.event = {
+	"VimEnter",
+}
+
 M.cond = require("config.util").is_vim()
 
 -- M.event = {

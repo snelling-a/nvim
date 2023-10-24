@@ -21,6 +21,9 @@ local opts = {
 	change_detection = {
 		notify = false,
 	},
+	defaults = {
+		lazy = true,
+	},
 	dev = {
 		fallback = true,
 		path = require("config.util.constants").dev_dir .. "/snelling-a",
@@ -35,7 +38,6 @@ local opts = {
 			"habamax",
 		},
 	},
-	lazy = true,
 	performance = {
 		rtp = {
 			disabled_plugins = {
