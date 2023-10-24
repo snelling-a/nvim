@@ -70,13 +70,9 @@ M.git = {
 	folder = " ",
 	git = "󰊢 ",
 	github = " ",
-	ignored = " ",
-	merge = " ",
 	modified = modified,
 	pull = " ",
 	removed = " ",
-	renamed = moved,
-	staged = "󰱒 ",
 	stash = "󱞞 ",
 	status = " ",
 }
