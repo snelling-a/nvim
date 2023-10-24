@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.43.0](https://github.com/snelling-a/nvim/compare/v5.42.3...v5.43.0) (2023-10-24)
+
+
+### Features
+
+* **cmdline:** wilder branches ([e7dec0b](https://github.com/snelling-a/nvim/commit/e7dec0bdffc30797e8195897c2caee8a64cc4249))
+
 ## [5.42.3](https://github.com/snelling-a/nvim/compare/v5.42.2...v5.42.3) (2023-10-24)
 
 
