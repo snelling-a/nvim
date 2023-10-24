@@ -3,19 +3,20 @@ local M = {
 	"gelguy/wilder.nvim",
 }
 
-M.build = ":UpdateRemotePlugins"
-
 M.event = {
 	"CmdlineEnter",
 }
 
 function M.config()
-	require("wilder").setup({
+	local wilder = require("wilder")
+	wilder.setup({
 		modes = {
-			"/",
 			":",
+			"/",
 		},
 	})
+
+	wilder.set_option("use_python_remote_plugin", 0)
 end
 
 return M
