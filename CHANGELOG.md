@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.44.0](https://github.com/snelling-a/nvim/compare/v5.43.0...v5.44.0) (2023-10-24)
+
+
+### Features
+
+* **cmdline:** popup/highlighting ([8928492](https://github.com/snelling-a/nvim/commit/89284925a006ed7748d082899a08e58f26057626))
+
 ## [5.43.0](https://github.com/snelling-a/nvim/compare/v5.42.3...v5.43.0) (2023-10-24)
 
 
