@@ -1,5 +1,6 @@
 -- vim:ft=lua
 
-exclude_files = { "./plugin/packer_compiled.lua" }
-
+files["lua/types/*"] = {
+	ignore = { "631" },
+}
 globals = { "vim" }
