@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-output="./lua/plugins/README.md"
+output="./doc/README.md"
 packages_list='packages.temp'
 
 packages="$(
