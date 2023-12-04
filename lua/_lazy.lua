@@ -53,6 +53,7 @@ local spec = {
 	},
 	spec = {
 		{ import = "plugins" },
+		{ import = "plugins.completion" },
 		{ import = "plugins.lsp" },
 		{ import = "plugins.treesitter" },
 	},
