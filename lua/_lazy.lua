@@ -53,6 +53,7 @@ local spec = {
 	},
 	spec = {
 		{ import = "plugins" },
+		{ import = "plugins.treesitter" },
 	},
 	ui = {
 		border = "rounded",

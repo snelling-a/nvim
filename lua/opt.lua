@@ -18,6 +18,7 @@ opt.fillchars = require("ui.icons").fillchars
 opt.foldexpr = "nvim_treesitter#foldexpr()"
 opt.foldlevelstart = 2
 opt.foldmethod = "expr"
+opt.foldtext = "v:lua.require'ui.fold'.text()"
 opt.gdefault = true
 opt.grepformat = "%f:%l:%c:%m"
 opt.grepprg = "rg --hidden --vimgrep --smart-case"
