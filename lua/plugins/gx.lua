@@ -1,20 +1,18 @@
---- @type LazySpec
-local M = {
-	"chrishrb/gx.nvim",
-}
+---@type LazySpec
+local M = { "chrishrb/gx.nvim" }
 
 M.config = true
 
-M.dependencies = {
-	"nvim-lua/plenary.nvim",
+M.dependencies = { "nvim-lua/plenary.nvim" }
+
+M.keys = {
+	"gx",
+	mode = { "n", "v" },
+	desc = "Better [gx]",
 }
 
-M.event = require("config.util.constants").lazy_event
-
 M.opts = {
-	handler_options = {
-		search_engine = "ecosia",
-	},
+	handler_options = { search_engine = "ecosia" },
 }
 
 return M

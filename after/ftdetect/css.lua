@@ -1,4 +1,1 @@
-require("config.util").ftdetect({
-	"*.pcss",
-}, "css")
-
+require("util").ftdetect({ "*.pcss" }, "css")

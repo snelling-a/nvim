@@ -1,13 +1,11 @@
 --- @type LazySpec
-local M = {
-	"glacambre/firenvim",
-}
+local M = { "glacambre/firenvim" }
+
+M.lazy = not vim.g.started_by_firenvim
 
 function M.build()
 	require("lazy").load({
-		plugins = {
-			"firenvim",
-		},
+		plugins = { "firenvim" },
 		wait = false,
 	})
 	vim.fn["firenvim#install"](1)
@@ -55,14 +53,13 @@ function M.config()
 		},
 	}
 
-	api.nvim_create_autocmd("BufEnter", {
-		callback = function() vim.bo.filetype = "markdown" end,
+	api.nvim_create_autocmd({ "BufEnter" }, {
+		callback = function()
+			vim.bo.filetype = "markdown"
+		end,
 		desc = "Use markdown formatting for GitHub and reddit",
 		group = require("config.util").augroup("Firenvim"),
-		pattern = {
-			"*github.com_*",
-			"*reddit.com_*",
-		},
+		pattern = { "*github.com_*", "*reddit.com_*" },
 	})
 end
 

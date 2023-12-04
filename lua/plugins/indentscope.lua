@@ -1,28 +1,20 @@
---- @type LazySpec
-local M = {
-	"echasnovski/mini.indentscope",
-}
+---@type LazySpec
+local M = { "echasnovski/mini.indentscope" }
 
-M.enabled = false
-
-M.event = require("config.util.constants").lazy_event
-
-M.lazy = true
 
 M.opts = {
-	symbol = require("config.ui.icons").fillchars.foldsep,
-	options = {
-		try_as_border = true,
-	},
+	symbol = require("ui.icons").misc.leadmultispace,
+	options = { try_as_border = true },
 }
 
-M.version = "*"
-
-function M.init()
-	vim.api.nvim_create_autocmd("FileType", {
-		callback = function() vim.b.miniindentscope_disable = true end,
-		group = require("config.util").augroup("Indentscope"),
-		pattern = require("config.util.constants").no_format,
+function M.config(_, opts)
+	require("mini.indentscope").setup(opts)
+	vim.api.nvim_create_autocmd({ "FileType" }, {
+		callback = function()
+			vim.b.miniindentscope_disable = true
+		end,
+		group = require("autocmd").augroup("MiniIndentScopeDisable"),
+		pattern = require("util").constants.no_format,
 	})
 end
 

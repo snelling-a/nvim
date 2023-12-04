@@ -1,5 +1,10 @@
 local opt = vim.opt_local
 
+vim.cmd.runtime({
+	args = { "ftplugin/javascript.lua" },
+	bang = true,
+})
+
 opt.wildignore:append({
 	"**/build/**",
 	"**/coverage/**",
@@ -12,7 +17,7 @@ opt.wildignore:append({
 if vim.fn.executable("tsc") then
 	vim.cmd.compiler("tsc")
 
-	require("config.util").map_leader("tt", function()
+	require("keymap").leader("tt", function()
 		vim.cmd.make()
 		vim.cmd.redraw({
 			bang = true,
@@ -21,7 +26,3 @@ if vim.fn.executable("tsc") then
 		desc = ":make tsc",
 	})
 end
-
-opt.matchpairs:append({
-	"=:;",
-})

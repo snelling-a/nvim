@@ -1,6 +1,6 @@
-local o = vim.opt_local
+local opt = vim.opt_local
 
-o.colorcolumn = "50,72"
-o.spell = true
-o.textwidth = 72
+opt.colorcolumn = "50,72"
+opt.spell = true
+opt.textwidth = 72
 vim.bo.undofile = false

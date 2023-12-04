@@ -1,24 +1,10 @@
---- @type LazySpec
-local M = {
-	"kevinhwang91/nvim-bqf",
-}
+---@type LazySpec
+local M = { "kevinhwang91/nvim-bqf" }
 
-M.dependencies = {
-	{
-		"junegunn/fzf",
-		config = function()
-			if vim.fn.executable("fzf") == 1 then
-				vim.opt.rtp:append(("%s/opt/fzf"):format(os.getenv("HOMEBREW_PREFIX")))
-			end
-		end,
-	},
-}
+M.ft = { "qf" }
 
-M.ft = {
-	"qf",
-}
-
---- @type BqfConfig
+---@diagnostic disable-next-line: missing-fields
+---@type BqfConfig
 M.opts = {
 	auto_resize_height = true,
 	func_map = {
@@ -29,14 +15,14 @@ M.opts = {
 		split = "<C-s>",
 		ptogglemode = "<space>p",
 	},
-	--- @diagnostic disable-next-line: missing-fields
+	---@diagnostic disable-next-line: missing-fields
 	preview = {
 		auto_preview = false,
 		should_preview_cb = function(bufnr)
 			local should_preview_cb = true
 			local bufname = vim.api.nvim_buf_get_name(bufnr)
 
-			if require("config.util").is_buf_big(bufnr) then
+			if require("util").is_buf_big(bufnr) then
 				should_preview_cb = false
 			elseif bufname:match("^fugitive://") then
 				should_preview_cb = false
@@ -49,8 +35,6 @@ M.opts = {
 		fzf = {
 			action_for = {
 				["ctrl-s"] = "split",
-				["ctrl-t"] = "tab drop",
-				["ctrl-v"] = "vsplit",
 			},
 			extra_opts = {
 				"--bind",
@@ -58,7 +42,7 @@ M.opts = {
 				"--delimiter",
 				"│",
 				"--prompt",
-				require("config.ui.icons").misc.search,
+				require("ui.icons").misc.search,
 			},
 		},
 	},

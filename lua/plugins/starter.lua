@@ -1,100 +1,85 @@
-local Icons = require("config.ui.icons")
-local function pad_10(content)
-	local empty_item = {
-		{ type = "empty", string = "" },
-	}
+---@type LazySpec
+local M = { "echasnovski/mini.starter" }
 
-	for i = 1, 10 do
-		-- NOTE: for some reason, the header renders twice
-		local pos = i % 2 == 0 and 3 or #content - 1
+M.cond = vim.fn.argc(-1) == 0 and require("util").is_vim()
 
-		table.insert(content, pos, empty_item)
-	end
+M.event = { "VimEnter" }
 
-	return content
-end
+---@diagnostic disable-next-line: assign-type-mismatch
+M.init = false
 
---- @type LazySpec
-local M = {
-	"echasnovski/mini.starter",
-}
+M.lazy = false
 
-M.event = {
-	"VimEnter",
-}
-
-M.cond = require("config.util").is_vim()
-
--- M.event = {
--- 	"VimEnter",
--- }
+--- add 16 spaces
+local pad = string.rep(" ", 16)
 
 function M.config(_, opts)
 	if vim.o.filetype == "lazy" then
 		vim.cmd.close()
 		vim.api.nvim_create_autocmd("User", {
 			pattern = "MiniStarterOpened",
-			callback = function() require("lazy").show() end,
+			callback = function()
+				vim.opt_local.statuscolumn = ""
+				require("lazy").show()
+			end,
 		})
 	end
 
-	local starter = require("mini.starter")
-	starter.setup(opts)
+	require("mini.starter").setup(opts)
 
-	vim.api.nvim_create_autocmd("User", {
-		pattern = "LazyVimStarted",
-		callback = function()
-			local stats = require("lazy").stats()
-			local v = vim.version()
-
-			local version = ("%s %d.%d.%d"):format(Icons.misc.version, v.major, v.minor, v.patch)
-
-			local time = (math.floor(stats.startuptime * 100 + 0.5) / 100)
-			local startup_time = ("%s %d ms"):format(Icons.progress.pending, time)
-
-			local plugins = ("%s %d / %d plugins loaded"):format(Icons.misc.rocket, stats.loaded, stats.count)
-
-			starter.config.footer = ("%s\t\t%s\t\t%s"):format(version, plugins, startup_time)
-
-			vim.opt_local.statusline = " "
-
-			pcall(starter.refresh)
-		end,
-	})
+	vim.opt_local.statuscolumn = ""
 end
 
 function M.opts()
-	local pad = string.rep(" ", 16)
-	local new_item = function(name, action, section)
-		return {
-			action = action,
-			name = name,
-			section = pad .. section,
+	local function pad_10(content)
+		local empty_item = {
+			{ type = "empty", string = "" },
 		}
+
+		for i = 1, 6 do
+			-- NOTE: for some reason, the header renders twice
+			local pos = i % 2 == 0 and 3 or #content - 1
+
+			table.insert(content, pos, empty_item)
+		end
+
+		return content
 	end
 
 	local starter = require("mini.starter")
+	local content_hooks = {
+		pad_10,
+		starter.gen_hook.adding_bullet(("%s░ "):format(pad), false),
+		starter.gen_hook.aligning("center", "center"),
+	}
 
+	local vim_version = vim.version()
+	local version = ("%s %d.%d.%d"):format(
+		require("ui.icons").misc.version,
+		vim_version.major,
+		vim_version.minor,
+		vim_version.patch
+	)
+
+	local new_item = function(name, action, section)
+		return { name = name, action = action, section = ("%s%s"):format(pad, section) }
+	end
+
+	local items = {
+		new_item("Find file", "FzfLua files", "Find"),
+		new_item("Old files", "FzfLua oldfiles", "Find"),
+		new_item("Grep text", "FzfLua live_grep", "Find"),
+		new_item("Lazy", "Lazy", "Config"),
+		new_item("Checkhealth", "checkhealth", "Built-in"),
+		new_item("Quit", "qa", "Built-in"),
+	}
 	return {
+		content_hooks = content_hooks,
 		evaluate_single = true,
+		footer = (" %s%s"):format(pad, version),
 		header = " ▌║█║▌│║▌│║▌║▌█║  neovim  ▌│║▌║▌│║║▌█║▌║█ ",
-		items = {
-			new_item("Find file", "FzfLua files", "Find"),
-			new_item("Old files", "FzfLua oldfiles", "Find"),
-			new_item("Grep text", "FzfLua live_grep", "Find"),
-			new_item("Lazy", "Lazy", "Config"),
-			new_item("Mason", "Mason", "Config"),
-			new_item("MasonUpdateAll", "MasonUpdateAll", "Config"),
-			new_item("GenerateAverageColor", "GenerateAverageColor", "Colors"),
-			new_item("Session restore", "SessionLoad", "Session"),
-			new_item("Checkhealth", "checkhealth", "Built-in"),
-			new_item("Quit", "qa", "Built-in"),
-		},
-		content_hooks = {
-			pad_10,
-			starter.gen_hook.adding_bullet(pad .. "░ ", false),
-			starter.gen_hook.aligning("center", "center"),
-		},
+		items = items,
+		silent = true,
 	}
 end
 

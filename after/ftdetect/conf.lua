@@ -1,7 +1,6 @@
-require("config.util").ftdetect({
+require("util").ftdetect({
 	"conf",
 	"*.conf",
 	"config",
 	"*.config",
 }, "conf")
-

@@ -1,5 +1,4 @@
-require("config.util").ftdetect({
+require("util").ftdetect({
 	"*.log",
 	"*.error",
 }, "log")
-

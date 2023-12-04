@@ -1,35 +1,18 @@
---- @type LazySpec
-local M = {
-	"ggandor/flit.nvim",
-}
+---@type LazySpec
+local M = { "ggandor/flit.nvim" }
 
-M.dependencies = {
-	"ggandor/leap.nvim",
-}
+M.dependencies = { "ggandor/leap.nvim" }
 
-M.opts = {
-	labeled_modes = "nvx",
-}
+M.opts = { labeled_modes = "nx" }
 
---- @diagnostic disable-next-line: assign-type-mismatch
+---@diagnostic disable-next-line: assign-type-mismatch
 function M.keys()
 	local keys = {}
 
-	for _, key in ipairs({
-		"f",
-		"F",
-		"t",
-		"T",
-	}) do
+	for _, key in ipairs({ "f", "F", "t", "T" }) do
 		keys[#keys + 1] = {
-			id = "",
 			key,
-			mode = {
-				"n",
-				"o",
-				"v",
-				"x",
-			},
+			mode = { "n", "x", "o" },
 			desc = key,
 		}
 	end

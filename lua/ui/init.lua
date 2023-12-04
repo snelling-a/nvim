@@ -1,0 +1,60 @@
+--- Toggle buffer options for active and inactive buffers
+---@param ev Ev
+---@param state boolean
+local function toggle_buffer_opts(ev, state)
+	local isf = vim.bo[ev.buf].buftype == ""
+	local opt_local = vim.opt_local
+	if not isf then
+		opt_local.numberwidth = 1
+		opt_local.number = false
+		opt_local.cursorline = false
+		opt_local.statuscolumn = ""
+		return
+	end
+
+	opt_local.cursorline = state --[[@as vim.opt.cursorline]]
+	opt_local.number = true
+	opt_local.relativenumber = state --[[@as vim.opt.relativenumber]]
+end
+
+local group = require("autocmd").augroup("ToggleWindowOptions")
+local autocmd = vim.api.nvim_create_autocmd
+autocmd({
+	"BufEnter",
+	"CmdlineLeave",
+	"FocusGained",
+	"WinEnter",
+}, {
+	---@param ev Ev
+	callback = function(ev)
+		toggle_buffer_opts(ev, true)
+	end,
+	desc = "Toggle buffer options on",
+	group = group,
+})
+autocmd({
+	"BufLeave",
+	"WinLeave",
+	"FocusLost",
+	"CmdlineEnter",
+}, {
+	---@param ev Ev
+	callback = function(ev)
+		toggle_buffer_opts(ev, false)
+		if ev.event == "CmdlineEnter" then
+			vim.cmd.redraw()
+		end
+	end,
+	desc = "Toggle buffer options off",
+	group = group,
+})
+
+---@class UI
+local M = setmetatable({}, {
+	__index = function(self, field)
+		self[field] = require(("ui.%s"):format(field))
+		return self[field]
+	end,
+})
+
+return M

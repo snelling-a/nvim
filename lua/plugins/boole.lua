@@ -1,9 +1,10 @@
---- @type LazySpec
-local M = {
-	"nat-418/boole.nvim",
-}
+---@type LazySpec
+local M = { "nat-418/boole.nvim" }
 
-M.event = require("config.util.constants").lazy_event
+M.keys = {
+	{ "<C-a>", desc = "Boole increment" },
+	{ "<C-x>", desc = "Boolen decrement" },
+}
 
 M.opts = {
 	mappings = {
@@ -11,14 +12,11 @@ M.opts = {
 		decrement = "<C-x>",
 	},
 	allow_caps_additions = {
-		{
-			"foo",
-			"bar",
-		},
-		{
-			"enable",
-			"disable",
-		},
+		{ "const", "let" },
+		{ "enable", "disable" },
+		{ "foo", "bar" },
+		{ "left", "right" },
+		{ "previous", "next" },
 	},
 }
 

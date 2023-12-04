@@ -1,34 +1,19 @@
---- @type LazySpec
-local M = {
-	"lmburns/lf.nvim",
-}
+---@type LazySpec
+local M = { "lmburns/lf.nvim" }
 
-M.cmd = {
-	"Lf",
-}
+M.cmd = { "Lf" }
 
-M.dependencies = {
-	"akinsho/toggleterm.nvim",
-}
+M.dependencies = { "akinsho/toggleterm.nvim" }
 
 M.keys = {
 	---@diagnostic disable-next-line: missing-fields
-	{
-		"<M-o>",
-		vim.cmd.Lf,
-		desc = "Open lf",
-	},
-	---@diagnostic disable-next-line: missing-fields
-	{
-		"<M-u",
-		desc = "Resize lf window",
-	},
+	{ "<M-o>", vim.cmd.Lf, desc = "Open lf" },
 }
 
+---@type Lf.Config
 M.opts = {
-	default_actions = {
-		["<C-s>"] = "split",
-	},
+	border = "rounded",
+	default_actions = { ["<C-s>"] = "split" },
 }
 
 return M
