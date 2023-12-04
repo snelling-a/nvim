@@ -53,6 +53,7 @@ local spec = {
 	},
 	spec = {
 		{ import = "plugins" },
+		{ import = "plugins.lsp" },
 		{ import = "plugins.treesitter" },
 	},
 	ui = {
@@ -62,3 +63,25 @@ local spec = {
 }
 
 require("lazy").setup(spec)
+
+local Config = require("lazy.core.config")
+local M = {}
+
+--- Check if plugin is available
+---@param plugin string name of plugin
+---@return boolean loaded if plugin is loaded
+function M.has_plugin(plugin)
+	return Config.spec.plugins[plugin] ~= nil
+end
+
+---@param name string
+function M.get_opts(name)
+	local plugin = Config.plugins[name]
+	if not plugin then
+		return {}
+	end
+	local Plugin = require("lazy.core.plugin")
+	return Plugin.values(plugin, "opts", false)
+end
+
+return M

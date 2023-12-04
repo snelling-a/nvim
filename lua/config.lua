@@ -1,3 +1,4 @@
+local Lsp = require("lsp")
 local Util = require("util")
 
 local M = {}
@@ -41,6 +42,7 @@ function M.setup()
 			end
 			load("keymap")
 
+			Lsp.format.setup()
 		end,
 	})
 

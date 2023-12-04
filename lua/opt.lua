@@ -1,6 +1,8 @@
 vim.g.mapleader = ","
 vim.g.maplocalleader = "\\"
 
+vim.g.autoformat = true
+
 local opt = vim.opt
 
 opt.autowrite = true
@@ -69,3 +71,5 @@ opt.virtualedit = "block"
 opt.wildmode = "longest:full,full"
 opt.winminwidth = 5
 opt.wrap = false
+
+vim.o.formatexpr = "v:lua.require'lsp.format'.formatexpr()"

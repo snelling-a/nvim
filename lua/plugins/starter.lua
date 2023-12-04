@@ -70,6 +70,7 @@ function M.opts()
 		new_item("Old files", "FzfLua oldfiles", "Find"),
 		new_item("Grep text", "FzfLua live_grep", "Find"),
 		new_item("Lazy", "Lazy", "Config"),
+		new_item("Mason", "Mason", "Config"),
 		new_item("Checkhealth", "checkhealth", "Built-in"),
 		new_item("Quit", "qa", "Built-in"),
 	}
