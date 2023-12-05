@@ -54,6 +54,7 @@ local spec = {
 	spec = {
 		{ import = "plugins" },
 		{ import = "plugins.completion" },
+		{ import = "plugins.git" },
 		{ import = "plugins.lsp" },
 		{ import = "plugins.treesitter" },
 	},

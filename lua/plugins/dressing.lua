@@ -1,6 +1,8 @@
 ---@type LazySpec
 local M = { "stevearc/dressing.nvim" }
 
+M.cmd = { "GH" }
+
 M.opts = function(_, opts)
 	local Icons = require("ui.icons")
 
