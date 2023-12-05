@@ -1,5 +1,37 @@
 # Changelog
 
+## [6.0.0](https://github.com/snelling-a/nvim/compare/v5.44.0...v6.0.0) (2023-12-05)
+
+
+### ⚠ BREAKING CHANGES
+
+* move statusline/column to lua/ui
+* git
+* completion
+* lsp
+* treesitter
+* move core modules to lua directory
+
+### refactor
+
+* completion ([c15efa1](https://github.com/snelling-a/nvim/commit/c15efa1061c521da48458f1f9fb1dd81edebddaf))
+* git ([c648c55](https://github.com/snelling-a/nvim/commit/c648c55f569dd4dcf7feddcc23916b770f1cab97))
+* lsp ([070b25e](https://github.com/snelling-a/nvim/commit/070b25e5d668a4586650a99c3f7920e9700cc3b4))
+* move core modules to lua directory ([f2028f0](https://github.com/snelling-a/nvim/commit/f2028f0b421ffd17f2ed803185c500ba8e2744a3))
+* move statusline/column to lua/ui ([5431fdd](https://github.com/snelling-a/nvim/commit/5431fdd6047fa0a75c6d922aba3762ef9e720b7d))
+* treesitter ([f71e2a6](https://github.com/snelling-a/nvim/commit/f71e2a696dc323983c7ecc51bf255315cca00ccc))
+
+
+### Features
+
+* FileLoaded lazy event ([842fc34](https://github.com/snelling-a/nvim/commit/842fc34142f5b44d2258b0f3868992f78833cb36))
+* startup warnings ([b9dfb4f](https://github.com/snelling-a/nvim/commit/b9dfb4f395f3bba67139620c5424caf1ee3123f0))
+
+
+### Miscellaneous
+
+* update plugins ([4eedd8a](https://github.com/snelling-a/nvim/commit/4eedd8a56d6cf86834879f0c36298cef15a57ced))
+
 ## [5.44.0](https://github.com/snelling-a/nvim/compare/v5.43.0...v5.44.0) (2023-10-24)
 
 
