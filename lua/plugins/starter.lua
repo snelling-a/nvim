@@ -72,6 +72,7 @@ function M.opts()
 		new_item("Lazy", "Lazy", "Config"),
 		new_item("Mason", "Mason", "Config"),
 		new_item("Checkhealth", "checkhealth", "Built-in"),
+		new_item("Session restore", "SessionLoad", "Session"),
 		new_item("Quit", "qa", "Built-in"),
 	}
 	return {

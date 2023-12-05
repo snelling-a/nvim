@@ -3,7 +3,7 @@ local Util = require("util")
 
 local M = {}
 
----@param name "abbrev" | "autocmd" | "command" | "opt" | "keymap" | "ui"
+---@param name "abbrev" | "autocmd" | "command" | "opt" | "keymap" | "ui" | "util.session"
 local function load(name)
 	local function _load(mod)
 		Util.try(function()
@@ -41,6 +41,7 @@ function M.setup()
 				load("command")
 			end
 			load("keymap")
+			load("util.session")
 
 			Lsp.format.setup()
 		end,
