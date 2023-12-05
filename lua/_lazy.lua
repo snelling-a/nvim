@@ -53,6 +53,7 @@ local spec = {
 	},
 	spec = {
 		{ import = "plugins" },
+		{ import = "plugins.colorscheme" },
 		{ import = "plugins.completion" },
 		{ import = "plugins.git" },
 		{ import = "plugins.lsp" },
