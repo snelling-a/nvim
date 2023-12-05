@@ -57,4 +57,17 @@ local M = setmetatable({}, {
 	end,
 })
 
+--- get higlight for given hl group
+---@param name string see |highlight-groups|
+---@param what What?
+---@param mode "gui"|"cterm"?
+---@return string|nil
+function M.get_hl(name, what, mode)
+	local fn = vim.fn
+	what = what or "fg"
+	mode = mode or "gui"
+
+	return fn.synIDattr(fn.synIDtrans(fn.hlID(name)), what, mode)
+end
+
 return M

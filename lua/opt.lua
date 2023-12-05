@@ -58,6 +58,7 @@ opt.spellsuggest = { "best", 9 }
 opt.splitbelow = true
 opt.splitkeep = "screen"
 opt.splitright = true
+opt.statuscolumn = [[%!v:lua.require'ui.status'.column()]]
 opt.switchbuf = "split"
 opt.synmaxcol = 500
 opt.tabstop = 4
@@ -73,3 +74,5 @@ opt.winminwidth = 5
 opt.wrap = false
 
 vim.o.formatexpr = "v:lua.require'lsp.format'.formatexpr()"
+
+_G.statusline = require("ui.status").line
