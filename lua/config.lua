@@ -58,4 +58,20 @@ function M.setup()
 	})
 end
 
+local DID_INIT = false
+function M.init()
+	if DID_INIT then
+		return
+	end
+	DID_INIT = true
+
+	package.preload["plugins.lsp.format"] = function()
+		return Lsp.format
+	end
+
+	Util.logger.delay_notify()
+
+	Util.plugin.setup()
+end
+
 return M

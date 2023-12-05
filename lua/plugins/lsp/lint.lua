@@ -1,5 +1,7 @@
 local M = { "mfussenegger/nvim-lint" }
 
+M.event = { "FileLoaded" }
+
 M.opts = {
 	events = { "BufWritePost", "BufReadPost", "InsertLeave" },
 	linters_by_ft = {

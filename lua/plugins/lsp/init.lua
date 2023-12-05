@@ -1,5 +1,7 @@
 local M = { "neovim/nvim-lspconfig" }
 
+M.event = { "FileLoaded" }
+
 M.dependencies = {
 	{
 		"folke/neodev.nvim",

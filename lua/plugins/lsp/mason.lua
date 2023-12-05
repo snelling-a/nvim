@@ -7,6 +7,8 @@ M.cmd = "Mason"
 
 M.dependencies = { "williamboman/mason-lspconfig.nvim" }
 
+M.event = { "FileLoaded" }
+
 M.build = { ":MasonUpdate" }
 
 M.opts = {

@@ -1,6 +1,7 @@
 ---@type LazySpec
 local M = { "echasnovski/mini.indentscope" }
 
+M.event = { "FileLoaded" }
 
 M.opts = {
 	symbol = require("ui.icons").misc.leadmultispace,

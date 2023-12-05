@@ -17,6 +17,8 @@ M.dependencies = {
 	},
 }
 
+M.event = { "FileLoaded" }
+
 M.keys = {
 	{ "<c-space>", desc = "Increment selection" },
 	{ "<bs>", desc = "Decrement selection", mode = "x" },

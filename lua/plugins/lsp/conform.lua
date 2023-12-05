@@ -5,6 +5,8 @@ local M = { "stevearc/conform.nvim" }
 
 M.dependencies = { "mason.nvim" }
 
+M.event = { "FileLoaded" }
+
 M.cmd = { "ConformInfo" }
 
 M.keys = {

@@ -1,6 +1,8 @@
 ---@type LazySpec
 local M = { "nvim-treesitter/nvim-treesitter-context" }
 
+M.event = { "FileLoaded" }
+
 M.opts = { mode = "cursor" }
 
 ---@diagnostic disable-next-line: assign-type-mismatch
