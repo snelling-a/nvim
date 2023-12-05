@@ -1,35 +1,35 @@
---- @type LazySpec
-local M = {
-	"numToStr/Comment.nvim",
-}
+---@type LazySpec
+local M = { "echasnovski/mini.comment" }
 
-M.keys = {
-	---@diagnostic disable-next-line: missing-fields
+M.dependencies = {
 	{
-		"gc",
-		mode = {
-			"n",
-			"v",
-		},
-		desc = "To[g]gle [c]omment",
+		"JoosepAlviste/nvim-ts-context-commentstring",
+		opts = { enable_autocmd = false },
 	},
-	---@diagnostic disable-next-line: missing-fields
 	{
-		"gb",
-		mode = {
-			"n",
-			"v",
+		"numToStr/Comment.nvim",
+		opts = {},
+		keys = {
+			{
+				"gb",
+				mode = {
+					"n",
+					"v",
+				},
+				desc = "To[g]gle [b]lock comment",
+			},
 		},
-		desc = "To[g]gle [b]lock comment",
 	},
 }
 
-function M.opts()
-	local ok, commentstring = pcall(require, "ts_context_commentstring.integrations.comment_nvim")
+M.event = { "FileLoaded" }
 
-	return ok and commentstring and {
-		pre_hook = commentstring.create_pre_hook(),
-	} or {}
-end
+M.opts = {
+	options = {
+		custom_commentstring = function()
+			return require("ts_context_commentstring.internal").calculate_commentstring() or vim.bo.commentstring
+		end,
+	},
+}
 
 return M
