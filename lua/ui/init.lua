@@ -1,3 +1,4 @@
+require("ui.qf")
 --- Toggle buffer options for active and inactive buffers
 ---@param ev Ev
 ---@param state boolean
