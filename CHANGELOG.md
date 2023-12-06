@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.2.0](https://github.com/snelling-a/nvim/compare/v6.1.0...v6.2.0) (2023-12-06)
+
+
+### Features
+
+* enhanced_float_handler/stylize_markdown ([f6f358f](https://github.com/snelling-a/nvim/commit/f6f358fa82754d6d7477edf7e6532d5532aa9631))
+
 ## [6.1.0](https://github.com/snelling-a/nvim/compare/v6.0.0...v6.1.0) (2023-12-06)
 
 
