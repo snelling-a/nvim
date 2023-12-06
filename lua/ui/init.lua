@@ -6,19 +6,18 @@ require("ui.tabline")
 ---@param ev Ev
 ---@param state boolean
 local function toggle_buffer_opts(ev, state)
-	local isf = vim.bo[ev.buf].buftype == ""
+	local is_file = vim.bo[ev.buf].buftype == ""
 	local opt_local = vim.opt_local
-	if not isf then
+	if not is_file then
 		opt_local.numberwidth = 1
 		opt_local.number = false
 		opt_local.cursorline = false
 		opt_local.statuscolumn = ""
-		return
+	else
+		opt_local.cursorline = state --[[@as vim.opt.cursorline]]
+		opt_local.number = true
+		opt_local.relativenumber = state --[[@as vim.opt.relativenumber]]
 	end
-
-	opt_local.cursorline = state --[[@as vim.opt.cursorline]]
-	opt_local.number = true
-	opt_local.relativenumber = state --[[@as vim.opt.relativenumber]]
 end
 
 local group = require("autocmd").augroup("ToggleWindowOptions")
