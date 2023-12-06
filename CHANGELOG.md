@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.6.1](https://github.com/snelling-a/nvim/compare/v6.6.0...v6.6.1) (2023-12-06)
+
+
+### Bug Fixes
+
+* types in keymap ([eea4ab2](https://github.com/snelling-a/nvim/commit/eea4ab273f78ca55eca64e72314dbd96d587bbc7))
+
 ## [6.6.0](https://github.com/snelling-a/nvim/compare/v6.5.0...v6.6.0) (2023-12-06)
 
 
