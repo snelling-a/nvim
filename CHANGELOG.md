@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.5.0](https://github.com/snelling-a/nvim/compare/v6.4.0...v6.5.0) (2023-12-06)
+
+
+### Features
+
+* mini.pairs ([4b10d3e](https://github.com/snelling-a/nvim/commit/4b10d3e651677f85267b6e593a0b9cd7e580cc04))
+
 ## [6.4.0](https://github.com/snelling-a/nvim/compare/v6.3.0...v6.4.0) (2023-12-06)
 
 
