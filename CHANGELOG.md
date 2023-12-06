@@ -1,5 +1,22 @@
 # Changelog
 
+## [6.1.0](https://github.com/snelling-a/nvim/compare/v6.0.0...v6.1.0) (2023-12-06)
+
+
+### Features
+
+* fidget ([c9b3082](https://github.com/snelling-a/nvim/commit/c9b308272270f770f79e48fb70b03f48e4c0389b))
+
+
+### Bug Fixes
+
+* call plugin init function ([a3a3bf6](https://github.com/snelling-a/nvim/commit/a3a3bf67832a0a4e7b5ec4d7a73d74b6f4f3db5c))
+
+
+### Miscellaneous
+
+* update plugins ([23ab776](https://github.com/snelling-a/nvim/commit/23ab7763014bad3294b72a6b09161738fddef2c8))
+
 ## [6.0.0](https://github.com/snelling-a/nvim/compare/v5.44.0...v6.0.0) (2023-12-05)
 
 
