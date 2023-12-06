@@ -30,6 +30,7 @@ local trail = "·"
 local typescript = "󰛦 "
 local variable = "󰀫 "
 
+---@class ui.icons
 local M = {}
 
 M.dap = {
