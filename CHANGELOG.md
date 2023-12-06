@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.4.0](https://github.com/snelling-a/nvim/compare/v6.3.0...v6.4.0) (2023-12-06)
+
+
+### Features
+
+* illuminate ([34f9758](https://github.com/snelling-a/nvim/commit/34f97585c2777d95743a3c9c77b3a424bf79067b))
+
 ## [6.3.0](https://github.com/snelling-a/nvim/compare/v6.2.0...v6.3.0) (2023-12-06)
 
 
