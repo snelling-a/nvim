@@ -1,3 +1,4 @@
+require("keymap.command")
 require("keymap.escape")
 require("keymap.normal")
 require("keymap.visual")
