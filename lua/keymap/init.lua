@@ -2,10 +2,7 @@ require("keymap.escape")
 require("keymap.normal")
 require("keymap.visual")
 
----@class Keymap: keymap.util
----@field unimpaired Unimpaired
----@field center keymap.center_actions
----@field leader Leader
+---@class Keymap
 local M = setmetatable(require("keymap.util"), {
 	__call = function(m, method)
 		return m[method]

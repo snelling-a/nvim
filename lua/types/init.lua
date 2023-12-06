@@ -31,6 +31,11 @@
 -- }}}
 
 -- KEYMAP {{{
+---@class Keymap: keymap.util
+---@field unimpaired Unimpaired
+---@field center keymap.center_actions
+---@field leader Leader
+
 ---@alias Description {base: string, text: LeftRight}
 ---@alias LeftRight {right: string|function, left: string|function}
 ---@alias map fun(lhs: string, rhs: string|fun(...: any): (...: any), opts?: table)
