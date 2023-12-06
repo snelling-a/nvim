@@ -1,5 +1,17 @@
 # Changelog
 
+## [6.6.0](https://github.com/snelling-a/nvim/compare/v6.5.0...v6.6.0) (2023-12-06)
+
+
+### Features
+
+* use toggleterm ([e4fb291](https://github.com/snelling-a/nvim/commit/e4fb2918307cf2c8009ddee3495632b2d4f6da3f))
+
+
+### Bug Fixes
+
+* use logger ([9f72f77](https://github.com/snelling-a/nvim/commit/9f72f77755f781ed0d1eb6adf3b0dcfc5814d3e3))
+
 ## [6.5.0](https://github.com/snelling-a/nvim/compare/v6.4.0...v6.5.0) (2023-12-06)
 
 
