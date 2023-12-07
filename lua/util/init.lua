@@ -25,9 +25,32 @@ setmetatable(M, {
 	end,
 })
 
---- returns `true` if there are buffers listed
+---@return boolean are_buffers_listed `true` if there are buffers listed
 function M.are_buffers_listed()
 	return #vim.fn.getbufinfo({ buflisted = 1 }) > 0
+end
+
+---@return boolean are_loc_items `true` if there are buffers in the loclist
+function M.are_loc_items()
+	local win_id = vim.api.nvim_get_current_win()
+	local nr_items = #vim.fn.getloclist(win_id)
+	if nr_items < 1 then
+		M.logger:error("Location list is empty", "776")
+		return false
+	end
+
+	return true
+end
+
+---@return boolean are_qf_items `true` if there are items in the quickfix list
+function M.are_qf_items()
+	local nr_items = #vim.fn.getqflist()
+	if nr_items < 1 then
+		M.logger:error("Quickfix list is empty", "42")
+		return false
+	end
+
+	return true
 end
 
 ---@param str string
@@ -139,6 +162,19 @@ function M.is_man()
 			return true
 		end
 	end
+
+	return false
+end
+
+---@return boolean is_modifiable `true` if the current buffer is modifiable
+function M.is_modifiable()
+	if M.get_opt_local("modifiable") then
+		return true
+	end
+
+	M.logger:error("Cannot make changes, 'modifiable' is off", "21")
+
+	return false
 end
 
 --- check if the current editor is terminal vim

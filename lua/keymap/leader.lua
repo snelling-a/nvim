@@ -51,14 +51,14 @@ leader("rr", function()
 	)
 end, { desc = "Exit with error code 1" })
 
-leader("rg", function()
-	vim.cmd.grep({
+leader("rG", function()
+	vim.cmd.lgrep({
 		args = { "<cword>", "%" },
 		mods = { silent = true },
 	})
-	vim.cmd.copen()
+	vim.cmd.lopen()
 end, { desc = "[r]ip[g]rep current file for word under the cursor" })
-leader("rG", function()
+leader("rg", function()
 	vim.cmd.grep({
 		args = { "<cword>" },
 		bang = true,

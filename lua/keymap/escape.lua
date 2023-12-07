@@ -13,7 +13,7 @@ end, { desc = "Go to normal mode" })
 Keymap.imap("jk", function()
 	escape()
 
-	if vim.bo.buftype == "" then
+	if require("util").is_modifiable() then
 		cmd.update()
 	end
 end, { desc = "Write and go to normal mode" })

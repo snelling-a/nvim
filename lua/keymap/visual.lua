@@ -4,6 +4,6 @@ map("<", "<gv", { desc = "Easy unindent" })
 
 map(">", ">gv", { desc = "Easy indent" })
 
-map("J", ":m '>+1<CR>gv=gv", { desc = "Move lines down" })
+map("J", ":move '>+1<CR>gv=gv", { desc = "Move lines down" })
 
-map("K", ":m '<-2<CR>gv=gv", { desc = "Move lines up" })
+map("K", ":move '<-2<CR>gv=gv", { desc = "Move lines up" })

@@ -1,21 +1,35 @@
 local are_buffers_listed = require("util").are_buffers_listed
-local map = require("keymap.util").nmap
+local Util = require("keymap.util")
+
+local map = Util.nmap
 
 local cmd = vim.cmd
 local v = vim.v
 
+map("<A-l>", function()
+	cmd.nohlsearch()
+	cmd.diffupdate()
+	cmd.syntax("sync fromstart")
+	cmd.redraw({ bang = true })
+end)
+
 map("<C-z>", "<nop>", { desc = "I'm sure there is a use for this, but for now it's just annoying" })
 
+local function buflisted_err()
+	return Util.Logger:error("No buffers to switch between", "85")
+end
 map("<S-TAB>", function()
-	if are_buffers_listed() then
-		cmd.bprevious()
+	if not are_buffers_listed() then
+		return buflisted_err()
 	end
+	cmd.bprevious()
 end, { desc = "Go to the previous buffer" })
 
 map("<Tab>", function()
-	if are_buffers_listed() then
-		cmd.bnext()
+	if not are_buffers_listed() then
+		return buflisted_err()
 	end
+	cmd.bnext()
 end, { desc = "Go to the next buffer" })
 
 map("J", "mzJ`z", { desc = "[J]oin next line to current line" })

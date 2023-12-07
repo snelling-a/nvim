@@ -1,3 +1,6 @@
+local Keymap = require("keymap.util")
+local Util = require("util")
+
 ---@class keymap.unimpaired
 local M = {}
 
@@ -5,18 +8,15 @@ local M = {}
 --- creates 2 keymaps starting with `"["` and `"]"`
 ---@type Unimpaired
 function M.unimpaired(lhs, rhs, desc, opts)
-	local nmap = require("keymap.util").nmap
-	local tbl_extend_force = require("util").tbl_extend_force
-
 	local function get_desc(text)
 		return ("%s %s"):format(desc.base, text)
 	end
 
 	opts = opts or {}
 
-	nmap(("[%s"):format(lhs), rhs.left, tbl_extend_force(opts, { desc = get_desc(desc.text.left) }))
+	Keymap.nmap(("[%s"):format(lhs), rhs.left, Util.tbl_extend_force(opts, { desc = get_desc(desc.text.left) }))
 
-	nmap(("]%s"):format(lhs), rhs.right, tbl_extend_force(opts, { desc = get_desc(desc.text.right) }))
+	Keymap.nmap(("]%s"):format(lhs), rhs.right, Util.tbl_extend_force(opts, { desc = get_desc(desc.text.right) }))
 end
 
 local fn = vim.fn
@@ -41,13 +41,21 @@ M.unimpaired("<space>", {
 })
 
 M.unimpaired("q", {
-	left = vim.cmd.cprevious,
-	right = vim.cmd.cnext,
+	left = function()
+		if Util.are_qf_items() then
+			vim.cmd.cprevious()
+		end
+	end,
+	right = function()
+		if Util.are_qf_items() then
+			vim.cmd.cnext()
+		end
+	end,
 }, {
-	base = "",
+	base = "Jump to ",
 	text = {
-		right = "Next [q]uickfix",
-		left = "Previous [q]uickfix",
+		right = "next [q]uickfix item",
+		left = "previous [q]uickfix item",
 	},
 })
 
