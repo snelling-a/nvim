@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.7.0](https://github.com/snelling-a/nvim/compare/v6.6.1...v6.7.0) (2023-12-07)
+
+
+### Features
+
+* cmap make make! ([667991a](https://github.com/snelling-a/nvim/commit/667991aebdb061f519cd55492ebed88db998a3d9))
+
 ## [6.6.1](https://github.com/snelling-a/nvim/compare/v6.6.0...v6.6.1) (2023-12-06)
 
 
