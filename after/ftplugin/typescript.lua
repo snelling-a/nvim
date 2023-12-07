@@ -1,10 +1,5 @@
 local opt = vim.opt_local
 
-vim.cmd.runtime({
-	args = { "ftplugin/javascript.lua" },
-	bang = true,
-})
-
 opt.wildignore:append({
 	"**/build/**",
 	"**/coverage/**",
