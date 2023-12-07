@@ -67,10 +67,7 @@ end
 function M.ftdetect(pattern, filetype)
 	pattern = M.table_or_string(pattern)
 
-	vim.api.nvim_create_autocmd({
-		"BufNewFile",
-		"BufRead",
-	}, {
+	vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
 		callback = function()
 			vim.bo.filetype = filetype
 		end,
@@ -83,9 +80,7 @@ end
 --- wrapper for `nvim_get_option_value` with `scope = "local"`
 ---@param name string
 function M.get_opt_local(name)
-	return vim.api.nvim_get_option_value(name, {
-		scope = "local",
-	})
+	return vim.api.nvim_get_option_value(name, { scope = "local" })
 end
 
 --- get the correct separator based on OS
@@ -103,7 +98,7 @@ function M.get_separator()
 	end
 end
 
---- wrapper around  icon so prompts are consistant
+--- wrapper around  icon so prompts are consistent
 ---@param icon string
 ---@return string --  + icon
 function M.get_prompt(icon)
@@ -127,27 +122,26 @@ function M.get_upvalue(func, name)
 	end
 end
 
---- returns true if buffer is bigger than 100kb
 ---@param bufnr integer
----@return boolean buf_is_big
+---@return boolean buf_is_big `true `if buffer is bigger than 100kb
 function M.is_buf_big(bufnr)
-	local max_filesize = 100 * 1024 -- 100 KB
+	local max_filesize = 100 * 102
 	local ok, stat = pcall(vim.uv.fs_stat, vim.api.nvim_buf_get_name(bufnr))
 	if ok and stat and stat.size > max_filesize then
+		M.logger:warn("File is big\nsome functionality may be disabled")
 		return true
 	else
 		return false
 	end
 end
 
---- returns `true` if current buffer should be formatted or not
----@return boolean -- should file have formatting
+---@return boolean is_file `true` if current buffer is a normal file
 function M.is_file()
 	return not vim.tbl_contains(require("util.constants").no_format, vim.bo.filetype)
 end
 
---- returns `true` if current window or `win` is the location list
 ---@param win integer?
+---@return boolean is_loc_list `true` if current window or `win` is the location list
 function M.is_loc_list(win)
 	local win_getid = vim.fn.win_getid
 	win = win and win_getid(win) or win_getid()
@@ -155,7 +149,7 @@ function M.is_loc_list(win)
 	return vim.fn.getwininfo(win)[1]["loclist"] == 1
 end
 
---- returns `true` if Man page is open
+---@return boolean is_man `true` if Man page is open
 function M.is_man()
 	for _, buf in pairs(vim.fn.getbufinfo() or {}) do
 		if buf.name:find("man://") then
@@ -177,8 +171,7 @@ function M.is_modifiable()
 	return false
 end
 
---- check if the current editor is terminal vim
----@return boolean
+---@return boolean is_vim `true` if the current editor is terminal vim
 function M.is_vim()
 	local g = vim.g
 
@@ -189,8 +182,7 @@ function M.is_vim()
 	end
 end
 
---- returns `true` if on Windows
----@return boolean windows
+---@return boolean is_windows `true` if on Windows
 function M.is_windows()
 	return vim.uv.os_uname().sysname:find("Windows") ~= nil
 end
