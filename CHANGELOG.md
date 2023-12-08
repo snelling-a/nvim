@@ -1,5 +1,17 @@
 # Changelog
 
+## [6.8.0](https://github.com/snelling-a/nvim/compare/v6.7.0...v6.8.0) (2023-12-08)
+
+
+### Features
+
+* **compiler:** javascript/jsx compiler ([fa962aa](https://github.com/snelling-a/nvim/commit/fa962aa942c900548d0f9bff98db80eca2d74352))
+
+
+### Miscellaneous
+
+* update plugins ([72303d1](https://github.com/snelling-a/nvim/commit/72303d17a5ba5c0737ce5d558ad42abc3f2cb82c))
+
 ## [6.7.0](https://github.com/snelling-a/nvim/compare/v6.6.1...v6.7.0) (2023-12-07)
 
 
