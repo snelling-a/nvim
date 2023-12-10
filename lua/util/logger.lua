@@ -32,7 +32,7 @@ function M:log(level, args)
 	local msg = M.get_logger_args(args)
 	if vim.in_fast_event() then
 		return vim.schedule(function()
-			M:log(level, args)
+			self:log(level, args)
 		end)
 	end
 
@@ -52,7 +52,10 @@ function M:warn(args)
 	self:log(levels.WARN, args)
 end
 
-function M:error(args)
+function M:error(args, code)
+	if code then
+		args = ("E%s: %s"):format(code, args)
+	end
 	self:log(levels.ERROR, args)
 end
 
