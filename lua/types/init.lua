@@ -74,12 +74,13 @@
 ---@alias OnChoice function(item?: T, idx?: number)
 
 ---@class Logger
+---@field title Title
 ---@field new fun(self: Logger, title: Title): Logger
----@field private log fun(level: integer, args: NotifyArgs|Message)
----@field private get_logger_args fun(self: Logger, args: Args): string, Title
+---@field private log fun(self: Logger, level: integer, args: NotifyArgs|Message)
+---@field private get_logger_args fun(args: Args): string, Title
 ---@field info fun(self: Logger, args: NotifyArgs)
 ---@field warn fun(self: Logger, args: NotifyArgs)
----@field error fun(self: Logger, args: NotifyArgs)
+---@field error fun(self: Logger, args: NotifyArgs, code: string?)
 ---@field confirm fun(self: Logger, confirm_args: ConfirmArgs): number|nil confirmation
 ---@field select fun(self: Logger, items: string|string[], ui_opts?: UiOpts, on_choice: OnChoice)
 ---@field lazy_notfy fun()
@@ -117,6 +118,7 @@
 -- }}}
 
 -- PLUGINS {{{
+---@alias MasonOpts MasonSettings|{ensure_installed: string[]}
 ---@alias RosePineOptions Options
 -- }}}
 
@@ -157,6 +159,5 @@
 -- UTIL {{{
 ---@class Util
 ---@field constants util.constants
----@field plugin util.plugin
 ---@field toggle util.toggle
 -- }}}
