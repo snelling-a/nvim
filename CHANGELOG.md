@@ -1,5 +1,17 @@
 # Changelog
 
+## [6.9.0](https://github.com/snelling-a/nvim/compare/v6.8.0...v6.9.0) (2023-12-10)
+
+
+### Features
+
+* **logger:** error codes ([cb483fe](https://github.com/snelling-a/nvim/commit/cb483fe281621997aa6365d8223c50ea26bb60ea))
+
+
+### Bug Fixes
+
+* **logger:** types ([22f2a9e](https://github.com/snelling-a/nvim/commit/22f2a9ed14f8a44eb2eb86c9884033e6624529a1))
+
 ## [6.8.0](https://github.com/snelling-a/nvim/compare/v6.7.0...v6.8.0) (2023-12-08)
 
 
