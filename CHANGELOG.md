@@ -1,5 +1,18 @@
 # Changelog
 
+## [6.9.1](https://github.com/snelling-a/nvim/compare/v6.9.0...v6.9.1) (2023-12-12)
+
+
+### Bug Fixes
+
+* **colorscheme:** don't load colorscheme in vscode ([542d317](https://github.com/snelling-a/nvim/commit/542d3173dfcab6df8c8c27cb0255d964bc143d7d))
+
+
+### Miscellaneous
+
+* update plugins ([96f100a](https://github.com/snelling-a/nvim/commit/96f100afd04b9b775b37beebc462a1138cb527c4))
+* update plugins ([041926d](https://github.com/snelling-a/nvim/commit/041926d5be1c9b1ca89b8095909f1cd7c0e059f1))
+
 ## [6.9.0](https://github.com/snelling-a/nvim/compare/v6.8.0...v6.9.0) (2023-12-10)
 
 
