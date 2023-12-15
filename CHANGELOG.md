@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.10.2](https://github.com/snelling-a/nvim/compare/v6.10.1...v6.10.2) (2023-12-15)
+
+
+### Bug Fixes
+
+* **mason:** ensure_installed loop ([08c331f](https://github.com/snelling-a/nvim/commit/08c331fb10d898c9e1f4b0b20ea053ed6c96aac9))
+
 ## [6.10.1](https://github.com/snelling-a/nvim/compare/v6.10.0...v6.10.1) (2023-12-15)
 
 
