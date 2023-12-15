@@ -5,8 +5,8 @@ local lazy = require("_lazy")
 ---@class lsp.format
 ---@overload fun(opts?: {force?:boolean})
 local M = setmetatable({}, {
-	__call = function(m, ...)
-		return m.format(...)
+	__call = function(self, ...)
+		return self.format(...)
 	end,
 })
 
@@ -16,7 +16,6 @@ function M.format(opts)
 	local ok, conform = pcall(require, "conform")
 
 	if ok then
-		opts.formatters = {}
 		opts.lsp_fallback = true
 		conform.format(opts)
 	else
@@ -32,7 +31,7 @@ function M.formatexpr()
 	return vim.lsp.formatexpr({ timeout_ms = 3000 })
 end
 
----@param opts? Formatter| {filter?: (string|lsp.Client.filter)}
+---@param opts? Formatter|{filter?: (string|lsp.Client.filter)}
 function M.formatter(opts)
 	opts = opts or {}
 	local filter = opts.filter or {}

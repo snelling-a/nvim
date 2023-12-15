@@ -5,8 +5,8 @@ require("keymap.visual")
 
 ---@class Keymap
 local M = setmetatable(require("keymap.util"), {
-	__call = function(m, method)
-		return m[method]
+	__call = function(self, method)
+		return self[method]
 	end,
 	__index = {
 		center = require("keymap.center_actions"),
