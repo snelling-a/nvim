@@ -13,6 +13,8 @@ M.dependencies = {
 	},
 }
 
+M.event = { "InsertEnter" }
+
 function M.opts()
 	vim.tbl_map(function(type)
 		require(("luasnip.loaders.from_%s"):format(type)).lazy_load()
