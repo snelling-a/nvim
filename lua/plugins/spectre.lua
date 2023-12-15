@@ -1,8 +1,6 @@
 ---@type LazySpec
 local M = { "nvim-pack/nvim-spectre" }
 
-M.cmd = { "Spectre" }
-
 M.keys = {
 	{
 		"<leader>sr",

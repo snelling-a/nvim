@@ -6,8 +6,6 @@ M.version = false
 
 M.build = { ":TSUpdate" }
 
-M.cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" }
-
 M.dependencies = {
 	"nvim-treesitter/nvim-treesitter-textobjects",
 	{

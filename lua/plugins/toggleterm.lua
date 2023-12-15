@@ -3,8 +3,6 @@ local float_opts = { border = "rounded" }
 ---@type LazySpec
 local M = { "akinsho/toggleterm.nvim" }
 
-M.cmd = { "ToggleTerm" }
-
 ---@diagnostic disable-next-line: assign-type-mismatch
 M.keys = function()
 	local Terminal = require("toggleterm.terminal").Terminal
