@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.10.0](https://github.com/snelling-a/nvim/compare/v6.9.1...v6.10.0) (2023-12-15)
+
+
+### Features
+
+* unimapired features ([8b6927d](https://github.com/snelling-a/nvim/commit/8b6927d242e7844cfbe6e961ba9126e1d8793a3b))
+
 ## [6.9.1](https://github.com/snelling-a/nvim/compare/v6.9.0...v6.9.1) (2023-12-12)
 
 
