@@ -18,8 +18,11 @@ end, { desc = "Press `,,` to jump back to the last cursor position." })
 
 leader("/", function()
 	cmd.nohlsearch()
+	cmd.diffupdate()
+	cmd.syntax("sync fromstart")
+	cmd.redraw({ bang = true })
 	Keymap.Logger:info("Highlighting cleared")
-end, { desc = "Clear search highlighting" })
+end, { desc = "Clear and redraw the screen" })
 
 leader("e", function()
 	vim.cmd.normal({ args = { "%" } })

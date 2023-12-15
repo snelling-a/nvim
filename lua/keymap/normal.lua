@@ -6,13 +6,6 @@ local map = Util.nmap
 local cmd = vim.cmd
 local v = vim.v
 
-map("<A-l>", function()
-	cmd.nohlsearch()
-	cmd.diffupdate()
-	cmd.syntax("sync fromstart")
-	cmd.redraw({ bang = true })
-end)
-
 map("<C-z>", "<nop>", { desc = "I'm sure there is a use for this, but for now it's just annoying" })
 
 local function buflisted_err()
@@ -71,3 +64,6 @@ map("k", function()
 end, { desc = "Move to previous visual line", expr = true, noremap = true })
 
 map("z<CR>", "zt", { desc = "Redraw, line at top of window. Leave the cursor in the same column." })
+
+-- nnoremap Q @q<CR>
+-- xnoremap Q :norm @q<CR>
