@@ -9,7 +9,7 @@
 ---@field match string expanded value of |<amatch>|
 ---@field buf number expanded value of |<abuf>|
 ---@field file string expanded value of |<afile>|
----@field data any arbitrary data passed from |nvim_exec_autocmds(|
+---@field data any data passed from |nvim_exec_autocmds(|
 --- }}}
 
 -- COMMAND {{{
@@ -80,7 +80,7 @@
 ---@field private get_logger_args fun(args: Args): string, Title
 ---@field info fun(self: Logger, args: NotifyArgs)
 ---@field warn fun(self: Logger, args: NotifyArgs)
----@field error fun(self: Logger, args: NotifyArgs, code: string?)
+---@field error fun(self: Logger, args: NotifyArgs, code: integer|string?)
 ---@field confirm fun(self: Logger, confirm_args: ConfirmArgs): number|nil confirmation
 ---@field select fun(self: Logger, items: string|string[], ui_opts?: UiOpts, on_choice: OnChoice)
 ---@field lazy_notfy fun()
@@ -91,7 +91,7 @@
 ---@alias lsp.Client.filter {id?: number, bufnr?: number, name?: string, method?: string, filter?: fun(client: lsp.Client): boolean}
 ---@alias lsp.Client.format {timeout_ms?: number, format_options?: table} | lsp.Client.filter
 ---@alias SetupLanguageParam string|string[]?
----@alias SetupLanguageArgs {langs: SetupLanguageParam, formatters: SetupLanguageParam, linters: SetupLanguageParam, ts: SetupLanguageParam}
+---@alias SetupLanguageArgs {server: string?, server_opts:table?, langs: SetupLanguageParam, formatters: SetupLanguageParam, linters: SetupLanguageParam, ts: SetupLanguageParam}
 ---@alias Servers table<string, lspconfig.Config>
 ---@alias DiagnosticLhs "d"|"e"|"w"
 ---@alias DiagnosticText "[d]iagnostic"|"[e]rror"|"[w]arning"
@@ -103,10 +103,11 @@
 ---@field highlight lsp.highlight
 ---@field keymap lsp.keymap
 ---@field logger Logger
+---@field mason Mason
+---@field opts lsp.opts
 ---@field rename lsp.rename
----@field util lsp.util
----@field opts PluginLspOpts
 ---@field servers Servers
+---@field util lsp.util
 
 ---@class Formatter
 ---@field name string

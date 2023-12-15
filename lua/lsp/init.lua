@@ -5,7 +5,7 @@ local M = {}
 
 M.logger = require("util.logger"):new("LSP")
 
----@param opts lsp.Opts
+---@param opts lsp.opts
 ---@return LSP
 function M:init(opts)
 	for name, icon in pairs(require("ui.icons").diagnostics) do

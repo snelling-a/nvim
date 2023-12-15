@@ -1,4 +1,5 @@
 local Keymap = require("keymap")
+---@type LSP
 local Lsp = require("lsp")
 
 local Methods = vim.lsp.protocol.Methods
