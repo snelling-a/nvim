@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.10.1](https://github.com/snelling-a/nvim/compare/v6.10.0...v6.10.1) (2023-12-15)
+
+
+### Bug Fixes
+
+* types ([a7831dd](https://github.com/snelling-a/nvim/commit/a7831dd4b8330d803b1b59be067577d4bf6990a2))
+
 ## [6.10.0](https://github.com/snelling-a/nvim/compare/v6.9.1...v6.10.0) (2023-12-15)
 
 
