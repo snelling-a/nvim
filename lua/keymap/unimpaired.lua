@@ -12,25 +12,19 @@ function M.unimpaired(lhs, rhs, desc, opts)
 		return ("%s %s"):format(desc.base, text)
 	end
 
-	opts = opts or {}
+	opts = Util.tbl_extend_force(opts or {}, { silent = true })
 
 	Keymap.nmap(("[%s"):format(lhs), rhs.left, Util.tbl_extend_force(opts, { desc = get_desc(desc.text.left) }))
 
 	Keymap.nmap(("]%s"):format(lhs), rhs.right, Util.tbl_extend_force(opts, { desc = get_desc(desc.text.right) }))
 end
 
-local fn = vim.fn
-
 M.unimpaired("<space>", {
 	left = function()
-		local line_nr = fn.line(".")
-
-		fn.append(line_nr - 1, "")
+		vim.cmd("put! =repeat(nr2char(10), v:count1)|silent ']+")
 	end,
 	right = function()
-		local line_nr = fn.line(".") --[[@as number]]
-
-		fn.append(line_nr, "")
+		vim.cmd("put =repeat(nr2char(10), v:count1)|silent '[-")
 	end,
 }, {
 	base = "Put empty line",
@@ -38,6 +32,22 @@ M.unimpaired("<space>", {
 		left = "above current",
 		right = "below current",
 	},
+})
+
+M.unimpaired("l", {
+	left = function()
+		if Util.are_loc_items() then
+			vim.cmd.lprevious()
+		end
+	end,
+	right = function()
+		if Util.are_loc_items() then
+			vim.cmd.lnext()
+		end
+	end,
+}, {
+	base = "Jump to ",
+	text = { right = "next [l]ocation list item", left = "previous [l]ocation list item" },
 })
 
 M.unimpaired("q", {
@@ -57,6 +67,22 @@ M.unimpaired("q", {
 		right = "next [q]uickfix item",
 		left = "previous [q]uickfix item",
 	},
+})
+
+M.unimpaired("p", {
+	left = function()
+		if Util.is_modifiable() then
+			vim.cmd.execute({ args = { ("'move -1-%s'"):format(vim.v.count1) } })
+		end
+	end,
+	right = function()
+		if Util.is_modifiable() then
+			vim.cmd.execute({ args = { ("'move +%s'"):format(vim.v.count1) } })
+		end
+	end,
+}, {
+	base = "Delete current line and [p]ut it ",
+	text = { right = "above", left = "below" },
 })
 
 return M
