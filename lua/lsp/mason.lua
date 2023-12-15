@@ -37,7 +37,6 @@ function M.ensure_installed(packages)
 						end)
 					end
 				end)
-				return
 			end
 		end
 	end)
