@@ -1,7 +1,6 @@
 ---@type LazySpec
 local M = { "mrjones2014/smart-splits.nvim" }
 
-M.event = { "FileLoaded" }
 
 ---@diagnostic disable-next-line: assign-type-mismatch
 function M.keys()
