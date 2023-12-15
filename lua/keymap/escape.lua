@@ -6,9 +6,7 @@ local function escape()
 	Keymap.feedkeys("<Esc>", "i", true)
 end
 
-Keymap.imap("jj", function()
-	escape()
-end, { desc = "Go to normal mode" })
+Keymap.imap("jj", escape, { desc = "Go to normal mode" })
 
 Keymap.imap("jk", function()
 	escape()
