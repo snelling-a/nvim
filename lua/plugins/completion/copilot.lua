@@ -5,6 +5,8 @@ M.build = ":Copilot auth"
 
 M.cmd = { "Copilot" }
 
+M.event = { "InsertEnter" }
+
 M.opts = {
 	suggestion = { enabled = false },
 	panel = { enabled = false },
