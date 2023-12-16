@@ -1,5 +1,18 @@
 # Changelog
 
+## [6.10.3](https://github.com/snelling-a/nvim/compare/v6.10.2...v6.10.3) (2023-12-16)
+
+
+### Bug Fixes
+
+* diagnostic signs ([ccdb3be](https://github.com/snelling-a/nvim/commit/ccdb3bed3c3f7e0a5dadbeceb489e1b76f63e34f))
+
+
+### Miscellaneous
+
+* update plugins ([35601d7](https://github.com/snelling-a/nvim/commit/35601d74576e0fa411fd62cc80062c6e5a94edc6))
+* update plugins ([c63d68d](https://github.com/snelling-a/nvim/commit/c63d68d14ad6ee0ce53096be37a96ee31b7fcad1))
+
 ## [6.10.2](https://github.com/snelling-a/nvim/compare/v6.10.1...v6.10.2) (2023-12-15)
 
 
