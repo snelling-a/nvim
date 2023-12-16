@@ -11,7 +11,9 @@ M.dependencies = {
 	"williamboman/mason.nvim",
 }
 
----@class lsp.Opts
+local severity = vim.diagnostic.severity
+local icons = require("ui").icons.diagnostics
+---@class lsp.opts
 M.opts = {
 	capabilities = {},
 	diagnostics = {
@@ -23,6 +25,14 @@ M.opts = {
 			style = "minimal",
 		},
 		severity_sort = true,
+		signs = {
+			text = {
+				[severity.ERROR] = icons.Error,
+				[severity.HINT] = icons.Hint,
+				[severity.INFO] = icons.Info,
+				[severity.WARN] = icons.Warn,
+			},
+		},
 		underline = true,
 		update_in_insert = false,
 		virtual_text = false,

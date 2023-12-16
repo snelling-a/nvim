@@ -8,11 +8,6 @@ M.logger = require("util.logger"):new("LSP")
 ---@param opts lsp.opts
 ---@return LSP
 function M:init(opts)
-	for name, icon in pairs(require("ui.icons").diagnostics) do
-		name = ("DiagnosticSign%s"):format(name)
-		vim.fn.sign_define(name, { text = icon, texthl = name, numhl = "" })
-	end
-
 	vim.diagnostic.config(vim.deepcopy(opts.diagnostics))
 
 	self = setmetatable({
