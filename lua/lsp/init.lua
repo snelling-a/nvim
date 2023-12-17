@@ -37,7 +37,7 @@ end
 ---@param server string server name
 function M:setup(server)
 	local server_opts = tbl_extend_force({
-		capabilities = vim.deepcopy(self.opts.capabilities or {}),
+		capabilities = vim.deepcopy(self:get_capabilities() or {}),
 	}, self.servers[server] or {})
 
 	if self.opts.setup[server] then
@@ -49,6 +49,7 @@ function M:setup(server)
 			return
 		end
 	end
+
 	require("lspconfig")[server].setup(server_opts)
 end
 
