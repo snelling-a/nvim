@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.10.4](https://github.com/snelling-a/nvim/compare/v6.10.3...v6.10.4) (2023-12-17)
+
+
+### Bug Fixes
+
+* **lsp:** capabilities ([ce50ddd](https://github.com/snelling-a/nvim/commit/ce50dddb210999734e119aab3eb10e702ca01dc8))
+
 ## [6.10.3](https://github.com/snelling-a/nvim/compare/v6.10.2...v6.10.3) (2023-12-16)
 
 
