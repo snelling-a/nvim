@@ -2,7 +2,7 @@
 local M = { "ggandor/leap.nvim" }
 
 M.dependencies = {
-	{ "tpope/vim-repeat", event = "FileLoaded" },
+	{ "tpope/vim-repeat", event = require("util").constants.lazy_event },
 }
 
 M.keys = {

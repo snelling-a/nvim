@@ -1,7 +1,7 @@
 ---@type LazySpec
 local M = { "NvChad/nvim-colorizer.lua" }
 
-M.event = { "FileLoaded" }
+M.event = require("util").constants.lazy_event
 
 M.opts = {
 	user_default_options = {

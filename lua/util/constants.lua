@@ -31,4 +31,11 @@ M.no_format = {
 	"undotree",
 }
 
+M.lazy_event = {
+	"BufNewFile",
+	"BufReadPost",
+	"BufWritePre",
+	"SessionLoadPost",
+}
+
 return M

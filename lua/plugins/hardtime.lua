@@ -10,7 +10,7 @@ M.dependencies = {
 	"nvim-lua/plenary.nvim",
 }
 
-M.event = { "FileLoaded" }
+M.event = require("util").constants.lazy_event
 
 M.opts = {
 	disabled_filetypes = vim.list_extend(Util.constants.no_format, { "qf" }),

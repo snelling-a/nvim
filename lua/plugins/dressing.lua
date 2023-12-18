@@ -3,7 +3,7 @@ local M = { "stevearc/dressing.nvim" }
 
 M.cmd = { "GH" }
 
-M.event = { "FileLoaded" }
+M.event = require("util").constants.lazy_event
 
 M.opts = function(_, opts)
 	local Icons = require("ui.icons")

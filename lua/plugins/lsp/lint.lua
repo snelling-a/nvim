@@ -1,6 +1,7 @@
+---@type LazySpec
 local M = { "mfussenegger/nvim-lint" }
 
-M.event = { "FileLoaded" }
+M.event = require("util").constants.lazy_event
 
 M.opts = {
 	events = { "BufWritePost", "BufReadPost", "InsertLeave" },
@@ -17,14 +18,12 @@ function M.config(_, opts)
 	if #(opts.linters or {}) > 0 then
 		for name, linter in pairs(opts.linters) do
 			if type(linter) == "table" and type(lint.linters[name]) == "table" then
-				lint.linters[name] = vim.tbl_deep_extend("force", lint.linters[name], linter)
+				lint.linters[name] = vim.tbl_deep_extend("force", lint.linters[name]--[[@as lint.Linter]], linter)
 			else
 				lint.linters[name] = linter
 			end
 		end
 	end
-
-	lint.linters_by_ft = opts.linters_by_ft
 
 	function F.debounce(ms, fn)
 		local timer = vim.loop.new_timer()

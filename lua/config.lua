@@ -71,7 +71,6 @@ function M.init()
 
 	Util.logger.delay_notify()
 
-	Util.plugin.setup()
 end
 
 return M

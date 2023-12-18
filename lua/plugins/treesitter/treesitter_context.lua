@@ -1,7 +1,7 @@
 ---@type LazySpec
 local M = { "nvim-treesitter/nvim-treesitter-context" }
 
-M.event = { "FileLoaded" }
+M.event = require("util").constants.lazy_event
 
 M.opts = { mode = "cursor" }
 

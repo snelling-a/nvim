@@ -15,7 +15,7 @@ M.dependencies = {
 	},
 }
 
-M.event = { "FileLoaded" }
+M.event = require("util").constants.lazy_event
 
 M.keys = {
 	{ "<c-space>", desc = "Increment selection" },

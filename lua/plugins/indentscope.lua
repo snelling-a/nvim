@@ -1,11 +1,11 @@
 ---@type LazySpec
 local M = { "echasnovski/mini.indentscope" }
 
-M.event = { "FileLoaded" }
+M.event = require("util").constants.lazy_event
 
 M.opts = {
 	symbol = require("ui.icons").misc.leadmultispace,
-	options = { try_as_border = true },
+	-- options = { try_as_border = true },
 }
 
 function M.config(_, opts)

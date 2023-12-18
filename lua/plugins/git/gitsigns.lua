@@ -1,7 +1,7 @@
 ---@type LazySpec
 local M = { "lewis6991/gitsigns.nvim" }
 
-M.event = { "FileLoaded" }
+M.event = require("util").constants.lazy_event
 
 ---@type Gitsigns.Config
 ---@diagnostic disable-next-line: missing-fields

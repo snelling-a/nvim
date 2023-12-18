@@ -1,7 +1,7 @@
 ---@type LazySpec
 local M = { "RRethy/vim-illuminate" }
 
-M.event = { "FileLoaded" }
+M.event = require("util").constants.lazy_event
 
 M.opts = {
 	delay = 200,
@@ -29,7 +29,6 @@ function M.config(_, opts)
 	map("]]", "next")
 	map("[[", "prev")
 
-	-- also set it after loading ftplugins, since a lot overwrite [[ and ]]
 	vim.api.nvim_create_autocmd("FileType", {
 		callback = function()
 			local buffer = vim.api.nvim_get_current_buf()
