@@ -1,9 +1,11 @@
 local Lsp = require("lsp")
 local Util = require("util")
 
+local Logger = Util.logger
+
 local M = {}
 
----@param name "abbrev" | "autocmd" | "command" | "opt" | "keymap" | "ui" | "util.session"
+---@param name "abbrev"|"autocmd"|"command"|"opt"|"keymap"|"ui"|"util.session"
 local function load(name)
 	local function _load(mod)
 		Util.try(function()
@@ -52,7 +54,7 @@ function M.setup()
 	end, {
 		msg = "Could not load your colorscheme",
 		on_error = function(msg)
-			Util.logger:error(msg)
+			Logger:error(msg)
 			vim.cmd.colorscheme("default")
 		end,
 	})
@@ -69,8 +71,7 @@ function M.init()
 		return Lsp.format
 	end
 
-	Util.logger.delay_notify()
-
+	Logger.delay_notify()
 end
 
 return M
