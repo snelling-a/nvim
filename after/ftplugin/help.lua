@@ -37,9 +37,11 @@ local function search_map(lhs, rhs, item)
 	Keymap.unimpaired(lhs, {
 		left = function()
 			vim.fn.search(rhs, "wb")
+			Keymap.center.scroll()
 		end,
 		right = function()
 			vim.fn.search(rhs, "w")
+			Keymap.center.scroll()
 		end,
 	}, {
 		base = "",
@@ -48,7 +50,6 @@ local function search_map(lhs, rhs, item)
 			right = ("Next %s"):format(item),
 		},
 	}, { buffer = bufnr })
-	Keymap.center.scroll()
 end
 
 search_map("L", "|\\S\\{-}|", "|link|")
