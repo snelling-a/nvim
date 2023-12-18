@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.10.6](https://github.com/snelling-a/nvim/compare/v6.10.5...v6.10.6) (2023-12-18)
+
+
+### Bug Fixes
+
+* **logger:** convert error code to string ([d553e72](https://github.com/snelling-a/nvim/commit/d553e72aa2a6fb7751c299500a7017e2d3c3767d))
+
 ## [6.10.5](https://github.com/snelling-a/nvim/compare/v6.10.4...v6.10.5) (2023-12-18)
 
 
