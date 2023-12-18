@@ -1,7 +1,13 @@
 ---@type LazySpec
 local M = { "projekt0n/github-nvim-theme" }
 
+M.cmd = { "GithubThemeCompile" }
+
+M.enabled = false
+
 -- M.lazy = false
+
+M.enabled = false
 
 M.opts = {
 	options = {
@@ -22,6 +28,8 @@ M.opts = {
 
 function M.config(_, opts)
 	require("github-theme").setup(opts)
+
+	-- vim.cmd.colorscheme("github_dark_tritanopia")
 end
 
 return M

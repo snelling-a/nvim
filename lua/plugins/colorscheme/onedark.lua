@@ -1,6 +1,8 @@
 ---@type LazySpec
 local M = { "navarasu/onedark.nvim" }
 
+M.enabled = false
+
 -- M.lazy = false
 
 M.opts = { style = "darker" }
