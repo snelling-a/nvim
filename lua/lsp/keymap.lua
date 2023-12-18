@@ -56,20 +56,23 @@ end
 local function get_leader_keymaps(bufnr)
 	local format = Lsp.format
 
+	---@param lhs string
+	---@param rhs function
+	---@param desc string
 	local function leader(lhs, rhs, desc, mode)
 		Keymap.leader(lhs, rhs, { buffer = bufnr, desc = desc }, mode)
 	end
 
-	leader("tf", format.toggle, "[T]oggle auto[f]ormat (global)")
-	leader("tF", function()
-		format.toggle(true)
-	end, "[T]oggle auto[f]ormat (buffer)")
-	leader("td", require("util").toggle.diagnostics, "[T]oggle [d]iagnostics")
 	leader("d", vim.diagnostic.open_float, "Line [D]iagnostics")
 	leader("f", function()
 		format({ force = true })
 	end, "[F]ormat", { "n", "v" })
 	leader("li", vim.cmd.LspInfo, "Lsp Info")
+	leader("tF", function()
+		format.toggle(true)
+	end, "[T]oggle auto[f]ormat (buffer)")
+	leader("td", require("util").toggle.diagnostics, "[T]oggle [d]iagnostics")
+	leader("tf", format.toggle, "[T]oggle auto[f]ormat (global)")
 
 	if has(Methods.textDocument_codeAction, bufnr) then
 		leader("ca", vim.lsp.buf.code_action, "[C]ode [a]ction", { "n", "v" })
@@ -89,23 +92,26 @@ local function get_leader_keymaps(bufnr)
 end
 
 local function get_normal_keymaps(bufnr)
-	local function nmap(lhs, rhs, desc)
+	---@param lhs string
+	---@param rhs function
+	---@param desc string
+	local function map(lhs, rhs, desc)
 		Keymap.nmap(lhs, rhs, { buffer = bufnr, desc = desc })
 	end
 
-	nmap("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
-	nmap("gI", vim.lsp.buf.implementation, "[G]oto [I]mplementation")
-	nmap("gY", vim.lsp.buf.type_definition, "[G]oto t[y]pe definition")
-	nmap("K", vim.lsp.buf.hover, "Hover")
+	map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
+	map("gI", vim.lsp.buf.implementation, "[G]oto [I]mplementation")
+	map("gY", vim.lsp.buf.type_definition, "[G]oto t[y]pe definition")
+	map("K", vim.lsp.buf.hover, "Hover")
 
 	if has(Methods.textDocument_definition, bufnr) then
-		nmap("gd", function()
+		map("gd", function()
 			vim.lsp.buf.definition({ reuse_win = true })
 		end, "[G]oto [D]efinition")
 	end
 
 	if has(Methods.textDocument_references, bufnr) then
-		nmap("gr", function()
+		map("gr", function()
 			vim.lsp.buf.references({ includeDeclaration = false })
 		end, "[R]eferences")
 	end
@@ -113,7 +119,7 @@ local function get_normal_keymaps(bufnr)
 	if has(Methods.textDocument_signatureHelp, bufnr) then
 		local desc = "Signature Help"
 
-		nmap("gK", vim.lsp.buf.signature_help, desc)
+		map("gK", vim.lsp.buf.signature_help, desc)
 		Keymap.imap("<C-K>", vim.lsp.buf.signature_help, { buffer = bufnr, desc = desc })
 	end
 end

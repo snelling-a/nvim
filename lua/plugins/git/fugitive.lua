@@ -6,20 +6,23 @@ local function set_fugitive_keymaps(ev)
 		return
 	end
 
-	local function map_l(lhs, rhs, desc)
+	---@param lhs string
+	---@param rhs function
+	---@param desc string
+	local function leader(lhs, rhs, leader_desc)
 		return require("keymap").leader(lhs, rhs, {
 			buffer = ev.buf,
-			desc = desc,
+			desc = leader_desc,
 		})
 	end
 
-	map_l("p", function()
+	leader("p", function()
 		Git("push")
 	end, "Git [p]ush")
-	map_l("P", function()
+	leader("P", function()
 		Git("pull --rebase")
 	end, "Git [P]ull")
-	map_l("t", function()
+	leader("t", function()
 		Git("push -u origin")
 	end, "Push [t]o origin")
 end

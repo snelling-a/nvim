@@ -36,19 +36,43 @@ M.opts = {
 }
 
 function M.config(_, opts)
+	local Keymap = require("keymap")
+
 	---@param ev Ev
 	local function set_terminal_keymaps(ev)
-		local keymap_opts = {
-			buffer = ev.buf,
-			nowait = true,
-		}
-		vim.keymap.set("t", "<esc><esc>", [[<C-\><C-n>]], keymap_opts)
-		vim.keymap.set("t", "<C-h>", [[<Cmd>wincmd h<CR>]], keymap_opts)
-		vim.keymap.set("t", "<C-l>", [[<Cmd>wincmd l<CR>]], keymap_opts)
-		vim.keymap.set("t", "<C-w>", [[<C-\><C-n><C-w>]], keymap_opts)
+		---@param lhs string
+		---@param rhs string
+		---@param desc string
+		local function map(lhs, rhs, desc)
+			Keymap.tmap(
+				lhs,
+				rhs,
+				require("util").tbl_extend_force({
+					buffer = ev.buf,
+					nowait = true,
+				}, { desc = desc })
+			)
+		end
+
+		map("<esc><esc>", [[<C-\><C-n>]], "[Esc] to normal mode")
+		map("<C-h>", [[<Cmd>wincmd h<CR>]], "Move window right")
+		map("<C-l>", [[<Cmd>wincmd l<CR>]], "Move window [l]eft")
+		map("<C-w>", [[<C-\><C-n><C-w>]], "Execute [w]indow command")
 	end
 
 	require("toggleterm").setup(opts)
+
+	local Terminal = require("toggleterm.terminal").Terminal
+	local lazygit = Terminal:new({
+		cmd = "lazygit",
+		direction = "float",
+		float_opts = float_opts,
+		hidden = true,
+	})
+
+	Keymap.leader("gg", function()
+		lazygit:toggle()
+	end, { desc = lazygit_desc })
 
 	vim.api.nvim_create_autocmd({ "TermOpen" }, {
 		callback = set_terminal_keymaps,
