@@ -1,4 +1,3 @@
-vim.treesitter.start()
 local Keymap = require("keymap")
 
 local opt = vim.opt_local
