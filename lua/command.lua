@@ -97,8 +97,8 @@ local function trim_space(ctx)
 end
 
 local function scratch()
-	vim.cmd("bel 10new")
-	local buf = vim.api.nvim_get_current_buf()
+	vim.cmd("belowright 10new")
+	local bufnr = vim.api.nvim_get_current_buf()
 
 	for name, value in pairs({
 		filetype = "scratch",
@@ -107,8 +107,10 @@ local function scratch()
 		swapfile = false,
 		modifiable = true,
 	}) do
-		vim.api.nvim_set_option_value(name, value, { buf = buf })
+		vim.api.nvim_set_option_value(name, value, { buf = bufnr })
 	end
+
+	require("keymap").nmap("q", Autocmd.easy_quit, { buffer = bufnr })
 
 	vim.schedule(function()
 		vim.cmd.startinsert()
