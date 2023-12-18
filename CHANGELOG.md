@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.10.5](https://github.com/snelling-a/nvim/compare/v6.10.4...v6.10.5) (2023-12-18)
+
+
+### Bug Fixes
+
+* help keymaps ([6003a1d](https://github.com/snelling-a/nvim/commit/6003a1da27de86ab8f544bb48221c919605558cc))
+
 ## [6.10.4](https://github.com/snelling-a/nvim/compare/v6.10.3...v6.10.4) (2023-12-17)
 
 
