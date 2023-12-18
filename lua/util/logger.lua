@@ -54,6 +54,7 @@ end
 
 function M:error(args, code)
 	if code then
+		code = type(code) == "string" and code or tostring(code)
 		args = ("E%s: %s"):format(code, args)
 	end
 	self:log(levels.ERROR, args)
