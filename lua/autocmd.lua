@@ -80,7 +80,7 @@ function M.easy_quit(cmd)
 		return cmd()
 	end
 
-	return Util.are_buffers_listed() and vim.cmd.close() or vim.cmd.quitall()
+	return Util.are_buffers_listed() and vim.cmd.bwipeout() or vim.cmd.quitall()
 end
 
 autocmd({ "FileType" }, {
@@ -88,9 +88,7 @@ autocmd({ "FileType" }, {
 	callback = function(ev)
 		local bufnr = ev.buf
 		vim.bo[bufnr].buflisted = false
-		require("keymap").nmap("q", function()
-			return M.easy_quit()
-		end, { desc = "Easy [q]uit", buffer = bufnr, silent = true })
+		require("keymap").nmap("q", M.easy_quit, { desc = "Easy [q]uit", buffer = bufnr, silent = true })
 	end,
 	desc = "Easy Quit",
 	group = M.augroup("EasyQuit"),
