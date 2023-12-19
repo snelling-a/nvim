@@ -1,32 +1,19 @@
 local float_opts = { border = "rounded" }
+local lazygit_desc = "LazyGit"
 
 ---@type LazySpec
 local M = { "akinsho/toggleterm.nvim" }
 
----@diagnostic disable-next-line: assign-type-mismatch
-M.keys = function()
-	local Terminal = require("toggleterm.terminal").Terminal
-	local lazygit = Terminal:new({
-		cmd = "lazygit",
-		direction = "float",
-		float_opts = float_opts,
-		hidden = true,
-	})
-
-	return {
-		{
-			"<c-\\>",
-			desc = "ToggleTerm",
-		},
-		{
-			"<leader>gg",
-			function()
-				lazygit:toggle()
-			end,
-			desc = "LazyGit",
-		},
-	}
-end
+M.keys = {
+	{
+		"<c-\\>",
+		desc = "ToggleTerm",
+	},
+	{
+		"<leader>gg",
+		desc = lazygit_desc,
+	},
+}
 
 ---@type TermCreateArgs
 M.opts = {

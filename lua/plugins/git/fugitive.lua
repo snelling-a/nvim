@@ -1,4 +1,5 @@
 local Git = vim.cmd.Git
+local desc = "[G]it [s]tatus"
 
 ---@param ev Ev
 local function set_fugitive_keymaps(ev)
@@ -36,17 +37,13 @@ M.cmd = {
 	"Gvdiffsplit",
 }
 
-M.keys = {
-	{
-		"<leader>gs",
-		function()
-			Git({ mods = { vertical = true } })
-		end,
-		desc = "[G]it [s]tatus",
-	},
-}
+M.keys = { "<leader>gs", desc = desc }
 
 function M.config()
+	require("keymap").nmap("<leader>gs", function()
+		Git({ mods = { vertical = true } })
+	end, { desc = desc })
+
 	vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
 		callback = set_fugitive_keymaps,
 		desc = "Set fugitive keymaps",

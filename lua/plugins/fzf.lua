@@ -6,76 +6,16 @@ M.cmd = { "FzfLua", "GH" }
 M.dependencies = { "nvim-tree/nvim-web-devicons" }
 
 M.keys = {
-	{
-		"<leader>ff",
-		function()
-			require("fzf-lua").files()
-		end,
-		desc = "[F]ind [f]iles",
-	},
-	{
-		"<leader>fd",
-		function()
-			require("fzf-lua").live_grep()
-		end,
-		desc = "Live grep",
-	},
-	{
-		"<leader><space>",
-		function()
-			require("fzf-lua").builtin()
-		end,
-		desc = "Open builtins",
-	},
-	{
-		"<leader><tab>",
-		function()
-			require("fzf-lua").keymaps()
-		end,
-		desc = "Show keymaps",
-	},
-	{
-		"<leader>b",
-		function()
-			require("fzf-lua").buffers()
-		end,
-		desc = "Show [b]uffers",
-	},
-	{
-		"<leader>fh",
-		function()
-			require("fzf-lua").help_tags()
-		end,
-		desc = "[F]ind [h]elp",
-	},
-	{
-		"<leader>qf",
-		function()
-			require("fzf-lua").quickfix_stack()
-		end,
-		desc = "Open [q]uick[f]ix stack",
-	},
-	{
-		"?",
-		function()
-			require("fzf-lua").blines()
-		end,
-		desc = "Search current buffer",
-	},
-	{
-		"''",
-		function()
-			require("fzf-lua").marks()
-		end,
-		desc = "View marks",
-	},
-	{
-		'""',
-		function()
-			require("fzf-lua").registers()
-		end,
-		desc = "View registers",
-	},
+	"<leader>ff",
+	"<leader>fd",
+	"<leader><space>",
+	"<leader><tab>",
+	"<leader>b",
+	"<leader>fh",
+	"<leader>qf",
+	"?",
+	"''",
+	'""',
 }
 
 M.opts = {
@@ -99,6 +39,34 @@ function M.config(_, opts)
 	local fzf_lua = require("fzf-lua")
 
 	fzf_lua.setup(opts)
+
+	local Keymap = require("keymap")
+
+	---@param lhs string
+	---@param rhs function
+	---@param desc string
+	local function leader(lhs, rhs, desc)
+		Keymap.leader(lhs, rhs, { desc = desc })
+	end
+	---@param lhs string
+	---@param rhs function
+	---@param desc string
+	local function map(lhs, rhs, desc)
+		Keymap.nmap(lhs, rhs, { desc = desc })
+	end
+
+	leader(".", fzf_lua.resume, "Resume last fzf query")
+	leader("<space>", fzf_lua.builtin, "Open builtins")
+	leader("<tab>", fzf_lua.keymaps, "Show keymaps")
+	leader("b", fzf_lua.buffers, "Show [b]uffers")
+	leader("fd", fzf_lua.live_grep, "Live grep")
+	leader("ff", fzf_lua.files, "[F]ind [f]iles")
+	leader("fh", fzf_lua.help_tags, "[F]ind [h]elp")
+	leader("ll", fzf_lua.loclist_stack, "Open [l]ocation [l]ist stack")
+	leader("qf", fzf_lua.quickfix_stack, "Open [q]uick[f]ix stack")
+	map("''", fzf_lua.marks, "View marks")
+	map("?", fzf_lua.blines, "Search current buffer")
+	map('""', fzf_lua.registers, "View registers")
 
 	vim.api.nvim_create_autocmd({ "VimResized" }, {
 		callback = fzf_lua.redraw,
