@@ -1,5 +1,22 @@
 # Changelog
 
+## [6.11.0](https://github.com/snelling-a/nvim/compare/v6.10.6...v6.11.0) (2023-12-19)
+
+
+### Features
+
+* Bw command ([f7a7a7b](https://github.com/snelling-a/nvim/commit/f7a7a7b4311fe1a872de075bb109bf634f3fb407))
+
+
+### Bug Fixes
+
+* require autocommand ([7e8b23a](https://github.com/snelling-a/nvim/commit/7e8b23ad436344fb049e66c473d288e45abf13a4))
+
+
+### Miscellaneous
+
+* update plugins ([4fcd965](https://github.com/snelling-a/nvim/commit/4fcd965d432425592825a7bdf1a7222aeae48248))
+
 ## [6.10.6](https://github.com/snelling-a/nvim/compare/v6.10.5...v6.10.6) (2023-12-18)
 
 
