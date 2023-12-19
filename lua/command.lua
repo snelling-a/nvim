@@ -1,3 +1,5 @@
+local Autocmd = require("autocmd")
+
 local user_command = vim.api.nvim_create_user_command
 
 local function bd()
@@ -125,6 +127,7 @@ end
 vim.api.nvim_create_autocmd({ "User" }, {
 	callback = function()
 		user_command("Bw", bd, { desc = "Close current buffer" })
+
 		user_command("ColorMyPencils", color_my_pencils, { desc = "Toggle transparent background" })
 
 		user_command("EditMacro", edit_macro, { desc = "Create/Edit macro in an input" })
@@ -145,6 +148,6 @@ vim.api.nvim_create_autocmd({ "User" }, {
 		})
 	end,
 
-	group = require("autocmd").augroup("Command"),
+	group = Autocmd.augroup("Command"),
 	pattern = "SetCommand",
 })
