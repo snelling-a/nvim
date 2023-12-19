@@ -1,8 +1,6 @@
 ---@type LazySpec
 local M = { "catppuccin/nvim" }
 
-M.cmd = { "CatppuccinCompile" }
-
 -- M.lazy = false
 
 M.name = "catppuccin"
