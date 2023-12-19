@@ -1,5 +1,10 @@
 local user_command = vim.api.nvim_create_user_command
 
+local function bd()
+	vim.cmd.bprevious()
+	vim.cmd.bdelete("#")
+end
+
 local function color_my_pencils()
 	local get_hl = vim.api.nvim_get_hl
 	local set_hl = vim.api.nvim_set_hl
@@ -119,6 +124,7 @@ end
 
 vim.api.nvim_create_autocmd({ "User" }, {
 	callback = function()
+		user_command("Bw", bd, { desc = "Close current buffer" })
 		user_command("ColorMyPencils", color_my_pencils, { desc = "Toggle transparent background" })
 
 		user_command("EditMacro", edit_macro, { desc = "Create/Edit macro in an input" })
