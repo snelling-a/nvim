@@ -8,12 +8,9 @@ M.cmd = { "Copilot" }
 M.event = { "InsertEnter" }
 
 M.opts = {
-	suggestion = { enabled = false },
+	filetypes = { markdown = true, help = true },
 	panel = { enabled = false },
-	filetypes = {
-		markdown = true,
-		help = true,
-	},
+	suggestion = { enabled = false },
 }
 
 return {
@@ -28,8 +25,6 @@ return {
 				config = function(_, opts)
 					local copilot_cmp = require("copilot_cmp")
 					copilot_cmp.setup(opts)
-					-- attach cmp source whenever copilot attaches
-					-- fixes lazy-loading issues with the copilot cmp source
 					require("lsp").on_attach(function(client)
 						if client.name == "copilot" then
 							copilot_cmp._on_insert_enter({})
