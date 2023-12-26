@@ -32,7 +32,7 @@ local function add_inline_highlights(buf)
 	end
 end
 
----@param handler fun(err: any, result: any, ctx: any, config: any): integer?, integer?
+---@param handler function(err: any, result: any, ctx: any, config: any): integer?, integer?
 ---@param focusable boolean
 ---@return fun(err: any, result: any, ctx: any, config: any)
 function M.enhanced_float_handler(handler, focusable)
