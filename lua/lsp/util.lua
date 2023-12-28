@@ -21,20 +21,20 @@ end
 
 ---@param opts? lsp.Client.filter
 function M.get_clients(opts)
-	local ret ---@type lsp.Client[]
+	local clients ---@type lsp.Client[]
 	if vim.lsp.get_clients then
-		ret = vim.lsp.get_clients(opts)
+		clients = vim.lsp.get_clients(opts)
 	else
 		---@diagnostic disable-next-line: deprecated
-		ret = vim.lsp.get_active_clients(opts)
+		clients = vim.lsp.get_active_clients(opts)
 		if opts and opts.method then
 			---@param client lsp.Client
-			ret = vim.tbl_filter(function(client)
+			clients = vim.tbl_filter(function(client)
 				return client.supports_method(opts.method, { bufnr = opts.bufnr })
-			end, ret)
+			end, clients)
 		end
 	end
-	return opts and opts.filter and vim.tbl_filter(opts.filter, ret) or ret
+	return opts and opts.filter and vim.tbl_filter(opts.filter, clients) or clients
 end
 
 ---@return lspconfig.Config|{document_args:table}
@@ -54,6 +54,7 @@ function M.setup_language(args)
 	return {
 		{
 			"nvim-treesitter/nvim-treesitter",
+			---@class TSConfig
 			opts = function(_, opts)
 				if type(opts.ensure_installed) == "table" then
 					list_extend(opts.ensure_installed, (args.ts or langs))
@@ -62,6 +63,7 @@ function M.setup_language(args)
 		},
 		{
 			"williamboman/mason.nvim",
+			---@class MasonOpts
 			opts = function(_, opts)
 				opts.ensure_installed = opts.ensure_installed or {}
 				list_extend(opts.ensure_installed, args.formatters)
@@ -86,6 +88,7 @@ function M.setup_language(args)
 		},
 		args.formatters and {
 			"stevearc/conform.nvim",
+			---@class ConformOpts
 			opts = function(_, opts)
 				if not opts.formatters_by_ft then
 					opts.formatters_by_ft = {}
