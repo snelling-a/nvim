@@ -3,7 +3,7 @@ local M = { "glacambre/firenvim" }
 
 M.lazy = not vim.g.started_by_firenvim
 
-function M.build()
+local function build()
 	require("lazy").load({
 		plugins = { "firenvim" },
 		wait = false,
@@ -11,25 +11,35 @@ function M.build()
 	vim.fn["firenvim#install"](1)
 end
 
+M.build = build
+-- function M.build()
+-- 	require("lazy").load({
+-- 		plugins = { "firenvim" },
+-- 		wait = false,
+-- 	})
+-- 	vim.fn["firenvim#install"](1)
+-- end
+
 function M.config()
+	build()
+
 	local api = vim.api
 	local g = vim.g
-	local opt = vim.opt
 
 	if g.started_by_firenvim then
+		local opt = vim.opt
+
+		opt.statuscolumn = require("ui.status.column").basic
 		opt.colorcolumn = ""
 		opt.cursorline = false
-		opt.laststatus = 1
+		opt.laststatus = 0
 		opt.number = false
 		opt.relativenumber = false
 		opt.showtabline = 0
-		opt.spell = true
 	end
 
 	g.firenvim_config = {
-		globalSettings = {
-			alt = "all",
-		},
+		globalSettings = { alt = "all" },
 		localSettings = {
 			[".*"] = {
 				cmdline = "neovim",
@@ -58,7 +68,7 @@ function M.config()
 			vim.bo.filetype = "markdown"
 		end,
 		desc = "Use markdown formatting for GitHub and reddit",
-		group = require("config.util").augroup("Firenvim"),
+		group = require("autocmd").augroup("Firenvim"),
 		pattern = { "*github.com_*", "*reddit.com_*" },
 	})
 end
