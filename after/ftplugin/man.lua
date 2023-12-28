@@ -5,17 +5,18 @@ opt.modified = false
 opt.showbreak = ""
 opt.showtabline = 0
 opt.spell = false
-opt.wrap = false
+opt.wrap = true
 
 local bufnr = vim.api.nvim_get_current_buf()
 
-local function keymap(lhs)
+---@param lhs "u"|"d" direction - [u]p or [d]own
+local function scroll(lhs)
 	local rhs = ("<C-%s>"):format(lhs)
 	return vim.api.nvim_buf_set_keymap(0, "n", lhs, rhs, { nowait = true })
 end
 
-keymap("d")
-keymap("u")
+scroll("d")
+scroll("u")
 
 ---@param lhs string
 ---@param rhs string|fun(...:any):(...:any)
