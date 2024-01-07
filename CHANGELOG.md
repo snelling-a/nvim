@@ -1,5 +1,18 @@
 # Changelog
 
+## [6.11.1](https://github.com/snelling-a/nvim/compare/v6.11.0...v6.11.1) (2024-01-07)
+
+
+### Bug Fixes
+
+* firenvim ([50e481d](https://github.com/snelling-a/nvim/commit/50e481d3142d763152e18ea6daa836e9c3ef57fc))
+
+
+### Miscellaneous
+
+* update plugins ([35a38c5](https://github.com/snelling-a/nvim/commit/35a38c56d08a8d29b1b56a5f27e8d382bc783647))
+* update plugins ([8f69e72](https://github.com/snelling-a/nvim/commit/8f69e720927b5312d55d4de73f1f27bdeb3f6f96))
+
 ## [6.11.0](https://github.com/snelling-a/nvim/compare/v6.10.6...v6.11.0) (2023-12-19)
 
 
