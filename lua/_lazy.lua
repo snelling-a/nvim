@@ -21,6 +21,9 @@ local spec = {
 		path = ("%s/snelling-a"):format(require("util").constants.dev_dir),
 		patterns = { "snelling-a" },
 	},
+	install = {
+		colorscheme = { "base16-default-dark" },
+	},
 	performance = {
 		rtp = {
 			disabled_plugins = {
@@ -62,7 +65,7 @@ local spec = {
 	},
 	ui = {
 		border = "rounded",
-		icons = require("ui.icons").lazy,
+		icons = require("ui").icons.lazy,
 	},
 }
 
