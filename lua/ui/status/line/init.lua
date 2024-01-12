@@ -1,6 +1,5 @@
 local File = require("ui.status.line.file")
 local Highlights = require("ui.status.line.highlights")
-local Lsp = require("ui.status.line.lsp")
 local Util = require("ui.status.line.util")
 
 if not require("util").is_vim() then
@@ -23,11 +22,11 @@ local F = setmetatable({}, {
 
 local M = {}
 
-M.git_status = require("ui.status.line.git").status
-M.lsp_status = Lsp.status
 M.buffer_name = require("ui.status.line.buffer").name
-M.filetype = File.type
 M.encoding = File.encoding
+M.filetype = File.type
+M.git_status = require("ui.status.line.git").status
+M.lsp_status = require("ui.status.line.lsp").status
 M.ruler = require("ui.status.line.ruler").get_ruler
 
 local function set(active, global)
@@ -38,7 +37,7 @@ local function set(active, global)
 		{
 			Util.recording(active),
 			Util.highlight(),
-			Util.pad(F.git_status(active)),
+			F.git_status(active),
 			Util.pad(F.lsp_status(active)),
 			Util.highlight(),
 		},
@@ -50,7 +49,6 @@ local function set(active, global)
 			Util.highlight(),
 			Util.pad(F.filetype(active)),
 			Util.pad(F.encoding()),
-			-- Util.pad(F.ruler(active)),
 			F.ruler(active),
 		},
 	})

@@ -13,14 +13,13 @@ end
 
 local function get_branch()
 	local icon = Icons.git.git
-	local highlight = "StatusRed"
+	local name = "StatusRed"
 	local branch = (vim.b.gitsigns_head or vim.g.gitsigns_head) or "" --[[@as string]]
 
 	local ret = {
 		" ",
-		Util.hl(highlight, true),
+		Util.hl(name),
 		icon,
-		" ",
 	}
 
 	if branch == "master" or branch == "main" then
@@ -31,7 +30,7 @@ local function get_branch()
 
 	if jira_tag and jira_icon then
 		return table.concat({
-			Util.hl("StatusBlue", true),
+			Util.hl("StatusBlue"),
 			jira_icon,
 			jira_tag,
 		}, " ")
@@ -42,11 +41,15 @@ local function get_branch()
 	return table.concat(ret, "")
 end
 
-local function get_status_element(count, icon)
+---@param count number
+---@param icon string
+---@param highlight string
+local function get_status_element(count, icon, highlight)
 	if not count or count == 0 then
 		return ""
 	end
-	return (count > 0 and ("%s %d "):format(icon, count)) or ""
+
+	return ("%s%s %d "):format(Util.hl(highlight), icon, count) or ""
 end
 
 ---@return string 'git status'
@@ -60,17 +63,16 @@ local function get_status()
 	if status.added == 0 and status.changed == 0 and status.removed == 0 then
 		return ""
 	end
+	local elements = {}
 
-	local highlight = Util.hl
-
-	return table.concat({
-		highlight("StatusGreen", true),
-		get_status_element(status.added, Icons.git.added),
-		highlight("StatusMagenta", true),
-		get_status_element(status.changed, Icons.git.modified),
-		highlight("StatusRed", true),
-		get_status_element(status.removed, Icons.git.removed),
-	}, "")
+	for _, value in pairs({
+		{ status.added, Icons.git.added, "StatusGreen" },
+		{ status.changed, Icons.git.modified, "StatusMagenta" },
+		{ status.removed, Icons.git.removed, "StatusRed" },
+	}) do
+		table.insert(elements, get_status_element(value[1], value[2], value[3]))
+	end
+	return table.concat(elements, "")
 end
 
 local M = {}

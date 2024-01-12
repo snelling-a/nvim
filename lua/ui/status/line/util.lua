@@ -1,5 +1,3 @@
-local api = vim.api
-
 local M = {}
 
 ---@param fallback string
@@ -24,12 +22,7 @@ end
 
 --- Use a statusline highlight group
 ---@param name string statusline highlight group
----@param active boolean
-function M.hl(name, active)
-	if not active then
-		return ""
-	end
-
+function M.hl(name)
 	return ("%%#%s#"):format(name)
 end
 
@@ -78,7 +71,7 @@ end
 ---@param val vim.api.keyset.highlight
 function M.set_hl(name, val)
 	val = require("util").tbl_extend_force(val, { bg = (vim.api.nvim_get_hl(0, { name = "StatusLine" })).bg })
-	return api.nvim_set_hl(0, name, val)
+	return vim.api.nvim_set_hl(0, name, val)
 end
 
 M.bg = require("ui").get_hl("StatusLine", "bg")

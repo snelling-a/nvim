@@ -9,7 +9,9 @@ local function get_diagnostics()
 		})
 
 		if #n > 0 then
-			local highlight = Util.hl(("StatusDiagnostic%s"):format(type), true)
+			local name = ("StatusDiagnostic%s"):format(type)
+			local highlight = Util.hl(name)
+
 			local diagnostic = ("%s %s %d"):format(highlight, icon, #n)
 
 			table.insert(status, diagnostic)
@@ -19,25 +21,25 @@ local function get_diagnostics()
 		table.insert(status, 1, " ")
 	end
 
-	return table.concat(status, " ")
+	return table.concat(status, "")
 end
 
 local function get_lsp_names()
-	local names = {}
-	local attached = vim.lsp.get_clients({
-		bufnr = 0,
-	})
+	local clients = vim.lsp.get_clients({ bufnr = 0 })
 
-	table.sort(attached, function(a, b)
+	table.sort(clients, function(a, b)
 		return a.name < b.name
 	end)
 
-	for _, c in ipairs(attached) do
-		names[#names + 1] = Icons.servers[c.name] or Icons.kind_icons.Lsp
+	local client_names = {}
+
+	for _, c in ipairs(clients) do
+		client_names[#client_names + 1] = Icons.servers[c.name] or Icons.kind_icons.Lsp
 	end
 
-	table.insert(names, 1, Util.hl("StatusLsp", true))
-	return table.concat(names, " ")
+	table.insert(client_names, 1, Util.hl("StatusLsp"))
+
+	return table.concat(client_names, " ")
 end
 
 local M = {}
@@ -61,7 +63,7 @@ end
 
 ---@param active boolean
 function M.status(active)
-	if not active then
+	if not active or not require("util").is_file() then
 		return ""
 	end
 

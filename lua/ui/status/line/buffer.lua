@@ -1,3 +1,5 @@
+local Util = require("ui.status.line.util")
+
 local function get_buf_names()
 	local statusline_name = vim.api.nvim_eval_statusline("%f", {}).str --[[@as string]]
 	local buf_name = vim.api.nvim_buf_get_name(0)
@@ -18,7 +20,7 @@ end
 local function get_special_buf_type()
 	local buf_name, statusline_name = get_buf_names()
 
-	local pad = require("ui.status.line.util").pad
+	local pad = Util.pad
 	local Icons = require("ui.icons")
 
 	if vim.startswith(buf_name, "fugitive://") then
@@ -60,7 +62,7 @@ function M.name()
 
 	local _, statusline_name = get_buf_names()
 
-	local fallback, status = require("ui.status.line.util").gitsigns_ok(statusline_name)
+	local fallback, status = Util.gitsigns_ok(statusline_name)
 
 	if status and status.root then
 		return get_git_path(status.root)

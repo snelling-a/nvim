@@ -103,6 +103,9 @@ function M.get_mark(buf, lnum)
 end
 
 function M.init()
+	if not require("util").is_vim() then
+		return
+	end
 	local bufnr = vim.api.nvim_win_get_buf(vim.g.statusline_winid)
 
 	local sign, git_sign

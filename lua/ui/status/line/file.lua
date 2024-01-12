@@ -17,7 +17,7 @@ local function filetype_symbol()
 		bg = Util.bg,
 	})
 
-	return ("%s%s"):format(Util.hl(hlname, true), icon)
+	return ("%s%s"):format(Util.hl(hlname), icon)
 end
 
 local M = {}
