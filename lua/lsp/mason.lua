@@ -24,16 +24,16 @@ function M.ensure_installed(packages)
 			local package = registry.get_package(package_name)
 			local name = package.name
 			if not package:is_installed() then
-				Logger:info(("Installing `%s`"):format(name))
+				Logger:info(("Installing %s"):format(name))
 
 				package:install()
 			else
 				package:check_new_version(function(success, result_or_err)
 					if success then
-						Logger:info(("Updating `%s` to %s"):format(name, result_or_err.latest_version))
+						Logger:info(("Updating %s to %s"):format(name, result_or_err.latest_version))
 
 						package:install():on("closed", function()
-							Logger:info(("`%s` updated"):format(name))
+							Logger:info(("%s updated"):format(name))
 						end)
 					end
 				end)

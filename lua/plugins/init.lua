@@ -1,3 +1,6 @@
 require("config").init()
 
-return { "folke/lazy.nvim" }
+---@type LazySpec
+local M = { "folke/lazy.nvim" }
+
+return M

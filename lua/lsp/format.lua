@@ -42,8 +42,8 @@ function M.formatter(opts)
 		name = "LSP",
 		primary = true,
 		priority = 1,
-		format = function(buf)
-			M.format(Util.merge(filter, { bufnr = buf }))
+		format = function(bufnr)
+			M.format(Util.merge(filter, { bufnr = bufnr }))
 		end,
 		sources = function(buf)
 			local clients = require("lsp").util.get_clients(Util.merge(filter, { bufnr = buf }))

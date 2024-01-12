@@ -91,7 +91,7 @@
 ---@alias lsp.Client.filter {id?: number, bufnr?: number, name?: string, method?: string, filter?: fun(client: lsp.Client): boolean}
 ---@alias lsp.Client.format {timeout_ms?: number, format_options?: table} | lsp.Client.filter
 ---@alias SetupLanguageParam string|string[]?
----@alias SetupLanguageArgs {server: string?, server_opts:table?, langs: SetupLanguageParam, formatters: SetupLanguageParam, linters: SetupLanguageParam, ts: SetupLanguageParam}
+---@alias SetupLanguageArgs {server: SetupLanguageParam, server_opts:table?, langs: SetupLanguageParam, formatters: SetupLanguageParam, linters: SetupLanguageParam, ts: SetupLanguageParam}
 ---@alias Servers table<string, lspconfig.Config>
 ---@alias DiagnosticLhs "d"|"e"|"w"
 ---@alias DiagnosticText "[d]iagnostic"|"[e]rror"|"[w]arning"

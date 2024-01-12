@@ -25,6 +25,7 @@ M.no_format = {
 	"Outline",
 	"PlenaryTestPopup",
 	"pr",
+	"scratch",
 	"starter",
 	"startuptime",
 	"toggleterm",

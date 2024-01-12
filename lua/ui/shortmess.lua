@@ -5,8 +5,8 @@ local shortmess_append = {
 	--  m	use "[+]" instead of "[Modified]"
 	--  r	use "[RO]" instead of "[readonly]"
 	--  w	use "[w]" instead of "written" for file write message and "[a]" instead of "appended" for ':w >> file' command
-	"A", -- don't give the "ATTENTION" message when an existing swap file is found
 	"a", --  all of the above abbreviations
+	"A", -- don't give the "ATTENTION" message when an existing swap file is found
 	"c", --  don't give ins-completion-menu messages
 	"F", -- don't give the file info when editing a file, like `:silent` was used for the command
 	"I", --  don't give the intro message when starting Vim

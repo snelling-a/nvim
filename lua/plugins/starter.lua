@@ -3,7 +3,7 @@ local M = { "echasnovski/mini.starter" }
 
 M.cond = vim.fn.argc(-1) == 0 and require("util").is_vim()
 
-M.event = { "VimEnter" }
+-- M.event = { "VimEnter" }
 
 ---@diagnostic disable-next-line: assign-type-mismatch
 M.init = false

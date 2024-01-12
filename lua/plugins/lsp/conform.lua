@@ -20,22 +20,28 @@ M.keys = {
 
 M.init = function()
 	require("autocmd").on_very_lazy(function()
-		require("lsp").format.register({
-			name = "conform.nvim",
-			priority = 100,
-			primary = true,
-			format = function(buf)
-				local opts = require("_lazy").get_opts("conform")
-				require("conform").format(Util.merge(opts.format, { bufnr = buf }))
-			end,
-			sources = function(buf)
-				local formatters = require("conform").list_formatters(buf)
-				---@param v conform.FormatterInfo
-				return vim.tbl_map(function(v)
-					return v.name
-				end, formatters)
-			end,
-		})
+		require("lsp") --[[@as LSP]]
+			.format
+			.register({
+				format = function(bufnr)
+					require("conform").format({
+						async = false,
+						bufnr = bufnr,
+						quiet = false,
+						timeout_ms = 3000,
+					})
+				end,
+				name = "conform.nvim",
+				primary = true,
+				priority = 100,
+				sources = function(bufnr)
+					local formatters = require("conform").list_formatters(bufnr)
+					---@param v conform.FormatterInfo
+					return vim.tbl_map(function(v)
+						return v.name
+					end, formatters)
+				end,
+			})
 	end)
 end
 
@@ -66,17 +72,10 @@ function M.opts(_, opts)
 		})
 	end
 
-	opts = vim.tbl_extend("force", opts, {
-		format = {
-			timeout_ms = 3000,
-			async = false,
-			quiet = false,
-		},
+	return vim.tbl_extend("force", {
 		---@type table<string, conform.FormatterUnit>
 		formatters_by_ft = {},
-	})
-
-	return opts
+	}, opts)
 end
 
 M.config = setup

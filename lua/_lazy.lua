@@ -22,7 +22,7 @@ local spec = {
 		patterns = { "snelling-a" },
 	},
 	install = {
-		colorscheme = { "base16-default-dark" },
+		colorscheme = { not vim.g.vscode and "base16-default-dark" },
 	},
 	performance = {
 		rtp = {
