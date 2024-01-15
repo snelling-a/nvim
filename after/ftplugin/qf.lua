@@ -1,6 +1,7 @@
 local opt = vim.opt_local
 
 opt.list = false
+opt.cursorline = true
 opt.statuscolumn = require("ui.status.column").basic
 
 local function map(lhs, rhs, desc)
