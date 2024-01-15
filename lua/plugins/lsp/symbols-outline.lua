@@ -1,11 +1,18 @@
+local desc = "Toggle outline"
+
 ---@type LazySpec
 local M = { "hedyhli/outline.nvim" }
 
 M.cmd = { "Outline", "OutlineOpen" }
 
-M.keys = {
-	{ "<leader>cs", vim.cmd.Outline, desc = "Toggle outline" },
-}
+M.keys = { "<leader>cs", desc = desc }
+
+function M.config(_, opts)
+	local outline = require("outline")
+	outline.setup(opts)
+
+	require("keymap").leader("cs", outline.toggle_outline--[[ vim.cmd.Outline ]], { desc = desc })
+end
 
 function M.opts(_, opts)
 	local icons = require("ui.icons").kind_icons
