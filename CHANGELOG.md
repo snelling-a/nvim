@@ -1,5 +1,17 @@
 # Changelog
 
+## [6.12.0](https://github.com/snelling-a/nvim/compare/v6.11.2...v6.12.0) (2024-01-15)
+
+
+### Features
+
+* **qf:** cursorline ([7f136c8](https://github.com/snelling-a/nvim/commit/7f136c858e86567d72ec1814f0432c246900c43d))
+
+
+### Miscellaneous
+
+* update plugins ([68847b0](https://github.com/snelling-a/nvim/commit/68847b06742a75558138d7d774b35ae80784ce39))
+
 ## [6.11.2](https://github.com/snelling-a/nvim/compare/v6.11.1...v6.11.2) (2024-01-12)
 
 
