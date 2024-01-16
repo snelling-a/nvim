@@ -10,7 +10,7 @@ M.init = false
 
 M.lazy = false
 
---- add 16 spaces
+-- add 16 spaces
 local pad = string.rep(" ", 16)
 
 function M.config(_, opts)
