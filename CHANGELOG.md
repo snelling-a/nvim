@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.14.0](https://github.com/snelling-a/nvim/compare/v6.13.0...v6.14.0) (2024-01-16)
+
+
+### Features
+
+* mini.files ([55d498e](https://github.com/snelling-a/nvim/commit/55d498efc723ae22ffa13a441368358ddef0e1cc))
+
 ## [6.13.0](https://github.com/snelling-a/nvim/compare/v6.12.0...v6.13.0) (2024-01-16)
 
 
