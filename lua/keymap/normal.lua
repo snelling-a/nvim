@@ -18,7 +18,7 @@ map("<S-TAB>", function()
 	cmd.bprevious()
 end, { desc = "Go to the previous buffer" })
 
-map("<Tab>", function()
+map("<tab>", function()
 	if not are_buffers_listed() then
 		return buflisted_err()
 	end
