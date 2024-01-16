@@ -21,9 +21,12 @@ function M.config(_, opts)
 	require("illuminate").configure(opts)
 
 	local function map(key, dir, buffer)
+		local method = ("goto_%s_reference"):format(dir)
+		local desc = ("%s%s Reference"):format(dir:sub(1, 1):upper(), dir:sub(2))
+
 		vim.keymap.set("n", key, function()
-			require("illuminate")["goto_" .. dir .. "_reference"](false)
-		end, { desc = dir:sub(1, 1):upper() .. dir:sub(2) .. " Reference", buffer = buffer })
+			require("illuminate")[method](false)
+		end, { desc = desc, buffer = buffer })
 	end
 
 	map("]]", "next")
