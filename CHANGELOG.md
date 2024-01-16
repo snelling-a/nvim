@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.13.0](https://github.com/snelling-a/nvim/compare/v6.12.0...v6.13.0) (2024-01-16)
+
+
+### Features
+
+* **qf:** disable spelling ([b2b7bb3](https://github.com/snelling-a/nvim/commit/b2b7bb302c3e0d28e9107b7edcfe20abdf55dc3e))
+
 ## [6.12.0](https://github.com/snelling-a/nvim/compare/v6.11.2...v6.12.0) (2024-01-15)
 
 
