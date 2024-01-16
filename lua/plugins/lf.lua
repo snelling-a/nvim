@@ -3,6 +3,7 @@ local desc = "[O]pen lf"
 ---@type LazySpec
 local M = { "lmburns/lf.nvim" }
 
+M.enabled = false
 
 M.dependencies = { "akinsho/toggleterm.nvim" }
 
