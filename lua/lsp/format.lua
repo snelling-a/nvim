@@ -102,30 +102,28 @@ local function enabled(buf)
 	return g_autoformat == nil or g_autoformat
 end
 
----@param buf? number
-local function info(buf)
-	buf = buf or vim.api.nvim_get_current_buf()
+local function info()
+	local bufnr = vim.api.nvim_get_current_buf()
 	local gaf = vim.g.autoformat == nil or vim.g.autoformat
-	local baf = vim.b[buf].autoformat
+	local baf = vim.b[bufnr].autoformat
 	local icons = require("ui.icons").progress
-	local error = icons.error
-	local done = icons.done
+
 	local lines = {
 		"Formatting",
-		("%s global %s"):format(gaf and done or error, gaf and "enabled" or "disabled"),
+		("%s global %s"):format(gaf and icons.done or icons.error, gaf and "enabled" or "disabled"),
 		("%s buffer %s"):format(
-			enabled(buf) and done or error,
+			enabled(bufnr) and icons.done or icons.error,
 			baf == nil and "inherit" or baf and "enabled" or "disabled"
 		),
 	}
 
 	local have = false
-	for _, formatter in ipairs(resolve(buf)) do
+	for _, formatter in ipairs(resolve(bufnr)) do
 		if #formatter.resolved > 0 then
 			have = true
 			lines[#lines + 1] = ("\n%s %s"):format(formatter.name, (formatter.active and "(active)" or ""))
 			for _, line in ipairs(formatter.resolved) do
-				lines[#lines + 1] = ("%s %s"):format(formatter.active and done or error, line)
+				lines[#lines + 1] = ("%s %s"):format(formatter.active and icons.done or icons.error, line)
 			end
 		end
 	end
@@ -142,9 +140,9 @@ local function info(buf)
 	end
 end
 
----@param buf? boolean
-function M.toggle(buf)
-	if buf then
+---@param buffer_level? boolean
+function M.toggle(buffer_level)
+	if buffer_level then
 		vim.b.autoformat = not enabled()
 	else
 		vim.g.autoformat = not enabled()
