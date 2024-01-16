@@ -46,20 +46,6 @@ M.dap = {
 	Stopped = "󰁕 ",
 }
 
-M.cmp = {
-	Copilot = copilot,
-	buffer = buffer,
-	cmdline = command_line,
-	luasnip = snippet,
-	npm = " ",
-	nvim_lsp = lsp,
-	nvim_lsp_document_symbol = lsp,
-	nvim_lsp_signature_help = lsp,
-	nvim_lua = lua,
-	path = " ",
-	treesitter = " ",
-}
-
 M.diagnostics = {
 	Error = error,
 	Hint = "󰌶 ",
@@ -68,16 +54,19 @@ M.diagnostics = {
 }
 
 M.file = {
-	buffer = buffer,
-	folder_empty = "󰷍 ",
 	folder_open = folder_open,
-	import = import,
 	modified = modified,
-	newfile = file,
-	oldfiles = "󱀸 ",
-	readonly = " ",
-	tab = "󱦞 ",
 	unnamed = " ",
+}
+
+M.fillchars = {
+	diff = "░",
+	eob = " ",
+	fold = "━",
+	foldclose = right,
+	foldopen = down,
+	foldsep = "║",
+	vert = "│",
 }
 
 M.git = {
@@ -98,16 +87,6 @@ M.gitsigns = {
 	delete = { text = "╽" },
 	topdelete = { text = "╿" },
 	untracked = { text = "┋" },
-}
-
-M.fillchars = {
-	diff = "░",
-	eob = " ",
-	fold = "━",
-	foldclose = right,
-	foldopen = down,
-	foldsep = "║",
-	vert = "│",
 }
 
 M.kind_icons = {
@@ -184,12 +163,7 @@ M.lazy = {
 	import = import,
 	init = rocket,
 	keys = keyboard,
-	list = {
-		selection,
-		chevron_right,
-		"‒",
-		trail,
-	},
+	list = { selection, chevron_right, "‒", trail },
 	loaded = done,
 	not_loaded = pending,
 	plugin = package,
@@ -207,11 +181,6 @@ M.listchars = {
 	precedes = elipsis,
 	tab = "  ",
 	trail = trail,
-}
-
-M.location = {
-	bottom = " ",
-	top = " ",
 }
 
 M.misc = {
