@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.15.0](https://github.com/snelling-a/nvim/compare/v6.14.0...v6.15.0) (2024-01-16)
+
+
+### Features
+
+* **checkhealth:** disable spelling ([1bb345d](https://github.com/snelling-a/nvim/commit/1bb345d8180ad040b123514c3a1a40e88c41ae81))
+
 ## [6.14.0](https://github.com/snelling-a/nvim/compare/v6.13.0...v6.14.0) (2024-01-16)
 
 
