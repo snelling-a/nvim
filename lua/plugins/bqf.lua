@@ -1,6 +1,13 @@
 ---@type LazySpec
 local M = { "kevinhwang91/nvim-bqf" }
 
+M.dependencies = {
+	"junegunn/fzf",
+	build = function()
+		vim.fn["fzf#install"]()
+	end,
+}
+
 M.ft = { "qf" }
 
 ---@diagnostic disable-next-line: missing-fields
