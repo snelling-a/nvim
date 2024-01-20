@@ -35,7 +35,7 @@ function M.opts()
 	return {
 		snippet = {
 			expand = function(args)
-				vim.snippet.expand(args.body)
+				require("luasnip").lsp_expand(args.body)
 			end,
 		},
 		mapping = cmp.mapping.preset.insert({
@@ -48,15 +48,6 @@ function M.opts()
 			["<C-Space>"] = cmp.mapping.complete(),
 			["<CR>"] = cmp.mapping.confirm({ select = true }),
 			["<S-CR>"] = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
-			["<Tab>"] = cmp.mapping(function(fallback)
-				local luasnip = require("luasnip")
-
-				if luasnip.expand_or_jump() then
-					luasnip.expand_or_jump()
-				else
-					fallback()
-				end
-			end, { "i", "s" }),
 		}),
 		sources = cmp.config.sources({
 			{ name = "nvim_lsp", group_index = 1 },
@@ -67,7 +58,7 @@ function M.opts()
 		---@diagnostic disable-next-line: missing-fields
 		formatting = {
 			format = function(_, item)
-				local icons = require("ui.icons").cmp
+				local icons = require("ui.icons").kind_icons
 
 				if icons[item.kind] then
 					item.kind = ("%s%s"):format(icons[item.kind], item.kind)
@@ -76,6 +67,7 @@ function M.opts()
 				return item
 			end,
 		},
+
 		window = {
 			completion = { border = "rounded" },
 			documentation = { border = "rounded" },

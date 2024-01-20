@@ -1,3 +1,7 @@
+---@param direction "next" | "previous"
+local get_desc = function(direction)
+	return ("Jump to %s snippet placeholder"):format(direction)
+end
 ---@type LazySpec
 local M = { "L3MON4D3/LuaSnip" }
 
@@ -15,18 +19,34 @@ M.dependencies = {
 
 M.event = { "InsertEnter" }
 
+M.keys = {
+	{ "<tab>", desc = get_desc("next"), mode = { "i", "s" } },
+	{ "<s-tab>", desc = get_desc("previous"), mode = { "s" } },
+}
+
 M.opts = {
-	delete_check_events = "InsertLeave",
+	delete_check_events = "TextChanged",
 	history = true,
 }
 
 function M.config(_, opts)
 	local luasnip = require("luasnip")
 	luasnip.setup(opts)
+	local Keymap = require("keymap")
 
 	for _, type in pairs({ "vscode", "lua" }) do
 		require(("luasnip.loaders.from_%s"):format(type)).lazy_load()
 	end
+
+	Keymap.imap("<tab>", function()
+		return luasnip.jumpable(1) and "<Plug>luasnip-jump-next" or "<tab>"
+	end, { desc = get_desc("next"), expr = true, silent = true })
+	Keymap.smap("<s-tab>", function()
+		luasnip.jump(-1)
+	end, { desc = get_desc("previous") })
+	Keymap.smap("<tab>", function()
+		luasnip.jump(1)
+	end, { desc = get_desc("next") })
 
 	vim.api.nvim_create_autocmd("User", {
 		callback = function()
