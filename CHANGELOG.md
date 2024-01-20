@@ -1,5 +1,18 @@
 # Changelog
 
+## [6.16.1](https://github.com/snelling-a/nvim/compare/v6.16.0...v6.16.1) (2024-01-20)
+
+
+### Bug Fixes
+
+* **gx:** set keymap ([7033ab5](https://github.com/snelling-a/nvim/commit/7033ab58825ab8ae17b51e4e9a3b4c818371295e))
+
+
+### Miscellaneous
+
+* update filetype constants ([2dd8ff4](https://github.com/snelling-a/nvim/commit/2dd8ff47efd3795d0369beb386810820b0b24a63))
+* update README ([4e1c6e9](https://github.com/snelling-a/nvim/commit/4e1c6e92c2a783f1d0b611ebf73c865fa294629a))
+
 ## [6.16.0](https://github.com/snelling-a/nvim/compare/v6.15.1...v6.16.0) (2024-01-20)
 
 
