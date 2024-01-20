@@ -7,10 +7,11 @@ M.cmd = "Mason"
 
 M.dependencies = { "williamboman/mason-lspconfig.nvim" }
 
-M.event = { "FileLoaded" }
+M.event = require("util").constants.lazy_event
 
 M.build = { ":MasonUpdate" }
 
+---@type MasonSettings
 M.opts = {
 	ui = {
 		border = "rounded",
@@ -22,10 +23,13 @@ M.opts = {
 	},
 }
 
----@param opts MasonSettings|{ensure_installed: string[]}
+---@param opts MasonOpts
 function M.config(_, opts)
 	require("mason").setup(opts)
-	require("lsp").mason.ensure_installed(opts.ensure_installed)
+
+	require("lsp")--[[@as LSP]]
+		.mason
+		.ensure_installed(opts.ensure_installed)
 
 	require("mason-registry"):on("package:install:success", function()
 		vim.defer_fn(function()
