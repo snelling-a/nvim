@@ -111,7 +111,7 @@ autocmd({ "BufWritePre" }, {
 		if ev.match:match("^%w%w+://") then
 			return
 		end
-		local file = vim.loop.fs_realpath(ev.match) or ev.match
+		local file = vim.uv.fs_realpath(ev.match) or ev.match
 		vim.fn.mkdir(vim.fn.fnamemodify(file, ":p:h"), "p")
 	end,
 	desc = "Auto create dir when saving a file, in case some intermediate directory does not exist",
@@ -164,6 +164,25 @@ autocmd({ "BufWritePost" }, {
 	end,
 	group = M.augroup("Spell"),
 	pattern = "*/spell/*.add",
+})
+
+local timer = vim.uv.new_timer()
+assert(timer, "Timer was not initialized")
+
+autocmd({ "CmdlineLeave" }, {
+	callback = function()
+		local command = vim.fn.expand("<afile>")
+		if command ~= nil and (command == "/" or command == "?") then
+			timer:stop()
+			timer:start(3000, 0, function()
+				timer:stop()
+
+				vim.schedule(function()
+					vim.cmd.nohlsearch()
+				end)
+			end)
+		end
+	end,
 })
 
 return M
