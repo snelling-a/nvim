@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.16.2](https://github.com/snelling-a/nvim/compare/v6.16.1...v6.16.2) (2024-01-20)
+
+
+### Bug Fixes
+
+* **mason:** lazy event/types ([1b13e7b](https://github.com/snelling-a/nvim/commit/1b13e7b3833a73c88891efbe1fb427d777e5d9ec))
+
 ## [6.16.1](https://github.com/snelling-a/nvim/compare/v6.16.0...v6.16.1) (2024-01-20)
 
 
