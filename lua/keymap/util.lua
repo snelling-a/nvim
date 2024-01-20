@@ -3,6 +3,7 @@
 ---@field imap map
 ---@field nmap map
 ---@field omap map
+---@field smap map
 ---@field tmap map
 ---@field vmap map
 ---@field xmap map
@@ -57,6 +58,7 @@ for _, mode in ipairs({
 	"i",
 	"n",
 	"o",
+	"s",
 	"t",
 	"v",
 	"x",
