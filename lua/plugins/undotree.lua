@@ -3,7 +3,9 @@ local desc = "Toggle [u]ndotree"
 ---@type LazySpec
 local M = { "mbbill/undotree" }
 
-M.keys = { "<leader>u", desc = desc }
+M.keys = {
+	{ "<leader>u", desc = desc },
+}
 
 function M.config()
 	require("keymap").nmap("<leader>u", vim.cmd.UndotreeToggle, { desc = desc })

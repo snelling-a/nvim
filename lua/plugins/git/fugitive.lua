@@ -37,7 +37,9 @@ M.cmd = {
 	"Gvdiffsplit",
 }
 
-M.keys = { "<leader>gs", desc = desc }
+M.keys = {
+	{ "<leader>gs", desc = desc },
+}
 
 function M.config()
 	require("keymap").nmap("<leader>gs", function()

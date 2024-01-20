@@ -7,7 +7,9 @@ M.dependencies = { "mason.nvim" }
 
 M.event = require("util").constants.lazy_event
 
-M.keys = { "<leader>cF", mode = { "n", "v" }, desc = "Format Injected Langs" }
+M.keys = {
+	{ "<leader>cF", mode = { "n", "v" }, desc = "Format Injected Langs" },
+}
 
 M.init = function()
 	require("autocmd").on_very_lazy(function()

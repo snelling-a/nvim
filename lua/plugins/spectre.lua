@@ -3,7 +3,9 @@ local desc = "[S]earch and [r]eplace with spectre"
 ---@type LazySpec
 local M = { "nvim-pack/nvim-spectre" }
 
-M.keys = { "<leader>sr", desc = desc }
+M.keys = {
+	{ "<leader>sr", desc = desc },
+}
 
 M.opts = { open_cmd = "noswapfile vnew" }
 

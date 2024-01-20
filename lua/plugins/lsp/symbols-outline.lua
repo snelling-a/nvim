@@ -5,7 +5,9 @@ local M = { "hedyhli/outline.nvim" }
 
 M.cmd = { "Outline", "OutlineOpen" }
 
-M.keys = { "<leader>cs", desc = desc }
+M.keys = {
+	{ "<leader>cs", desc = desc },
+}
 
 function M.config(_, opts)
 	local outline = require("outline")
