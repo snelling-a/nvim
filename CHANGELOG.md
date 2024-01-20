@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.16.0](https://github.com/snelling-a/nvim/compare/v6.15.1...v6.16.0) (2024-01-20)
+
+
+### Features
+
+* **fzf:** add fzf as dependency for bfq ([2d1731f](https://github.com/snelling-a/nvim/commit/2d1731f9c1d65384fed60d43965420d42ff09b48))
+
 ## [6.15.1](https://github.com/snelling-a/nvim/compare/v6.15.0...v6.15.1) (2024-01-20)
 
 
