@@ -1,5 +1,17 @@
 # Changelog
 
+## [6.15.1](https://github.com/snelling-a/nvim/compare/v6.15.0...v6.15.1) (2024-01-20)
+
+
+### Bug Fixes
+
+* **keys:** LazyKeys should be a table of tables ([53f2c63](https://github.com/snelling-a/nvim/commit/53f2c63ef0c2582fd1730b6489432c66717bf10b))
+
+
+### Miscellaneous
+
+* update plugins ([e725d67](https://github.com/snelling-a/nvim/commit/e725d67345f30a5731e63a62a4079fd57342dfd6))
+
 ## [6.15.0](https://github.com/snelling-a/nvim/compare/v6.14.0...v6.15.0) (2024-01-16)
 
 
