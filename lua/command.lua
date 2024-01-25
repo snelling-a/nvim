@@ -147,7 +147,6 @@ vim.api.nvim_create_autocmd({ "User" }, {
 			range = "%",
 		})
 	end,
-
 	group = Autocmd.augroup("Command"),
 	pattern = "SetCommand",
 })
