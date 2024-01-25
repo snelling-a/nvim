@@ -95,16 +95,6 @@ autocmd({ "FileType" }, {
 	pattern = require("util").constants.no_format,
 })
 
-autocmd({ "FileType" }, {
-	callback = function()
-		vim.opt_local.wrap = true
-		vim.opt_local.spell = true
-	end,
-	desc = "Enable wrap and spell in gitcommit and markdown files",
-	group = M.augroup("WrapSpell"),
-	pattern = { "gitcommit", "markdown" },
-})
-
 autocmd({ "BufWritePre" }, {
 	---@param ev Ev
 	callback = function(ev)
