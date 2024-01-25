@@ -3,7 +3,7 @@ local M = { "nvim-treesitter/nvim-treesitter-context" }
 
 M.event = require("util").constants.lazy_event
 
-M.opts = { mode = "cursor" }
+M.opts = { line_numbers = false, mode = "cursor" }
 
 function M.config(_, opts)
 	local ts_context = require("treesitter-context")
