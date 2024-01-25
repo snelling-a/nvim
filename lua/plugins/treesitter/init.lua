@@ -18,7 +18,7 @@ M.dependencies = {
 M.event = require("util").constants.lazy_event
 
 M.keys = {
-	{ "<c-space>", desc = "Increment selection" },
+	{ "v", desc = "Increment selection" },
 	{ "<bs>", desc = "Decrement selection", mode = "x" },
 }
 
@@ -65,8 +65,8 @@ M.opts = {
 	incremental_selection = {
 		enable = true,
 		keymaps = {
-			init_selection = "<C-space>",
-			node_incremental = "<C-space>",
+			init_selection = "<leader>v",
+			node_incremental = "v",
 			scope_incremental = false,
 			node_decremental = "<bs>",
 		},
