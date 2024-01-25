@@ -1,5 +1,17 @@
 # Changelog
 
+## [6.16.3](https://github.com/snelling-a/nvim/compare/v6.16.2...v6.16.3) (2024-01-24)
+
+
+### Bug Fixes
+
+* **keys:** add smap to keymap class ([fd7751d](https://github.com/snelling-a/nvim/commit/fd7751d5e4b1b31433b245efff2f29592c9e0f64))
+
+
+### Miscellaneous
+
+* update plugins ([354f9b2](https://github.com/snelling-a/nvim/commit/354f9b2ff59f5e3b2a98892094a72ea80f180232))
+
 ## [6.16.2](https://github.com/snelling-a/nvim/compare/v6.16.1...v6.16.2) (2024-01-20)
 
 
