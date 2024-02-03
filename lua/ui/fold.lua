@@ -86,7 +86,7 @@ function M.text()
 		return vim.fn.foldtext()
 	end
 
-	table.insert(result, { (" + %d %s "):format(vim.v.foldend - vim.v.foldstart, Icons.l), "Conceal" })
+	table.insert(result, { (" + %d %s "):format(vim.v.foldend - vim.v.foldstart, Icons.l), "TSComment" })
 
 	local result2 = parse_line(vim.v.foldend)
 	if result2 then
