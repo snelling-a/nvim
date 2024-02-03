@@ -17,11 +17,6 @@ M.dependencies = {
 
 M.event = require("util").constants.lazy_event
 
-M.keys = {
-	{ "v", desc = "Increment selection" },
-	{ "<bs>", desc = "Decrement selection", mode = "x" },
-}
-
 ---@type TSConfig
 ---@diagnostic disable-next-line: missing-fields
 M.opts = {
