@@ -1,5 +1,19 @@
 # Changelog
 
+## [6.17.0](https://github.com/snelling-a/nvim/compare/v6.16.3...v6.17.0) (2024-02-03)
+
+
+### Features
+
+* **treesitter:** don't highlight numbers in context ([1b9e124](https://github.com/snelling-a/nvim/commit/1b9e124b22e35b28d53b6cf7731565be18dafbe1))
+* **treesitter:** use v for incremental selection ([63cbfdf](https://github.com/snelling-a/nvim/commit/63cbfdfacf26d7347d1e8a5874353b50d14a83c4))
+
+
+### Miscellaneous
+
+* update plugins ([238527e](https://github.com/snelling-a/nvim/commit/238527e10174afdc179dbdc352c7e9e24362ee41))
+* update plugins ([06870bc](https://github.com/snelling-a/nvim/commit/06870bc0deed7fa402e83ea50b94eae9e2d38d07))
+
 ## [6.16.3](https://github.com/snelling-a/nvim/compare/v6.16.2...v6.16.3) (2024-01-24)
 
 
