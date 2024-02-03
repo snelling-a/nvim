@@ -22,7 +22,6 @@ M.opts = {
 	buffers = { cwd_only = true },
 	files = {
 		previewer = "bat",
-		cwd_prompt = false,
 		fd_opts = "--color=never --type f --hidden --follow --exclude .git --exclude node_modules",
 		fzf_opts = { ["--history"] = ("%s/fzf-lua-files-history"):format(vim.fn.stdpath("data")) },
 	},
@@ -41,32 +40,21 @@ function M.config(_, opts)
 	fzf_lua.setup(opts)
 
 	local Keymap = require("keymap")
+	local leader = Keymap.leader
+	local map = Keymap.nmap
 
-	---@param lhs string
-	---@param rhs function
-	---@param desc string
-	local function leader(lhs, rhs, desc)
-		Keymap.leader(lhs, rhs, { desc = desc })
-	end
-	---@param lhs string
-	---@param rhs function
-	---@param desc string
-	local function map(lhs, rhs, desc)
-		Keymap.nmap(lhs, rhs, { desc = desc })
-	end
-
-	leader(".", fzf_lua.resume, "Resume last fzf query")
-	leader("<space>", fzf_lua.builtin, "Open builtins")
-	leader("<tab>", fzf_lua.keymaps, "Show keymaps")
-	leader("b", fzf_lua.buffers, "Show [b]uffers")
-	leader("fd", fzf_lua.live_grep, "Live grep")
-	leader("ff", fzf_lua.files, "[F]ind [f]iles")
-	leader("fh", fzf_lua.help_tags, "[F]ind [h]elp")
-	leader("ll", fzf_lua.loclist_stack, "Open [l]ocation [l]ist stack")
-	leader("qf", fzf_lua.quickfix_stack, "Open [q]uick[f]ix stack")
-	map("''", fzf_lua.marks, "View marks")
-	map("?", fzf_lua.blines, "Search current buffer")
-	map('""', fzf_lua.registers, "View registers")
+	leader(".", fzf_lua.resume, { desc = "Resume last fzf query" })
+	leader("<space>", fzf_lua.builtin, { desc = "Open builtins" })
+	leader("<tab>", fzf_lua.keymaps, { desc = "Show keymaps" })
+	leader("b", fzf_lua.buffers, { desc = "Show [b]uffers" })
+	leader("fd", fzf_lua.live_grep, { desc = "Live grep" })
+	leader("ff", fzf_lua.files, { desc = "[F]ind [f]iles" })
+	leader("fh", fzf_lua.help_tags, { desc = "[F]ind [h]elp" })
+	leader("ll", fzf_lua.loclist_stack, { desc = "Open [l]ocation [l]ist stack" })
+	leader("qf", fzf_lua.quickfix_stack, { desc = "Open [q]uick[f]ix stack" })
+	map("''", fzf_lua.marks, { desc = "View marks" })
+	map("?", fzf_lua.blines, { desc = "Search current buffer" })
+	map('""', fzf_lua.registers, { desc = "View registers" })
 
 	vim.api.nvim_create_autocmd({ "VimResized" }, {
 		callback = fzf_lua.redraw,
