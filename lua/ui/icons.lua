@@ -62,7 +62,7 @@ M.file = {
 M.fillchars = {
 	diff = "░",
 	eob = " ",
-	fold = "━",
+	fold = " ",
 	foldclose = right,
 	foldopen = down,
 	foldsep = "║",
@@ -184,7 +184,6 @@ M.listchars = {
 }
 
 M.misc = {
-	fold_start = "┣",
 	jira = "󰌃 ",
 	l = "ℓ",
 	leadmultispace = "▏",

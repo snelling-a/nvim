@@ -99,8 +99,6 @@ function M.text()
 		for _, item in ipairs(result2) do
 			table.insert(result, item)
 		end
-
-		table.insert(result, { (" %s"):format(Icons.fold_start) })
 	end
 
 	return result
