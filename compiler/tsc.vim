@@ -7,7 +7,7 @@ let g:current_compiler = "tsc"
 let s:save_cpo = &cpoptions
 set cpoptions&vim
 
-if exists(':CompilerSet') != 2 " older Vim always used :setlocal
+if exists(':CompilerSet') != 2
   command -nargs=* CompilerSet setlocal <args>
 endif
 
