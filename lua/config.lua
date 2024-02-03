@@ -72,6 +72,15 @@ function M.init()
 	end
 
 	Logger.delay_notify()
+
+	vim.api.nvim_create_autocmd("User", {
+		callback = function()
+			local stats = require("lazy").stats()
+			vim.notify_once(("Startup: %d ms"):format(stats.startuptime))
+		end,
+		once = true,
+		pattern = "LazyVimStarted",
+	})
 end
 
 return M
