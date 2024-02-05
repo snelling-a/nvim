@@ -1,5 +1,17 @@
 # Changelog
 
+## [6.18.0](https://github.com/snelling-a/nvim/compare/v6.17.0...v6.18.0) (2024-02-05)
+
+
+### Features
+
+* **lazy:** startup time ([b354529](https://github.com/snelling-a/nvim/commit/b354529a422953058b22a35d4518908629f04d89))
+
+
+### Miscellaneous
+
+* update plugins ([3e8b01a](https://github.com/snelling-a/nvim/commit/3e8b01a70c77f3cd24f889dc11633a14e4ef37e2))
+
 ## [6.17.0](https://github.com/snelling-a/nvim/compare/v6.16.3...v6.17.0) (2024-02-03)
 
 
