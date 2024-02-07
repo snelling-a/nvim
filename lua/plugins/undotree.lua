@@ -8,7 +8,7 @@ M.keys = {
 }
 
 function M.config()
-	require("keymap").nmap("<leader>u", vim.cmd.UndotreeToggle, { desc = desc })
+	require("keymap").leader("u", vim.cmd.UndotreeToggle, { desc = desc })
 
 	vim.g.undotree_SetFocusWhenToggle = 1
 	vim.g.undotree_ShortIndicators = 1
