@@ -234,7 +234,7 @@ function M.table_or_string(args)
 end
 
 --- wrapper around |vim.tbl_extend| that always overwrites existing keys
----@param ... table two or more map-like tables
+---@vararg  table two or more map-like tables
 ---@return table merged
 function M.tbl_extend_force(...)
 	return vim.tbl_extend("force", ...)
