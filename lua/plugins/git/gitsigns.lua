@@ -6,6 +6,7 @@ M.event = require("util").constants.lazy_event
 ---@type Gitsigns.Config
 ---@diagnostic disable-next-line: missing-fields
 M.opts = {
+	attach_to_untracked = true,
 	current_line_blame = true,
 	on_attach = function(bufnr)
 		local gs = package.loaded.gitsigns
