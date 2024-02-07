@@ -1,4 +1,4 @@
-local Icons = require("ui.icons").misc
+local Icons = require("ui").icons.misc
 
 local function parse_line(linenr)
 	local bufnr = vim.api.nvim_get_current_buf()
