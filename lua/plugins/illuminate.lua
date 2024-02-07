@@ -4,7 +4,6 @@ local M = { "RRethy/vim-illuminate" }
 M.event = require("util").constants.lazy_event
 
 M.opts = {
-	delay = 200,
 	large_file_cutoff = 2000,
 	large_file_overrides = {
 		providers = { "lsp" },
@@ -20,11 +19,14 @@ M.keys = {
 function M.config(_, opts)
 	require("illuminate").configure(opts)
 
-	local function map(key, dir, buffer)
+	---@param lhs "]]"|"[[""
+	---@param dir "next"|"prev"
+	---@param buffer integer?
+	local function map(lhs, dir, buffer)
 		local method = ("goto_%s_reference"):format(dir)
-		local desc = ("%s%s Reference"):format(dir:sub(1, 1):upper(), dir:sub(2))
+		local desc = ("Go to %s Reference"):format(dir)
 
-		vim.keymap.set("n", key, function()
+		require("keymap").nmap(lhs, function()
 			require("illuminate")[method](false)
 		end, { desc = desc, buffer = buffer })
 	end
