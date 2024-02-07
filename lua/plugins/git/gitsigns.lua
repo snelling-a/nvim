@@ -9,31 +9,57 @@ M.opts = {
 	current_line_blame = true,
 	on_attach = function(bufnr)
 		local gs = package.loaded.gitsigns
+		local Keymap = require("keymap")
 
-		---@param lhs string
-		---@param rhs string|function
-		---@param desc string
-		---@param mode VimMode?
-		local function map(lhs, rhs, desc, mode)
-			require("keymap").map(mode or "n", lhs, rhs, { buffer = bufnr, desc = desc })
+		local function map(lhs, rhs, opts, mode)
+			opts = opts or {}
+
+			opts.buffer = bufnr
+			Keymap.leader(lhs, rhs, opts, mode)
 		end
 
-		map("<leader>hD", function()
+		Keymap.nmap("[h", function()
+			if vim.wo.diff then
+				return "[h"
+			end
+			vim.schedule(function()
+				gs.prev_hunk()
+			end)
+			return "<Ignore>"
+		end, { desc = "Prev [H]unk", expr = true })
+		Keymap.nmap("]h", function()
+			if vim.wo.diff then
+				return "]h"
+			end
+			vim.schedule(function()
+				gs.next_hunk()
+			end)
+			return "<Ignore>"
+		end, { desc = "Next [H]unk", expr = true })
+
+		map("hD", function()
 			gs.diffthis("~")
-		end, "Diff This ~")
-		map("<leader>hR", gs.reset_buffer, "Reset Buffer")
-		map("<leader>hS", gs.stage_buffer, "Stage Buffer")
-		map("<leader>hb", function()
+		end, { desc = "[D]iff this buffer" })
+		map("hP", gs.preview_hunk, { desc = "[P]review [H]unk" })
+		map("hR", gs.reset_buffer, { desc = "[R]eset Buffer" })
+		map("hS", gs.stage_buffer, { desc = "[S]tage Buffer" })
+		map("hb", function()
 			gs.blame_line({ full = true })
-		end, "Blame Line")
-		map("<leader>hd", gs.diffthis, "Diff This")
-		map("<leader>hp", gs.preview_hunk, "Preview Hunk")
-		map("<leader>hu", gs.undo_stage_hunk, "Undo Stage Hunk")
-		map("[h", gs.prev_hunk, "Prev Hunk")
-		map("]h", gs.next_hunk, "Next Hunk")
-		map("<leader>hr", ":Gitsigns reset_hunk<CR>", "Reset Hunk", { "n", "v" })
-		map("<leader>hs", ":Gitsigns stage_hunk<CR>", "Stage Hunk", { "n", "v" })
-		map("ih", ":<C-U>Gitsigns select_hunk<CR>", "GitSigns Select Hunk", { "n", "v" })
+		end, { desc = "Show full [B]lame" })
+		map("hd", gs.diffthis, { desc = "[D]iff this" })
+		map("hp", gs.preview_hunk_inline, { desc = "[P]review [H]unk inline" })
+		map("hr", function()
+			gs.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
+		end, { desc = "[R]eset [H]unk" }, "v")
+		map("hr", gs.reset_hunk, { desc = "[R]eset [H]unk" })
+		map("hs", function()
+			gs.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
+		end, { desc = "[S]tage [H]unk" }, "v")
+		map("hs", gs.stage_hunk, { desc = "[S]tage [H]unk" })
+		map("hu", gs.undo_stage_hunk, { desc = "[U]ndo [S]tage Hunk" })
+		map("ih", ":<C-U>Gitsigns select_hunk<CR>", { desc = "[H]unk text object" }, { "o", "x" })
+		map("tb", gs.toggle_current_line_blame, { desc = "[T]oggle current line blame" })
+		map("td", gs.toggle_deleted)
 	end,
 	preview_config = { border = "rounded" },
 	signs = require("ui.icons").gitsigns,
