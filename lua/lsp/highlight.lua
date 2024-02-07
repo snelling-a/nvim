@@ -42,6 +42,7 @@ function M.enhanced_float_handler(handler, focusable)
 			result,
 			ctx,
 			require("util").tbl_extend_force(config or {}, {
+				anchor_bias = "above",
 				border = "rounded",
 				focusable = focusable,
 				max_height = math.floor(vim.o.lines * 0.5),
