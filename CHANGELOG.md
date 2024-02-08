@@ -1,5 +1,17 @@
 # Changelog
 
+## [6.19.0](https://github.com/snelling-a/nvim/compare/v6.18.0...v6.19.0) (2024-02-07)
+
+
+### Features
+
+* **lsp:** force floating window above cursor ([6960902](https://github.com/snelling-a/nvim/commit/6960902ee0f00c30a2d29630923c721e4d5e6898))
+
+
+### Miscellaneous
+
+* **gitsigns:** set attach_to_untracked = true ([dc993df](https://github.com/snelling-a/nvim/commit/dc993dfa662ad2f82c862cd7c384c452158cb71a))
+
 ## [6.18.0](https://github.com/snelling-a/nvim/compare/v6.17.0...v6.18.0) (2024-02-05)
 
 
