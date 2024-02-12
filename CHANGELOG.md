@@ -1,5 +1,22 @@
 # Changelog
 
+## [6.20.0](https://github.com/snelling-a/nvim/compare/v6.19.0...v6.20.0) (2024-02-12)
+
+
+### Features
+
+* **indentscope:** remove try_as_border ([65b59d6](https://github.com/snelling-a/nvim/commit/65b59d6327e96af03986de5e4b1d59ccb064a84f))
+
+
+### Bug Fixes
+
+* **lsp:** server type in setup_language ([1c6270e](https://github.com/snelling-a/nvim/commit/1c6270e91935e977ef7d2844645dc8f76ddd1071))
+
+
+### Miscellaneous
+
+* update plugins ([0414ab4](https://github.com/snelling-a/nvim/commit/0414ab490e6b33f2e2e20175297cf09ba2fdcfb7))
+
 ## [6.19.0](https://github.com/snelling-a/nvim/compare/v6.18.0...v6.19.0) (2024-02-07)
 
 
