@@ -15,6 +15,7 @@ M.opts = {
 	},
 }
 
+---@type LazySpec[]
 return {
 	M,
 	{
@@ -23,13 +24,18 @@ return {
 	},
 	{
 		"numToStr/Comment.nvim",
-		opts = {},
+		opts = {
+			extra = { eol = "gca" },
+			opleader = { line = nil },
+			toggler = { line = nil },
+		},
 		keys = {
 			{
 				"gb",
 				mode = { "n", "v" },
 				desc = "To[g]gle [b]lock comment",
 			},
+			{ "gca", desc = "[A]dd [c]omment at the end of the line" },
 		},
 	},
 }
