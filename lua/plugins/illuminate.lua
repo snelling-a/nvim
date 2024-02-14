@@ -4,6 +4,7 @@ local M = { "RRethy/vim-illuminate" }
 M.event = require("util").constants.lazy_event
 
 M.opts = {
+	filetypes_denylist = require("util").constants.no_format,
 	large_file_cutoff = 2000,
 	large_file_overrides = {
 		providers = { "lsp" },
