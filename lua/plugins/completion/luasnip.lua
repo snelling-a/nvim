@@ -33,6 +33,7 @@ function M.config(_, opts)
 	local luasnip = require("luasnip")
 	luasnip.setup(opts)
 	local Keymap = require("keymap")
+	local AutoCmd = require("autocmd")
 
 	for _, type in pairs({ "vscode", "lua" }) do
 		require(("luasnip.loaders.from_%s"):format(type)).lazy_load()
@@ -56,8 +57,22 @@ function M.config(_, opts)
 			vim.b.copilot_suggestion_hidden = not trigger
 		end,
 		desc = "Disable Copilot suggestions when Luasnip is active",
-		group = require("autocmd").augroup("CopilotSnippetSuggestions"),
+		group = AutoCmd.augroup("CopilotSnippetSuggestions"),
 		pattern = { "LuasnipInsertNodeEnter", "LuasnipInsertNodeLeave" },
+	})
+
+	vim.api.nvim_create_autocmd({ "ModeChanged" }, {
+		callback = function()
+			if
+				((vim.v.event.old_mode == "s" and vim.v.event.new_mode == "n") or vim.v.event.old_mode == "i")
+				and require("luasnip").session.current_nodes[vim.api.nvim_get_current_buf()]
+				and not require("luasnip").session.jump_active
+			then
+				require("luasnip").unlink_current()
+			end
+		end,
+		group = AutoCmd.augroup("LuasnipModeChanged"),
+		pattern = "*",
 	})
 end
 
