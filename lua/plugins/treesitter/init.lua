@@ -92,11 +92,13 @@ function M.config(_, opts)
 			if added[lang] then
 				return false
 			end
+
 			added[lang] = true
+
 			return true
-			---@diagnostic disable-next-line: param-type-mismatch
-		end, opts.ensure_installed)
+		end, opts.ensure_installed --[[@as table]])
 	end
+
 	require("nvim-treesitter.configs").setup(opts)
 end
 
