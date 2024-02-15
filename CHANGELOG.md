@@ -1,5 +1,17 @@
 # Changelog
 
+## [6.21.0](https://github.com/snelling-a/nvim/compare/v6.20.0...v6.21.0) (2024-02-15)
+
+
+### Features
+
+* **comment:** add mapping for comment at eol ([c4d71f4](https://github.com/snelling-a/nvim/commit/c4d71f45cde51673e5bcf9962e59f3f0bf15ce69))
+
+
+### Miscellaneous
+
+* update plugins ([4723a49](https://github.com/snelling-a/nvim/commit/4723a493c7793b1f0e30ad2b7645f6b9ec8ad845))
+
 ## [6.20.0](https://github.com/snelling-a/nvim/compare/v6.19.0...v6.20.0) (2024-02-12)
 
 
