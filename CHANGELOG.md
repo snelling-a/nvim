@@ -1,5 +1,18 @@
 # Changelog
 
+## [6.21.1](https://github.com/snelling-a/nvim/compare/v6.21.0...v6.21.1) (2024-02-19)
+
+
+### Bug Fixes
+
+* **statusline:** git component ([ff16e32](https://github.com/snelling-a/nvim/commit/ff16e32c7d2391e1d4cd482dda0f8e6d198c4a77))
+
+
+### Miscellaneous
+
+* reimpliment recording after api change ([45ad988](https://github.com/snelling-a/nvim/commit/45ad988100bf51228900c7e7b88e5bd085c25b28))
+* update plugins ([9f745ac](https://github.com/snelling-a/nvim/commit/9f745acffa8d7b1afff2a410f763f7746a0aa75f))
+
 ## [6.21.0](https://github.com/snelling-a/nvim/compare/v6.20.0...v6.21.0) (2024-02-15)
 
 
