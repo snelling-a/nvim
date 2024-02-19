@@ -1,7 +1,7 @@
 local opt = vim.opt_local
 
 opt.cursorcolumn = true
-opt.conceallevel = 1
+opt.conceallevel = 3
 opt.cursorlineopt = "number"
 
 vim.api.nvim_create_user_command("SortJSON", function()

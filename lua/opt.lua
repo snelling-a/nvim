@@ -12,7 +12,6 @@ opt.complete:append({ "k", "s" })
 opt.complete:remove({ "t" })
 opt.completeopt = { "menu", "menuone", "noselect" }
 opt.concealcursor = "nc"
-opt.conceallevel = 3
 opt.confirm = true
 opt.cpoptions:append("l")
 opt.diffopt:append({ "hiddenoff", "vertical" })
