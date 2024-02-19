@@ -1,11 +1,11 @@
 local Icons = require("ui.icons")
 local Util = require("ui.status.line.util")
 
----@param branch string
+---@param branch string|nil
 ---@return string|nil 'branch or jira tag'
 ---@return string|nil icon
 local function get_jira_tag(branch)
-	local tag = branch:match("%w%w+-%d+") --[[@as string|nil]]
+	local tag = branch and branch:match("%w%w+-%d+") --[[@as string|nil]]
 	local icon = tag and Icons.misc.jira or nil
 
 	return tag, icon
@@ -14,16 +14,19 @@ end
 local function get_branch()
 	local icon = Icons.git.git
 	local name = "StatusRed"
-	local branch = (vim.b.gitsigns_head or vim.g.gitsigns_head) or "" --[[@as string]]
+	local branch = (vim.b.gitsigns_head or vim.g.gitsigns_head) or nil --[[@as string|nil]]
 
-	local ret = {
-		" ",
+	if not branch then
+		return ""
+	end
+
+	local component = {
 		Util.hl(name),
 		icon,
 	}
 
 	if branch == "master" or branch == "main" then
-		return table.concat(ret, "")
+		return table.concat(component, "")
 	end
 
 	local jira_tag, jira_icon = get_jira_tag(branch)
@@ -36,9 +39,9 @@ local function get_branch()
 		}, " ")
 	end
 
-	table.insert(ret, branch)
+	table.insert(component, branch)
 
-	return table.concat(ret, "")
+	return table.concat(component, " ")
 end
 
 ---@param count number
