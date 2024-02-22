@@ -18,15 +18,19 @@ function M:init(opts)
 	return self
 end
 
-function M:get_capabilities()
+function M.get_capabilities()
 	local ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
 
 	return tbl_extend_force(
-		{},
 		vim.lsp.protocol.make_client_capabilities(),
 		ok and cmp_nvim_lsp.default_capabilities() or {},
-		{ workspace = { didChangeWatchedFiles = { dynamicRegistration = false } } },
-		self.opts.capabilities or {}
+		{
+			workspace = {
+				didChangeWatchedFiles = {
+					dynamicRegistration = false,
+				},
+			},
+		}
 	)
 end
 
@@ -37,7 +41,7 @@ end
 ---@param server string server name
 function M:setup(server)
 	local server_opts = tbl_extend_force({
-		capabilities = vim.deepcopy(self:get_capabilities() or {}),
+		capabilities = vim.deepcopy(M:get_capabilities() or {}),
 	}, self.servers[server] or {})
 
 	if self.opts.setup[server] then
