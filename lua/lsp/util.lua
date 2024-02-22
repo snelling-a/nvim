@@ -3,6 +3,24 @@ local Util = require("util")
 ---@class lsp.util
 local M = {}
 
+---@param method string vim.lsp.protocol.Method
+---@param client lsp.Client
+---@param bufnr integer?
+function M.client_supports_method(method, client, bufnr)
+	bufnr = bufnr or vim.api.nvim_get_current_buf()
+	local opts = { bufnr = bufnr }
+	if client then
+		return client.supports_method(method, { bufnr = bufnr })
+	end
+
+	local clients = M.get_clients(opts)
+
+	for _, c in ipairs(clients) do
+		if c.supports_method(method, opts) then
+			return true
+		end
+	end
+end
 ---@param server string
 ---@param cond fun(root_dir, config): boolean
 function M.disable(server, cond)
