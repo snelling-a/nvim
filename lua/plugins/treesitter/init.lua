@@ -102,4 +102,9 @@ function M.config(_, opts)
 	require("nvim-treesitter.configs").setup(opts)
 end
 
+function M.init(plugin)
+	require("lazy.core.loader").add_to_rtp(plugin)
+	require("nvim-treesitter.query_predicates")
+end
+
 return M
