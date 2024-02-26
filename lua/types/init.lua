@@ -132,7 +132,7 @@
 ---@field icons ui.icons
 
 ---@alias E {bufnr: integer, col: integer, lnum: integer, text: string, type: string, valid: integer}
----@alias Sign {name: string, text: string, texthl: string, priority: number}
+---@alias Sign {name: string, text?: string, texthl?: string, priority: number}
 
 ---@alias What
 ---| "fg" foreground color (GUI: color name used to set the color, cterm: color number as string, term: empty string)
