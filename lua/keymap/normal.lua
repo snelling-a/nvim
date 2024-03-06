@@ -64,6 +64,3 @@ map("k", function()
 end, { desc = "Move to previous visual line", expr = true, noremap = true })
 
 map("z<CR>", "zt", { desc = "Redraw, line at top of window. Leave the cursor in the same column." })
-
--- nnoremap Q @q<CR>
--- xnoremap Q :norm @q<CR>
