@@ -1,5 +1,17 @@
 # Changelog
 
+## [6.21.3](https://github.com/snelling-a/nvim/compare/v6.21.2...v6.21.3) (2024-04-16)
+
+
+### Miscellaneous
+
+* update plugins ([6f92edc](https://github.com/snelling-a/nvim/commit/6f92edcf960dd37df68a372077d4e411d6bcbafe))
+* update plugins ([50e0ee6](https://github.com/snelling-a/nvim/commit/50e0ee697a782306de90a8b817015204d96266c3))
+* update plugins ([692db78](https://github.com/snelling-a/nvim/commit/692db78f252eef1b95233782217de7206eef21d9))
+* update plugins ([d5eee1a](https://github.com/snelling-a/nvim/commit/d5eee1ac48f9d7f30ab350a15b4ab03a569d283a))
+* update plugins ([673d00d](https://github.com/snelling-a/nvim/commit/673d00dde84684abbacab9e0dbd041f810274f2d))
+* update plugins ([24cfded](https://github.com/snelling-a/nvim/commit/24cfded3eed2d43eca9ff9e668adada26ad938ca))
+
 ## [6.21.2](https://github.com/snelling-a/nvim/compare/v6.21.1...v6.21.2) (2024-02-26)
 
 
