@@ -1,6 +1,4 @@
--- vim:filetype=lua
-
-files["lua/types/*"] = {
-	ignore = { "631" },
+---@diagnostic disable: lowercase-global
+globals = {
+	"vim",
 }
-globals = { "vim" }

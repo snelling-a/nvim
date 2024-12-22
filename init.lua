@@ -1,19 +1,49 @@
-if vim.fn.has("nvim-0.9.0") == 0 then
-	vim.api.nvim_echo({
-		{ "Neovim version >= 0.9.0 required\n", "ErrorMsg" },
-		{ "Press any key to exit", "MoreMsg" },
-	}, true, {})
-	vim.fn.getchar()
-	vim.cmd([[quit]])
-	return {}
-end
+vim.loader.enable()
 
-if vim.fn.has("nvim-0.10.0") == 0 then
-	vim.api.nvim_echo({
-		{ "Neovim version >= 0.10.0 recommended\nCompatabiliy should be in place\n", "WarningMsg" },
-		{ "You have been warned\n", "WarningMsg" },
-		{ "Press any key to continue", "MoreMsg" },
-	}, true, {})
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.uv.fs_stat(lazypath) then
+	vim.fn.system({
+		"git",
+		"clone",
+		"--filter=blob:none",
+		"--branch=stable",
+		"https://github.com/folke/lazy.nvim.git",
+		lazypath,
+	})
 end
+vim.opt.rtp:prepend(lazypath)
 
-require("config").setup()
+---@type LazyConfig
+local spec = {
+	spec = {
+	},
+	dev = { path = "~/dev/github.com/snelling-a/" },
+	change_detection = { enabled = true, notify = false },
+	checker = { enabled = true, notify = false },
+	performance = {
+		rtp = {
+			disabled_plugins = {
+				"gzip",
+				"netrwPlugin",
+				"tarPlugin",
+				"tohtml",
+				"tutor",
+				"zipPlugin",
+				-- "matchit",
+				-- "matchparen",
+			},
+			reset = false,
+		},
+	},
+	profiling = { loader = true, require = true },
+	ui = { border = "rounded" },
+}
+
+local okay, Event = pcall(require, "lazy.core.handler.event")
+if not okay then
+	vim.notify("Lazy.nvim: " .. Event, vim.log.levels.ERROR)
+end
+Event.mappings.LazyFile = { id = "LazyFile", event = { "BufReadPost", "BufNewFile", "BufWritePre" } }
+Event.mappings["User LazyFile"] = Event.mappings.LazyFile
+
+require("lazy").setup(spec)
