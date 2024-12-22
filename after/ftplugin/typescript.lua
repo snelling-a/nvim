@@ -1,6 +1,4 @@
-local opt = vim.opt_local
-
-opt.wildignore:append({
+vim.opt_local.wildignore:append({
 	"**/build/**",
 	"**/coverage/**",
 	"**/dist/**",
@@ -11,13 +9,4 @@ opt.wildignore:append({
 
 if vim.fn.executable("tsc") then
 	vim.cmd.compiler("tsc")
-
-	require("keymap").leader("tt", function()
-		vim.cmd.make()
-		vim.cmd.redraw({
-			bang = true,
-		})
-	end, {
-		desc = ":make tsc",
-	})
 end

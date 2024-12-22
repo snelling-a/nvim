@@ -1,55 +1,27 @@
-local Keymap = require("keymap")
-
-local opt = vim.opt_local
-
-opt.keywordprg = ":vertical help"
-opt.number = true
-opt.numberwidth = 1
-opt.relativenumber = true
-opt.statuscolumn = require("ui.status.column").basic
+vim.opt_local.number = true
+vim.opt_local.numberwidth = 1
+vim.opt_local.relativenumber = true
 
 local bufnr = vim.api.nvim_get_current_buf()
 
----@param lhs string
----@param rhs string|function
----@param desc string
-local function map(lhs, rhs, desc)
-	Keymap.nmap(lhs, rhs, { buffer = bufnr, desc = desc })
-end
+local map = Config.keymap("Help")
 
-map("<CR>", "<C-]>", "Go to definition")
-map("]t", "ta", "Go to next tag")
-map("[t", "<C-t>", "Go to prev tag")
-
-map("ht", function()
+map({ "n" }, "<CR>", "<C-]>", { buffer = bufnr, desc = "Jump to the definition of the keyword under the cursor." })
+map({ "n" }, "ht", function()
 	vim.cmd.lvimgrep("/\\v.*\\*\\S+\\*$/j %")
 	vim.cmd.lopen()
+end, { buffer = bufnr, desc = "Helptags to location-list" })
 
-	if not require("bqf.preview.handler").hideWindow() then
-		vim.cmd.normal("P")
-	end
-end, "Helptags to quickfix")
-
----@param lhs string
----@param rhs string
----@param item string
+---@param lhs string Left-hand side |{lhs}| of the mapping.
+---@param rhs string Right-hand side |{rhs}| of the mapping
+---@param item string Search item
 local function search_map(lhs, rhs, item)
-	Keymap.unimpaired(lhs, {
-		left = function()
-			vim.fn.search(rhs, "wb")
-			Keymap.center.scroll()
-		end,
-		right = function()
-			vim.fn.search(rhs, "w")
-			Keymap.center.scroll()
-		end,
-	}, {
-		base = "",
-		text = {
-			left = ("Previous %s"):format(item),
-			right = ("Next %s"):format(item),
-		},
-	}, { buffer = bufnr })
+	map({ "n" }, "[" .. lhs, function()
+		vim.fn.search(rhs, "wb")
+	end, { buffer = bufnr, desc = "Previous" .. item })
+	map({ "n" }, "]" .. lhs, function()
+		vim.fn.search(rhs, "w")
+	end, { buffer = bufnr, desc = "Next" .. item })
 end
 
 search_map("L", "|\\S\\{-}|", "|link|")

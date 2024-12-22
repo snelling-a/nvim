@@ -1,7 +1,4 @@
-local opt = vim.opt_local
-
-opt.colorcolumn = "120"
-opt.keywordprg = ":vertical help"
+vim.opt_local.colorcolumn = "120"
 
 if vim.fn.executable("luacheck") then
 	vim.cmd.compiler("luacheck")

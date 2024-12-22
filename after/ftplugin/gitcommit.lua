@@ -1,6 +1,7 @@
-local opt = vim.opt_local
+vim.opt_local.colorcolumn = "50,72"
+vim.opt_local.spell = true
+vim.opt_local.textwidth = 72
 
-opt.colorcolumn = "50,72"
-opt.spell = true
-opt.textwidth = 72
 vim.bo.undofile = false
+
+vim.cmd.startinsert()
