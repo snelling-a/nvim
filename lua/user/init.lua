@@ -1,8 +1,11 @@
 ---@class Config
+---@field autocmd user.Autocmd
 ---@field icons user.Icons
+---@field util user.Util
 local M = {}
 function M.setup()
 	require("user.opt")
+	require("user.autocmd")
 end
 
 return setmetatable(M, {
