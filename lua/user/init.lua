@@ -1,10 +1,12 @@
 ---@class Config
 ---@field autocmd user.Autocmd
+---@field keymap user.Keymap
 ---@field icons user.Icons
 ---@field util user.Util
 local M = {}
 function M.setup()
 	require("user.opt")
+	require("user.keymap")
 	require("user.autocmd")
 	require("user.command")
 end
