@@ -1,6 +1,15 @@
 ---@class user.Util
 local M = {}
 
+-- capitalize the first letter of a string
+---@param str string Input string
+---@return string # Input string with the first letter capitalized
+function M.capitalize_first_letter(str)
+	return str:sub(1, 1):upper() .. str:gsub("^%u(.*)", function(rest)
+		return rest:lower()
+	end)
+end
+
 ---@param bufnr integer
 function M.easy_quit(bufnr)
 	vim.bo[bufnr].buflisted = false
@@ -15,6 +24,20 @@ function M.easy_quit(bufnr)
 
 		vim.cmd.wincmd("p")
 	end, { buffer = bufnr, desc = "Quit Buffer" })
+end
+
+-- Get the path to the Node.js executable.
+function M.get_node_path()
+	local result = vim.fn.system("which node")
+
+	result = result:gsub("\r\n$", ""):gsub("\n$", "")
+
+	if vim.v.shell_error ~= 0 then
+		vim.notify("Error: Could not find Node.js path.")
+		return nil
+	end
+
+	return result
 end
 
 ---@param bufnr integer

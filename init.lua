@@ -19,6 +19,7 @@ vim.opt.rtp:prepend(lazypath)
 ---@type LazyConfig
 local spec = {
 	spec = {
+		{ import = "plugins" },
 	},
 	dev = { path = "~/dev/github.com/snelling-a/" },
 	change_detection = { enabled = true, notify = false },

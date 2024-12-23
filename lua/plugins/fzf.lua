@@ -1,67 +1,69 @@
 ---@type LazySpec
-local M = { "ibhagwan/fzf-lua" }
+return {
+	"ibhagwan/fzf-lua",
+	cmd = { "FzfLua" },
+	event = { "VeryLazy" },
+	keys = {
+		{ '<leader>"', desc = "Fzf registers" },
+		{ "<leader>'", desc = "Fzf marks" },
+		{ "<leader>.", desc = "Fzf resume" },
+		{ "<leader>fb", desc = "Fzf: Find buffers" },
+		{ "<leader>fc", desc = "Fzf: Find colorschemes" },
+		{ "<leader>ff", desc = "Fzf: Find files" },
+		{ "<leader>fg", desc = "Fzf: Find live_grep" },
+		{ "<leader>fh", desc = "Fzf: Find helptags" },
+		{ "<leader>fk", desc = "Fzf: Find keymaps" },
+		{ "<leader>fl", desc = "Fzf: Find loclist" },
+		{ "<leader>fo", desc = "Fzf: Find oldfiles" },
+		{ "<leader>fq", desc = "Fzf: Find quickfix" },
+		{ "<leader>frG", desc = "Fzf: Find grep_cWORD" },
+		{ "<leader>frg", desc = "Fzf: Find grep_cword", mode = { "n", "x" } },
+		{ "<leader>ft", desc = "Fzf: Find tabs" },
+		{ "<leader>hl", desc = "Fzf highlights" },
+	},
+	config = function()
+		local fzf = require("fzf-lua")
 
-M.cmd = { "FzfLua", "GH" }
+		local image_previewer = { "chafa", "--format", "symbols" }
 
-M.dependencies = { "nvim-tree/nvim-web-devicons" }
+		fzf.setup({
+			files = {
+				fzf_opts = {
+					["--history"] = vim.fn.stdpath("data") .. "/fzf-lua-files-history",
+				},
+				fd_opts = [[--color=never --type f --hidden --no-ignore-vcs]],
+			},
+			grep = {
+				fzf_opts = { ["--history"] = vim.fn.stdpath("data") .. "/fzf-lua-grep-history" },
+			},
+			previewers = {
+				builtin = {
+					extensions = { ["png"] = image_previewer, ["jpg"] = image_previewer, ["svg"] = image_previewer },
+					treesitter = { enabled = true },
+				},
+			},
+		})
 
-M.keys = {
-	"<leader>ff",
-	"<leader>fd",
-	"<leader><space>",
-	"<leader><tab>",
-	"<leader>b",
-	"<leader>fh",
-	"<leader>qf",
-	"?",
-	"''",
-	'""',
+		local map = Config.keymap("FzfLua")
+
+		map({ "n" }, "<leader>fb", fzf.buffers, { desc = "find buffers" })
+		map({ "n" }, "<leader>fc", fzf.colorschemes, { desc = "find colorschemes" })
+		map({ "n", "v", "i" }, "<C-x><C-f>", fzf.complete_path, { desc = "fuzzy complete path" })
+		map({ "n" }, "<leader>ff", fzf.files, { desc = "find files" })
+		map({ "n" }, "<leader>frG", fzf.grep_cWORD, { desc = "find grep_cWORD" })
+		map({ "n" }, "<leader>frg", fzf.grep_cword, { desc = "find grep_cword" })
+		map({ "n" }, "<leader>fh", fzf.helptags, { desc = "find helptags" })
+		map({ "n" }, "<leader>hl", fzf.highlights, { desc = "highlights" })
+		map({ "n" }, "<leader>fk", fzf.keymaps, { desc = "find keymaps" })
+		map({ "n" }, "<leader>fg", fzf.live_grep, { desc = "find live_grep" })
+		map({ "n" }, "<leader>fl", fzf.loclist, { desc = "find loclist" })
+		map({ "n" }, "<leader>'", fzf.marks, { desc = "marks" })
+		map({ "n" }, "<leader>fo", fzf.oldfiles, { desc = "find oldfiles" })
+		map({ "n" }, "<leader>fq", fzf.quickfix, { desc = "find quickfix" })
+		map({ "n" }, '<leader>"', fzf.registers, { desc = "registers" })
+		map({ "n" }, "<leader>.", fzf.resume, { desc = "resume" })
+		map({ "n" }, "<leader>ft", fzf.tabs, { desc = "find tabs" })
+
+		fzf.register_ui_select()
+	end,
 }
-
-M.opts = {
-	buffers = { cwd_only = true },
-	files = {
-		previewer = "bat",
-		fd_opts = "--color=never --type f --hidden --follow --exclude .git --exclude node_modules",
-		fzf_opts = { ["--history"] = ("%s/fzf-lua-files-history"):format(vim.fn.stdpath("data")) },
-	},
-	grep = {
-		fzf_opts = { ["--history"] = ("%s/fzf-lua-grep-history"):format(vim.fn.stdpath("data")) },
-	},
-	keymap = {
-		fzf = { ["alt-a"] = "select-all+accept" },
-	},
-	oldfiles = { cwd_only = true },
-}
-
-function M.config(_, opts)
-	local fzf_lua = require("fzf-lua")
-
-	fzf_lua.setup(opts)
-
-	local Keymap = require("keymap")
-	local leader = Keymap.leader
-	local map = Keymap.nmap
-
-	leader(".", fzf_lua.resume, { desc = "Resume last fzf query" })
-	leader("<space>", fzf_lua.builtin, { desc = "Open builtins" })
-	leader("<tab>", fzf_lua.keymaps, { desc = "Show keymaps" })
-	leader("b", fzf_lua.buffers, { desc = "Show [b]uffers" })
-	leader("fd", fzf_lua.live_grep, { desc = "Live grep" })
-	leader("ff", fzf_lua.files, { desc = "[F]ind [f]iles" })
-	leader("fh", fzf_lua.help_tags, { desc = "[F]ind [h]elp" })
-	leader("ll", fzf_lua.loclist_stack, { desc = "Open [l]ocation [l]ist stack" })
-	leader("qf", fzf_lua.quickfix_stack, { desc = "Open [q]uick[f]ix stack" })
-	map("''", fzf_lua.marks, { desc = "View marks" })
-	map("?", fzf_lua.blines, { desc = "Search current buffer" })
-	map('""', fzf_lua.registers, { desc = "View registers" })
-
-	vim.api.nvim_create_autocmd({ "VimResized" }, {
-		callback = fzf_lua.redraw,
-		desc = "Resize FzfLua when window resizes",
-		group = require("autocmd").augroup("FzfLuaResize"),
-		pattern = "*",
-	})
-end
-
-return M

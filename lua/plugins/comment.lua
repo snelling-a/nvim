@@ -1,41 +1,36 @@
 ---@type LazySpec
-local M = { "echasnovski/mini.comment" }
-
-M.keys = {
-	{ "gcc", desc = "Comment line" },
-	{ "gc", mode = { "x" }, desc = "Comment selection" },
-	{ "gc", mode = { "n", "o" }, desc = "Comment textobject" },
-}
-
-M.opts = {
-	options = {
-		custom_commentstring = function()
-			return require("ts_context_commentstring.internal").calculate_commentstring() or vim.bo.commentstring
-		end,
-	},
-}
-
----@type LazySpec[]
 return {
-	M,
-	{
-		"JoosepAlviste/nvim-ts-context-commentstring",
-		opts = { enable_autocmd = false },
-	},
-	{
-		"numToStr/Comment.nvim",
-		opts = {
-			extra = { eol = "gca" },
-			opleader = { line = nil },
-			toggler = { line = nil },
-		},
-		keys = {
-			{
-				"gb",
-				mode = { "n", "v" },
-				desc = "To[g]gle [b]lock comment",
+	"JoosepAlviste/nvim-ts-context-commentstring",
+	dependencies = {
+		{
+			"numToStr/Comment.nvim",
+			keys = {
+				{
+					"gb",
+					mode = { "n", "v" },
+					desc = "To[g]gle [b]lock comment",
+				},
 			},
-			{ "gca", desc = "[A]dd [c]omment at the end of the line" },
+			---@type CommentConfig
+			---@diagnostic disable-next-line: missing-fields
+			opts = {
+				---@diagnostic disable-next-line: missing-fields, assign-type-mismatch
+				toggler = { line = nil },
+				---@diagnostic disable-next-line: missing-fields
+				opleader = { line = "nil" },
+				---@diagnostic disable-next-line: missing-fields
+				mappings = { extra = false },
+			},
 		},
 	},
+	config = function()
+		require("ts_context_commentstring").setup({ enable_autocmd = false })
+
+		local get_option = vim.filetype.get_option
+		---@diagnostic disable-next-line: duplicate-set-field
+		vim.filetype.get_option = function(filetype, option)
+			return option == "commentstring" and require("ts_context_commentstring.internal").calculate_commentstring()
+				or get_option(filetype, option)
+		end
+	end,
 }

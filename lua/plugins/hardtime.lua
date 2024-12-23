@@ -1,20 +1,18 @@
-local Util = require("util")
-
 ---@type LazySpec
-local M = { "m4xshen/hardtime.nvim" }
-
-M.cond = Util.is_vim()
-
-M.dependencies = {
-	"MunifTanjim/nui.nvim",
-	"nvim-lua/plenary.nvim",
+return {
+	"m4xshen/hardtime.nvim",
+	dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
+	event = { "LazyFile" },
+	config = function()
+		require("hardtime").setup({
+			disabled_filetypes = DisabledFiletypes,
+			disabled_keys = {
+				["<Up>"] = { "n", "x" },
+				["<Down>"] = { "n", "x" },
+				["<Left>"] = { "n", "x" },
+				["<Right>"] = { "n", "x" },
+			},
+			max_count = 10,
+		})
+	end,
 }
-
-M.event = require("util").constants.lazy_event
-
-M.opts = {
-	disabled_filetypes = vim.list_extend(Util.constants.no_format, { "qf" }),
-	max_count = 10,
-}
-
-return M
