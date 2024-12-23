@@ -18,3 +18,5 @@ local _nvim_create_autocmd = vim.api.nvim_create_autocmd
 vim.api.nvim_create_autocmd = function(event, opts)
 	return _nvim_create_autocmd(event, opts)
 end
+
+Config.lsp.overrides.on_attach()
