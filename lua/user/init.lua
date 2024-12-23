@@ -6,6 +6,7 @@ local M = {}
 function M.setup()
 	require("user.opt")
 	require("user.autocmd")
+	require("user.command")
 end
 
 return setmetatable(M, {
