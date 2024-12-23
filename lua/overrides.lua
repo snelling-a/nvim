@@ -77,4 +77,70 @@ vim.api.nvim_create_autocmd = function(event, opts)
 	return _nvim_create_autocmd(event, opts)
 end
 
+local Log = require("log")
+
+local _notify = vim.notify
+---@param msg string Content of the notification to show to the user.
+---@param level? integer One of the values from |vim.log.levels|.
+---@param opts {once:boolean}? If `once` is true, only show the notification once.
+---@return nil
+local function notify(msg, level, opts)
+	opts = opts or {}
+	level = level or vim.log.levels.INFO
+	if vim.in_fast_event() then
+		return vim.schedule(function()
+			notify(msg, level, { once = opts.once })
+		end)
+	end
+
+	Log(vim.inspect({ level, msg }))
+	local notifier = opts.once and vim.notify_once or _notify
+	notifier(msg, level)
+end
+vim.notify = notify
+
+local _print = print
+---@param ... any
+-- luacheck: globals print
+print = function(...)
+	local args = { ... }
+	local new_args = {}
+	for _, arg in ipairs(args) do
+		table.insert(new_args, vim.inspect(arg))
+	end
+	_print(unpack(new_args))
+	Log(new_args)
+end
+
+vim.filetype.add({
+	pattern = {
+		["%.?ignore.*"] = "gitignore",
+		["%.env%.[%w_.-]+"] = "sh",
+		[".*%.log"] = "log",
+		["*.pcss"] = "css",
+		[".*/%.?git/attributes"] = "gitattributes",
+		[".*/%.?git/ignore"] = "gitignore",
+		[".*/kitty/.+%.conf"] = "bash",
+		[".*/tmux/.+%.conf"] = "tmux",
+		["known_hosts"] = "sshknownhosts",
+		[".*%.?conf(ig)"] = function(path)
+			if path:match("git") then
+				return "gitconfig"
+			end
+
+			return "conf"
+		end,
+		[".*"] = {
+			function(path, buf)
+				return vim.bo[buf]
+						and vim.bo[buf].filetype ~= "bigfile"
+						and path
+						and vim.fn.getfsize(path) > 1024 * 1024 * 1.5 -- 1.5 MB
+						and "bigfile"
+					or nil
+			end,
+		},
+	},
+})
+
 Config.lsp.overrides.on_attach()
