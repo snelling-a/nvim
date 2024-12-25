@@ -9,6 +9,8 @@
 ---@field file string expanded value of |<afile>|
 ---@field data any data passed from |nvim_exec_autocmds(|
 
+-- luacheck: push no max line length
 ---@alias vim.api.keyset.create_autocmd.opts vim.api.keyset.create_autocmd|{callback: fun(event: vim.api.keyset.create_autocmd.opts.callback.event): any}
+-- luacheck: pop
 
 ---@alias MiniFiles.autocmd.event vim.api.keyset.create_autocmd.opts.callback.event|{data: {buf_id: integer}}

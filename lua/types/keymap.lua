@@ -17,7 +17,9 @@
 ---| '""'   # normal, visual, and operator-pending
 
 ---@alias vim.keymap.set.Mode Keymap.mode|table<Keymap.mode>
+-- luacheck: push no max line length
 ---@alias vim.keymap.set.function fun(mode: vim.keymap.set.Mode, lhs: string, rhs: string|function, opts?: vim.api.keyset.keymap): nil
+-- luacheck: pop
 
 ---@alias map fun(lhs: string, rhs: string|fun(...: any): (...: any), opts?: table)
 ---@alias ModeString "c"|"i"|"n"|"o"|"t"|"v"|"x"
