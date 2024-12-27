@@ -1,5 +1,35 @@
 # Changelog
 
+## [7.0.0](https://github.com/snelling-a/nvim/compare/v6.21.3...v7.0.0) (2024-12-27)
+
+
+### ⚠ BREAKING CHANGES
+
+* new config
+
+### refactor
+
+* new config ([599bb66](https://github.com/snelling-a/nvim/commit/599bb66dabe651f31fecdd11187f8275b83ac00b))
+
+
+### Features
+
+* global Config module ([fda9810](https://github.com/snelling-a/nvim/commit/fda981086e72e320c64771655415c1c6a91aafc0))
+* override gx ([f33cf55](https://github.com/snelling-a/nvim/commit/f33cf55a55b6918129a41edb10e33d1187a9822f))
+* override print / notify ([d790bbe](https://github.com/snelling-a/nvim/commit/d790bbe8fb649f4de8d4674a6b36133fa84a44e8))
+
+
+### Bug Fixes
+
+* github actions ([5404010](https://github.com/snelling-a/nvim/commit/540401046e4c55dc5a2a9bae8538399a7c09bfff))
+
+
+### Miscellaneous
+
+* delete abbrev ([5c585de](https://github.com/snelling-a/nvim/commit/5c585de7b7d0db53db5a81bfaea493937def021a))
+* delete old ui ([a3b88f5](https://github.com/snelling-a/nvim/commit/a3b88f5328b47cbe1a23519140e199be33efde6d))
+* delete old util ([c903d6c](https://github.com/snelling-a/nvim/commit/c903d6cdeb901c6417cacab26a0cac1a2e0f3d7e))
+
 ## [6.21.3](https://github.com/snelling-a/nvim/compare/v6.21.2...v6.21.3) (2024-04-16)
 
 
