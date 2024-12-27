@@ -13,7 +13,7 @@ return {
 	end,
 	config = function()
 		require("mini.indentscope").setup({
-			symbol = Config.icons.ui.separator,
+			symbol = Config.icons.fillchars.vert,
 			options = { try_as_border = true },
 		})
 	end,
