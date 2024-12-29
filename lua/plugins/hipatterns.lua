@@ -12,6 +12,7 @@ return {
 		"typescript",
 		"typescriptreact",
 		"yaml",
+		"lua",
 	},
 	config = function()
 		local hi = require("mini.hipatterns")
