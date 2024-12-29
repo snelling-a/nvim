@@ -102,5 +102,9 @@ return {
 				},
 			},
 		})
+
+		vim.keymap.set({ "n" }, "<leader>tt", function()
+			Config.keymap.toggle.treesitter()
+		end, { desc = "Toggle Treesitter Highlight" })
 	end,
 }
