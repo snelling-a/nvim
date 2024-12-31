@@ -1,5 +1,6 @@
-abuf
+winsep
 afile
+abuf
 akinsho
 Alviste
 amatch
@@ -76,6 +77,7 @@ errorformat
 escapedcwd
 eset
 expandtab
+expr
 extmark
 extmarks
 fargs
@@ -168,6 +170,7 @@ lmburns
 lnum
 loclist
 lopen
+LSP
 lspconfig
 lspinfo
 luacheck
@@ -231,8 +234,6 @@ qflist
 QFTF
 qtype
 quickfix
-Quickfix
-treesitter
 quickfixtextfunc
 quitall
 rafamadriz
@@ -324,6 +325,7 @@ toggleterm
 tohtml
 topdelete
 tpope
+treesitter
 trror
 undoable
 undofile
@@ -355,7 +357,6 @@ wincmd
 windwp
 winid
 winminwidth
-winsep
 winsize
 wintype
 wslview
@@ -366,6 +367,3 @@ yanky
 yarnrc
 zbirenbaum
 zzzv
-Treesitter
-LSP
-expr
