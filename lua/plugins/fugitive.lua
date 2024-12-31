@@ -20,7 +20,7 @@ return {
 
 		Config.autocmd.create_autocmd({ "BufWinEnter" }, {
 			callback = function(event)
-				if vim.bo.ft ~= "fugitive" then
+				if vim.bo.filetype ~= "fugitive" then
 					return
 				end
 

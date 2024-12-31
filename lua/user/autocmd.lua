@@ -207,7 +207,7 @@ then
 
 	M.create_autocmd({ "BufEnter", "FocusGained", "WinEnter", "InsertLeave" }, {
 		callback = function(event)
-			if Config.util.is_filetype_disabled(vim.bo[event.buf].ft) then
+			if Config.util.is_filetype_disabled(vim.bo[event.buf].filetype) then
 				return
 			end
 

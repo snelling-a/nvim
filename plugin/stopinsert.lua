@@ -54,7 +54,7 @@ end
 
 Config.autocmd.create_autocmd({ "InsertEnter" }, {
 	callback = function()
-		if not enabled or Config.util.is_filetype_disabled(vim.bo.ft) then
+		if not enabled or Config.util.is_filetype_disabled(vim.bo.filetype) then
 			return
 		end
 
@@ -72,7 +72,7 @@ vim.on_key(function(_, _)
 		return
 	end
 
-	if Config.util.is_filetype_disabled(vim.bo.ft) then
+	if Config.util.is_filetype_disabled(vim.bo.filetype) then
 		return
 	end
 
