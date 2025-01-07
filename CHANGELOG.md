@@ -1,5 +1,30 @@
 # Changelog
 
+## [7.1.0](https://github.com/snelling-a/nvim/compare/v7.0.0...v7.1.0) (2025-01-07)
+
+
+### Features
+
+* toggle treesitter highlighting ([77d4b7c](https://github.com/snelling-a/nvim/commit/77d4b7c3efeedde07a2a0e07ca9a7de20ba6bb6d))
+
+
+### Bug Fixes
+
+* generate spell file on save ([ac299dd](https://github.com/snelling-a/nvim/commit/ac299dd618d13d953f5dd146bff480da7f7c187d))
+* **grug-far:** set conceallevel=0 ([f00ac51](https://github.com/snelling-a/nvim/commit/f00ac51a9423d284b8a99f675c7aa9bab80be1f5))
+* hipatterns in lua files ([0ba5524](https://github.com/snelling-a/nvim/commit/0ba552450743e3e516b53e2e69489f07fc5e6846))
+* icons ([bd96920](https://github.com/snelling-a/nvim/commit/bd96920e6b25463a3ea9e3259ad0db2c216508ec))
+
+
+### Miscellaneous
+
+* **spell:** update dictionary ([12b81a9](https://github.com/snelling-a/nvim/commit/12b81a9d4e6ecd2b940db2bfc50cba7c9f2fc126))
+* **spell:** update dictionary ([797e845](https://github.com/snelling-a/nvim/commit/797e84525f6a5b1595ac48db196cc3c0cc6f2ad1))
+* update plugins ([78da953](https://github.com/snelling-a/nvim/commit/78da953ed40994294740bd73300e5ff463deadd6))
+* update plugins ([9ca221c](https://github.com/snelling-a/nvim/commit/9ca221c50e1098ba4a32ad7ff5a404417c6df8a1))
+* update plugins ([993845d](https://github.com/snelling-a/nvim/commit/993845db8e40e62bd3439be9c4eb8f57e9905a64))
+* update plugins ([b5a8029](https://github.com/snelling-a/nvim/commit/b5a8029e494fea35b29b5dc62d55afc14dcd539c))
+
 ## [7.0.0](https://github.com/snelling-a/nvim/compare/v6.21.3...v7.0.0) (2024-12-27)
 
 
