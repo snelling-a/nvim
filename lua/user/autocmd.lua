@@ -83,11 +83,13 @@ M.create_autocmd({ "BufWritePre" }, {
 	group = "AutoCreateDir",
 })
 
+function M.sort_spellfile()
+	vim.cmd.sort({ args = { "ui" } })
+	vim.cmd.mkspell({ args = { spellfile }, bang = true, mods = { emsg_silent = true } })
+end
+
 M.create_autocmd({ "BufWritePost" }, {
-	callback = function()
-		vim.cmd.sort({ args = { "ui" } })
-		vim.cmd.mkspell({ args = { spellfile }, bang = true, mods = { emsg_silent = true } })
-	end,
+	callback = M.sort_spellfile,
 	group = "Spell",
 	pattern = "*/spell/*.add",
 })
