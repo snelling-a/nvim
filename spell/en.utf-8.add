@@ -1,6 +1,5 @@
-winsep
-afile
 abuf
+afile
 akinsho
 Alviste
 amatch
@@ -19,6 +18,7 @@ belowright
 Bilal
 bprevious
 breakindent
+Brewfile
 bufhidden
 buflisted
 bufnr
@@ -42,7 +42,9 @@ Cmdline
 colorcolumn
 colorschemes
 commentstring
+composable
 conceallevel
+config
 copen
 cpoptions
 cssls
@@ -60,9 +62,12 @@ devicons
 diffopt
 diffthis
 diffupdate
+dir
 dmmulroy
 doautocmd
 dockerls
+dotfiles
+DOTFILES/!
 dropbar
 dstein
 earch
@@ -76,10 +81,12 @@ emsg
 errorformat
 escapedcwd
 eset
+eslint
 expandtab
 expr
 extmark
 extmarks
+falsey
 fargs
 feedkeys
 filereadable
@@ -131,6 +138,7 @@ hightlight
 hipatterns
 hlchunk
 hlsearch
+Homebrew
 hrsh
 htmlhint
 iagnostics
@@ -140,9 +148,14 @@ ignorecase
 imput
 Indentscope
 inlayhints
+io
 issing
+Jamstack
+Javascript
 jobstart
 Joosep
+JS
+json
 jsonls
 jsonlsp
 junegunn
@@ -186,6 +199,7 @@ matchit
 matchpairs
 matchparen
 mbbill
+MDN
 messagesopt
 mfussenegger
 minifiles
@@ -202,6 +216,7 @@ ncursor
 neodev
 Neogen
 neotest
+Neovim
 netrw
 nextgroup
 nistp
@@ -225,13 +240,16 @@ parenthasis
 pcss
 permlink
 pesc
+Polyfill
 Possiblie
 preconfigured
+printf
 prismals
 pumblend
 pumheight
 qflist
 QFTF
+QL
 qtype
 quickfix
 quickfixtextfunc
@@ -251,6 +269,7 @@ rganize
 rhs
 rundll
 runtimepath
+Runtimes
 rwxr
 saadparwaiz
 saghen
@@ -283,6 +302,7 @@ spelloptions
 spellsuggest
 splitbelow
 splitkeep
+Spotify
 sqlfluff
 sqlls
 sshalg
@@ -302,6 +322,8 @@ stevearc
 stopinsert
 strcharpart
 strchars
+submodules
+sudo
 swapfile
 sysname
 tabdo
@@ -323,10 +345,12 @@ textwidth
 timeoutlen
 toggleterm
 tohtml
+toml
 topdelete
 tpope
 treesitter
 trror
+Udemy
 undoable
 undofile
 undolevels
@@ -346,6 +370,7 @@ virtnum
 virtualedit
 vsplit
 vtsls
+WASM
 Wezterm
 wildignore
 wildmenu
@@ -357,6 +382,7 @@ wincmd
 windwp
 winid
 winminwidth
+winsep
 winsize
 wintype
 wslview
@@ -365,5 +391,6 @@ yamlfmt
 yamlls
 yanky
 yarnrc
+yazi
 zbirenbaum
 zzzv
