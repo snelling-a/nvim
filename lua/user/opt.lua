@@ -23,7 +23,6 @@ vim.opt.laststatus = 3
 vim.opt.linebreak = true
 vim.opt.list = true
 vim.opt.listchars = Config.icons.listchars
-vim.opt.messagesopt = { "hit-enter", "history:1000" }
 vim.opt.number = true
 vim.opt.pumblend = 10
 vim.opt.pumheight = 10
