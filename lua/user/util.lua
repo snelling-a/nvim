@@ -78,14 +78,8 @@ end
 ---@param ft? string file type
 ---@return boolean Disabled is file type disabled
 function M.is_filetype_disabled(ft)
-	ft = ft or vim.bo.ft
-	for _, value in pairs(DisabledFiletypes) do
-		if ft:match(value) then
-			return true
-		end
-	end
-
-	return false
+	ft = ft or vim.bo.filetype
+	return vim.tbl_contains(DisabledFiletypes, ft)
 end
 
 -- Remove the listchars for multispace
