@@ -75,6 +75,7 @@ function M.jump(count)
 
 	local target = words[current]
 	if target then
+		vim.notify("Match: " .. current .. " / " .. #words)
 		vim.api.nvim_win_set_cursor(0, target.from)
 		Config.keymap.maps.scroll_unfold()
 	end
