@@ -16,6 +16,7 @@ return {
 				vim.opt_local.relativenumber = false
 				vim.opt_local.number = false
 				vim.opt_local.list = false
+				vim.opt_local.spell = false
 			end,
 			pattern = "copilot-chat",
 			group = "CopilotChat",
