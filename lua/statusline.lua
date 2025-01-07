@@ -15,20 +15,13 @@ local function setup_colors()
 	local bg_color = get_hl("Statusline").bg
 
 	set_hl("ConfirmAccent", { fg = fg_color, bold = true, bg = get_hl("WarningMsg").fg })
-	set_hl("DiagnosticError", { fg = get_hl("DiagnosticError").fg })
-	set_hl("DiagnosticHint", { fg = get_hl("DiagnosticHint").fg })
-	set_hl("DiagnosticInfo", { fg = get_hl("DiagnosticInfo").fg })
-	set_hl("DiagnosticWarning", { fg = get_hl("DiagnosticWarn").fg })
 	set_hl("InsertAccent", { fg = fg_color, bold = true, bg = get_hl("String").fg })
 	set_hl("MiscAccent", { fg = fg_color, bold = true, bg = get_hl("StatusLineNC").fg })
-	set_hl("Normal", { fg = fg_color, bg = bg_color })
 	set_hl("NormalAccent", { fg = fg_color, bold = true, bg = get_hl("Title").fg })
 	set_hl("ReplaceAccent", { fg = fg_color, bold = true, bg = get_hl("Changed").fg })
-	set_hl("Separator", { fg = bg_color })
 	set_hl("TerminalAccent", { fg = fg_color, bold = true, bg = get_hl("MoreMsg").fg })
-	set_hl("VCS", { bg = get_hl("gitcommitBranch").fg, fg = bg_color })
+	set_hl("VCS", { bg = get_hl("Changed").fg, fg = bg_color })
 	set_hl("VisualAccent", { fg = fg_color, bold = true, bg = get_hl("IncSearch").bg })
-	set_hl("Warning", { fg = get_hl("WarningMsg").fg })
 end
 
 Config.autocmd.create_autocmd({ "ColorScheme" }, {
@@ -46,7 +39,7 @@ local function vcs()
 
 	local added = git_info.added and ("%#Added#+" .. git_info.added .. " ") or ""
 	local modified = git_info.changed and ("%#Changed#~" .. git_info.changed .. " ") or ""
-	local removed = git_info.removed and ("%#Removed#-" .. git_info.removed .. " ") or ""
+	local removed = git_info.removed and ("%#Removed#-" .. git_info.removed) or ""
 	local branch = (git_info.head == "master" or git_info.head == "main") and "" or git_info.head
 
 	return table.concat({
@@ -118,7 +111,7 @@ local function get_modified_space()
 
 	local modified = is_modified and " " or ""
 
-	return modified and "%#StatuslineWarning#" .. Config.icons.git.modified .. modified
+	return modified and "%#WarningMsg#" .. Config.icons.git.modified .. modified
 end
 
 ---@param severity vim.diagnostic.Severity See |diagnostic-severity|
@@ -136,19 +129,16 @@ local function diagnostics()
 	---@type string[]
 	local components = {}
 	if errors > 0 then
-		components[#components + 1] = "%#StatuslineDiagnosticError#" .. Config.icons.diagnostics.Error .. " " .. errors
+		components[#components + 1] = "%#DiagnosticError#" .. Config.icons.diagnostics.Error .. " " .. errors
 	end
 	if warnings > 0 then
-		components[#components + 1] = "%#StatuslineDiagnosticWarning#"
-			.. Config.icons.diagnostics.Warn
-			.. " "
-			.. warnings
+		components[#components + 1] = "%#DiagnosticWarning#" .. Config.icons.diagnostics.Warn .. " " .. warnings
 	end
 	if hints > 0 then
-		components[#components + 1] = "%#StatuslineDiagnosticHint#" .. Config.icons.diagnostics.Hint .. " " .. hints
+		components[#components + 1] = "%#DiagnosticHint#" .. Config.icons.diagnostics.Hint .. " " .. hints
 	end
 	if info > 0 then
-		components[#components + 1] = "%#StatuslineDiagnosticInfo#" .. Config.icons.diagnostics.Info .. " " .. info
+		components[#components + 1] = "%#DiagnosticInfo#" .. Config.icons.diagnostics.Info .. " " .. info
 	end
 
 	return table.concat(components, " ")
@@ -172,7 +162,7 @@ local function file_type_name()
 	local fname = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ":.")
 	local icon, color = Config.util.get_file_icon()
 	vim.api.nvim_set_hl(0, "StatuslineFiletype", { fg = color })
-	return "%#StatuslineFiletype#" .. icon .. "  " .. fname
+	return "%#StatuslineFiletype#" .. icon .. "  %#Statusline#" .. fname
 end
 
 ---@type table<number, string>
@@ -221,7 +211,6 @@ function M.get()
 			"%=%#Statusline#",
 			lsp_info,
 			"%=",
-			"%#StatuslineVCS#",
 			vcs(),
 		}
 
