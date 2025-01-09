@@ -84,8 +84,11 @@ M.create_autocmd({ "BufWritePre" }, {
 })
 
 function M.sort_spellfile()
+	vim.cmd.edit({ args = { spellfile } })
 	vim.cmd.sort({ args = { "ui" } })
 	vim.cmd.mkspell({ args = { spellfile }, bang = true, mods = { emsg_silent = true } })
+	vim.cmd.write({ args = { spellfile } })
+	vim.cmd.bdelete()
 end
 
 M.create_autocmd({ "BufWritePost" }, {
