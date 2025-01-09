@@ -1,5 +1,25 @@
 # Changelog
 
+## [7.2.0](https://github.com/snelling-a/nvim/compare/v7.1.0...v7.2.0) (2025-01-09)
+
+
+### Features
+
+* **lsp:** notify words count ([e1b62db](https://github.com/snelling-a/nvim/commit/e1b62db85ec9c5f6318b4ddd11557490e996c3c5))
+* **spell:** extract function to automate mkspell ([100b4e3](https://github.com/snelling-a/nvim/commit/100b4e3efa2e5a9d33d7967f0dbf0e36e751db45))
+
+
+### Bug Fixes
+
+* **util:** use tbl_contains in is_filetype_disabled ([3e9b254](https://github.com/snelling-a/nvim/commit/3e9b254ec483bafe1a1ea814369eb3744cf5497f))
+
+
+### Miscellaneous
+
+* **spell:** update spellfile ([f5917fd](https://github.com/snelling-a/nvim/commit/f5917fddf33a47645c5adf48b675912ad2b2c29a))
+* update plugins ([555dc33](https://github.com/snelling-a/nvim/commit/555dc33016b93786de878f97d094aa60b2364a24))
+* update plugins ([878da10](https://github.com/snelling-a/nvim/commit/878da106f3ea3da9e3908876ffa1f3b62bb24dc7))
+
 ## [7.1.0](https://github.com/snelling-a/nvim/compare/v7.0.0...v7.1.0) (2025-01-07)
 
 
