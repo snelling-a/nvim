@@ -135,10 +135,6 @@
     "branch": "main",
     "commit": "775f82f08a3d1fb55a37fc6d3a4ab10cd7ed8a10"
   },
-  "vim-sleuth": {
-    "branch": "master",
-    "commit": "be69bff86754b1aa5adcbb527d7fcd1635a84080"
-  },
   "which-key.nvim": {
     "branch": "main",
     "commit": "1f8d414f61e0b05958c342df9b6a4c89ce268766"

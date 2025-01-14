@@ -2,24 +2,30 @@
 return {
 	"neovim/nvim-lspconfig",
 	dependencies = {
-		{ "williamboman/mason.nvim", cmd = { "Mason" }, build = ":MasonUpdate" },
-		{ "b0o/SchemaStore.nvim", lazy = true },
-		"j-hui/fidget.nvim",
+		{ "williamboman/mason.nvim", opts = {} },
 		"williamboman/mason-lspconfig.nvim",
+		"WhoIsSethDaniel/mason-tool-installer.nvim",
+		{ "j-hui/fidget.nvim", opts = {} },
+		"hrsh7th/cmp-nvim-lsp",
 	},
-	event = { "LazyFile" },
 	config = function()
-		Config.lsp.on_attach(Config.lsp.keymap.on_attach)
-		Config.lsp.setup()
-		Config.lsp.on_dynamic_capability(Config.lsp.keymap.on_attach)
-		Config.lsp.words.setup()
-		Config.lsp.diagnostics.on_attach()
+		vim.api.nvim_create_autocmd("LspAttach", {
+			group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
+			callback = function(event)
+				local map = function(keys, func, desc, mode)
+					mode = mode or "n"
+					vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
+				end
 
-		Config.lsp.on_supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint, function(_, bufnr)
-			if vim.api.nvim_buf_is_valid(bufnr) and vim.bo[bufnr].buftype == "" then
-				vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
-			end
-		end)
+				map("gd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
+				map("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
+				map("gI", require("telescope.builtin").lsp_implementations, "[G]oto [I]mplementation")
+				map("<leader>D", require("telescope.builtin").lsp_type_definitions, "Type [D]efinition")
+				map("<leader>ds", require("telescope.builtin").lsp_document_symbols, "[D]ocument [S]ymbols")
+				map("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
+				map("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
+				map("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction", { "n", "x" })
+				map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
 
 		vim.lsp.handlers[vim.lsp.protocol.Methods.workspace_diagnostic_refresh] = function(_, _, ctx)
 			local ns = vim.lsp.diagnostic.get_namespace(ctx.client_id)
@@ -27,44 +33,38 @@ return {
 			vim.diagnostic.reset(ns, bufnr)
 			return true
 		end
+		vim.diagnostic.config({ signs = { text = diagnostic_signs } })
 
-		local has_blink, blink = pcall(require, "blink.cmp")
-		local capabilities = vim.tbl_deep_extend(
-			"force",
-			{},
-			vim.lsp.protocol.make_client_capabilities(),
-			has_blink and blink.get_lsp_capabilities() or {},
-			{
-				workspace = {
-					fileOperations = { didRename = true, willRename = true },
+		local capabilities = vim.lsp.protocol.make_client_capabilities()
+		capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
+
+		local servers = {
+			lua_ls = {
+				settings = {
+					Lua = {
+						completion = {
+							callSnippet = "Replace",
+						},
+					},
 				},
-			}
-		)
+			},
+		}
 
-		require("mason").setup()
-		local have_mason, mlsp = pcall(require, "mason-lspconfig")
+		local ensure_installed = vim.tbl_keys(servers or {})
+		vim.list_extend(ensure_installed, {
+			"stylua",
+		})
 
-		---@param server_name string
-		local function setup(server_name)
-			local config = Config.lsp.servers[server_name]
-			config.capabilities = has_blink and blink.get_lsp_capabilities(config.capabilities) or {}
+		require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
+		require("mason-lspconfig").setup({
+			handlers = {
+				function(server_name)
+					local server = servers[server_name] or {}
 
-			local server_opts = vim.tbl_deep_extend("force", {
-				capabilities = vim.deepcopy(capabilities),
-			}, Config.lsp.servers[server_name] or {})
-
-			require("lspconfig")[server_name].setup(server_opts)
-		end
-
-		if have_mason then
-			---@diagnostic disable-next-line: missing-fields
-			mlsp.setup({
-				ensure_installed = vim.tbl_keys(Config.lsp.servers),
-				handlers = { setup },
-			})
-		end
-
-		Config.lsp.handle_typescript_clients()
-		Config.lsp.mason.check_install()
+					server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
+					require("lspconfig")[server_name].setup(server)
+				end,
+			},
+		})
 	end,
 }
