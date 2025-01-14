@@ -1,69 +1,60 @@
----@type LazySpec
 return {
-	"mfussenegger/nvim-lint",
-	event = { "LazyFile" },
-	config = function()
-		local lint = require("lint")
 
-		lint.linters_by_ft = {
-			css = { "stylelint" },
-			dockerfile = { "hadolint" },
-			html = { "htmlhint" },
-			lua = { "luacheck" },
-			markdown = { "markdownlint-cli2" },
-			sh = { "shellcheck" },
-			sql = { "sqlfluff" },
-			vim = { "vint" },
-			yaml = { "yamllint" },
-		}
+	{ -- Linting
+		"mfussenegger/nvim-lint",
+		event = { "BufReadPre", "BufNewFile" },
+		config = function()
+			local lint = require("lint")
+			lint.linters_by_ft = {
+				markdown = { "markdownlint" },
+			}
 
-		---@param timeout integer
-		---@param fn function
-		---@return function
-		local function debounce(timeout, fn)
-			local timer = vim.uv.new_timer()
-			return function(...)
-				local argv = { ... }
-				timer:start(timeout, 0, function()
-					timer:stop()
-					vim.schedule_wrap(fn)(unpack(argv))
-				end)
-			end
-		end
+			-- To allow other plugins to add linters to require('lint').linters_by_ft,
+			-- instead set linters_by_ft like this:
+			-- lint.linters_by_ft = lint.linters_by_ft or {}
+			-- lint.linters_by_ft['markdown'] = { 'markdownlint' }
+			--
+			-- However, note that this will enable a set of default linters,
+			-- which will cause errors unless these tools are available:
+			-- {
+			--   clojure = { "clj-kondo" },
+			--   dockerfile = { "hadolint" },
+			--   inko = { "inko" },
+			--   janet = { "janet" },
+			--   json = { "jsonlint" },
+			--   markdown = { "vale" },
+			--   rst = { "vale" },
+			--   ruby = { "ruby" },
+			--   terraform = { "tflint" },
+			--   text = { "vale" }
+			-- }
+			--
+			-- You can disable the default linters by setting their filetypes to nil:
+			-- lint.linters_by_ft['clojure'] = nil
+			-- lint.linters_by_ft['dockerfile'] = nil
+			-- lint.linters_by_ft['inko'] = nil
+			-- lint.linters_by_ft['janet'] = nil
+			-- lint.linters_by_ft['json'] = nil
+			-- lint.linters_by_ft['markdown'] = nil
+			-- lint.linters_by_ft['rst'] = nil
+			-- lint.linters_by_ft['ruby'] = nil
+			-- lint.linters_by_ft['terraform'] = nil
+			-- lint.linters_by_ft['text'] = nil
 
-		local function _lint()
-			---@type string[]
-			local names = lint._resolve_linter_by_ft(vim.bo.filetype)
-			---@type string[]
-			names = vim.list_extend({}, names)
-
-			if #names == 0 then
-				vim.list_extend(names, lint.linters_by_ft["_"] or {})
-			end
-
-			vim.list_extend(names, lint.linters_by_ft["*"] or {})
-
-			local ctx = { filename = vim.api.nvim_buf_get_name(0) }
-			ctx.dirname = vim.fn.fnamemodify(ctx.filename, ":h")
-			---@type string[]
-			---@diagnostic disable-next-line: no-unknown
-			names = vim.tbl_filter(function(name)
-				local linter = lint.linters[name]
-				if not linter then
-					vim.notify("Linter not found: " .. name, vim.log.levels.WARN)
-				end
-				---@diagnostic disable-next-line: undefined-field
-				return linter and not (type(linter) == "table" and linter.condition and not linter.condition(ctx))
-			end, names)
-
-			if #names > 0 then
-				lint.try_lint(names)
-			end
-		end
-
-		Config.autocmd.create_autocmd({ "BufWritePost", "BufReadPost", "InsertLeave" }, {
-			callback = debounce(100, _lint),
-			group = "NvimLint",
-		})
-	end,
+			-- Create autocommand which carries out the actual linting
+			-- on the specified events.
+			local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
+			vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
+				group = lint_augroup,
+				callback = function()
+					-- Only run the linter in buffers that you can modify in order to
+					-- avoid superfluous noise, notably within the handy LSP pop-ups that
+					-- describe the hovered symbol using Markdown.
+					if vim.opt_local.modifiable:get() then
+						lint.try_lint()
+					end
+				end,
+			})
+		end,
+	},
 }
