@@ -1,7 +1,2 @@
 ---@diagnostic disable: lowercase-global
-globals = {
-	"vim",
-	"Config",
-	"DisabledFiletypes",
-	"spellfile",
-}
+globals = { "vim" }
