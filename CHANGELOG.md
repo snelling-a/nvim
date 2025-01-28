@@ -1,5 +1,30 @@
 # Changelog
 
+## [7.2.0](https://github.com/snelling-a/nvim/compare/v7.1.0...v7.2.0) (2025-01-28)
+
+
+### Features
+
+* **lsp:** notify words count ([e1b62db](https://github.com/snelling-a/nvim/commit/e1b62db85ec9c5f6318b4ddd11557490e996c3c5))
+* **spell:** extract function to automate mkspell ([100b4e3](https://github.com/snelling-a/nvim/commit/100b4e3efa2e5a9d33d7967f0dbf0e36e751db45))
+
+
+### Bug Fixes
+
+* **util:** use tbl_contains in is_filetype_disabled ([3e9b254](https://github.com/snelling-a/nvim/commit/3e9b254ec483bafe1a1ea814369eb3744cf5497f))
+
+
+### Miscellaneous
+
+* **spell:** update spellfile ([f5917fd](https://github.com/snelling-a/nvim/commit/f5917fddf33a47645c5adf48b675912ad2b2c29a))
+* update plugins ([3869e77](https://github.com/snelling-a/nvim/commit/3869e774e5aa0f3d7f42049dd74578ab6ac34af8))
+* update plugins ([26b7fcf](https://github.com/snelling-a/nvim/commit/26b7fcf08003e3fc1b3e88d6f56972e890936371))
+* update plugins ([a9e3f8d](https://github.com/snelling-a/nvim/commit/a9e3f8d72b70c26c71589296893343c0d2db3ac5))
+* update plugins ([e0e01e6](https://github.com/snelling-a/nvim/commit/e0e01e64533268a97d29cce7dbb29a242f8579e4))
+* update plugins ([196cea0](https://github.com/snelling-a/nvim/commit/196cea0ddd8e900be111c48eec35450696f22656))
+* update plugins ([555dc33](https://github.com/snelling-a/nvim/commit/555dc33016b93786de878f97d094aa60b2364a24))
+* update plugins ([878da10](https://github.com/snelling-a/nvim/commit/878da106f3ea3da9e3908876ffa1f3b62bb24dc7))
+
 ## [7.1.0](https://github.com/snelling-a/nvim/compare/v7.0.0...v7.1.0) (2025-01-07)
 
 
