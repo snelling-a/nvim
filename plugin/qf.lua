@@ -5,6 +5,25 @@
 ---@field start_idx number
 ---@field end_idx number
 
+---@class qf.items.user_data
+---@field range {start: {line: number, character: number}, end: {line: number, character: number}}
+---@field uri string
+
+---@class qf.items
+---@field bufnr number
+---@field col number
+---@field end_col number
+---@field end_lnum number
+---@field lnum number
+---@field module string
+---@field nr number
+---@field pattern string
+---@field text string
+---@field type string
+---@field user_data qf.items.user_data
+---@field valid number
+---@field vcol number
+
 ---@param info QFTFInfo
 ---@return string[]
 function _G.qftf(info)
@@ -21,7 +40,11 @@ function _G.qftf(info)
 	end
 	local limit = 31
 	local fnameFmt1, fnameFmt2 = "%-" .. limit .. "s", "…%." .. (limit - 1) .. "s"
-	local validFmt = "%s │%5d:%-3d│%s %s"
+	local validFmt = "%s "
+		.. require("icons").fillchars.vert
+		.. "%5d:%-3d"
+		.. require("icons").fillchars.vert
+		.. "%s %s"
 	for i = info.start_idx, info.end_idx do
 		local e = items[i]
 		local fname = ""

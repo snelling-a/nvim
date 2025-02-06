@@ -4,7 +4,7 @@ vim.opt_local.relativenumber = true
 
 local bufnr = vim.api.nvim_get_current_buf()
 
-local map = Config.keymap("Help")
+local map = require("user.keymap.util").map("Help")
 
 map({ "n" }, "<CR>", "<C-]>", { buffer = bufnr, desc = "Jump to the definition of the keyword under the cursor." })
 map({ "n" }, "ht", function()

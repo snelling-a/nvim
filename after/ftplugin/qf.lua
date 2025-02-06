@@ -26,11 +26,21 @@ local function get_win_type(winid)
 end
 
 local function qf_delete_entry()
-	local current = vim.fn.line(".")
-	local qflist = vim.fn.getqflist()
+	local wintype = get_win_type()
+	local is_qf_list = wintype == "c"
 
-	table.remove(qflist, current)
-	vim.fn.setqflist(qflist, "r")
+	local list = is_qf_list and vim.fn.getqflist() or vim.fn.getloclist(0)
+
+	local current = vim.fn.line(".")
+
+	table.remove(list, current)
+
+	if is_qf_list then
+		vim.fn.setqflist(list, "r")
+	else
+		vim.fn.setloclist(0, list, "r")
+	end
+
 	vim.fn.execute(":" .. tostring(current))
 end
 
@@ -50,14 +60,14 @@ end
 
 local bufnr = vim.api.nvim_get_current_buf()
 
-local map = Config.keymap("Quickfix")
+local map = require("user.keymap.util").map("Quickfix")
 
-map({ "n" }, "dd", qf_delete_entry, { buffer = bufnr })
-map({ "n" }, "<C-t>", "<C-W><CR><C-W>T", { desc = "Open entry in new tab", buffer = bufnr })
+map({ "n" }, "dd", qf_delete_entry, { buffer = bufnr, desc = "[D]elete entry" })
+map({ "n" }, "<C-t>", "<C-W><CR><C-W>T", { buffer = bufnr, desc = "Open entry in new [t]ab" })
 map({ "n" }, "<C-s>", function()
 	open_split("split")
-end, { desc = "Open entry in horizontal split", buffer = bufnr })
+end, { buffer = bufnr, desc = "Open entry in horizontal split" })
 map({ "n" }, "<C-v>", function()
 	open_split("vsplit")
-end, { desc = "Open entry in vertical split", buffer = bufnr })
-map({ "n" }, "<C-p>", "<CR><C-W>p", { desc = "Preview entry", buffer = bufnr })
+end, { buffer = bufnr, desc = "Open entry in [v]ertical split" })
+map({ "n" }, "<C-p>", "<CR><C-W>p", { buffer = bufnr, desc = "[P]review entry" })
