@@ -1,7 +1,4 @@
-_G.Config = require("user")
-
-_G.DisabledFiletypes = {
-	"checkhealth",
+vim.g.disabled_filetypes = {
 	"copilot-chat",
 	"fugitive",
 	"fugitiveblame",
@@ -12,19 +9,30 @@ _G.DisabledFiletypes = {
 	"help",
 	"lazy",
 	"log",
-	"lspinfo",
 	"man",
 	"mason",
 	"minifiles",
+	"ministarter",
 	"neotest-attach",
 	"neotest-output",
 	"neotest-output-panel",
 	"neotest-summary",
+	"nofile",
 	"notify",
 	"qf",
 	"scratch",
 }
 
-_G.spellfile = vim.fn.stdpath("config") .. "/spell/en.utf-8.add"
+local _print = print
 
-require("overrides")
+-- luacheck: globals print
+---@diagnostic disable-next-line: missing-global-doc
+print = function(...)
+	---@type any[]
+	local args = { ... }
+	local new_args = {}
+	for _, arg in ipairs(args) do
+		table.insert(new_args, vim.inspect(arg))
+	end
+	_print(unpack(new_args))
+end
