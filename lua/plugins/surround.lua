@@ -2,11 +2,11 @@
 return {
 	"echasnovski/mini.surround",
 	keys = {
-		{ "cs", desc = "Replace Surrounding" },
-		{ "ds", desc = "Delete Surrounding" },
-		{ "S", desc = "Add Surrounding", mode = { "x" } },
-		{ "ys", desc = "Add Surrounding" },
-		{ "yss", desc = "Add Surrounding to Line" },
+		{ "cs", desc = "MiniSurround: Replace Surrounding" },
+		{ "ds", desc = "MiniSurround: Delete Surrounding" },
+		{ "S", desc = "MiniSurround: Add Surrounding", mode = { "x" } },
+		{ "ys", desc = "MiniSurround: Add Surrounding" },
+		{ "yss", desc = "MiniSurround: Add Surrounding to Line" },
 	},
 	config = function()
 		require("mini.surround").setup({
@@ -26,7 +26,7 @@ return {
 
 		vim.keymap.del("x", "ys")
 
-		local map = Config.keymap("MiniSurround")
+		local map = require("user.keymap.util").map("MiniSurround")
 
 		map("x", "S", [[:<C-u>lua MiniSurround.add('visual')<CR>]], { desc = "Add Surrounding" })
 		map("n", "yss", "ys_", { desc = "Add Surrounding to Line", remap = true })

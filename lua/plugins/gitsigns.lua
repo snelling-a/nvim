@@ -1,58 +1,69 @@
 ---@type LazySpec
 return {
-	{
-		"lewis6991/gitsigns.nvim",
-		opts = {
+	"lewis6991/gitsigns.nvim",
+	event = { "LazyFile" },
+	config = function()
+		local gitsigns = require("gitsigns")
+		local icons = require("icons")
+
+		---@diagnostic disable-next-line: missing-fields
+		gitsigns.setup({
+			current_line_blame = true,
 			on_attach = function(bufnr)
-				local gitsigns = require("gitsigns")
+				-- local map = Config.keymap("Gitsigns")
+				local map = require("user.keymap.util").map("Gitsigns")
 
-				local function map(mode, l, r, opts)
-					opts = opts or {}
-					opts.buffer = bufnr
-					vim.keymap.set(mode, l, r, opts)
-				end
-
-				-- Navigation
-				map("n", "]c", function()
+				map("n", "]h", function()
 					if vim.wo.diff then
-						vim.cmd.normal({ "]c", bang = true })
+						vim.cmd.normal({ "]h", bang = true })
 					else
 						gitsigns.nav_hunk("next")
 					end
-				end, { desc = "Jump to next git [c]hange" })
+				end, { buffer = bufnr, desc = "Next Hunk" })
 
-				map("n", "[c", function()
+				map("n", "[h", function()
 					if vim.wo.diff then
-						vim.cmd.normal({ "[c", bang = true })
+						vim.cmd.normal({ "[h", bang = true })
 					else
 						gitsigns.nav_hunk("prev")
 					end
-				end, { desc = "Jump to previous git [c]hange" })
+				end, { buffer = bufnr, desc = "Previous Hunk" })
 
-				-- Actions
-				-- visual mode
+				map("n", "<leader>hs", gitsigns.stage_hunk, { buffer = bufnr, desc = "[S]tage [H]unk" })
+				map("n", "<leader>hr", gitsigns.reset_hunk, { buffer = bufnr, desc = "[R]eset [H]unk" })
 				map("v", "<leader>hs", function()
 					gitsigns.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
-				end, { desc = "git [s]tage hunk" })
+				end, { buffer = bufnr, desc = "[S]tage [H]unk" })
 				map("v", "<leader>hr", function()
 					gitsigns.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
-				end, { desc = "git [r]eset hunk" })
-				-- normal mode
-				map("n", "<leader>hs", gitsigns.stage_hunk, { desc = "git [s]tage hunk" })
-				map("n", "<leader>hr", gitsigns.reset_hunk, { desc = "git [r]eset hunk" })
-				map("n", "<leader>hS", gitsigns.stage_buffer, { desc = "git [S]tage buffer" })
-				map("n", "<leader>hu", gitsigns.undo_stage_hunk, { desc = "git [u]ndo stage hunk" })
-				map("n", "<leader>hR", gitsigns.reset_buffer, { desc = "git [R]eset buffer" })
-				map("n", "<leader>hp", gitsigns.preview_hunk, { desc = "git [p]review hunk" })
-				map("n", "<leader>hb", gitsigns.blame_line, { desc = "git [b]lame line" })
-				map("n", "<leader>hd", gitsigns.diffthis, { desc = "git [d]iff against index" })
+				end, { buffer = bufnr, desc = "[R]eset [H]unk" })
+				map("n", "<leader>hS", gitsigns.stage_buffer, { buffer = bufnr, desc = "[S]tage Buffer" })
+				map("n", "<leader>hu", gitsigns.undo_stage_hunk, { buffer = bufnr, desc = "[U]ndo [S]tage Hunk" })
+				map("n", "<leader>hR", gitsigns.reset_buffer, { buffer = bufnr, desc = "[R]eset Buffer" })
+				map("n", "<leader>hp", gitsigns.preview_hunk, { buffer = bufnr, desc = "[P]review [H]unk" })
+				map("n", "<leader>hb", gitsigns.blame, { buffer = bufnr, desc = "[B]lame Line" })
+				map(
+					"n",
+					"<leader>tb",
+					gitsigns.toggle_current_line_blame,
+					{ buffer = bufnr, desc = "[T]oggle Current Line [B]lame" }
+				)
+				map("n", "<leader>hd", gitsigns.diffthis, { buffer = bufnr, desc = "[D]iff This" })
 				map("n", "<leader>hD", function()
-					gitsigns.diffthis("@")
-				end, { desc = "git [D]iff against last commit" })
-				-- Toggles
-				map("n", "<leader>tb", gitsigns.toggle_current_line_blame, { desc = "[T]oggle git show [b]lame line" })
-				map("n", "<leader>tD", gitsigns.toggle_deleted, { desc = "[T]oggle git show [D]eleted" })
+					gitsigns.diffthis("~")
+				end, { buffer = bufnr, desc = "[D]iff This" })
+				map(
+					{ "o", "x" },
+					"ih",
+					":<C-U>Gitsigns select_hunk<CR>",
+					{ buffer = bufnr, desc = "[H]unk Text Object" }
+				)
 			end,
-		},
-	},
+			attach_to_untracked = true,
+			---@type vim.api.keyset.win_config
+			preview_config = { border = "rounded" },
+			signs = icons.gitsigns,
+			signs_staged = icons.gitsigns,
+		} --[[@as Gitsigns.Config]])
+	end,
 }

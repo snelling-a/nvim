@@ -7,12 +7,13 @@ return {
 	config = function()
 		vim.cmd.colorscheme("base16-default-" .. vim.o.background)
 
-		Config.autocmd.create_autocmd({ "OptionSet" }, {
-			callback = function()
-				vim.cmd.colorscheme("base16-default-" .. vim.o.background)
-			end,
-			group = "DetectDarkMode",
-			pattern = { "background" },
-		})
+		-- local group = vim.api.nvim_create_augroup("DetectDarkMode", {})
+		-- vim.api.nvim_create_autocmd({ "OptionSet" }, {
+		-- 	callback = function()
+		-- 		vim.cmd.colorscheme("base16-default-" .. vim.o.background)
+		-- 	end,
+		-- 	group = group,
+		-- 	pattern = { "background" },
+		-- })
 	end,
 }

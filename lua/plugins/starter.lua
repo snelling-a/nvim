@@ -5,12 +5,12 @@ return {
 	config = function()
 		if vim.o.filetype == "lazy" then
 			vim.cmd.close()
-			Config.autocmd.create_autocmd("User", {
+			vim.api.nvim_create_autocmd("User", {
 				callback = function()
 					require("lazy").show()
 				end,
 				pattern = "MiniStarterOpened",
-				group = "MiniStarter",
+				group = vim.api.nvim_create_augroup("MiniStarter", {}),
 			})
 		end
 
@@ -19,27 +19,28 @@ return {
 		end
 
 		local starter = require("mini.starter")
+		local Icons = require("icons")
 
 		starter.setup({
 			evaluate_single = true,
 			header = " ▌║█║▌│║▌│║▌║▌█║   "
-				.. Config.icons.misc.neovim
+				.. Icons.misc.neovim
 				.. "eo"
-				.. Config.icons.misc.vim
+				.. Icons.servers.vimls
 				.. "im "
 				.. "   ▌│║▌║▌│║║▌█║▌║█ ",
 			footer = " ",
 			items = {
-				new_section("Find file", "FzfLua files", "FzfLua"),
+				new_section("Find file", "Pick files", "Pick"),
+				new_section("Grep", "Pick grep_live", "Pick"),
 				new_section("Lazy", "Lazy", "Config"),
-				new_section("Grep", "FzfLua live_grep", "FzfLua"),
+				new_section("Mason", "Mason", "Config"),
 				new_section("Quit", "qa", "Built-in"),
-				new_section("Recent files", "FzfLua oldfiles", "FzfLua"),
 				new_section("SessionLoad", "SessionLoad", "Sessions"),
 				starter.sections.recent_files(5, true, true),
 			},
 			content_hooks = {
-				starter.gen_hook.adding_bullet("░ ", false),
+				starter.gen_hook.adding_bullet("░ ", true),
 				starter.gen_hook.aligning("center", "center"),
 			},
 		})

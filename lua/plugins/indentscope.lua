@@ -3,18 +3,16 @@ return {
 	"echasnovski/mini.indentscope",
 	event = { "LazyFile" },
 	init = function()
-		Config.autocmd.create_autocmd({ "FileType" }, {
-			pattern = DisabledFiletypes,
+		vim.api.nvim_create_autocmd({ "FileType" }, {
+			pattern = vim.g.disabled_filetypes,
 			callback = function()
 				vim.b.miniindentscope_disable = true
 			end,
-			group = "MiniIndentscope",
+			group = vim.api.nvim_create_augroup("MiniIndentscope", {}),
 		})
 	end,
-	config = function()
-		require("mini.indentscope").setup({
-			symbol = Config.icons.fillchars.vert,
-			options = { try_as_border = true },
-		})
-	end,
+	opts = {
+		symbol = require("icons").fillchars.vert,
+		options = { try_as_border = true },
+	},
 }

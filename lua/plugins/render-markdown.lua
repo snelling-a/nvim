@@ -11,7 +11,10 @@ return {
 			preset = "obsidian",
 			code = { right_pad = 1, sign = false, width = "block" },
 			file_types = file_types,
-			heading = { sign = false, icons = Config.icons.headings },
+			heading = {
+				sign = false,
+				-- icons = Config.icons.headings,
+			},
 			overrides = {
 				buftype = {
 					nofile = {

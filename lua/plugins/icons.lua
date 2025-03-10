@@ -3,25 +3,25 @@ return {
 	"echasnovski/mini.icons",
 	config = function()
 		local icons = require("mini.icons")
+		local Icons = require("icons")
 
 		icons.setup({
 			file = {
-				[".babelrc"] = { glyph = Config.icons.javascript.babel, hl = "MiniIconsYellow" },
-				[".eslintignore"] = { glyph = Config.icons.servers.eslint, hl = "MiniIconsYellow" },
-				[".eslintrc.js"] = { glyph = Config.icons.servers.eslint, hl = "MiniIconsYellow" },
-				[".eslintrc.json"] = { glyph = Config.icons.servers.eslint, hl = "MiniIconsYellow" },
-				[".node-version"] = { glyph = Config.icons.javascript.node, hl = "MiniIconsGreen" },
-				[".prettierignore"] = { glyph = Config.icons.javascript.prettier, hl = "MiniIconsPurple" },
-				[".prettierrc"] = { glyph = Config.icons.javascript.prettier, hl = "MiniIconsPurple" },
-				[".prettierrc.json"] = { glyph = Config.icons.javascript.prettier, hl = "MiniIconsPurple" },
-				[".yarnrc.yml"] = { glyph = Config.icons.javascript.yarn, hl = "MiniIconsBlue" },
-				["eslint.config.js"] = { glyph = Config.icons.servers.eslint, hl = "MiniIconsYellow" },
-				["package-lock.json"] = { glyph = Config.icons.javascript.node, hl = "MiniIconsGreen" },
-				["package.json"] = { glyph = Config.icons.javascript.node, hl = "MiniIconsGreen" },
-				["tsconfig.build.json"] = { glyph = Config.icons.servers.ts, hl = "MiniIconsAzure" },
-				[".keep"] = { glyph = Config.icons.git.git, hl = "MiniIconsGrey" },
-				["tsconfig.json"] = { glyph = Config.icons.servers.ts, hl = "MiniIconsAzure" },
-				["yarn.lock"] = { glyph = Config.icons.javascript.yarn, hl = "MiniIconsBlue" },
+				[".babelrc"] = { glyph = Icons.javascript.babel, hl = "MiniIconsYellow" },
+				["eslint.config.js"] = { glyph = Icons.servers.eslint, hl = "MiniIconsYellow" },
+				[".eslintignore"] = { glyph = Icons.servers.eslint, hl = "MiniIconsBlue" },
+				[".eslintrc.js"] = { glyph = Icons.servers.eslint, hl = "MiniIconsBlue" },
+				[".eslintrc.json"] = { glyph = Icons.servers.eslint, hl = "MiniIconsBlue" },
+				[".keep"] = { glyph = Icons.misc.git, hl = "MiniIconsGrey" },
+				[".node-version"] = { glyph = Icons.javascript.node, hl = "MiniIconsGreen" },
+				["package-lock.json"] = { glyph = Icons.javascript.node, hl = "MiniIconsGreen" },
+				["package.json"] = { glyph = Icons.javascript.node, hl = "MiniIconsGreen" },
+				[".prettierrc"] = { glyph = Icons.javascript.prettier, hl = "MiniIconsOrange" },
+				[".prettierrc.json"] = { glyph = Icons.javascript.prettier, hl = "MiniIconsOrange" },
+				["tsconfig.build.json"] = { glyph = Icons.servers.ts, hl = "MiniIconsAzure" },
+				["tsconfig.json"] = { glyph = Icons.servers.ts, hl = "MiniIconsAzure" },
+				["yarn.lock"] = { glyph = Icons.javascript.yarn, hl = "MiniIconsBlue" },
+				[".yarnrc.yml"] = { glyph = Icons.javascript.yarn, hl = "MiniIconsBlue" },
 			},
 		})
 

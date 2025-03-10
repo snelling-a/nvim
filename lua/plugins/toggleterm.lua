@@ -35,7 +35,7 @@ return {
 			return Terminal:new(term)
 		end
 
-		local map = Config.keymap("ToggleTerm")
+		local map = require("user.keymap.util").map("Toggleterm")
 
 		map("n", "<leader>gg", function()
 			local lazygit = get_term()
@@ -62,7 +62,7 @@ return {
 			nargs = "?",
 		})
 
-		Config.autocmd.create_autocmd({ "TermOpen" }, {
+		vim.api.nvim_create_autocmd({ "TermOpen" }, {
 			callback = function(event)
 				---@param lhs string Left-hand side |{lhs}| of the mapping
 				---@param rhs string Right-hand side |{rhs}| of the mapping
@@ -84,7 +84,7 @@ return {
 				term_map("<C-l>", [[<Cmd>wincmd l<CR>]], "Move window [l]eft")
 				term_map("<C-w>", [[<C-\><C-n><C-w>]], "Execute [w]indow command")
 			end,
-			group = "ToggleTerm",
+			group = vim.api.nvim_create_augroup("ToggleTerm", {}),
 			pattern = "term://*",
 		})
 	end,

@@ -29,7 +29,7 @@ return {
 			files.refresh({ content = { filter = new_filter } })
 		end
 
-		local map = Config.keymap("MiniFiles")
+		local map = vim.keymap.set
 
 		map("n", "<M-o>", function()
 			if not files.close() then
@@ -39,10 +39,11 @@ return {
 			end
 		end, { desc = "Toggle" })
 
-		local group = Config.autocmd.augroup("MiniFiles")
-		Config.autocmd.create_autocmd({ "User" }, {
-			---@param event MiniFiles.autocmd.event
+		local group = require("user.autocmd").augroup("mini.files")
+
+		vim.api.nvim_create_autocmd({ "User" }, {
 			callback = function(event)
+				---@type integer
 				local bufnr = event.data.buf_id
 				---@param lhs "s"|"t"|"v" Left-hand side |{lhs}| of the mapping
 				local function map_split(lhs)
@@ -91,15 +92,7 @@ return {
 			group = group,
 		})
 
-		Config.autocmd.create_autocmd({ "User" }, {
-			---@param event MiniFiles.autocmd.event
-			callback = function(event)
-				Config.lsp.on_rename_file(event.data.from, event.data.to)
-			end,
-			pattern = "MiniFilesActionRename",
-			group = group,
-		})
-
-		require("mini_files_git_integration")
+		require("plugins.files.git_integration")
+		require("plugins.files.rename").setup()
 	end,
 }

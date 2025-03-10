@@ -12,13 +12,15 @@ return {
 	config = function()
 		---@diagnostic disable-next-line: no-unknown
 		local Git = vim.cmd.Git
-		local map = Config.keymap("Fugitive")
+
+		local map = vim.keymap.set
 
 		map({ "n" }, "<leader>gs", function()
 			Git({ mods = { vertical = true } })
 		end, { desc = "[G]it [s]tatus" })
 
-		Config.autocmd.create_autocmd({ "BufWinEnter" }, {
+		local group = vim.api.nvim_create_augroup("Fugitive", {})
+		vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
 			callback = function(event)
 				if vim.bo.filetype ~= "fugitive" then
 					return
@@ -35,7 +37,7 @@ return {
 				end, { buffer = event.buf, desc = "Push [t]o origin" })
 			end,
 			desc = "Set fugitive keymaps",
-			group = "Fugitive",
+			group = group,
 			pattern = "*",
 		})
 	end,

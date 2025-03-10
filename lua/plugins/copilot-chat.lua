@@ -3,6 +3,10 @@ return {
 	"CopilotC-Nvim/CopilotChat.nvim",
 	branch = "main",
 	cmd = { "CopilotChat" },
+	dependencies = {
+		{ "zbirenbaum/copilot.lua" },
+		{ "nvim-lua/plenary.nvim", branch = "master" },
+	},
 	keys = {
 		{ "<leader>aa", desc = "CopilotChat: toggle", mode = { "n", "v" } },
 		{ "<leader>ap", desc = "CopilotChat: prompt actions", mode = { "n", "v" } },
@@ -11,33 +15,31 @@ return {
 	config = function()
 		local chat = require("CopilotChat")
 
-		Config.autocmd.create_autocmd({ "BufEnter" }, {
+		vim.api.nvim_create_autocmd({ "BufEnter" }, {
 			callback = function()
 				vim.opt_local.relativenumber = false
 				vim.opt_local.number = false
 				vim.opt_local.list = false
 				vim.opt_local.spell = false
+				vim.opt_local.wrap = true
 			end,
 			pattern = "copilot-chat",
-			group = "CopilotChat",
+			group = vim.api.nvim_create_augroup("CopilotChat", {}),
 		})
 
-		local header_format = "%s  %s "
+		-- local header_format = "%s  %s "
 
 		chat.setup({
 			auto_insert_mode = true,
-			question_header = header_format:format(Config.icons.misc.user, "You"),
-			answer_header = header_format:format(Config.icons.servers.copilot, "Copilot"),
+			-- question_header = header_format:format(Config.icons.misc.user, "You"),
+			-- answer_header = header_format:format(Config.icons.servers.copilot, "Copilot"),
 			window = { width = 0.4 },
 		})
 
-		local map = Config.keymap("CopilotChat")
+		local map = vim.keymap.set
 
 		map({ "n", "v" }, "<leader>aa", chat.toggle, { desc = "toggle" })
-		map({ "n", "v" }, "<leader>ap", function()
-			local actions = require("CopilotChat.actions")
-			require("CopilotChat.integrations.fzflua").pick(actions.prompt_actions())
-		end, { desc = "prompt" })
+		map({ "n", "v" }, "<leader>ap", chat.select_prompt, { desc = "prompt" })
 		map({ "n", "v" }, "<leader>aq", function()
 			local input = vim.fn.input("Quick Chat: ")
 			if input ~= "" then

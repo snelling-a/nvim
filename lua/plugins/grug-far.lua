@@ -6,14 +6,14 @@ return {
 		{
 			"<leader>sr",
 			mode = { "n", "v" },
-			desc = "GrugFar: Search and Replace",
+			desc = "GrugFar: [S]earch and [R]eplace",
 		},
 	},
 	config = function()
 		local grug_far = require("grug-far")
 		grug_far.setup()
 
-		local map = Config.keymap("GrugFar")
+		local map = require("user.keymap.util").map("GrugFar")
 
 		map("n", "<leader>sr", function()
 			local filetype = vim.bo.buftype == "" and vim.fn.expand("%:e")
@@ -21,6 +21,6 @@ return {
 				transient = true,
 				prefills = { filesFilter = filetype and filetype ~= "" and "*." .. filetype or nil },
 			})
-		end, { desc = "Search and Replace" })
+		end, { desc = "[S]earch and [R]eplace" })
 	end,
 }

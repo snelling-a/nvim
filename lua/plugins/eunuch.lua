@@ -12,6 +12,7 @@ return {
 		"Lfind",
 		"Llocate",
 		"Wall",
+		"W",
 		"SudoWrite",
 		"SudoEdit",
 	},

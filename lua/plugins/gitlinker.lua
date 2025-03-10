@@ -10,7 +10,8 @@ return {
 		local gitlinker = require("gitlinker")
 		gitlinker.setup()
 
-		local map = Config.keymap("GitLink")
+		-- local map = Config.keymap("GitLink")
+		local map = vim.keymap.set
 
 		map({ "n", "v" }, "<leader>gl", gitlinker.link, { silent = true, noremap = true, desc = "Yank git permlink" })
 		map({ "n", "v" }, "<leader>gB", function()
