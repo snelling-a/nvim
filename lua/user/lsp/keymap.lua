@@ -1,59 +1,45 @@
----@class user.Lsp.keymap
 local M = {}
 
-local action = setmetatable({}, {
-	---@param action lsp.CodeActionKind Actions not of this kind are filtered out by the client before being shown
-	---@return function
-	__index = function(_, action)
-		return function()
-			vim.lsp.buf.code_action({
-				apply = true,
-				context = {
-					only = { action },
-					diagnostics = {},
-				},
-			})
-		end
-	end,
-})
-
----@type OnAttach<nil>
+---@param client vim.lsp.Client
+---@param bufnr integer
 function M.on_attach(client, bufnr)
-	local map = Config.keymap("Lsp")
+	local map = require("user.keymap.util").map("Lsp")
 
-	if Config.lsp.client_supports_method(bufnr, vim.lsp.protocol.Methods.textDocument_inlayHint) then
+	if client:supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint, bufnr) then
+		if vim.api.nvim_buf_is_valid(bufnr) and vim.bo[bufnr].buftype == "" then
+			vim.lsp.inlay_hint.enable(true, { buffer = bufnr })
+		end
+
 		map("n", "<leader>th", function()
-			Config.keymap.toggle.inlay_hints()
-		end, { desc = "[t]oggle inlay [h]ints" })
+			vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ buffer = bufnr }))
+		end, { desc = "[T]oggle Inlay [H]ints" })
 	end
 
-	if Config.lsp.client_supports_method(bufnr, vim.lsp.protocol.Methods.textDocument_declaration) then
+	if client:supports_method(vim.lsp.protocol.Methods.textDocument_declaration, bufnr) then
 		map("n", "gD", vim.lsp.buf.declaration, { buffer = bufnr, desc = "[G]oto [D]eclaration" })
 	end
 
-	if Config.lsp.client_supports_method(bufnr, vim.lsp.protocol.Methods.textDocument_definition) then
+	if client:supports_method(vim.lsp.protocol.Methods.textDocument_definition, bufnr) then
 		map("n", "gd", vim.lsp.buf.definition, { buffer = bufnr, desc = "[G]oto [D]efinition" })
 	end
 
-	if Config.lsp.client_supports_method(bufnr, vim.lsp.protocol.Methods.textDocument_documentHighlight) then
+	if client:supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight, bufnr) then
+		local words = require("user.lsp.words")
+
 		map("n", "]]", function()
-			Config.lsp.words.jump(vim.v.count1)
+			if words.get_is_enabled(bufnr) then
+				words.jump(vim.v.count1)
+			else
+				vim.notify("LspWords is not enabled")
+			end
 		end, { buffer = bufnr, desc = "Next Reference" })
 		map("n", "[[", function()
-			Config.lsp.words.jump(-vim.v.count1)
+			if words.get_is_enabled(bufnr) then
+				words.jump(-vim.v.count1)
+			else
+				vim.notify("LspWords is not enabled")
+			end
 		end, { buffer = bufnr, desc = "Prev Reference" })
-	end
-
-	if client.name == "ts_ls" then
-		map("n", "<leader>co", action["source.organizeImports"], { buffer = bufnr, desc = "[O]rganize Imports" })
-		map(
-			"n",
-			"<leader>cM",
-			action["source.addMissingImports.ts"],
-			{ buffer = bufnr, desc = "Add [M]issing Imports" }
-		)
-		map("n", "<leader>cD", action["source.removeUnused.ts"], { buffer = bufnr, desc = "Remove Unused Imports" })
-		map("n", "<leader>F", action["source.fixAll.ts"], { buffer = bufnr, desc = "[F]ix All Diagnostics" })
 	end
 end
 
