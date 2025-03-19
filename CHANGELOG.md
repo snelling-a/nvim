@@ -1,5 +1,14 @@
 # Changelog
 
+## [7.2.1](https://github.com/snelling-a/nvim/compare/v7.2.0...v7.2.1) (2025-02-10)
+
+
+### Miscellaneous
+
+* update plugins ([7485dfc](https://github.com/snelling-a/nvim/commit/7485dfcc149b68d1e881002c2c5758a662c6afe8))
+* update plugins ([10d8052](https://github.com/snelling-a/nvim/commit/10d805277043069fea9622d002cd0d69f5e5007f))
+* update plugins ([fc65e1e](https://github.com/snelling-a/nvim/commit/fc65e1e08b7192a29a26a3c20e32c692768bdcc8))
+
 ## [7.2.0](https://github.com/snelling-a/nvim/compare/v7.1.0...v7.2.0) (2025-01-28)
 
 
