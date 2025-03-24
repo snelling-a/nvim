@@ -37,7 +37,7 @@ return {
 
 		local map = require("user.keymap.util").map("Toggleterm")
 
-		map("n", "<leader>gg", function()
+		map({ "n" }, "<leader>gg", function()
 			local lazygit = get_term()
 			lazygit:toggle()
 		end, { desc = "LazyGit" })
@@ -69,7 +69,7 @@ return {
 				---@param desc string vim.api.keyset.keymap description
 				local function term_map(lhs, rhs, desc)
 					map(
-						"t",
+						{ "t" },
 						lhs,
 						rhs,
 						vim.tbl_extend("force", {

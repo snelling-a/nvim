@@ -28,7 +28,7 @@ return {
 
 		local map = require("user.keymap.util").map("MiniSurround")
 
-		map("x", "S", [[:<C-u>lua MiniSurround.add('visual')<CR>]], { desc = "Add Surrounding" })
-		map("n", "yss", "ys_", { desc = "Add Surrounding to Line", remap = true })
+		map({ "x" }, "S", [[:<C-u>lua MiniSurround.add('visual')<CR>]], { desc = "Add Surrounding" })
+		map({ "n" }, "yss", "ys_", { desc = "Add Surrounding to Line", remap = true })
 	end,
 }

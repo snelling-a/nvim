@@ -15,7 +15,7 @@ return {
 
 		local map = require("user.keymap.util").map("GrugFar")
 
-		map("n", "<leader>sr", function()
+		map({ "n" }, "<leader>sr", function()
 			local filetype = vim.bo.buftype == "" and vim.fn.expand("%:e")
 			grug_far.open({
 				transient = true,
