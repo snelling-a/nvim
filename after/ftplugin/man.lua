@@ -7,6 +7,10 @@ vim.opt_local.wrap = true
 local bufnr = vim.api.nvim_get_current_buf()
 local map = require("user.keymap.util").map("Man")
 
+map({ "n" }, "q", function()
+	vim.cmd.quitall()
+end)
+
 ---@param lhs "u"|"d" Left-hand side |{lhs}| of the mapping - [u]p or [d]own
 ---@return nil
 local function scroll(lhs)
