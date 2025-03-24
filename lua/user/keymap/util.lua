@@ -81,7 +81,7 @@ end
 
 -- prepends given module name to the description of the keymap
 ---@param str string module name
----@return fun(mode: string, lhs: string, rhs: string|function, opts?: vim.keymap.set.Opts) vim.keymap.set
+---@return fun(mode: string|string[], lhs: string, rhs: string|function, opts?: vim.keymap.set.Opts) vim.keymap.set
 function M.map(str)
 	---@param mode string|string[] Mode "short-name" (see |nvim_set_keymap()|), or a list thereof.
 	---@param lhs string           Left-hand side |{lhs}| of the mapping.
@@ -98,6 +98,9 @@ end
 function M.quit(bufnr)
 	vim.bo[bufnr].buflisted = false
 	vim.keymap.set({ "n" }, "q", function()
+		if vim.bo.ft == "man" then
+			return vim.cmd.quitall()
+		end
 		xpcall(vim.cmd.close, function()
 			vim.cmd.bwipeout()
 		end)
