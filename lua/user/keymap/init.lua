@@ -49,6 +49,19 @@ vim.keymap.set({ "n" }, "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right
 vim.keymap.set({ "n" }, "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
 vim.keymap.set({ "n" }, "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
 
+vim.keymap.set({ "n" }, "<S-Up>", function()
+	vim.cmd("resize +2")
+end)
+vim.keymap.set({ "n" }, "<S-Down>", function()
+	vim.cmd("resize -2")
+end)
+vim.keymap.set({ "n" }, "<S-Left>", function()
+	vim.cmd("vertical resize +2")
+end)
+vim.keymap.set({ "n" }, "<S-Right>", function()
+	vim.cmd("vertical resize -2")
+end)
+
 vim.keymap.set({ "n" }, "<A-Down>", "<cmd>resize -2<cr>", { desc = "Decrease Window Height" })
 vim.keymap.set({ "n" }, "<A-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease Window Width" })
 vim.keymap.set({ "n" }, "<A-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase Window Width" })
@@ -118,20 +131,20 @@ end, { desc = "[T]oggle [W]rap" })
 vim.keymap.set({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true })
 vim.keymap.set({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { desc = "Up", expr = true })
 
--- vim.keymap.set({ "n", "v" }, "z=", function()
--- 	local word = vim.fn.expand("<cword>")
--- 	local suggestions = vim.fn.spellsuggest(word)
---
--- 	vim.ui.select(
--- 		suggestions,
--- 		{ prompt = ("Spelling suggestions for %q: "):format(word) },
--- 		vim.schedule_wrap(function(selected)
--- 			if selected then
--- 				vim.cmd.normal({ args = { ("ciw%s"):format(selected) }, bang = true })
--- 			end
--- 		end)
--- 	)
--- end)
+vim.keymap.set({ "n", "v" }, "z=", function()
+	local word = vim.fn.expand("<cword>")
+	local suggestions = vim.fn.spellsuggest(word)
+
+	vim.ui.select(
+		suggestions,
+		{ prompt = ("Spelling suggestions for %q: "):format(word) },
+		vim.schedule_wrap(function(selected)
+			if selected then
+				vim.cmd.normal({ args = { ("ciw%s"):format(selected) }, bang = true })
+			end
+		end)
+	)
+end)
 
 vim.keymap.set({ "n" }, "<leader>tn", function()
 	local is_enabled = vim.opt_local.relativenumber:get()
