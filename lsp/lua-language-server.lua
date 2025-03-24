@@ -36,23 +36,32 @@ return {
 				unusedLocalExclude = { "_*" },
 				workspaceEvent = "OnChange",
 			},
-			doc = { privateName = { "^_" } },
+			doc = {
+				privateName = { "^_" },
+			},
 			format = { enable = false },
-
 			hint = {
 				arrayIndex = "Disable",
 				enable = true,
+				paramName = "Literal",
 				semicolon = "Disable",
 				setType = true,
-				paramName = "Literal",
 			},
 			runtime = {
-				version = "LuaJIT",
 				path = { "lua/?.lua", "lua/?/init.lua" },
+				version = "LuaJIT",
 			},
 			telemetry = { enable = false },
 			window = { progressBar = true },
-			workspace = { checkThirdParty = false, library = vim.api.nvim_get_runtime_file("", true) },
+			workspace = {
+				checkThirdParty = false,
+				library = {
+					unpack(vim.api.nvim_get_runtime_file("", true)),
+					"${3rd}/busted/library",
+					"${3rd}/luv/library",
+					vim.env.VIMRUNTIME,
+				},
+			},
 		},
 	},
 }

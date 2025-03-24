@@ -127,24 +127,24 @@ return {
 	end,
 	root_markers = {
 		".eslintrc",
-		".eslintrc.js",
 		".eslintrc.cjs",
+		".eslintrc.js",
+		".eslintrc.json",
 		".eslintrc.yaml",
 		".eslintrc.yml",
-		".eslintrc.json",
+		"eslint.config.cjs",
+		"eslint.config.cts",
 		"eslint.config.js",
 		"eslint.config.mjs",
-		"eslint.config.cjs",
-		"eslint.config.ts",
 		"eslint.config.mts",
-		"eslint.config.cts",
+		"eslint.config.ts",
 	},
 	settings = {
 		codeAction = {
 			disableRuleComment = { enable = true, location = "separateLine" },
 			showDocumentation = { enable = true },
 		},
-		codeActionOnSave = { mode = "all" },
+		codeActionOnSave = { enable = false, mode = "all" },
 		experimental = { useFlatConfig = false },
 		format = false,
 		nodePath = get_node_path(),
@@ -157,7 +157,6 @@ return {
 		useESLintClass = true,
 		validate = "on",
 		workingDirectory = { mode = "location" },
-		---@diagnostic disable-next-line: assign-type-mismatch
 		workspaceFolder = get_workspace_folder(0),
 	},
 }

@@ -5,7 +5,7 @@ return {
 	root_markers = { "package.json", ".git" },
 	settings = {
 		cssVariables = {
-			lookupFiles = { "**/*.less", "**/*.scss", "**/*.sass", "**/*.css" },
+			lookupFiles = { "**/*.css", "**/*.less", "**/*.sass", "**/*.scss" },
 			blacklistFolders = {
 				"**/.cache",
 				"**/.DS_Store",

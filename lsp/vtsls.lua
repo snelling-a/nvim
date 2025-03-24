@@ -110,19 +110,24 @@ return {
 	on_attach = function(_client, bufnr)
 		local map = require("user.keymap.util").map("Vtsls")
 
-		map("n", "<leader>co", action_table["source.organizeImports"], { buffer = bufnr, desc = "[O]rganize Imports" })
 		map(
-			"n",
+			{ "n" },
+			"<leader>co",
+			action_table["source.organizeImports"],
+			{ buffer = bufnr, desc = "[O]rganize Imports" }
+		)
+		map(
+			{ "n" },
 			"<leader>cM",
 			action_table["source.addMissingImports.ts"],
 			{ buffer = bufnr, desc = "Add [M]issing Imports" }
 		)
 		map(
-			"n",
+			{ "n" },
 			"<leader>cD",
 			action_table["source.removeUnused.ts"],
 			{ buffer = bufnr, desc = "Remove Unused Imports" }
 		)
-		map("n", "<leader>F", action_table["source.fixAll.ts"], { buffer = bufnr, desc = "[F]ix All Diagnostics" })
+		map({ "n" }, "<leader>F", action_table["source.fixAll.ts"], { buffer = bufnr, desc = "[F]ix All Diagnostics" })
 	end,
 }

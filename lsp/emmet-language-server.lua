@@ -5,6 +5,7 @@ return {
 		"css",
 		"eruby",
 		"html",
+		"htmlangular",
 		"htmldjango",
 		"javascriptreact",
 		"less",
@@ -12,7 +13,6 @@ return {
 		"sass",
 		"scss",
 		"typescriptreact",
-		"htmlangular",
 	},
 	single_file_support = true,
 }
