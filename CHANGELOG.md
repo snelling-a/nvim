@@ -1,5 +1,50 @@
 # Changelog
 
+## [8.0.0](https://github.com/snelling-a/nvim/compare/v7.1.0...v8.0.0) (2025-03-21)
+
+
+### ⚠ BREAKING CHANGES
+
+* kickstart
+* cleanup
+
+### refactor
+
+* cleanup ([5e5a97f](https://github.com/snelling-a/nvim/commit/5e5a97f83ea7a6c44e188c97babafd77c99eb85c))
+* kickstart ([cb89492](https://github.com/snelling-a/nvim/commit/cb89492f9ac402e2f3c7ec7f6a79c7ca3e3284be))
+
+
+### Features
+
+* cool plugin ([430d604](https://github.com/snelling-a/nvim/commit/430d604e22bb3721f9b9dabc0ac2fe261c95b44a))
+* filetype ([d0a2ee0](https://github.com/snelling-a/nvim/commit/d0a2ee023641979aa9eacf7a25c409066ae73b12))
+* gx ([6a161c1](https://github.com/snelling-a/nvim/commit/6a161c1d6ffbf548318c31f0b75e4c605e53bcb6))
+* **lsp:** notify words count ([e1b62db](https://github.com/snelling-a/nvim/commit/e1b62db85ec9c5f6318b4ddd11557490e996c3c5))
+* **spell:** extract function to automate mkspell ([100b4e3](https://github.com/snelling-a/nvim/commit/100b4e3efa2e5a9d33d7967f0dbf0e36e751db45))
+* statuscolumn ([73f1815](https://github.com/snelling-a/nvim/commit/73f181559102984d66fbc73c114a54fe95b1c413))
+* statusline ([5cb9d21](https://github.com/snelling-a/nvim/commit/5cb9d211906e9f596ad808af07ccd932de2f1f7e))
+
+
+### Bug Fixes
+
+* **util:** use tbl_contains in is_filetype_disabled ([3e9b254](https://github.com/snelling-a/nvim/commit/3e9b254ec483bafe1a1ea814369eb3744cf5497f))
+
+
+### Miscellaneous
+
+* move vim runtime files ([0f3dc34](https://github.com/snelling-a/nvim/commit/0f3dc34a02c2962d9dc3bc37016a07dee2616221))
+* **spell:** update spellfile ([f5917fd](https://github.com/snelling-a/nvim/commit/f5917fddf33a47645c5adf48b675912ad2b2c29a))
+* update plugins ([8b916f4](https://github.com/snelling-a/nvim/commit/8b916f4a3304cbf117f90c48b9b9820f3d87af0c))
+* update plugins ([b7449b5](https://github.com/snelling-a/nvim/commit/b7449b546ad3d7f3c02fe01eba71f7f34855e80d))
+* update plugins ([4e4979b](https://github.com/snelling-a/nvim/commit/4e4979b53c5974f0867b30611952cc51d4d5dd10))
+* update plugins ([3869e77](https://github.com/snelling-a/nvim/commit/3869e774e5aa0f3d7f42049dd74578ab6ac34af8))
+* update plugins ([26b7fcf](https://github.com/snelling-a/nvim/commit/26b7fcf08003e3fc1b3e88d6f56972e890936371))
+* update plugins ([a9e3f8d](https://github.com/snelling-a/nvim/commit/a9e3f8d72b70c26c71589296893343c0d2db3ac5))
+* update plugins ([e0e01e6](https://github.com/snelling-a/nvim/commit/e0e01e64533268a97d29cce7dbb29a242f8579e4))
+* update plugins ([196cea0](https://github.com/snelling-a/nvim/commit/196cea0ddd8e900be111c48eec35450696f22656))
+* update plugins ([555dc33](https://github.com/snelling-a/nvim/commit/555dc33016b93786de878f97d094aa60b2364a24))
+* update plugins ([878da10](https://github.com/snelling-a/nvim/commit/878da106f3ea3da9e3908876ffa1f3b62bb24dc7))
+
 ## [7.1.0](https://github.com/snelling-a/nvim/compare/v7.0.0...v7.1.0) (2025-01-07)
 
 
