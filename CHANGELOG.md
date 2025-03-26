@@ -1,5 +1,24 @@
 # Changelog
 
+## [8.1.0](https://github.com/snelling-a/nvim/compare/v8.0.0...v8.1.0) (2025-03-25)
+
+
+### Features
+
+* **ftplugin:** qol ([fb7a25f](https://github.com/snelling-a/nvim/commit/fb7a25f8b441624aab845f21a8ea524f141e5983))
+* **keymap:** resize window / spell picker ([f49930c](https://github.com/snelling-a/nvim/commit/f49930c1db5bef79a6553ab3f30622201f125a7d))
+* **plugin:** bool ([0ecb5f7](https://github.com/snelling-a/nvim/commit/0ecb5f7851fcd5088f7d99e787b4373e5c3b98a6))
+
+
+### Bug Fixes
+
+* **types:** keymap mode ([53769dd](https://github.com/snelling-a/nvim/commit/53769ddadea18705beb8ce82e73caa4627b7bea4))
+
+
+### Miscellaneous
+
+* update plugins ([77747e4](https://github.com/snelling-a/nvim/commit/77747e47ebe3c16f5e5cb7d2f633b1e0927d38ac))
+
 ## [8.0.0](https://github.com/snelling-a/nvim/compare/v7.1.0...v8.0.0) (2025-03-21)
 
 
