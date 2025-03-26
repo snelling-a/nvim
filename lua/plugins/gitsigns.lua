@@ -4,7 +4,7 @@ return {
 	event = { "LazyFile" },
 	config = function()
 		local gitsigns = require("gitsigns")
-		local icons = require("icons")
+		local git_icons = require("icons").gitsigns
 
 		---@diagnostic disable-next-line: missing-fields
 		gitsigns.setup({
@@ -12,12 +12,17 @@ return {
 			on_attach = function(bufnr)
 				-- local map = Config.keymap("Gitsigns")
 				local map = require("user.keymap.util").map("Gitsigns")
+				local next_hunk_repeat, prev_hunk_repeat =
+					require("nvim-treesitter.textobjects.repeatable_move").make_repeatable_move_pair(
+						gitsigns.nav_hunk,
+						gitsigns.nav_hunk
+					)
 
 				map({ "n" }, "]h", function()
 					if vim.wo.diff then
 						vim.cmd.normal({ "]h", bang = true })
 					else
-						gitsigns.nav_hunk("next")
+						next_hunk_repeat("next")
 					end
 				end, { buffer = bufnr, desc = "Next Hunk" })
 
@@ -25,7 +30,7 @@ return {
 					if vim.wo.diff then
 						vim.cmd.normal({ "[h", bang = true })
 					else
-						gitsigns.nav_hunk("prev")
+						prev_hunk_repeat("prev")
 					end
 				end, { buffer = bufnr, desc = "Previous Hunk" })
 
@@ -61,8 +66,8 @@ return {
 			attach_to_untracked = true,
 			---@type vim.api.keyset.win_config
 			preview_config = { border = "rounded" },
-			signs = icons.gitsigns,
-			signs_staged = icons.gitsigns,
+			signs = git_icons,
+			signs_staged = git_icons,
 		} --[[@as Gitsigns.Config]])
 	end,
 }

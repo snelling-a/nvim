@@ -25,17 +25,19 @@ function M.on_attach(client, bufnr)
 
 	if client:supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight, bufnr) then
 		local words = require("user.lsp.words")
+		local next_word_repeat, prev_word_repeat =
+			require("nvim-treesitter.textobjects.repeatable_move").make_repeatable_move_pair(words.jump, words.jump)
 
 		map({ "n" }, "]]", function()
 			if words.get_is_enabled(bufnr) then
-				words.jump(vim.v.count1)
+				next_word_repeat(vim.v.count1)
 			else
 				vim.notify("LspWords is not enabled")
 			end
 		end, { buffer = bufnr, desc = "Next Reference" })
 		map({ "n" }, "[[", function()
 			if words.get_is_enabled(bufnr) then
-				words.jump(-vim.v.count1)
+				prev_word_repeat(-vim.v.count1)
 			else
 				vim.notify("LspWords is not enabled")
 			end

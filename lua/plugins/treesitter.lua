@@ -53,7 +53,9 @@ return {
 			},
 		})
 
-		vim.keymap.set({ "n" }, "<leader>tt", function()
+		local map = require("user.keymap.util").map("Treesitter")
+
+		map({ "n" }, "<leader>tt", function()
 			local is_enabled = vim.b.ts_highlight
 
 			if is_enabled then
@@ -61,6 +63,16 @@ return {
 			else
 				vim.treesitter.start()
 			end
-		end, { desc = "Toggle Treesitter Highlight" })
+		end, { desc = "Toggle Highlight" })
+
+		local ts_repeat_move = require("nvim-treesitter.textobjects.repeatable_move")
+
+		map({ "n", "x", "o" }, ";", ts_repeat_move.repeat_last_move, { desc = "Repeat Last Move" })
+		map({ "n", "x", "o" }, ",", ts_repeat_move.repeat_last_move_opposite, { desc = "Repeat Last Move Opposite" })
+
+		map({ "n", "x", "o" }, "f", ts_repeat_move.builtin_f_expr, { desc = "remap builtin `f`", expr = true })
+		map({ "n", "x", "o" }, "F", ts_repeat_move.builtin_F_expr, { desc = "remap builtin `F`", expr = true })
+		map({ "n", "x", "o" }, "t", ts_repeat_move.builtin_t_expr, { desc = "remap builtin `t`", expr = true })
+		map({ "n", "x", "o" }, "T", ts_repeat_move.builtin_T_expr, { desc = "remap builtin `T`", expr = true })
 	end,
 }
