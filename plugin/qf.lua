@@ -1,3 +1,8 @@
+if vim.g.qftf_loaded then
+	return
+end
+vim.g.qftf_loaded = true
+
 ---@class QFTFInfo
 ---@field quickfix number
 ---@field winid number

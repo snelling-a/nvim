@@ -1,3 +1,8 @@
+if vim.g.bool_loaded then
+	return
+end
+vim.g.bool_loaded = true
+
 local function flip_bool()
 	local bools = {
 		["true"] = "false",
