@@ -3,7 +3,7 @@ return {
 	"nvim-treesitter/nvim-treesitter",
 	dependencies = { "nvim-treesitter/nvim-treesitter-textobjects" },
 	build = ":TSUpdate",
-	event = { "VeryLazy" },
+	event = { "LazyFile" },
 	lazy = vim.fn.argc(-1) == 0,
 	config = function()
 		---@diagnostic disable-next-line: missing-fields
