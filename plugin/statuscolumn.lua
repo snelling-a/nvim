@@ -1,3 +1,8 @@
+if vim.g.statuscolumn_loaded then
+	return
+end
+vim.g.statuscolumn_loaded = true
+
 ---@type table<string, vim.api.keyset.highlight>
 local hl_groups = {}
 

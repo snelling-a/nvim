@@ -1,3 +1,8 @@
+if vim.g.statusline_loaded then
+	return
+end
+vim.g.statusline_loaded = true
+
 local Icons = require("icons")
 
 ---@class Statusline
