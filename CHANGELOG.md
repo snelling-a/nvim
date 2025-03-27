@@ -1,5 +1,17 @@
 # Changelog
 
+## [8.2.0](https://github.com/snelling-a/nvim/compare/v8.1.0...v8.2.0) (2025-03-27)
+
+
+### Features
+
+* treesitter repeat ([71d6637](https://github.com/snelling-a/nvim/commit/71d663790c710a512b32fff4a3a5711c292ea120))
+
+
+### Bug Fixes
+
+* **lsp:** lua runtime/library ([64b2f75](https://github.com/snelling-a/nvim/commit/64b2f75e2ce43082510e470cf386ae6c46a93ff3))
+
 ## [8.1.0](https://github.com/snelling-a/nvim/compare/v8.0.0...v8.1.0) (2025-03-25)
 
 
