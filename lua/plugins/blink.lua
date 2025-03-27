@@ -4,50 +4,49 @@ return {
 	dependencies = { "echasnovski/mini.icons", "giuxtaposition/blink-cmp-copilot", "rafamadriz/friendly-snippets" },
 	event = { "CmdlineEnter", "InsertEnter" },
 	build = "cargo build --release",
-	-- version = "*",
-	---@module 'blink.cmp'
+	version = "1.*",
 	---@type blink.cmp.Config
 	opts = {
-		keymap = { preset = "enter" },
-		appearance = {
-			nerd_font_variant = "mono",
-			kind_icons = {
-				Copilot = " ",
+		completion = {
+			documentation = {
+				window = { border = "rounded" },
 			},
-		},
-		cmdline = {
-			enabled = false,
-			-- completion = {
-			-- 	menu = {
-			-- 		auto_show = function(_ctx)
-			-- 			return vim.fn.getcmdtype() == ":"
-			-- 		end,
-			-- 	},
-			-- },
-		},
-		sources = {
-			default = { "lsp", "path", "snippets", "buffer", "copilot" },
-			providers = {
-				copilot = {
-					async = true,
-					module = "blink-cmp-copilot",
-					name = "copilot",
-					score_offset = 100,
-					transform_items = function(_, items)
-						local CompletionItemKind = require("blink.cmp.types").CompletionItemKind
-						local kind_idx = #CompletionItemKind + 1
-						CompletionItemKind[kind_idx] = "Copilot"
-						for _, item in ipairs(items) do
-							item.kind = kind_idx
-						end
-						return items
-					end,
+			menu = {
+				border = "rounded",
+				draw = {
+					components = {
+						kind_icon = {
+							text = function(ctx)
+								if ctx.kind == "Copilot" then
+									return require("icons").servers.copilot
+								end
+								---@type string, string, boolean
+								local kind_icon, _, _ = require("mini.icons").get("lsp", ctx.kind)
+								return kind_icon
+							end,
+							highlight = function(ctx)
+								---@type string, string, boolean
+								local _, hl, _ = require("mini.icons").get("lsp", ctx.kind)
+								return hl
+							end,
+						},
+						kind = {
+							highlight = function(ctx)
+								---@type string, string, boolean
+								local _, hl, _ = require("mini.icons").get("lsp", ctx.kind)
+								return hl
+							end,
+						},
+					},
 				},
 			},
 		},
-		completion = {
-			documentation = { window = { border = "rounded" } },
-			menu = { border = "rounded", draw = { components = { kind_icon = { ellipsis = false } } } },
+		keymap = { preset = "enter" },
+		sources = {
+			default = { "lsp", "snippets", "copilot", "path", "buffer" },
+			providers = {
+				copilot = { async = true, module = "blink-cmp-copilot", name = "copilot" },
+			},
 		},
 	},
 }
