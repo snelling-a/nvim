@@ -1,3 +1,14 @@
+local library = {
+	"${3rd}/luv/library",
+	vim.env.VIMRUNTIME,
+	vim.fn.expand("$VIMRUNTIME/lua"),
+	vim.fn.stdpath("data") .. "/lazy/",
+}
+
+for _, v in pairs(vim.api.nvim_get_runtime_file("", true)) do
+	vim.list_extend(library, { v })
+end
+
 ---@type vim.lsp.Config
 return {
 	cmd = { "lua-language-server" },
@@ -48,7 +59,7 @@ return {
 				setType = true,
 			},
 			runtime = {
-				path = { "lua/?.lua", "lua/?/init.lua" },
+				path = { "?/init.lua", "lua/?.lua", "lua/?/init.lua" },
 				version = "LuaJIT",
 			},
 			telemetry = { enable = false },
@@ -56,10 +67,10 @@ return {
 			workspace = {
 				checkThirdParty = false,
 				library = {
-					unpack(vim.api.nvim_get_runtime_file("", true)),
-					"${3rd}/busted/library",
 					"${3rd}/luv/library",
 					vim.env.VIMRUNTIME,
+					vim.fn.expand("$VIMRUNTIME/lua"),
+					vim.fn.stdpath("data") .. "/lazy/",
 				},
 			},
 		},
