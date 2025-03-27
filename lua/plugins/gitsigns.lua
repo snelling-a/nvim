@@ -10,7 +10,6 @@ return {
 		gitsigns.setup({
 			current_line_blame = true,
 			on_attach = function(bufnr)
-				-- local map = Config.keymap("Gitsigns")
 				local map = require("user.keymap.util").map("Gitsigns")
 				local next_hunk_repeat, prev_hunk_repeat =
 					require("nvim-treesitter.textobjects.repeatable_move").make_repeatable_move_pair(
