@@ -9,7 +9,6 @@ vim.g.disabled_filetypes = {
 	"help",
 	"lazy",
 	"log",
-	"man",
 	"mason",
 	"minifiles",
 	"ministarter",
