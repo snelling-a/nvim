@@ -21,6 +21,7 @@ vim.g.disabled_filetypes = {
 	"notify",
 	"qf",
 	"scratch",
+	"toggleterm",
 }
 
 local _print = print
