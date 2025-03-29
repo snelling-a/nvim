@@ -8,11 +8,7 @@ return {
 	---@type blink.cmp.Config
 	opts = {
 		completion = {
-			documentation = {
-				window = { border = "rounded" },
-			},
 			menu = {
-				border = "rounded",
 				draw = {
 					components = {
 						kind_icon = {

@@ -9,7 +9,7 @@ return {
 	},
 	config = function()
 		require("mason").setup({
-			ui = { border = "rounded" },
+			-- ui = { border = "rounded" },
 		})
 
 		local mason_registry = require("mason-registry")

@@ -7,11 +7,8 @@ return {
 		{ "<leader>gg", desc = "LazyGit" },
 	},
 	config = function()
-		local float_opts = { border = "rounded" }
-
 		require("toggleterm").setup({
 			direction = "float",
-			float_opts = float_opts,
 			open_mapping = [[<c-\>]],
 		})
 
@@ -27,7 +24,6 @@ return {
 			local term = {
 				cmd = table.concat(cmd_args, " "),
 				direction = "float",
-				float_opts = float_opts,
 				hidden = true,
 			}
 

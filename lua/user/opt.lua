@@ -81,6 +81,7 @@ vim.o.undolevels = 10000
 vim.o.updatetime = 200
 vim.o.virtualedit = "block"
 vim.o.wildmode = "longest:full,full"
+vim.o.winborder = "rounded"
 vim.o.winminwidth = 10
 vim.o.wrap = false
 vim.o.writebackup = false

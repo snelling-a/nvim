@@ -1,14 +1,6 @@
 local M = {}
 
 function M.on_attach()
-	local open_floating_preview = vim.lsp.util.open_floating_preview
-	---@diagnostic disable-next-line: duplicate-set-field
-	vim.lsp.util.open_floating_preview = function(contents, syntax, opts)
-		opts = opts or {}
-		opts.border = "rounded"
-		return open_floating_preview(contents, syntax, opts)
-	end
-
 	local references = vim.lsp.buf.references
 	---@diagnostic disable-next-line: duplicate-set-field
 	vim.lsp.buf.references = function()
