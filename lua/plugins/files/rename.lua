@@ -33,6 +33,7 @@ end
 local M = {}
 
 ---@param path string
+---@return string
 local function realpath(path)
 	---@diagnostic disable-next-line: undefined-field
 	return vim.fs.normalize(vim.uv.fs_realpath(path) or path)
