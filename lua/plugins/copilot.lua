@@ -7,6 +7,11 @@ return {
 	opts = {
 		filetypes = { markdown = true },
 		panel = { enabled = false },
-		suggestion = { enabled = true },
+		suggestion = {
+			auto_trigger = true,
+			keymap = {
+				accept = "<tab>",
+			},
+		},
 	},
 }

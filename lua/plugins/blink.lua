@@ -1,7 +1,7 @@
 ---@type LazySpec
 return {
 	"saghen/blink.cmp",
-	dependencies = { "echasnovski/mini.icons", "giuxtaposition/blink-cmp-copilot", "rafamadriz/friendly-snippets" },
+	dependencies = { "echasnovski/mini.icons", "rafamadriz/friendly-snippets" },
 	event = { "CmdlineEnter", "InsertEnter" },
 	build = "cargo build --release",
 	version = "1.*",
@@ -13,9 +13,6 @@ return {
 					components = {
 						kind_icon = {
 							text = function(ctx)
-								if ctx.kind == "Copilot" then
-									return require("icons").servers.copilot
-								end
 								---@type string, string, boolean
 								local kind_icon, _, _ = require("mini.icons").get("lsp", ctx.kind)
 								return kind_icon
@@ -39,10 +36,7 @@ return {
 		},
 		keymap = { preset = "enter" },
 		sources = {
-			default = { "lsp", "snippets", "copilot", "path", "buffer" },
-			providers = {
-				copilot = { async = true, module = "blink-cmp-copilot", name = "copilot" },
-			},
+			default = { "lsp", "snippets", "path", "buffer" },
 		},
 	},
 }
