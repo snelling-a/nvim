@@ -1,5 +1,29 @@
 # Changelog
 
+## [8.2.0](https://github.com/snelling-a/nvim/compare/v8.1.0...v8.2.0) (2025-03-31)
+
+
+### Features
+
+* **copilot:** remove copilot from completion ([df10f59](https://github.com/snelling-a/nvim/commit/df10f59abc91dff7b3a1dcb62eb6e790b4e97224))
+* titlestring ([f77eb06](https://github.com/snelling-a/nvim/commit/f77eb06b9c05e8a220696aceb67bf2c89b7b2cd1))
+* treesitter repeat ([71d6637](https://github.com/snelling-a/nvim/commit/71d663790c710a512b32fff4a3a5711c292ea120))
+* winborder = "rounded" ([391a22c](https://github.com/snelling-a/nvim/commit/391a22c75bf8ce56a7e7dadf610f13bae499e8fe))
+
+
+### Bug Fixes
+
+* disable line number in toggle term ([5204b8c](https://github.com/snelling-a/nvim/commit/5204b8c4ae3e4126043ad34f71f04695163885da))
+* **lsp:** lua runtime/library ([64b2f75](https://github.com/snelling-a/nvim/commit/64b2f75e2ce43082510e470cf386ae6c46a93ff3))
+* **types:** rename ([8341ee5](https://github.com/snelling-a/nvim/commit/8341ee57b69417d0898311cdeca6d9be250e27fb))
+* use default `q` for man pages ([e315372](https://github.com/snelling-a/nvim/commit/e3153722acd2bf8a4ac626be864091cb5f3a5408))
+
+
+### Miscellaneous
+
+* **spell:** update spellfile ([eafc9e5](https://github.com/snelling-a/nvim/commit/eafc9e5f6ca3a9a5bd2788ceaba37de56a35ef0b))
+* update plugins ([048051d](https://github.com/snelling-a/nvim/commit/048051daa5bde18fc97164849636727e556dbc55))
+
 ## [8.1.0](https://github.com/snelling-a/nvim/compare/v8.0.0...v8.1.0) (2025-03-25)
 
 
