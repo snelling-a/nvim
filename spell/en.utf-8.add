@@ -39,6 +39,7 @@ clangd
 Clocate
 cmap
 Cmdline
+cmp
 colorcolumn
 colorschemes
 commentstring
