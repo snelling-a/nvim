@@ -31,17 +31,16 @@ local function mapSymbols(status)
 	return result.symbol, result.hlGroup
 end
 
----@param cwd string
----@param callback function
+---@param callback fun(content:string):nil
 ---@return nil
-local function fetchGitStatus(cwd, callback)
+local function fetchGitStatus(callback)
 	local function on_exit(content)
 		if content.code == 0 then
 			callback(content.stdout)
 			vim.g.content = content.stdout
 		end
 	end
-	vim.system({ "git", "status", "--ignored", "--porcelain" }, { text = true, cwd = cwd }, on_exit)
+	pcall(vim.system, { "git", "status", "--ignored", "--porcelain" }, { text = true, cwd = vim.fn.getcwd() }, on_exit)
 end
 
 ---@param str? string
@@ -128,12 +127,12 @@ local function updateGitStatus(buf_id)
 		return
 	end
 
-	local cwd = vim.fn.expand("%:p:h")
+	local cwd = vim.fn.getcwd()
 	local currentTime = os.time()
 	if gitStatusCache[cwd] and currentTime - gitStatusCache[cwd].time < cacheTimeout then
 		updateMiniWithGit(buf_id, gitStatusCache[cwd].statusMap)
 	else
-		fetchGitStatus(cwd, function(content)
+		fetchGitStatus(function(content)
 			local gitStatusMap = parseGitStatus(content)
 			gitStatusCache[cwd] = {
 				time = currentTime,
@@ -169,6 +168,7 @@ vim.api.nvim_create_autocmd("User", {
 
 vim.api.nvim_create_autocmd("User", {
 	callback = function(event)
+		---@type integer
 		local bufnr = event.data.buf_id
 		local cwd = vim.fn.expand("%:p:h")
 		if gitStatusCache[cwd] then
