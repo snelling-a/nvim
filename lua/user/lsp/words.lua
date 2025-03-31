@@ -66,6 +66,10 @@ end
 local timer = vim.uv.new_timer()
 local function update()
 	local buf = vim.api.nvim_get_current_buf()
+	if not timer then
+		return
+	end
+
 	timer:start(200, 0, function()
 		vim.schedule(function()
 			if vim.api.nvim_buf_is_valid(buf) then
@@ -89,7 +93,7 @@ function M.on_attach()
 
 	local group = require("user.autocmd").augroup("lsp.words")
 
-	vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI", "ModeChanged" }, {
+	vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI", "ModeChanged", "FocusGained" }, {
 		group = group,
 		callback = function()
 			if not M.get_is_enabled({ modes = true }) then
@@ -99,6 +103,13 @@ function M.on_attach()
 			if not ({ get() })[2] then
 				update()
 			end
+		end,
+	})
+
+	vim.api.nvim_create_autocmd({ "FocusLost", "CmdlineEnter", "BufLeave" }, {
+		group = group,
+		callback = function()
+			vim.lsp.buf.clear_references()
 		end,
 	})
 
