@@ -4,7 +4,6 @@ return {
 	dependencies = { "echasnovski/mini.icons", "rafamadriz/friendly-snippets" },
 	event = { "CmdlineEnter", "InsertEnter" },
 	build = "cargo build --release",
-	version = "1.*",
 	---@type blink.cmp.Config
 	opts = {
 		completion = {
