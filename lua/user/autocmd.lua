@@ -135,7 +135,7 @@ end, { desc = "[Y]ank to the last non-blank character on the line", expr = true 
 
 vim.api.nvim_create_autocmd({ "TextYankPost" }, {
 	callback = function()
-		vim.highlight.on_yank()
+		vim.hl.on_yank()
 
 		if vim.v.event.operator == "y" and cursor_pre_yank then
 			vim.api.nvim_win_set_cursor(0, cursor_pre_yank)
