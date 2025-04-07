@@ -1,5 +1,12 @@
 # Changelog
 
+## [8.4.0](https://github.com/snelling-a/nvim/compare/v8.3.0...v8.4.0) (2025-04-07)
+
+
+### Features
+
+* **git:** multispace/modifiable ([52066a7](https://github.com/snelling-a/nvim/commit/52066a705f8aa041cd846f7270ff3d893435f87a))
+
 ## [8.3.0](https://github.com/snelling-a/nvim/compare/v8.2.0...v8.3.0) (2025-04-07)
 
 
