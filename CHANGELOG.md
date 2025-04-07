@@ -1,5 +1,25 @@
 # Changelog
 
+## [8.3.0](https://github.com/snelling-a/nvim/compare/v8.2.0...v8.3.0) (2025-04-07)
+
+
+### Features
+
+* **words:** clear references on focus lost ([888646f](https://github.com/snelling-a/nvim/commit/888646fae3f1dc580961a35f3e2a8bea6b2dc94b))
+
+
+### Bug Fixes
+
+* **files:** git integration ([7ca4656](https://github.com/snelling-a/nvim/commit/7ca4656d73d74362e595941f1729597a430ee3a5))
+* **lsp:** json schemas ([88ddd2f](https://github.com/snelling-a/nvim/commit/88ddd2ff418bb8106aad7d3d1edd13f21a2ecd70))
+* **ui:** vim lsp icon ([0305fb9](https://github.com/snelling-a/nvim/commit/0305fb9a09d950d6d1750ddcd20ec7125cc124a1))
+* vim.highlight is deprecated ([d4335cf](https://github.com/snelling-a/nvim/commit/d4335cfed75b93e8091a79c73c0332091fe5fcbe))
+
+
+### Miscellaneous
+
+* update plugins ([7bee1d1](https://github.com/snelling-a/nvim/commit/7bee1d1e57fb81fdd963f3e73172d221ef23b466))
+
 ## [8.2.0](https://github.com/snelling-a/nvim/compare/v8.1.0...v8.2.0) (2025-03-31)
 
 
