@@ -1,35 +1,3 @@
-if vim.g.statuscolumn_loaded then
-	return
-end
-vim.g.statuscolumn_loaded = true
-
----@type table<string, vim.api.keyset.highlight>
-local hl_groups = {}
-
-vim.api.nvim_create_autocmd({ "ColorScheme" }, {
-	group = require("user.autocmd").augroup("statuscolumn.hl"),
-	callback = function()
-		for hl_group, hl in pairs(hl_groups) do
-			vim.api.nvim_set_hl(0, hl_group, hl)
-		end
-	end,
-})
-
----@param groups table<string, vim.api.keyset.highlight|string>
----@param opts {prefix?:string, default?:boolean, managed?:boolean}
-local function set_hl(groups, opts)
-	opts = opts or {}
-	for hl_group, hl in pairs(groups) do
-		hl_group = opts.prefix and opts.prefix .. hl_group or hl_group
-		hl = type(hl) == "string" and { link = hl } or hl --[[@as vim.api.keyset.highlight]]
-		hl.default = opts.default
-		if opts.managed ~= false then
-			hl_groups[hl_group] = hl
-		end
-		vim.api.nvim_set_hl(0, hl_group, hl)
-	end
-end
-
 ---@class Statuscolumn
 local M = {}
 
@@ -53,11 +21,9 @@ local function setup()
 		return
 	end
 	did_setup = true
-	set_hl({
-		Mark = "DiagnosticHint",
-	}, { prefix = "SnacksStatusColumn", default = true })
-	---@diagnostic disable-next-line: undefined-field, no-unknown
+
 	local timer = assert((vim.uv or vim.loop).new_timer())
+
 	timer:start(50, 50, function()
 		sign_cache = {}
 		cache = {}
@@ -77,10 +43,9 @@ local function is_git_sign(name)
 end
 
 -- Returns a list of regular and extmark signs sorted by priority (low to high)
----@return table<number, Statuscolumn.sign[]>
 ---@param buf number
+---@return Statuscolumn.sign[]
 local function get_buf_signs(buf)
-	-- Get regular signs
 	---@type table<number, Statuscolumn.sign[]>
 	local signs = {}
 
@@ -90,6 +55,7 @@ local function get_buf_signs(buf)
 		local lnum = extmark[2] + 1
 		signs[lnum] = signs[lnum] or {}
 		local name = extmark[4].sign_hl_group or extmark[4].sign_name or ""
+
 		table.insert(signs[lnum], {
 			name = name,
 			type = is_git_sign(name) and "git" or "sign",
@@ -99,14 +65,13 @@ local function get_buf_signs(buf)
 		})
 	end
 
-	-- Add marks
 	local marks = vim.fn.getmarklist(buf)
 	vim.list_extend(marks, vim.fn.getmarklist())
 	for _, mark in ipairs(marks) do
 		if mark.pos[1] == buf and mark.mark:match("[a-zA-Z]") then
 			local lnum = mark.pos[2]
 			signs[lnum] = signs[lnum] or {}
-			table.insert(signs[lnum], { text = mark.mark:sub(2), texthl = "SnacksStatusColumnMark", type = "mark" })
+			table.insert(signs[lnum], { text = mark.mark:sub(2), texthl = "@comment", type = "mark" })
 		end
 	end
 
@@ -128,7 +93,7 @@ local function get_line_signs(win, buf, lnum)
 
 	vim.api.nvim_win_call(win, function()
 		if vim.fn.foldclosed(lnum) >= 0 then
-			signs[#signs + 1] = { text = vim.opt.fillchars:get().foldclose or "", texthl = "Folded", type = "fold" }
+			signs[#signs + 1] = { text = vim.opt.fillchars:get().foldclose, texthl = "Folded", type = "fold" }
 		end
 	end)
 
@@ -161,11 +126,9 @@ local function _get()
 		setup()
 	end
 
-	local line_nr = '%=%{%(&number || &relativenumber) && v:virtnum == 0 ? ("%l") : ""%} '
-
 	local win = vim.g.statusline_winid
 	local show_signs = vim.v.virtnum == 0 and vim.wo[win].signcolumn ~= "no"
-	local components = { "", line_nr, "" } -- left, middle, right
+	local components = { "", "%l", "" } -- left, middle, right
 	if not show_signs and not (vim.wo[win].number or vim.wo[win].relativenumber) then
 		return ""
 	end
@@ -226,5 +189,3 @@ end
 _G.statuscolumn = M
 
 vim.opt.statuscolumn = [[%!v:lua.statuscolumn.get()]]
-
-return M
