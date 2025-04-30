@@ -29,6 +29,14 @@ vim.api.nvim_create_autocmd({ "LspAttach" }, {
 			vim.wo[win][0].foldexpr = "v:lua.vim.lsp.foldexpr()"
 		end
 
+		if client:supports_method(vim.lsp.protocol.Methods.textDocument_documentColor) then
+			local ok, hipatterns = pcall(require, "mini.hipatterns")
+			if ok then
+				hipatterns.disable(event.buf)
+			end
+			vim.lsp.document_color.enable(true, event.buf)
+		end
+
 		require("user.lsp.keymap").on_attach(client, event.buf)
 		require("user.lsp.words").on_attach()
 		require("user.lsp.overrides").on_attach()

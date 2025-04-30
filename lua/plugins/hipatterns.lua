@@ -1,7 +1,6 @@
 ---@type LazySpec
 return {
 	"echasnovski/mini.hipatterns",
-	recommended = true,
 	ft = {
 		"css",
 		"html",
