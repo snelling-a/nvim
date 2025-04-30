@@ -1,5 +1,21 @@
 # Changelog
 
+## [8.4.0](https://github.com/snelling-a/nvim/compare/v8.3.0...v8.4.0) (2025-04-28)
+
+
+### Features
+
+* **git:** multispace/modifiable ([52066a7](https://github.com/snelling-a/nvim/commit/52066a705f8aa041cd846f7270ff3d893435f87a))
+* **lsp:** folds ([032053e](https://github.com/snelling-a/nvim/commit/032053e5db5202c6fc35abb36de5f0671d2c5221))
+
+
+### Miscellaneous
+
+* **spell:** update spellfile ([506eedc](https://github.com/snelling-a/nvim/commit/506eedcc612dd65e31c0f8fb55948fa6dbad1e97))
+* update plugins ([896467e](https://github.com/snelling-a/nvim/commit/896467e0956d0f0bf8a0c7717d06e371115bfe36))
+* update plugins ([31261b5](https://github.com/snelling-a/nvim/commit/31261b5e509fa22f24108223d2cfe355e5482fe4))
+* update plugins ([1b8ef8b](https://github.com/snelling-a/nvim/commit/1b8ef8b726af132a84dac013e7fddde77dd8172a))
+
 ## [8.3.0](https://github.com/snelling-a/nvim/compare/v8.2.0...v8.3.0) (2025-04-07)
 
 
