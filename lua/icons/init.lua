@@ -86,6 +86,7 @@ return {
 		html = html,
 		["html-lsp"] = html,
 		["json-lsp"] = json,
+		json = json,
 		lsp = " ",
 		["lua diagnostics."] = lua,
 		["lua-language-server"] = lua,
