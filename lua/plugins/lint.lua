@@ -9,12 +9,13 @@ return {
 			dockerfile = { "hadolint" },
 			html = { "htmlhint" },
 			lua = { "luacheck" },
+			make = { "checkmake" },
 			markdown = { "markdownlint-cli2" },
 			sh = { "shellcheck" },
 			sql = { "sqlfluff" },
+			terraform = { "tflint" },
 			vim = { "vint" },
 			yaml = { "yamllint" },
-			make = { "checkmake" },
 		}
 
 		local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
