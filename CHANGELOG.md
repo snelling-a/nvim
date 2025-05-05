@@ -1,5 +1,25 @@
 # Changelog
 
+## [8.5.0](https://github.com/snelling-a/nvim/compare/v8.4.0...v8.5.0) (2025-05-05)
+
+
+### Features
+
+* **lsp:** terraform ([b3100a0](https://github.com/snelling-a/nvim/commit/b3100a0bdec0b8ddbb6988e708461be2179e6144))
+* **lsp:** textDocument/documentColor ([2845c9a](https://github.com/snelling-a/nvim/commit/2845c9af6ca13091511420a525583b5f8deb7260))
+* **typescript:** better type hover ([9b6b5a4](https://github.com/snelling-a/nvim/commit/9b6b5a443f870445700938dfd59bfcb72855bd21))
+
+
+### Bug Fixes
+
+* icons ([fd96020](https://github.com/snelling-a/nvim/commit/fd960204fe3c546b7bb19851f503ed3a5f6d0581))
+* markdown ([45117ea](https://github.com/snelling-a/nvim/commit/45117ea2105658592f525e9b7e0d58173715d20c))
+
+
+### Miscellaneous
+
+* update plugins ([a8d5fe4](https://github.com/snelling-a/nvim/commit/a8d5fe43472a9424bfff3be7f319bd6adde82904))
+
 ## [8.4.0](https://github.com/snelling-a/nvim/compare/v8.3.0...v8.4.0) (2025-04-28)
 
 
