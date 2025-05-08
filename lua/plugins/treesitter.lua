@@ -3,12 +3,13 @@ return {
 	"nvim-treesitter/nvim-treesitter",
 	dependencies = { "nvim-treesitter/nvim-treesitter-textobjects" },
 	build = ":TSUpdate",
-	event = { "LazyFile" },
+	event = { "VeryLazy" },
 	lazy = vim.fn.argc(-1) == 0,
 	config = function()
 		---@diagnostic disable-next-line: missing-fields
 		require("nvim-treesitter.configs").setup({
 			auto_install = true,
+			ensure_installed = { "luadoc" },
 			highlight = { additional_vim_regex_highlighting = false, enable = true },
 			incremental_selection = {
 				enable = true,
