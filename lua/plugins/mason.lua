@@ -1,6 +1,6 @@
 ---@type LazySpec
 return {
-	"williamboman/mason.nvim",
+	"mason-org/mason.nvim",
 	build = ":MasonUpdate",
 	dependencies = {
 		"mfussenegger/nvim-lint",
@@ -8,9 +8,7 @@ return {
 		{ "b0o/SchemaStore.nvim", lazy = true },
 	},
 	config = function()
-		require("mason").setup({
-			-- ui = { border = "rounded" },
-		})
+		require("mason").setup()
 
 		local mason_registry = require("mason-registry")
 
@@ -41,13 +39,10 @@ return {
 				local is_server, package = pcall(mason_registry.get_package, name)
 				if is_server then
 					if package:is_installed() then
-						package:check_new_version(function(okay, result_or_err)
-							if not okay then
-								return
-							end
-
-							package:install({ version = result_or_err.latest_version })
-						end)
+						local latest = package:get_latest_version()
+						if latest ~= package:get_installed_version() then
+							do_install(package)
+						end
 					else
 						do_install(package)
 					end
