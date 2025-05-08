@@ -1,27 +1,28 @@
-local prisma = " "
-local sql = " "
 local bash = "󱆃 "
-local json = " "
-local eslint = " "
 local copilot = " "
 local css = " "
 local deno = " "
 local docker = "󰡨 "
 local elipsis = "…"
+local eslint = " "
 local gear = " "
 local harper = "󰊪 "
 local html = " "
+local json = " "
 local lua = " "
 local markdown = "󰽛 "
-local markdown_h1 = "󰉫 "
-local markdown_h2 = "󰉬 "
-local markdown_h3 = "󰉭 "
-local markdown_h4 = "󰉮 "
-local markdown_h5 = "󰉯 "
-local markdown_h6 = "󰉰 "
+-- local markdown_h1 = "󰉫 "
+-- local markdown_h2 = "󰉬 "
+-- local markdown_h3 = "󰉭 "
+-- local markdown_h4 = "󰉮 "
+-- local markdown_h5 = "󰉯 "
+-- local markdown_h6 = "󰉰 "
+local obsidian = "󰋙 "
+local prisma = " "
+local sql = " "
 local typescript = "󰛦 "
-local vim_icon = " "
 local vert = "│"
+local vim_icon = " "
 
 ---@class Icons
 return {
@@ -52,8 +53,8 @@ return {
 	},
 	listchars = {
 		extends = elipsis,
-		multispace = "·",
 		leadmultispace = " ",
+		multispace = "·",
 		nbsp = "␣",
 		precedes = elipsis,
 		tab = "  ",
@@ -91,10 +92,10 @@ return {
 		["lua diagnostics."] = lua,
 		["lua-language-server"] = lua,
 		luacheck = lua,
-		-- markdown_oxide = obsidian,
 		markdownlint = markdown,
+		["markdown-oxide"] = obsidian,
 		marksman = markdown,
-		-- ["obsidian ls"] = obsidian,
+		["obsidian ls"] = obsidian,
 		prisma = prisma,
 		["prisma-language-server"] = prisma,
 		shellcheck = bash,
