@@ -8,13 +8,6 @@ function M.augroup(name, clear)
 	return vim.api.nvim_create_augroup("user." .. name, { clear = clear ~= false })
 end
 
---- Create multiple autocmds in a single group
----@param name string The name of the group
----@param autocmd_fun fun(group:integer):nil The function that will create the autocmds
-function M.multi_autocmd_group(name, autocmd_fun)
-	autocmd_fun(M.augroup(name))
-end
-
 vim.api.nvim_create_autocmd({ "BufReadPost" }, {
 	callback = function(event)
 		local bufnr = event.buf
