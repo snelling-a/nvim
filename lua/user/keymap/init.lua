@@ -94,6 +94,8 @@ vim.keymap.set({ "n" }, "<leader>q", function()
 end, { desc = "Quickfix List" })
 
 vim.keymap.set({ "n" }, "J", "mzJ`z", { desc = "Keep cursor while joining lines" })
+vim.keymap.set({ "n" }, "<C-CR>", "a<CR><Esc>k$", { desc = "Split current line under the cursor" })
+vim.keymap.set({ "i" }, "<C-CR>", "<CR><Esc>kA", { desc = "Split current line under the cursor" })
 
 vim.keymap.set(
 	{ "n", "o", "x" },
@@ -123,6 +125,8 @@ vim.keymap.set({ "n" }, "<leader>td", function()
 	vim.diagnostic.enable(not is_enabled)
 end, { desc = "[T]oggle [D]iagnostics" })
 vim.keymap.set({ "n" }, "<leader>tw", function()
+	---@type boolean
+	---@diagnostic disable-next-line: undefined-field
 	local wrap = vim.opt_local.wrap:get()
 
 	vim.opt_local.wrap = not wrap
@@ -147,9 +151,12 @@ vim.keymap.set({ "n", "v" }, "z=", function()
 end)
 
 vim.keymap.set({ "n" }, "<leader>tn", function()
+	---@type boolean
+	---@diagnostic disable-next-line: undefined-field
 	local is_enabled = vim.opt_local.relativenumber:get()
 
 	vim.opt_local.relativenumber = not is_enabled
 end, { desc = "[T]oggle Relative[n]umber" })
 
-vim.keymap.set({ "c" }, "<C-y>", "<c-b>let @*='<c-e>'<cr>", { desc = "Copy contents of the command line" })
+vim.keymap.set("n", "ycc", "yygccp", { remap = true, desc = "Duplicate line and comment the first line" })
+vim.keymap.set("x", "/", "<Esc>/\\%V", { desc = "Search in visual mode" })
