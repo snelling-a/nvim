@@ -63,8 +63,6 @@ return {
 				)
 			end,
 			attach_to_untracked = true,
-			---@type vim.api.keyset.win_config
-			-- preview_config = { border = "rounded" },
 			signs = git_icons,
 			signs_staged = git_icons,
 		} --[[@as Gitsigns.Config]])

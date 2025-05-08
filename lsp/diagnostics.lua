@@ -10,7 +10,6 @@ end
 ---@type vim.diagnostic.Opts
 local config = {
 	float = {
-		-- border = "rounded",
 		header = "",
 		prefix = function(diagnostic)
 			if not diagnostic.source then
