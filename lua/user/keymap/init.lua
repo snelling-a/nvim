@@ -67,6 +67,11 @@ vim.keymap.set({ "n" }, "<A-Left>", "<cmd>vertical resize -2<cr>", { desc = "Dec
 vim.keymap.set({ "n" }, "<A-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase Window Width" })
 vim.keymap.set({ "n" }, "<A-Up>", "<cmd>resize +2<cr>", { desc = "Increase Window Height" })
 
+vim.keymap.set("n", "<Left>", "zh", { desc = "Scroll left" })
+vim.keymap.set("n", "<Right>", "zl", { desc = "Scroll right" })
+vim.keymap.set("n", "<S-Left>", "zH", { desc = "Center left" })
+vim.keymap.set("n", "<S-Right>", "zL", { desc = "Center right" })
+
 vim.keymap.set({ "n" }, "<C-z>", "<nop>", { desc = "Disable `:stop` keymap" })
 
 vim.keymap.set({ "n" }, "<Esc>", Maps.clear, { desc = "Redraw / Clear hlsearch / Diff Update" })
