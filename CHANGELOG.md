@@ -1,5 +1,28 @@
 # Changelog
 
+## [8.6.0](https://github.com/snelling-a/nvim/compare/v8.5.0...v8.6.0) (2025-05-10)
+
+
+### Features
+
+* **keys:** horizontal scroll ([f0627a9](https://github.com/snelling-a/nvim/commit/f0627a9711c5b70c5be8c9b3a257e4d948c1f7c6))
+* **keys:** split line / comment&paste ([bb1d661](https://github.com/snelling-a/nvim/commit/bb1d6610f807dda19a94109e9d7b9e6b627c4c12))
+
+
+### Bug Fixes
+
+* **treesitter:** add luadoc to ensure_installed ([f2f1bcc](https://github.com/snelling-a/nvim/commit/f2f1bcc34550b5804073fb1fd0d01df0e2fc44b1))
+
+
+### Miscellaneous
+
+* delete unused method ([b574959](https://github.com/snelling-a/nvim/commit/b574959a7cb067de9b04354ef653b3513e44b7cc))
+* **icons:** update icons ([a14c0e2](https://github.com/snelling-a/nvim/commit/a14c0e2515af1ad7a2a22d3d6d924245d09b07f4))
+* **mason:** update for v2 ([82b495f](https://github.com/snelling-a/nvim/commit/82b495f6b9dd6312818e1d3d356e2a043bf96694))
+* **spell:** update spellfile ([1e0fc7c](https://github.com/snelling-a/nvim/commit/1e0fc7c26bbe2c0671b62f602922ba8ab6d5a84f))
+* **ui:** remove border = "rounded" ([096cc63](https://github.com/snelling-a/nvim/commit/096cc63702df7bca87d5f6e16dd5b7b093f48fe2))
+* update plugins ([2f8d441](https://github.com/snelling-a/nvim/commit/2f8d441340a43d058bbc8fba541629cec8330ff2))
+
 ## [8.5.0](https://github.com/snelling-a/nvim/compare/v8.4.0...v8.5.0) (2025-05-05)
 
 
