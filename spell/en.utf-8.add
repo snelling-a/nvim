@@ -108,6 +108,7 @@ foldtext
 folke
 formatexpr
 formatoptions
+frontend
 ftdetect
 ftplugin
 fugitiveblame
@@ -237,6 +238,7 @@ ontext
 opleader
 packadd
 pannel
+params
 parenthasis
 pcss
 permlink
