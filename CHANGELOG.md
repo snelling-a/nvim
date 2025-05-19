@@ -1,5 +1,13 @@
 # Changelog
 
+## [8.6.1](https://github.com/snelling-a/nvim/compare/v8.6.0...v8.6.1) (2025-05-19)
+
+
+### Miscellaneous
+
+* **spell:** update spellfile ([a63898d](https://github.com/snelling-a/nvim/commit/a63898db314a9f63500c809320b55cd99cc9e71d))
+* update plugins ([2f38ac2](https://github.com/snelling-a/nvim/commit/2f38ac229e32b929918c82113636d4b4c601cab5))
+
 ## [8.6.0](https://github.com/snelling-a/nvim/compare/v8.5.0...v8.6.0) (2025-05-10)
 
 
