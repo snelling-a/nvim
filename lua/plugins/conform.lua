@@ -51,7 +51,6 @@ return {
 			markdown = { "prettierd", "prettier", "markdownlint-cli2", "markdown-toc" },
 			sh = { "shfmt" },
 			sql = { "sqlfmt" },
-			toml = { "taplo" },
 			typescript = { "prettierd", "prettier" },
 			typescriptreact = { "prettierd", "prettier" },
 			yaml = { "yamlfmt", "yq" },
