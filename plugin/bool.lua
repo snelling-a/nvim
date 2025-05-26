@@ -15,6 +15,8 @@ local function flip_bool()
 		off = "on",
 		let = "const",
 		const = "let",
+		["private"] = "public",
+		["public"] = "private",
 	}
 
 	local cursor = vim.api.nvim_win_get_cursor(0)
