@@ -6,60 +6,64 @@ return {
 	keys = {
 		{ "<leader>f", desc = "[F]ormat buffer" },
 	},
-	---@type conform.setupOpts
-	opts = {
-		format_on_save = function(bufnr)
-			if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
-				return
-			end
-
-			return { timeout_ms = 500, lsp_format = "fallback" }
-		end,
-		formatters = {
-			["markdownlint-cli2"] = {
-				condition = function(_, ctx)
-					---@param diagnostic vim.Diagnostic
-					---@return boolean
-					local diag = vim.tbl_filter(function(diagnostic)
-						return diagnostic.source == "markdownlint"
-					end, vim.diagnostic.get(ctx.buf))
-
-					return #diag > 0
-				end,
-			},
-			["markdown-toc"] = {
-				condition = function(_, ctx)
-					for _, line in ipairs(vim.api.nvim_buf_get_lines(ctx.buf, 0, -1, false)) do
-						if line:find("<!%-%- toc %-%->") then
-							return true
-						end
-					end
-					return false
-				end,
-			},
-			sqlfluff = { args = { "format", "--dialect=ansi", "-" } },
-		},
-		formatters_by_ft = {
-			css = { "prettierd", "prettier" },
-			html = { "prettier", "prettierd" },
-			javascript = { "prettierd", "prettier" },
-			javascriptreact = { "prettierd", "prettier" },
-			json = { "prettierd" },
-			json5 = { "prettierd" },
-			jsonc = { "prettierd" },
-			lua = { "stylua" },
-			markdown = { "prettierd", "prettier", "markdownlint-cli2", "markdown-toc" },
-			sh = { "shfmt" },
-			sql = { "sqlfmt" },
-			typescript = { "prettierd", "prettier" },
-			typescriptreact = { "prettierd", "prettier" },
-			yaml = { "yamlfmt", "yq" },
-		},
-		notify_on_error = false,
-	},
-	config = function(_, opts)
+	config = function()
 		local conform = require("conform")
-		conform.setup(opts)
+		---@type conform.FiletypeFormatterInternal
+		local prettier = { "prettierd" }
+		local jsts = vim.list_extend(vim.deepcopy(prettier), { "eslint_d" })
+
+		conform.setup({
+			format_on_save = function(bufnr)
+				if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
+					return
+				end
+
+				return { timeout_ms = 500, lsp_format = "fallback" }
+			end,
+			formatters = {
+				["markdownlint-cli2"] = {
+					condition = function(_, ctx)
+						---@param diagnostic vim.Diagnostic
+						---@return boolean
+						local diag = vim.tbl_filter(function(diagnostic)
+							return diagnostic.source == "markdownlint"
+						end, vim.diagnostic.get(ctx.buf))
+
+						return #diag > 0
+					end,
+				},
+				["markdown-toc"] = {
+					condition = function(_, ctx)
+						for _, line in ipairs(vim.api.nvim_buf_get_lines(ctx.buf, 0, -1, false)) do
+							if line:find("<!%-%- toc %-%->") then
+								return true
+							end
+						end
+						return false
+					end,
+				},
+				-- prettier = prettier_formatter,
+				-- prettierd = prettier_formatter,
+				sqlfluff = { args = { "format", "--dialect=ansi", "-" } },
+			},
+			formatters_by_ft = {
+				css = prettier,
+				html = prettier,
+				javascript = jsts,
+				javascriptreact = jsts,
+				json = prettier,
+				json5 = prettier,
+				jsonc = prettier,
+				lua = { "stylua" },
+				markdown = vim.list_extend(vim.deepcopy(prettier), { "markdownlint-cli2", "markdown-toc" }),
+				sh = { "shfmt" },
+				sql = { "sqlfmt" },
+				typescript = jsts,
+				typescriptreact = jsts,
+				yaml = { "yamlfmt", "yq" },
+			},
+			notify_on_error = false,
+		})
 
 		vim.keymap.set("n", "<leader>f", function()
 			conform.format({ async = true, lsp_format = "fallback" })
