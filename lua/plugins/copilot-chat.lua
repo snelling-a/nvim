@@ -36,7 +36,7 @@ return {
 			window = { width = 0.4 },
 		})
 
-		local map = vim.keymap.set
+		local map = require("user.keymap.util").map("CopilotChat")
 
 		map({ "n", "v" }, "<leader>aa", chat.toggle, { desc = "toggle" })
 		map({ "n", "v" }, "<leader>ap", chat.select_prompt, { desc = "prompt" })
