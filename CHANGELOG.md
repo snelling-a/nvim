@@ -1,5 +1,29 @@
 # Changelog
 
+## [8.7.0](https://github.com/snelling-a/nvim/compare/v8.6.0...v8.7.0) (2025-05-26)
+
+
+### Features
+
+* **bool:** add public/private ([30f1ae0](https://github.com/snelling-a/nvim/commit/30f1ae0a540b88d72c4d0d5b057bc4648016722d))
+* **treesitter:** expand ensure enabled ([317c42a](https://github.com/snelling-a/nvim/commit/317c42a3c7a794a08d6cac6af0b1acb13c80452f))
+
+
+### Bug Fixes
+
+* **blink:** disable auto brackets ([943198c](https://github.com/snelling-a/nvim/commit/943198c7e2c701bf5f068a17e8bbd111dedaa1a7))
+* **formatting:** prettier ([af176bd](https://github.com/snelling-a/nvim/commit/af176bd1b51ed059a5096474a704df1c76a7f86b))
+* **lsp:** eslint ([f85cae3](https://github.com/snelling-a/nvim/commit/f85cae3d46c8f1cdd2bace831f3a590e9af81584))
+* **maps:** copilot chat maps ([607898b](https://github.com/snelling-a/nvim/commit/607898bf9d25105642156213a53fdd4075c1194b))
+* **toml:** formatting ([9771db6](https://github.com/snelling-a/nvim/commit/9771db65a095aacb5177f00552dc1c0be37b6710))
+
+
+### Miscellaneous
+
+* **spell:** update spellfile ([a63898d](https://github.com/snelling-a/nvim/commit/a63898db314a9f63500c809320b55cd99cc9e71d))
+* update plugins ([900e7eb](https://github.com/snelling-a/nvim/commit/900e7ebb3496993635fbb1f0683e6f09592c5d0e))
+* update plugins ([2f38ac2](https://github.com/snelling-a/nvim/commit/2f38ac229e32b929918c82113636d4b4c601cab5))
+
 ## [8.6.0](https://github.com/snelling-a/nvim/compare/v8.5.0...v8.6.0) (2025-05-10)
 
 
