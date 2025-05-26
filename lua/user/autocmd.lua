@@ -72,12 +72,14 @@ vim.api.nvim_create_autocmd({ "CmdlineEnter", "FocusLost", "InsertEnter", "WinLe
 
 vim.api.nvim_create_autocmd({ "BufEnter", "CmdlineLeave", "FocusGained", "InsertLeave", "WinEnter" }, {
 	callback = function()
+		local value = true
 		if vim.tbl_contains(vim.g.disabled_filetypes, vim.bo.filetype) or vim.bo.buftype == "nofile" then
-			return
+			value = false
+			vim.api.nvim_set_option_value("number", value, { scope = "local", win = 0 })
 		end
 
-		vim.api.nvim_set_option_value("relativenumber", true, { scope = "local", win = 0 })
-		vim.api.nvim_set_option_value("cursorline", true, { scope = "local", win = 0 })
+		vim.api.nvim_set_option_value("relativenumber", value, { scope = "local", win = 0 })
+		vim.api.nvim_set_option_value("cursorline", value, { scope = "local", win = 0 })
 	end,
 	desc = "Enable UI elements for focused windows",
 	group = ui_group,

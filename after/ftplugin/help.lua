@@ -1,7 +1,4 @@
 vim.opt_local.colorcolumn = ""
-vim.opt_local.number = true
-vim.opt_local.numberwidth = 1
-vim.opt_local.relativenumber = true
 vim.opt_local.statuscolumn = ""
 
 local bufnr = vim.api.nvim_get_current_buf()
