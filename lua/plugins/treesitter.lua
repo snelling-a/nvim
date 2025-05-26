@@ -9,7 +9,7 @@ return {
 		---@diagnostic disable-next-line: missing-fields
 		require("nvim-treesitter.configs").setup({
 			auto_install = true,
-			ensure_installed = { "luadoc" },
+			ensure_installed = { "comment", "jsdoc", "luadoc" },
 			highlight = { additional_vim_regex_highlighting = false, enable = true },
 			incremental_selection = {
 				enable = true,
