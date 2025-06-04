@@ -1,5 +1,22 @@
 # Changelog
 
+## [8.8.0](https://github.com/snelling-a/nvim/compare/v8.7.0...v8.8.0) (2025-06-04)
+
+
+### Features
+
+* **bool:** javascript and/or ([2196ce5](https://github.com/snelling-a/nvim/commit/2196ce550bc2e2ca0d620993e5da715df450a992))
+
+
+### Bug Fixes
+
+* ui elements on disabled filetypes ([ee23712](https://github.com/snelling-a/nvim/commit/ee23712c181dfd20b7d4b0b6c138234df499ef3b))
+
+
+### Miscellaneous
+
+* update plugins ([449fff8](https://github.com/snelling-a/nvim/commit/449fff85832f725b6c9f208aa584b72ca2c11f98))
+
 ## [8.7.0](https://github.com/snelling-a/nvim/compare/v8.6.0...v8.7.0) (2025-05-26)
 
 
