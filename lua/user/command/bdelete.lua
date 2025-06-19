@@ -1,67 +1,65 @@
-local M = {}
+---@alias filter fun(bufnr: number): boolean Filter buffers to delete
 
----@param buf? number|fun(buf: number): boolean Target buffer or filter function to close more than 1 buffer
----@return nil
-local function delete(buf)
-	if type(buf) == "function" then
-		for _, b in ipairs(vim.api.nvim_list_bufs()) do
-			if vim.bo[b].buflisted and buf(b) then
-				delete(b)
-				vim.api.nvim_buf_get_name(b)
+--- Delete a buffer:
+--- - either the current buffer if `buf` is not provided
+--- - or every buffer for which `buf` returns true if it is a function
+---@param filter? filter
+local function delete(filter)
+	if filter then
+		for _, bufnr in ipairs(vim.tbl_filter(filter, vim.api.nvim_list_bufs())) do
+			if vim.bo[bufnr].buflisted then
+				delete()
 			end
 		end
 
-		if #vim.api.nvim_list_wins() > 1 then
-			vim.cmd.wincmd("o")
-		end
+		vim.cmd.tabonly()
 
 		return
 	end
 
-	buf = buf or 0
-	buf = buf == 0 and vim.api.nvim_get_current_buf() or buf
+	local bufnr = vim.api.nvim_get_current_buf()
 
-	if buf ~= vim.api.nvim_get_current_buf() then
-		return vim.api.nvim_buf_call(buf, delete)
-	end
-
-	if vim.bo.modified then
-		local choice = vim.fn.confirm(("Save changes to %q?"):format(vim.fn.bufname()), "&Yes\n&No\n&Cancel")
-		if choice == 0 or choice == 3 then
-			return
-		end
-		if choice == 1 then
-			vim.cmd.write()
-		end
-	end
-
-	for _, win in ipairs(vim.fn.win_findbuf(buf)) do
-		vim.api.nvim_win_call(win, function()
-			if not vim.api.nvim_win_is_valid(win) or vim.api.nvim_win_get_buf(win) ~= buf then
+	vim.api.nvim_buf_call(bufnr, function()
+		if vim.bo.modified then
+			local ok, choice =
+				pcall(vim.fn.confirm, ("Save changes to %q?"):format(vim.fn.bufname()), "&Yes\n&No\n&Cancel")
+			if not ok or choice == 0 or choice == 3 then
 				return
 			end
-			local alt = vim.fn.bufnr("#")
-			if alt ~= buf and vim.fn.buflisted(alt) == 1 then
-				vim.api.nvim_win_set_buf(win, alt)
-				return
+			if choice == 1 then
+				vim.cmd.write()
 			end
+		end
 
+		for _, win in ipairs(vim.fn.win_findbuf(bufnr)) do
+			vim.api.nvim_win_call(win, function()
+				if not vim.api.nvim_win_is_valid(win) or vim.api.nvim_win_get_buf(win) ~= bufnr then
+					return
+				end
+				local alt = vim.fn.bufnr("#")
+				if alt ~= bufnr and vim.fn.buflisted(alt) == 1 then
+					vim.api.nvim_win_set_buf(win, alt)
+					return
+				end
+
+				---@diagnostic disable-next-line: param-type-mismatch
+				local has_previous = pcall(vim.cmd, "bprevious")
+				if has_previous and bufnr ~= vim.api.nvim_win_get_buf(win) then
+					return
+				end
+
+				local new_buf = vim.api.nvim_create_buf(true, false)
+				vim.api.nvim_win_set_buf(win, new_buf)
+			end)
+		end
+		if vim.api.nvim_buf_is_valid(bufnr) then
 			---@diagnostic disable-next-line: param-type-mismatch
-			local has_previous = pcall(vim.cmd, "bprevious")
-			if has_previous and buf ~= vim.api.nvim_win_get_buf(win) then
-				return
-			end
-
-			local new_buf = vim.api.nvim_create_buf(true, false)
-			vim.api.nvim_win_set_buf(win, new_buf)
-		end)
-	end
-
-	if vim.api.nvim_buf_is_valid(buf) then
-		---@diagnostic disable-next-line: param-type-mismatch
-		pcall(vim.cmd, "bdelete! " .. buf)
-	end
+			pcall(vim.cmd, "bdelete! " .. bufnr)
+		end
+	end)
 end
+
+local M = {}
 
 --- Delete all buffers
 function M.all()
@@ -72,16 +70,14 @@ end
 
 --- Delete all buffers except the current one
 function M.others()
-	return delete(function(b)
-		return b ~= vim.api.nvim_get_current_buf()
+	delete(function(bufnr)
+		return bufnr ~= vim.api.nvim_get_current_buf()
 	end)
 end
 
----@overload fun(buf: number): nil
+---@overload fun(filter?: filter)
 return setmetatable(M, {
-	---@param ... any
-	---@return nil
-	__call = function(_, ...)
+	__call = function(...)
 		return delete(...)
 	end,
 })
