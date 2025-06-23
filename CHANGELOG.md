@@ -1,5 +1,17 @@
 # Changelog
 
+## [8.9.0](https://github.com/snelling-a/nvim/compare/v8.8.0...v8.9.0) (2025-06-23)
+
+
+### Features
+
+* **cmd:** Bw closes all other tabs ([de139ce](https://github.com/snelling-a/nvim/commit/de139ceb6759959ca8bebe6fd63e422002ade36f))
+
+
+### Miscellaneous
+
+* update plugins ([cd0d5d5](https://github.com/snelling-a/nvim/commit/cd0d5d52da28df7176346700b3b7e0dfe9a47ca7))
+
 ## [8.8.0](https://github.com/snelling-a/nvim/compare/v8.7.0...v8.8.0) (2025-06-16)
 
 
