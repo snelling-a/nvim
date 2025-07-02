@@ -1,9 +1,11 @@
+vim.opt_local.cursorline = true
 vim.opt_local.list = false
-vim.opt_local.spell = false
 vim.opt_local.relativenumber = false
 vim.opt_local.signcolumn = "no"
+vim.opt_local.spell = false
 vim.opt_local.statuscolumn = ""
 vim.opt_local.statusline = [[%(%l/%L%) %{exists('w:quickfix_title')? ' '.w:quickfix_title : ''} ]]
+vim.opt_local.wrap = false
 
 if not vim.g.loaded_cfilter then
 	vim.cmd.packadd({ args = { "cfilter" }, bang = false, mods = { emsg_silent = true } })
