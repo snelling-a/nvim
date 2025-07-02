@@ -27,12 +27,8 @@ return {
 			group = vim.api.nvim_create_augroup("CopilotChat", {}),
 		})
 
-		-- local header_format = "%s  %s "
-
 		chat.setup({
 			auto_insert_mode = true,
-			-- question_header = header_format:format(Config.icons.misc.user, "You"),
-			-- answer_header = header_format:format(Config.icons.servers.copilot, "Copilot"),
 			window = { width = 0.4 },
 		})
 

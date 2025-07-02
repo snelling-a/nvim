@@ -6,7 +6,6 @@ return {
 	build = "cargo build --release",
 	---@type blink.cmp.Config
 	opts = {
-
 		completion = {
 			accept = {
 				auto_brackets = { enabled = false },
