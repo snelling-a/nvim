@@ -49,23 +49,29 @@ vim.keymap.set({ "n" }, "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right
 vim.keymap.set({ "n" }, "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
 vim.keymap.set({ "n" }, "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
 
-vim.keymap.set({ "n" }, "<S-Up>", function()
-	vim.cmd("resize +2")
-end)
-vim.keymap.set({ "n" }, "<S-Down>", function()
-	vim.cmd("resize -2")
-end)
-vim.keymap.set({ "n" }, "<S-Left>", function()
-	vim.cmd("vertical resize +2")
-end)
-vim.keymap.set({ "n" }, "<S-Right>", function()
-	vim.cmd("vertical resize -2")
-end)
-
 vim.keymap.set({ "n" }, "<A-Down>", "<cmd>resize -2<cr>", { desc = "Decrease Window Height" })
-vim.keymap.set({ "n" }, "<A-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease Window Width" })
-vim.keymap.set({ "n" }, "<A-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase Window Width" })
 vim.keymap.set({ "n" }, "<A-Up>", "<cmd>resize +2<cr>", { desc = "Increase Window Height" })
+
+---@param direction "decrease"|"increase"
+local function vertical_resize(direction)
+	local directions = { decrease = "-", increase = "+" }
+	vim.cmd("vertical resize " .. directions[direction] .. "2")
+end
+if (vim.env.TERM or ""):match("ghostty") then
+	vim.keymap.set("n", "<M-b>", function()
+		vertical_resize("decrease")
+	end, { desc = "Decrease Window Width" })
+	vim.keymap.set("n", "<M-f>", function()
+		vertical_resize("increase")
+	end, { desc = "Increase Window Width" })
+else
+	vim.keymap.set("n", "<A-Left>", function()
+		vertical_resize("decrease")
+	end, { desc = "Decrease Window Width" })
+	vim.keymap.set("n", "<A-Right>", function()
+		vertical_resize("increase")
+	end, { desc = "Increase Window Width" })
+end
 
 vim.keymap.set("n", "<Left>", "zh", { desc = "Scroll left" })
 vim.keymap.set("n", "<Right>", "zl", { desc = "Scroll right" })
