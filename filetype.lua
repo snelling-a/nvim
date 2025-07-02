@@ -12,6 +12,7 @@ vim.filetype.add({
 		[".*/%.github/.*%.y*ml"] = "yaml.github",
 		["compose.y.?ml"] = "yaml.docker-compose",
 		["docker%-compose%.y.?ml"] = "yaml.docker-compose",
+		Brewfile = "ruby",
 		[".*%.?conf(ig)"] = function(path)
 			if path:match("git") then
 				return "gitconfig"
