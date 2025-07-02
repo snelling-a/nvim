@@ -1,20 +1,21 @@
----@alias filter fun(bufnr: number): boolean Filter buffers to delete
+---@class bdelete.Opts
+---@field filter? fun(buf: number): boolean Filter buffers to delete
 
---- Delete a buffer:
---- - either the current buffer if `buf` is not provided
---- - or every buffer for which `buf` returns true if it is a function
----@param filter? filter
-local function delete(filter)
-	if filter then
-		for _, bufnr in ipairs(vim.tbl_filter(filter, vim.api.nvim_list_bufs())) do
+---@param opts? number|bdelete.Opts
+local function delete(opts)
+	opts = opts or {}
+	opts = type(opts) == "number" and { bufnr = opts } or opts
+	opts = type(opts) == "function" and { filter = opts } or opts
+	---@cast opts bdelete.Opts
+
+	if type(opts.filter) == "function" then
+		for _, bufnr in ipairs(vim.tbl_filter(opts.filter, vim.api.nvim_list_bufs())) do
 			if vim.bo[bufnr].buflisted then
-				delete()
+				delete(vim.tbl_extend("force", {}, opts, { bufnr = bufnr, filter = false }))
 			end
 		end
-
 		vim.cmd.tabonly()
-
-		return
+		vim.cmd.only()
 	end
 
 	local bufnr = vim.api.nvim_get_current_buf()
@@ -48,8 +49,8 @@ local function delete(filter)
 					return
 				end
 
-				local new_buf = vim.api.nvim_create_buf(true, false)
-				vim.api.nvim_win_set_buf(win, new_buf)
+				local new_bufnr = vim.api.nvim_create_buf(true, false)
+				vim.api.nvim_win_set_buf(win, new_bufnr)
 			end)
 		end
 		if vim.api.nvim_buf_is_valid(bufnr) then
@@ -59,25 +60,30 @@ local function delete(filter)
 	end)
 end
 
-local M = {}
-
---- Delete all buffers
-function M.all()
-	return delete(function()
-		return true
-	end)
-end
-
---- Delete all buffers except the current one
-function M.others()
-	delete(function(bufnr)
-		return bufnr ~= vim.api.nvim_get_current_buf()
-	end)
-end
-
----@overload fun(filter?: filter)
-return setmetatable(M, {
+---@class bdelete
+---@overload fun(buf?: number|bdelete.Opts)
+local M = setmetatable({}, {
 	__call = function(...)
 		return delete(...)
 	end,
 })
+
+--- Delete all buffers
+function M.all()
+	return delete({
+		filter = function()
+			return true
+		end,
+	})
+end
+
+--- Delete all buffers except the current one
+function M.others()
+	delete({
+		filter = function(b)
+			return b ~= vim.api.nvim_get_current_buf()
+		end,
+	})
+end
+
+return M
