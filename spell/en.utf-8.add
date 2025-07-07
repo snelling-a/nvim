@@ -6,6 +6,7 @@ amatch
 annote
 api
 APPNAME
+async
 augroup
 Autocmd
 autocmds
@@ -47,6 +48,7 @@ commentstring
 composable
 conceallevel
 config
+const
 copen
 cpoptions
 cssls
@@ -60,6 +62,7 @@ deadcolumn
 deepcopy
 delimeters
 denols
+Desc
 devicons
 diffopt
 diffthis
@@ -181,6 +184,7 @@ leadmultispace
 Lfind
 lhs
 linrongbin
+linter
 listchars
 Llocate
 lmburns
@@ -247,6 +251,7 @@ permlink
 pesc
 Polyfill
 Possiblie
+PR
 preconfigured
 printf
 prismals
@@ -260,6 +265,7 @@ quickfix
 quickfixtextfunc
 quitall
 rafamadriz
+readonly
 realpath
 recloak
 redunant
@@ -302,6 +308,7 @@ smartcase
 smartindent
 snelling
 snytax
+sorrynotsorry
 spellfile
 spelloptions
 spellsuggest
@@ -310,6 +317,7 @@ splitkeep
 Spotify
 sqlfluff
 sqlls
+src
 sshalg
 sshknownhosts
 sshknownhostsip
@@ -356,7 +364,9 @@ topdelete
 tpope
 treesitter
 trror
+tsr
 Udemy
+ui
 undoable
 undofile
 undolevels
@@ -375,6 +385,7 @@ vint
 virt
 virtnum
 virtualedit
+Vitest
 vsplit
 vtsls
 WASM
