@@ -1,5 +1,28 @@
 # Changelog
 
+## [8.9.0](https://github.com/snelling-a/nvim/compare/v8.8.0...v8.9.0) (2025-07-07)
+
+
+### Features
+
+* **cmd:** Bw closes all other tabs ([de139ce](https://github.com/snelling-a/nvim/commit/de139ceb6759959ca8bebe6fd63e422002ade36f))
+* **ft:** brewfile is ruby ([3c82e25](https://github.com/snelling-a/nvim/commit/3c82e25e1693a944120a2abcb61f9f86f982770b))
+
+
+### Bug Fixes
+
+* **cmd:** bw ([c295017](https://github.com/snelling-a/nvim/commit/c295017f3cdce53bc36e83b102c495d07720b66a))
+* **keymap:** window resizing ([6e1152c](https://github.com/snelling-a/nvim/commit/6e1152c061c1cad363c882c7038ac600ea6409ce))
+
+
+### Miscellaneous
+
+* **spell:** update spellfile ([f65ec3d](https://github.com/snelling-a/nvim/commit/f65ec3d25039adf4626f5a5df4b884fba4c5df18))
+* **spell:** update spellfile ([3ac5d4e](https://github.com/snelling-a/nvim/commit/3ac5d4e8e349cfe16afc0c2f0d8f582c72f880ab))
+* update plugins ([2c1aab6](https://github.com/snelling-a/nvim/commit/2c1aab64f6aa6144aef8a29132dceb5d25097fa5))
+* update plugins ([4176c33](https://github.com/snelling-a/nvim/commit/4176c330f41cc558f43e47b6d6bc24af0d36ece7))
+* update plugins ([cd0d5d5](https://github.com/snelling-a/nvim/commit/cd0d5d52da28df7176346700b3b7e0dfe9a47ca7))
+
 ## [8.8.0](https://github.com/snelling-a/nvim/compare/v8.7.0...v8.8.0) (2025-06-16)
 
 
