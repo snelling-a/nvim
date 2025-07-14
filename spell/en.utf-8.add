@@ -296,6 +296,7 @@ shfmt
 shiftround
 shiftwidth
 shortmess
+shouldPatch/!
 showbreak
 showmode
 showtabline
