@@ -177,3 +177,9 @@ end, { desc = "[T]oggle Relative[n]umber" })
 
 vim.keymap.set({ "n" }, "ycc", "yygccp", { remap = true, desc = "Duplicate line and comment the first line" })
 vim.keymap.set({ "x" }, "/", "<Esc>/\\%V", { desc = "Search in visual mode" })
+
+vim.keymap.set({ "v" }, "Y", function()
+	local view = vim.fn.winsaveview()
+	vim.cmd.normal({ args = { "Y" }, bang = true })
+	vim.fn.winrestview(view)
+end, { desc = "Keep cursor position when yanking in visual mode" })

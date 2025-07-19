@@ -114,30 +114,12 @@ vim.api.nvim_create_autocmd({ "TermOpen" }, {
 	end,
 })
 
-local yank_group = M.augroup("yank")
----@type integer[]
-local cursor_pre_yank
-
-vim.keymap.set({ "n", "x" }, "y", function()
-	cursor_pre_yank = vim.api.nvim_win_get_cursor(0)
-	return "y"
-end, { desc = "[Y]ank and keep cursor position", expr = true })
-
-vim.keymap.set({ "n", "x" }, "Y", function()
-	cursor_pre_yank = vim.api.nvim_win_get_cursor(0)
-	return "yg_"
-end, { desc = "[Y]ank to the last non-blank character on the line", expr = true })
-
 vim.api.nvim_create_autocmd({ "TextYankPost" }, {
 	callback = function()
 		vim.hl.on_yank()
-
-		if vim.v.event.operator == "y" and cursor_pre_yank then
-			vim.api.nvim_win_set_cursor(0, cursor_pre_yank)
-		end
 	end,
 	desc = "Hightlight on yank/Keep cursor position after yanking",
-	group = yank_group,
+	group = M.augroup("yank"),
 })
 
 vim.api.nvim_create_autocmd({ "VimResized" }, {
