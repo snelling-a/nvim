@@ -21,4 +21,5 @@ vim.filetype.add({
 			return "conf"
 		end,
 	},
+	extension = { mjml = "mjml" },
 })

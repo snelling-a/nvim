@@ -49,6 +49,7 @@ return {
 			formatters_by_ft = {
 				css = prettier,
 				html = prettier,
+				mjml = prettier,
 				javascript = jsts,
 				javascriptreact = jsts,
 				json = prettier,
