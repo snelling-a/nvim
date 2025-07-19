@@ -174,4 +174,10 @@ vim.api.nvim_create_autocmd({ "User" }, {
 	pattern = "LazyVimStarted",
 })
 
+vim.api.nvim_create_autocmd({ "BufEnter" }, {
+	callback = function()
+		vim.opt_local.spelloptions:remove("noplainbuffer")
+	end,
+	group = M.augroup("spelloptions"),
+})
 return M
