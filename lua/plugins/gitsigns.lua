@@ -51,8 +51,7 @@ return {
 					gitsigns.toggle_current_line_blame,
 					{ buffer = bufnr, desc = "[T]oggle Current Line [B]lame" }
 				)
-				map({ "n" }, "<leader>hd", gitsigns.diffthis, { buffer = bufnr, desc = "[D]iff This" })
-				map({ "n" }, "<leader>hD", function()
+				map({ "n" }, "<leader>hd", function()
 					gitsigns.diffthis("~")
 				end, { buffer = bufnr, desc = "[D]iff This" })
 				map(
