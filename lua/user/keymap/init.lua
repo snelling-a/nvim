@@ -56,29 +56,26 @@ vim.keymap.set({ "n" }, "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right
 vim.keymap.set({ "n" }, "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
 vim.keymap.set({ "n" }, "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
 
-vim.keymap.set({ "n" }, "<A-Down>", "<cmd>resize -2<cr>", { desc = "Decrease Window Height" })
-vim.keymap.set({ "n" }, "<A-Up>", "<cmd>resize +2<cr>", { desc = "Increase Window Height" })
+vim.keymap.set({ "n" }, "<A-Down>", function()
+	vim.cmd.resize({ "-2" })
+end, { desc = "Decrease Window Height" })
+vim.keymap.set({ "n" }, "<A-Up>", function()
+	vim.cmd.resize({ "+2" })
+end, { desc = "Increase Window Height" })
 
 ---@param direction "decrease"|"increase"
 local function vertical_resize(direction)
 	local directions = { decrease = "-", increase = "+" }
-	vim.cmd("vertical resize " .. directions[direction] .. "2")
+	vim.cmd.resize({ directions[direction] .. "2", mods = { vertical = true } })
 end
-if (vim.env.TERM or ""):match("ghostty") then
-	vim.keymap.set("n", "<M-b>", function()
-		vertical_resize("decrease")
-	end, { desc = "Decrease Window Width" })
-	vim.keymap.set("n", "<M-f>", function()
-		vertical_resize("increase")
-	end, { desc = "Increase Window Width" })
-else
-	vim.keymap.set("n", "<A-Left>", function()
-		vertical_resize("decrease")
-	end, { desc = "Decrease Window Width" })
-	vim.keymap.set("n", "<A-Right>", function()
-		vertical_resize("increase")
-	end, { desc = "Increase Window Width" })
-end
+
+local is_ghostty = (vim.env.TERM or ""):match("ghostty")
+vim.keymap.set("n", is_ghostty and "<M-b>" or "<A-Left>", function()
+	vertical_resize("decrease")
+end, { desc = "Decrease Window Width" })
+vim.keymap.set("n", is_ghostty and "<M-f>" or "<A-Right>", function()
+	vertical_resize("increase")
+end, { desc = "Increase Window Width" })
 
 vim.keymap.set("n", "<Left>", "zh", { desc = "Scroll left" })
 vim.keymap.set("n", "<Right>", "zl", { desc = "Scroll right" })
@@ -89,7 +86,9 @@ vim.keymap.set({ "n" }, "<C-z>", "<nop>", { desc = "Disable `:stop` keymap" })
 
 vim.keymap.set({ "n" }, "<Esc>", Maps.clear, { desc = "Redraw / Clear hlsearch / Diff Update" })
 
-vim.keymap.set({ "n" }, "<leader>K", "<cmd>norm! K<cr>", { desc = "Keywordprg" })
+vim.keymap.set({ "n" }, "<leader>K", function()
+	vim.cmd.normal({ args = { "K" }, bang = true })
+end, { desc = "Keywordprg" })
 
 vim.keymap.set({ "n", "v" }, "<leader>e", function()
 	vim.cmd.normal({ args = { "%" } })
@@ -166,7 +165,7 @@ vim.keymap.set({ "n", "v" }, "z=", function()
 			end
 		end)
 	)
-end)
+end, { desc = "Spelling suggestions for the word under the cursor" })
 
 vim.keymap.set({ "n" }, "<leader>tn", function()
 	---@type boolean
@@ -176,5 +175,5 @@ vim.keymap.set({ "n" }, "<leader>tn", function()
 	vim.opt_local.relativenumber = not is_enabled
 end, { desc = "[T]oggle Relative[n]umber" })
 
-vim.keymap.set("n", "ycc", "yygccp", { remap = true, desc = "Duplicate line and comment the first line" })
-vim.keymap.set("x", "/", "<Esc>/\\%V", { desc = "Search in visual mode" })
+vim.keymap.set({ "n" }, "ycc", "yygccp", { remap = true, desc = "Duplicate line and comment the first line" })
+vim.keymap.set({ "x" }, "/", "<Esc>/\\%V", { desc = "Search in visual mode" })
