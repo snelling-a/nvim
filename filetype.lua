@@ -8,11 +8,9 @@ vim.filetype.add({
 		[".*/%.?git/ignore"] = "gitignore",
 		[".*/kitty/.+%.conf"] = "bash",
 		[".*/tmux/.+%.conf"] = "tmux",
-		["known_hosts"] = "sshknownhosts",
 		[".*/%.github/.*%.y*ml"] = "yaml.github",
 		["compose.y.?ml"] = "yaml.docker-compose",
 		["docker%-compose%.y.?ml"] = "yaml.docker-compose",
-		Brewfile = "ruby",
 		[".*%.?conf(ig)"] = function(path)
 			if path:match("git") then
 				return "gitconfig"
@@ -22,4 +20,5 @@ vim.filetype.add({
 		end,
 	},
 	extension = { mjml = "mjml" },
+	filename = { Brewfile = "ruby", known_hosts = "sshknownhosts" },
 })
