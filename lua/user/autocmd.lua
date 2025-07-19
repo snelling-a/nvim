@@ -144,6 +144,14 @@ vim.api.nvim_create_autocmd({ "VimResized" }, {
 vim.api.nvim_create_autocmd({ "WinResized" }, {
 	pattern = "*",
 	callback = function()
+		---@type boolean
+		---@diagnostic disable-next-line: undefined-field
+		local wrap = vim.opt_local.wrap:get()
+
+		if wrap then
+			return
+		end
+
 		local win_width = vim.api.nvim_win_get_width(0)
 		---@type integer
 		local text_width = vim.opt.textwidth._value
