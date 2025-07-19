@@ -18,7 +18,6 @@ vim.g.disabled_filetypes = {
 	"neotest-summary",
 	"nofile",
 	"notify",
-	"qf",
 	"scratch",
 	"toggleterm",
 }
