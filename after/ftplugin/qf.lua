@@ -63,11 +63,9 @@ end
 local bufnr = vim.api.nvim_get_current_buf()
 
 local Map = require("user.keymap.util")
+Map.quit(bufnr)
 local map = Map.map("Quickfix")
 
-map({ "n" }, "q", function()
-	Map.quit(bufnr)
-end)
 map({ "n" }, "dd", qf_delete_entry, { buffer = bufnr, desc = "[D]elete entry" })
 map({ "n" }, "<C-t>", "<C-W><CR><C-W>T", { buffer = bufnr, desc = "Open entry in new [t]ab" })
 map({ "n" }, "<C-s>", function()
