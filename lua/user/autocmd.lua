@@ -180,4 +180,13 @@ vim.api.nvim_create_autocmd({ "BufEnter" }, {
 	end,
 	group = M.augroup("spelloptions"),
 })
+
+vim.api.nvim_create_autocmd("FileType", {
+	callback = function()
+		vim.cmd.wincmd("L")
+		vim.cmd.resize({ "84", mods = { vertical = true } })
+	end,
+	group = M.augroup("help"),
+	pattern = "help",
+})
 return M
