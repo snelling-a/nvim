@@ -9,10 +9,6 @@ vim.schedule(function()
 	vim.o.clipboard = "unnamedplus"
 end)
 
-if vim.fn.exists("syntax_on") ~= 1 then
-	vim.cmd("syntax enable")
-end
-
 vim.o.autoindent = true
 vim.o.autowrite = true
 vim.o.backup = false
@@ -23,6 +19,7 @@ vim.o.complete = ".,w,b,u,kspell"
 vim.o.completeopt = "menuone,noselect,fuzzy"
 vim.o.conceallevel = 2
 vim.o.confirm = true
+vim.o.copyindent = true
 vim.o.cursorline = true
 vim.o.cursorlineopt = "screenline,number"
 vim.o.diffopt = "internal,filler,closeoff,indent-heuristic,linematch:60,algorithm:histogram"
@@ -45,7 +42,6 @@ vim.o.linebreak = true
 vim.o.list = true
 vim.opt.listchars = Icons.listchars
 vim.o.mouse = "a"
-vim.o.mousescroll = "ver:25,hor:6"
 vim.o.number = true
 vim.o.pumblend = 10
 vim.o.pumheight = 10
@@ -65,12 +61,12 @@ vim.o.smartindent = true
 vim.o.smoothscroll = true
 vim.o.spell = true
 vim.o.spellfile = vim.fn.stdpath("config") .. "/spell/en.utf-8.add"
-vim.o.spelllang = "en"
 vim.opt.spelloptions = { "camel", "noplainbuffer" }
 vim.opt.spellsuggest = { "best", 9 }
 vim.o.splitbelow = true
 vim.o.splitkeep = "screen"
 vim.o.splitright = true
+vim.o.swapfile = false
 vim.o.switchbuf = "usetab"
 vim.o.tabstop = 2
 vim.o.termguicolors = true
