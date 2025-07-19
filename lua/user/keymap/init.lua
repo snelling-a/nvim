@@ -10,16 +10,23 @@ end
 
 local Maps = require("user.keymap.util")
 
+Maps.create_breakpoint("(")
 Maps.create_breakpoint(")")
 Maps.create_breakpoint(",")
 Maps.create_breakpoint(".")
 Maps.create_breakpoint(";")
+Maps.create_breakpoint("<")
 Maps.create_breakpoint(">")
+Maps.create_breakpoint("[")
 Maps.create_breakpoint("]")
+Maps.create_breakpoint("{")
 Maps.create_breakpoint("}")
 
 Maps.indent("<")
 Maps.indent(">")
+
+Maps.keepjumps("{")
+Maps.keepjumps("}")
 
 Maps.scroll_center("<C-d>")
 Maps.scroll_center("<C-u>")

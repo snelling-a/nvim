@@ -79,6 +79,14 @@ function M.indent(lhs)
 	vim.keymap.set("x", lhs, lhs .. "gv", { desc = "Keep visually selected area when indenting" })
 end
 
+-- Keep jumps when using `{lhs}` key
+---@param lhs "{"|"}"
+function M.keepjumps(lhs)
+	vim.keymap.set({ "n", "o", "x" }, lhs, function()
+		vim.cmd("keepj normal! " .. lhs)
+	end, { desc = "Keep jumps when using " .. lhs .. "key" })
+end
+
 -- prepends given module name to the description of the keymap
 ---@param str string module name
 ---@return fun(mode: string|string[], lhs: string, rhs: string|function, opts?: vim.keymap.set.Opts) vim.keymap.set
