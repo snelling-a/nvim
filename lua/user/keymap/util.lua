@@ -23,44 +23,8 @@ function M.feedkeys(keys, mode, escape_ks)
 	return vim.api.nvim_feedkeys(keys, mode or "n", escape_ks)
 end
 
----@type {string:fun():boolean?}[]
-local cmp_actions = {
-	snippet_forward = function()
-		if vim.snippet.active({ direction = 1 }) then
-			vim.schedule(function()
-				vim.snippet.jump(1)
-			end)
-			return true
-		end
-	end,
-	copilot_accept = function()
-		if require("copilot.suggestion").is_visible() then
-			if vim.api.nvim_get_mode().mode == "i" then
-				local create_undo = vim.api.nvim_replace_termcodes("<c-G>u", true, true, true)
-				M.feedkeys(create_undo, "n", true)
-			end
-			require("copilot.suggestion").accept()
-			return true
-		end
-	end,
-}
-
----@param actions string[]
----@return fun():boolean|string?
-function M.complete(actions)
-	return function()
-		for _, name in ipairs(actions) do
-			if cmp_actions[name] then
-				local action = cmp_actions[name]()
-				if action then
-					return true
-				end
-			end
-		end
-	end
-end
-
----@param key ","|"."|";"|")"|"}"|">"|"]" Key to create a break point
+--- Create a break point in insert mode
+---@param key ","|"."|";"|"("|")"|"{"|"}"|"<"|">"|"["|"]" Key to create a break point
 function M.create_breakpoint(key)
 	vim.keymap.set({ "i" }, key, key .. "<c-g>u", { desc = "Add undoable break point at '" .. key .. "'" })
 end
