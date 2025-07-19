@@ -29,6 +29,7 @@ function M.create_breakpoint(key)
 	vim.keymap.set({ "i" }, key, key .. "<c-g>u", { desc = "Add undoable break point at '" .. key .. "'" })
 end
 
+--- Jump to the next or previous diagnostic
 ---@param count 1|-1 The number of diagnostics to jump
 ---@param severity? vim.diagnostic.Severity See |diagnostic-severity|.
 ---@return fun():vim.Diagnostic?
@@ -38,6 +39,7 @@ function M.diagnostic_goto(count, severity)
 	end
 end
 
+-- Keep visually selected area when indenting
 ---@param lhs "<"|">" Left-hand side |{lhs}| of the mapping.
 function M.indent(lhs)
 	vim.keymap.set("x", lhs, lhs .. "gv", { desc = "Keep visually selected area when indenting" })
@@ -67,6 +69,8 @@ function M.map(str)
 	end
 end
 
+--- Quit the current buffer, or close the window if it is the last buffer
+---@param bufnr integer Buffer number to quit
 function M.quit(bufnr)
 	vim.bo[bufnr].buflisted = false
 	vim.keymap.set({ "n" }, "q", function()
@@ -95,6 +99,7 @@ function M.scroll_unfold()
 	M.feedkeys("zzzv")
 end
 
+--- Move to the next or previous visual line, depending on the direction
 ---@param direction "k"|"j" upwards or downwards
 function M.vertical_move(direction)
 	vim.keymap.set("n", direction, function()
@@ -110,6 +115,7 @@ function M.vertical_move(direction)
 	})
 end
 
+--- Navigate wildmenu with <C-n> and <C-p>
 ---@param lhs "n"|"p" Left-hand side |{lhs}| of the mapping
 function M.wild(lhs)
 	local rhs = lhs == "n" and "down" or "up"
