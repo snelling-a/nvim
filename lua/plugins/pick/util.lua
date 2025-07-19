@@ -3,13 +3,17 @@ if not ok then
 	return {}
 end
 
----@param tbl table
+---@param tbl table<string|number>
+---@return table<string|number>
 local function tbl_add_reverse_lookup(tbl)
+	---@type table<string|number>
 	local keys = {}
+	---@diagnostic disable-next-line: no-unknown
 	for k, _ in pairs(tbl) do
 		table.insert(keys, k)
 	end
 
+	---@diagnostic disable-next-line: no-unknown
 	for _, k in ipairs(keys) do
 		local v = tbl[k]
 		-- Check for conflicts
@@ -38,6 +42,7 @@ local function picker_remove_item(callback)
 		return
 	end
 
+	---@type {buffer:number,text:string}[]|nil
 	local items = pick.get_picker_items()
 	if not items then
 		return
@@ -101,7 +106,7 @@ pick.registry.autocmds = function()
 	})
 end
 
-pick.registry.files = function(local_opts, opts)
+pick.registry.files = function()
 	local visits = require("mini.visits")
 	local inf = math.huge
 
@@ -120,26 +125,41 @@ pick.registry.files = function(local_opts, opts)
 		visit_paths[current_file] = inf
 	end
 
-	pick.builtin.files(
-		opts,
-		vim.tbl_extend("force", local_opts or {}, {
-			source = {
-				name = "Files (MRU)",
-				match = function(stritems, inds, query)
-					local filtered = pick.default_match(stritems, inds, query, { sync = true }) or {}
-					table.sort(filtered, function(item1, item2)
-						local path1 = stritems[item1]
-						local path2 = stritems[item2]
-						local score1 = visit_paths[path1] or inf
-						local score2 = visit_paths[path2] or inf
-						return score1 < score2
-					end)
+	local show_with_icons = function(buf_id, items, query)
+		return pick.default_show(buf_id, items, query, { show_icons = true })
+	end
+	local source = {
+		---@param stritems string[]
+		---@param inds number[]
+		---@param query string[]
+		---@return table
+		match = function(stritems, inds, query)
+			---@type number[]
+			local filtered = pick.default_match(stritems, inds, query, { sync = true }) or {}
+			table.sort(filtered, function(item1, item2)
+				local path1 = stritems[item1]
+				local path2 = stritems[item2]
+				local score1 = visit_paths[path1] or inf
+				local score2 = visit_paths[path2] or inf
+				return score1 < score2
+			end)
 
-					return filtered
-				end,
-			},
-		})
-	)
+			return filtered
+		end,
+		name = "Files",
+		show = show_with_icons,
+	}
+	return pick.builtin.cli({
+		command = {
+			"fd",
+			"--type=f",
+			"--color=never",
+			"--no-follow",
+			"--no-ignore-vcs",
+			"--hidden",
+			"--ignore-file=" .. vim.env.XDG_CONFIG_HOME .. "/fd/ignore",
+		},
+	}, { source = source })
 end
 pick.registry.buffers = function(local_opts, opts)
 	return pick.builtin.buffers(
@@ -218,6 +238,8 @@ pick.registry.tabpages = function()
 	return pick.start({
 		source = {
 			name = "Tabs",
+			---@param tabpage number
+			---@return table[]
 			items = vim.tbl_map(function(tabpage)
 				local tabpage_number = vim.api.nvim_tabpage_get_number(tabpage)
 				local window = vim.api.nvim_tabpage_get_win(tabpage)
