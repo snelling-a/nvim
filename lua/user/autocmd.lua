@@ -61,8 +61,17 @@ vim.api.nvim_create_autocmd({ "BufWritePost" }, {
 })
 
 local ui_group = M.augroup("ui")
+local function is_disabled_filetype(bufnr)
+	return vim.tbl_contains(vim.g.disabled_filetypes, vim.bo[bufnr].filetype)
+		or vim.tbl_contains(vim.g.disabled_filetypes, vim.bo[bufnr].buftype)
+		or vim.bo[bufnr].filetype == ""
+end
+
 vim.api.nvim_create_autocmd({ "CmdlineEnter", "FocusLost", "InsertEnter", "WinLeave" }, {
-	callback = function()
+	callback = function(event)
+		if is_disabled_filetype(event.buf) then
+			return
+		end
 		vim.api.nvim_set_option_value("relativenumber", false, { scope = "local", win = 0 })
 		vim.api.nvim_set_option_value("cursorline", false, { scope = "local", win = 0 })
 	end,
@@ -71,9 +80,9 @@ vim.api.nvim_create_autocmd({ "CmdlineEnter", "FocusLost", "InsertEnter", "WinLe
 })
 
 vim.api.nvim_create_autocmd({ "BufEnter", "CmdlineLeave", "FocusGained", "InsertLeave", "WinEnter" }, {
-	callback = function()
+	callback = function(event)
 		local value = true
-		if vim.tbl_contains(vim.g.disabled_filetypes, vim.bo.filetype) or vim.bo.buftype == "nofile" then
+		if is_disabled_filetype(event.buf) then
 			value = false
 			vim.api.nvim_set_option_value("number", value, { scope = "local", win = 0 })
 		end
