@@ -28,6 +28,7 @@ return {
 		})
 
 		chat.setup({
+			answer_header = require("icons").servers.copilot .. "  Copilot ",
 			auto_insert_mode = true,
 			window = { width = 0.4 },
 		})
