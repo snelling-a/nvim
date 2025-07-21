@@ -1,4 +1,5 @@
 abuf
+acc
 afile
 akinsho
 Alviste
@@ -6,6 +7,7 @@ amatch
 annote
 api
 APPNAME
+args
 async
 augroup
 Autocmd
@@ -18,9 +20,11 @@ bashls
 Bdelete
 belowright
 Bilal
+bo
 bprevious
 breakindent
 Brewfile
+Buf
 bufhidden
 buflisted
 bufnr
@@ -40,9 +44,11 @@ chrishrb
 clangd
 Clocate
 cmap
+cmd
 Cmdline
 cmp
 colorcolumn
+colorscheme
 colorschemes
 commentstring
 composable
@@ -51,7 +57,9 @@ config
 const
 copen
 cpoptions
+css
 cssls
+Ctrl
 curdir
 cursorcolumn
 cursorline
@@ -71,9 +79,11 @@ dir
 dmmulroy
 doautocmd
 dockerls
+dom
 dotfiles
 DOTFILES/!
 dropbar
+Dropdown
 dstein
 earch
 echasnovski
@@ -81,6 +91,7 @@ eclaration
 ecutable
 efinition
 elipsis
+elseif
 EMERG
 emsg
 errorformat
@@ -95,10 +106,13 @@ falsey
 fargs
 feedkeys
 filereadable
+filetype
+filetypes
 fillchars
 findbuf
 firenvim
 flietypes
+fn
 fnamemodify
 foldclose
 foldclosed
@@ -130,6 +144,8 @@ getqflist
 getuid
 getwininfo
 ggandor
+gitcommit
+github
 gitlinker
 Gitsigns
 giuxtaposition
@@ -143,6 +159,7 @@ helpview
 highlght
 hightlight
 hipatterns
+hl
 hlchunk
 hlsearch
 Homebrew
@@ -155,6 +172,7 @@ ignorecase
 imput
 Indentscope
 inlayhints
+instanceof
 io
 issing
 Jamstack
@@ -170,6 +188,7 @@ kemaps
 kevinhwang
 Keymap
 Keymaps
+keyof
 keyset
 Keywordprg
 kkharji
@@ -194,6 +213,7 @@ lopen
 LSP
 lspconfig
 lspinfo
+lua
 luacheck
 luap
 luarocks
@@ -209,13 +229,16 @@ matchparen
 mbbill
 MDN
 messagesopt
+Metatdata
 mfussenegger
 minifiles
 miniindentscope
 ministarter
+mkdir
 mkdp
 mlsp
 mrjones
+msg
 multibyte
 multispace
 Munif
@@ -246,6 +269,7 @@ packadd
 pannel
 params
 parenthasis
+pcall
 pcss
 permlink
 pesc
@@ -310,6 +334,7 @@ smartindent
 snelling
 snytax
 sorrynotsorry
+spellcapcheck
 spellfile
 spelloptions
 spellsuggest
@@ -334,6 +359,7 @@ stausline
 stdpath
 stevearc
 stopinsert
+Str
 strcharpart
 strchars
 style
@@ -352,6 +378,7 @@ Tanjim
 taplo
 tarning
 tatus
+tbl
 termcodes
 termguicolors
 texthl
@@ -365,9 +392,13 @@ topdelete
 tpope
 treesitter
 trror
+tsc
 tsr
+typeof
+typings
 Udemy
 ui
+undercurl
 undoable
 undofile
 undolevels
@@ -376,6 +407,10 @@ unimapired
 unnamedplus
 upadate
 updatetime
+Url
+util
+utils
+UUID
 vcol
 vigoux
 vim
@@ -411,5 +446,6 @@ yamlls
 yanky
 yarnrc
 yazi
+YYYY
 zbirenbaum
 zzzv
