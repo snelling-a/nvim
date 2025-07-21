@@ -1,3 +1,5 @@
+vim.opt_local.spellcapcheck = ""
+
 vim.opt_local.wildignore:append({
 	"**/build/**",
 	"**/coverage/**",
