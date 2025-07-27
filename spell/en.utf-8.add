@@ -1,6 +1,7 @@
 abuf
 acc
 afile
+ai
 akinsho
 Alviste
 amatch
@@ -15,6 +16,7 @@ autocmds
 Autocommand
 autotag
 autowrite
+axios
 backend
 bashls
 Bdelete
@@ -31,6 +33,8 @@ bufnr
 bufs
 buftype
 bwipeout
+Callout
+callouts
 cfilter
 Cfind
 chafa
@@ -59,6 +63,7 @@ copen
 cpoptions
 css
 cssls
+cta
 Ctrl
 curdir
 cursorcolumn
@@ -94,11 +99,14 @@ elipsis
 elseif
 EMERG
 emsg
+Enum
+enums
 errorformat
 escapedcwd
 eset
 eslint
 expandtab
+export
 expr
 extmark
 extmarks
@@ -220,6 +228,7 @@ luarocks
 luasnip
 luvit
 lvimgrep
+mailto
 makeprg
 mapleader
 maplocalleader
@@ -231,12 +240,14 @@ MDN
 messagesopt
 Metatdata
 mfussenegger
+mimetype
 minifiles
 miniindentscope
 ministarter
 mkdir
 mkdp
 mlsp
+MONOSPACE
 mrjones
 msg
 multibyte
@@ -264,6 +275,7 @@ NVIM
 oggle
 oldfiles
 ontext
+openapi
 opleader
 packadd
 pannel
@@ -278,6 +290,7 @@ Possiblie
 PR
 preconfigured
 printf
+prisma
 prismals
 pumblend
 pumheight
@@ -293,6 +306,7 @@ readonly
 realpath
 recloak
 redunant
+refetch
 regpat
 reimpliment
 relativenumber
@@ -331,6 +345,7 @@ skipwhite
 smap
 smartcase
 smartindent
+Snackbar
 snelling
 snytax
 sorrynotsorry
@@ -362,6 +377,7 @@ stopinsert
 Str
 strcharpart
 strchars
+stringify
 style
 submodules
 sudo
@@ -375,12 +391,14 @@ tabpagenr
 tabpages
 tage
 Tanjim
+tanstack
 taplo
 tarning
 tatus
 tbl
 termcodes
 termguicolors
+testid
 texthl
 textobjects
 textwidth
@@ -404,6 +422,7 @@ undofile
 undolevels
 undotree
 unimapired
+unix
 unnamedplus
 upadate
 updatetime
