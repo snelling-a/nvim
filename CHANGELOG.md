@@ -1,5 +1,38 @@
 # Changelog
 
+## [8.10.0](https://github.com/snelling-a/nvim/compare/v8.9.0...v8.10.0) (2025-07-27)
+
+
+### Features
+
+* **copilot:** answer header icon ([de0f063](https://github.com/snelling-a/nvim/commit/de0f063416287ba71e6033c4ed90f40fb8e9e1bb))
+* **help:** open help in vertical split ([8b46f94](https://github.com/snelling-a/nvim/commit/8b46f949953fedc13604e4ea0451632ca67fcc21))
+* **keymap:** keep jumps when using {/} ([4acd545](https://github.com/snelling-a/nvim/commit/4acd54517e029a6bd59ccb9d90380d6c823b1b6d))
+* mjml ([af57c82](https://github.com/snelling-a/nvim/commit/af57c82b62d04c0524cad676a544f3ead85ced50))
+* **pick:** hidden files ([4039eee](https://github.com/snelling-a/nvim/commit/4039eee86f853de56cf2f6ae59f771b2ef9da032))
+* **spell:** allow spell in all files ([948449f](https://github.com/snelling-a/nvim/commit/948449fe0a807550bc431e3b3825fccac85aebb4))
+
+
+### Bug Fixes
+
+* **autocmd:** wrap ([9f1dff3](https://github.com/snelling-a/nvim/commit/9f1dff33113763a4db21e6038eefefe94b5e22b8))
+* **gitsigns:** diff keymap ([b3ce231](https://github.com/snelling-a/nvim/commit/b3ce231a301f1a5bed9656cc1bb4b9a54d83a46e))
+* **qf:** cursorline ([1c3ae70](https://github.com/snelling-a/nvim/commit/1c3ae70c66ba68906106be3752c794e759decf90))
+* **qf:** quit on q ([c355cdb](https://github.com/snelling-a/nvim/commit/c355cdb306b0c5512c2ff41253a1add4cd10888e))
+* **spell:** spell cap check ([1675214](https://github.com/snelling-a/nvim/commit/16752149be3ed5e956d2ce7fbef9f7d085acaa95))
+* v_Y not yanking full lines ([847a3a8](https://github.com/snelling-a/nvim/commit/847a3a80b7eca5c78a9a0105dd39c9b622ec842e))
+
+
+### Miscellaneous
+
+* make luacheck happy ([242f68d](https://github.com/snelling-a/nvim/commit/242f68d8b5a51d6c27722ffa5d1325e84a38cf20))
+* **spell:** update spellfile ([77681ec](https://github.com/snelling-a/nvim/commit/77681ec894f288e80110eee987a67eb5a892892e))
+* **spell:** update spellfile ([9699a2e](https://github.com/snelling-a/nvim/commit/9699a2ed6448855334e57005f55b9972f79ee5f4))
+* **spell:** update spellfile ([663218b](https://github.com/snelling-a/nvim/commit/663218b882fdba7530803925fdfc90c995dee458))
+* update plugins ([8f1c13d](https://github.com/snelling-a/nvim/commit/8f1c13dbe1f525c3e8c5fa8729a377070c2a2c2d))
+* update plugins ([59c59d3](https://github.com/snelling-a/nvim/commit/59c59d3e184c5f312b9a9b849872e224be1d6fd6))
+* update plugins ([8bc7780](https://github.com/snelling-a/nvim/commit/8bc778011ef789238a396c8affb50900447f030d))
+
 ## [8.9.0](https://github.com/snelling-a/nvim/compare/v8.8.0...v8.9.0) (2025-07-07)
 
 
