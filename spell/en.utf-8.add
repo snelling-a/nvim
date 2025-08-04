@@ -71,6 +71,7 @@ cursorline
 cursorlineopt
 cword
 danymat
+Datapoint
 deadcolumn
 deepcopy
 delimeters
