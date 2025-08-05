@@ -2,7 +2,6 @@
 return {
 	"obsidian-nvim/obsidian.nvim",
 	event = { "BufReadPre " .. vim.fn.expand("~") .. "/notes/*.md" },
-	ft = { "markdown" },
 	lazy = true,
 	version = "*",
 	---@type obsidian.config.ClientOpts
