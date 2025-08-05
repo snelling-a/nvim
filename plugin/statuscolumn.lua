@@ -24,7 +24,7 @@ local function setup()
 
 	local timer = assert((vim.uv or vim.loop).new_timer())
 
-	timer:start(50, 50, function()
+	timer:start(40, 40, function()
 		sign_cache = {}
 		cache = {}
 	end)
