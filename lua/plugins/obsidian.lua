@@ -1,7 +1,6 @@
 ---@type LazySpec
 return {
 	"obsidian-nvim/obsidian.nvim",
-	dependencies = { "nvim-lua/plenary.nvim" },
 	event = { "BufReadPre " .. vim.fn.expand("~") .. "/notes/*.md" },
 	ft = { "markdown" },
 	lazy = true,
@@ -13,6 +12,7 @@ return {
 		completion = { blink = true },
 		---@diagnostic disable-next-line: missing-fields
 		daily_notes = { folder = "daily_notes", template = "daily_note" },
+		legacy_commands = false,
 		note_frontmatter_func = function(note)
 			if note.title then
 				note:add_alias(note.title)
