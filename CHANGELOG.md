@@ -1,5 +1,14 @@
 # Changelog
 
+## [8.10.1](https://github.com/snelling-a/nvim/compare/v8.10.0...v8.10.1) (2025-08-06)
+
+
+### Miscellaneous
+
+* **deps:** bump actions/checkout from 2 to 4 ([#288](https://github.com/snelling-a/nvim/issues/288)) ([d47beb4](https://github.com/snelling-a/nvim/commit/d47beb4f9b1ce4c13f9de8ff773e323ce627d7b6))
+* **spell:** update spellfile ([2c04058](https://github.com/snelling-a/nvim/commit/2c04058f71ea296c069ca0f4497415a012771898))
+* update plugins ([3903670](https://github.com/snelling-a/nvim/commit/3903670fd799ad3be5a506a1a4218b30d6288f6d))
+
 ## [8.10.0](https://github.com/snelling-a/nvim/compare/v8.9.0...v8.10.0) (2025-07-27)
 
 
