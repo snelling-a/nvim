@@ -10,11 +10,11 @@ jobs:
     name: Release
     runs-on: ubuntu-latest
     steps:
-      - uses: google-github-actions/release-please-action@v3
+      - uses: googleapis/release-please-action@v4
         with:
           default-branch: main
           package-name: snelling-a/nvim
-          pull-request-header: 'New release!'
+          pull-request-header: New release!
           release-type: simple
           changelog-types: '[{"type":"feat","section":"Features","hidden":false},{"type":"fix","section":"Bug Fixes","hidden":false},{"type":"chore","section":"Miscellaneous","hidden":false}]'
       - uses: actions/checkout@v4
