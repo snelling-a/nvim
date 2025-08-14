@@ -1,5 +1,14 @@
 # Changelog
 
+## [8.10.1](https://github.com/snelling-a/nvim/compare/v8.10.0...v8.10.1) (2025-08-14)
+
+
+### Performance Improvements
+
+* **md:** remove markview ([7e2384a](https://github.com/snelling-a/nvim/commit/7e2384a3af8885744f7caa38008b1e8ae5f9475a))
+* **obsidian:** don't open on all markdown files ([35ecdee](https://github.com/snelling-a/nvim/commit/35ecdeec36146bcebc61c491700e50a9278febbe))
+* **statuscolumn:** decrease timer ([58c3c57](https://github.com/snelling-a/nvim/commit/58c3c574cde562a2f5f4ebe5db113d4a1d3ee42f))
+
 ## [8.10.0](https://github.com/snelling-a/nvim/compare/v8.9.0...v8.10.0) (2025-07-27)
 
 
