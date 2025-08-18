@@ -3,29 +3,19 @@ return {
 	"saghen/blink.cmp",
 	dependencies = { "echasnovski/mini.icons", "rafamadriz/friendly-snippets" },
 	event = { "CmdlineEnter", "InsertEnter" },
-	build = "cargo build --release",
+	version = "1.*",
 	---@type blink.cmp.Config
 	opts = {
 		completion = {
 			accept = {
 				auto_brackets = { enabled = false },
 			},
+			list = { max_items = 50 },
+			documentation = { auto_show = true },
 			menu = {
 				draw = {
 					components = {
 						kind_icon = {
-							text = function(ctx)
-								---@type string, string, boolean
-								local kind_icon, _, _ = require("mini.icons").get("lsp", ctx.kind)
-								return kind_icon
-							end,
-							highlight = function(ctx)
-								---@type string, string, boolean
-								local _, hl, _ = require("mini.icons").get("lsp", ctx.kind)
-								return hl
-							end,
-						},
-						kind = {
 							highlight = function(ctx)
 								---@type string, string, boolean
 								local _, hl, _ = require("mini.icons").get("lsp", ctx.kind)
@@ -38,7 +28,22 @@ return {
 		},
 		keymap = { preset = "enter" },
 		sources = {
-			default = { "lsp", "snippets", "path", "buffer" },
+			default = function()
+				local sources = { "lsp", "buffer" }
+				local ok, node = pcall(vim.treesitter.get_node)
+
+				if ok and node then
+					if not vim.tbl_contains({ "comment", "line_comment", "block_comment" }, node:type()) then
+						table.insert(sources, "path")
+					end
+					if node:type() ~= "string" then
+						table.insert(sources, "snippets")
+					end
+				end
+
+				return sources
+			end,
 		},
+		appearance = { kind_icons = require("icons").symbol_kinds },
 	},
 }
