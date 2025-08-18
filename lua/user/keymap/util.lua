@@ -70,8 +70,9 @@ function M.map(str)
 end
 
 --- Quit the current buffer, or close the window if it is the last buffer
----@param bufnr integer Buffer number to quit
+---@param bufnr? integer Buffer number to quit
 function M.quit(bufnr)
+	bufnr = bufnr or vim.api.nvim_get_current_buf()
 	vim.bo[bufnr].buflisted = false
 	vim.keymap.set({ "n" }, "q", function()
 		if vim.bo.ft == "man" then
