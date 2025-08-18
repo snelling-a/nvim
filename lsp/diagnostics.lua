@@ -58,7 +58,7 @@ local config = {
 
 vim.diagnostic.config(config)
 
-local ns = vim.api.nvim_create_namespace("my_namespace")
+local namespace = vim.api.nvim_create_namespace("diagnostics")
 
 local orig_signs_handler = vim.diagnostic.handlers.signs
 
@@ -76,10 +76,10 @@ vim.diagnostic.handlers.signs = {
 		end
 
 		local filtered_diagnostics = vim.tbl_values(max_severity_per_line)
-		orig_signs_handler.show(ns, bufnr, filtered_diagnostics, opts)
+		orig_signs_handler.show(namespace, bufnr, filtered_diagnostics, opts)
 	end,
 	hide = function(_, bufnr)
-		orig_signs_handler.hide(ns, bufnr)
+		orig_signs_handler.hide(namespace, bufnr)
 	end,
 }
 
