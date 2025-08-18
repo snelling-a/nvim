@@ -183,6 +183,7 @@ Indentscope
 inlayhints
 instanceof
 io
+ipairs
 issing
 Jamstack
 Javascript
@@ -317,6 +318,7 @@ resession
 Rethy
 rganize
 rhs
+ripgrep
 rundll
 runtimepath
 Runtimes
@@ -399,7 +401,6 @@ tatus
 tbl
 termcodes
 termguicolors
-testBase
 testid
 texthl
 textobjects
@@ -461,6 +462,7 @@ winsep
 winsize
 wintype
 wslview
+XDG
 xshen
 yamlfmt
 yamlls
