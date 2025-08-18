@@ -24,7 +24,7 @@ end
 
 local M = {}
 
-function M.get_ensure_intalled()
+function M.get_ensure_installed()
 	local servers = M.get_all_client_names()
 	local formatters = get_formatters()
 	local linters = get_linters()

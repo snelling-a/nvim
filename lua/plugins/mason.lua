@@ -14,7 +14,7 @@ return {
 
 		local installed = false
 
-		local ENSURE_INSTALLED = require("user.lsp.util").get_ensure_intalled()
+		local ENSURE_INSTALLED = require("user.lsp.util").get_ensure_installed()
 
 		---@param package Package
 		local function do_install(package)
