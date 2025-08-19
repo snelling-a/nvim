@@ -94,7 +94,6 @@ function M.on_attach()
 	local group = require("user.autocmd").augroup("lsp.words")
 
 	vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI", "ModeChanged", "FocusGained" }, {
-		group = group,
 		callback = function()
 			if not M.get_is_enabled({ modes = true }) then
 				vim.lsp.buf.clear_references()
@@ -104,13 +103,16 @@ function M.on_attach()
 				update()
 			end
 		end,
+		desc = "Update LSP words on cursor move or mode change",
+		group = group,
 	})
 
 	vim.api.nvim_create_autocmd({ "FocusLost", "CmdlineEnter", "BufLeave" }, {
-		group = group,
 		callback = function()
 			vim.lsp.buf.clear_references()
 		end,
+		desc = "Clear LSP words on focus lost or leaving buffer",
+		group = group,
 	})
 
 	vim.api.nvim_create_user_command("WordsDisable", disable, {

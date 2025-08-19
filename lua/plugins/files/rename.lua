@@ -73,10 +73,11 @@ end
 
 function M.setup()
 	vim.api.nvim_create_autocmd("User", {
-		pattern = "MiniFilesActionRename",
-		callback = function(event)
-			on_rename_file(event.data.from, event.data.to)
+		callback = function(args)
+			on_rename_file(args.data.from, args.data.to)
 		end,
+		desc = "LSP rename files",
+		pattern = "MiniFilesActionRename",
 	})
 
 	vim.api.nvim_create_user_command("RenameFile", rename_file, {
