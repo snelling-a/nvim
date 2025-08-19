@@ -9,6 +9,7 @@ vim.schedule(function()
 	vim.o.clipboard = "unnamedplus"
 end)
 
+-- vim.o.autocomplete = true
 vim.o.autoindent = true
 vim.o.autowrite = true
 vim.o.backup = false
@@ -83,7 +84,7 @@ vim.o.winminwidth = 10
 vim.o.wrap = false
 vim.o.writebackup = false
 
-local group = vim.api.nvim_create_augroup("FormatOptions", {})
+local group = require("user.autocmd").augroup("format.options")
 vim.api.nvim_create_autocmd({ "FileType" }, {
 	group = group,
 	callback = function()

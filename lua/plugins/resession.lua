@@ -21,6 +21,7 @@ return {
 			callback = function()
 				resession.save(get_session_name(), { dir = session_dir, notify = false })
 			end,
+			desc = "Save session on VimLeavePre",
 		})
 
 		local function complete()

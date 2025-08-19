@@ -9,8 +9,8 @@ function M.augroup(name, clear)
 end
 
 vim.api.nvim_create_autocmd({ "BufReadPost" }, {
-	callback = function(event)
-		local bufnr = event.buf
+	callback = function(args)
+		local bufnr = args.buf
 		if vim.bo[bufnr].filetype == "gitcommit" or vim.b[bufnr].last_loc then
 			return
 		end
@@ -29,12 +29,12 @@ vim.api.nvim_create_autocmd({ "BufReadPost" }, {
 })
 
 vim.api.nvim_create_autocmd({ "BufWritePre" }, {
-	callback = function(event)
-		if event.match:match("^%w%w+:[\\/][\\/]") then
+	callback = function(args)
+		if args.match:match("^%w%w+:[\\/][\\/]") then
 			return
 		end
 
-		local file = vim.uv.fs_realpath(event.match) or event.match
+		local file = vim.uv.fs_realpath(args.match) or args.match
 		vim.fn.mkdir(vim.fn.fnamemodify(file, ":p:h"), "p")
 	end,
 	desc = "Auto create dir when saving a file, in case some intermediate directory does not exist",
@@ -56,6 +56,7 @@ end
 
 vim.api.nvim_create_autocmd({ "BufWritePost" }, {
 	callback = M.sort_spellfile,
+	desc = "Sort and save spellfile",
 	group = M.augroup("spell"),
 	pattern = "*/spell/*.add",
 })
@@ -68,8 +69,8 @@ local function is_disabled_filetype(bufnr)
 end
 
 vim.api.nvim_create_autocmd({ "CmdlineEnter", "FocusLost", "InsertEnter", "WinLeave" }, {
-	callback = function(event)
-		if is_disabled_filetype(event.buf) then
+	callback = function(args)
+		if is_disabled_filetype(args.buf) then
 			return
 		end
 		vim.api.nvim_set_option_value("relativenumber", false, { scope = "local", win = 0 })
@@ -78,25 +79,24 @@ vim.api.nvim_create_autocmd({ "CmdlineEnter", "FocusLost", "InsertEnter", "WinLe
 	desc = "Disable UI elements for unfocused windows",
 	group = ui_group,
 })
-
+vim.g.relativenumber = true
 vim.api.nvim_create_autocmd({ "BufEnter", "CmdlineLeave", "FocusGained", "InsertLeave", "WinEnter" }, {
-	callback = function(event)
-		local value = true
-		if is_disabled_filetype(event.buf) then
-			value = false
-			vim.api.nvim_set_option_value("number", value, { scope = "local", win = 0 })
+	callback = function(args)
+		if is_disabled_filetype(args.buf) then
+			return
 		end
 
-		vim.api.nvim_set_option_value("relativenumber", value, { scope = "local", win = 0 })
-		vim.api.nvim_set_option_value("cursorline", value, { scope = "local", win = 0 })
+		vim.api.nvim_set_option_value("number", true, { scope = "local", win = 0 })
+		vim.api.nvim_set_option_value("cursorline", true, { scope = "local", win = 0 })
+		vim.api.nvim_set_option_value("relativenumber", vim.g.relativenumber, { scope = "local", win = 0 })
 	end,
 	desc = "Enable UI elements for focused windows",
 	group = ui_group,
 })
 
 vim.api.nvim_create_autocmd({ "FileType" }, {
-	callback = function(event)
-		return require("user.keymap.util").quit(event.buf)
+	callback = function(args)
+		return require("user.keymap.util").quit(args.buf)
 	end,
 	desc = "Close some filetypes with <q>",
 	group = M.augroup("file.quit"),
@@ -114,13 +114,13 @@ vim.api.nvim_create_autocmd({ "FocusGained", "TermClose", "TermLeave" }, {
 })
 
 vim.api.nvim_create_autocmd({ "TermOpen" }, {
-	desc = "Remove UI clutter in the terminal",
 	callback = function()
 		local is_terminal = vim.api.nvim_get_option_value("buftype", { buf = 0 }) == "terminal"
 		vim.o.number = not is_terminal
 		vim.o.relativenumber = not is_terminal
 		vim.o.signcolumn = is_terminal and "no" or "yes"
 	end,
+	desc = "Remove UI clutter in the terminal",
 })
 
 vim.api.nvim_create_autocmd({ "TextYankPost" }, {
@@ -142,7 +142,6 @@ vim.api.nvim_create_autocmd({ "VimResized" }, {
 })
 
 vim.api.nvim_create_autocmd({ "WinResized" }, {
-	pattern = "*",
 	callback = function()
 		---@type boolean
 		---@diagnostic disable-next-line: undefined-field
@@ -158,6 +157,8 @@ vim.api.nvim_create_autocmd({ "WinResized" }, {
 		local wide_enough = win_width < text_width + 1
 		vim.api.nvim_set_option_value("wrap", wide_enough, {})
 	end,
+	desc = "Enable/Disable wrap based on window width",
+	pattern = "*",
 })
 
 vim.api.nvim_create_autocmd({ "User" }, {
@@ -169,6 +170,7 @@ vim.api.nvim_create_autocmd({ "User" }, {
 
 		vim.notify(msg)
 	end,
+	desc = "Startup time",
 	group = M.augroup("startup"),
 	once = true,
 	pattern = "LazyVimStarted",
@@ -178,14 +180,16 @@ vim.api.nvim_create_autocmd({ "BufEnter" }, {
 	callback = function()
 		vim.opt_local.spelloptions:remove("noplainbuffer")
 	end,
+	desc = "Remove noplainbuffer from spelloptions",
 	group = M.augroup("spelloptions"),
 })
 
-vim.api.nvim_create_autocmd("FileType", {
+vim.api.nvim_create_autocmd({ "FileType" }, {
 	callback = function()
 		vim.cmd.wincmd("L")
 		vim.cmd.resize({ "84", mods = { vertical = true } })
 	end,
+	desc = "Resize help window",
 	group = M.augroup("help"),
 	pattern = "help",
 })

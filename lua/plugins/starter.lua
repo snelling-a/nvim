@@ -3,17 +3,6 @@ return {
 	"echasnovski/mini.starter",
 	event = { "VimEnter" },
 	config = function()
-		if vim.o.filetype == "lazy" then
-			vim.cmd.close()
-			vim.api.nvim_create_autocmd("User", {
-				callback = function()
-					require("lazy").show()
-				end,
-				pattern = "MiniStarterOpened",
-				group = vim.api.nvim_create_augroup("MiniStarter", {}),
-			})
-		end
-
 		local function new_section(name, action, section)
 			return { name = name, action = action, section = section }
 		end

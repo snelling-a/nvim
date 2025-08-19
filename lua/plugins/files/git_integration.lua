@@ -151,9 +151,10 @@ end
 local group = require("user.autocmd").augroup("mini.files.git")
 
 vim.api.nvim_create_autocmd("User", {
-	callback = function(event)
-		updateGitStatus(event.buf)
+	callback = function(args)
+		updateGitStatus(args.buf)
 	end,
+	desc = "Update git status in MiniFiles",
 	group = group,
 	pattern = "MiniFilesExplorerOpen",
 })
@@ -162,19 +163,21 @@ vim.api.nvim_create_autocmd("User", {
 	callback = function()
 		clearCache()
 	end,
+	desc = "Clear git status cache on MiniFiles close",
 	group = group,
 	pattern = "MiniFilesExplorerClose",
 })
 
 vim.api.nvim_create_autocmd("User", {
-	callback = function(event)
+	callback = function(args)
 		---@type integer
-		local bufnr = event.data.buf_id
+		local bufnr = args.data.buf_id
 		local cwd = vim.fn.expand("%:p:h")
 		if gitStatusCache[cwd] then
 			updateMiniWithGit(bufnr, gitStatusCache[cwd].statusMap)
 		end
 	end,
+	desc = "Update MiniFiles with git status",
 	group = group,
 	pattern = "MiniFilesBufferUpdate",
 })

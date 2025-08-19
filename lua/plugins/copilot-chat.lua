@@ -23,8 +23,9 @@ return {
 				vim.opt_local.spell = false
 				vim.opt_local.wrap = true
 			end,
+			desc = "Disable UI elements in CopilotChat buffer",
+			group = require("user.autocmd").augroup("CopilotChat"),
 			pattern = "copilot-chat",
-			group = vim.api.nvim_create_augroup("CopilotChat", {}),
 		})
 
 		chat.setup({

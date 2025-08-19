@@ -297,35 +297,40 @@ end
 local group = vim.api.nvim_create_augroup("statusline", {})
 
 vim.api.nvim_create_autocmd({ "WinLeave", "FocusLost" }, {
-	group = group,
-	once = true,
 	callback = function()
 		vim.api.nvim_create_autocmd({ "BufWinEnter", "WinEnter", "FocusGained" }, {
-			group = group,
 			callback = function()
 				set(1)
 			end,
+			desc = "Set local statusline on BufWinEnter or WinEnter",
+			group = group,
 		})
 	end,
+	desc = "Set local statusline on WinLeave or FocusLost",
+	group = group,
+	once = true,
 })
 
 vim.api.nvim_create_autocmd({ "WinLeave", "FocusLost" }, {
-	group = group,
 	callback = function()
 		set(0)
 	end,
+	desc = "Set local statusline on WinLeave or FocusLost",
+	group = group,
 })
 
 vim.api.nvim_create_autocmd({ "VimEnter" }, {
-	group = group,
 	callback = function()
 		set(1, true)
 	end,
+	desc = "Set global statusline on VimEnter",
+	group = group,
 })
 
 vim.api.nvim_create_autocmd({ "ColorScheme", "ColorSchemePre" }, {
-	group = group,
 	callback = hldefs,
+	desc = "Define statusline highlights on ColorScheme",
+	group = group,
 })
 
 hldefs()
@@ -335,14 +340,16 @@ local redrawstatus = vim.schedule_wrap(function()
 end)
 
 vim.api.nvim_create_autocmd("User", {
-	pattern = "GitSignsUpdate",
-	group = group,
 	callback = redrawstatus,
+	desc = "Redraw statusline on User event",
+	group = group,
+	pattern = "GitSignsUpdate",
 })
 
 vim.api.nvim_create_autocmd({ "DiagnosticChanged" }, {
-	group = group,
 	callback = redrawstatus,
+	desc = "Redraw statusline on diagnostic change",
+	group = group,
 })
 
 _G.statusline = M

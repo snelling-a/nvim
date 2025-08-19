@@ -42,5 +42,5 @@ vim.api.nvim_create_autocmd({ "LspAttach" }, {
 		require("user.lsp.overrides").on_attach()
 	end,
 	group = group,
-	desc = "LspAttatch",
+	desc = "LspAttach",
 })

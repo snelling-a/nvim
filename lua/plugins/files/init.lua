@@ -42,9 +42,9 @@ return {
 		local group = require("user.autocmd").augroup("mini.files")
 
 		vim.api.nvim_create_autocmd({ "User" }, {
-			callback = function(event)
+			callback = function(args)
 				---@type integer
-				local bufnr = event.data.buf_id
+				local bufnr = args.data.buf_id
 				---@param lhs "s"|"t"|"v" Left-hand side |{lhs}| of the mapping
 				local function map_split(lhs)
 					local commands = {
@@ -88,8 +88,9 @@ return {
 				map_split("t")
 				map_split("v")
 			end,
-			pattern = "MiniFilesBufferCreate",
+			desc = "Set up MiniFiles keymaps",
 			group = group,
+			pattern = "MiniFilesBufferCreate",
 		})
 
 		require("plugins.files.git_integration")
