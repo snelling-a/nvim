@@ -8,7 +8,7 @@ return {
 		icons.setup({
 			file = {
 				[".babelrc"] = { glyph = Icons.javascript.babel, hl = "MiniIconsYellow" },
-				["eslint.config.js"] = { glyph = Icons.servers.eslint, hl = "MiniIconsYellow" },
+				["eslint.config.js"] = { glyph = Icons.servers["eslint-lsp"], hl = "MiniIconsYellow" },
 				[".eslintignore"] = { glyph = Icons.servers.eslint, hl = "MiniIconsBlue" },
 				[".eslintrc.js"] = { glyph = Icons.servers.eslint, hl = "MiniIconsBlue" },
 				[".eslintrc.json"] = { glyph = Icons.servers.eslint, hl = "MiniIconsBlue" },
