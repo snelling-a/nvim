@@ -93,5 +93,3 @@ vim.api.nvim_create_user_command("DiagnosticLines", function(args)
 
 	vim.diagnostic.config({ jump = { float = not is_enabled }, virtual_lines = is_enabled })
 end, { bang = true, desc = "Toggle diagnostic virtual_lines" })
-
-return {}

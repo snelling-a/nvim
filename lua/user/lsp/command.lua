@@ -40,9 +40,8 @@ end, {
 
 vim.api.nvim_create_user_command("LspStart", function(args)
 	vim.lsp.start(vim.lsp.get_server_config(args.fargs[1]))
+	-- vim.cmd("runtime! lsp/" .. args.fargs[1] .. ".lua")
 end, {
 	complete = Util.get_all_client_names,
 	nargs = "?",
 })
-
-return {}

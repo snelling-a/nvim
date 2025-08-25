@@ -71,6 +71,7 @@ vim.api.nvim_create_autocmd({ "LspAttach" }, {
 			})
 		end
 
+		require("user.lsp.command")
 		require("user.lsp.keymap").on_attach(client, args.buf)
 		require("user.lsp.words").on_attach()
 		require("user.lsp.overrides").on_attach()
