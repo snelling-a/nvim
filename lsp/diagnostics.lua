@@ -17,7 +17,7 @@ local config = {
 			end
 			local icons = require("icons.util")
 
-			local icon = icons.get_lsp_icon(diagnostic.source or "")
+			local icon = require("icons").servers[diagnostic.source:lower()]
 			local _, color = icons.get_file_icon()
 
 			vim.api.nvim_set_hl(0, "DiagnosticFloatSource", { fg = color })
@@ -28,6 +28,7 @@ local config = {
 			if not diagnostic.source then
 				return "", ""
 			end
+			---@type vim.diagnostic.SeverityName
 			local severity = vim.diagnostic.severity[diagnostic.severity]
 			local hl = capitalize_first_letter(severity)
 			local code = diagnostic.code and ": " .. diagnostic.code or ""
@@ -36,9 +37,7 @@ local config = {
 		end,
 		source = "if_many",
 	},
-	jump = {
-		float = true,
-	},
+	jump = { float = true },
 	severity_sort = true,
 	signs = function()
 		local icons = require("icons")
@@ -58,7 +57,7 @@ local config = {
 
 vim.diagnostic.config(config)
 
-local namespace = vim.api.nvim_create_namespace("diagnostics")
+local namespace = vim.api.nvim_create_namespace("nvim.diagnostics")
 
 local orig_signs_handler = vim.diagnostic.handlers.signs
 
