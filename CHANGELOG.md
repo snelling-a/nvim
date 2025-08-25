@@ -1,5 +1,29 @@
 # Changelog
 
+## [8.11.0](https://github.com/snelling-a/nvim/compare/v8.10.0...v8.11.0) (2025-08-25)
+
+
+### Features
+
+* **lsp:** jq ([e7bea23](https://github.com/snelling-a/nvim/commit/e7bea234da1e617bf435eac3ead8b1b2954afbcf))
+
+
+### Bug Fixes
+
+* **autocmd:** descriptions/var naming ([f2978b3](https://github.com/snelling-a/nvim/commit/f2978b372296e5ef892a952eb57f3cb8d1470438))
+* blink problems ([fc91297](https://github.com/snelling-a/nvim/commit/fc912977561be692474cec58e340fd8e32a28ebc))
+* **keymap:** types ([d8115a4](https://github.com/snelling-a/nvim/commit/d8115a438ebb4a215dd1321653eb08f0fcff095d))
+* naming ([6b2176b](https://github.com/snelling-a/nvim/commit/6b2176b4f79aafb829da25cf49c578a0d1b817c7))
+* spelling ([cd74299](https://github.com/snelling-a/nvim/commit/cd742998c42e5c78d0e7c0d036e4617ab4bcd946))
+
+
+### Performance Improvements
+
+* **md:** remove markview ([7e2384a](https://github.com/snelling-a/nvim/commit/7e2384a3af8885744f7caa38008b1e8ae5f9475a))
+* **obsidian:** don't open on all markdown files ([35ecdee](https://github.com/snelling-a/nvim/commit/35ecdeec36146bcebc61c491700e50a9278febbe))
+* reusable clear search function ([b39b7d4](https://github.com/snelling-a/nvim/commit/b39b7d4dda946acccfa9373aaf9647782fb34560))
+* **statuscolumn:** decrease timer ([58c3c57](https://github.com/snelling-a/nvim/commit/58c3c574cde562a2f5f4ebe5db113d4a1d3ee42f))
+
 ## [8.10.0](https://github.com/snelling-a/nvim/compare/v8.9.0...v8.10.0) (2025-07-27)
 
 
