@@ -46,6 +46,7 @@ vim.o.mouse = "a"
 vim.o.number = true
 vim.o.pumblend = 10
 vim.o.pumheight = 10
+vim.o.quickfixtextfunc = "{info -> v:lua.require'user.qf'.quickfixtextfunction(info)}"
 vim.o.relativenumber = true
 vim.o.ruler = false
 vim.opt.runtimepath:append(vim.env.HOMEBREW_PREFIX .. "/bin/fzf")
