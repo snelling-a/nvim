@@ -6,12 +6,11 @@ function M.on_attach(client, bufnr)
 	local map = require("user.keymap.util").map("Lsp")
 
 	if client:supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint, bufnr) then
-		if vim.api.nvim_buf_is_valid(bufnr) and vim.bo[bufnr].buftype == "" then
-			vim.lsp.inlay_hint.enable(true, { buffer = bufnr })
-		end
-
 		map({ "n" }, "<leader>th", function()
-			vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ buffer = bufnr }))
+			vim.g.inlay_hints = not vim.g.inlay_hints
+
+			local mode = vim.api.nvim_get_mode().mode
+			vim.lsp.inlay_hint.enable(vim.g.inlay_hints and (mode == "n" or mode == "v"))
 		end, { desc = "[T]oggle Inlay [H]ints" })
 	end
 
@@ -42,6 +41,12 @@ function M.on_attach(client, bufnr)
 				vim.notify("LspWords is not enabled")
 			end
 		end, { buffer = bufnr, desc = "Prev Reference" })
+	end
+
+	if client:supports_method(vim.lsp.protocol.Methods.textDocument_documentColor) then
+		map({ "n", "x" }, "grc", function()
+			vim.lsp.document_color.color_presentation()
+		end, { desc = "vim.lsp.document_color.color_presentation()" })
 	end
 end
 

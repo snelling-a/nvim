@@ -2,6 +2,8 @@ if vim.g.vscode then
 	return
 end
 
+vim.g.inlay_hints = true
+
 vim.lsp.config("*", {
 	capabilities = {
 		workspace = {
@@ -15,14 +17,13 @@ vim.lsp.config("*", {
 })
 
 local servers = require("user.lsp.util").get_all_client_names()
-for _, server_name in ipairs(servers) do
-	vim.lsp.enable(server_name)
-end
+vim.lsp.enable(servers)
 
 local group = require("user.autocmd").augroup("lsp")
+
 vim.api.nvim_create_autocmd({ "LspAttach" }, {
-	callback = function(event)
-		local client = assert(vim.lsp.get_client_by_id(event.data.client_id))
+	callback = function(args)
+		local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
 
 		if client:supports_method(vim.lsp.protocol.Methods.textDocument_foldingRange) then
 			local win = vim.api.nvim_get_current_win()
@@ -30,14 +31,47 @@ vim.api.nvim_create_autocmd({ "LspAttach" }, {
 		end
 
 		if client:supports_method(vim.lsp.protocol.Methods.textDocument_documentColor) then
-			local ok, hipatterns = pcall(require, "mini.hipatterns")
-			if ok then
-				hipatterns.disable(event.buf)
+			local okay, hipatterns = pcall(require, "mini.hipatterns")
+			if okay then
+				hipatterns.disable(args.buf)
 			end
-			vim.lsp.document_color.enable(true, event.buf)
+			vim.lsp.document_color.enable(true, args.buf)
 		end
 
-		require("user.lsp.keymap").on_attach(client, event.buf)
+		if client:supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
+			local inlay_hints_group = require("user.autocmd").augroup("lsp.inlay_hints")
+
+			if vim.g.inlay_hints then
+				vim.defer_fn(function()
+					local mode = vim.api.nvim_get_mode().mode
+					vim.lsp.inlay_hint.enable(mode == "n" or mode == "v", { bufnr = args.buf })
+				end, 500)
+			end
+
+			vim.api.nvim_create_autocmd({ "InsertEnter" }, {
+				buffer = args.buf,
+				callback = function()
+					if vim.g.inlay_hints then
+						vim.lsp.inlay_hint.enable(false, { bufnr = args.buf })
+					end
+				end,
+				desc = "Enable inlay hints",
+				group = inlay_hints_group,
+			})
+
+			vim.api.nvim_create_autocmd({ "InsertLeave" }, {
+				buffer = args.buf,
+				callback = function()
+					if vim.g.inlay_hints then
+						vim.lsp.inlay_hint.enable(true, { bufnr = args.buf })
+					end
+				end,
+				desc = "Disable inlay hints",
+				group = inlay_hints_group,
+			})
+		end
+
+		require("user.lsp.keymap").on_attach(client, args.buf)
 		require("user.lsp.words").on_attach()
 		require("user.lsp.overrides").on_attach()
 	end,
