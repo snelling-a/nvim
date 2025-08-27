@@ -1,5 +1,34 @@
 # Changelog
 
+## [8.11.0](https://github.com/snelling-a/nvim/compare/v8.10.0...v8.11.0) (2025-08-27)
+
+
+### Features
+
+* **keys:** quickfix search ([7342067](https://github.com/snelling-a/nvim/commit/734206796d6c05b2521b7edc1cc81e6ed4a90c3f))
+* **lsp:** jq ([53bc20f](https://github.com/snelling-a/nvim/commit/53bc20f854e3a21dbb1ff196e70add829c214aab))
+
+
+### Bug Fixes
+
+* **autocmd:** descriptions/var naming ([5d6e6d0](https://github.com/snelling-a/nvim/commit/5d6e6d0965e2f856a75852337296f1130fc8b529))
+* **autocmd:** ui settings ([ba6d45f](https://github.com/snelling-a/nvim/commit/ba6d45f7bf57bcd794ebe94acd4207814623080b))
+* blink problems ([fc91297](https://github.com/snelling-a/nvim/commit/fc912977561be692474cec58e340fd8e32a28ebc))
+* **keymap:** types ([d8115a4](https://github.com/snelling-a/nvim/commit/d8115a438ebb4a215dd1321653eb08f0fcff095d))
+* naming ([6b2176b](https://github.com/snelling-a/nvim/commit/6b2176b4f79aafb829da25cf49c578a0d1b817c7))
+* spelling ([cd74299](https://github.com/snelling-a/nvim/commit/cd742998c42e5c78d0e7c0d036e4617ab4bcd946))
+
+
+### Performance Improvements
+
+* **lsp:** move command and diagnostics out of lsp dir ([87fcfb2](https://github.com/snelling-a/nvim/commit/87fcfb2ef16949a64252b2a9335582c376b9c563))
+* **md:** remove markview ([7e2384a](https://github.com/snelling-a/nvim/commit/7e2384a3af8885744f7caa38008b1e8ae5f9475a))
+* **obsidian:** don't open on all markdown files ([35ecdee](https://github.com/snelling-a/nvim/commit/35ecdeec36146bcebc61c491700e50a9278febbe))
+* reusable clear search function ([ab827d9](https://github.com/snelling-a/nvim/commit/ab827d9f9443a45a757f973b2847cf706705bc19))
+* statuscolumn ([0468e31](https://github.com/snelling-a/nvim/commit/0468e3182199dec9f70a1c0e0e54cae139a68837))
+* **statuscolumn:** decrease timer ([58c3c57](https://github.com/snelling-a/nvim/commit/58c3c574cde562a2f5f4ebe5db113d4a1d3ee42f))
+* **statusline:** caching ([2488037](https://github.com/snelling-a/nvim/commit/2488037a84554bba27da6b780e395e1557489a66))
+
 ## [8.10.0](https://github.com/snelling-a/nvim/compare/v8.9.0...v8.10.0) (2025-07-27)
 
 
