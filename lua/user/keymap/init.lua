@@ -109,6 +109,18 @@ vim.keymap.set({ "n" }, "<leader>q", function()
 
 	vim.cmd.copen()
 end, { desc = "Quickfix List" })
+vim.keymap.set({ "n" }, "g/", function()
+	local last_search = vim.fn.getreg("/")
+
+	---@diagnostic disable-next-line: param-type-mismatch
+	local okay = pcall(vim.cmd, "vimgrep /" .. last_search .. "/j %")
+	if not okay then
+		vim.notify("No previous search pattern found", vim.log.levels.WARN)
+		return
+	end
+
+	vim.cmd.copen()
+end, { desc = "Search for the last search pattern in the current file and open the quickfix list" })
 
 vim.keymap.set({ "n" }, "J", "mzJ`z", { desc = "Keep cursor while joining lines" })
 vim.keymap.set({ "n" }, "<C-CR>", "a<CR><Esc>k$", { desc = "Split current line under the cursor" })
@@ -140,6 +152,7 @@ vim.keymap.set({ "n" }, "<leader>td", function()
 	local is_enabled = vim.diagnostic.is_enabled()
 
 	vim.diagnostic.enable(not is_enabled)
+	vim.notify(("Diagnostics %s"):format(is_enabled and "disabled" or "enabled"))
 end, { desc = "[T]oggle [D]iagnostics" })
 vim.keymap.set({ "n" }, "<leader>tw", function()
 	---@type boolean
@@ -147,7 +160,17 @@ vim.keymap.set({ "n" }, "<leader>tw", function()
 	local wrap = vim.opt_local.wrap:get()
 
 	vim.opt_local.wrap = not wrap
+	vim.notify(("Wrap %s"):format(wrap and "disabled" or "enabled"))
 end, { desc = "[T]oggle [W]rap" })
+vim.keymap.set({ "n" }, "<leader>tn", function()
+	if require("util").is_disabled_filetype() then
+		return
+	end
+	vim.g.relativenumber = not vim.g.relativenumber
+
+	vim.opt_local.relativenumber = vim.g.relativenumber
+	vim.notify(("Relative number %s"):format(vim.g.relativenumber and "enabled" or "disabled"))
+end, { desc = "[T]oggle Relative[n]umber" })
 
 vim.keymap.set({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true })
 vim.keymap.set({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { desc = "Up", expr = true })
@@ -166,14 +189,6 @@ vim.keymap.set({ "n", "v" }, "z=", function()
 		end)
 	)
 end, { desc = "Spelling suggestions for the word under the cursor" })
-
-vim.keymap.set({ "n" }, "<leader>tn", function()
-	---@type boolean
-	---@diagnostic disable-next-line: undefined-field
-	local is_enabled = vim.opt_local.relativenumber:get()
-
-	vim.opt_local.relativenumber = not is_enabled
-end, { desc = "[T]oggle Relative[n]umber" })
 
 vim.keymap.set({ "n" }, "ycc", "yygccp", { remap = true, desc = "Duplicate line and comment the first line" })
 vim.keymap.set({ "x" }, "/", "<Esc>/\\%V", { desc = "Search in visual mode" })

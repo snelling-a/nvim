@@ -21,6 +21,7 @@ vim.g.disabled_filetypes = {
 	"scratch",
 	"toggleterm",
 }
+vim.g.relativenumber = true
 
 local _print = print
 
