@@ -62,11 +62,7 @@ vim.api.nvim_create_autocmd({ "BufWritePost" }, {
 })
 
 local ui_group = M.augroup("ui")
-local function is_disabled_filetype(bufnr)
-	return vim.tbl_contains(vim.g.disabled_filetypes, vim.bo[bufnr].filetype)
-		or vim.tbl_contains(vim.g.disabled_filetypes, vim.bo[bufnr].buftype)
-		or vim.bo[bufnr].filetype == ""
-end
+local is_disabled_filetype = require("util").is_disabled_filetype
 
 vim.api.nvim_create_autocmd({ "CmdlineEnter", "FocusLost", "InsertEnter", "WinLeave" }, {
 	callback = function(args)
@@ -79,16 +75,18 @@ vim.api.nvim_create_autocmd({ "CmdlineEnter", "FocusLost", "InsertEnter", "WinLe
 	desc = "Disable UI elements for unfocused windows",
 	group = ui_group,
 })
-vim.g.relativenumber = true
 vim.api.nvim_create_autocmd({ "BufEnter", "CmdlineLeave", "FocusGained", "InsertLeave", "WinEnter" }, {
 	callback = function(args)
+		local value = true
+		local relativenumber = vim.g.relativenumber
 		if is_disabled_filetype(args.buf) then
-			return
+			value = false
+			relativenumber = false
 		end
 
-		vim.api.nvim_set_option_value("number", true, { scope = "local", win = 0 })
-		vim.api.nvim_set_option_value("cursorline", true, { scope = "local", win = 0 })
-		vim.api.nvim_set_option_value("relativenumber", vim.g.relativenumber, { scope = "local", win = 0 })
+		vim.api.nvim_set_option_value("number", value, { scope = "local", win = 0 })
+		vim.api.nvim_set_option_value("cursorline", value, { scope = "local", win = 0 })
+		vim.api.nvim_set_option_value("relativenumber", relativenumber, { scope = "local", win = 0 })
 	end,
 	desc = "Enable UI elements for focused windows",
 	group = ui_group,
@@ -192,5 +190,14 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 	desc = "Resize help window",
 	group = M.augroup("help"),
 	pattern = "help",
+})
+
+vim.api.nvim_create_autocmd({ "CmdlineEnter" }, {
+	callback = function()
+		require("user.history").setup()
+	end,
+	desc = "Clean command history",
+	group = M.augroup("history.ignore"),
+	once = true,
 })
 return M
