@@ -2,8 +2,6 @@ if vim.g.vscode then
 	return
 end
 
-vim.g.inlay_hints = true
-
 vim.lsp.config("*", {
 	capabilities = {
 		workspace = {

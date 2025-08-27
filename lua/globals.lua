@@ -22,6 +22,7 @@ vim.g.disabled_filetypes = {
 	"toggleterm",
 }
 vim.g.relativenumber = true
+vim.g.inlay_hints = true
 
 local _print = print
 
