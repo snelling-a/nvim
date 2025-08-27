@@ -1,18 +1,16 @@
 ---@class Statuscolumn
 local M = {}
 
----@alias Statuscolumn.component "mark"|"sign"|"fold"|"git"
----@alias Statuscolumn.component.function fun(win:number,buf:number,lnum:number):Statuscolumn.component[]
----@alias StatusColumn.components Statuscolumn.component[]|Statuscolumn.component.function
-
 ---@alias Statuscolumn.sign.type "mark"|"sign"|"fold"|"git"
 ---@alias Statuscolumn.sign {name:string, text:string, texthl:string, priority:number, type:Statuscolumn.sign.type}
 
 -- Cache for signs per buffer and line
 ---@type table<number,table<number,Statuscolumn.sign[]>>
 local sign_cache = {}
-local cache = {} ---@type table<string,string>
-local icon_cache = {} ---@type table<string,string>
+---@type table<string,string>
+local cache = {}
+---@type table<string,string>
+local icon_cache = {}
 
 local did_setup = false
 
@@ -49,7 +47,6 @@ local function get_buf_signs(buf)
 	---@type table<number, Statuscolumn.sign[]>
 	local signs = {}
 
-	-- Get extmark signs
 	local extmarks = vim.api.nvim_buf_get_extmarks(buf, -1, 0, -1, { details = true, type = "sign" })
 	for _, extmark in pairs(extmarks) do
 		local lnum = extmark[2] + 1
@@ -97,7 +94,6 @@ local function get_line_signs(win, buf, lnum)
 		end
 	end)
 
-	-- Sort by priority
 	table.sort(signs, function(a, b)
 		return (a.priority or 0) > (b.priority or 0)
 	end)
@@ -121,7 +117,7 @@ local function get_icon(sign)
 end
 
 ---@return string
-local function _get()
+local function build_statusline()
 	if not did_setup then
 		setup()
 	end
@@ -140,28 +136,28 @@ local function _get()
 
 		if #signs > 0 then
 			local signs_by_type = {} ---@type table<Statuscolumn.sign.type,Statuscolumn.sign>
-			for _, s in ipairs(signs) do
-				signs_by_type[s.type] = signs_by_type[s.type] or s
+			for _, sign in ipairs(signs) do
+				signs_by_type[sign.type] = signs_by_type[sign.type] or sign
 			end
 
 			---@param types Statuscolumn.sign.type[]
 			---@return Statuscolumn.sign|nil
 			local function find(types)
-				for _, t in ipairs(types) do
-					if signs_by_type[t] then
-						return signs_by_type[t]
+				for _, type in ipairs(types) do
+					if signs_by_type[type] then
+						return signs_by_type[type]
 					end
 				end
 			end
 
-			local right_c = { "mark", "sign" }
-			local left_c = { "fold", "git" }
+			local right_components = { "mark", "sign" }
+			local left_components = { "fold", "git" }
 
-			local left = find(right_c)
-			local right = find(left_c)
+			local left_component = find(right_components)
+			local right_component = find(left_components)
 
-			components[1] = left and get_icon(left) or "  "
-			components[3] = is_file and (right and get_icon(right) or "  ") or ""
+			components[1] = left_component and get_icon(left_component) or "  "
+			components[3] = is_file and (right_component and get_icon(right_component) or "  ") or ""
 		else
 			components[1] = "  "
 			components[3] = is_file and "  " or ""
@@ -178,14 +174,12 @@ function M.get()
 	if cache[key] then
 		return cache[key]
 	end
-	local ok, ret = pcall(_get)
+	local ok, statusline = pcall(build_statusline)
 	if ok then
-		cache[key] = ret
-		return ret
+		cache[key] = statusline
+		return statusline
 	end
 	return ""
 end
 
-_G.statuscolumn = M
-
-vim.opt.statuscolumn = [[%!v:lua.statuscolumn.get()]]
+return M

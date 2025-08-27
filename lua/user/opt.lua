@@ -85,6 +85,7 @@ vim.o.winminwidth = 10
 vim.o.wrap = false
 vim.o.writebackup = false
 
+vim.opt.statuscolumn = "%!v:lua.require'user.statuscolumn'.get()"
 local group = require("user.autocmd").augroup("format.options")
 vim.api.nvim_create_autocmd({ "FileType" }, {
 	group = group,
