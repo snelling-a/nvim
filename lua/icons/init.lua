@@ -107,6 +107,7 @@ local misc = {
 	git = "󰊢 ",
 	lazy = "󰒲 ",
 	neovim = " ",
+	treesitter = " ",
 }
 
 local qf = {
