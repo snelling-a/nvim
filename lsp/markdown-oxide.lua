@@ -5,7 +5,7 @@ return {
 			dynamicRegistration = true,
 		},
 	},
-	root_markers = { ".obsidian", ".moxide.toml" },
+	root_markers = { ".moxide.toml" },
 	filetypes = { "markdown" },
 	cmd = { "markdown-oxide" },
 	on_attach = function(client)
