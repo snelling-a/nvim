@@ -139,7 +139,7 @@ return function(info)
 
 		hl("Number", #pt1, end_of_location)
 		hl("NonText", end_of_location, #pt1 + #pt2)
-		hl(type and type.hl or "Normal", #pt1 + #pt2, -1)
+		hl(type and type.hl or "PMenu", #pt1 + #pt2, -1)
 
 		table.insert(lines, line)
 	end
