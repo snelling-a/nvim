@@ -11,6 +11,7 @@ APPNAME
 args
 async
 augroup
+auth
 Autocmd
 autocmds
 Autocommand
@@ -56,6 +57,7 @@ colorscheme
 colorschemes
 commentstring
 composable
+concat
 conceallevel
 config
 const
@@ -140,6 +142,7 @@ frontmatter
 ftdetect
 ftplugin
 fugitiveblame
+Fullstack
 fzflua
 gbprod
 getcmdline
@@ -261,6 +264,7 @@ neodev
 Neogen
 neotest
 Neovim
+nestjs
 netrw
 nextgroup
 nistp
@@ -281,6 +285,7 @@ openapi
 opleader
 packadd
 pannel
+Param
 params
 parenthasis
 pcall
@@ -434,6 +439,7 @@ util
 utils
 UUID
 vcol
+vcs
 vigoux
 vim
 vimdoc
@@ -472,7 +478,3 @@ yazi
 YYYY
 zbirenbaum
 zzzv
-statusline
-lsp
-concat
-vcs
