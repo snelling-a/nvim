@@ -8,6 +8,7 @@ return {
 			css = { "stylelint" },
 			dockerfile = { "hadolint" },
 			html = { "htmlhint" },
+			golang = { "golangci-lint" },
 			lua = { "luacheck" },
 			make = { "checkmake" },
 			markdown = { "markdownlint-cli2" },

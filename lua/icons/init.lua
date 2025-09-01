@@ -23,6 +23,7 @@ local prisma = " "
 local sql = " "
 local typescript = " "
 local vim_icon = " "
+local golang = " "
 
 ---@param char string?
 ---@return { text: string }
@@ -136,6 +137,7 @@ local servers = {
 	["emmet-language-server"] = html,
 	["eslint-lsp"] = eslint,
 	eslint = eslint,
+	["even better toml"] = " ",
 	harper = "󰎛 ",
 	["harper-ls"] = "󰎛 ",
 	html = html,
@@ -164,6 +166,11 @@ local servers = {
 	vtsls = typescript,
 	yamllint = gear,
 	["yaml-language-server"] = gear,
+	gopls = golang,
+	-- gofmt
+	syntax = golang,
+	compiler = golang,
+	unusedfunc = golang,
 }
 
 ---@class Icons

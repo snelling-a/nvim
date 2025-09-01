@@ -50,6 +50,7 @@ return {
 				css = prettier,
 				html = prettier,
 				mjml = prettier,
+				go = { "gofmt", "goimports" },
 				javascript = jsts,
 				javascriptreact = jsts,
 				json = prettier,
