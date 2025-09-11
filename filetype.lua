@@ -20,5 +20,5 @@ vim.filetype.add({
 		end,
 	},
 	extension = { mjml = "mjml" },
-	filename = { Brewfile = "ruby", known_hosts = "sshknownhosts" },
+	filename = { ["launch.json"] = "jsonc", Brewfile = "ruby", known_hosts = "sshknownhosts" },
 })
