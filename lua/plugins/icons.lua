@@ -22,6 +22,7 @@ return {
 				["tsconfig.json"] = { glyph = Icons.servers.ts, hl = "MiniIconsAzure" },
 				["yarn.lock"] = { glyph = Icons.javascript.yarn, hl = "MiniIconsBlue" },
 				[".yarnrc.yml"] = { glyph = Icons.javascript.yarn, hl = "MiniIconsBlue" },
+				[".go-version"] = { glyph = Icons.servers.gopls, hl = "MiniIconsBlue" },
 			},
 		})
 
