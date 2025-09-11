@@ -1,29 +1,35 @@
+---@param client vim.lsp.Client
+---@param bufnr integer
+---@param cmd string
+---@return nil
+local function command_factory(client, bufnr, cmd)
+	return client:exec_cmd({
+		title = ("Markdown-Oxide-%s"):format(cmd),
+		command = "jump",
+		arguments = { cmd },
+	}, { bufnr = bufnr })
+end
+
 ---@type vim.lsp.Config
 return {
-	workspace = {
-		didChangeWatchedFiles = {
-			dynamicRegistration = true,
-		},
-	},
-	root_markers = { ".moxide.toml" },
-	filetypes = { "markdown" },
 	cmd = { "markdown-oxide" },
-	on_attach = function(client)
-		vim.api.nvim_buf_create_user_command(0, "LspToday", function()
-			client:exec_cmd({ title = "Today", command = "jump", arguments = { "today" } })
-		end, {
-			desc = "Open today's daily note",
-		})
-		vim.api.nvim_buf_create_user_command(0, "LspTomorrow", function()
-			client:exec_cmd({ title = "Tomorrow", command = "jump", arguments = { "tomorrow" } })
-		end, {
-			desc = "Open tomorrow's daily note",
-		})
-		vim.api.nvim_buf_create_user_command(0, "LspYesterday", function()
-			client:exec_cmd({ title = "Yesterday", command = "jump", arguments = { "yesterday" } })
-		end, {
-			desc = "Open yesterday's daily note",
-		})
+	filetypes = { "markdown" },
+	on_attach = function(client, bufnr)
+		if not client.config.root_dir then
+			client:stop()
+			return
+		end
+		for _, cmd in ipairs({ "today", "tomorrow", "yesterday" }) do
+			vim.api.nvim_buf_create_user_command(
+				bufnr,
+				"Lsp" .. ("%s"):format(cmd:gsub("^%l", string.upper)),
+				function()
+					command_factory(client, bufnr, cmd)
+				end,
+				{ desc = ("Open %s daily note"):format(cmd) }
+			)
+		end
 	end,
+	root_markers = { ".moxide.toml", ".obsidian" },
 	single_file_support = true,
 }
