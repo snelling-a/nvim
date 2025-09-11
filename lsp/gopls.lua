@@ -87,10 +87,54 @@ end
 return {
 	cmd = { "gopls" },
 	filetypes = { "go", "gomod", "gowork", "gotmpl" },
+	on_attach = function(client)
+		if not client.server_capabilities.semanticTokensProvider then
+			local semantic = client.config.capabilities.textDocument.semanticTokens
+			if not semantic then
+				return
+			end
+			client.server_capabilities.semanticTokensProvider = {
+				full = true,
+				legend = {
+					tokenModifiers = semantic.tokenModifiers,
+					tokenTypes = semantic.tokenTypes,
+				},
+				range = true,
+			}
+		end
+	end,
 	root_dir = function(bufnr, on_dir)
 		local fname = vim.api.nvim_buf_get_name(bufnr)
 		get_mod_cache_dir()
 		get_std_lib_dir()
 		on_dir(get_root_dir(fname))
 	end,
+	settings = {
+		gopls = {
+			codelenses = {
+				generate = true,
+				regenerate_cgo = true,
+				run_govulncheck = true,
+				test = true,
+				tidy = true,
+				upgrade_dependency = true,
+				vendor = true,
+			},
+			completeUnimported = true,
+			directoryFilters = { "-.git", "-.idea", "-.vscode", "-.vscode-test", "-node_modules" },
+			gofumpt = true,
+			hints = {
+				assignVariableTypes = true,
+				compositeLiteralFields = true,
+				compositeLiteralTypes = true,
+				constantValues = true,
+				functionTypeParameters = true,
+				parameterNames = true,
+				rangeVariableTypes = true,
+			},
+			semanticTokens = true,
+			staticcheck = true,
+			usePlaceholders = true,
+		},
+	},
 }
