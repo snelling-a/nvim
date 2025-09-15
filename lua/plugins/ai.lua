@@ -1,7 +1,7 @@
 ---@type LazySpec
 return {
-	"echasnovski/mini.ai",
-	dependencies = { "echasnovski/mini.extra" },
+	"nvim-mini/mini.ai",
+	dependencies = { "nvim-mini/mini.extra" },
 	event = { "LazyFile" },
 	config = function()
 		local ai = require("mini.ai")

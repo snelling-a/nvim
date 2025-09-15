@@ -1,6 +1,6 @@
 ---@type LazySpec
 return {
-	"echasnovski/mini.pairs",
+	"nvim-mini/mini.pairs",
 	event = { "InsertEnter" },
 	config = function()
 		local pairs = require("mini.pairs")

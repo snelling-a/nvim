@@ -1,7 +1,7 @@
 ---@type LazySpec
 return {
-	"echasnovski/mini.pick",
-	dependencies = { "echasnovski/mini.icons", "echasnovski/mini.extra", "echasnovski/mini.visits" },
+	"nvim-mini/mini.pick",
+	dependencies = { "nvim-mini/mini.icons", "nvim-mini/mini.extra", "nvim-mini/mini.visits" },
 	event = { "VeryLazy" },
 	config = function()
 		local pick = require("mini.pick")

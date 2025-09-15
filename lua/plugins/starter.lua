@@ -1,6 +1,6 @@
 ---@type LazySpec
 return {
-	"echasnovski/mini.starter",
+	"nvim-mini/mini.starter",
 	event = { "VimEnter" },
 	config = function()
 		local function new_section(name, action, section)

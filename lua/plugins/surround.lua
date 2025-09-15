@@ -1,6 +1,6 @@
 ---@type LazySpec
 return {
-	"echasnovski/mini.surround",
+	"nvim-mini/mini.surround",
 	keys = {
 		{ "cs", desc = "MiniSurround: Replace Surrounding" },
 		{ "ds", desc = "MiniSurround: Delete Surrounding" },

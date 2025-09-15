@@ -1,7 +1,7 @@
 ---@type LazySpec
 return {
 	"saghen/blink.cmp",
-	dependencies = { "echasnovski/mini.icons", "rafamadriz/friendly-snippets" },
+	dependencies = { "nvim-mini/mini.icons", "rafamadriz/friendly-snippets" },
 	event = { "CmdlineEnter", "InsertEnter" },
 	version = "1.*",
 	---@type blink.cmp.Config

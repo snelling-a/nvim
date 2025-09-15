@@ -1,7 +1,7 @@
 ---@type LazySpec
 return {
-	"echasnovski/mini.files",
-	dependencies = { "echasnovski/mini.icons" },
+	"nvim-mini/mini.files",
+	dependencies = { "nvim-mini/mini.icons" },
 	keys = {
 		{ "<M-o>", desc = "MiniFiles: Toggle" },
 	},

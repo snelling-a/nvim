@@ -1,6 +1,6 @@
 ---@type LazySpec
 return {
-	"echasnovski/mini.hipatterns",
+	"nvim-mini/mini.hipatterns",
 	ft = {
 		"css",
 		"html",

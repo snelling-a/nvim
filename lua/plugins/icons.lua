@@ -1,6 +1,6 @@
 ---@type LazySpec
 return {
-	"echasnovski/mini.icons",
+	"nvim-mini/mini.icons",
 	config = function()
 		local icons = require("mini.icons")
 		local Icons = require("icons")

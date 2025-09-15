@@ -1,6 +1,6 @@
 ---@type LazySpec
 return {
-	"echasnovski/mini.indentscope",
+	"nvim-mini/mini.indentscope",
 	event = { "LazyFile" },
 	init = function()
 		vim.api.nvim_create_autocmd({ "FileType" }, {
