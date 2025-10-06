@@ -1,5 +1,30 @@
 # Changelog
 
+## [8.12.0](https://github.com/snelling-a/nvim/compare/v8.11.0...v8.12.0) (2025-10-02)
+
+
+### Features
+
+* clean history ([e815f4a](https://github.com/snelling-a/nvim/commit/e815f4a1c43d599619d0789ffed7ce9fa349e8d4))
+* csv view ([6503c60](https://github.com/snelling-a/nvim/commit/6503c60cbff46ed1ad0e27ce0e879af3d9845c43))
+* gitgraph/diffview ([a77b3bd](https://github.com/snelling-a/nvim/commit/a77b3bd1b047473ced0bae2f92166abb2d8ab80b))
+* go ([fed1419](https://github.com/snelling-a/nvim/commit/fed14192a8791009f0b49404e46108aee2ed13d7))
+* **lsp:** taplo ([7893152](https://github.com/snelling-a/nvim/commit/789315280d62a6ec0682aadf0390792bc7a721d2))
+* stringweaver ([8c697ba](https://github.com/snelling-a/nvim/commit/8c697baad6eee2d94f5a5bacbdee0c3c2f5c5cbe))
+* videre ([2fbcf26](https://github.com/snelling-a/nvim/commit/2fbcf26c0042377c5c8385aa31337b1417cbb478))
+
+
+### Bug Fixes
+
+* **lsp:** markdown oxide ([aec67bc](https://github.com/snelling-a/nvim/commit/aec67bcc7acfb641e798d1f7efb6666e90d24970))
+* **lsp:** moxide root_markers ([9375d50](https://github.com/snelling-a/nvim/commit/9375d50c96ee1bd7cfa191b2e6db97556838c5f6))
+
+
+### Performance Improvements
+
+* delete unnecessary var ([390f2e8](https://github.com/snelling-a/nvim/commit/390f2e8e8069d4568227b3232fe56be3343a6002))
+* filetype ([e9de82d](https://github.com/snelling-a/nvim/commit/e9de82d1cf5d36e6cd7a561a0718df1bd22f4f58))
+
 ## [8.11.0](https://github.com/snelling-a/nvim/compare/v8.10.0...v8.11.0) (2025-08-27)
 
 
