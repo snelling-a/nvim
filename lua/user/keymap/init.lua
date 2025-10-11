@@ -198,3 +198,16 @@ vim.keymap.set({ "v" }, "Y", function()
 	vim.cmd.normal({ args = { "Y" }, bang = true })
 	vim.fn.winrestview(view)
 end, { desc = "Keep cursor position when yanking in visual mode" })
+
+vim.keymap.set("n", "<leader>u", function()
+	local loaded, undotree = pcall(require, "undotree")
+
+	if not loaded then
+		pcall(vim.cmd.packadd, "nvim.undotree")
+		undotree = require("undotree")
+	end
+
+	local split_width = math.floor(vim.o.columns * 0.25 + 0.5)
+
+	undotree.open({ command = split_width .. "vnew" })
+end, { desc = "Open Undo Tree" })
