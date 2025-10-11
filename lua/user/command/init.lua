@@ -115,15 +115,6 @@ vim.api.nvim_create_user_command("Scratch", function(args)
 	end)
 end, { desc = "Open a scratch buffer", nargs = 0, bang = true })
 
-vim.api.nvim_create_user_command("Undotree", function(args)
-	pcall(vim.api.nvim_del_user_command, args.name)
-	vim.cmd.packadd("nvim.undotree")
-	vim.api.nvim_cmd({
-		cmd = args.name,
-		args = args.fargs,
-		bang = args.bang,
-		nargs = args.nargs,
-		range = args.range ~= 0 and { args.line1, args.line2 } or nil,
-		count = args.count ~= -1 and args.count or nil,
-	}, {})
-end, { desc = "Reload the user configuration", nargs = 0 })
+vim.api.nvim_create_user_command("Undotree", function()
+	require("user.undo").open()
+end, { desc = "Undotree", nargs = 0 })

@@ -18,6 +18,7 @@ vim.g.disabled_filetypes = {
 	"neotest-summary",
 	"nofile",
 	"notify",
+	"nvim-undotree",
 	"scratch",
 	"toggleterm",
 }
