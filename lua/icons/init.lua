@@ -145,6 +145,7 @@ local servers = {
 	["json-lsp"] = json,
 	json = json,
 	lsp = " ",
+	lua = "󱘎 ", -- treesitter playground
 	["lua diagnostics."] = lua,
 	["lua-language-server"] = lua,
 	luacheck = lua,
