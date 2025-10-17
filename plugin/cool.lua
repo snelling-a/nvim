@@ -11,7 +11,7 @@ local function clear_hlsearch()
 	end
 end
 
-vim.api.nvim_create_autocmd("InsertEnter", {
+vim.api.nvim_create_autocmd({ "InsertEnter" }, {
 	callback = function()
 		vim.schedule(clear_hlsearch)
 	end,
