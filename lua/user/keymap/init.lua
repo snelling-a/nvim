@@ -1,5 +1,10 @@
 local _set = vim.keymap.set
 
+---@param mode string|string[]
+---@param lhs string
+---@param rhs string|function
+---@param opts vim.keymap.set.Opts
+---@return unknown|nil
 ---@diagnostic disable-next-line: duplicate-set-field
 vim.keymap.set = function(mode, lhs, rhs, opts)
 	opts = opts or {}
