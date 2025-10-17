@@ -44,7 +44,9 @@ vim.o.list = true
 vim.opt.listchars = Icons.listchars
 vim.o.mouse = "a"
 vim.o.number = true
+vim.opt.path:append({ "**" })
 vim.o.pumblend = 10
+vim.o.pumborder = "rounded"
 vim.o.pumheight = 10
 vim.o.quickfixtextfunc = "{info -> v:lua.require'user.qf'.quickfixtextfunction(info)}"
 vim.o.relativenumber = true
