@@ -1,4 +1,4 @@
-if vim.g.statusline_loaded then
+if vim.g.statusline_loaded or vim.g.vscode then
 	return
 end
 vim.g.statusline_loaded = true
