@@ -1,5 +1,21 @@
 # Changelog
 
+## [8.13.0](https://github.com/snelling-a/nvim/compare/v8.12.0...v8.13.0) (2025-10-17)
+
+
+### Features
+
+* pumborder ([5e8c2ed](https://github.com/snelling-a/nvim/commit/5e8c2ed915e75ebba62fc06102306036bfa93869))
+* undotree ([76d8184](https://github.com/snelling-a/nvim/commit/76d8184d40eef251c38a5a8fe00403af0df2c3e1))
+* undotree ([23b190f](https://github.com/snelling-a/nvim/commit/23b190ff7709f8d986c3bb873d9fd26629f12f74))
+
+
+### Performance Improvements
+
+* disable statusline in vscode ([6ecdc33](https://github.com/snelling-a/nvim/commit/6ecdc33d5008db8c86ef85a3e0aa6f53dc3f4e31))
+* **lsp:** schema store for json/yaml ([fa669a3](https://github.com/snelling-a/nvim/commit/fa669a30751f7893d94f7be84d296d71fdb3c4a9))
+* types oin keymap set ([de52378](https://github.com/snelling-a/nvim/commit/de52378ee1960bb0b7ba9e52737a738a5c9c90ed))
+
 ## [8.12.0](https://github.com/snelling-a/nvim/compare/v8.11.0...v8.12.0) (2025-10-02)
 
 
