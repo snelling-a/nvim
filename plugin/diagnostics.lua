@@ -15,9 +15,18 @@ local config = {
 			if not diagnostic.source then
 				return "", ""
 			end
-			local icons = require("icons.util")
 
-			local icon = require("icons").servers[diagnostic.source:lower()]
+			local icons = require("icons.util")
+			local Icons = require("icons")
+
+			local icon = Icons.servers[diagnostic.source:lower()]
+			if
+				vim.startswith(diagnostic.source, "ST")
+				or vim.startswith(diagnostic.source, "QF")
+				or vim.startswith(diagnostic.source, "QF")
+			then
+				icon = Icons.servers["staticcheck"]
+			end
 			local _, color = icons.get_file_icon()
 
 			vim.api.nvim_set_hl(0, "DiagnosticFloatSource", { fg = color })
@@ -42,6 +51,7 @@ local config = {
 	signs = function()
 		local icons = require("icons")
 
+		---@type vim.diagnostic.Opts.Signs
 		return {
 			text = {
 				[vim.diagnostic.severity.ERROR] = icons.diagnostics.Error,
