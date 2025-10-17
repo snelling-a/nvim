@@ -1,10 +1,10 @@
 local vert = "│"
 local elipsis = "…"
 local diagnostics = {
-	Error = " ",
-	Warn = " ",
-	Info = " ",
-	Hint = " ",
+	Error = "",
+	Warn = "",
+	Info = "",
+	Hint = "",
 }
 
 local bash = " "
@@ -18,7 +18,7 @@ local html = " "
 local json = " "
 local lua = " "
 local markdown = " "
-local obsidian = "󱓧 "
+local obsidian = "⛰ "
 local prisma = " "
 local sql = " "
 local typescript = " "
@@ -39,9 +39,11 @@ local fillchars = {
 	eob = " ",
 	fold = " ",
 	foldclose = "",
+	msgsep = "─",
 	foldopen = "",
 	foldsep = vert,
 	vert = vert,
+	foldinner = " ",
 }
 
 local git = {
@@ -150,8 +152,9 @@ local servers = {
 	["lua-language-server"] = lua,
 	luacheck = lua,
 	markdownlint = markdown,
-	["markdown-oxide"] = obsidian,
+	["markdown-oxide"] = "󱓧 ",
 	marksman = markdown,
+	["obsidian-ls"] = obsidian,
 	["obsidian ls"] = obsidian,
 	prisma = prisma,
 	["prisma-language-server"] = prisma,
@@ -168,10 +171,14 @@ local servers = {
 	yamllint = gear,
 	["yaml-language-server"] = gear,
 	gopls = golang,
+	staticcheck = golang,
 	-- gofmt
 	syntax = golang,
 	compiler = golang,
 	unusedfunc = golang,
+	unusedparams = golang,
+	modernize = golang,
+	structtag = golang,
 }
 
 ---@class Icons
