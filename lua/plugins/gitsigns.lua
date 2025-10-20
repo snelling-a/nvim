@@ -9,6 +9,7 @@ return {
 		---@diagnostic disable-next-line: missing-fields
 		gitsigns.setup({
 			current_line_blame = true,
+			gh = true,
 			on_attach = function(bufnr)
 				local map = require("user.keymap.util").map("Gitsigns")
 				local next_hunk_repeat, prev_hunk_repeat =
