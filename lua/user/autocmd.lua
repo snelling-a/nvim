@@ -200,4 +200,26 @@ vim.api.nvim_create_autocmd({ "CmdlineEnter" }, {
 	group = M.augroup("history.ignore"),
 	once = true,
 })
+
+local autocomplete_cmds = { find = true, fin = true }
+local function should_enable_autocomplete()
+	local cmd = vim.fn.getcmdline():match("^(%S+)")
+	return autocomplete_cmds[cmd] or false
+end
+
+local wildmode = vim.o.wildmode
+vim.api.nvim_create_autocmd({ "CmdlineChanged", "CmdlineLeave" }, {
+	callback = function(args)
+		if args.event == "CmdlineChanged" and should_enable_autocomplete() then
+			vim.o.wildmode = "noselect:lastused,full"
+			vim.fn.wildtrigger()
+		elseif args.event == "CmdlineLeave" then
+			vim.o.wildmode = wildmode
+		end
+	end,
+	desc = "Enable command-line autocompletion for specific commands",
+	group = M.augroup("cmdline.autocompletion", true),
+	pattern = "*",
+})
+
 return M

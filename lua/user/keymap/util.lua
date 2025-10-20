@@ -42,7 +42,7 @@ end
 -- Keep visually selected area when indenting
 ---@param lhs "<"|">" Left-hand side |{lhs}| of the mapping.
 function M.indent(lhs)
-	vim.keymap.set("x", lhs, lhs .. "gv", { desc = "Keep visually selected area when indenting" })
+	vim.keymap.set({ "x" }, lhs, lhs .. "gv", { desc = "Keep visually selected area when indenting" })
 end
 
 -- Keep jumps when using `{lhs}` key
@@ -86,10 +86,25 @@ function M.quit(bufnr)
 	end, { buffer = bufnr, desc = "Quit Buffer" })
 end
 
+---@param newcmd "vs"|"sp"|"tabe"
+---@return function
+function M.replace_find(newcmd)
+	return function()
+		local cmd = vim.fn.getcmdline()
+		if cmd:match("^find") then
+			local rest = cmd:sub(6) -- everything after "find "
+			vim.fn.setcmdline(newcmd .. " " .. rest, #newcmd + 2)
+			vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<CR>", true, false, true), "n", false)
+			return "" -- expr mappings must return a string
+		end
+		return ""
+	end
+end
+
 --- Wrapper for |zz| (to scroll center) and |zv| (to open fold) keymaps
 ---@param rhs string Right-hand side |{rhs}| of the mapping
 function M.scroll_center(rhs)
-	vim.keymap.set("n", rhs, function()
+	vim.keymap.set({ "n" }, rhs, function()
 		M.feedkeys(rhs)
 
 		M.scroll_unfold()
@@ -103,7 +118,7 @@ end
 --- Move to the next or previous visual line, depending on the direction
 ---@param direction "k"|"j" upwards or downwards
 function M.vertical_move(direction)
-	vim.keymap.set("n", direction, function()
+	vim.keymap.set({ "n" }, direction, function()
 		if vim.v.count > 0 and vim.v.count >= 3 then
 			return "m'" .. vim.v.count .. direction
 		else
@@ -117,17 +132,21 @@ function M.vertical_move(direction)
 end
 
 --- Navigate wildmenu with <C-n> and <C-p>
----@param lhs "n"|"p" Left-hand side |{lhs}| of the mapping
+---@param lhs "n"|"p"
 function M.wild(lhs)
 	local rhs = lhs == "n" and "down" or "up"
 
-	vim.keymap.set("c", ("<C-%s>"):format(lhs), function()
+	vim.keymap.set({ "c" }, ("<C-%s>"):format(lhs), function()
 		if vim.fn.wildmenumode() == 1 then
-			return lhs
+			return ("<C-%s>"):format(lhs)
 		else
 			return ("<%s>"):format(rhs)
 		end
-	end, { desc = ("Navigate %s in wildmenu"):format(rhs), expr = true, silent = false })
+	end, {
+		desc = ("Navigate %s in wildmenu or cmdline"):format(rhs),
+		expr = true,
+		silent = false,
+	})
 end
 
 return M

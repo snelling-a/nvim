@@ -42,6 +42,10 @@ Maps.vertical_move("k")
 Maps.wild("n")
 Maps.wild("p")
 
+vim.keymap.set({ "c" }, "<C-v>", Maps.replace_find("vs"), { expr = true, desc = "Change :find → :vsplit" })
+vim.keymap.set({ "c" }, "<C-s>", Maps.replace_find("sp"), { expr = true, desc = "Change :find → :split" })
+vim.keymap.set({ "c" }, "<C-t>", Maps.replace_find("tabe"), { expr = true, desc = "Change :find → :tabedit" })
+
 vim.keymap.set(
 	{ "n" },
 	"<leader>s",

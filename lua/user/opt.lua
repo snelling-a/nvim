@@ -25,6 +25,7 @@ vim.o.cursorline = true
 vim.o.cursorlineopt = "screenline,number"
 vim.o.diffopt = "internal,filler,closeoff,indent-heuristic,linematch:60,algorithm:histogram"
 vim.o.expandtab = true
+vim.o.findfunc = "v:lua.require'user.find'.findfunc"
 vim.opt.fillchars = Icons.fillchars
 vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.opt.foldmethod = "expr"
