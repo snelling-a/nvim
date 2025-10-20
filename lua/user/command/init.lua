@@ -114,3 +114,14 @@ vim.api.nvim_create_user_command("Scratch", function(args)
 		vim.cmd.startinsert()
 	end)
 end, { desc = "Open a scratch buffer", nargs = 0, bang = true })
+
+vim.api.nvim_create_user_command("DiffTool", function(opts)
+	vim.api.nvim_del_user_command("DiffTool")
+	vim.cmd.packadd("nvim.difftool")
+
+	if #opts.fargs == 2 then
+		require("difftool").open(opts.fargs[1], opts.fargs[2])
+	else
+		vim.notify("Usage: DiffTool <left> <right>", vim.log.levels.ERROR)
+	end
+end, { nargs = "*", complete = "file" })
