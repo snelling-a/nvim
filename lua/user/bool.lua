@@ -2,15 +2,8 @@ local M = {}
 
 ---@type string[][]
 local bool_groups = {
-	{ "true", "false" },
-	{ "True", "False" },
 	{ "0", "1" },
-	{ "on", "off" },
-	{ "let", "const" },
-	{ "private", "public" },
-	{ "||", "&&" },
-	{ "monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday" },
-	{ "mon", "tue", "wed", "thu", "fri", "sat", "sun" },
+	{ "True", "False" },
 	{ "jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec" },
 	{
 		"january",
@@ -26,6 +19,14 @@ local bool_groups = {
 		"november",
 		"december",
 	},
+	{ "let", "const" },
+	{ "mon", "tue", "wed", "thu", "fri", "sat", "sun" },
+	{ "monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday" },
+	{ "null", "undefined" },
+	{ "on", "off" },
+	{ "private", "public" },
+	{ "true", "false" },
+	{ "||", "&&" },
 }
 
 ---@type string[]
