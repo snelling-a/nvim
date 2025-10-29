@@ -3,7 +3,8 @@ local M = {}
 -- Redraw / Clear hlsearch / Diff Update
 function M.clear()
 	vim.cmd.nohlsearch()
-	vim.cmd.diffupdate()
+	---@diagnostic disable-next-line: param-type-mismatch
+	pcall(vim.cmd, "diffupdate")
 	vim.cmd.normal({ args = { "<C-l>" }, bang = true })
 end
 
