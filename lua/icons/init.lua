@@ -79,6 +79,8 @@ local listchars = {
 }
 
 local misc = {
+	chevron_right = " ",
+	document = "󰧮 ",
 	done = " ",
 	folder_closed = "󰉋 ",
 	folder_open = " ",
@@ -86,6 +88,7 @@ local misc = {
 	lazy = "󰒲 ",
 	neovim = " ",
 	treesitter = " ",
+	unknown = " ",
 }
 
 local qf = {
