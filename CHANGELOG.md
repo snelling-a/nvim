@@ -1,5 +1,26 @@
 # Changelog
 
+## [8.13.0](https://github.com/snelling-a/nvim/compare/v8.12.0...v8.13.0) (2025-10-29)
+
+
+### Features
+
+* **bool:** null/undefined ([0a92b7c](https://github.com/snelling-a/nvim/commit/0a92b7ce99b92a6e743ae23dae08c4d483c45461))
+* difftool ([1d98fab](https://github.com/snelling-a/nvim/commit/1d98fabfc81c6ff90eff919080fefaf3346cee97))
+* find ([b0caaf9](https://github.com/snelling-a/nvim/commit/b0caaf914f0257379439a4e4b08c046f45932f65))
+* **git:** gitsigns gh ([3fed3b1](https://github.com/snelling-a/nvim/commit/3fed3b136d6081e11545b951f59d0daa04fc624f))
+* pumborder ([51edce2](https://github.com/snelling-a/nvim/commit/51edce2a4fa607740883c086b9097ac271caffcf))
+* **ui:** use mini.icons for lsp kind ([778056b](https://github.com/snelling-a/nvim/commit/778056b444349879ea358d0cb4f6f30fdb71cf6d))
+* undotree ([eb362ba](https://github.com/snelling-a/nvim/commit/eb362bacc27b5c8445d15e976512d6e93714860a))
+* undotree ([eb362ba](https://github.com/snelling-a/nvim/commit/eb362bacc27b5c8445d15e976512d6e93714860a))
+
+
+### Performance Improvements
+
+* disable statusline in vscode ([af497a9](https://github.com/snelling-a/nvim/commit/af497a9fff3deca7c2b08db6908e73e676b78b1e))
+* **lsp:** schema store for json/yaml ([8e18092](https://github.com/snelling-a/nvim/commit/8e18092a65e309291a322fded2def0a67006340f))
+* types oin keymap set ([1f21e60](https://github.com/snelling-a/nvim/commit/1f21e601789450bacc8960a404e8b1f5c59ca778))
+
 ## [8.12.0](https://github.com/snelling-a/nvim/compare/v8.11.0...v8.12.0) (2025-10-02)
 
 
