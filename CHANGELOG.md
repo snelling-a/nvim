@@ -1,5 +1,17 @@
 # Changelog
 
+## [8.14.0](https://github.com/snelling-a/nvim/compare/v8.13.0...v8.14.0) (2025-10-29)
+
+
+### Features
+
+* **ui:** breadcrumbs ([f865b14](https://github.com/snelling-a/nvim/commit/f865b14c9dd5bf4abc35e23c9d352f947078298c))
+
+
+### Bug Fixes
+
+* pcall diffupdate ([980da1f](https://github.com/snelling-a/nvim/commit/980da1f3dd41aff59d55d7896fb612fcb6c82991))
+
 ## [8.13.0](https://github.com/snelling-a/nvim/compare/v8.12.0...v8.13.0) (2025-10-29)
 
 
