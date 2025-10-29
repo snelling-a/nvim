@@ -68,34 +68,6 @@ local javascript = {
 	yarn = " ",
 }
 
-local symbol_kinds = {
-	Class = "󰠱 ",
-	Color = "󰏘 ",
-	Constant = "󰏿 ",
-	Constructor = " ",
-	Enum = " ",
-	EnumMember = " ",
-	Event = " ",
-	Field = "󰜢 ",
-	File = "󰈙 ",
-	Folder = "󰉋 ",
-	Function = "󰊕 ",
-	Interface = " ",
-	Keyword = "󰌋 ",
-	Method = "󰆧 ",
-	Module = " ",
-	Operator = "󰆕 ",
-	Property = "󰜢 ",
-	Reference = "󰈇 ",
-	Snippet = "󰩫 ",
-	Struct = "󰙅 ",
-	Text = "󰉿 ",
-	TypeParameter = " ",
-	Unit = "󰑭 ",
-	Value = "󰎠 ",
-	Variable = "󰀫 ",
-}
-
 local listchars = {
 	extends = elipsis,
 	precedes = elipsis,
@@ -107,6 +79,9 @@ local listchars = {
 }
 
 local misc = {
+	done = " ",
+	folder_closed = "󰉋 ",
+	folder_open = " ",
 	git = "󰊢 ",
 	lazy = "󰒲 ",
 	neovim = " ",
@@ -192,7 +167,6 @@ local M = {
 	misc = misc,
 	qf = qf,
 	servers = servers,
-	symbol_kinds = symbol_kinds,
 }
 
 setmetatable(M.servers, {

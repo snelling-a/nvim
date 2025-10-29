@@ -44,6 +44,5 @@ return {
 				return sources
 			end,
 		},
-		appearance = { kind_icons = require("icons").symbol_kinds },
 	},
 }
