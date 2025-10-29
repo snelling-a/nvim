@@ -1,10 +1,10 @@
 local vert = "│"
 local elipsis = "…"
 local diagnostics = {
-	Error = "",
-	Warn = "",
-	Info = "",
-	Hint = "",
+	Error = " ",
+	Warn = " ",
+	Info = " ",
+	Hint = "󱈸 ",
 }
 
 local bash = " "
