@@ -1,4 +1,4 @@
-local ensure_installed = { "js-debug-adapter" }
+local ensure_installed = { "js-debug-adapter", "tree-sitter-cli" }
 
 local function get_formatters()
 	local all_formatters = require("conform").list_all_formatters() or {}

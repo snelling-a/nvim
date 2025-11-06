@@ -12,17 +12,13 @@ return {
 			gh = true,
 			on_attach = function(bufnr)
 				local map = require("user.keymap.util").map("Gitsigns")
-				local next_hunk_repeat, prev_hunk_repeat =
-					require("nvim-treesitter.textobjects.repeatable_move").make_repeatable_move_pair(
-						gitsigns.nav_hunk,
-						gitsigns.nav_hunk
-					)
 
 				map({ "n" }, "]h", function()
 					if vim.wo.diff then
 						vim.cmd.normal({ "]h", bang = true })
 					else
-						next_hunk_repeat("next")
+						---@diagnostic disable-next-line: param-type-mismatch
+						gitsigns.nav_hunk("next")
 					end
 				end, { buffer = bufnr, desc = "Next Hunk" })
 
@@ -30,7 +26,8 @@ return {
 					if vim.wo.diff then
 						vim.cmd.normal({ "[h", bang = true })
 					else
-						prev_hunk_repeat("prev")
+						---@diagnostic disable-next-line: param-type-mismatch
+						gitsigns.nav_hunk("prev")
 					end
 				end, { buffer = bufnr, desc = "Previous Hunk" })
 
@@ -53,6 +50,7 @@ return {
 					{ buffer = bufnr, desc = "[T]oggle Current Line [B]lame" }
 				)
 				map({ "n" }, "<leader>hd", function()
+					---@diagnostic disable-next-line: param-type-mismatch
 					gitsigns.diffthis("~")
 				end, { buffer = bufnr, desc = "[D]iff This" })
 				map(

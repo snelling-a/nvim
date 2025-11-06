@@ -1,57 +1,64 @@
 ---@type LazySpec
 return {
 	"nvim-treesitter/nvim-treesitter",
-	dependencies = { "nvim-treesitter/nvim-treesitter-textobjects" },
 	build = ":TSUpdate",
-	event = { "VeryLazy" },
-	lazy = vim.fn.argc(-1) == 0,
+	branch = "main",
 	config = function()
-		---@diagnostic disable-next-line: missing-fields
-		require("nvim-treesitter.configs").setup({
-			auto_install = true,
-			ensure_installed = { "comment", "jsdoc", "luadoc" },
-			highlight = { additional_vim_regex_highlighting = false, enable = true },
-			incremental_selection = {
-				enable = true,
-				keymaps = {
-					init_selection = "<C-space>",
-					node_decremental = "<bs>",
-					node_incremental = "<C-space>",
-					scope_incremental = false,
-				},
-			},
-			indent = { enable = true },
-			sync_install = false,
-			textobjects = {
-				move = {
-					enable = true,
-					goto_next_end = {
-						["]A"] = "@parameter.inner",
-						["]C"] = "@class.outer",
-						["]F"] = "@function.outer",
-					},
-					goto_next_start = {
-						["]a"] = "@parameter.inner",
-						["]c"] = "@class.outer",
-						["]f"] = "@function.outer",
-					},
-					goto_previous_end = {
-						["[A"] = "@parameter.inner",
-						["[C"] = "@class.outer",
-						["[F"] = "@function.outer",
-					},
-					goto_previous_start = {
-						["[a"] = "@parameter.inner",
-						["[c"] = "@class.outer",
-						["[f"] = "@function.outer",
-					},
-				},
-				swap = {
-					enable = true,
-					swap_next = { ["<leader>a"] = "@parameter.inner" },
-					swap_previous = { ["<leader>A"] = "@parameter.inner" },
-				},
-			},
+		local treesitter = require("nvim-treesitter")
+
+		---@param buf integer
+		local function ensure_treesitter(buf)
+			if not vim.api.nvim_buf_is_valid(buf) then
+				return
+			end
+
+			local filetype = vim.bo[buf].filetype
+			if not filetype or filetype == "" or vim.tbl_contains(vim.g.disabled_filetypes, filetype) then
+				return
+			end
+
+			local language = vim.treesitter.language.get_lang(filetype) or filetype
+			if not language or language == "" then
+				return
+			end
+
+			local parser_installed = vim.tbl_contains(treesitter.get_installed(), language)
+
+			local function start_parser()
+				if vim.api.nvim_buf_is_valid(buf) then
+					pcall(vim.treesitter.start, buf, language)
+				end
+			end
+
+			if parser_installed then
+				start_parser()
+				return
+			end
+
+			vim.notify("Treesitter: installing parser for " .. language .. "...", vim.log.levels.INFO)
+			treesitter.install(language, { with_sync = false, notify = false })
+
+			-- Poll periodically until parser is available, then start it.
+			local retries = 20
+			local function check_installed()
+				if vim.tbl_contains(treesitter.get_installed(), language) then
+					vim.notify("Treesitter: parser for " .. language .. " installed", vim.log.levels.INFO)
+					start_parser()
+				elseif retries > 0 then
+					retries = retries - 1
+					vim.defer_fn(check_installed, 500)
+				else
+					vim.notify("Treesitter: failed to detect parser install for " .. language, vim.log.levels.WARN)
+				end
+			end
+
+			check_installed()
+		end
+
+		vim.api.nvim_create_autocmd({ "BufReadPost", "FileType" }, {
+			callback = function(args)
+				ensure_treesitter(args.buf)
+			end,
 		})
 
 		local map = require("user.keymap.util").map("Treesitter")
@@ -65,15 +72,5 @@ return {
 				vim.treesitter.start()
 			end
 		end, { desc = "Toggle Highlight" })
-
-		local ts_repeat_move = require("nvim-treesitter.textobjects.repeatable_move")
-
-		map({ "n", "x", "o" }, ";", ts_repeat_move.repeat_last_move, { desc = "Repeat Last Move" })
-		map({ "n", "x", "o" }, ",", ts_repeat_move.repeat_last_move_opposite, { desc = "Repeat Last Move Opposite" })
-
-		map({ "n", "x", "o" }, "f", ts_repeat_move.builtin_f_expr, { desc = "remap builtin `f`", expr = true })
-		map({ "n", "x", "o" }, "F", ts_repeat_move.builtin_F_expr, { desc = "remap builtin `F`", expr = true })
-		map({ "n", "x", "o" }, "t", ts_repeat_move.builtin_t_expr, { desc = "remap builtin `t`", expr = true })
-		map({ "n", "x", "o" }, "T", ts_repeat_move.builtin_T_expr, { desc = "remap builtin `T`", expr = true })
 	end,
 }

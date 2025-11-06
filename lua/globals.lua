@@ -1,5 +1,7 @@
 vim.g.disabled_filetypes = {
+	"blink-cmp-menu",
 	"copilot-chat",
+	"fidget",
 	"fugitive",
 	"fugitiveblame",
 	"gitsigns-blame",
@@ -11,6 +13,7 @@ vim.g.disabled_filetypes = {
 	"log",
 	"mason",
 	"minifiles",
+	"minipick",
 	"ministarter",
 	"neotest-attach",
 	"neotest-output",
@@ -19,6 +22,7 @@ vim.g.disabled_filetypes = {
 	"nofile",
 	"notify",
 	"nvim-undotree",
+	"qf",
 	"scratch",
 	"toggleterm",
 }
