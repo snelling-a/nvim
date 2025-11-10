@@ -3,7 +3,7 @@ if vim.g.bool_loaded then
 end
 vim.g.bool_loaded = true
 
-local flip = require("user.bool")
+local Bool = require("user.bool")
 
-vim.keymap.set("n", "!", flip.flip_next, { desc = "Flip word forward" })
-vim.keymap.set("n", "!!", flip.flip_prev, { desc = "Flip word backward" })
+vim.keymap.set("n", "!", Bool.flip_next, { desc = "Flip word forward" })
+vim.keymap.set("n", "!!", Bool.flip_prev, { desc = "Flip word backward" })

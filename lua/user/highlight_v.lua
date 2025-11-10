@@ -1,5 +1,7 @@
 local ns_id = vim.api.nvim_create_namespace("visual.highlight.cmdline")
 
+local M = {}
+
 -- Returns positions and `regtype` of cursor/visual selection.
 ---@return integer, integer, integer, integer, string
 local function get_cursor_region()
@@ -43,11 +45,11 @@ end
 
 local start_row, start_col, end_row, end_col, regtype = get_cursor_region()
 
-local function update_region()
+function M.update_region()
 	start_row, start_col, end_row, end_col, regtype = get_cursor_region()
 end
 
-local function highlight()
+function M.highlight()
 	if start_row == end_row and start_col == end_col then
 		return
 	end
@@ -60,36 +62,8 @@ local function highlight()
 	vim.cmd.redraw()
 end
 
-local function clear()
+function M.clear()
 	vim.api.nvim_buf_clear_namespace(0, ns_id, 0, -1)
-end
-
-local M = {}
-
-function M.setup()
-	local group = require("user.autocmd").augroup("highlight_v")
-
-	vim.api.nvim_create_autocmd({ "CmdlineEnter" }, {
-		callback = highlight,
-		desc = "Highlight region on CmdlineEnter",
-		group = group,
-	})
-	vim.api.nvim_create_autocmd({ "CmdlineLeave" }, {
-		callback = clear,
-		desc = "Clear highlight on CmdlineLeave",
-		group = group,
-	})
-	vim.api.nvim_create_autocmd({ "ModeChanged" }, {
-		callback = update_region,
-		desc = "Update selection region on mode change",
-		group = group,
-		pattern = "*:[vV\x16]*",
-	})
-	vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
-		callback = update_region,
-		desc = "Update selection region on cursor move",
-		group = group,
-	})
 end
 
 return M
