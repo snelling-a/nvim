@@ -4,13 +4,17 @@ return {
 	branch = "main",
 	config = function()
 		require("nvim-treesitter-textobjects").setup({
-			move = { enable = true, set_jumps = true },
-			select = { lookahead = true, include_surrounding_whitespace = false },
+			move = { set_jumps = true, enable = true },
+			select = {
+				include_surrounding_whitespace = false,
+				lookahead = true,
+				selection_modes = { ["@class.outer"] = "<c-v>", ["@function.outer"] = "V", ["@parameter.outer"] = "v" },
+			},
 		})
 
 		local map = require("user.keymap.util").map("TreesitterTextobjects")
-		local select = require("nvim-treesitter-textobjects.select")
 
+		local select = require("nvim-treesitter-textobjects.select")
 		---@param object "function"|"class"
 		local function select_map(object)
 			local key = object:sub(1, 1)
@@ -30,6 +34,23 @@ return {
 		end)
 		map("n", "<leader>A", function()
 			swap.swap_previous("@parameter.outer")
+		end)
+
+		local move = require("nvim-treesitter-textobjects.move")
+		---@param object "function"
+		local function move_map(object)
+			local key = object:sub(1, 1)
+			map({ "n", "o", "x" }, "]" .. key, function()
+				move.goto_next_start("@" .. object .. ".outer", "textobjects")
+			end)
+			map({ "n", "o", "x" }, "[" .. key, function()
+				move.goto_previous_start("@" .. object .. ".outer", "textobjects")
+			end)
+		end
+		move_map("function")
+
+		map({ "n", "x", "o" }, "]o", function()
+			move.goto_next_start({ "@loop.inner", "@loop.outer" }, "textobjects")
 		end)
 	end,
 }
