@@ -79,7 +79,6 @@ vim.o.termguicolors = true
 vim.o.timeoutlen = vim.g.vscode and 1000 or 300
 vim.o.title = true
 vim.o.titlestring = vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
-vim.o.undofile = true
 vim.o.undolevels = 10000
 vim.o.updatetime = 200
 vim.o.virtualedit = "block"
