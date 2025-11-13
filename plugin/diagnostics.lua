@@ -1,12 +1,3 @@
--- capitalize the first letter of a string
----@param str string Input string
----@return string # Input string with the first letter capitalized
-local function capitalize_first_letter(str)
-	return str:sub(1, 1):upper() .. str:gsub("^%u(.*)", function(rest)
-		return rest:lower()
-	end)
-end
-
 ---@type vim.diagnostic.Opts
 local config = {
 	float = {
@@ -39,7 +30,7 @@ local config = {
 			end
 			---@type vim.diagnostic.SeverityName
 			local severity = vim.diagnostic.severity[diagnostic.severity]
-			local hl = capitalize_first_letter(severity)
+			local hl = require("util").capitalize_first_letter(severity)
 			local code = diagnostic.code and ": " .. diagnostic.code or ""
 
 			return " [" .. diagnostic.source .. code .. "] ", "Diagnostic" .. hl

@@ -22,7 +22,7 @@ return {
 		for _, cmd in ipairs({ "today", "tomorrow", "yesterday" }) do
 			vim.api.nvim_buf_create_user_command(
 				bufnr,
-				"Lsp" .. ("%s"):format(cmd:gsub("^%l", string.upper)),
+				"Lsp" .. require("util").capitalize_first_letter(cmd),
 				function()
 					command_factory(client, bufnr, cmd)
 				end,
