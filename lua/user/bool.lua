@@ -1,9 +1,9 @@
+local Util = require("util")
 local M = {}
 
 ---@type string[][]
 local bool_groups = {
 	{ "0", "1" },
-	{ "True", "False" },
 	{ "jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec" },
 	{
 		"january",
@@ -39,37 +39,39 @@ for _, group in ipairs(bool_groups) do
 	end
 end
 
+-- Check if first letter is capitalized
 ---@param str string?
 ---@return boolean
 local function is_capitalized(str)
 	if not str or #str == 0 then
 		return false
 	end
-	return str:sub(1, 1):match("%u")
+	return Util.capitalize_first_letter(str) == str
 end
 
 ---@param original string?
 ---@param replacement string
----@return string
+---@return string replacement with case adjusted
 local function with_case(original, replacement)
 	if is_capitalized(original) then
-		return replacement:sub(1, 1):upper() .. replacement:sub(2)
-	else
-		return replacement
+		return Util.capitalize_first_letter(replacement)
 	end
+
+	return replacement
 end
 
 ---@param word string?
----@return string[]|nil, integer?  Returns the cycle and the index of the token
+---@return string[]|nil group Bool group containing word
+---@return integer|nil index Index of word in group
 local function find_group(word)
 	if not word or #word == 0 then
 		return
 	end
 	local lowercase = word:lower()
 	for _, group in ipairs(bool_groups) do
-		for i, match in ipairs(group) do
+		for index, match in ipairs(group) do
 			if match == lowercase then
-				return group, i
+				return group, index
 			end
 		end
 	end
@@ -78,7 +80,7 @@ end
 -- Get word bounds around cursor via \k (respects 'iskeyword')
 ---@param line string
 ---@param column number
----@return integer?, integer?, string?
+---@return integer? word_start, integer? word_end, string? word
 local function find_keyword_bounds(line, column)
 	local col = column + 1
 	---@type {[1]:string,[2]:integer,[3]:integer}
@@ -92,34 +94,39 @@ end
 -- For non-keyword tokens (e.g. "||", "&&"), search around cursor
 ---@param line string
 ---@param column any
----@return integer?,integer?,string?
+---@return integer? word_start, integer? word_end, string? word
 ---@return nil
 local function find_symbol_bounds(line, column)
-	---@type { s:integer, e:integer, tok:string, len:integer }
+	---@type { word_start:integer, word_end:integer, word:string, length:integer }
 	local best
-	for _, tok in ipairs(all_words) do
-		if tok:find("[^%w_]") then
-			local len = #tok
-			local start_min = math.max(0, column - len + 1)
+	for _, word in ipairs(all_words) do
+		if word:find("[^%w_]") then
+			local length = #word
+			local start_min = math.max(0, column - length + 1)
 			local start_max = column
-			for s = start_min, start_max do
-				local e = s + len
-				if e <= #line and line:sub(s + 1, e) == tok and column >= s and column < e then
-					if not best or len > best.len then
-						best = { s = s, e = e, tok = tok, len = len }
+			for word_start = start_min, start_max do
+				local word_end = word_start + length
+				if
+					word_end <= #line
+					and line:sub(word_start + 1, word_end) == word
+					and column >= word_start
+					and column < word_end
+				then
+					if not best or length > best.length then
+						best = { word_start = word_start, word_end = word_end, word = word, length = length }
 					end
 				end
 			end
 		end
 	end
 	if best then
-		return best.s, best.e, best.tok
+		return best.word_start, best.word_end, best.word
 	end
 end
 
 ---@param row number 0-based line index
 ---@param column number 0-based column index
----@return integer?, integer?, string?
+---@return integer? word_start, integer? word_end, string? word
 local function find_under_cursor(row, column)
 	local line = vim.api.nvim_buf_get_lines(0, row, row + 1, true)[1]
 	if not line then
@@ -143,22 +150,22 @@ local function flip(direction)
 	local cursor = vim.api.nvim_win_get_cursor(0)
 	local cursor_row, cursor_column = cursor[1] - 1, cursor[2]
 
-	local s, e, tok = find_under_cursor(cursor_row, cursor_column)
-	if not s then
+	local word_start, word_end, word = find_under_cursor(cursor_row, cursor_column)
+	if not word_start then
 		return
 	end
 
-	local cyc, idx = find_group(tok)
-	if not cyc then
+	local group, index = find_group(word)
+	if not group then
 		return
 	end
 
-	local new_idx = ((idx - 1 + direction) % #cyc) + 1
-	local repl = with_case(tok, cyc[new_idx])
+	local new_index = ((index - 1 + direction) % #group) + 1
+	local replacement = with_case(word, group[new_index])
 
-	---@cast e integer
-	vim.api.nvim_buf_set_text(0, cursor_row, s, cursor_row, e, { repl })
-	vim.api.nvim_win_set_cursor(0, { cursor_row + 1, s })
+	---@cast word_end integer
+	vim.api.nvim_buf_set_text(0, cursor_row, word_start, cursor_row, word_end, { replacement })
+	vim.api.nvim_win_set_cursor(0, { cursor_row + 1, word_start })
 end
 
 function M.flip_next()
