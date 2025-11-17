@@ -309,6 +309,7 @@ quickfix
 quickfixtextfunc
 quitall
 rafamadriz
+Raycast
 readonly
 realpath
 recloak
@@ -435,6 +436,7 @@ unix
 unnamedplus
 upadate
 updatetime
+uri
 Url
 util
 utils
@@ -479,5 +481,3 @@ yazi
 YYYY
 zbirenbaum
 zzzv
-uri
-lsp
