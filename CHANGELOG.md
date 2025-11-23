@@ -1,5 +1,27 @@
 # Changelog
 
+## [8.14.0](https://github.com/snelling-a/nvim/compare/v8.13.0...v8.14.0) (2025-11-23)
+
+
+### Features
+
+* **bool:** new pairs ([4d4a01e](https://github.com/snelling-a/nvim/commit/4d4a01e7ddecd6aa7c0522bb09e79030e49d5534))
+* recover plugin ([fc0f522](https://github.com/snelling-a/nvim/commit/fc0f522d7fb8726f5ed4a88dd823e2c9b087cc81))
+* sort web clipper json ([1c36ceb](https://github.com/snelling-a/nvim/commit/1c36cebedb5b94e772f5b1786b32ab7e0e15a892))
+* **ui:** breadcrumbs ([f865b14](https://github.com/snelling-a/nvim/commit/f865b14c9dd5bf4abc35e23c9d352f947078298c))
+* undodir tree ([99aceb7](https://github.com/snelling-a/nvim/commit/99aceb7a2b2ca6ad35b6ccc66aa9be698d00a242))
+
+
+### Bug Fixes
+
+* pcall diffupdate ([980da1f](https://github.com/snelling-a/nvim/commit/980da1f3dd41aff59d55d7896fb612fcb6c82991))
+* treesitter text objects move ([005c894](https://github.com/snelling-a/nvim/commit/005c89434f7f17b7cd50ad8ea9340a61800c2f30))
+
+
+### Performance Improvements
+
+* consistent capitalize first letter ([c0cd0cd](https://github.com/snelling-a/nvim/commit/c0cd0cdc1acb61d535053ba28c238c8c24d8ac5f))
+
 ## [8.13.0](https://github.com/snelling-a/nvim/compare/v8.12.0...v8.13.0) (2025-10-29)
 
 
