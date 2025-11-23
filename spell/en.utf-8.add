@@ -105,6 +105,7 @@ emsg
 Enum
 enums
 errorformat
+esbuild
 escapedcwd
 eset
 eslint
@@ -125,6 +126,7 @@ firenvim
 flietypes
 fn
 fnamemodify
+fnm
 foldclose
 foldclosed
 foldexpr
@@ -215,6 +217,7 @@ lcount
 leadmultispace
 Lfind
 lhs
+lifecycle
 linrongbin
 linter
 listchars
@@ -278,6 +281,7 @@ noreply
 nowait
 numberwidth
 NVIM
+nvm
 oggle
 oldfiles
 ontext
