@@ -9,9 +9,7 @@ vim.opt_local.foldnestmax = 5
 
 vim.api.nvim_buf_create_user_command(vim.api.nvim_get_current_buf(), "SortJSON", function()
 	vim.cmd([[%!jq . --sort-keys]])
-end, {
-	desc = "Sort JSON with `jq`",
-})
+end, { desc = "Sort JSON with `jq`" })
 
 function _G.JsonFolds()
 	local line = vim.fn.getline(vim.v.lnum)
