@@ -24,6 +24,7 @@ local sql = " "
 local typescript = " "
 local vim_icon = " "
 local golang = " "
+local harper = "󰎛 "
 
 ---@param char string?
 ---@return { text: string }
@@ -118,12 +119,13 @@ local servers = {
 	["eslint-lsp"] = eslint,
 	eslint = eslint,
 	["even better toml"] = " ",
-	harper = "󰎛 ",
-	["harper-ls"] = "󰎛 ",
+	harper = harper,
+	["harper-ls"] = harper,
 	html = html,
 	["html-lsp"] = html,
 	["json-lsp"] = json,
 	json = json,
+	jsonc = json,
 	lsp = " ",
 	lua = "󱘎 ", -- treesitter playground
 	["lua diagnostics."] = lua,
