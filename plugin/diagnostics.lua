@@ -18,6 +18,9 @@ local config = {
 			then
 				icon = Icons.servers["staticcheck"]
 			end
+			if vim.startswith(diagnostic.source, "Harper (") then
+				icon = Icons.servers["harper"]
+			end
 			local _, color = icons.get_file_icon()
 
 			vim.api.nvim_set_hl(0, "DiagnosticFloatSource", { fg = color })
@@ -37,7 +40,11 @@ local config = {
 		end,
 		source = "if_many",
 	},
-	jump = { float = true },
+	jump = {
+		on_jump = function()
+			vim.diagnostic.open_float(nil, { focus = false, scope = "cursor" })
+		end,
+	},
 	severity_sort = true,
 	signs = function()
 		local icons = require("icons")
