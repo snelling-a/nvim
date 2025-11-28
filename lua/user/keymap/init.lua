@@ -201,7 +201,7 @@ vim.keymap.set({ "v" }, "Y", function()
 	vim.fn.winrestview(view)
 end, { desc = "Keep cursor position when yanking in visual mode" })
 
-vim.keymap.set("n", "<leader>u", function()
+vim.keymap.set({ "n" }, "<leader>u", function()
 	local loaded, undotree = pcall(require, "undotree")
 
 	if not loaded then
@@ -213,3 +213,9 @@ vim.keymap.set("n", "<leader>u", function()
 
 	undotree.open({ command = split_width .. "vnew" })
 end, { desc = "Open Undo Tree" })
+
+vim.keymap.set({ "n" }, "<leader>yy", function()
+	local path = vim.fn.expand("%")
+	vim.fn.setreg("+", path)
+	vim.notify("Yanked: " .. path, vim.log.levels.INFO)
+end, { desc = "[Y]ank current file path" })
