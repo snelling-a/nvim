@@ -4,7 +4,6 @@ local file_types = { "markdown", "copilot-chat" }
 return {
 	"MeanderingProgrammer/render-markdown.nvim",
 	dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-mini/mini.icons" },
-	enabled = false,
 	ft = file_types,
 	config = function()
 		require("render-markdown").setup({
