@@ -150,13 +150,6 @@ vim.keymap.set(
 
 vim.keymap.set({ "n" }, "U", vim.cmd.redo, { desc = "Redo" })
 
-vim.keymap.set({ "n" }, "[d", Maps.diagnostic_goto(-1), { desc = "Prev Diagnostic" })
-vim.keymap.set({ "n" }, "]d", Maps.diagnostic_goto(1), { desc = "Next Diagnostic" })
-vim.keymap.set({ "n" }, "[e", Maps.diagnostic_goto(-1, vim.diagnostic.severity.ERROR), { desc = "Prev Error" })
-vim.keymap.set({ "n" }, "]e", Maps.diagnostic_goto(1, vim.diagnostic.severity.ERROR), { desc = "Next Error" })
-vim.keymap.set({ "n" }, "[w", Maps.diagnostic_goto(-1, vim.diagnostic.severity.WARN), { desc = "Prev Warning" })
-vim.keymap.set({ "n" }, "]w", Maps.diagnostic_goto(1, vim.diagnostic.severity.WARN), { desc = "Next Warning" })
-
 vim.keymap.set({ "n" }, "<leader>td", function()
 	local is_enabled = vim.diagnostic.is_enabled()
 

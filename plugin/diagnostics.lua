@@ -94,3 +94,12 @@ vim.api.nvim_create_user_command("DiagnosticLines", function(args)
 
 	vim.diagnostic.config({ jump = { float = not is_enabled }, virtual_lines = is_enabled })
 end, { bang = true, desc = "Toggle diagnostic virtual_lines" })
+
+local Maps = require("user.keymap.util")
+
+vim.keymap.set({ "n" }, "[d", Maps.diagnostic_goto(-1), { desc = "Prev Diagnostic" })
+vim.keymap.set({ "n" }, "]d", Maps.diagnostic_goto(1), { desc = "Next Diagnostic" })
+vim.keymap.set({ "n" }, "[e", Maps.diagnostic_goto(-1, vim.diagnostic.severity.ERROR), { desc = "Prev Error" })
+vim.keymap.set({ "n" }, "]e", Maps.diagnostic_goto(1, vim.diagnostic.severity.ERROR), { desc = "Next Error" })
+vim.keymap.set({ "n" }, "[w", Maps.diagnostic_goto(-1, vim.diagnostic.severity.WARN), { desc = "Prev Warning" })
+vim.keymap.set({ "n" }, "]w", Maps.diagnostic_goto(1, vim.diagnostic.severity.WARN), { desc = "Next Warning" })
