@@ -19,6 +19,6 @@ vim.filetype.add({
 			return "conf"
 		end,
 	},
-	extension = { mjml = "mjml" },
+	extension = { mjml = "mjml", base = "obsidianbase" },
 	filename = { ["launch.json"] = "jsonc", Brewfile = "ruby", known_hosts = "sshknownhosts" },
 })
