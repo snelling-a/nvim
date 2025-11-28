@@ -11,7 +11,7 @@ end, {
 
 vim.api.nvim_create_user_command("LspRestart", function(args)
 	for _, restart_client in ipairs(vim.lsp.get_clients({ name = args.fargs[1] })) do
-		local bufs = vim.lsp.get_buffers_by_client_id(restart_client.id)
+		local bufs = vim.lsp.get_client_by_id(restart_client.id).attached_buffers
 
 		restart_client:stop()
 
