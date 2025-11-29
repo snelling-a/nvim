@@ -87,6 +87,7 @@ local misc = {
 	folder_open = " ",
 	git = "󰊢 ",
 	lazy = "󰒲 ",
+	license = "",
 	neovim = " ",
 	treesitter = " ",
 	unknown = " ",
