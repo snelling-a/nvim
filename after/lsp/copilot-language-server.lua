@@ -65,7 +65,6 @@ return {
 		"copilot-language-server",
 		"--stdio",
 	},
-	name = "copilot",
 	root_markers = { ".git" },
 	init_options = {
 		editorInfo = {
