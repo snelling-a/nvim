@@ -10,8 +10,11 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 require("conform").setup({
 	formatters_by_ft = {
 		css = { "prettierd", "prettier", stop_after_first = true },
-		lua = { "stylua" },
 		javascript = { "prettierd", "prettier", stop_after_first = true },
+		javascriptreact = { "prettierd", "prettier", stop_after_first = true },
+		lua = { "stylua" },
+		typescript = { "prettierd", "prettier", stop_after_first = true },
+		typescriptreact = { "prettierd", "prettier", stop_after_first = true },
 	},
 	format_on_save = function(bufnr)
 		if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then

@@ -20,7 +20,6 @@ vim.iter(vim.api.nvim_get_runtime_file("lsp/*.lua", true))
 	:each(function(server_name)
 		vim.list_extend(servers, { server_name })
 	end)
-
 vim.lsp.enable(servers)
 
 local group = vim.api.nvim_create_augroup("lsp", {})
