@@ -24,12 +24,15 @@ return {
 	end,
 	cmd = { "vscode-eslint-language-server", "--stdio" },
 	filetypes = {
+		"astro",
 		"javascript",
 		"javascript.jsx",
 		"javascriptreact",
+		"svelte",
 		"typescript",
 		"typescript.tsx",
 		"typescriptreact",
+		"vue",
 	},
 	handlers = {
 		["eslint/confirmESLintExecution"] = function(_, result)

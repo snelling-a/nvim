@@ -1,11 +1,5 @@
 vim.g.mapleader = ","
 
-vim.o.mousescroll = "ver:25,hor:6"
-vim.o.switchbuf = "usetab"
-vim.o.undofile = true
-
-vim.o.shada = "'100,<50,s10,:1000,/100,@100,h"
-
 vim.cmd("filetype plugin indent on")
 if vim.fn.exists("syntax_on") ~= 1 then
 	vim.cmd("syntax enable")
@@ -14,14 +8,13 @@ vim.schedule(function()
 	vim.o.clipboard = "unnamedplus"
 end)
 
-vim.o.laststatus = 3
 vim.o.autocomplete = true
-vim.o.copyindent = true
 vim.o.breakindent = true
 vim.o.breakindentopt = "list:-1"
 vim.o.colorcolumn = "+1"
 vim.o.complete = "o,.,w,b,kspell"
 vim.o.completeopt = "menuone,noselect,fuzzy,popup"
+vim.o.copyindent = true
 vim.o.cursorline = true
 vim.o.cursorlineopt = "screenline,number"
 vim.o.expandtab = true
@@ -36,12 +29,15 @@ vim.o.ignorecase = true
 vim.o.incsearch = true
 vim.o.infercase = true
 vim.o.iskeyword = "@,48-57,_,192-255,-"
+vim.o.laststatus = 3
 vim.o.linebreak = true
 vim.o.list = true
 vim.o.listchars = "extends:…,nbsp:␣,precedes:…,tab:  "
+vim.o.mousescroll = "ver:25,hor:6"
 vim.o.number = true
 vim.o.pumborder = "rounded"
 vim.o.pumheight = 10
+vim.o.shada = "'100,<50,s10,:1000,/100,@100,h"
 vim.o.shiftwidth = 2
 vim.o.shortmess = "CFOSWaco"
 vim.o.showmode = false
@@ -52,7 +48,9 @@ vim.o.spelloptions = "camel"
 vim.o.splitbelow = true
 vim.o.splitkeep = "screen"
 vim.o.splitright = true
+vim.o.switchbuf = "usetab"
 vim.o.tabstop = 2
+vim.o.undofile = true
 vim.o.virtualedit = "block"
 vim.o.winborder = "rounded"
 vim.o.wrap = false
