@@ -61,37 +61,3 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 	desc = "Proper 'formatoptions'",
 })
-
-vim.diagnostic.config({
-	jump = {
-		on_jump = function()
-			vim.diagnostic.open_float(nil, { focus = false, scope = "cursor" })
-		end,
-	},
-	severity_sort = true,
-	signs = function()
-		return {
-			text = {
-				[vim.diagnostic.severity.ERROR] = " ",
-				[vim.diagnostic.severity.HINT] = " ",
-				[vim.diagnostic.severity.INFO] = " ",
-				[vim.diagnostic.severity.WARN] = "󱈸",
-			},
-		}
-	end,
-	underline = { severity = { min = vim.diagnostic.severity.HINT, max = vim.diagnostic.severity.ERROR } },
-	update_in_insert = false,
-	virtual_lines = false,
-	virtual_text = {
-		current_line = true,
-		severity = { min = vim.diagnostic.severity.ERROR, max = vim.diagnostic.severity.ERROR },
-	},
-})
-
-vim.g.netrw_banner = 0
-vim.g.netrw_localcopydircmd = "cp -r"
-vim.g.netrw_liststyle = 3
-vim.g.netrw_winsize = 30
-vim.g.netrw_browse_split = 4
-
-require("vim._extui").enable({})
