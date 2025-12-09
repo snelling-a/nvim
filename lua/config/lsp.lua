@@ -32,6 +32,10 @@ vim.api.nvim_create_autocmd({ "LspAttach" }, {
 			client.server_capabilities.semanticTokensProvider = nil
 		end
 
+		if client:supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight, bufnr) then
+			require("config.lsp_words").enable()
+		end
+
 		if client:supports_method(vim.lsp.protocol.Methods.textDocument_declaration, bufnr) then
 			vim.keymap.set({ "n" }, "gD", vim.lsp.buf.declaration, { buffer = bufnr, desc = "[G]oto [D]eclaration" })
 		end
@@ -41,6 +45,40 @@ vim.api.nvim_create_autocmd({ "LspAttach" }, {
 				buffer = bufnr,
 				desc = "[G]oto [D]efinition",
 			})
+		end
+
+		if client:supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
+			local inlay_hints_group = vim.api.nvim_create_augroup("lsp_inlay_hints", {})
+
+			vim.defer_fn(function()
+				local mode = vim.api.nvim_get_mode().mode
+				vim.lsp.inlay_hint.enable(mode == "n" or mode == "v", { bufnr = args.buf })
+			end, 500)
+
+			vim.api.nvim_create_autocmd({ "InsertEnter" }, {
+				buffer = args.buf,
+				callback = function()
+					vim.lsp.inlay_hint.enable(false, { bufnr = args.buf })
+				end,
+				desc = "Enable inlay hints",
+				group = inlay_hints_group,
+			})
+
+			vim.api.nvim_create_autocmd({ "InsertLeave" }, {
+				buffer = args.buf,
+				callback = function()
+					vim.lsp.inlay_hint.enable(true, { bufnr = args.buf })
+				end,
+				desc = "Disable inlay hints",
+				group = inlay_hints_group,
+			})
+
+			vim.keymap.set({ "n" }, "<leader>th", function()
+				vim.g.inlay_hints = not vim.g.inlay_hints
+
+				local mode = vim.api.nvim_get_mode().mode
+				vim.lsp.inlay_hint.enable(vim.g.inlay_hints and (mode == "n" or mode == "v"))
+			end, { desc = "[T]oggle Inlay [H]ints" })
 		end
 
 		vim.lsp.completion.enable(true, args.data.client_id, args.buf, {
