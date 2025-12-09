@@ -90,26 +90,13 @@ return {
 		end, { desc = "Sign out Copilot with GitHub" })
 
 		vim.lsp.inline_completion.enable()
-		vim.keymap.set({ "i" }, "<M-y>", function()
-			if vim.lsp.inline_completion.is_enabled({ bufnr = bufnr, client_id = client.id }) then
-				return vim.lsp.inline_completion.get()
-			else
-				return "<M-y>"
-			end
-		end, { buffer = bufnr, expr = true, desc = "Accept inline completion" })
-		vim.keymap.set({ "i" }, "<M-]>", function()
-			if vim.lsp.inline_completion.is_enabled({ bufnr = bufnr, client_id = client.id }) then
-				vim.lsp.inline_completion.select({ bufnr = bufnr, count = 1, wrap = true })
-			else
-				return "<M-]>"
-			end
-		end, { buffer = bufnr, expr = true, desc = "Clear inline completion" })
-		vim.keymap.set({ "i" }, "<M-[>", function()
-			if vim.lsp.inline_completion.is_enabled({ bufnr = bufnr, client_id = client.id }) then
-				vim.lsp.inline_completion.select({ bufnr = bufnr, count = -1, wrap = true })
-			else
-				return "<M-[>"
-			end
-		end, { buffer = bufnr, expr = true, desc = "Select previous inline completion" })
+
+		vim.keymap.set("i", "<M-]>", function()
+			vim.lsp.inline_completion.select({ count = 1, wrap = true })
+		end, { buffer = bufnr, desc = "Next inline completion" })
+
+		vim.keymap.set("i", "<M-[>", function()
+			vim.lsp.inline_completion.select({ count = -1, wrap = true })
+		end, { buffer = bufnr, desc = "Prev inline completion" })
 	end,
 }

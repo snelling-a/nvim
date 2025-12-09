@@ -1,17 +1,24 @@
+local library = {
+	"${3rd}/luv/library",
+	vim.env.VIMRUNTIME .. "/lua",
+}
+
+for _, path in ipairs(vim.fn.glob(vim.fn.stdpath("data") .. "/site/pack/*/opt/*/lua", false, true)) do
+	table.insert(library, path)
+end
+
 ---@type vim.lsp.Config
 return {
 	cmd = { "lua-language-server" },
 	filetypes = { "lua" },
-	name = "lua_ls",
 	root_markers = {
-		"lua/",
-		".luacheckrc",
 		".luarc.json",
 		".luarc.jsonc",
-		"selene.toml",
-		"selene.yml",
+		".luacheckrc",
 		".stylua.toml",
 		"stylua.toml",
+		"selene.toml",
+		"selene.yml",
 	},
 	settings = {
 		Lua = {
@@ -34,7 +41,7 @@ return {
 				},
 				libraryFiles = "Disable",
 				unusedLocalExclude = { "_*" },
-				workspaceEvent = "OnChange",
+				workspaceEvent = "OnSave",
 			},
 			doc = {
 				privateName = { "^_" },
@@ -55,11 +62,7 @@ return {
 			window = { progressBar = true },
 			workspace = {
 				checkThirdParty = false,
-				library = {
-					"${3rd}/luv/library",
-					vim.env.VIMRUNTIME,
-					vim.fn.stdpath("data") .. "/site/pack/core/opt",
-				},
+				library = library,
 			},
 		},
 	},
