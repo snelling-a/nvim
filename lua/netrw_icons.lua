@@ -1,9 +1,8 @@
--- ~/.config/nvim/lua/netrw_icons.lua
-
 local Module = {}
 
 -- Store the namespace ID globally for the module
 local ns_id = vim.api.nvim_create_namespace("NetrwIcons")
+---@type table<string, string>
 local sid_cache = {}
 
 ---Get the sid of script searching by patter
@@ -64,7 +63,7 @@ function Module.add_icons(buf)
 	local bufnr = buf or vim.api.nvim_get_current_buf()
 
 	-- Check if netrw is loaded and current dir is available
-	if not (vim.fn.exists("b:netrw_curdir") == 1) then
+	if vim.fn.exists("b:netrw_curdir") ~= 1 then
 		return
 	end
 

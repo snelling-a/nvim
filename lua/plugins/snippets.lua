@@ -1,29 +1,30 @@
-local snippet_path = vim.fn.stdpath("data") .. "/site/pack/core/opt/friendly-snippets"
-
+-- Keymaps for native vim.snippet and inline completion
 vim.keymap.set("i", "<Tab>", function()
 	if vim.snippet.active({ direction = 1 }) then
 		vim.schedule(function()
 			vim.snippet.jump(1)
 		end)
-		return
+		return ""
+	end
+	if vim.lsp.inline_completion and vim.lsp.inline_completion.get() then
+		return ""
 	end
 	return "<Tab>"
 end, { expr = true, silent = true })
 
--- Tab in select mode - always jump forward
 vim.keymap.set("s", "<Tab>", function()
 	vim.schedule(function()
 		vim.snippet.jump(1)
 	end)
+	return ""
 end, { expr = true, silent = true })
 
--- S-Tab in insert and select modes - jump backward or fallback
 vim.keymap.set({ "i", "s" }, "<S-Tab>", function()
 	if vim.snippet.active({ direction = -1 }) then
 		vim.schedule(function()
 			vim.snippet.jump(-1)
 		end)
-		return
+		return ""
 	end
 	return "<S-Tab>"
 end, { expr = true, silent = true })
