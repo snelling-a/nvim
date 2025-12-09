@@ -55,6 +55,18 @@ vim.api.nvim_create_autocmd({ "TextYankPost" }, {
 	group = group,
 })
 
+vim.api.nvim_create_autocmd({ "FileType" }, {
+	pattern = { "help", "qf", "man", "checkhealth", "nvim-pack", "nvim-undotree" },
+	callback = function(args)
+		vim.keymap.set("n", "q", function()
+			if not pcall(vim.cmd.close) then
+				vim.cmd.bdelete()
+			end
+		end, { buffer = args.buf, nowait = true, desc = "Close window" })
+	end,
+	group = group,
+})
+
 vim.api.nvim_create_autocmd({ "UIEnter" }, {
 	group = group,
 	once = true,
