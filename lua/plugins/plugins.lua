@@ -1,10 +1,3 @@
 vim.pack.add({
-	"https://github.com/rafamadriz/friendly-snippets",
-	"https://github.com/stevearc/conform.nvim",
-	"https://github.com/nvim-mini/mini.icons",
-	"https://github.com/nvim-mini/mini.pairs",
+	"https://github.com/b0o/SchemaStore.nvim",
 })
-require("mini.icons").setup()
-MiniIcons.mock_nvim_web_devicons()
-MiniIcons.tweak_lsp_kind()
-require("mini.pairs").setup()

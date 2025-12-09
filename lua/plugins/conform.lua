@@ -40,6 +40,6 @@ end, { desc = "Re-enable autoformat-on-save" })
 
 vim.keymap.set({ "n" }, "<leader>f", function()
 	require("conform").format({ async = true, lsp_format = "fallback" })
-end, {})
+end, { desc = "Format buffer" })
 
 vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"

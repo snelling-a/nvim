@@ -49,7 +49,7 @@ require("gitsigns").setup({
 			gs.diffthis("~")
 		end, { desc = "Diff this ~" })
 		map("n", "<leader>tb", gs.toggle_current_line_blame, { desc = "Toggle line blame" })
-		map("n", "<leader>td", gs.toggle_deleted, { desc = "Toggle deleted" })
+		map("n", "<leader>td", gs.preview_hunk_inline, { desc = "Preview hunk inline" })
 
 		map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", { desc = "Select hunk" })
 	end,

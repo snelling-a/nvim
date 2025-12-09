@@ -1,5 +1,13 @@
 {
   "plugins": {
+    "SchemaStore.nvim": {
+      "rev": "21645280ad06fce01ef109e82d76302dcbe62756",
+      "src": "https://github.com/b0o/SchemaStore.nvim"
+    },
+    "base16.nvim": {
+      "rev": "2a8ea293181fb70200666bd3e041fd6ec75d5ebe",
+      "src": "https://github.com/snelling-a/base16.nvim"
+    },
     "conform.nvim": {
       "rev": "ffe26e8df8115c9665d24231f8a49fadb2d611ce",
       "src": "https://github.com/stevearc/conform.nvim"
@@ -36,13 +44,26 @@
       "rev": "472ec50092a3314ec285d2db2baa48602d71fe93",
       "src": "https://github.com/nvim-mini/mini.pairs"
     },
+    "mini.surround": {
+      "rev": "88c52297ed3e69ecf9f8652837888ecc727a28ee",
+      "src": "https://github.com/nvim-mini/mini.surround"
+    },
     "nvim-lint": {
       "rev": "ebe535956106c60405b02220246e135910f6853d",
       "src": "https://github.com/mfussenegger/nvim-lint"
     },
+    "nvim-snippets": {
+      "rev": "56b4052f71220144689caaa2e5b66222ba5661eb",
+      "src": "https://github.com/garymjr/nvim-snippets"
+    },
     "nvim-treesitter": {
       "rev": "d72fa25b545da316cae7e596263656eac7afc2af",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter",
+      "version": "'main'"
+    },
+    "nvim-treesitter-textobjects": {
+      "rev": "76deedf0f1cec4496ef8d49b6d1f020f6d0c6ec9",
+      "src": "https://github.com/nvim-treesitter/nvim-treesitter-textobjects",
       "version": "'main'"
     },
     "vim-startuptime": {
