@@ -20,3 +20,6 @@ require("mini.surround").setup({
 	},
 	search_method = "cover_or_next",
 })
+-- Use S in visual mode to avoid timeout conflict with y
+vim.keymap.set("x", "S", [[:<C-u>lua MiniSurround.add('visual')<CR>]], { desc = "Add surrounding", silent = true })
+vim.keymap.del("x", "ys")
