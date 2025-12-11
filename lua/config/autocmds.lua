@@ -8,10 +8,8 @@ vim.api.nvim_create_autocmd({ "BufReadPost" }, {
 		end
 
 		vim.b[bufnr].last_loc = true
-
 		local mark = vim.api.nvim_buf_get_mark(bufnr, '"')
 		local line_count = vim.api.nvim_buf_line_count(bufnr)
-
 		if mark[1] > 0 and mark[1] <= line_count then
 			pcall(vim.api.nvim_win_set_cursor, 0, mark)
 		end
@@ -25,7 +23,6 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
 		if args.match:match("^%w%w+:[\\/][\\/]") then
 			return
 		end
-
 		local file = vim.uv.fs_realpath(args.match) or args.match
 		vim.fn.mkdir(vim.fn.fnamemodify(file, ":p:h"), "p")
 	end,
@@ -34,29 +31,16 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
 })
 
 vim.api.nvim_create_autocmd({ "CmdlineEnter" }, {
-	group = group,
-	once = true,
 	callback = function()
 		if vim.version().minor >= 12 then
 			require("vim._extui").enable({})
 		end
 	end,
-})
-
-vim.api.nvim_create_autocmd({ "TermOpen" }, {
 	group = group,
-	command = "setl stc= nonumber | startinsert!",
-})
-
-vim.api.nvim_create_autocmd({ "TextYankPost" }, {
-	callback = function()
-		vim.hl.on_yank({ higroup = "IncSearch", timeout = 400 })
-	end,
-	group = group,
+	once = true,
 })
 
 vim.api.nvim_create_autocmd({ "FileType" }, {
-	pattern = { "help", "qf", "man", "checkhealth", "nvim-pack", "nvim-undotree" },
 	callback = function(args)
 		vim.keymap.set("n", "q", function()
 			if not pcall(vim.cmd.close) then
@@ -65,11 +49,19 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 		end, { buffer = args.buf, nowait = true, desc = "Close window" })
 	end,
 	group = group,
+	pattern = { "help", "qf", "man", "checkhealth", "nvim-pack", "nvim-undotree" },
+})
+
+vim.api.nvim_create_autocmd({ "TermOpen" }, { command = "setl stc= nonumber | startinsert!", group = group })
+
+vim.api.nvim_create_autocmd({ "TextYankPost" }, {
+	callback = function()
+		vim.hl.on_yank({ higroup = "IncSearch", timeout = 400 })
+	end,
+	group = group,
 })
 
 vim.api.nvim_create_autocmd({ "UIEnter" }, {
-	group = group,
-	once = true,
 	callback = function()
 		if vim.g.strive_startup_time ~= nil then
 			return
@@ -84,4 +76,16 @@ vim.api.nvim_create_autocmd({ "UIEnter" }, {
 		end
 	end,
 	desc = "Initializer",
+	group = group,
+	once = true,
+})
+
+vim.api.nvim_create_autocmd({ "VimResized" }, {
+	callback = function()
+		local current_tab = vim.fn.tabpagenr()
+		vim.cmd("tabdo wincmd =")
+		vim.cmd("tabnext " .. current_tab)
+	end,
+	desc = "Resize splits if window got resized",
+	group = group,
 })

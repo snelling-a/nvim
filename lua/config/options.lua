@@ -26,6 +26,7 @@ vim.o.foldtext = ""
 vim.o.formatlistpat = [[^\s*[0-9\-\+\*]\+[\.\)]*\s\+]]
 vim.o.formatoptions = "rqnl1j"
 vim.o.ignorecase = true
+vim.o.inccommand = "split"
 vim.o.incsearch = true
 vim.o.infercase = true
 vim.o.iskeyword = "@,48-57,_,192-255,-"
