@@ -41,7 +41,7 @@ return {
 				},
 				libraryFiles = "Disable",
 				unusedLocalExclude = { "_*" },
-				workspaceEvent = "OnSave",
+				workspaceEvent = "OnChange",
 			},
 			doc = {
 				privateName = { "^_" },

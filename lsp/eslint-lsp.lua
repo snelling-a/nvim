@@ -89,7 +89,7 @@ return {
 		},
 		codeActionOnSave = { enable = false, mode = "all" },
 		experimental = { useFlatConfig = false },
-		format = false,
+		format = true,
 		nodePath = "",
 		onIgnoredFiles = "off",
 		packageManager = nil,
