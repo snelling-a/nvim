@@ -28,9 +28,17 @@
       "rev": "518789535a0cb146224a428edf93a70f98b795db",
       "src": "https://github.com/OXY2DEV/helpview.nvim"
     },
+    "markdown-plus.nvim": {
+      "rev": "2f5529983a5ad0513124b624456941bb36769299",
+      "src": "https://github.com/YousefHadder/markdown-plus.nvim"
+    },
     "markdown-preview.nvim": {
       "rev": "a923f5fc5ba36a3b17e289dc35dc17f66d0548ee",
       "src": "https://github.com/iamcco/markdown-preview.nvim"
+    },
+    "markview.nvim": {
+      "rev": "0a5033326f703d99a8788e2d47753d6298195e8a",
+      "src": "https://github.com/OXY2DEV/markview.nvim"
     },
     "mason": {
       "rev": "57e5a8addb8c71fb063ee4acda466c7cf6ad2800",
