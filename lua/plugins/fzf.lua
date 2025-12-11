@@ -1,14 +1,15 @@
 vim.pack.add({ "https://github.com/ibhagwan/fzf-lua" }, {
 	load = function()
 		vim.cmd.packadd("fzf-lua")
+		local actions = require("fzf-lua.actions")
 		require("fzf-lua").setup({
 			"max-perf",
 			lsp = { symbols = { symbol_style = 3 } },
 			keymap = {
-				fzf = {
-					true,
-					["ctrl-q"] = "select-all+accept",
-				},
+				fzf = { true, ["ctrl-q"] = "select-all+accept" },
+			},
+			helptags = {
+				actions = { ["enter"] = actions.help_vert },
 			},
 		})
 

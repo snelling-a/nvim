@@ -25,6 +25,14 @@ require("conform").setup({
 	end,
 })
 
+vim.api.nvim_create_user_command("Format", function(args)
+	require("conform").format({
+		-- async = true,
+		lsp_format = "fallback",
+		require("conform").format({ async = true, lsp_format = "fallback" }),
+	})
+end, {})
+
 vim.api.nvim_create_user_command("FormatDisable", function(args)
 	if args.bang then
 		-- FormatDisable! will disable formatting just for this buffer
