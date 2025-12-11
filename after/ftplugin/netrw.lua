@@ -3,14 +3,28 @@ vim.cmd.resize({ math.floor(vim.o.columns * 0.3), mods = { vertical = true } })
 
 local bufnr = vim.api.nvim_get_current_buf()
 
--- Icons
+-- Icons and git status
+local function refresh_decorations(buf, clear_cache)
+	if clear_cache then
+		require("netrw_git").clear_cache()
+	end
+	require("netrw_icons").add_icons(buf)
+	require("netrw_git").add_signs(buf)
+end
+
 vim.api.nvim_create_autocmd({ "TextChanged" }, {
 	callback = function(opts)
-		require("netrw_icons").add_icons(opts.buf)
+		-- Clear cache on directory change (TextChanged fires when navigating)
+		refresh_decorations(opts.buf, true)
 	end,
-	desc = "Add icons to Netrw",
+	desc = "Add icons and git status to Netrw",
 	buffer = bufnr,
 })
+
+-- Initial decoration on load
+vim.schedule(function()
+	refresh_decorations(bufnr, false)
+end)
 
 vim.wo.list = false
 
@@ -37,8 +51,11 @@ local function open_file(cmd)
 	if cmd then
 		vim.cmd(cmd)
 	end
-	vim.cmd.edit(vim.fn.fnameescape(file))
+	vim.cmd("keepjumps edit " .. vim.fn.fnameescape(file))
+	local target_win = vim.api.nvim_get_current_win()
 	vim.cmd("silent! wincmd h | close")
+	vim.api.nvim_set_current_win(target_win)
+	vim.cmd("normal! m'")
 	return true
 end
 

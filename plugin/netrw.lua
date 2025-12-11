@@ -12,7 +12,7 @@ vim.keymap.set({ "n" }, "<M-o>", function()
 	end
 
 	local file = vim.fn.expand("%:t")
-	vim.cmd("Vexplore")
+	vim.cmd("keepjumps Vexplore")
 	if file ~= "" then
 		vim.fn.search("\\V" .. vim.fn.escape(file, "\\"), "cw")
 	end
