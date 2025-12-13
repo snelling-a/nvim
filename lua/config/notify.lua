@@ -234,13 +234,21 @@ function M.notify(msg, level, opts)
 	return original_notify(msg, level, opts)
 end
 
+local level_names = {
+	[vim.log.levels.TRACE] = "TRACE",
+	[vim.log.levels.DEBUG] = "DEBUG",
+	[vim.log.levels.INFO] = "INFO",
+	[vim.log.levels.WARN] = "WARN",
+	[vim.log.levels.ERROR] = "ERROR",
+}
+
 function M.history()
 	if #history == 0 then
 		print("No notification history")
 		return
 	end
 	for _, item in ipairs(history) do
-		local level_name = ({ "DEBUG", "ERROR", "INFO", "TRACE", "WARN" })[item.level] or "INFO"
+		local level_name = level_names[item.level] or "INFO"
 		print(("[%s] [%s] %s"):format(item.time, level_name, item.msg))
 	end
 end
