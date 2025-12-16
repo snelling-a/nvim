@@ -34,7 +34,6 @@ vim.o.laststatus = 3
 vim.o.linebreak = true
 vim.o.list = true
 vim.o.listchars = "extends:…,nbsp:␣,precedes:…,tab:  "
-vim.o.mousescroll = "ver:25,hor:6"
 vim.o.number = true
 vim.o.pumborder = "rounded"
 vim.o.pumheight = 10
