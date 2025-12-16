@@ -22,7 +22,7 @@ vim.iter(vim.api.nvim_get_runtime_file("lsp/*.lua", true))
 	end)
 vim.lsp.enable(servers)
 
-local group = vim.api.nvim_create_augroup("lsp", {})
+local group = vim.api.nvim_create_augroup("user.lsp", {})
 vim.api.nvim_create_autocmd({ "LspAttach" }, {
 	group = group,
 	callback = function(args)
@@ -48,11 +48,15 @@ vim.api.nvim_create_autocmd({ "LspAttach" }, {
 		end
 
 		if client:supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
-			local inlay_hints_group = vim.api.nvim_create_augroup("lsp_inlay_hints", {})
+			if vim.g.inlay_hints == nil then
+				vim.g.inlay_hints = true
+			end
+
+			local inlay_hints_group = vim.api.nvim_create_augroup("user.lsp.inlay_hints", {})
 
 			vim.defer_fn(function()
 				local mode = vim.api.nvim_get_mode().mode
-				vim.lsp.inlay_hint.enable(mode == "n" or mode == "v", { bufnr = args.buf })
+				vim.lsp.inlay_hint.enable(vim.g.inlay_hints and (mode == "n" or mode == "v"), { bufnr = args.buf })
 			end, 500)
 
 			vim.api.nvim_create_autocmd({ "InsertEnter" }, {
@@ -60,24 +64,22 @@ vim.api.nvim_create_autocmd({ "LspAttach" }, {
 				callback = function()
 					vim.lsp.inlay_hint.enable(false, { bufnr = args.buf })
 				end,
-				desc = "Enable inlay hints",
+				desc = "Disable inlay hints",
 				group = inlay_hints_group,
 			})
 
 			vim.api.nvim_create_autocmd({ "InsertLeave" }, {
 				buffer = args.buf,
 				callback = function()
-					vim.lsp.inlay_hint.enable(true, { bufnr = args.buf })
+					vim.lsp.inlay_hint.enable(vim.g.inlay_hints, { bufnr = args.buf })
 				end,
-				desc = "Disable inlay hints",
+				desc = "Enable inlay hints",
 				group = inlay_hints_group,
 			})
 
 			vim.keymap.set({ "n" }, "<leader>th", function()
 				vim.g.inlay_hints = not vim.g.inlay_hints
-
-				local mode = vim.api.nvim_get_mode().mode
-				vim.lsp.inlay_hint.enable(vim.g.inlay_hints and (mode == "n" or mode == "v"))
+				vim.lsp.inlay_hint.enable(vim.g.inlay_hints)
 			end, { desc = "[T]oggle Inlay [H]ints" })
 		end
 
