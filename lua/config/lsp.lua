@@ -1,3 +1,9 @@
+local references = vim.lsp.buf.references
+---@diagnostic disable-next-line: duplicate-set-field
+vim.lsp.buf.references = function()
+	return references({ includeDeclaration = false }, { loclist = true })
+end
+
 vim.lsp.config("*", {
 	capabilities = {
 		workspace = {
