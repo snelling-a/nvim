@@ -16,11 +16,11 @@ local SPINNER = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇",
 local SPINNER_MS = 80
 
 local icons = {
-	[vim.log.levels.ERROR] = " ",
-	[vim.log.levels.WARN] = " ",
-	[vim.log.levels.INFO] = " ",
-	[vim.log.levels.DEBUG] = " ",
-	[vim.log.levels.TRACE] = " ",
+	[vim.log.levels.DEBUG] = " ",
+	[vim.log.levels.ERROR] = " ",
+	[vim.log.levels.INFO] = " ",
+	[vim.log.levels.TRACE] = " ",
+	[vim.log.levels.WARN] = "󱈸",
 }
 
 local hls = {
