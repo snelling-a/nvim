@@ -37,6 +37,7 @@ vim.o.listchars = "extends:…,nbsp:␣,precedes:…,tab:  "
 vim.o.number = true
 vim.o.pumborder = "rounded"
 vim.o.pumheight = 10
+vim.o.rulerformat = "%l[%c]/%L %p%%"
 vim.o.shada = "'100,<50,s10,:1000,/100,@100,h"
 vim.o.shiftwidth = 2
 vim.o.shortmess = "CFOSWaco"
@@ -48,6 +49,7 @@ vim.o.spelloptions = "camel"
 vim.o.splitbelow = true
 vim.o.splitkeep = "screen"
 vim.o.splitright = true
+vim.opt.statusline:prepend("%{%get(b:,'gitsigns_status','')%} ")
 vim.o.switchbuf = "usetab"
 vim.o.tabstop = 2
 vim.o.undofile = true
