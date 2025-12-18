@@ -49,7 +49,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 		end, { buffer = args.buf, nowait = true, desc = "Close window" })
 	end,
 	group = group,
-	pattern = { "help", "man", "checkhealth", "nvim-pack", "nvim-undotree" },
+	pattern = { "gitsigns-blame", "help", "man", "checkhealth", "nvim-pack", "nvim-undotree" },
 })
 
 vim.api.nvim_create_autocmd({ "TermOpen" }, { command = "setl stc= nonumber | startinsert!", group = group })

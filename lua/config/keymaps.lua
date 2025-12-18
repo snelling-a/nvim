@@ -120,3 +120,8 @@ vim.keymap.set({ "n" }, "<leader>yy", function()
 	vim.fn.setreg("+", path)
 	vim.notify("Yanked: " .. path)
 end, { desc = "[Y]ank file path" })
+
+vim.keymap.set({ "n", "v" }, "<leader>gl", require("gitlink").link, {
+	silent = true,
+	desc = "Yank git permlink",
+})
