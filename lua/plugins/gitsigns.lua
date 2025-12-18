@@ -1,9 +1,25 @@
 vim.pack.add({ "https://github.com/lewis6991/gitsigns.nvim" })
 
 require("gitsigns").setup({
-	signs_staged_enable = true,
 	attach_to_untracked = true,
 	current_line_blame = true,
+	gh = true,
+	signs_staged_enable = true,
+	status_formatter = function(status)
+		local parts = { "  " .. (status.head == "" and "detached HEAD" or status.head) }
+		for _, s in ipairs({
+			{ "added", "Added", " " },
+			{ "changed", "Changed", " " },
+			{ "removed", "Removed", " " },
+		}) do
+			---@type integer?
+			local count = status[s[1]]
+			if count and count > 0 then
+				parts[#parts + 1] = ("%%#%s#%s%d"):format(s[2], s[3], count)
+			end
+		end
+		return table.concat(parts, " ") .. "%##"
+	end,
 	on_attach = function(bufnr)
 		local gs = require("gitsigns")
 
@@ -17,6 +33,7 @@ require("gitsigns").setup({
 			if vim.wo.diff then
 				vim.cmd.normal({ "]c", bang = true })
 			else
+				---@diagnostic disable-next-line: param-type-mismatch
 				gs.nav_hunk("next")
 			end
 		end, { desc = "Next hunk" })
@@ -25,6 +42,7 @@ require("gitsigns").setup({
 			if vim.wo.diff then
 				vim.cmd.normal({ "[c", bang = true })
 			else
+				---@diagnostic disable-next-line: param-type-mismatch
 				gs.nav_hunk("prev")
 			end
 		end, { desc = "Previous hunk" })
@@ -46,6 +64,7 @@ require("gitsigns").setup({
 		end, { desc = "Blame line" })
 		map("n", "<leader>hd", gs.diffthis, { desc = "Diff this" })
 		map("n", "<leader>hD", function()
+			---@diagnostic disable-next-line: param-type-mismatch
 			gs.diffthis("~")
 		end, { desc = "Diff this ~" })
 		map("n", "<leader>tb", gs.toggle_current_line_blame, { desc = "Toggle line blame" })
