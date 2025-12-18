@@ -56,6 +56,10 @@
       "rev": "88c52297ed3e69ecf9f8652837888ecc727a28ee",
       "src": "https://github.com/nvim-mini/mini.surround"
     },
+    "nui.nvim": {
+      "rev": "de740991c12411b663994b2860f1a4fd0937c130",
+      "src": "https://github.com/MunifTanjim/nui.nvim"
+    },
     "nvim-lint": {
       "rev": "ebe535956106c60405b02220246e135910f6853d",
       "src": "https://github.com/mfussenegger/nvim-lint"
@@ -77,6 +81,11 @@
     "vim-startuptime": {
       "rev": "b6f0d93f6b8cf6eee0b4c94450198ba2d6a05ff6",
       "src": "https://github.com/dstein64/vim-startuptime"
+    },
+    "vscode-diff.nvim": {
+      "rev": "7ade58156e12077faa9fe932000c4b1e75d64a0b",
+      "src": "https://github.com/esmuellert/vscode-diff.nvim",
+      "version": "'next'"
     }
   }
 }
