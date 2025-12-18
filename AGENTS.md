@@ -1,76 +1,91 @@
 # AGENTS.md
 
-This file provides guidelines for agents working on this Neovim configuration repository. Follow these instructions to ensure consistency and maintainability.
+This file provides guidelines for agents working on this Neovim configuration repository.
 
-## Build and Lint Commands
+## Running Neovim
 
-### Build
-- **Install dependencies:**
-  Use `vim.pack.add()` in Lua files to add plugins. For example:
-  ```lua
-  vim.pack.add({ "https://github.com/ibhagwan/fzf-lua" }, {
-    load = function()
-      vim.cmd.packadd("fzf-lua")
-      require("fzf-lua").setup({})
-    end,
-  })
-  ```
-  Plugins are automatically loaded from the `pack/` directory.
+This config uses a git worktree. To run it headlessly:
 
-### Lint
-- **Check Lua code style:**
-  ```bash
-  stylua .
-  ```
-  Ensure `stylua` is installed for formatting Lua files.
+```bash
+NVIM_APPNAME=nvim/.worktrees/rewrite nvim
+```
 
-## Code Style Guidelines
+## Commands
 
-### General
-- Use Lua for configuration files.
-- Keep functions modular and reusable.
-- Avoid hardcoding paths; use `vim.fn.stdpath` where possible.
+stylua and luacheck are only available inside an instance of neovim:
 
-### Imports
-- Group imports logically (e.g., plugins, settings, keymaps).
-- Use `require` statements for modular files.
+```vim
+:terminal stylua .
+:terminal luacheck .
+```
 
-### Formatting
-- Use `stylua` for consistent formatting.
-- Indentation: 2 spaces.
-- Line length: 80 characters.
+## Architecture
 
-### Naming Conventions
-- Use snake_case for variables and functions.
-- Prefix private functions with `_`.
-- Use descriptive names for key mappings and settings.
+This is a Neovim configuration (0.11+) using native `vim.pack` for plugin management.
 
-### Error Handling
-- Use `pcall` for protected calls to avoid breaking the editor.
-- Log errors using `vim.notify` for better visibility.
+### Directory Structure
 
-## Adding Language Support
+- `init.lua` - Entry point (enables vim.loader)
+- `plugin/` - Auto-loaded configuration:
+  - `diagnostic.lua` - Diagnostic configuration
+  - `netrw.lua` - Netrw settings
+  - `overrides.lua` - Runtime overrides
+- `lsp/` - LSP server configs (auto-discovered, export `vim.lsp.Config`)
+- `lua/config/` - Core configuration (loaded via `require("config")`):
+  - `init.lua` - Entry point, loads other config modules
+  - `options.lua` - Editor options
+  - `keymaps.lua` - Key mappings
+  - `autocmds.lua` - Autocommands
+  - `commands.lua` - User commands
+  - `lsp.lua` - LSP setup
+- `lua/plugins/` - Plugin configurations:
+  - `init.lua` - Plugin declarations
+  - `conform.lua` - Formatters
+  - `lint.lua` - Linters
+  - Other plugin-specific configs
+- `lua/` - Standalone modules (bufdelete, netrw_git, netrw_icons)
+- `after/ftplugin/` - Filetype settings
+- `after/syntax/` - Syntax overrides
 
-To add support for a new language, follow these steps:
+### Plugin Management
 
-1. **Set up the LSP:**
-   - Create a new file in `after/lsp/` for the language server configuration.
-   - Define the `cmd`, `filetypes`, `root_markers`, and `settings` as needed.
+```lua
+vim.pack.add({ "https://github.com/author/plugin" })
 
-2. **Add formatters:**
-   - Update `plugin/92_conform.lua` to include formatters for the new language.
-   - Add the language to the `formatters_by_ft` table with appropriate formatters.
+-- Lazy loading:
+vim.pack.add({ "https://github.com/author/plugin" }, {
+  load = function()
+    vim.cmd.packadd("plugin")
+    require("plugin").setup({})
+  end,
+})
+```
 
-3. **Add linters:**
-   - Update `plugin/93_lint.lua` to include linters for the new language.
-   - Add the language to the `linters_by_ft` table with appropriate linters.
+### LSP Configuration
 
-4. **Test the setup:**
-   - Open a file of the new language type and ensure the LSP, formatters, and linters work correctly.
+Files in `lsp/` are auto-discovered. Each exports:
 
-## Additional Notes
-- Document all key mappings and plugin configurations.
-- Test changes in a clean Neovim environment to ensure compatibility.
-- Follow best practices for Neovim Lua development.
+```lua
+---@type vim.lsp.Config
+return {
+  cmd = { "server-binary" },
+  filetypes = { "filetype" },
+  root_markers = { ".git" },
+  settings = {},
+}
+```
 
-By adhering to these guidelines, you ensure that this configuration remains clean, maintainable, and user-friendly.
+### Adding Language Support
+
+1. Create `lsp/<server>.lua`
+2. Add formatters to `formatters_by_ft` in `lua/plugins/conform.lua`
+3. Add linters to `linters_by_ft` in `lua/plugins/lint.lua`
+
+## Code Style
+
+- Format: stylua (2-space indent, 80 char lines, sorted requires)
+- snake_case for variables/functions
+- Prefix private functions with `_`
+- Use `pcall` for protected calls, `vim.notify` for errors
+- Avoid hardcoded paths; use `vim.fn.stdpath`
+
