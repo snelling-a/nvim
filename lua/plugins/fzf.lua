@@ -4,7 +4,17 @@ vim.pack.add({ "https://github.com/ibhagwan/fzf-lua" }, {
 		local actions = require("fzf-lua.actions")
 		require("fzf-lua").setup({
 			"max-perf",
-			lsp = { symbols = { symbol_style = 3 } },
+			files = {
+				hidden = true,
+				cmd = "fd --color=never --type f --hidden --follow --exclude .git && fd --color=never --type f --hidden --no-ignore-vcs --glob '.env*' --exclude .git",
+			},
+			grep = {
+				hidden = true,
+			},
+			lsp = {
+				symbols = { symbol_style = 3 },
+				code_actions = { previewer = false },
+			},
 			keymap = {
 				fzf = { true, ["ctrl-q"] = "select-all+accept" },
 			},
