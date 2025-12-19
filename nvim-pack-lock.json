@@ -28,6 +28,10 @@
       "rev": "518789535a0cb146224a428edf93a70f98b795db",
       "src": "https://github.com/OXY2DEV/helpview.nvim"
     },
+    "kulala.nvim": {
+      "rev": "9fc4831a116fb32b0fd420ed483f5102a873446a",
+      "src": "https://github.com/mistweaverco/kulala.nvim"
+    },
     "markdown-plus.nvim": {
       "rev": "2f5529983a5ad0513124b624456941bb36769299",
       "src": "https://github.com/YousefHadder/markdown-plus.nvim"

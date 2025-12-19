@@ -10,6 +10,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 require("conform").setup({
 	formatters_by_ft = {
 		css = { "prettierd", "prettier", stop_after_first = true },
+		http = { "kulala-fmt" },
 		javascript = { "prettierd", "prettier", stop_after_first = true },
 		javascriptreact = { "prettierd", "prettier", stop_after_first = true },
 		lua = { "stylua" },
