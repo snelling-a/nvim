@@ -62,8 +62,7 @@ require("gitsigns").setup({
 		map("n", "<leader>hb", function()
 			gs.blame_line({ full = true })
 		end, { desc = "Blame line" })
-		map("n", "<leader>hd", gs.diffthis, { desc = "Diff this" })
-		map("n", "<leader>hD", function()
+		map("n", "<leader>hd", function()
 			---@diagnostic disable-next-line: param-type-mismatch
 			gs.diffthis("~")
 		end, { desc = "Diff this ~" })
