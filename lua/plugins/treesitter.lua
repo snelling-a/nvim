@@ -53,6 +53,8 @@ for _, lang in ipairs(extra_languages) do
 	ensure_installed(lang)
 end
 
+vim.treesitter.language.add("lua", { luadoc = "luadoc" })
+
 local group = vim.api.nvim_create_augroup("treesitter-auto-install", { clear = true })
 vim.api.nvim_create_autocmd("FileType", {
 	group = group,
@@ -64,19 +66,39 @@ vim.api.nvim_create_autocmd("FileType", {
 		end
 
 		if is_installed(lang) then
-			vim.treesitter.start(ev.buf)
+			vim.treesitter.start(ev.buf, lang)
 			return
 		end
 
 		if ensure_installed(lang) then
 			vim.defer_fn(function()
 				if vim.api.nvim_buf_is_valid(ev.buf) and is_installed(lang) then
-					vim.treesitter.start(ev.buf)
+					vim.treesitter.start(ev.buf, lang)
 				end
 			end, 1000)
 		end
 	end,
 	desc = "Auto-install treesitter parser and start highlighting",
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+	group = group,
+	callback = function(ev)
+		local ft = ev.match
+		local lang = vim.treesitter.language.get_lang(ft)
+		if not lang then
+			return
+		end
+
+		if is_installed(lang) then
+			vim.defer_fn(function()
+				if vim.api.nvim_buf_is_valid(ev.buf) then
+					pcall(vim.treesitter.highlighter.new, ev.buf, lang)
+				end
+			end, 100)
+		end
+	end,
+	desc = "Enable treesitter highlighting",
 })
 
 require("nvim-treesitter-textobjects").setup({
