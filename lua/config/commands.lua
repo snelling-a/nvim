@@ -83,3 +83,14 @@ vim.api.nvim_create_user_command("Make", function(args)
 		vim.diagnostic.setloclist({ title = "Diagnostics for " .. vim.fn.expand("%:t") })
 	end
 end, { bang = true, desc = "Run make" })
+
+vim.api.nvim_create_user_command("DiffTool", function(opts)
+	vim.api.nvim_del_user_command("DiffTool")
+	vim.cmd.packadd("nvim.difftool")
+
+	if #opts.fargs == 2 then
+		require("difftool").open(opts.fargs[1], opts.fargs[2])
+	else
+		vim.notify("Usage: DiffTool <left> <right>", vim.log.levels.ERROR)
+	end
+end, { nargs = "*", complete = "file" })
