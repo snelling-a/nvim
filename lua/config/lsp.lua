@@ -89,36 +89,5 @@ vim.api.nvim_create_autocmd({ "LspAttach" }, {
 			end, { desc = "[T]oggle Inlay [H]ints" })
 		end
 
-		if client:supports_method(vim.lsp.protocol.Methods.textDocument_completion, bufnr) then
-			vim.lsp.completion.enable(true, args.data.client_id, args.buf, {
-				autotrigger = true,
-				cmp = function(a, b)
-					local item_a = a.user_data
-							and a.user_data.nvim
-							and a.user_data.nvim.lsp
-							and a.user_data.nvim.lsp.completion_item
-						or {}
-					local item_b = b.user_data
-							and b.user_data.nvim
-							and b.user_data.nvim.lsp
-							and b.user_data.nvim.lsp.completion_item
-						or {}
-
-					local is_snip_a = item_a.kind == vim.lsp.protocol.CompletionItemKind.Snippet
-					local is_snip_b = item_b.kind == vim.lsp.protocol.CompletionItemKind.Snippet
-
-					if is_snip_a ~= is_snip_b then
-						return is_snip_a
-					end
-
-					return (item_a.sortText or a.label or "") < (item_b.sortText or b.label or "")
-				end,
-				convert = function(item)
-					return {
-						abbr = item.label:gsub("%b()", ""),
-					}
-				end,
-			})
-		end
 	end,
 })

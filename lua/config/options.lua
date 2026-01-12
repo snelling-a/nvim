@@ -8,7 +8,6 @@ vim.schedule(function()
 	vim.o.clipboard = "unnamedplus"
 end)
 
-vim.o.autocomplete = true
 vim.o.breakindent = true
 vim.o.breakindentopt = "list:-1"
 vim.o.colorcolumn = "+1"
