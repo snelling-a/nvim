@@ -8,6 +8,15 @@
       "rev": "2a8ea293181fb70200666bd3e041fd6ec75d5ebe",
       "src": "https://github.com/snelling-a/base16.nvim"
     },
+    "blink.cmp": {
+      "rev": "6a4914ca987453464a7dfc7fc237a992adb567d0",
+      "src": "https://github.com/Saghen/blink.cmp"
+    },
+    "codediff.nvim": {
+      "rev": "96845f95bc5539c8e2a0ab88223c5033f302fcd9",
+      "src": "https://github.com/esmuellert/codediff.nvim",
+      "version": "'next'"
+    },
     "conform.nvim": {
       "rev": "ffe26e8df8115c9665d24231f8a49fadb2d611ce",
       "src": "https://github.com/stevearc/conform.nvim"
@@ -31,6 +40,10 @@
     "kulala.nvim": {
       "rev": "9fc4831a116fb32b0fd420ed483f5102a873446a",
       "src": "https://github.com/mistweaverco/kulala.nvim"
+    },
+    "live-preview.nvim": {
+      "rev": "4b4cd2262f7fed487f112e18ddba46dabf0cb7d2",
+      "src": "https://github.com/brianhuster/live-preview.nvim"
     },
     "markdown-plus.nvim": {
       "rev": "2f5529983a5ad0513124b624456941bb36769299",
@@ -68,6 +81,10 @@
       "rev": "ebe535956106c60405b02220246e135910f6853d",
       "src": "https://github.com/mfussenegger/nvim-lint"
     },
+    "nvim-pretty-ts-errors": {
+      "rev": "b5d8e0798884323ebbf587c54ebfa128c87f9c19",
+      "src": "https://github.com/enochchau/nvim-pretty-ts-errors"
+    },
     "nvim-snippets": {
       "rev": "56b4052f71220144689caaa2e5b66222ba5661eb",
       "src": "https://github.com/garymjr/nvim-snippets"
@@ -82,14 +99,17 @@
       "src": "https://github.com/nvim-treesitter/nvim-treesitter-textobjects",
       "version": "'main'"
     },
-    "vim-startuptime": {
-      "rev": "b6f0d93f6b8cf6eee0b4c94450198ba2d6a05ff6",
-      "src": "https://github.com/dstein64/vim-startuptime"
+    "oil-git-status.nvim": {
+      "rev": "4b5cf53842c17a09420919e655a6a559da3112d7",
+      "src": "https://github.com/refractalize/oil-git-status.nvim"
     },
-    "vscode-diff.nvim": {
-      "rev": "7ade58156e12077faa9fe932000c4b1e75d64a0b",
-      "src": "https://github.com/esmuellert/vscode-diff.nvim",
-      "version": "'next'"
+    "oil-git.nvim": {
+      "rev": "d1f27a5982df35b70fb842aa6bbfac10735c7265",
+      "src": "https://github.com/benomahony/oil-git.nvim"
+    },
+    "oil.nvim": {
+      "rev": "d278dc40f9de9980868a0a55fa666fba5e6aeacb",
+      "src": "https://github.com/stevearc/oil.nvim"
     }
   }
 }
