@@ -91,12 +91,19 @@ return {
 
 		vim.lsp.inline_completion.enable()
 
-		vim.keymap.set("i", "<M-]>", function()
+		vim.keymap.set({ "i" }, "<M-]>", function()
 			vim.lsp.inline_completion.select({ count = 1, wrap = true })
 		end, { buffer = bufnr, desc = "Next inline completion" })
 
-		vim.keymap.set("i", "<M-[>", function()
+		vim.keymap.set({ "i" }, "<M-[>", function()
 			vim.lsp.inline_completion.select({ count = -1, wrap = true })
 		end, { buffer = bufnr, desc = "Prev inline completion" })
+
+		vim.keymap.set({ "i" }, "<Tab>", function()
+			if vim.lsp.inline_completion.get() then
+				return
+			end
+			vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Tab>", true, false, true), "n", false)
+		end, { buffer = bufnr, desc = "Accept inline completion" })
 	end,
 }
