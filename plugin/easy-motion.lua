@@ -56,4 +56,4 @@ local function easy_motion()
 	end)
 end
 
-vim.keymap.set({ "n", "x" }, "S", easy_motion, { desc = "Jump to character" })
+vim.keymap.set({ "n" }, "S", easy_motion, { desc = "Jump to character" })
