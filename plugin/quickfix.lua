@@ -1,3 +1,11 @@
+local function pad_right(str, width)
+	return str .. string.rep(" ", width - #str)
+end
+
+local function pad_left(str, width)
+	return string.rep(" ", width - #str) .. str
+end
+
 local function qftextfunc(info)
 	local items = info.quickfix == 1 and vim.fn.getqflist({ id = info.id, items = 0 }).items
 		or vim.fn.getloclist(info.winid, { id = info.id, items = 0 }).items
@@ -33,8 +41,7 @@ local function qftextfunc(info)
 
 	local lines = {}
 	for _, entry in ipairs(entries) do
-		local line =
-			string.format("%-" .. max_fname .. "s│%" .. max_loc .. "s│ %s", entry.fname, entry.loc, entry.text)
+		local line = pad_right(entry.fname, max_fname) .. "│" .. pad_left(entry.loc, max_loc) .. "│ " .. entry.text
 		table.insert(lines, line)
 	end
 
