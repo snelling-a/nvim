@@ -110,6 +110,10 @@
     "oil.nvim": {
       "rev": "d278dc40f9de9980868a0a55fa666fba5e6aeacb",
       "src": "https://github.com/stevearc/oil.nvim"
+    },
+    "tuis.nvim": {
+      "rev": "10a52203a589e67586e0edaa6febbca6432b9a7d",
+      "src": "https://github.com/jrop/tuis.nvim"
     }
   }
 }
