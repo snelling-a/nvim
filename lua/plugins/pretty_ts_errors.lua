@@ -35,7 +35,11 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 
 vim.api.nvim_create_autocmd({ "PackChanged" }, {
 	callback = function(args)
-		if args.data and args.data.name == "nvim-pretty-ts-errors" then
+		if
+			args.data
+			and args.data.spec.name == "nvim-pretty-ts-errors"
+			and (args.data.kind == "install" or args.data.kind == "update")
+		then
 			vim.cmd.UpdateRemotePlugins()
 			vim.notify("You may need to restart Neovim for nvim-pretty-ts-errors to work properly.")
 		end

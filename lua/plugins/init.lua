@@ -4,6 +4,7 @@ vim.pack.add({
 	{ src = "https://github.com/YousefHadder/markdown-plus.nvim" },
 	{ src = "https://github.com/b0o/SchemaStore.nvim" },
 	{ src = "https://github.com/brianhuster/live-preview.nvim" },
+	{ src = "https://tangled.org/cuducos.me/yaml.nvim" },
 }, { load = false })
 
 local plugins_path = debug.getinfo(1, "S").source:sub(2):match("(.*/)")

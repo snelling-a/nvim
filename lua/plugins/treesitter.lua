@@ -7,8 +7,12 @@ vim.cmd.packadd("nvim-treesitter")
 vim.cmd.packadd("nvim-treesitter-textobjects")
 
 vim.api.nvim_create_autocmd({ "PackChanged" }, {
-	callback = function(event)
-		if event.data.kind == "update" and event.data.spec.name == "nvim-treesitter" then
+	callback = function(args)
+		if
+			args.data
+			and args.data.spec.name == "nvim-treesitter"
+			and (args.data.kind == "install" or args.data.kind == "update")
+		then
 			vim.notify("nvim-treesitter updated, running TSUpdate...", vim.log.levels.INFO)
 			---@diagnostic disable-next-line: param-type-mismatch
 			local ok = pcall(vim.cmd, "TSUpdate")
