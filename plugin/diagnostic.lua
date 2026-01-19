@@ -30,12 +30,6 @@ vim.diagnostic.config({
 	signs = signs,
 	status = signs,
 	underline = { severity = { min = vim.diagnostic.severity.HINT, max = vim.diagnostic.severity.ERROR } },
-	update_in_insert = false,
-	virtual_lines = false,
-	virtual_text = {
-		current_line = true,
-		severity = { min = vim.diagnostic.severity.ERROR, max = vim.diagnostic.severity.ERROR },
-	},
 })
 
 vim.keymap.set({ "n" }, "<leader>td", function()
