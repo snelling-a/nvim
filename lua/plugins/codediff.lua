@@ -8,6 +8,6 @@ vim.pack.add({
 			vim.cmd.packadd("codediff.nvim")
 			vim.cmd.packadd("nui.nvim")
 			vim.cmd.CodeDiff()
-		end, {})
+		end, { nargs = "*" })
 	end,
 })
