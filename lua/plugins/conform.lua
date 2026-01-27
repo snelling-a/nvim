@@ -1,4 +1,4 @@
-vim.pack.add({ "https://github.com/stevearc/conform.nvim" })
+vim.pack.add({ { src = "https://github.com/stevearc/conform.nvim" } })
 
 vim.api.nvim_create_autocmd("BufWritePre", {
 	pattern = "*",
@@ -11,7 +11,7 @@ require("conform").setup({
 	formatters_by_ft = {
 		css = { "prettierd", "prettier", stop_after_first = true },
 		go = { "goimports", "gofumpt" },
-		http = { "kulala-fmt" },
+		-- http = { "kulala-fmt" },
 		javascript = { "prettierd", "prettier", stop_after_first = true },
 		javascriptreact = { "prettierd", "prettier", stop_after_first = true },
 		lua = { "stylua" },

@@ -1,4 +1,4 @@
-vim.pack.add({ "https://github.com/enochchau/nvim-pretty-ts-errors" }, { load = false })
+vim.pack.add({ { src = "https://github.com/enochchau/nvim-pretty-ts-errors" } }, { load = false })
 
 local function ensure_npm_neovim()
 	vim.system({ "npm", "list", "-g", "neovim" }, {}, function(result)
