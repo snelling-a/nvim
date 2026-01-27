@@ -52,7 +52,15 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 	pattern = { "oil", "*kulula*", "gitsigns-blame", "help", "man", "checkhealth", "nvim-pack", "nvim-undotree" },
 })
 
-vim.api.nvim_create_autocmd({ "TermOpen" }, { command = "setl stc= nonumber | startinsert!", group = group })
+vim.api.nvim_create_autocmd({ "TermOpen" }, {
+	callback = function()
+		vim.opt_local.statuscolumn = ""
+		vim.opt_local.number = false
+		vim.opt_local.statusline = " Terminal %= " .. vim.o.rulerformat
+		vim.cmd.startinsert({ bang = true })
+	end,
+	group = group,
+})
 
 vim.api.nvim_create_autocmd({ "TextYankPost" }, {
 	callback = function()
