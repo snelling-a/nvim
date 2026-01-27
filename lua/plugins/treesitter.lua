@@ -1,10 +1,8 @@
 vim.pack.add({
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "main" },
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter-textobjects", version = "main" },
+	{ src = "https://github.com/nvim-treesitter/nvim-treesitter-context" },
 })
-
-vim.cmd.packadd("nvim-treesitter")
-vim.cmd.packadd("nvim-treesitter-textobjects")
 
 vim.api.nvim_create_autocmd({ "PackChanged" }, {
 	callback = function(args)
@@ -159,3 +157,4 @@ end, { desc = "Swap next argument" })
 vim.keymap.set("n", "<leader>A", function()
 	swap.swap_previous("@parameter.inner", "textobjects")
 end, { desc = "Swap prev argument" })
+vim.keymap.set("n", ",tc", require("treesitter-context").toggle, { desc = "Toggle treesitter context" })
