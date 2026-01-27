@@ -1,5 +1,24 @@
 # Changelog
 
+## [8.15.0](https://github.com/snelling-a/nvim/compare/v8.14.0...v8.15.0) (2026-01-27)
+
+
+### Features
+
+* **ft:** obsidian base ([e7f11ef](https://github.com/snelling-a/nvim/commit/e7f11efee984b30dea94f618fc86c732d36019b2))
+* **grug-far:** disable wrap ([721d82e](https://github.com/snelling-a/nvim/commit/721d82e5b9f1ed530ace87343b94db8a495fcd5a))
+* **keymap:** yank current path ([666bb84](https://github.com/snelling-a/nvim/commit/666bb84933575694855de1e405c03cd5e2545079))
+
+
+### Bug Fixes
+
+* **icons:** harper / colors ([0109e21](https://github.com/snelling-a/nvim/commit/0109e21adc9cacbfc96296cfbb8eea0a24902194))
+
+
+### Reverts
+
+* enable render-markdown ([d3491f8](https://github.com/snelling-a/nvim/commit/d3491f8e8bf13519e4fb6b31eddee79ed3df67d7))
+
 ## [8.14.0](https://github.com/snelling-a/nvim/compare/v8.13.0...v8.14.0) (2025-11-23)
 
 
