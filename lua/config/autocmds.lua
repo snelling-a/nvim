@@ -33,7 +33,7 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
 vim.api.nvim_create_autocmd({ "CmdlineEnter" }, {
 	callback = function()
 		if vim.version().minor >= 12 then
-			require("vim._extui").enable({})
+			require("vim._core.ui2").enable({})
 		end
 	end,
 	group = group,
