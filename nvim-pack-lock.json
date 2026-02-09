@@ -107,6 +107,10 @@
       "src": "https://github.com/nvim-treesitter/nvim-treesitter-textobjects",
       "version": "'main'"
     },
+    "nvim-ts-autotag": {
+      "rev": "8e1c0a389f20bf7f5b0dd0e00306c1247bda2595",
+      "src": "https://github.com/windwp/nvim-ts-autotag"
+    },
     "oil-git-status.nvim": {
       "rev": "4b5cf53842c17a09420919e655a6a559da3112d7",
       "src": "https://github.com/refractalize/oil-git-status.nvim"
