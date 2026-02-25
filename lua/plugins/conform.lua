@@ -17,6 +17,7 @@ require("conform").setup({
 		lua = { "stylua" },
 		markdown = { "prettierd", "prettier", stop_after_first = true },
 		sh = { "shfmt" },
+		toml = { "taplo" },
 		typescript = { "prettierd", "prettier", stop_after_first = true },
 		typescriptreact = { "prettierd", "prettier", stop_after_first = true },
 	},
