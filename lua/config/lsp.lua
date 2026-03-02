@@ -88,6 +88,5 @@ vim.api.nvim_create_autocmd({ "LspAttach" }, {
 				vim.lsp.inlay_hint.enable(vim.g.inlay_hints)
 			end, { desc = "[T]oggle Inlay [H]ints" })
 		end
-
 	end,
 })
