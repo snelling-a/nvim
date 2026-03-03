@@ -1,8 +1,12 @@
 local M = {}
 
+---@type table<integer, TSNode>
 local nodes = {}
+---@type table<integer, integer>
 local ticks = {}
 
+---@param buf integer
+---@return table<integer, TSNode>
 local function get_nodes(buf)
 	local tick = vim.api.nvim_buf_get_changedtick(buf)
 	if not nodes[buf] or ticks[buf] ~= tick then
@@ -12,6 +16,8 @@ local function get_nodes(buf)
 	return nodes[buf]
 end
 
+---@param node TSNode
+---@return integer[]
 local function get_range(node)
 	local srow, scol, erow, ecol = node:range()
 	if ecol == 0 then
@@ -36,6 +42,8 @@ local function ranges_equal(a, b)
 	return a[1] == b[1] and a[2] == b[2] and a[3] == b[3] and a[4] == b[4]
 end
 
+---@param node TSNode
+---@return nil
 local function select_node(node)
 	local range = get_range(node)
 	if vim.api.nvim_get_mode().mode ~= "v" then
@@ -62,6 +70,7 @@ function M.increment()
 	local range = get_visual_range()
 	local last = buf_nodes[#buf_nodes]
 
+	---@type TSNode|nil
 	local node
 	if not last or not ranges_equal(range, get_range(last)) then
 		local ok, parser = pcall(vim.treesitter.get_parser, buf)
