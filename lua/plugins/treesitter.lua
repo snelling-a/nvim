@@ -150,6 +150,8 @@ for _, m in ipairs(movements) do
 	end, { desc = desc })
 end
 
+require("incremental_selection").setup()
+
 vim.keymap.set("n", "<leader>a", function()
 	swap.swap_next("@parameter.inner", "textobjects")
 end, { desc = "Swap next argument" })

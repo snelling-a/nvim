@@ -12,4 +12,4 @@ print = function(...)
 	_print(unpack(new_args))
 end
 
-require("config.notify").setup()
+require("notify").setup()
