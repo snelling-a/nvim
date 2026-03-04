@@ -1,5 +1,6 @@
 local M = {}
 
+---@type table<string, {win: integer?, buf: integer?}>
 local terms = {}
 
 local function git_root()
@@ -32,6 +33,7 @@ local function resize()
 	end
 end
 
+---@param opts {cmd: string?, dir: string?, on_exit: fun()?}?
 local function open(opts)
 	opts = opts or {}
 	local cmd = opts.cmd
