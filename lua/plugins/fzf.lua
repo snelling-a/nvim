@@ -3,13 +3,15 @@ vim.pack.add({ { src = "https://github.com/ibhagwan/fzf-lua" } })
 local actions = require("fzf-lua.actions")
 require("fzf-lua").setup({
 	"max-perf",
+	winopts = {
+		---@diagnostic disable-next-line: missing-fields
+		preview = { default = "builtin" },
+	},
 	files = {
 		hidden = true,
 		cmd = "fd --color=never --type f --hidden --follow --exclude .git && fd --color=never --type f --hidden --no-ignore-vcs --glob '.env*' --exclude .git",
 	},
-	grep = {
-		hidden = true,
-	},
+	grep = { hidden = true },
 	lsp = {
 		symbols = { symbol_style = 3 },
 		code_actions = { previewer = false },
