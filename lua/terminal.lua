@@ -25,7 +25,7 @@ local function get_win_config()
 	}
 end
 
-local function resize()
+function M.resize()
 	for _, t in pairs(terms) do
 		if t.win and vim.api.nvim_win_is_valid(t.win) then
 			vim.api.nvim_win_set_config(t.win, get_win_config())
@@ -110,27 +110,6 @@ function M.lazygit()
 		on_exit = function()
 			vim.cmd.checktime()
 			vim.api.nvim_exec_autocmds("User", { pattern = "LazyGitClosed" })
-		end,
-	})
-end
-
-function M.setup()
-	vim.keymap.set("n", "<C-/>", M.toggle, { desc = "Toggle terminal" })
-	vim.keymap.set("n", "<leader>gg", M.lazygit, { desc = "Lazygit" })
-
-	vim.env.EDITOR = 'nvim --server "$NVIM" --remote'
-
-	vim.api.nvim_create_autocmd("VimResized", {
-		callback = resize,
-	})
-
-	vim.api.nvim_create_autocmd("User", {
-		pattern = "LazyGitClosed",
-		callback = function()
-			local ok, gitsigns = pcall(require, "gitsigns")
-			if ok then
-				gitsigns.refresh()
-			end
 		end,
 	})
 end

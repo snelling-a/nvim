@@ -39,7 +39,7 @@ vim.api.nvim_create_autocmd({ "LspAttach" }, {
 		end
 
 		if client:supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight, bufnr) then
-			require("config.lsp_words").enable()
+			require("lsp_words").enable()
 		end
 
 		if client:supports_method(vim.lsp.protocol.Methods.textDocument_declaration, bufnr) then

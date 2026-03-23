@@ -1,8 +1,9 @@
 ---@alias LspWord {from:{[1]:number, [2]:number}, to:{[1]:number, [2]:number}}
 
-local M = {}
 local enabled = false
+---@type uv.uv_timer_t|nil
 local timer = nil
+---@type integer|nil
 local group = nil
 
 local ns = vim.api.nvim_create_namespace("nvim.lsp.references")
@@ -14,6 +15,7 @@ local VALID_MODES = { n = true, i = true, c = true }
 local function get_words()
 	local cursor = vim.api.nvim_win_get_cursor(0)
 	local current = nil
+	---@type LspWord[]
 	local words = {}
 
 	for _, extmark in ipairs(vim.api.nvim_buf_get_extmarks(0, ns, 0, -1, { details = true })) do
@@ -22,18 +24,37 @@ local function get_words()
 			to = { extmark[4].end_row + 1, extmark[4].end_col },
 		}
 		words[#words + 1] = w
-		if
-			cursor[1] >= w.from[1]
-			and cursor[1] <= w.to[1]
-			and cursor[2] >= w.from[2]
-			and cursor[2] <= w.to[2]
-		then
+		if cursor[1] >= w.from[1] and cursor[1] <= w.to[1] and cursor[2] >= w.from[2] and cursor[2] <= w.to[2] then
 			current = #words
 		end
 	end
 
 	return words, current
 end
+---@param count number
+local function jump(count)
+	local words, idx = get_words()
+	if not idx then
+		return
+	end
+
+	if #words == 1 then
+		vim.notify("No other references")
+		return
+	end
+
+	idx = (idx + count - 1) % #words + 1
+	local target = words[idx]
+
+	if target then
+		vim.cmd.normal({ "m`", bang = true })
+		vim.api.nvim_win_set_cursor(0, target.from)
+		vim.notify(("Reference [%d/%d]"):format(idx, #words))
+		vim.cmd.normal({ "zv", bang = true })
+	end
+end
+
+local M = {}
 
 ---@param mode string
 ---@return string
@@ -46,10 +67,9 @@ local function normalize_mode(mode)
 	return first:match("[ncitsvo]") or "n"
 end
 
----@param buf? number
 ---@return boolean
-local function has_highlight_support(buf)
-	buf = buf or vim.api.nvim_get_current_buf()
+local function has_highlight_support()
+	local buf = vim.api.nvim_get_current_buf()
 	for _, client in ipairs(vim.lsp.get_clients({ bufnr = buf })) do
 		if client:supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight, buf) then
 			return true
@@ -58,23 +78,18 @@ local function has_highlight_support(buf)
 	return false
 end
 
----@param opts? {buf?: number, check_mode?: boolean}
 ---@return boolean
-function M.is_enabled(opts)
+local function is_enabled()
 	if not enabled then
 		return false
 	end
 
-	opts = opts or {}
-
-	if opts.check_mode then
-		local mode = normalize_mode(vim.api.nvim_get_mode().mode)
-		if not VALID_MODES[mode] then
-			return false
-		end
+	local mode = normalize_mode(vim.api.nvim_get_mode().mode)
+	if not VALID_MODES[mode] then
+		return false
 	end
 
-	return has_highlight_support(opts.buf)
+	return has_highlight_support()
 end
 
 local function request_highlight()
@@ -83,7 +98,7 @@ local function request_highlight()
 	if timer then
 		timer:stop()
 	else
-		timer = vim.uv.new_timer()
+		timer = assert(vim.uv.new_timer())
 	end
 
 	timer:start(DEBOUNCE_MS, 0, function()
@@ -92,9 +107,9 @@ local function request_highlight()
 				return
 			end
 			vim.api.nvim_buf_call(buf, function()
-				if M.is_enabled({ check_mode = true }) then
-					vim.lsp.buf.document_highlight()
+				if is_enabled() then
 					vim.lsp.buf.clear_references()
+					vim.lsp.buf.document_highlight()
 				end
 			end)
 		end)
@@ -102,7 +117,7 @@ local function request_highlight()
 end
 
 local function on_cursor_move()
-	if not M.is_enabled({ check_mode = true }) then
+	if not is_enabled() then
 		vim.lsp.buf.clear_references()
 		return
 	end
@@ -113,7 +128,7 @@ local function on_cursor_move()
 	end
 end
 
-function M.disable()
+local function disable()
 	if not enabled then
 		return
 	end
@@ -158,35 +173,22 @@ function M.enable()
 	})
 
 	vim.keymap.set({ "n", "x", "o" }, "]]", function()
-		M.jump(vim.v.count1)
+		jump(vim.v.count1)
 	end, { desc = "Next reference" })
 
 	vim.keymap.set({ "n", "x", "o" }, "[[", function()
-		M.jump(-vim.v.count1)
+		jump(-vim.v.count1)
 	end, { desc = "Prev reference" })
 end
 
----@param count number
-function M.jump(count)
-	local words, idx = get_words()
-	if not idx then
-		return
+vim.api.nvim_create_user_command("LspWordsToggle", function()
+	if enabled then
+		disable()
+		vim.notify("LSP word highlighting disabled")
+	else
+		M.enable()
+		vim.notify("LSP word highlighting enabled")
 	end
-
-	if #words == 1 then
-		vim.notify("No other references")
-		return
-	end
-
-	idx = (idx + count - 1) % #words + 1
-	local target = words[idx]
-
-	if target then
-		vim.cmd.normal({ "m`", bang = true })
-		vim.api.nvim_win_set_cursor(0, target.from)
-		vim.notify(("Reference [%d/%d]"):format(idx, #words))
-		vim.cmd.normal({ "zv", bang = true })
-	end
-end
+end, { desc = "Toggle LSP word highlighting" })
 
 return M

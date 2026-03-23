@@ -1,7 +1,0 @@
-require("options")
-require("autocmds")
-require("commands")
-require("keymaps")
-require("config.lsp")
-require("config.terminal").setup()
-require("plugins")
