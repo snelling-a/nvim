@@ -40,15 +40,46 @@ local function parser_exists(lang)
 	return parsers[lang] ~= nil
 end
 
-local function ensure_installed(lang)
+---@type table<string, fun()[]?>
+local installing = {}
+
+---@param lang string
+---@param callback? fun():nil
+local function ensure_installed(lang, callback)
 	if is_installed(lang) then
-		return true
+		if callback then
+			callback()
+		end
+		return
+	end
+	if installing[lang] then
+		if callback then
+			table.insert(installing[lang], callback)
+		end
+		return
 	end
 	if not parser_exists(lang) then
-		return false
+		return
 	end
-	local ok = pcall(require("nvim-treesitter").install, { lang })
-	return ok
+	installing[lang] = { callback }
+	---@type boolean, async.Task
+	local ok, task = pcall(require("nvim-treesitter").install, { lang })
+	if not ok or not task then
+		installing[lang] = nil
+		return
+	end
+	task:await(function(err)
+		local callbacks = installing[lang] or {}
+		installing[lang] = nil
+		if err then
+			return
+		end
+		for _, cb in ipairs(callbacks) do
+			if cb then
+				vim.schedule(cb)
+			end
+		end
+	end)
 end
 
 for _, lang in ipairs(extra_languages) do
@@ -72,35 +103,13 @@ vim.api.nvim_create_autocmd("FileType", {
 			return
 		end
 
-		if ensure_installed(lang) then
-			vim.defer_fn(function()
-				if vim.api.nvim_buf_is_valid(ev.buf) and is_installed(lang) then
-					vim.treesitter.start(ev.buf, lang)
-				end
-			end, 1000)
-		end
+		ensure_installed(lang, function()
+			if vim.api.nvim_buf_is_valid(ev.buf) and is_installed(lang) then
+				vim.treesitter.start(ev.buf, lang)
+			end
+		end)
 	end,
 	desc = "Auto-install treesitter parser and start highlighting",
-})
-
-vim.api.nvim_create_autocmd("FileType", {
-	group = group,
-	callback = function(ev)
-		local ft = ev.match
-		local lang = vim.treesitter.language.get_lang(ft)
-		if not lang then
-			return
-		end
-
-		if is_installed(lang) then
-			vim.defer_fn(function()
-				if vim.api.nvim_buf_is_valid(ev.buf) then
-					pcall(vim.treesitter.highlighter.new, ev.buf, lang)
-				end
-			end, 100)
-		end
-	end,
-	desc = "Enable treesitter highlighting",
 })
 
 require("nvim-treesitter-textobjects").setup({

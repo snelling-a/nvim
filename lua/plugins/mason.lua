@@ -69,7 +69,8 @@ local function ensure_tools()
 	local registry = require("mason-registry")
 	local check_updates = should_check_updates()
 
-	local tools = {}
+	---@type table<string, boolean>
+	local tools = { ["tree-sitter-cli"] = true }
 	for _, server in ipairs(get_lsp_servers()) do
 		tools[server] = true
 	end
