@@ -9,7 +9,10 @@ require("fzf-lua").setup({
 	},
 	files = {
 		hidden = true,
-		cmd = "fd --color=never --type f --hidden --follow --exclude .git && fd --color=never --type f --hidden --no-ignore-vcs --glob '.env*' --exclude .git",
+		cmd = table.concat({
+			"fd --color=never --type f --hidden --follow --exclude .git",
+			"fd --color=never --type f --hidden --no-ignore-vcs --glob '.env*' --exclude .git",
+		}, " && "),
 	},
 	grep = { hidden = true },
 	lsp = {
