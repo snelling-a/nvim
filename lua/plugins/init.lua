@@ -7,6 +7,8 @@ vim.pack.add({
 	{ src = "https://tangled.org/cuducos.me/yaml.nvim" },
 }, { load = false })
 
+vim.pack.add({ { src = "https://github.com/neovim/nvim-lspconfig" } })
+
 local plugins_path = debug.getinfo(1, "S").source:sub(2):match("(.*/)")
 
 for _, file in ipairs(vim.fn.glob(plugins_path .. "*.lua", false, true)) do

@@ -11,6 +11,7 @@ require("conform").setup({
 	formatters_by_ft = {
 		css = { "prettierd", "prettier", stop_after_first = true },
 		go = { "goimports", "gofumpt" },
+		html = { "prettierd", "prettier", stop_after_first = true },
 		-- http = { "kulala-fmt" },
 		javascript = { "prettierd", "prettier", stop_after_first = true },
 		javascriptreact = { "prettierd", "prettier", stop_after_first = true },
@@ -29,7 +30,7 @@ require("conform").setup({
 	end,
 })
 
-vim.api.nvim_create_user_command("Format", function(args)
+vim.api.nvim_create_user_command("Format", function()
 	require("conform").format({
 		-- async = true,
 		lsp_format = "fallback",

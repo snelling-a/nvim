@@ -21,17 +21,20 @@ local function mark_update_checked()
 end
 
 local function get_lsp_servers()
+	---@type string[]
 	local servers = {}
-	for _, path in ipairs(vim.api.nvim_get_runtime_file("lsp/*.lua", true)) do
-		local name = vim.fs.basename(path):match("^(.*)%.lua$")
-		if name then
-			table.insert(servers, name)
+	local lsp_dir = vim.fn.stdpath("config") .. "/lsp"
+	for name, type in vim.fs.dir(lsp_dir) do
+		if type == "file" and name:match("%.lua$") then
+			table.insert(servers, name:match("^(.*)%.lua$"))
 		end
 	end
 	return servers
 end
 
+---@return string[]
 local function get_formatters()
+	---@type table<string, boolean>
 	local formatters = {}
 	local ok, conform = pcall(require, "conform")
 	if not ok then
@@ -39,16 +42,22 @@ local function get_formatters()
 	end
 	local formatters_by_ft = conform.formatters_by_ft or {}
 	for _, ft_formatters in pairs(formatters_by_ft) do
+		if type(ft_formatters) ~= "table" then
+			goto continue
+		end
 		for _, name in ipairs(ft_formatters) do
 			if type(name) == "string" then
 				formatters[name] = true
 			end
 		end
+		::continue::
 	end
 	return vim.tbl_keys(formatters)
 end
 
+---@return string[]
 local function get_linters()
+	---@type table<string, boolean>
 	local linters = {}
 	local ok, lint = pcall(require, "lint")
 	if not ok then
@@ -65,6 +74,9 @@ local function get_linters()
 	return vim.tbl_keys(linters)
 end
 
+-- TODO: remove once argparse rockspec supports Lua 5.5
+local skip = { "luacheck" }
+
 local function ensure_tools()
 	local registry = require("mason-registry")
 	local check_updates = should_check_updates()
@@ -79,6 +91,9 @@ local function ensure_tools()
 	end
 	for _, linter in ipairs(get_linters()) do
 		tools[linter] = true
+	end
+	for _, name in ipairs(skip) do
+		tools[name] = nil
 	end
 
 	registry.refresh(function()
