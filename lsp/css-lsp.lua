@@ -10,4 +10,3 @@ return {
 		less = { validate = true },
 	},
 }
-

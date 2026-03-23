@@ -35,8 +35,7 @@ vim.ui.open = function(path)
 
 	local is_uri = path:match("%w+:")
 	local is_half_url = path:match("%.com$") or path:match("%.com%.")
-	local is_repo = vim.bo.filetype == "lua"
-		and path:match("^[%w_%-%.]+/[%w_%-%.]+$")
+	local is_repo = vim.bo.filetype == "lua" and path:match("^[%w_%-%.]+/[%w_%-%.]+$")
 	local is_dir = path:match("^/")
 	local is_npm_package = vim.bo.filetype == "json"
 		and vim.fn.expand("%:t") == "package.json"
