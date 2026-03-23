@@ -1,15 +1,25 @@
+---@param str string
+---@param width integer
+---@return string
 local function pad_right(str, width)
 	return str .. string.rep(" ", width - #str)
 end
 
+---@param str string
+---@param width integer
+---@return string
 local function pad_left(str, width)
 	return string.rep(" ", width - #str) .. str
 end
 
+---@param info {quickfix: integer, id: integer, winid: integer, start_idx: integer, end_idx: integer}
+---@return string[]
 local function qftextfunc(info)
+	---@type {bufnr: integer, lnum: integer, col: integer, end_col: integer, text: string}[]
 	local items = info.quickfix == 1 and vim.fn.getqflist({ id = info.id, items = 0 }).items
 		or vim.fn.getloclist(info.winid, { id = info.id, items = 0 }).items
 
+	---@type {fname: string, loc: string, text: string}[]
 	local entries = {}
 	local max_fname = 0
 	local max_loc = 0

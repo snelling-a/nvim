@@ -5,6 +5,8 @@ local function sign_in(bufnr, client)
 		---@diagnostic disable-next-line: param-type-mismatch
 		"signIn",
 		vim.empty_dict(),
+		---@param err lsp.ResponseError?
+		---@param result {status: string, command: lsp.Command?, userCode: string?, verificationUri: string?, user: string?}
 		function(err, result)
 			if err then
 				vim.notify(err.message, vim.log.levels.ERROR)
@@ -12,6 +14,7 @@ local function sign_in(bufnr, client)
 			end
 			if result.command then
 				local code = result.userCode
+				---@type lsp.Command
 				local command = result.command
 				vim.fn.setreg("+", code)
 				vim.fn.setreg("*", code)
@@ -22,7 +25,7 @@ local function sign_in(bufnr, client)
 				if continue == 1 then
 					client:exec_cmd(command, { bufnr = bufnr }, function(cmd_err, cmd_result)
 						if cmd_err then
-							vim.notify(err.message, vim.log.levels.ERROR)
+							vim.notify(cmd_err.message, vim.log.levels.ERROR)
 							return
 						end
 						if cmd_result.status == "OK" then

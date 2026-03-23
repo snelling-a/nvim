@@ -90,12 +90,12 @@ vim.keymap.set({ "n" }, "<leader>tw", function()
 end, { desc = "[T]oggle [W]rap" })
 
 vim.keymap.set({ "n" }, "<leader>u", function()
-	local loaded, undotree = pcall(require, "undotree")
-
-	if not loaded then
+	if not package.loaded["undotree"] then
 		pcall(vim.cmd.packadd, "nvim.undotree")
-		undotree = require("undotree")
 	end
+
+	---@diagnostic disable-next-line: no-unknown
+	local undotree = require("undotree")
 
 	local split_width = math.floor(vim.o.columns * 0.25 + 0.5)
 

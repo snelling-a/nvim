@@ -1,9 +1,18 @@
 local M = {}
 
+---@alias Notification {msg: string, level: integer, time: number}
+---@alias NotifHighlight {hl: string, col: integer, end_col: integer}
+---@alias LspProgress {name: string, msg: string}
+
+---@type Notification[]
 local notifications = {}
+---@type table<integer, LspProgress>
 local lsp_progress = {}
+---@type integer?
 local win = nil
+---@type integer?
 local buf = nil
+---@type uv.uv_timer_t?
 local timer = nil
 local ns = vim.api.nvim_create_namespace("notify")
 
@@ -51,13 +60,17 @@ local function render()
 		return
 	end
 
+	---@type string[]
 	local lines = {}
+	---@type NotifHighlight[]
 	local highlights = {}
 
 	for _, client_progress in pairs(lsp_progress) do
+		---@type string
 		local spinner = SPINNER[spinner_idx]
 		local line = spinner .. " " .. client_progress.name .. ": " .. (client_progress.msg or "")
 		if #line > MAX_WIDTH then
+			---@type string
 			line = line:sub(1, MAX_WIDTH - 1) .. "…"
 		end
 		lines[#lines + 1] = line
@@ -69,6 +82,7 @@ local function render()
 		local hl = hls[notif.level] or hls[vim.log.levels.INFO]
 		local line = icon .. notif.msg
 		if #line > MAX_WIDTH then
+			---@type string
 			line = line:sub(1, MAX_WIDTH - 1) .. "…"
 		end
 		lines[#lines + 1] = line
@@ -80,6 +94,7 @@ local function render()
 		highlights = vim.list_slice(highlights, #highlights - MAX_LINES + 1)
 	end
 
+	---@type integer
 	local width = 0
 	for _, line in ipairs(lines) do
 		width = math.max(width, vim.api.nvim_strwidth(line))
@@ -107,7 +122,7 @@ local function render()
 		relative = "editor",
 		row = row,
 		col = col,
-		width = width,
+		width = width --[[@as integer]],
 		height = #lines,
 		style = "minimal",
 		border = "none",
@@ -128,7 +143,7 @@ local function schedule_cleanup()
 	if timer then
 		timer:stop()
 	else
-		timer = vim.uv.new_timer()
+		timer = assert(vim.uv.new_timer())
 	end
 
 	timer:start(DISPLAY_MS, FADE_MS, function()
@@ -144,7 +159,10 @@ local function schedule_cleanup()
 	end)
 end
 
-function M.notify(msg, level, _opts)
+---@param msg string?
+---@param level integer?
+---@param _opts table?
+local function notify(msg, level, _opts)
 	if not msg or msg == "" then
 		return
 	end
@@ -163,13 +181,14 @@ function M.notify(msg, level, _opts)
 	schedule_cleanup()
 end
 
+---@type uv.uv_timer_t?
 local spinner_timer = nil
 
 local function start_spinner()
 	if spinner_timer then
 		return
 	end
-	spinner_timer = vim.uv.new_timer()
+	spinner_timer = assert(vim.uv.new_timer())
 	spinner_timer:start(0, SPINNER_MS, function()
 		vim.schedule(function()
 			spinner_idx = spinner_idx % #SPINNER + 1
@@ -186,12 +205,15 @@ local function start_spinner()
 	end)
 end
 
+---@alias LspProgressValue {kind: string, title: string?, message: string?, percentage: integer?}
+---@param ev {data: {client_id: integer, params: {value: LspProgressValue}}}
 local function on_progress(ev)
 	local client = vim.lsp.get_client_by_id(ev.data.client_id)
 	if not client then
 		return
 	end
 
+	---@type {kind: string, title: string?, message: string?, percentage: integer?}
 	local value = ev.data.params.value
 	local key = ev.data.client_id
 
@@ -203,6 +225,7 @@ local function on_progress(ev)
 		return
 	end
 
+	---@type string
 	local msg = value.title or ""
 	if value.message then
 		msg = msg .. " " .. value.message
@@ -216,22 +239,25 @@ local function on_progress(ev)
 end
 
 -- Keep history of all notifications
+---@type {msg: string, level: integer, time: string}[]
 local history = {}
 local MAX_HISTORY = 100
 
-local original_notify = M.notify
+---@param msg string?
+---@param level integer?
+---@param opts table?
 function M.notify(msg, level, opts)
 	if msg and msg ~= "" then
 		table.insert(history, {
 			msg = msg,
 			level = level or vim.log.levels.INFO,
-			time = os.date("%H:%M:%S"),
+			time = os.date("%H:%M:%S") --[[@as string]],
 		})
 		if #history > MAX_HISTORY then
 			table.remove(history, 1)
 		end
 	end
-	return original_notify(msg, level, opts)
+	notify(msg, level, opts)
 end
 
 local level_names = {

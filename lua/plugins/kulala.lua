@@ -15,6 +15,7 @@ vim.api.nvim_create_autocmd("FileType", {
 
 		-- Install kulala_http parser if not present
 		local ok, parsers = pcall(require, "nvim-treesitter.parsers")
+		---@diagnostic disable-next-line: undefined-field
 		if ok and parsers.kulala_http and not parsers.kulala_http.installed then
 			vim.cmd("TSInstall kulala_http")
 		end

@@ -16,7 +16,8 @@ return {
 			for _, file in ipairs(flat_config_files) do
 				if vim.fn.filereadable(root_dir .. "/" .. file) == 1 then
 					config.settings.experimental = config.settings.experimental or {}
-					config.settings.experimental.useFlatConfig = true
+					---@diagnostic disable-next-line: inject-field
+				config.settings.experimental.useFlatConfig = true
 					break
 				end
 			end
@@ -92,7 +93,7 @@ return {
 		format = true,
 		nodePath = "",
 		onIgnoredFiles = "off",
-		packageManager = nil,
+		packageManager = vim.NIL,
 		problems = { shortenToSingleLine = false },
 		quiet = false,
 		rulesCustomizations = {},

@@ -29,6 +29,7 @@ local function apply_ts_highlights()
 	local lines = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
 
 	for i, line in ipairs(lines) do
+		---@type {bufnr: integer, lnum: integer, col: integer, text: string}
 		local item = items[i]
 		if not item or item.bufnr == 0 then
 			goto continue
@@ -55,7 +56,8 @@ local function apply_ts_highlights()
 		if not vim.api.nvim_buf_is_valid(item.bufnr) then
 			goto continue
 		end
-		local ft = vim.bo[item.bufnr].filetype
+		---@type string
+	local ft = vim.bo[item.bufnr].filetype
 		if ft == "" then
 			-- Try to get filetype from filename
 			local fname = vim.fn.bufname(item.bufnr)
@@ -141,6 +143,7 @@ local function get_entry()
 end
 
 local function open_entry(cmd)
+	---@type {bufnr: integer, lnum: integer, col: integer}?
 	local entry = get_entry()
 	if not entry or entry.bufnr == 0 then
 		return
