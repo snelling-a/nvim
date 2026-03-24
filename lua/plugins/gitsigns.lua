@@ -29,18 +29,18 @@ require("gitsigns").setup({
 			vim.keymap.set(mode, l, r, opts)
 		end
 
-		map("n", "]h", function()
+		map("n", "]c", function()
 			if vim.wo.diff then
-				vim.cmd.normal({ "]h", bang = true })
+				vim.cmd.normal({ "]c", bang = true })
 			else
 				---@diagnostic disable-next-line: param-type-mismatch
 				gs.nav_hunk("next")
 			end
 		end, { desc = "Next hunk" })
 
-		map("n", "[h", function()
+		map("n", "[c", function()
 			if vim.wo.diff then
-				vim.cmd.normal({ "[h", bang = true })
+				vim.cmd.normal({ "[c", bang = true })
 			else
 				---@diagnostic disable-next-line: param-type-mismatch
 				gs.nav_hunk("prev")

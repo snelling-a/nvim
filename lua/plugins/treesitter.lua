@@ -92,9 +92,7 @@ for _, lang in ipairs(extra_languages) do
 	ensure_installed(lang)
 end
 
-vim.opt.runtimepath:prepend(
-	vim.fn.stdpath("data") .. "/site/pack/core/opt/nvim-treesitter/runtime"
-)
+vim.opt.runtimepath:prepend(vim.fn.stdpath("data") .. "/site/pack/core/opt/nvim-treesitter/runtime")
 
 local group = vim.api.nvim_create_augroup("treesitter-auto-install", { clear = true })
 vim.api.nvim_create_autocmd("FileType", {
@@ -130,15 +128,15 @@ local move = require("nvim-treesitter-textobjects.move")
 local swap = require("nvim-treesitter-textobjects.swap")
 
 local textobjects = {
-	{ "af", "@function.outer", "a function" },
-	{ "if", "@function.inner", "inner function" },
-	{ "ac", "@class.outer", "a class" },
-	{ "ic", "@class.inner", "inner class" },
 	{ "aa", "@parameter.outer", "a argument" },
-	{ "ia", "@parameter.inner", "inner argument" },
+	{ "ac", "@class.outer", "a class" },
+	{ "af", "@function.outer", "a function" },
 	{ "ai", "@conditional.outer", "a if/conditional" },
-	{ "ii", "@conditional.inner", "inner if/conditional" },
 	{ "al", "@loop.outer", "a loop" },
+	{ "ia", "@parameter.inner", "inner argument" },
+	{ "ic", "@class.inner", "inner class" },
+	{ "if", "@function.inner", "inner function" },
+	{ "ii", "@conditional.inner", "inner if/conditional" },
 	{ "il", "@loop.inner", "inner loop" },
 }
 
@@ -150,12 +148,12 @@ for _, obj in ipairs(textobjects) do
 end
 
 local movements = {
-	{ "]f", "@function.outer", "next function" },
-	{ "]c", "@class.outer", "next class" },
-	{ "]a", "@parameter.outer", "next argument" },
-	{ "[f", "@function.outer", "prev function" },
-	{ "[c", "@class.outer", "prev class" },
 	{ "[a", "@parameter.outer", "prev argument" },
+	{ "[f", "@function.outer", "prev function" },
+	{ "[t", "@class.outer", "prev class/type" },
+	{ "]a", "@parameter.outer", "next argument" },
+	{ "]f", "@function.outer", "next function" },
+	{ "]t", "@class.outer", "next class/type" },
 }
 
 for _, m in ipairs(movements) do
