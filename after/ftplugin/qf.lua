@@ -57,7 +57,7 @@ local function apply_ts_highlights()
 			goto continue
 		end
 		---@type string
-	local ft = vim.bo[item.bufnr].filetype
+		local ft = vim.bo[item.bufnr].filetype
 		if ft == "" then
 			-- Try to get filetype from filename
 			local fname = vim.fn.bufname(item.bufnr)
