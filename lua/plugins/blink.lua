@@ -6,6 +6,11 @@ vim.pack.add({
 require("blink.cmp").setup({
 	completion = {
 		documentation = { auto_show = true },
+		menu = {
+			auto_show = function()
+				return not vim.lsp.inline_completion.get()
+			end,
+		},
 	},
 	fuzzy = { implementation = "lua" },
 	keymap = {
