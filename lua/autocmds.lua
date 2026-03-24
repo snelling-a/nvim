@@ -88,6 +88,33 @@ vim.api.nvim_create_autocmd({ "UIEnter" }, {
 	once = true,
 })
 
+local ui_group = vim.api.nvim_create_augroup("user.ui", {})
+
+vim.api.nvim_create_autocmd({ "CmdlineEnter", "FocusLost", "InsertEnter", "WinLeave" }, {
+	callback = function()
+		if vim.bo.buftype ~= "" then
+			return
+		end
+		vim.wo.relativenumber = false
+		vim.wo.cursorline = false
+	end,
+	desc = "Disable UI elements for unfocused windows",
+	group = ui_group,
+})
+
+vim.api.nvim_create_autocmd({ "BufEnter", "CmdlineLeave", "FocusGained", "InsertLeave", "WinEnter" }, {
+	callback = function()
+		if vim.bo.buftype ~= "" then
+			return
+		end
+		vim.wo.number = true
+		vim.wo.relativenumber = true
+		vim.wo.cursorline = true
+	end,
+	desc = "Enable UI elements for focused windows",
+	group = ui_group,
+})
+
 vim.api.nvim_create_autocmd({ "VimResized" }, {
 	callback = function()
 		local current_tab = vim.fn.tabpagenr()
