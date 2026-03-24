@@ -92,7 +92,9 @@ for _, lang in ipairs(extra_languages) do
 	ensure_installed(lang)
 end
 
-vim.treesitter.language.add("lua", { luadoc = "luadoc" })
+vim.opt.runtimepath:prepend(
+	vim.fn.stdpath("data") .. "/site/pack/core/opt/nvim-treesitter/runtime"
+)
 
 local group = vim.api.nvim_create_augroup("treesitter-auto-install", { clear = true })
 vim.api.nvim_create_autocmd("FileType", {
