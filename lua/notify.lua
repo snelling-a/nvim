@@ -299,7 +299,7 @@ end
 
 function M.setup()
 	vim.notify = M.notify
-	vim.api.nvim_create_autocmd("LspProgress", {
+	vim.api.nvim_create_autocmd({ "LspProgress" }, {
 		callback = on_progress,
 		desc = "LSP progress handler",
 	})

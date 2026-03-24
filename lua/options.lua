@@ -57,7 +57,7 @@ vim.o.virtualedit = "block"
 vim.o.winborder = "rounded"
 vim.o.wrap = false
 
-vim.api.nvim_create_autocmd("FileType", {
+vim.api.nvim_create_autocmd({ "FileType" }, {
 	callback = function()
 		vim.cmd("setlocal formatoptions-=c formatoptions-=o")
 	end,

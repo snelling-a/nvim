@@ -73,7 +73,7 @@ local function open(opts)
 		vim.opt_local.relativenumber = false
 		vim.opt_local.signcolumn = "no"
 
-		vim.api.nvim_create_autocmd("TermClose", {
+		vim.api.nvim_create_autocmd({ "TermClose" }, {
 			buffer = t.buf,
 			callback = function()
 				if t.win and vim.api.nvim_win_is_valid(t.win) then

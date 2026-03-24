@@ -9,7 +9,9 @@ vim.pack.add({
 
 local plugins_path = debug.getinfo(1, "S").source:sub(2):match("(.*/)")
 
-for _, file in ipairs(vim.fn.glob(plugins_path .. "*.lua", false, true) --[[@as string[] ]]) do
+for _, file in
+	ipairs(vim.fn.glob(plugins_path .. "*.lua", false, true) --[[@as string[] ]])
+do
 	local name = vim.fn.fnamemodify(file, ":t:r")
 	if name ~= "init" then
 		require("plugins." .. name)

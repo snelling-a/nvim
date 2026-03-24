@@ -106,7 +106,7 @@ end
 
 vim.schedule(apply_ts_highlights)
 
-vim.api.nvim_create_autocmd("BufWinEnter", {
+vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
 	buffer = 0,
 	callback = function()
 		vim.schedule(apply_ts_highlights)

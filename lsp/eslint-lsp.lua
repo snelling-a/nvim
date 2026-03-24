@@ -17,7 +17,7 @@ return {
 				if vim.fn.filereadable(root_dir .. "/" .. file) == 1 then
 					config.settings.experimental = config.settings.experimental or {}
 					---@diagnostic disable-next-line: inject-field
-				config.settings.experimental.useFlatConfig = true
+					config.settings.experimental.useFlatConfig = true
 					break
 				end
 			end
