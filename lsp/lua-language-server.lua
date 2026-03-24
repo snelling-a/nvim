@@ -3,7 +3,9 @@ local library = {
 	vim.env.VIMRUNTIME .. "/lua",
 }
 
-for _, path in ipairs(vim.fn.glob(vim.fn.stdpath("data") .. "/site/pack/*/opt/*/lua", false, true) --[[@as string[] ]]) do
+---@type string[]
+local plugin_paths = vim.fn.glob(vim.fn.stdpath("data") .. "/site/pack/*/opt/*/lua", false, true)
+for _, path in ipairs(plugin_paths) do
 	table.insert(library, path)
 end
 
