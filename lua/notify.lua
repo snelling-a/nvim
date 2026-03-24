@@ -148,12 +148,20 @@ local function schedule_cleanup()
 
 	timer:start(DISPLAY_MS, FADE_MS, function()
 		vim.schedule(function()
-			if #notifications > 0 then
-				table.remove(notifications, 1)
-				render()
-			end
-			if #notifications == 0 and timer then
-				timer:stop()
+			local ok, err = pcall(function()
+				if #notifications > 0 then
+					table.remove(notifications, 1)
+					render()
+				end
+				if #notifications == 0 and timer then
+					timer:stop()
+				end
+			end)
+			if not ok then
+				if timer then
+					timer:stop()
+				end
+				vim.api.nvim_echo({ { "notify: " .. tostring(err), "ErrorMsg" } }, true, {})
 			end
 		end)
 	end)
@@ -191,15 +199,25 @@ local function start_spinner()
 	spinner_timer = assert(vim.uv.new_timer())
 	spinner_timer:start(0, SPINNER_MS, function()
 		vim.schedule(function()
-			spinner_idx = spinner_idx % #SPINNER + 1
-			if not vim.tbl_isempty(lsp_progress) then
-				render()
-			else
+			local ok, err = pcall(function()
+				spinner_idx = spinner_idx % #SPINNER + 1
+				if not vim.tbl_isempty(lsp_progress) then
+					render()
+				else
+					if spinner_timer then
+						spinner_timer:stop()
+						spinner_timer:close()
+						spinner_timer = nil
+					end
+				end
+			end)
+			if not ok then
 				if spinner_timer then
 					spinner_timer:stop()
 					spinner_timer:close()
 					spinner_timer = nil
 				end
+				vim.api.nvim_echo({ { "notify: " .. tostring(err), "ErrorMsg" } }, true, {})
 			end
 		end)
 	end)

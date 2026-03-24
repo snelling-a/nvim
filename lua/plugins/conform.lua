@@ -1,12 +1,5 @@
 vim.pack.add({ { src = "https://github.com/stevearc/conform.nvim" } })
 
-vim.api.nvim_create_autocmd("BufWritePre", {
-	pattern = "*",
-	callback = function(args)
-		require("conform").format({ bufnr = args.buf })
-	end,
-})
-
 require("conform").setup({
 	formatters_by_ft = {
 		css = { "prettierd", "prettier", stop_after_first = true },
@@ -31,11 +24,7 @@ require("conform").setup({
 })
 
 vim.api.nvim_create_user_command("Format", function()
-	require("conform").format({
-		-- async = true,
-		lsp_format = "fallback",
-		require("conform").format({ async = true, lsp_format = "fallback" }),
-	})
+	require("conform").format({ async = true, lsp_format = "fallback" })
 end, {})
 
 vim.api.nvim_create_user_command("FormatDisable", function(args)

@@ -66,12 +66,18 @@ local function ensure_installed(lang, callback)
 	local ok, task = pcall(require("nvim-treesitter").install, { lang })
 	if not ok or not task then
 		installing[lang] = nil
+		vim.schedule(function()
+			vim.notify("Treesitter: failed to install " .. lang, vim.log.levels.WARN)
+		end)
 		return
 	end
 	task:await(function(err)
 		local callbacks = installing[lang] or {}
 		installing[lang] = nil
 		if err then
+			vim.schedule(function()
+				vim.notify("Treesitter: failed to install " .. lang .. ": " .. tostring(err), vim.log.levels.WARN)
+			end)
 			return
 		end
 		for _, cb in ipairs(callbacks) do

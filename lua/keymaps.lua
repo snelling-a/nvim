@@ -13,7 +13,7 @@ for _, value in ipairs({ "j", "k" }) do
 			return "g" .. value
 		end
 	end, {
-		desc = "Move to " .. value == "j" and "next" or "previous" .. " visual line",
+		desc = "Move to " .. (value == "j" and "next" or "previous") .. " visual line",
 		expr = true,
 		noremap = true,
 	})

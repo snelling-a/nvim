@@ -32,9 +32,12 @@ local group = vim.api.nvim_create_augroup("user.lsp", {})
 vim.api.nvim_create_autocmd({ "LspAttach" }, {
 	group = group,
 	callback = function(args)
-		local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
+		local client = vim.lsp.get_client_by_id(args.data.client_id)
+		if not client then
+			return
+		end
 		local bufnr = args.buf
-		if client and client.server_capabilities then
+		if client.server_capabilities then
 			client.server_capabilities.semanticTokensProvider = nil
 		end
 
