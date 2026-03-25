@@ -100,6 +100,7 @@ local function ensure_tools()
 		for name in pairs(tools) do
 			local ok, pkg = pcall(registry.get_package, name)
 			if not ok then
+				vim.notify("Mason: " .. name .. " not in registry", vim.log.levels.DEBUG)
 				goto continue
 			end
 

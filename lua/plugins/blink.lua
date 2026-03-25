@@ -8,7 +8,9 @@ require("blink.cmp").setup({
 		documentation = { auto_show = true },
 		menu = {
 			auto_show = function()
-				return not vim.lsp.inline_completion.get()
+				local ns = vim.api.nvim_create_namespace("nvim.lsp.inline_completion")
+				local marks = vim.api.nvim_buf_get_extmarks(0, ns, 0, -1, {})
+				return #marks == 0
 			end,
 		},
 	},
