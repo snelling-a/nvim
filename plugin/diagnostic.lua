@@ -28,7 +28,9 @@ vim.diagnostic.config({
 	},
 	severity_sort = true,
 	signs = signs,
-	status = signs,
+	status = {
+		format = signs.text,
+	},
 	underline = { severity = { min = vim.diagnostic.severity.HINT, max = vim.diagnostic.severity.ERROR } },
 })
 
