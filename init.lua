@@ -3,4 +3,9 @@ require("options")
 require("autocmds")
 require("commands")
 require("keymaps")
-require("plugins")
+
+if vim.g.vscode then
+	require("vscode-keymaps")
+else
+	require("plugins")
+end
