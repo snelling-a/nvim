@@ -71,10 +71,10 @@ vim.api.nvim_create_autocmd({ "TextYankPost" }, {
 
 vim.api.nvim_create_autocmd({ "UIEnter" }, {
 	callback = function()
-		if vim.g.strive_startup_time ~= nil then
+		if vim.g.nvim_startup_time ~= nil then
 			return
 		end
-		vim.g.strive_startup_time = 0
+		vim.g.nvim_startup_time = 0
 		local usage = vim.uv.getrusage()
 		if usage then
 			local user_time = (usage.utime.sec * 1000) + (usage.utime.usec / 1000)

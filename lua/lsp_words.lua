@@ -145,6 +145,10 @@ local function disable()
 		group = nil
 	end
 
+	pcall(vim.keymap.del, { "n", "x", "o" }, "]]")
+	pcall(vim.keymap.del, { "n", "x", "o" }, "[[")
+
+
 	for _, buf in ipairs(vim.api.nvim_list_bufs()) do
 		if vim.api.nvim_buf_is_valid(buf) then
 			vim.api.nvim_buf_clear_namespace(buf, ns, 0, -1)

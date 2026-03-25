@@ -7,7 +7,7 @@ end
 
 for _, value in ipairs({ "j", "k" }) do
 	vim.keymap.set({ "n", "x" }, value, function()
-		if vim.v.count > 0 and vim.v.count >= 3 then
+		if vim.v.count >= 3 then
 			return "m'" .. vim.v.count .. value
 		else
 			return "g" .. value

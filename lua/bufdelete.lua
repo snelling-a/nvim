@@ -45,7 +45,10 @@ local function _delete(buf, opts)
 	end
 
 	if vim.api.nvim_buf_is_valid(buf) then
-		pcall(vim.cmd.bwipeout, { buf, bang = true })
+		local ok, err = pcall(vim.cmd.bwipeout, { buf, bang = true })
+		if not ok then
+			vim.notify("bufdelete: " .. tostring(err), vim.log.levels.ERROR)
+		end
 	end
 end
 

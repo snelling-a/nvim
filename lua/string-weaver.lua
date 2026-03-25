@@ -7,17 +7,13 @@ local lua_string_mod_pattern = "%%s[*+-]"
 local newline_or_cr = "[\n\r]"
 local remove_format_pattern = "%((.*)%):format%(.*%)"
 
----@diagnostic disable-next-line: param-type-mismatch
-local can_undojoin = pcall(vim.cmd, "undojoin")
-
 ---@param node TSNode
 ---@param replacement string
 local function replace_node_text(node, replacement)
 	local start_row, start_column, end_row, end_column = node:range()
 	local lines = vim.split(replacement, "\n")
-	if can_undojoin then
-		vim.cmd.undojoin()
-	end
+	---@diagnostic disable-next-line: param-type-mismatch
+	pcall(vim.cmd, "undojoin")
 	vim.api.nvim_buf_set_text(0, start_row, start_column, end_row, end_column, lines)
 end
 

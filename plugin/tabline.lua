@@ -30,17 +30,56 @@ local function truncate_by_display_width(str, max_width, from_end)
 
 	if from_end then
 		local num_chars = #str
-		while num_chars > 0 and vim.fn.strdisplaywidth(vim.strcharpart(str, num_chars - 1)) > max_width do
+		while num_chars > 0 and vim.fn.strdisplaywidth(vim.fn.strcharpart(str, num_chars - 1)) > max_width do
 			num_chars = num_chars - 1
 		end
-		return vim.strcharpart(str, num_chars)
+		return vim.fn.strcharpart(str, num_chars)
 	else
 		local num_chars = 0
-		while num_chars < #str and vim.fn.strdisplaywidth(vim.strcharpart(str, 0, num_chars + 1)) <= max_width do
+		while num_chars < #str and vim.fn.strdisplaywidth(vim.fn.strcharpart(str, 0, num_chars + 1)) <= max_width do
 			num_chars = num_chars + 1
 		end
-		return vim.strcharpart(str, 0, num_chars)
+		return vim.fn.strcharpart(str, 0, num_chars)
 	end
+end
+
+---@param buf TabData
+---@param hl string
+---@return string
+local function format_tab(buf, hl)
+	return "%#" .. hl .. "#%" .. buf.page .. "T" .. buf.name .. "%T"
+end
+
+---@param bufs TabData[]
+---@param space integer
+---@param from_end boolean
+---@param cur_idx integer
+---@return string
+local function build_segment(bufs, space, from_end, cur_idx)
+	local line = ""
+	local content_len = 0
+
+	for _, buf in ipairs(bufs) do
+		local buf_alias = buf.name
+
+		if content_len + len(buf_alias) > space then
+			local truncate_to_len = space - content_len
+			if truncate_to_len > 0 then
+				buf_alias = truncate_by_display_width(buf_alias, truncate_to_len, from_end)
+				local hl = (buf.page == cur_idx and "TabLineSel" or "Tabline")
+				local tab = "%#" .. hl .. "#%" .. buf.page .. "T" .. buf_alias .. "%T"
+				line = from_end and (tab .. line) or (line .. tab)
+			end
+			break
+		else
+			content_len = content_len + len(buf_alias)
+			local hl = (buf.page == cur_idx and "TabLineSel" or "Tabline")
+			local tab = "%#" .. hl .. "#%" .. buf.page .. "T" .. buf_alias .. "%T"
+			line = from_end and (tab .. line) or (line .. tab)
+		end
+	end
+
+	return line
 end
 
 ---@param tabpage integer
@@ -57,21 +96,18 @@ end
 local function fetch_buf_name(bufnr)
 	local buf = vim.bo[bufnr]
 
-	local buftype = buf.buftype
-	local filetype = buf.filetype
-
 	local buf_name = vim.api.nvim_buf_get_name(bufnr)
 
-	if buftype == "terminal" then
-		local title = vim.b[bufnr].term_title
+	if buf.buftype == "terminal" then
+		local title = vim.b[bufnr].term_title or ""
 		return "  " .. title:gsub("~/.*/", "")
-	elseif filetype == "checkhealth" then
+	elseif buf.filetype == "checkhealth" then
 		return "Checkhealth"
-	elseif filetype == "qf" then
+	elseif buf.filetype == "qf" then
 		return "QuickFix"
-	elseif filetype == "mason" then
+	elseif buf.filetype == "mason" then
 		return "Mason"
-	elseif filetype == "help" and not buf.modifiable then
+	elseif buf.filetype == "help" and not buf.modifiable then
 		return " " .. vim.fn.fnamemodify(buf_name, ":t")
 	elseif buf_name == "kulala://ui" then
 		return "Kulala"
@@ -79,7 +115,7 @@ local function fetch_buf_name(bufnr)
 		return vim.fn.fnamemodify(buf_name, ":t")
 	elseif buf_name == "" then
 		return "[No Name]"
-	elseif buftype == "" then
+	elseif buf.buftype == "" then
 		local relative_path = vim.fn.fnamemodify(buf_name, ":.")
 
 		return relative_path
@@ -205,7 +241,7 @@ local function cleanup_bufs(base_bufs)
 		end
 	end
 
-	if path_alias_cache.buf_list == nil or vim.deepcopy(base_file_names) ~= path_alias_cache.buf_list then
+	if not vim.deep_equal(base_file_names, path_alias_cache.buf_list) then
 		path_alias_cache.buf_list = vim.deepcopy(base_file_names)
 		path_alias_cache.aliases = calculate_unambiguous_paths(base_file_names)
 	end
@@ -252,6 +288,9 @@ local function render()
 
 	local processed_bufs = cleanup_bufs(base_bufs)
 	local cur_tab_data = processed_bufs[cur_idx]
+	if not cur_tab_data then
+		return ""
+	end
 	local num_tabs = #processed_bufs
 	local cols = vim.go.columns
 	local is_init = cur_idx == 1
@@ -264,6 +303,7 @@ local function render()
 
 		local trunc = truncate_by_display_width(cur_tab_data.name, cols - padding - LEN_CUT)
 
+		---@type string
 		local line = ""
 
 		if not is_init then
@@ -294,14 +334,12 @@ local function render()
 		end
 
 		if content_len <= cols then
+			---@type string
 			local line = ""
-
 			for _, buf in ipairs(processed_bufs) do
 				local hl = (buf.page == cur_idx and "TabLineSel" or "Tabline")
-
-				line = line .. "%#" .. hl .. "#%" .. buf.page .. "T" .. buf.name .. "%T"
+				line = line .. format_tab(buf, hl)
 			end
-
 			return line .. "%#TabLineFill#"
 		end
 
@@ -309,54 +347,20 @@ local function render()
 		local cur_is_end = content_len - cur_mid < cols / 2
 
 		if cur_is_start or cur_is_end then
-			local line = ""
-			local actual_content_len = 0
+			local from_end = not cur_is_start
+			local space = cols - LEN_PAD
 
+			---@type TabData[]
+			local ordered_bufs = {}
 			local loop_start = cur_is_start and 1 or num_tabs
 			local loop_end = cur_is_start and num_tabs or 1
 			local loop_step = cur_is_start and 1 or -1
-
-			local space = cols - LEN_PAD
-
 			for i = loop_start, loop_end, loop_step do
-				local buf = processed_bufs[i]
-
-				local buf_alias = buf.name
-
-				if actual_content_len + len(buf.name) > space then
-					local truncate_to_len = space - actual_content_len
-
-					if truncate_to_len > 0 then
-						if cur_is_start then
-							buf_alias = truncate_by_display_width(buf_alias, truncate_to_len, false)
-						else
-							buf_alias = truncate_by_display_width(buf_alias, truncate_to_len, true)
-						end
-
-						local hl = (buf.page == cur_idx and "TabLineSel" or "Tabline")
-						local this_tab = "%#" .. hl .. "#%" .. buf.page .. "T" .. buf_alias .. "%T"
-
-						if cur_is_start then
-							line = line .. this_tab
-						else
-							line = this_tab .. line
-						end
-					end
-
-					break
-				else
-					actual_content_len = actual_content_len + len(buf_alias)
-
-					local hl = (buf.page == cur_idx and "TabLineSel" or "Tabline")
-					local this_tab = "%#" .. hl .. "#%" .. buf.page .. "T" .. buf_alias .. "%T"
-
-					if cur_is_start then
-						line = line .. this_tab
-					else
-						line = this_tab .. line
-					end
-				end
+				ordered_bufs[#ordered_bufs + 1] = processed_bufs[i]
 			end
+
+			---@type string
+			local line = build_segment(ordered_bufs, space, from_end, cur_idx)
 
 			if cur_is_start then
 				line = line .. hl_more
@@ -371,57 +375,17 @@ local function render()
 			local l_space = math.floor(space_for_other_tabs / 2)
 			local r_space = math.ceil(space_for_other_tabs / 2)
 
-			local r_line = ""
-			local r_content_len = 0
-			for i = cur_idx + 1, num_tabs do
-				local buf = processed_bufs[i]
-				local buf_alias = buf.name
+			local r_bufs = { unpack(processed_bufs, cur_idx + 1, num_tabs) }
+			local r_line = build_segment(r_bufs, r_space, false, cur_idx)
 
-				if r_content_len + len(buf_alias) > r_space then
-					local truncate_to_len = r_space - r_content_len
-
-					if truncate_to_len > 0 then
-						buf_alias = truncate_by_display_width(buf_alias, truncate_to_len, false)
-
-						r_line = r_line .. "%#Tabline#%" .. buf.page .. "T" .. buf_alias .. "%T"
-					end
-
-					break
-				else
-					r_content_len = r_content_len + len(buf_alias)
-
-					r_line = r_line .. "%#Tabline#%" .. buf.page .. "T" .. buf_alias .. "%T"
-				end
-			end
-
-			local l_line = ""
-			local l_content_len = 0
+			---@type TabData[]
+			local l_bufs = {}
 			for i = cur_idx - 1, 1, -1 do
-				local buf = processed_bufs[i]
-				local buf_alias = buf.name
-
-				if l_content_len + len(buf_alias) > l_space then
-					local truncate_to_len = l_space - l_content_len
-
-					if truncate_to_len > 0 then
-						buf_alias = truncate_by_display_width(buf_alias, truncate_to_len, true)
-
-						l_line = "%#Tabline#%" .. buf.page .. "T" .. buf_alias .. "%T" .. l_line
-					end
-
-					break
-				else
-					l_content_len = l_content_len + len(buf_alias)
-
-					l_line = "%#Tabline#%" .. buf.page .. "T" .. buf_alias .. "%T" .. l_line
-				end
+				l_bufs[#l_bufs + 1] = processed_bufs[i]
 			end
+			local l_line = build_segment(l_bufs, l_space, true, cur_idx)
 
-			local line = hl_more .. l_line
-
-			line = line .. "%#TabLineSel#%" .. cur_tab_data.page .. "T" .. cur_tab_data.name .. "%T"
-
-			return line .. r_line .. hl_more
+			return hl_more .. l_line .. format_tab(cur_tab_data, "TabLineSel") .. r_line .. hl_more
 		end
 	end
 end

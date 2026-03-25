@@ -155,6 +155,8 @@ local function schedule_cleanup()
 				end
 				if #notifications == 0 and timer then
 					timer:stop()
+					timer:close()
+					timer = nil
 				end
 			end)
 			if not ok then
