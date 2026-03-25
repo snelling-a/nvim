@@ -1,28 +1,8 @@
-vim.opt_local.colorcolumn = ""
-vim.opt_local.statuscolumn = ""
+vim.cmd.packadd("helpview.nvim")
 
-local bufnr = vim.api.nvim_get_current_buf()
-
-local map = require("user.keymap.util").map("Help")
-
-map({ "n" }, "<CR>", "<C-]>", { buffer = bufnr, desc = "Jump to the definition of the keyword under the cursor." })
-map({ "n" }, "ht", function()
-	vim.cmd.lvimgrep("/\\v.*\\*\\S+\\*$/j %")
-	vim.cmd.lopen()
-end, { buffer = bufnr, desc = "Helptags to location-list" })
-
----@param lhs string Left-hand side |{lhs}| of the mapping.
----@param rhs string Right-hand side |{rhs}| of the mapping
----@param item string Search item
-local function search_map(lhs, rhs, item)
-	map({ "n" }, "[" .. lhs, function()
-		vim.fn.search(rhs, "wb")
-	end, { buffer = bufnr, desc = "Previous" .. item })
-	map({ "n" }, "]" .. lhs, function()
-		vim.fn.search(rhs, "w")
-	end, { buffer = bufnr, desc = "Next" .. item })
+-- Skip window rearrangement for floating windows (fzf-lua preview, etc.)
+if vim.api.nvim_win_get_config(0).relative == "" then
+	vim.cmd.wincmd("L")
+	vim.cmd.resize({ "84", mods = { vertical = true } })
 end
-
-search_map("L", "|\\S\\{-}|", "|link|")
-search_map("h", "^==============================", "heading")
-search_map("l", "\\*\\S\\{-}\\*", "*link*")
+vim.opt_local.colorcolumn = ""

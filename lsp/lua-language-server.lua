@@ -1,28 +1,26 @@
 local library = {
 	"${3rd}/luv/library",
-	vim.env.VIMRUNTIME,
-	vim.fn.expand("$VIMRUNTIME/lua"),
-	vim.fn.stdpath("data") .. "/lazy/",
+	vim.env.VIMRUNTIME .. "/lua",
 }
 
-for _, v in pairs(vim.api.nvim_get_runtime_file("", true)) do
-	vim.list_extend(library, { v })
+---@type string[]
+local plugin_paths = vim.fn.glob(vim.fn.stdpath("data") .. "/site/pack/*/opt/*/lua", false, true)
+for _, path in ipairs(plugin_paths) do
+	table.insert(library, path)
 end
 
 ---@type vim.lsp.Config
 return {
 	cmd = { "lua-language-server" },
 	filetypes = { "lua" },
-	name = "lua_ls",
 	root_markers = {
-		"lua/",
-		".luacheckrc",
 		".luarc.json",
 		".luarc.jsonc",
-		"selene.toml",
-		"selene.yml",
+		".luacheckrc",
 		".stylua.toml",
 		"stylua.toml",
+		"selene.toml",
+		"selene.yml",
 	},
 	settings = {
 		Lua = {
@@ -66,12 +64,7 @@ return {
 			window = { progressBar = true },
 			workspace = {
 				checkThirdParty = false,
-				library = {
-					"${3rd}/luv/library",
-					vim.env.VIMRUNTIME,
-					vim.fn.expand("$VIMRUNTIME/lua"),
-					vim.fn.stdpath("data") .. "/lazy/",
-				},
+				library = library,
 			},
 		},
 	},

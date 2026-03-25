@@ -1,14 +1,6 @@
----@brief
----
---- https://github.com/golang/tools/tree/master/gopls
----
---- Google's lsp server for golang.
-
---- @class go_dir_custom_args
----
---- @field envvar_id string
----
---- @field custom_subdir string?
+---@class go_dir_custom_args
+---@field envvar_id string
+---@field custom_subdir string?
 
 local mod_cache = nil
 local std_lib = nil
@@ -44,6 +36,7 @@ local function get_std_lib_dir()
 	if std_lib and std_lib ~= "" then
 		return std_lib
 	end
+
 	identify_go_dir({ envvar_id = "GOROOT", custom_subdir = "/src" }, function(dir)
 		if dir then
 			std_lib = dir
@@ -57,6 +50,7 @@ local function get_mod_cache_dir()
 	if mod_cache and mod_cache ~= "" then
 		return mod_cache
 	end
+
 	identify_go_dir({ envvar_id = "GOMODCACHE" }, function(dir)
 		if dir then
 			mod_cache = dir
@@ -87,54 +81,11 @@ end
 return {
 	cmd = { "gopls" },
 	filetypes = { "go", "gomod", "gowork", "gotmpl" },
-	on_attach = function(client)
-		if not client.server_capabilities.semanticTokensProvider then
-			local semantic = client.config.capabilities.textDocument.semanticTokens
-			if not semantic then
-				return
-			end
-			client.server_capabilities.semanticTokensProvider = {
-				full = true,
-				legend = {
-					tokenModifiers = semantic.tokenModifiers,
-					tokenTypes = semantic.tokenTypes,
-				},
-				range = true,
-			}
-		end
-	end,
 	root_dir = function(bufnr, on_dir)
 		local fname = vim.api.nvim_buf_get_name(bufnr)
 		get_mod_cache_dir()
 		get_std_lib_dir()
+		-- see: https://github.com/neovim/nvim-lspconfig/issues/804
 		on_dir(get_root_dir(fname))
 	end,
-	settings = {
-		gopls = {
-			codelenses = {
-				generate = true,
-				regenerate_cgo = true,
-				run_govulncheck = true,
-				test = true,
-				tidy = true,
-				upgrade_dependency = true,
-				vendor = true,
-			},
-			completeUnimported = true,
-			directoryFilters = { "-.git", "-.idea", "-.vscode", "-.vscode-test", "-node_modules" },
-			gofumpt = true,
-			hints = {
-				assignVariableTypes = true,
-				compositeLiteralFields = true,
-				compositeLiteralTypes = true,
-				constantValues = true,
-				functionTypeParameters = true,
-				parameterNames = true,
-				rangeVariableTypes = true,
-			},
-			semanticTokens = true,
-			staticcheck = true,
-			usePlaceholders = true,
-		},
-	},
 }

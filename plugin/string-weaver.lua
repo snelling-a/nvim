@@ -3,14 +3,13 @@ if vim.g.string_weaver_loaded then
 end
 vim.g.string_weaver_loaded = true
 
-local Autocmd = require("user.autocmd")
-local StringWeaver = require("user.string-weaver")
+local StringWeaver = require("string-weaver")
 
 ---@type table<number, fun(): nil>
 local buffer_functions_cache = {}
 
 vim.api.nvim_create_autocmd({ "FileType" }, {
-	group = Autocmd.augroup("string-weaver"),
+	group = vim.api.nvim_create_augroup("string-weaver", {}),
 	desc = "Attach StringWeaver to supported filetypes",
 	pattern = vim.tbl_keys(StringWeaver.supported_filetypes),
 	callback = function(args)
@@ -23,7 +22,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 })
 
 vim.api.nvim_create_autocmd({ "InsertLeave", "TextChanged" }, {
-	group = Autocmd.augroup("string-weaver.core"),
+	group = vim.api.nvim_create_augroup("string-weaver.core", {}),
 	desc = "StringWeaver string transformation",
 	callback = function(args)
 		if not vim.api.nvim_buf_is_valid(args.buf) then

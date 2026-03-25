@@ -35,12 +35,25 @@ return {
 	filetypes = {
 		"javascript",
 		"javascriptreact",
-		"javascript.jsx",
 		"typescript",
 		"typescriptreact",
-		"typescript.tsx",
 	},
-	root_markers = { "tsconfig.json", "package.json", "jsconfig.json", ".git" },
+	root_dir = function(bufnr, on_dir)
+		local root_markers = { "package-lock.json", "yarn.lock", "pnpm-lock.yaml", "bun.lockb", "bun.lock" }
+		root_markers = vim.fn.has("nvim-0.11.3") == 1 and { root_markers, { ".git" } }
+			or vim.list_extend(root_markers, { ".git" })
+		-- exclude deno
+		local deno_root = vim.fs.root(bufnr, { "deno.json", "deno.jsonc" })
+		local deno_lock_root = vim.fs.root(bufnr, { "deno.lock" })
+		local project_root = vim.fs.root(bufnr, root_markers)
+		if deno_lock_root and (not project_root or #deno_lock_root > #project_root) then
+			return
+		end
+		if deno_root and (not project_root or #deno_root >= #project_root) then
+			return
+		end
+		on_dir(project_root or vim.fn.getcwd())
+	end,
 	settings = {
 		complete_function_calls = true,
 		vtsls = {
@@ -56,26 +69,32 @@ return {
 	},
 	single_file_support = true,
 	on_attach = function(_client, bufnr)
-		local map = require("user.keymap.util").map("Vtsls")
-
-		map(
+		vim.keymap.set(
 			{ "n" },
 			"<leader>co",
 			action_table["source.organizeImports"],
 			{ buffer = bufnr, desc = "[O]rganize Imports" }
 		)
-		map(
+		vim.keymap.set(
 			{ "n" },
 			"<leader>cM",
 			action_table["source.addMissingImports.ts"],
 			{ buffer = bufnr, desc = "Add [M]issing Imports" }
 		)
-		map(
+		vim.keymap.set(
 			{ "n" },
 			"<leader>cD",
 			action_table["source.removeUnused.ts"],
 			{ buffer = bufnr, desc = "Remove Unused Imports" }
 		)
-		map({ "n" }, "<leader>F", action_table["source.fixAll.ts"], { buffer = bufnr, desc = "[F]ix All Diagnostics" })
+		vim.keymap.set(
+			{ "n" },
+			"<leader>F",
+			action_table["source.fixAll.ts"],
+			{ buffer = bufnr, desc = "[F]ix All Diagnostics" }
+		)
 	end,
+	init_options = {
+		hostInfo = "neovim",
+	},
 }

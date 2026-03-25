@@ -25,29 +25,17 @@ function _G.JsonFolds()
 	end
 end
 
-vim.api.nvim_create_autocmd({ "BufEnter" }, {
-	pattern = "*/obsidian-web-clipper-settings.json",
-	callback = function()
-		local jq_lines = {
-			'(.property_types |= (select(type=="array")|sort_by(.name)))',
-			"| to_entries",
-			"| map(",
-			'    if (.value|type=="object") and ((.value.properties?|type)=="array")',
-			"    then (.value.properties |= sort_by(.name))|.",
-			"    else . end)",
-			"| from_entries",
-		}
-		local jq_filter = table.concat(jq_lines, " ")
-
-		local function sort_obsidian_web_clipper_settings()
-			vim.cmd("%!jq --sort-keys " .. vim.fn.shellescape(jq_filter))
-		end
-
-		vim.api.nvim_create_user_command(
-			"SortClipperSettings",
-			sort_obsidian_web_clipper_settings,
-			{ desc = "Sort Obsidian Web Clipper settings (using jq)" }
-		)
-	end,
-	desc = "Add :SortClipperSettings for Obsidian Web Clipper settings files",
+--
+vim.keymap.set("n", "o", function()
+	local line = vim.api.nvim_get_current_line()
+	local should_add_comma = string.find(line, "[^,{[]$")
+	if should_add_comma then
+		return "A,<cr>"
+	else
+		return "o"
+	end
+end, {
+	buffer = true,
+	desc = "Add trailing comma on the current line",
+	expr = true,
 })

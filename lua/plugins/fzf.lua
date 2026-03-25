@@ -1,0 +1,38 @@
+vim.pack.add({ { src = "https://github.com/ibhagwan/fzf-lua" } })
+
+local actions = require("fzf-lua.actions")
+require("fzf-lua").setup({
+	"max-perf",
+	winopts = {
+		---@diagnostic disable-next-line: missing-fields
+		preview = { default = "builtin" },
+	},
+	files = {
+		hidden = true,
+		cmd = table.concat({
+			"fd --color=never --type f --hidden --follow --exclude .git",
+			"fd --color=never --type f --hidden --no-ignore-vcs --glob '.env*' --exclude .git",
+		}, " && "),
+	},
+	grep = { hidden = true },
+	lsp = {
+		symbols = { symbol_style = 3 },
+		code_actions = { previewer = false },
+	},
+	keymap = {
+		fzf = { true, ["ctrl-q"] = "select-all+accept" },
+	},
+	helptags = {
+		actions = { ["enter"] = actions.help_vert },
+	},
+})
+
+FzfLua.register_ui_select()
+
+vim.keymap.set({ "n" }, "<leader>ff", FzfLua.files, { desc = "FzfLua files" })
+vim.keymap.set({ "n" }, "<leader>fb", FzfLua.buffers, { desc = "FzfLua buffers" })
+vim.keymap.set({ "n" }, "<leader>fg", FzfLua.live_grep, { desc = "FzfLua live grep" })
+vim.keymap.set({ "n" }, "<leader>fh", FzfLua.helptags, { desc = "FzfLua help" })
+vim.keymap.set({ "n" }, "<leader>fk", FzfLua.keymaps, { desc = "FzfLua keymaps" })
+vim.keymap.set({ "n" }, "<leader>fw", FzfLua.grep_cword, { desc = "FzfLua grep for current word" })
+vim.keymap.set({ "n" }, "<leader>.", FzfLua.resume, { desc = "FzfLua resume" })

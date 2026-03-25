@@ -1,30 +1,29 @@
 # nvim
 
-<div style="display: flex; gap: 1rem">
-    <a href="https://dotfyle.com/snelling-a/nvim">
-        <img src="https://dotfyle.com/snelling-a/nvim/badges/plugins?style=for-the-badge" />
-    </a>
-    <a href="https://dotfyle.com/snelling-a/nvim">
-        <img src="https://dotfyle.com/snelling-a/nvim/badges/leaderkey?style=for-the-badge" />
-    </a>
-    <a href="https://dotfyle.com/snelling-a/nvim">
-        <img src="https://dotfyle.com/snelling-a/nvim/badges/plugin-manager?style=for-the-badge" />
-    </a>
-</div>
+Personal Neovim configuration using native `vim.pack` for plugin management.
 
-## Install Instructions
+## Requirements
 
-> Install requires Neovim 0.12+. Always review the code before installing a configuration.
+- Neovim 0.12+
+- [ripgrep](https://github.com/BurntSushi/ripgrep)
+- [fd](https://github.com/sharkdp/fd)
+- A [Nerd Font](https://www.nerdfonts.com/)
 
-Clone the repository and install the plugins:
+## Install
+
+> [!WARNING]
+> Always review the code before installing a configuration.
+
+```sh
+git clone git@github.com:snelling-a/nvim ~/.config/nvim
+nvim
+```
+
+To try it without affecting your existing config:
 
 ```sh
 git clone git@github.com:snelling-a/nvim ~/.config/snelling-a/nvim
-NVIM_APPNAME=snelling-a/nvim/ nvim --headless +"Lazy! sync" +qa
+NVIM_APPNAME=snelling-a/nvim nvim
 ```
 
-Open Neovim with this config:
-
-```sh
-NVIM_APPNAME=snelling-a/nvim/ nvim
-```
+Plugins are installed automatically on first launch. Mason will install LSP servers, formatters, and linters.

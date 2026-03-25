@@ -1,3 +1,5 @@
-vim.opt_local.colorcolumn = "80"
-vim.opt_local.wrap = true
-vim.wo.conceallevel = 2
+if not vim.g.vscode then
+	vim.cmd.packadd("markdown-plus.nvim")
+	require("markdown-plus").setup()
+	vim.cmd.packadd("markview.nvim")
+end

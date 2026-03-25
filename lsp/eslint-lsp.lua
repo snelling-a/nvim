@@ -16,6 +16,7 @@ return {
 			for _, file in ipairs(flat_config_files) do
 				if vim.fn.filereadable(root_dir .. "/" .. file) == 1 then
 					config.settings.experimental = config.settings.experimental or {}
+					---@diagnostic disable-next-line: inject-field
 					config.settings.experimental.useFlatConfig = true
 					break
 				end
@@ -26,11 +27,9 @@ return {
 	filetypes = {
 		"astro",
 		"javascript",
-		"javascript.jsx",
 		"javascriptreact",
 		"svelte",
 		"typescript",
-		"typescript.tsx",
 		"typescriptreact",
 		"vue",
 	},
@@ -89,10 +88,10 @@ return {
 		},
 		codeActionOnSave = { enable = false, mode = "all" },
 		experimental = { useFlatConfig = false },
-		format = false,
+		format = true,
 		nodePath = "",
 		onIgnoredFiles = "off",
-		packageManager = nil,
+		packageManager = vim.NIL,
 		problems = { shortenToSingleLine = false },
 		quiet = false,
 		rulesCustomizations = {},
