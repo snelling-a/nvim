@@ -9,7 +9,7 @@ return {
 	end,
 	capabilities = { textDocument = { foldingRange = { dynamicRegistration = false, lineFoldingOnly = true } } },
 	cmd = { "yaml-language-server", "--stdio" },
-	filetypes = { "yaml", "yaml.docker-compose", "yaml.gitlab" },
+	filetypes = { "yaml" },
 	on_init = function(client)
 		---@diagnostic disable-next-line: inject-field
 		client.settings.yaml.schemas =
