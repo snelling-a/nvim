@@ -115,6 +115,33 @@ vim.api.nvim_create_autocmd({ "BufEnter", "CmdlineLeave", "FocusGained", "Insert
 	group = ui_group,
 })
 
+vim.api.nvim_create_autocmd({ "FileChangedShell" }, {
+	callback = function(args)
+		local bufnr = args.buf
+		local path = vim.api.nvim_buf_get_name(bufnr)
+
+		if not vim.uv.fs_stat(path) then
+			vim.v.fcs_choice = "ask"
+			return
+		end
+
+		local new_lines = vim.fn.readfile(path)
+		local old_lines = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
+
+		if vim.deep_equal(old_lines, new_lines) then
+			vim.v.fcs_choice = ""
+			return
+		end
+
+		vim.bo[bufnr].modifiable = true
+		vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, new_lines)
+		vim.bo[bufnr].modified = false
+		vim.v.fcs_choice = ""
+	end,
+	desc = "Reload externally changed files with undo history",
+	group = group,
+})
+
 vim.api.nvim_create_autocmd({ "VimResized" }, {
 	callback = function()
 		local current_tab = vim.fn.tabpagenr()
