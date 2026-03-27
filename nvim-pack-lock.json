@@ -13,6 +13,15 @@
       "src": "https://github.com/Saghen/blink.cmp",
       "version": "1.0.0 - 2.0.0"
     },
+    "blink.download": {
+      "rev": "b68335357e9fcc2b20445acfcee48034376d64b5",
+      "src": "https://github.com/saghen/blink.download"
+    },
+    "blink.pairs": {
+      "rev": "06a40fb64f350679d3fe741b0f19064c31c84488",
+      "src": "https://github.com/saghen/blink.pairs",
+      "version": "0.0.0 - 1.0.0"
+    },
     "codediff.nvim": {
       "rev": "96845f95bc5539c8e2a0ab88223c5033f302fcd9",
       "src": "https://github.com/esmuellert/codediff.nvim",

@@ -6,15 +6,12 @@ end
 
 vim.pack.add({
 	{ src = build_mini_src_url("icons") },
-	{ src = build_mini_src_url("pairs") },
 	{ src = build_mini_src_url("surround") },
 })
 
 require("mini.icons").setup()
 MiniIcons.mock_nvim_web_devicons()
 MiniIcons.tweak_lsp_kind()
-
-require("mini.pairs").setup()
 
 require("mini.surround").setup({
 	mappings = {
