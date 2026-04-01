@@ -3,3 +3,6 @@ if not vim.g.vscode then
 	require("markdown-plus").setup()
 	vim.cmd.packadd("markview.nvim")
 end
+
+vim.opt_local.wrap = true
+vim.diagnostic.enable(true, { bufnr = 0 })
