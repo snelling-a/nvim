@@ -36,6 +36,7 @@ vim.api.nvim_create_autocmd({ "CmdlineEnter" }, {
 			require("vim._core.ui2").enable({})
 		end
 	end,
+	desc = "Enable native UI on first cmdline entry",
 	group = group,
 	once = true,
 })
@@ -43,11 +44,16 @@ vim.api.nvim_create_autocmd({ "CmdlineEnter" }, {
 vim.api.nvim_create_autocmd({ "FileType" }, {
 	callback = function(args)
 		vim.keymap.set("n", "q", function()
+			if vim.bo.filetype == "man" and #vim.fn.getbufinfo({ buflisted = 1 }) <= 1 then
+				vim.cmd.qall()
+				return
+			end
 			if not pcall(vim.cmd.close) then
 				vim.cmd.bdelete()
 			end
 		end, { buffer = args.buf, nowait = true, desc = "Close window" })
 	end,
+	desc = "Map q to close window for transient filetypes",
 	group = group,
 	pattern = { "oil", "*kulula*", "gitsigns-blame", "help", "man", "checkhealth", "nvim-pack", "nvim-undotree" },
 })
@@ -59,6 +65,7 @@ vim.api.nvim_create_autocmd({ "TermOpen" }, {
 		vim.opt_local.statusline = " Terminal %= " .. vim.o.rulerformat
 		vim.cmd.startinsert({ bang = true })
 	end,
+	desc = "Configure terminal buffer UI and enter insert mode",
 	group = group,
 })
 
@@ -66,6 +73,7 @@ vim.api.nvim_create_autocmd({ "TextYankPost" }, {
 	callback = function()
 		vim.hl.on_yank({ higroup = "IncSearch", timeout = 400 })
 	end,
+	desc = "Highlight yanked text",
 	group = group,
 })
 
