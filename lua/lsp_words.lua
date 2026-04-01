@@ -161,7 +161,7 @@ function M.enable()
 	end
 	enabled = true
 
-	group = vim.api.nvim_create_augroup("lsp.words", { clear = true })
+	group = vim.api.nvim_create_augroup("user.lsp.words", { clear = true })
 
 	vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI", "ModeChanged", "FocusGained" }, {
 		group = group,

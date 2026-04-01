@@ -85,6 +85,7 @@ local function open(opts)
 					opts.on_exit()
 				end
 			end,
+			desc = "Clean up terminal window on close",
 		})
 	end
 

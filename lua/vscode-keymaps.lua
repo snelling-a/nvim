@@ -25,5 +25,6 @@ vim.api.nvim_create_autocmd({ "VimEnter" }, {
 			action("editor.action.wordHighlight.prev")
 		end)
 	end,
+	desc = "Set up VSCode navigation keymaps",
 	once = true,
 })

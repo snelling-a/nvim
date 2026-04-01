@@ -1,8 +1,6 @@
 vim.pack.add({ "https://github.com/mistweaverco/kulala.nvim" }, { load = false })
 
 vim.api.nvim_create_autocmd({ "FileType" }, {
-	pattern = "http",
-	once = true,
 	callback = function()
 		vim.cmd.packadd("kulala.nvim")
 		require("kulala").setup({
@@ -20,4 +18,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 			vim.cmd("TSInstall kulala_http")
 		end
 	end,
+	desc = "Lazy-load kulala on first http buffer",
+	once = true,
+	pattern = "http",
 })

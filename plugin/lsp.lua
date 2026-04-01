@@ -30,7 +30,6 @@ vim.lsp.enable(servers)
 
 local group = vim.api.nvim_create_augroup("user.lsp", {})
 vim.api.nvim_create_autocmd({ "LspAttach" }, {
-	group = group,
 	callback = function(args)
 		local client = vim.lsp.get_client_by_id(args.data.client_id)
 		if not client then
@@ -92,4 +91,6 @@ vim.api.nvim_create_autocmd({ "LspAttach" }, {
 			end, { desc = "[T]oggle Inlay [H]ints" })
 		end
 	end,
+	desc = "Configure LSP keymaps and features on attach",
+	group = group,
 })

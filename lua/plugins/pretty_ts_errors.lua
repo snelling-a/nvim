@@ -23,14 +23,15 @@ local function ensure_npm_neovim()
 end
 
 vim.api.nvim_create_autocmd({ "FileType" }, {
-	pattern = { "typescript", "typescriptreact", "javascript", "javascriptreact" },
-	once = true,
 	callback = function()
 		ensure_npm_neovim()
 		vim.cmd.packadd("nvim-pretty-ts-errors")
 
 		vim.keymap.set({ "n" }, "<leader>d", require("nvim-pretty-ts-errors").show_line_diagnostics)
 	end,
+	desc = "Lazy-load pretty-ts-errors on first JS/TS buffer",
+	once = true,
+	pattern = { "typescript", "typescriptreact", "javascript", "javascriptreact" },
 })
 
 vim.api.nvim_create_autocmd({ "PackChanged" }, {
@@ -44,4 +45,5 @@ vim.api.nvim_create_autocmd({ "PackChanged" }, {
 			vim.notify("You may need to restart Neovim for nvim-pretty-ts-errors to work properly.")
 		end
 	end,
+	desc = "Run UpdateRemotePlugins after pretty-ts-errors install/update",
 })

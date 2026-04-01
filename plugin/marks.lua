@@ -1,6 +1,6 @@
 local priority = 100
 local group_name = "marks"
-local augroup = vim.api.nvim_create_augroup(group_name, { clear = true })
+local augroup = vim.api.nvim_create_augroup("user" .. group_name, { clear = true })
 
 -- Get all marks (global and local) for a buffer.
 ---@param bufnr number
@@ -63,17 +63,19 @@ if vim.version().minor >= 12 then
 	end
 
 	vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
-		group = augroup,
 		callback = function(event)
 			render_all_marks(event.buf)
 		end,
+		desc = "Render marks in sign column",
+		group = augroup,
 	})
 
 	vim.api.nvim_create_autocmd({ "MarkSet" }, {
-		group = augroup,
 		callback = function(event)
 			render_mark(event.buf, event.data.name, event.data.line)
 		end,
+		desc = "Render mark sign when a mark is set",
+		group = augroup,
 	})
 
 	vim.keymap.set("n", "dm", function()

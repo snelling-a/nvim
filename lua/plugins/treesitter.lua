@@ -94,7 +94,7 @@ end
 
 vim.opt.runtimepath:prepend(vim.fn.stdpath("data") .. "/site/pack/core/opt/nvim-treesitter/runtime")
 
-local group = vim.api.nvim_create_augroup("treesitter-auto-install", { clear = true })
+local group = vim.api.nvim_create_augroup("nvim-treesitter.auto-install", { clear = true })
 vim.api.nvim_create_autocmd({ "FileType" }, {
 	group = group,
 	callback = function(ev)

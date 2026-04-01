@@ -111,6 +111,7 @@ vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
 	callback = function()
 		vim.schedule(apply_ts_highlights)
 	end,
+	desc = "Reapply treesitter highlights in quickfix",
 })
 
 local function qf_statusline()
