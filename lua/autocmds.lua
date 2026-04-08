@@ -30,16 +30,16 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
 	group = group,
 })
 
-vim.api.nvim_create_autocmd({ "CmdlineEnter" }, {
-	callback = function()
-		if not vim.g.vscode and vim.version().minor >= 12 then
-			require("vim._core.ui2").enable({})
-		end
-	end,
-	desc = "Enable native UI on first cmdline entry",
-	group = group,
-	once = true,
-})
+-- vim.api.nvim_create_autocmd({ "CmdlineEnter" }, {
+-- 	callback = function()
+-- 		if not vim.g.vscode and vim.version().minor >= 12 then
+-- 			require("vim._core.ui2").enable({})
+-- 		end
+-- 	end,
+-- 	desc = "Enable native UI on first cmdline entry",
+-- 	group = group,
+-- 	once = true,
+-- })
 
 vim.api.nvim_create_autocmd({ "FileType" }, {
 	callback = function(args)
