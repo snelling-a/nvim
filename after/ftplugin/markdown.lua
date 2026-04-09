@@ -5,4 +5,4 @@ if not vim.g.vscode then
 end
 
 vim.opt_local.wrap = true
-vim.diagnostic.enable(true, { bufnr = 0 })
+vim.diagnostic.enable(false, { bufnr = 0 })
