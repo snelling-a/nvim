@@ -105,6 +105,8 @@ local function fetch_buf_name(bufnr)
 		return "Checkhealth"
 	elseif buf.filetype == "qf" then
 		return "QuickFix"
+	elseif buf.filetype == "grug-far" then
+		return "GrugFar"
 	elseif buf.filetype == "mason" then
 		return "Mason"
 	elseif buf.filetype == "help" and not buf.modifiable then

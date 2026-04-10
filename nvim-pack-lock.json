@@ -43,6 +43,10 @@
       "rev": "50c205548d8b037b7ff6378fca6d21146f0b6161",
       "src": "https://github.com/lewis6991/gitsigns.nvim"
     },
+    "grug-far.nvim": {
+      "rev": "b08a9f8d0602fdf075262e8e1b6dc776b3966003",
+      "src": "https://github.com/MagicDuck/grug-far.nvim"
+    },
     "helpview.nvim": {
       "rev": "518789535a0cb146224a428edf93a70f98b795db",
       "src": "https://github.com/OXY2DEV/helpview.nvim"
