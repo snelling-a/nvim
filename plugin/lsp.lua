@@ -1,7 +1,36 @@
+local function silent_on_list(options)
+	vim.fn.setqflist({}, " ", { title = options.title, items = options.items, context = options.context })
+	if #options.items == 1 then
+		vim.cmd("silent cfirst")
+	else
+		vim.cmd.copen()
+	end
+end
+
+local type_definition = vim.lsp.buf.type_definition
+---@diagnostic disable-next-line: duplicate-set-field
+vim.lsp.buf.type_definition = function()
+	return type_definition({ on_list = silent_on_list })
+end
+
 local references = vim.lsp.buf.references
 ---@diagnostic disable-next-line: duplicate-set-field
 vim.lsp.buf.references = function()
-	return references({ includeDeclaration = false }, { loclist = true })
+	return references({ includeDeclaration = false }, {
+		on_list = function(options)
+			vim.fn.setloclist(
+				0,
+				{},
+				" ",
+				{ title = options.title, items = options.items, context = options.context }
+			)
+			if #options.items == 1 then
+				vim.cmd("silent lfirst")
+			else
+				vim.cmd.lopen()
+			end
+		end,
+	})
 end
 
 vim.lsp.config("*", {
@@ -49,7 +78,9 @@ vim.api.nvim_create_autocmd({ "LspAttach" }, {
 		end
 
 		if client:supports_method(vim.lsp.protocol.Methods.textDocument_definition, bufnr) then
-			vim.keymap.set({ "n" }, "gd", vim.lsp.buf.definition, {
+			vim.keymap.set({ "n" }, "gd", function()
+				vim.lsp.buf.definition({ on_list = silent_on_list })
+			end, {
 				buffer = bufnr,
 				desc = "[G]oto [D]efinition",
 			})
