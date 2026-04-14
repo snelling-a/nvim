@@ -9,7 +9,7 @@ require("conform").setup({
 		javascript = { "prettierd", "prettier", stop_after_first = true },
 		javascriptreact = { "prettierd", "prettier", stop_after_first = true },
 		lua = { "stylua" },
-		markdown = { "prettierd", "prettier", stop_after_first = true },
+		markdown = { "markdownlint-cli2", "prettierd" },
 		sh = { "shfmt" },
 		toml = { "taplo" },
 		typescript = { "prettierd", "prettier", stop_after_first = true },

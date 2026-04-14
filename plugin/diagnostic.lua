@@ -35,11 +35,11 @@ vim.diagnostic.config({
 })
 
 vim.keymap.set({ "n" }, "<leader>td", function()
-	local is_enabled = vim.diagnostic.is_enabled()
-
-	vim.diagnostic.enable(not is_enabled)
-	vim.notify(("Diagnostics %s"):format(is_enabled and "disabled" or "enabled"))
-end, { desc = "[T]oggle [D]iagnostics" })
+	local config = vim.diagnostic.config() or {}
+	local underline_enabled = config.underline ~= false
+	vim.diagnostic.config({ underline = not underline_enabled })
+	vim.notify(("Underline %s"):format(underline_enabled and "disabled" or "enabled"))
+end, { desc = "[T]oggle [D]iagnostic underline" })
 
 --- Jump to the next or previous diagnostic
 ---@param count 1|-1 The number of diagnostics to jump
