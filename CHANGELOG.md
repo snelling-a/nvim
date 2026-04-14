@@ -1,5 +1,35 @@
 # Changelog
 
+## [9.1.0](https://github.com/snelling-a/nvim/compare/v9.0.0...v9.1.0) (2026-04-14)
+
+
+### Features
+
+* add eslint to linters ([26146ac](https://github.com/snelling-a/nvim/commit/26146ac00a4e5b3943449271ddc6222feee32bfa))
+* **autocmds:** add descriptions and quit nvim on man page close ([2ba0e32](https://github.com/snelling-a/nvim/commit/2ba0e32a734e0bc740d53a23f4fe2dbf8b339080))
+* blink.pairs ([32b5be7](https://github.com/snelling-a/nvim/commit/32b5be7745a315d30dffbfcf45e2a892d5887d02))
+* grug-far ([542d444](https://github.com/snelling-a/nvim/commit/542d44488f03c57194fe30600acca8190ee3595e))
+* **md:** wrap/hide diagnostics ([3f28105](https://github.com/snelling-a/nvim/commit/3f2810537902538f3c6c2fb0dd3be2969515b9d1))
+* reload externally changed files with undo history ([b88a7de](https://github.com/snelling-a/nvim/commit/b88a7dededbe19ba8748624ba2182509dad42711))
+
+
+### Bug Fixes
+
+* eslint_d ([d204471](https://github.com/snelling-a/nvim/commit/d2044713ee3d03d633910241559fd09a5155a033))
+* **md:** add markdownlint-cli2 formatter and show diagnostics ([aa5de02](https://github.com/snelling-a/nvim/commit/aa5de02a49767dc2e6efc48d631c9f3ba94494b3))
+* **md:** disable diagnostics ([5b4372f](https://github.com/snelling-a/nvim/commit/5b4372f4963af242084fa2e28d4f34df12a6396b))
+
+
+### Performance Improvements
+
+* **lsp:** don't load schemas twice ([28190eb](https://github.com/snelling-a/nvim/commit/28190eba6833e2e8ba56b0c2658a711a6a9a9061))
+* **lsp:** don't print qf info if 1 reference ([55c3e2e](https://github.com/snelling-a/nvim/commit/55c3e2e3662e85105f9ae745ef861110f9cdea41))
+
+
+### Reverts
+
+* cmdheight ([b2b2dad](https://github.com/snelling-a/nvim/commit/b2b2dad997c64ac85fc4ea5d5642e84e3f2fd058))
+
 ## [9.0.0](https://github.com/snelling-a/nvim/compare/v8.14.0...v9.0.0) (2026-03-25)
 
 
