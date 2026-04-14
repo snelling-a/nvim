@@ -64,7 +64,6 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 	desc = "Proper 'formatoptions'",
 })
 
-vim.o.cmdheight = 0
 require("vim._core.ui2").enable({
 	enable = true,
 	msg = {
