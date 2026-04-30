@@ -74,8 +74,8 @@ local function get_linters()
 	return vim.tbl_keys(linters)
 end
 
--- TODO: remove once argparse rockspec supports Lua 5.5
-local skip = { "luacheck" }
+---@type string[]
+local skip = {}
 
 local function ensure_tools()
 	local registry = require("mason-registry")
