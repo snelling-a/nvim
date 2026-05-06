@@ -5,4 +5,3 @@ if not vim.g.vscode then
 end
 
 vim.opt_local.wrap = true
-vim.diagnostic.config({ underline = false }, vim.api.nvim_get_current_buf())
