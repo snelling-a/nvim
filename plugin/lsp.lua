@@ -18,12 +18,7 @@ local references = vim.lsp.buf.references
 vim.lsp.buf.references = function()
 	return references({ includeDeclaration = false }, {
 		on_list = function(options)
-			vim.fn.setloclist(
-				0,
-				{},
-				" ",
-				{ title = options.title, items = options.items, context = options.context }
-			)
+			vim.fn.setloclist(0, {}, " ", { title = options.title, items = options.items, context = options.context })
 			if #options.items == 1 then
 				vim.cmd("silent lfirst")
 			else
@@ -53,6 +48,9 @@ vim.iter(vim.api.nvim_get_runtime_file("lsp/*.lua", true))
 		return vim.fs.basename(server_config_path):match("^(.*)%.lua$")
 	end)
 	:each(function(server_name)
+		if server_name == "copilot-language-server" then
+			return
+		end
 		vim.list_extend(servers, { server_name })
 	end)
 vim.lsp.enable(servers)
