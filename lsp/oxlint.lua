@@ -17,16 +17,39 @@ local function _oxlint_conf_mentions_typescript(root_dir)
 	return false
 end
 
+--- Prefer a hoisted toolchain: workspace root may be packages/foo while oxlint lives
+--- at repo root node_modules/.bin (pnpm / npm workspaces).
+---@param root_dir string?
+---@return string
+local function _resolve_oxlint_cmd(root_dir)
+	local name = "oxlint"
+	if root_dir then
+		local dir = root_dir
+		for _ = 1, 64 do
+			local candidate = vim.fs.joinpath(dir, "node_modules", ".bin", name)
+			if vim.fn.executable(candidate) == 1 then
+				return candidate
+			end
+			local parent = vim.fn.fnamemodify(dir, ":h")
+			if parent == dir then
+				break
+			end
+			dir = parent
+		end
+	end
+
+	local mason_cmd = vim.fs.joinpath(vim.fn.stdpath("data"), "mason", "bin", name)
+	if vim.fn.executable(mason_cmd) == 1 then
+		return mason_cmd
+	end
+
+	return name
+end
+
 ---@type vim.lsp.Config
 return {
 	cmd = function(dispatchers, config)
-		local cmd = "oxlint"
-		if (config or {}).root_dir then
-			local local_cmd = vim.fs.joinpath(config.root_dir, "node_modules/.bin", cmd)
-			if vim.fn.executable(local_cmd) == 1 then
-				cmd = local_cmd
-			end
-		end
+		local cmd = _resolve_oxlint_cmd((config or {}).root_dir)
 		return vim.lsp.rpc.start({ cmd, "--lsp" }, dispatchers)
 	end,
 	filetypes = {
@@ -38,7 +61,13 @@ return {
 		"svelte",
 		"astro",
 	},
-	root_markers = { ".oxlintrc.json", ".oxlintrc.jsonc", "oxlint.config.ts" },
+	-- Oxlint config markers first; then package.json for JS/TS trees without a local oxlintrc.
+	root_markers = {
+		".oxlintrc.json",
+		".oxlintrc.jsonc",
+		"oxlint.config.ts",
+		"package.json",
+	},
 	workspace_required = true,
 	on_attach = function(client, bufnr)
 		vim.api.nvim_buf_create_user_command(bufnr, "LspOxlintFixAll", function()
