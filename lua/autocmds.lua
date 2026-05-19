@@ -69,9 +69,9 @@ vim.api.nvim_create_autocmd({ "TermOpen" }, {
 	group = group,
 })
 
-vim.api.nvim_create_autocmd({ "TextYankPost" }, {
+vim.api.nvim_create_autocmd({ "TextPutPost", "TextYankPost" }, {
 	callback = function()
-		vim.hl.on_yank({ higroup = "IncSearch", timeout = 400 })
+		vim.hl.hl_op({ higroup = "IncSearch", timeout = 300 })
 	end,
 	desc = "Highlight yanked text",
 	group = group,
