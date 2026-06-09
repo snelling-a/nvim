@@ -29,10 +29,9 @@ require("fzf-lua").setup({
 
 FzfLua.register_ui_select()
 
-vim.keymap.set({ "n" }, "<leader>ff", FzfLua.files, { desc = "FzfLua files" })
+vim.keymap.set({ "n" }, "<leader>.", FzfLua.resume, { desc = "FzfLua resume" })
 vim.keymap.set({ "n" }, "<leader>fb", FzfLua.buffers, { desc = "FzfLua buffers" })
-vim.keymap.set({ "n" }, "<leader>fg", FzfLua.live_grep, { desc = "FzfLua live grep" })
 vim.keymap.set({ "n" }, "<leader>fh", FzfLua.helptags, { desc = "FzfLua help" })
 vim.keymap.set({ "n" }, "<leader>fk", FzfLua.keymaps, { desc = "FzfLua keymaps" })
-vim.keymap.set({ "n" }, "<leader>fw", FzfLua.grep_cword, { desc = "FzfLua grep for current word" })
-vim.keymap.set({ "n" }, "<leader>.", FzfLua.resume, { desc = "FzfLua resume" })
+vim.keymap.set({ "n" }, "<leader>fm", FzfLua.marks, { desc = "FzfLua marks" })
+vim.keymap.set({ "n" }, '<leader>"', FzfLua.registers, { desc = "FzfLua registers" })
