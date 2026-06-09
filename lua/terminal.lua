@@ -76,6 +76,7 @@ local function open(opts)
 		vim.api.nvim_create_autocmd({ "TermClose" }, {
 			buffer = t.buf,
 			callback = function()
+				local buf = t.buf
 				if t.win and vim.api.nvim_win_is_valid(t.win) then
 					vim.api.nvim_win_close(t.win, true)
 					t.win = nil
@@ -84,6 +85,11 @@ local function open(opts)
 				if opts.on_exit then
 					opts.on_exit()
 				end
+				vim.schedule(function()
+					if buf and vim.api.nvim_buf_is_valid(buf) then
+						vim.api.nvim_buf_delete(buf, { force = true })
+					end
+				end)
 			end,
 			desc = "Clean up terminal window on close",
 		})
