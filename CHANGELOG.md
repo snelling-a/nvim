@@ -1,5 +1,37 @@
 # Changelog
 
+## [9.2.0](https://github.com/snelling-a/nvim/compare/v9.1.0...v9.2.0) (2026-06-09)
+
+
+### Features
+
+* fff ([fc88317](https://github.com/snelling-a/nvim/commit/fc88317398e827ab1c72ce56c690718a95f85920))
+* **lsp:** tailwind ([296d60a](https://github.com/snelling-a/nvim/commit/296d60a248f4367d4623ff26bad1976e91062eeb))
+* oil statusline ([e128475](https://github.com/snelling-a/nvim/commit/e1284755fa5667197fa4d72bee17bf7d8b1bd9f5))
+* oxlint ([4fb4daf](https://github.com/snelling-a/nvim/commit/4fb4daf0d4d9d87d70cda23290362b278a1d86ac))
+* **qf:** setlocal nolist ([040e226](https://github.com/snelling-a/nvim/commit/040e226b9f0e25e0053e0b228da29914e38ae50b))
+* taplo =&gt; tombi ([7b9a020](https://github.com/snelling-a/nvim/commit/7b9a020fade6d3038fc2fd364be54d737fb2a57e))
+
+
+### Bug Fixes
+
+* diagnostics ([04dcec7](https://github.com/snelling-a/nvim/commit/04dcec7a3c1145ab277bb1bce038ee559af88bad))
+* markdown diagnostics ([92afe29](https://github.com/snelling-a/nvim/commit/92afe291dcfdea9d9bf156784b91b0d35ce2076d))
+* on_yank deprecation ([e8d209c](https://github.com/snelling-a/nvim/commit/e8d209c0420c532e09518329a5e5f60d7e6be625))
+* oxlint ([6e63735](https://github.com/snelling-a/nvim/commit/6e637350c41e4d0f610fd6f64da415074419412c))
+* **terminal:** wipe buffer when terminal process exits ([88b939f](https://github.com/snelling-a/nvim/commit/88b939fead2ef8ba8626a3e2933722e912f14c88))
+
+
+### Performance Improvements
+
+* disable diagnostics from eslint lsp ([68627de](https://github.com/snelling-a/nvim/commit/68627de95408a1689dbf1478968506e50a7d72b2))
+* **lsp:** disable json-lsp format ([2f0bc92](https://github.com/snelling-a/nvim/commit/2f0bc92261eec9981f6ddc3edae6856e43fb2137))
+
+
+### Reverts
+
+* use mason for luacheck ([a310f2d](https://github.com/snelling-a/nvim/commit/a310f2dca2bd1b66deabdb7bb704db470763cbd2))
+
 ## [9.1.0](https://github.com/snelling-a/nvim/compare/v9.0.0...v9.1.0) (2026-04-14)
 
 
