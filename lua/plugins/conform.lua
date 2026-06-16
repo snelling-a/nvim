@@ -11,6 +11,7 @@ require("conform").setup({
 		lua = { "stylua" },
 		markdown = { "markdownlint-cli2", "prettierd" },
 		sh = { "shfmt" },
+		sql = { "sqlfluff" },
 		toml = { "tombi" },
 		typescript = { "prettierd", "prettier", stop_after_first = true },
 		typescriptreact = { "prettierd", "prettier", stop_after_first = true },
