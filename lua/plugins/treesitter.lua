@@ -128,16 +128,16 @@ local move = require("nvim-treesitter-textobjects.move")
 local swap = require("nvim-treesitter-textobjects.swap")
 
 local textobjects = {
-	{ "aa", "@parameter.outer", "a argument" },
-	{ "ac", "@class.outer", "a class" },
-	{ "af", "@function.outer", "a function" },
-	{ "ai", "@conditional.outer", "a if/conditional" },
-	{ "al", "@loop.outer", "a loop" },
-	{ "ia", "@parameter.inner", "inner argument" },
-	{ "ic", "@class.inner", "inner class" },
-	{ "if", "@function.inner", "inner function" },
-	{ "ii", "@conditional.inner", "inner if/conditional" },
-	{ "il", "@loop.inner", "inner loop" },
+	{ "aa", "@parameter.outer", "around an [a]rgument" },
+	{ "ac", "@class.outer", "around a [c]lass" },
+	{ "af", "@function.outer", "around a [f]unction" },
+	{ "ai", "@conditional.outer", "around an [i]f/conditional" },
+	{ "al", "@loop.outer", "around an [l]oop" },
+	{ "ia", "@parameter.inner", "inner [a]rgument" },
+	{ "ic", "@class.inner", "inner [c]lass" },
+	{ "if", "@function.inner", "inner [f]unction" },
+	{ "ii", "@conditional.inner", "inner [i]f/conditional" },
+	{ "il", "@loop.inner", "inner [l]oop" },
 }
 
 for _, obj in ipairs(textobjects) do
@@ -148,12 +148,12 @@ for _, obj in ipairs(textobjects) do
 end
 
 local movements = {
-	{ "[a", "@parameter.outer", "prev argument" },
-	{ "[f", "@function.outer", "prev function" },
-	{ "[t", "@class.outer", "prev class/type" },
-	{ "]a", "@parameter.outer", "next argument" },
-	{ "]f", "@function.outer", "next function" },
-	{ "]t", "@class.outer", "next class/type" },
+	{ "[a", "@parameter.outer", "prev [a]rgument" },
+	{ "[f", "@function.outer", "prev [f]unction" },
+	{ "[t", "@class.outer", "prev class/[t]ype" },
+	{ "]a", "@parameter.outer", "next [a]rgument" },
+	{ "]f", "@function.outer", "next [f]unction" },
+	{ "]t", "@class.outer", "next class/[t]ype" },
 }
 
 for _, m in ipairs(movements) do
@@ -167,9 +167,11 @@ end
 
 vim.keymap.set("n", "<leader>a", function()
 	swap.swap_next("@parameter.inner", "textobjects")
-end, { desc = "Swap next argument" })
-
+end, { desc = "Swap next [a]rgument" })
 vim.keymap.set("n", "<leader>A", function()
 	swap.swap_previous("@parameter.inner", "textobjects")
-end, { desc = "Swap prev argument" })
-vim.keymap.set("n", ",tc", require("treesitter-context").toggle, { desc = "Toggle treesitter context" })
+end, { desc = "Swap prev [a]rgument" })
+vim.keymap.set("n", ",tc", require("treesitter-context").toggle, { desc = "[T]oggle treesitter [c]ontext" })
+vim.keymap.set("n", "[x", function()
+	require("treesitter-context").go_to_context(vim.v.count1)
+end, { desc = "Go to conte[x]t", silent = true })
