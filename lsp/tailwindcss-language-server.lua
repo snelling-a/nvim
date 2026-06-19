@@ -8,7 +8,6 @@ local ROOT_MARKERS = {
 	"postcss.config.cjs",
 	"postcss.config.mjs",
 	"postcss.config.ts",
-	".git",
 }
 ---@param name string
 ---@return boolean
@@ -207,5 +206,6 @@ return {
 	settings = {
 		tailwindCSS = { classFunctions = { "clsx" } },
 	},
+	root_markers = vim.list_extend({ "pnpm-workspace.yaml" }, ROOT_MARKERS),
 	workspace_required = true,
 }

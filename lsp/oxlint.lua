@@ -66,7 +66,6 @@ return {
 		".oxlintrc.json",
 		".oxlintrc.jsonc",
 		"oxlint.config.ts",
-		"package.json",
 	},
 	workspace_required = true,
 	on_attach = function(client, bufnr)
