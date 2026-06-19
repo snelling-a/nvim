@@ -6,15 +6,18 @@ require("conform").setup({
 		go = { "goimports", "gofumpt" },
 		html = { "prettierd", "prettier", stop_after_first = true },
 		-- http = { "kulala-fmt" },
-		javascript = { "prettierd", "prettier", stop_after_first = true },
-		javascriptreact = { "prettierd", "prettier", stop_after_first = true },
+		javascript = { "oxfmt", "prettierd", "prettier", stop_after_first = true },
+		javascriptreact = { "oxfmt", "prettierd", "prettier", stop_after_first = true },
 		lua = { "stylua" },
 		markdown = { "markdownlint-cli2", "prettierd" },
 		sh = { "shfmt" },
 		sql = { "sqlfluff" },
 		toml = { "tombi" },
-		typescript = { "prettierd", "prettier", stop_after_first = true },
-		typescriptreact = { "prettierd", "prettier", stop_after_first = true },
+		typescript = { "oxfmt", "prettierd", "prettier", stop_after_first = true },
+		typescriptreact = { "oxfmt", "prettierd", "prettier", stop_after_first = true },
+	},
+	formatters = {
+		oxfmt = { require_cwd = true },
 	},
 	format_on_save = function(bufnr)
 		if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
