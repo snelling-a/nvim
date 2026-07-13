@@ -53,29 +53,54 @@ local function build(root)
 		end, CONFIGS),
 		" -o "
 	)
-	local css = find(root, [[-type f -name '*.css' -exec grep -l '@import "tailwindcss"' {} +]])
-	local configs = find(root, "-type f \\( " .. names .. " \\)")
-	---@type table<string, boolean>
-	local globs = {}
-	for _, config in ipairs(configs) do
-		local rel = vim.fs.relpath(root, vim.fs.dirname(config))
-		if rel then
-			globs[rel .. "/**"] = true
-		end
+	-- grep runs in a separate step (not as a `find -exec ... {} +` action)
+	-- because `find`'s trailing `-print` would otherwise fire for every file
+	-- in the batch once grep matched any one of them, not just the matches
+	local css_candidates = find(root, "-type f -name '*.css'")
+	---@type string[]
+	local css = {}
+	if #css_candidates > 0 then
+		local out = vim.fn.system(vim.list_extend({ "grep", "-l", '@import "tailwindcss"' }, css_candidates))
+		css = out == "" and {} or vim.split(vim.trim(out), "\n", { plain = true }) --[[@as string[] ]]
 	end
-	local glob_list = vim.tbl_keys(globs)
-	if #css == 0 or #glob_list == 0 then
+	local configs = find(root, "-type f \\( " .. names .. " \\)")
+	if #css == 0 or #configs == 0 then
 		return
 	end
-	if #css == 1 then
-		return { [vim.fs.relpath(root, css[1]) or css[1]] = glob_list }
+	---@param path string
+	---@return string
+	---@type string[]
+	local css_rel = vim.tbl_map(function(path)
+		return vim.fs.relpath(root, path) or path
+	end, css)
+	-- a config's directory may not be nested under the css entry it actually
+	-- consumes (e.g. an app importing a shared package's globals.css), so
+	-- configs unclaimed by any css entry are applied to every css entry
+	---@type table<string, table<string, boolean>>
+	local claimed = {}
+	for _, rel in ipairs(css_rel) do
+		claimed[rel] = {}
+	end
+	---@type table<string, boolean>
+	local orphans = {}
+	for _, config in ipairs(configs) do
+		local config_dir = vim.fs.relpath(root, vim.fs.dirname(config))
+		if config_dir then
+			local glob = config_dir .. "/**"
+			local owner = vim.iter(css_rel):find(function(rel)
+				return vim.startswith(rel, config_dir .. "/")
+			end)
+			if owner then
+				claimed[owner][glob] = true
+			else
+				orphans[glob] = true
+			end
+		end
 	end
 	---@type TailwindConfigMap
 	local map = {}
-	for _, path in ipairs(css) do
-		map[vim.fs.relpath(root, path) or path] = {
-			(vim.fs.relpath(root, vim.fs.dirname(path)) or vim.fs.dirname(path)) .. "/**",
-		}
+	for _, rel in ipairs(css_rel) do
+		map[rel] = vim.tbl_keys(vim.tbl_extend("force", claimed[rel], orphans))
 	end
 	return map
 end
@@ -144,18 +169,23 @@ end
 ---@type vim.lsp.Config
 return {
 	before_init = function(_, config)
-		config.settings = vim.tbl_deep_extend("keep", config.settings or {}, {
-			editor = { tabSize = vim.lsp.util.get_effective_tabstop() },
-		})
+		-- mutate config.settings in place rather than reassigning it: the
+		-- client's `self.settings` (used for workspace/didChangeConfiguration
+		-- and to answer workspace/configuration requests) is bound to this
+		-- table by reference at client construction, before before_init runs,
+		-- so replacing config.settings with a new table would be invisible to it
+		config.settings = config.settings or {}
+		local editor = (config.settings.editor or {}) --[[@as table]]
+		config.settings.editor = vim.tbl_deep_extend("keep", editor, { tabSize = vim.lsp.util.get_effective_tabstop() })
 		local root = config.root_dir
 		if type(root) ~= "string" then
 			return
 		end
 		local config_file = load(root)
 		if config_file then
-			config.settings = vim.tbl_deep_extend("keep", config.settings, {
-				tailwindCSS = { experimental = { configFile = config_file } },
-			})
+			local tailwind_css = (config.settings.tailwindCSS or {}) --[[@as table]]
+			config.settings.tailwindCSS =
+				vim.tbl_deep_extend("keep", tailwind_css, { experimental = { configFile = config_file } })
 		end
 	end,
 	capabilities = {
