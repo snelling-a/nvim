@@ -6,6 +6,7 @@ vim.pack.add({
 require("oil").setup({
 	view_options = { show_hidden = true },
 	win_options = { signcolumn = "yes:2" },
+	preview_win = { preview_method = "load" },
 })
 require("oil-git-status").setup({})
 

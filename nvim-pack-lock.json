@@ -55,6 +55,10 @@
       "rev": "06006b471890f19efeb199ffab5da49a2d624619",
       "src": "https://github.com/OXY2DEV/helpview.nvim"
     },
+    "image.nvim": {
+      "rev": "88351f1f7d9dbae286e671ce3690a49660dd8a5c",
+      "src": "https://github.com/3rd/image.nvim"
+    },
     "live-preview.nvim": {
       "rev": "5977060965161f7b3be3166467d03e09d10c68ea",
       "src": "https://github.com/brianhuster/live-preview.nvim"
