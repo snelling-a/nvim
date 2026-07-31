@@ -11,13 +11,13 @@ vim.api.nvim_create_autocmd({ "PackChanged" }, {
 			and args.data.spec.name == "nvim-treesitter"
 			and (args.data.kind == "install" or args.data.kind == "update")
 		then
-			vim.notify("nvim-treesitter updated, running TSUpdate...", vim.log.levels.INFO)
+			vim.notify(args.data.spec.name .. " updated, running TSUpdate...")
 			---@diagnostic disable-next-line: param-type-mismatch
 			local ok = pcall(vim.cmd, "TSUpdate")
 			if ok then
-				vim.notify("TSUpdate completed successfully!", vim.log.levels.INFO)
+				vim.notify("TSUpdate completed successfully!")
 			else
-				vim.notify("TSUpdate command not available yet, skipping", vim.log.levels.WARN)
+				vim.notify("TSUpdate command not available yet, skipping")
 			end
 		end
 	end,
@@ -97,21 +97,21 @@ vim.opt.runtimepath:prepend(vim.fn.stdpath("data") .. "/site/pack/core/opt/nvim-
 local group = vim.api.nvim_create_augroup("nvim-treesitter.auto-install", { clear = true })
 vim.api.nvim_create_autocmd({ "FileType" }, {
 	group = group,
-	callback = function(ev)
-		local ft = ev.match
+	callback = function(args)
+		local ft = args.match
 		local lang = vim.treesitter.language.get_lang(ft)
 		if not lang then
 			return
 		end
 
 		if is_installed(lang) then
-			vim.treesitter.start(ev.buf, lang)
+			vim.treesitter.start(args.buf, lang)
 			return
 		end
 
 		ensure_installed(lang, function()
-			if vim.api.nvim_buf_is_valid(ev.buf) and is_installed(lang) then
-				vim.treesitter.start(ev.buf, lang)
+			if vim.api.nvim_buf_is_valid(args.buf) and is_installed(lang) then
+				vim.treesitter.start(args.buf, lang)
 			end
 		end)
 	end,

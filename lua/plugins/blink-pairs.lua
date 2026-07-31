@@ -10,6 +10,7 @@ vim.api.nvim_create_autocmd({ "PackChanged" }, {
 			and args.data.spec.name == "blink.pairs"
 			and (args.data.kind == "install" or args.data.kind == "update")
 		then
+			vim.notify(args.data.spec.name .. " updated, downloading prebuilt binaries")
 			require("blink.pairs").download():pwait(60000)
 		end
 	end,

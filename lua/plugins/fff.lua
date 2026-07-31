@@ -1,13 +1,14 @@
 vim.pack.add({ { src = "https://github.com/dmtrKovalenko/fff.nvim" } })
 
 vim.api.nvim_create_autocmd({ "PackChanged" }, {
-	callback = function(ev)
+	callback = function(args)
 		---@type string,"install"|"update"
-		local name, kind = ev.data.spec.name, ev.data.kind
+		local name, kind = args.data.spec.name, args.data.kind
 		if name == "fff.nvim" and (kind == "install" or kind == "update") then
-			if not ev.data.active then
+			if not args.data.active then
 				vim.cmd.packadd("fff.nvim")
 			end
+			vim.notify(args.data.spec.name .. " updated, downloading prebuilt binary")
 			require("fff.download").download_or_build_binary()
 		end
 	end,
@@ -34,18 +35,15 @@ vim.keymap.set("n", "<leader>fz", function()
 	require("fff").live_grep({ grep = { modes = { "fuzzy", "plain" } } })
 end, { desc = "Search current word" })
 
-local r = require("fff").file_search(
-	"button",
-	{
-		mode = "mixed",
-		max_results = 50,
-		page = 0,
-		current_file = nil,
-		max_threads = 4,
-		cwd = nil,
-		wait_for_index_ms = nil,
-	}
-)
+local r = require("fff").file_search("button", {
+	mode = "mixed",
+	max_results = 50,
+	page = 0,
+	current_file = nil,
+	max_threads = 4,
+	cwd = nil,
+	wait_for_index_ms = nil,
+})
 for _, item in ipairs(r.items) do
 	print(item.type, item.relative_path)
 end
