@@ -63,16 +63,16 @@ if vim.version().minor >= 12 then
 	end
 
 	vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
-		callback = function(event)
-			render_all_marks(event.buf)
+		callback = function(args)
+			render_all_marks(args.buf)
 		end,
 		desc = "Render marks in sign column",
 		group = augroup,
 	})
 
 	vim.api.nvim_create_autocmd({ "MarkSet" }, {
-		callback = function(event)
-			render_mark(event.buf, event.data.name, event.data.line)
+		callback = function(args)
+			render_mark(args.buf, args.data.name, args.data.line)
 		end,
 		desc = "Render mark sign when a mark is set",
 		group = augroup,
