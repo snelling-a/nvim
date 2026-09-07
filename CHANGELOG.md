@@ -1,5 +1,22 @@
 # Changelog
 
+## [9.3.0](https://github.com/snelling-a/nvim/compare/v9.2.0...v9.3.0) (2026-09-07)
+
+
+### Features
+
+* **oil:** render images in oil preview via image.nvim ([0804ab7](https://github.com/snelling-a/nvim/commit/0804ab7af028e7446a425a1c160fdf2c383953b4))
+
+
+### Bug Fixes
+
+* **lsp:** tailwind config discovery for shared css entries ([de47ddb](https://github.com/snelling-a/nvim/commit/de47ddb5fd23fee8c9bb8e1a3ffd3d22e2d2988c))
+
+
+### Performance Improvements
+
+* remove redundant user commands ([09cf05a](https://github.com/snelling-a/nvim/commit/09cf05a62b7a59dd79fb111c106ded7280a6ddf4))
+
 ## [9.2.0](https://github.com/snelling-a/nvim/compare/v9.1.0...v9.2.0) (2026-07-13)
 
 
