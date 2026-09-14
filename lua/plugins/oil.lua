@@ -4,9 +4,10 @@ vim.pack.add({
 })
 
 require("oil").setup({
+	delete_to_trash = true,
+	preview_win = { preview_method = "load" },
 	view_options = { show_hidden = true },
 	win_options = { signcolumn = "yes:2" },
-	preview_win = { preview_method = "load" },
 })
 require("oil-git-status").setup({})
 
