@@ -48,9 +48,6 @@ vim.iter(vim.api.nvim_get_runtime_file("lsp/*.lua", true))
 		return vim.fs.basename(server_config_path):match("^(.*)%.lua$")
 	end)
 	:each(function(server_name)
-		if server_name == "copilot-language-server" then
-			return
-		end
 		vim.list_extend(servers, { server_name })
 	end)
 vim.lsp.enable(servers)
@@ -117,6 +114,7 @@ vim.api.nvim_create_autocmd({ "LspAttach" }, {
 			vim.keymap.set({ "n" }, "<leader>th", function()
 				vim.g.inlay_hints = not vim.g.inlay_hints
 				vim.lsp.inlay_hint.enable(vim.g.inlay_hints)
+				vim.notify("Inlay hints " .. (vim.g.inlay_hints and "Enabled" or "Disabled"))
 			end, { desc = "[T]oggle Inlay [H]ints" })
 		end
 	end,
