@@ -1,5 +1,24 @@
 # Changelog
 
+## [9.3.0](https://github.com/snelling-a/nvim/compare/v9.2.0...v9.3.0) (2026-09-23)
+
+
+### Features
+
+* **lsp:** notify on inlay hints toggle ([92d0572](https://github.com/snelling-a/nvim/commit/92d05729e1aff41b8d802e657982fba24ed21a93))
+* **oil:** delete to trash ([e189140](https://github.com/snelling-a/nvim/commit/e189140767ad45c536de09203bce4748322dbc0a))
+* **oil:** render images in oil preview via image.nvim ([0804ab7](https://github.com/snelling-a/nvim/commit/0804ab7af028e7446a425a1c160fdf2c383953b4))
+
+
+### Bug Fixes
+
+* **lsp:** tailwind config discovery for shared css entries ([de47ddb](https://github.com/snelling-a/nvim/commit/de47ddb5fd23fee8c9bb8e1a3ffd3d22e2d2988c))
+
+
+### Performance Improvements
+
+* remove redundant user commands ([09cf05a](https://github.com/snelling-a/nvim/commit/09cf05a62b7a59dd79fb111c106ded7280a6ddf4))
+
 ## [9.2.0](https://github.com/snelling-a/nvim/compare/v9.1.0...v9.2.0) (2026-07-13)
 
 
