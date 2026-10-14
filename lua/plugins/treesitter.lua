@@ -26,6 +26,7 @@ vim.api.nvim_create_autocmd({ "PackChanged" }, {
 })
 
 local extra_languages = {
+	"comment",
 	"luadoc",
 	"jsdoc",
 	"vimdoc",
