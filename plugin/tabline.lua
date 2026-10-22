@@ -111,8 +111,6 @@ local function fetch_buf_name(bufnr)
 		return "Mason"
 	elseif buf.filetype == "help" and not buf.modifiable then
 		return " " .. vim.fn.fnamemodify(buf_name, ":t")
-	elseif buf_name == "kulala://ui" then
-		return "Kulala"
 	elseif vim.startswith(buf_name, "codediff://") then
 		return vim.fn.fnamemodify(buf_name, ":t")
 	elseif buf_name == "" then

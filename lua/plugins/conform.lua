@@ -5,7 +5,6 @@ require("conform").setup({
 		css = { "prettierd", "prettier", stop_after_first = true },
 		go = { "goimports", "gofumpt" },
 		html = { "prettierd", "prettier", stop_after_first = true },
-		-- http = { "kulala-fmt" },
 		javascript = { "oxfmt", "prettierd", "prettier", stop_after_first = true },
 		javascriptreact = { "oxfmt", "prettierd", "prettier", stop_after_first = true },
 		lua = { "stylua" },
