@@ -33,6 +33,7 @@ This is a Neovim configuration (0.11+) using native `vim.pack` for plugin manage
   - `bool.lua` - Boolean toggling
   - `diagnostic.lua` - Diagnostic configuration
   - `easy-motion.lua` - Easy motion navigation
+  - `filetype.lua` - Custom filetype detection
   - `gx.lua` - URL opener
   - `lsp.lua` - LSP setup and keymaps
   - `marks.lua` - Mark management
