@@ -22,8 +22,8 @@ vim.diagnostic.config({
 		end,
 	},
 	jump = {
-		on_jump = function()
-			vim.diagnostic.open_float(nil, { focus = false, scope = "cursor" })
+		on_jump = function(_, bufnr)
+			vim.diagnostic.open_float({ bufnr = bufnr, focus = false, scope = "cursor" })
 		end,
 	},
 	severity_sort = true,
