@@ -107,4 +107,3 @@ Use the `/add-plugin` skill.
 - Prefix private functions with `_`
 - Use `pcall` for protected calls, `vim.notify` for errors
 - Avoid hardcoded paths; use `vim.fn.stdpath`
-
