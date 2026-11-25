@@ -11,7 +11,10 @@ local function _delete(buf, opts)
 	if vim.bo[buf].modified and not opts.force then
 		local ok, choice =
 			pcall(vim.fn.confirm, ("Save changes to %q?"):format(vim.fn.bufname(buf)), "&Yes\n&No\n&Cancel")
-		if not ok or choice == 0 or choice == 3 then
+		if not ok then
+			vim.notify("bufdelete: " .. tostring(choice), vim.log.levels.ERROR)
+			return
+		elseif choice == 0 or choice == 3 then
 			return
 		elseif choice == 1 then
 			vim.api.nvim_buf_call(buf, vim.cmd.write)
@@ -74,6 +77,13 @@ end
 function M.other(opts)
 	opts = opts or {}
 	local current = vim.api.nvim_get_current_buf()
+	-- close windows (and so tabs) showing other buffers, instead of filling them with `current`
+	for _, win in ipairs(vim.api.nvim_list_wins()) do
+		local buf = vim.api.nvim_win_get_buf(win)
+		if buf ~= current and vim.bo[buf].buflisted then
+			pcall(vim.api.nvim_win_close, win, false)
+		end
+	end
 	for _, buf in ipairs(vim.api.nvim_list_bufs()) do
 		if vim.bo[buf].buflisted and buf ~= current then
 			_delete(buf, opts)
