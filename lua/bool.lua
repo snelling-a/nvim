@@ -35,6 +35,7 @@ local bool_groups = {
 	{ "top", "bottom" },
 	{ "true", "false" },
 	{ "||", "&&" },
+	{ "<", ">" },
 }
 
 ---@type string[]
